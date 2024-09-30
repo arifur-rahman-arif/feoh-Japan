@@ -1,0 +1,50 @@
+﻿using EPiServer.Cms.Shell;
+using EPiServer.Cms.TinyMce.Core;
+using EPiServer.Forms.Internal.Security;
+using EPiServer.ServiceLocation;
+using FEO.CMS.HBG;
+using FEO.CMS.HBG.Business;
+using Microsoft.AspNetCore.Mvc;
+using Microsoft.AspNetCore.Mvc.Razor;
+
+namespace FEO.CMS.HSB
+{
+    public static class HSBServiceExtensions
+    {
+        public static IServiceCollection AddBootstrapHSBServices(this IServiceCollection services)
+        {
+            services.Configure(delegate (RazorViewEngineOptions options)
+            {
+                options.ViewLocationExpanders.Add(new SiteViewEngineLocationExpander());
+            });
+
+            services.AddControllers().AddJsonOptions(delegate (JsonOptions options)
+            {
+                options.JsonSerializerOptions.PropertyNamingPolicy = null;
+            });
+            return services;
+        }
+        public static IServiceCollection AddPostCmsHSBServices(this IServiceCollection services, IWebHostEnvironment _webHostingEnvironment, IConfiguration _configuration)
+        {
+            services.Configure<MvcOptions>(options => options.Filters.Add<PageContextActionFilter>());
+            services.AddAdminUserRegistration()
+                .AddEmbeddedLocalization<Startup>()
+                .AddAuthorizationCore()
+                .AddAuthorization();
+
+            services.Configure<TinyMceConfiguration>(config =>
+            {
+                // Add the advanced list styles, table, and code plugins// and append buttons for inserting and editing tables// and showing source code to the toolbar
+                config.Default()
+                .AddPlugin("code")
+                .Toolbar("formatselect styleselect | epi-link anchor | bold italic underline | superscript subscript | bullist numlist | image epi-image-editor",
+                "table tabledelete tableprops tablerowprops tablecellprops tableinsertrowbefore tableinsertrowafter tabledeleterow tableinsertcolbefore tableinsertcolafter tabledeletecol",
+                "epi-personalized-content | removeformat | undo redo searchreplace | fullscreen code help");
+            });
+
+            services.AddTransient<IAntiForgeryService, AntiForgeryService>();
+
+            return services;
+        }
+    }
+}
