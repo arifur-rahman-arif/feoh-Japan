@@ -7,7 +7,15 @@ namespace FEO.CMS.HBG.Business
     [ServiceConfiguration]
     public class TemplateCoordinator : IViewTemplateModelRegistrator
     {
-        public const string BlockFolder = "~/Views/FarEastHospitality/Blocks/";    
+        public const string StayFarEastBlocksFolder = "~/Views/FarEastHospitality/StayFarEast/Blocks/";
+        public const string BarrackBlocksFolder = "~/Views/FarEastHospitality/Barrack/Blocks/";
+        public const string ClanBlocksFolder = "~/Views/FarEastHospitality/Clan/Blocks/";
+        public const string OasiaBlocksFolder = "~/Views/FarEastHospitality/Oasia/Blocks/";
+        public const string OutpostBlocksFolder = "~/Views/FarEastHospitality/Outpost/Blocks/";
+        public const string QuincyBlocksFolder = "~/Views/FarEastHospitality/Quincy/Blocks/";
+        public const string RendezvoustBlocksFolder = "~/Views/FarEastHospitality/Rendezvous/Blocks/";
+        public const string VillageBlocksFolder = "~/Views/FarEastHospitality/Village/Blocks/";
+
         public static void OnTemplateResolved(object sender, TemplateResolverEventArgs args)
         {
             //Disable DefaultPageController for page types that shouldn't have any renderer as pages
@@ -108,7 +116,7 @@ namespace FEO.CMS.HBG.Business
 
         private static string BlockPath(string fileName)
         {
-            return string.Format("{0}{1}", BlockFolder, fileName);
+            return string.Format("{0}{1}", StayFarEastBlocksFolder, fileName);
         }
     }
 }

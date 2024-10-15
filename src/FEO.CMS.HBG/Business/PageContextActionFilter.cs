@@ -1,8 +1,8 @@
 using EPiServer.Web.Routing;
-using Microsoft.AspNetCore.Mvc;
-using Microsoft.AspNetCore.Mvc.Filters;
 using FEO.CMS.HBG.Core.Models;
 using FEO.CMS.HBG.Core.Pages;
+using Microsoft.AspNetCore.Mvc;
+using Microsoft.AspNetCore.Mvc.Filters;
 
 namespace FEO.CMS.HBG.Business
 {

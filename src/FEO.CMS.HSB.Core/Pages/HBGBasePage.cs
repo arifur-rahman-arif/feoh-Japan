@@ -6,7 +6,7 @@ using System.ComponentModel.DataAnnotations;
 
 namespace FEO.CMS.HBG.Core.Pages
 {
-    [ContentType(DisplayName = "RetailBasePage", GUID = "3697F7C1-CDB1-48F4-A84B-ABBF92013863", GroupName = "Hospitality")]
+    [ContentType(DisplayName = "HospitalityBasePage", GUID = "3697F7C1-CDB1-48F4-A84B-ABBF92013863", GroupName = "Hospitality")]
     public class HBGBasePage : PageData
     {
         [Display(Name = "Styles", GroupName = "Styling", Order = 0)]

@@ -28,14 +28,14 @@ namespace FEO.CMS.HBG
                 services.Configure<SchedulerOptions>(options => options.Enabled = false);
             }
 
-            services.AddBootstrapHSBServices();
+            services.AddBootstrapHospitalityServices();
 
             services
                 .AddCmsAspNetIdentity<ApplicationUser>()
                 .AddCms()
                 .AddAdminUserRegistration()
                 .AddEmbeddedLocalization<Startup>();
-            services.AddPostCmsHSBServices(_webHostingEnvironment, _configuration);
+            services.AddPostCmsHospitalityServices(_webHostingEnvironment, _configuration);
             services.Configure<FindOptions>(_configuration.GetSection("Find"));
             services.AddFind();
         }

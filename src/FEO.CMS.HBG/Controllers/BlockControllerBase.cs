@@ -2,7 +2,7 @@
 using FEO.CMS.HBG.Core.Blocks;
 using System.Web;
 
-namespace FEO.CMS.RBG.Controllers
+namespace FEO.CMS.HBG.Controllers
 {
     public abstract class BlockControllerBase<T> : BlockComponent<T> where T : HBGBaseBlock
     {

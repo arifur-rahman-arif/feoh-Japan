@@ -8,7 +8,7 @@ using FEO.CMS.HBG.Core.Pages;
 using Microsoft.AspNetCore.Mvc;
 using System.Web;
 
-namespace FEO.CMS.HSB.Controllers
+namespace FEO.CMS.HBG.Controllers
 {
     /// <summary>
     /// All controllers that renders pages should inherit from this class so that we can
@@ -38,10 +38,9 @@ namespace FEO.CMS.HSB.Controllers
         {
             if (PageContext.Page is HBGBasePage page)
             {
-                layoutModel.HideHeader = page.HideHeader;
-                layoutModel.HideFooter = page.HideFooter;
-                layoutModel.HideBreadcrumb = page.HideBreadcrumb;
-                layoutModel.ShowInBreadcrumb = page.ShowInBreadcrumb;
+                //layoutModel.HideHeader = page.HideSiteHeader;
+                //layoutModel.HideFooter = page.HideSiteFooter;
+                //layoutModel.HideOnBreadcrumb = page.NotShowOnBreadcrumb;
             }
         }
 

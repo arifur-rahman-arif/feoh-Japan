@@ -9,9 +9,9 @@ using Microsoft.AspNetCore.Mvc.Razor;
 
 namespace FEO.CMS.HSB
 {
-    public static class HSBServiceExtensions
+    public static class HospitalityServiceExtensions
     {
-        public static IServiceCollection AddBootstrapHSBServices(this IServiceCollection services)
+        public static IServiceCollection AddBootstrapHospitalityServices(this IServiceCollection services)
         {
             services.Configure(delegate (RazorViewEngineOptions options)
             {
@@ -24,7 +24,7 @@ namespace FEO.CMS.HSB
             });
             return services;
         }
-        public static IServiceCollection AddPostCmsHSBServices(this IServiceCollection services, IWebHostEnvironment _webHostingEnvironment, IConfiguration _configuration)
+        public static IServiceCollection AddPostCmsHospitalityServices(this IServiceCollection services, IWebHostEnvironment _webHostingEnvironment, IConfiguration _configuration)
         {
             services.Configure<MvcOptions>(options => options.Filters.Add<PageContextActionFilter>());
             services.AddAdminUserRegistration()
