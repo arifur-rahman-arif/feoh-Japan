@@ -1,4 +1,5 @@
 using EPiServer.Core;
+using EPiServer.DataAbstraction;
 using EPiServer.DataAnnotations;
 using System.ComponentModel.DataAnnotations;
 
@@ -11,7 +12,7 @@ namespace FEO.CMS.HBG.Core.Pages.Village
         [CultureSpecific]
         public virtual string ResultCount { get; set; }
 
-        [Display(Name = "Property", GroupName = "Content", Order = 600)]
+        [Display(Name = "Property", GroupName = SystemTabNames.Content, Order = 600)]
         [CultureSpecific]
         public virtual ContentReference Property { get; set; }
 

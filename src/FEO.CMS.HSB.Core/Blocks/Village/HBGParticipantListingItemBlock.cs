@@ -1,4 +1,5 @@
 using EPiServer.Core;
+using EPiServer.DataAbstraction;
 using EPiServer.DataAnnotations;
 using EPiServer.SpecializedProperties;
 using EPiServer.Web;
@@ -17,63 +18,63 @@ namespace FEO.CMS.HBG.Core.Blocks.Village
         [CultureSpecific]
         public virtual LinkItem RedirectURL { get; set; }
 
-        [Display(Name = "First Label", GroupName = "Content", Order = 600)]
+        [Display(Name = "First Label", GroupName = SystemTabNames.Content, Order = 600)]
         [CultureSpecific]
         public virtual string FirstLabel { get; set; }
 
-        [Display(Name = "First Label Value", GroupName = "Content", Order = 700)]
+        [Display(Name = "First Label Value", GroupName = SystemTabNames.Content, Order = 700)]
         [CultureSpecific]
         public virtual string FirstLabelValue { get; set; }
 
-        [Display(Name = "First Label Icon", GroupName = "Content", Order = 800)]
+        [Display(Name = "First Label Icon", GroupName = SystemTabNames.Content, Order = 800)]
         [CultureSpecific]
         [UIHint(UIHint.Image)]
         public virtual ContentReference FirstLabelIcon { get; set; }
 
-        [Display(Name = "Second Label", GroupName = "Content", Order = 900)]
+        [Display(Name = "Second Label", GroupName = SystemTabNames.Content, Order = 900)]
         [CultureSpecific]
         public virtual string SecondLabel { get; set; }
 
-        [Display(Name = "Second Label Value", GroupName = "Content", Order = 950)]
+        [Display(Name = "Second Label Value", GroupName = SystemTabNames.Content, Order = 950)]
         [CultureSpecific]
         public virtual string SecondLabelValue { get; set; }
 
-        [Display(Name = "Second Label Icon", GroupName = "Content", Order = 975)]
+        [Display(Name = "Second Label Icon", GroupName = SystemTabNames.Content, Order = 975)]
         [CultureSpecific]
         [UIHint(UIHint.Image)]
         public virtual ContentReference SecondLabelIcon { get; set; }
 
-        [Display(Name = "Third Label", GroupName = "Content", Order = 1000)]
+        [Display(Name = "Third Label", GroupName = SystemTabNames.Content, Order = 1000)]
         [CultureSpecific]
         public virtual string ThirdLabel { get; set; }
 
-        [Display(Name = "Third Label Value", GroupName = "Content", Order = 1200)]
+        [Display(Name = "Third Label Value", GroupName = SystemTabNames.Content, Order = 1200)]
         [CultureSpecific]
         public virtual string ThirdLabelValue { get; set; }
 
-        [Display(Name = "Third Label Icon", GroupName = "Content", Order = 1250)]
+        [Display(Name = "Third Label Icon", GroupName = SystemTabNames.Content, Order = 1250)]
         [CultureSpecific]
         [UIHint(UIHint.Image)]
         public virtual ContentReference ThirdLabelIcon { get; set; }
 
-        [Display(Name = "Special Offer Description", GroupName = "Content", Order = 1300)]
+        [Display(Name = "Special Offer Description", GroupName = SystemTabNames.Content, Order = 1300)]
         [CultureSpecific]
         public virtual string SpecialOfferDescription { get; set; }
 
-        [Display(Name = "Special Offer Icon", GroupName = "Content", Order = 1400)]
+        [Display(Name = "Special Offer Icon", GroupName = SystemTabNames.Content, Order = 1400)]
         [CultureSpecific]
         [UIHint(UIHint.Image)]
         public virtual ContentReference SpecialOfferIcon { get; set; }
 
-        [Display(Name = "Property", GroupName = "Content", Order = 1500)]
+        [Display(Name = "Property", GroupName = SystemTabNames.Content, Order = 1500)]
         [CultureSpecific]
         public virtual ContentReference Property { get; set; }
 
-        [Display(Name = "Preview Images", GroupName = "Content", Order = 1600)]
+        [Display(Name = "Preview Images", GroupName = SystemTabNames.Content, Order = 1600)]
         [CultureSpecific]
         public virtual string PreviewImages { get; set; }
 
-        [Display(Name = "Ribbon Text", GroupName = "Content", Order = 1700)]
+        [Display(Name = "Ribbon Text", GroupName = SystemTabNames.Content, Order = 1700)]
         [CultureSpecific]
         public virtual string RibbonText { get; set; }
 

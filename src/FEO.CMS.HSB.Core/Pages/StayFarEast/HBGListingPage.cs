@@ -1,4 +1,5 @@
 using EPiServer.Core;
+using EPiServer.DataAbstraction;
 using EPiServer.DataAnnotations;
 using EPiServer.SpecializedProperties;
 using EPiServer.Web;
@@ -27,7 +28,7 @@ namespace FEO.CMS.HBG.Core.Pages.StayFarEast
         [UIHint(UIHint.Image)]
         public virtual ContentReference LogoImage { get; set; }
 
-        [Display(Name = "Main Content", GroupName = "Content", Order = 100)]
+        [Display(Name = "Main Content", GroupName = SystemTabNames.Content, Order = 100)]
         [CultureSpecific]
         [UIHint(UIHint.Textarea)]
         public virtual XhtmlString MainContent { get; set; }
@@ -55,7 +56,7 @@ namespace FEO.CMS.HBG.Core.Pages.StayFarEast
         [UIHint(UIHint.Image)]
         public virtual ContentReference RecognitionImage { get; set; }
 
-        [Display(Name = "Services", GroupName = "Content", Order = 200)]
+        [Display(Name = "Services", GroupName = SystemTabNames.Content, Order = 200)]
         [CultureSpecific]
         public virtual ContentArea Services { get; set; }
 
@@ -67,11 +68,11 @@ namespace FEO.CMS.HBG.Core.Pages.StayFarEast
         [CultureSpecific]
         public virtual LinkItem ReviewsLink { get; set; }
 
-        [Display(Name = "Trip Advisor Widget", GroupName = "Content", Order = 300)]
+        [Display(Name = "Trip Advisor Widget", GroupName = SystemTabNames.Content, Order = 300)]
         [CultureSpecific]
         public virtual LinkItem TripAdvisorWidget { get; set; }
 
-        [Display(Name = "Hotel Amenities", GroupName = "Content", Order = 400)]
+        [Display(Name = "Hotel Amenities", GroupName = SystemTabNames.Content, Order = 400)]
         [CultureSpecific]
         public virtual ContentArea HotelAmenities { get; set; }
 

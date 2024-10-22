@@ -10131,24 +10131,19 @@
     ]
   },
   "packageFolders": {
-    "C:\\Users\\SunilKumarAmanchi\\.nuget\\packages\\": {},
-    "C:\\Program Files (x86)\\Microsoft Visual Studio\\Shared\\NuGetPackages": {}
+    "C:\\Users\\prane\\.nuget\\packages\\": {}
   },
   "project": {
     "version": "1.0.0",
     "restore": {
-      "projectUniqueName": "C:\\Projects\\Fareast Hospitality\\src\\FEO.CMS.HSB.Core\\FEO.CMS.HBG.Core.csproj",
+      "projectUniqueName": "C:\\Hospitality\\src\\FEO.CMS.HSB.Core\\FEO.CMS.HBG.Core.csproj",
       "projectName": "FEO.CMS.HBG.Core",
-      "projectPath": "C:\\Projects\\Fareast Hospitality\\src\\FEO.CMS.HSB.Core\\FEO.CMS.HBG.Core.csproj",
-      "packagesPath": "C:\\Users\\SunilKumarAmanchi\\.nuget\\packages\\",
-      "outputPath": "C:\\Projects\\Fareast Hospitality\\src\\FEO.CMS.HSB.Core\\obj\\",
+      "projectPath": "C:\\Hospitality\\src\\FEO.CMS.HSB.Core\\FEO.CMS.HBG.Core.csproj",
+      "packagesPath": "C:\\Users\\prane\\.nuget\\packages\\",
+      "outputPath": "C:\\Hospitality\\src\\FEO.CMS.HSB.Core\\obj\\",
       "projectStyle": "PackageReference",
-      "fallbackFolders": [
-        "C:\\Program Files (x86)\\Microsoft Visual Studio\\Shared\\NuGetPackages"
-      ],
       "configFilePaths": [
-        "C:\\Users\\SunilKumarAmanchi\\AppData\\Roaming\\NuGet\\NuGet.Config",
-        "C:\\Program Files (x86)\\NuGet\\Config\\Microsoft.VisualStudio.FallbackLocation.config",
+        "C:\\Users\\prane\\AppData\\Roaming\\NuGet\\NuGet.Config",
         "C:\\Program Files (x86)\\NuGet\\Config\\Microsoft.VisualStudio.Offline.config"
       ],
       "originalTargetFrameworks": [
@@ -10156,9 +10151,7 @@
       ],
       "sources": {
         "C:\\Program Files (x86)\\Microsoft SDKs\\NuGetPackages\\": {},
-        "C:\\Program Files\\dotnet\\library-packs": {},
-        "https://api.nuget.optimizely.com/v3/index.json": {},
-        "https://api.nuget.org/v3/index.json": {}
+        "C:\\Program Files\\dotnet\\library-packs": {}
       },
       "frameworks": {
         "net6.0": {
@@ -10201,12 +10194,26 @@
         ],
         "assetTargetFallback": true,
         "warn": true,
+        "downloadDependencies": [
+          {
+            "name": "Microsoft.AspNetCore.App.Ref",
+            "version": "[6.0.33, 6.0.33]"
+          },
+          {
+            "name": "Microsoft.NETCore.App.Ref",
+            "version": "[6.0.33, 6.0.33]"
+          },
+          {
+            "name": "Microsoft.WindowsDesktop.App.Ref",
+            "version": "[6.0.33, 6.0.33]"
+          }
+        ],
         "frameworkReferences": {
           "Microsoft.NETCore.App": {
             "privateAssets": "all"
           }
         },
-        "runtimeIdentifierGraphPath": "C:\\Program Files\\dotnet\\sdk\\8.0.300\\RuntimeIdentifierGraph.json"
+        "runtimeIdentifierGraphPath": "C:\\Program Files\\dotnet\\sdk\\8.0.400\\RuntimeIdentifierGraph.json"
       }
     }
   }

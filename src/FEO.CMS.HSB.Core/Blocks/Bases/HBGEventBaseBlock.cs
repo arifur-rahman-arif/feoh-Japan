@@ -1,3 +1,4 @@
+using EPiServer.DataAbstraction;
 using EPiServer.DataAnnotations;
 using EPiServer.SpecializedProperties;
 using System.ComponentModel.DataAnnotations;
@@ -11,19 +12,19 @@ namespace FEO.CMS.HBG.Core.Blocks.Bases
         [CultureSpecific]
         public virtual string PreviewImages { get; set; }
 
-        [Display(Name = "Gallery", GroupName = "Content", Order = 850)]
+        [Display(Name = "Gallery", GroupName = SystemTabNames.Content, Order = 850)]
         [CultureSpecific]
         public virtual string Gallery { get; set; }
 
-        [Display(Name = "Brochure Download", GroupName = "Content", Order = 1000)]
+        [Display(Name = "Brochure Download", GroupName = SystemTabNames.Content, Order = 1000)]
         [CultureSpecific]
         public virtual LinkItem BrochureDownload { get; set; }
 
-        [Display(Name = "Ribbon Text", GroupName = "Content", Order = 1100)]
+        [Display(Name = "Ribbon Text", GroupName = SystemTabNames.Content, Order = 1100)]
         [CultureSpecific]
         public virtual string RibbonText { get; set; }
 
-        [Display(Name = "Enable Enquiry CTA", GroupName = "Content", Order = 1200)]
+        [Display(Name = "Enable Enquiry CTA", GroupName = SystemTabNames.Content, Order = 1200)]
         [CultureSpecific]
         public virtual bool EnableEnquiryCTA { get; set; }
 

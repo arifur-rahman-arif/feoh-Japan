@@ -6,7 +6,7 @@ using System.ComponentModel.DataAnnotations;
 namespace FEO.CMS.HBG.Core.Blocks.Bases
 {
     [ContentType(DisplayName = "HBGViewBlock", GUID = "98ABC7C2-A215-4A38-8514-C0592EA0F358", GroupName = "Hospitality")]
-    public class HBGViewBlock : HBGBaseBlock
+    public class HBGViewBlock : HBGThumbnailPreviewBlock
     {
         [Display(Name = "Open Graph Image", GroupName = "SEO", Order = 50)]
         [CultureSpecific]

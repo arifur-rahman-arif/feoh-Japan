@@ -7,7 +7,7 @@ using System.ComponentModel.DataAnnotations;
 namespace FEO.CMS.HBG.Core.Blocks.StayFarEast
 {
     [ContentType(DisplayName = "HBGHeaderNavBlock", GUID = "542C32F0-27A2-45A2-9D6C-2AF6E0599FB1", GroupName = "Hospitality")]
-    public class HBGHeaderNavBlock : HBGBaseBlock
+    public class HBGHeaderNavBlock : HBGHeaderRibbonBlock
     {
         [Display(Name = "SignInPopUpLink", GroupName = "Sign In Popup Settings", Order = 50)]
         [CultureSpecific]
