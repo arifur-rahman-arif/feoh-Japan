@@ -1,5 +1,4 @@
 using EPiServer.Core;
-using EPiServer.DataAbstraction;
 using EPiServer.DataAnnotations;
 using EPiServer.Web;
 using FEO.CMS.HBG.Core.Blocks.Bases;
@@ -14,16 +13,16 @@ namespace FEO.CMS.HBG.Core.Blocks.StayFarEast
         [CultureSpecific]
         public virtual string ImageCaption { get; set; }
 
-        [Display(Name = "Image Icon", GroupName = SystemTabNames.Content, Order = 100)]
+        [Display(Name = "Image Icon", GroupName = "Images", Order = 100)]
         [CultureSpecific]
         [UIHint(UIHint.Image)]
         public virtual ContentReference ImageIcon { get; set; }
 
-        [Display(Name = "Icon Title", GroupName = SystemTabNames.Content, Order = 200)]
+        [Display(Name = "Icon Title", GroupName = "Images", Order = 200)]
         [CultureSpecific]
         public virtual string IconTitle { get; set; }
 
-        [Display(Name = "Button Copy", GroupName = SystemTabNames.Content, Order = 300)]
+        [Display(Name = "Button Copy", GroupName = "Images", Order = 300)]
         [CultureSpecific]
         public virtual string ButtonCopy { get; set; }
 

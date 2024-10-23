@@ -13,6 +13,10 @@ namespace FEO.CMS.HBG.Core.Blocks.StayFarEast
         [CultureSpecific]
         public virtual ContentArea PropertyListing { get; set; }
 
+        [Display(Name = "Default Sort Filter", GroupName = "Settings", Order = 100)]
+        [CultureSpecific]
+        public virtual ContentReference DefaultSortFilter { get; set; }
+
         [Display(Name = "Heading Title", GroupName = "Heading", Order = 100)]
         [CultureSpecific]
         public virtual string HeadingTitle { get; set; }

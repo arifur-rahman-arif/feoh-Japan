@@ -1,5 +1,4 @@
 using EPiServer.Core;
-using EPiServer.DataAbstraction;
 using EPiServer.DataAnnotations;
 using EPiServer.Web;
 using System.ComponentModel.DataAnnotations;
@@ -17,7 +16,7 @@ namespace FEO.CMS.HBG.Core.Pages.Outpost
         [CultureSpecific]
         public virtual string FeatureOne { get; set; }
 
-        [Display(Name = "Listing Desktop Image", GroupName = SystemTabNames.Content, Order = 100)]
+        [Display(Name = "Listing Desktop Image", GroupName = "Basic Info", Order = 100)]
         [CultureSpecific]
         [UIHint(UIHint.Image)]
         public virtual ContentReference ListingDesktopImage { get; set; }
@@ -30,7 +29,7 @@ namespace FEO.CMS.HBG.Core.Pages.Outpost
         [CultureSpecific]
         public virtual string FeatureTwo { get; set; }
 
-        [Display(Name = "Listing Mobile Image", GroupName = SystemTabNames.Content, Order = 200)]
+        [Display(Name = "Listing Mobile Image", GroupName = "Basic Info", Order = 200)]
         [CultureSpecific]
         [UIHint(UIHint.Image)]
         public virtual ContentReference ListingMobileImage { get; set; }

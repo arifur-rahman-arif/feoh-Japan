@@ -1,5 +1,4 @@
 using EPiServer.Core;
-using EPiServer.DataAbstraction;
 using EPiServer.DataAnnotations;
 using EPiServer.Web;
 using System.ComponentModel.DataAnnotations;
@@ -14,11 +13,11 @@ namespace FEO.CMS.HBG.Core.Blocks.Bases
         [UIHint(UIHint.Image)]
         public virtual ContentReference LargeImage { get; set; }
 
-        [Display(Name = "Tour URL", GroupName = SystemTabNames.Content, Order = 100)]
+        [Display(Name = "Tour URL", GroupName = "Images", Order = 100)]
         [CultureSpecific]
         public virtual string TourURL { get; set; }
 
-        [Display(Name = "Video ID", GroupName = SystemTabNames.Content, Order = 200)]
+        [Display(Name = "Video ID", GroupName = "Images", Order = 200)]
         [CultureSpecific]
         public virtual string VideoID { get; set; }
 

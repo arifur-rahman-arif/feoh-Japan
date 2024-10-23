@@ -18,51 +18,51 @@ namespace FEO.CMS.HBG.Core.Pages.StayFarEast
         [CultureSpecific]
         public virtual ContentReference Hotel { get; set; }
 
-        [Display(Name = "Size", GroupName = SystemTabNames.Content, Order = 200)]
+        [Display(Name = "Size", GroupName = "Filter", Order = 200)]
         [CultureSpecific]
         [UIHint(UIHint.Textarea)]
         public virtual XhtmlString Size { get; set; }
 
-        [Display(Name = "PhoneNumber", GroupName = SystemTabNames.Content, Order = 300)]
+        [Display(Name = "PhoneNumber", GroupName = "Filter", Order = 300)]
         [CultureSpecific]
         [UIHint(UIHint.Textarea)]
         public virtual XhtmlString PhoneNumber { get; set; }
 
-        [Display(Name = "EmailAddress", GroupName = SystemTabNames.Content, Order = 400)]
+        [Display(Name = "EmailAddress", GroupName = "Filter", Order = 400)]
         [CultureSpecific]
         [UIHint(UIHint.Textarea)]
         public virtual XhtmlString EmailAddress { get; set; }
 
-        [Display(Name = "VenueBrochure", GroupName = SystemTabNames.Content, Order = 500)]
+        [Display(Name = "VenueBrochure", GroupName = "Filter", Order = 500)]
         [CultureSpecific]
         [UIHint(UIHint.MediaFile)]
         public virtual ContentReference VenueBrochure { get; set; }
 
-        [Display(Name = "VenueFloorPlan", GroupName = SystemTabNames.Content, Order = 600)]
+        [Display(Name = "VenueFloorPlan", GroupName = "Filter", Order = 600)]
         [CultureSpecific]
         [UIHint(UIHint.Image)]
         public virtual ContentReference VenueFloorPlan { get; set; }
 
-        [Display(Name = "VenueFloorPlanPDF", GroupName = SystemTabNames.Content, Order = 700)]
+        [Display(Name = "VenueFloorPlanPDF", GroupName = "Filter", Order = 700)]
         [CultureSpecific]
         [UIHint(UIHint.MediaFile)]
         public virtual ContentReference VenueFloorPlanPDF { get; set; }
 
-        [Display(Name = "VenueInformation", GroupName = SystemTabNames.Content, Order = 800)]
+        [Display(Name = "VenueInformation", GroupName = "Filter", Order = 800)]
         [CultureSpecific]
         [UIHint(UIHint.Textarea)]
         public virtual XhtmlString VenueInformation { get; set; }
 
-        [Display(Name = "TestimonialsTitle", GroupName = SystemTabNames.Content, Order = 900)]
+        [Display(Name = "TestimonialsTitle", GroupName = "Filter", Order = 900)]
         [CultureSpecific]
         public virtual string TestimonialsTitle { get; set; }
 
-        [Display(Name = "TestimonialsDescription", GroupName = SystemTabNames.Content, Order = 1000)]
+        [Display(Name = "TestimonialsDescription", GroupName = "Filter", Order = 1000)]
         [CultureSpecific]
         [UIHint(UIHint.Textarea)]
         public virtual XhtmlString TestimonialsDescription { get; set; }
 
-        [Display(Name = "Find out More", GroupName = SystemTabNames.Content, Order = 1100)]
+        [Display(Name = "Find out More", GroupName = "Filter", Order = 1100)]
         [CultureSpecific]
         [UIHint(UIHint.Textarea)]
         public virtual XhtmlString FindoutMore { get; set; }

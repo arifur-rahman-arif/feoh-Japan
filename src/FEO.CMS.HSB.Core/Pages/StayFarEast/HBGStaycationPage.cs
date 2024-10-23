@@ -1,5 +1,4 @@
 using EPiServer.Core;
-using EPiServer.DataAbstraction;
 using EPiServer.DataAnnotations;
 using EPiServer.Web;
 using System.ComponentModel.DataAnnotations;
@@ -14,12 +13,12 @@ namespace FEO.CMS.HBG.Core.Pages.StayFarEast
         [UIHint(UIHint.Image)]
         public virtual ContentReference LogoImage { get; set; }
 
-        [Display(Name = "Main Content", GroupName = SystemTabNames.Content, Order = 100)]
+        [Display(Name = "Main Content", GroupName = "Images", Order = 100)]
         [CultureSpecific]
         [UIHint(UIHint.Textarea)]
         public virtual XhtmlString MainContent { get; set; }
 
-        [Display(Name = "Heading", GroupName = SystemTabNames.Content, Order = 200)]
+        [Display(Name = "Heading", GroupName = "Images", Order = 200)]
         [CultureSpecific]
         public virtual string Heading { get; set; }
 

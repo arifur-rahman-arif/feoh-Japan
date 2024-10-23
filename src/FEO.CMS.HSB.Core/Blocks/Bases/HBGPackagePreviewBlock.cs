@@ -1,5 +1,4 @@
 using EPiServer.Core;
-using EPiServer.DataAbstraction;
 using EPiServer.DataAnnotations;
 using EPiServer.Web;
 using System.ComponentModel.DataAnnotations;
@@ -13,12 +12,12 @@ namespace FEO.CMS.HBG.Core.Blocks.Bases
         [CultureSpecific]
         public virtual ContentReference DisplayGetInTouch { get; set; }
 
-        [Display(Name = "Package Overview", GroupName = SystemTabNames.Content, Order = 100)]
+        [Display(Name = "Package Overview", GroupName = "Settings", Order = 100)]
         [CultureSpecific]
         [UIHint(UIHint.Textarea)]
         public virtual XhtmlString PackageOverview { get; set; }
 
-        [Display(Name = "Package Includes", GroupName = SystemTabNames.Content, Order = 200)]
+        [Display(Name = "Package Includes", GroupName = "Settings", Order = 200)]
         [CultureSpecific]
         [UIHint(UIHint.Textarea)]
         public virtual XhtmlString PackageIncludes { get; set; }

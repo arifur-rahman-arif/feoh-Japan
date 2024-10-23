@@ -18,12 +18,12 @@ namespace FEO.CMS.HBG.Core.Pages.StayFarEast
         [CultureSpecific]
         public virtual bool EnableReadMoreLink { get; set; }
 
-        [Display(Name = "Main Content", GroupName = SystemTabNames.Content, Order = 200)]
+        [Display(Name = "Main Content", GroupName = "Settings", Order = 200)]
         [CultureSpecific]
         [UIHint(UIHint.Textarea)]
         public virtual XhtmlString MainContent { get; set; }
 
-        [Display(Name = "Title Content Override", GroupName = SystemTabNames.Content, Order = 300)]
+        [Display(Name = "Title Content Override", GroupName = "Settings", Order = 300)]
         [CultureSpecific]
         [UIHint(UIHint.Textarea)]
         public virtual XhtmlString TitleContentOverride { get; set; }

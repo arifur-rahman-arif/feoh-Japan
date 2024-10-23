@@ -21,10 +21,6 @@ namespace FEO.CMS.HBG.Core.Blocks.Village
         [CultureSpecific]
         public virtual string GuestCapacity { get; set; }
 
-        [Display(Name = "Bed Size", GroupName = "Profile", Order = 300)]
-        [CultureSpecific]
-        public virtual string BedSize { get; set; }
-
         [Display(Name = "Room Feature One", GroupName = "Profile", Order = 400)]
         [CultureSpecific]
         public virtual string RoomFeatureOne { get; set; }

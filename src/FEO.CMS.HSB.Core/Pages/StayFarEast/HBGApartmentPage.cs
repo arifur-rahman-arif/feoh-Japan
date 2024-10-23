@@ -20,30 +20,30 @@ namespace FEO.CMS.HBG.Core.Pages.StayFarEast
         [UIHint(UIHint.Image)]
         public virtual ContentReference FloorplanImage { get; set; }
 
-        [Display(Name = "Floor Plan", GroupName = SystemTabNames.Content, Order = 200)]
+        [Display(Name = "Floor Plan", GroupName = "Images", Order = 200)]
         [CultureSpecific]
         [UIHint(UIHint.MediaFile)]
         public virtual ContentReference FloorPlan { get; set; }
 
-        [Display(Name = "Main Content", GroupName = SystemTabNames.Content, Order = 300)]
+        [Display(Name = "Main Content", GroupName = "Images", Order = 300)]
         [CultureSpecific]
         [UIHint(UIHint.Textarea)]
         public virtual XhtmlString MainContent { get; set; }
 
-        [Display(Name = "Services", GroupName = SystemTabNames.Content, Order = 400)]
+        [Display(Name = "Services", GroupName = "Images", Order = 400)]
         [CultureSpecific]
         public virtual ContentArea Services { get; set; }
 
-        [Display(Name = "Foot Notes", GroupName = SystemTabNames.Content, Order = 500)]
+        [Display(Name = "Foot Notes", GroupName = "Images", Order = 500)]
         [CultureSpecific]
         [UIHint(UIHint.Textarea)]
         public virtual XhtmlString FootNotes { get; set; }
 
-        [Display(Name = "BookAtDailyRate", GroupName = SystemTabNames.Content, Order = 600)]
+        [Display(Name = "BookAtDailyRate", GroupName = "Images", Order = 600)]
         [CultureSpecific]
         public virtual LinkItem BookAtDailyRate { get; set; }
 
-        [Display(Name = "EnquireForMonthlyRateCTA", GroupName = SystemTabNames.Content, Order = 600)]
+        [Display(Name = "EnquireForMonthlyRateCTA", GroupName = "Images", Order = 600)]
         [CultureSpecific]
         public virtual LinkItem EnquireForMonthlyRateCTA { get; set; }
 

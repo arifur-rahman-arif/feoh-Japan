@@ -1,0 +1,16 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="1084.25" height="562.969" viewBox="0 0 1084.25 562.969">
+	<defs>
+		<style>.cls-1,.cls-2{fill:none;stroke-miterlimit:10;}.cls-1{stroke:#2a3240;stroke-width:0.25px;}.cls-2{stroke:#2a3240;stroke-width:0.25px;}</style>
+	</defs>
+	<title>Asset 6</title>
+	<g id="Layer_2" data-name="Layer 2">
+		<g id="OBJECTS">
+			<line class="cls-1" y1="4.496" x2="532" y2="4.496"/>
+			<line class="cls-1" x1="532" y1="558" y2="558"/>
+			<line class="cls-1" y1="0" x2="532" y2="0"/>
+			<line class="cls-1" x1="532" y1="562" y2="562"/>
+			<polyline class="cls-2" points="532 4.496 1080.151 4.496 1080.151 558 532 558"/>
+			<path class="cls-2" d="M532,561.5h530.3524v-8.8773c13.2976-1.4857,13.4492-13.452,13.4492-13.452H1084V22.8293h-8.1984s-.1516-11.9663-13.4492-13.452V.5H532"/>
+		</g>
+	</g>
+</svg>

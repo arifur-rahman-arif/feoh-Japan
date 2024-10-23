@@ -21,7 +21,7 @@ namespace FEO.CMS.HBG.Core.Blocks.StayFarEast
         [CultureSpecific]
         public virtual LinkItem RedirectURL { get; set; }
 
-        [Display(Name = "RibbonText", GroupName = SystemTabNames.Content, Order = 200)]
+        [Display(Name = "RibbonText", GroupName = "Settings", Order = 200)]
         [CultureSpecific]
         public virtual string RibbonText { get; set; }
 
@@ -29,15 +29,15 @@ namespace FEO.CMS.HBG.Core.Blocks.StayFarEast
         [CultureSpecific]
         public virtual bool Cover { get; set; }
 
-        [Display(Name = "Label1", GroupName = SystemTabNames.Content, Order = 300)]
+        [Display(Name = "Label1", GroupName = "Settings", Order = 300)]
         [CultureSpecific]
         public virtual string Label1 { get; set; }
 
-        [Display(Name = "Label2", GroupName = SystemTabNames.Content, Order = 400)]
+        [Display(Name = "Label2", GroupName = "Settings", Order = 400)]
         [CultureSpecific]
         public virtual string Label2 { get; set; }
 
-        [Display(Name = "Label3", GroupName = SystemTabNames.Content, Order = 500)]
+        [Display(Name = "Label3", GroupName = "Settings", Order = 500)]
         [CultureSpecific]
         public virtual string Label3 { get; set; }
 

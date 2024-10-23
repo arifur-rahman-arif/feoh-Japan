@@ -1,5 +1,4 @@
 using EPiServer.Core;
-using EPiServer.DataAbstraction;
 using EPiServer.DataAnnotations;
 using EPiServer.Web;
 using System.ComponentModel.DataAnnotations;
@@ -14,7 +13,7 @@ namespace FEO.CMS.HBG.Core.Blocks.Bases
         [UIHint(UIHint.Image)]
         public virtual ContentReference ButtonImage { get; set; }
 
-        [Display(Name = "Short Title", GroupName = SystemTabNames.Content, Order = 100)]
+        [Display(Name = "Short Title", GroupName = "Images", Order = 100)]
         [CultureSpecific]
         public virtual string ShortTitle { get; set; }
 

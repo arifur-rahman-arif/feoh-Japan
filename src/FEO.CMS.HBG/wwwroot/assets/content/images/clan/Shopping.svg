@@ -1,0 +1,10 @@
+<svg id="Group_101133" data-name="Group 101133" xmlns="http://www.w3.org/2000/svg" width="27.48" height="42" viewBox="0 0 27.48 42">
+  <g id="Group_101110" data-name="Group 101110">
+    <path id="Path_3298" data-name="Path 3298" d="M0,0H27.48V42L0,27.48Z" fill="#a76d50"/>
+  </g>
+  <g id="shopping-cart" transform="translate(6.015 6.977)">
+    <g id="shopping-cart-2" data-name="shopping-cart">
+      <path id="Path_3193" data-name="Path 3193" d="M4.786,12.762a1.6,1.6,0,1,0,1.6,1.6A1.6,1.6,0,0,0,4.786,12.762ZM0,0V1.6H1.6L4.467,7.658,3.35,9.572a2.834,2.834,0,0,0-.16.8,1.6,1.6,0,0,0,1.6,1.6h9.572v-1.6H5.105a.172.172,0,0,1-.16-.16v-.08l.718-1.356h5.9a1.455,1.455,0,0,0,1.356-.8l2.872-5.185a.439.439,0,0,0,.16-.4.754.754,0,0,0-.8-.8H3.35L2.632,0ZM12.762,12.762a1.6,1.6,0,1,0,1.6,1.6A1.6,1.6,0,0,0,12.762,12.762Z" fill="#fbfbf8"/>
+    </g>
+  </g>
+</svg>

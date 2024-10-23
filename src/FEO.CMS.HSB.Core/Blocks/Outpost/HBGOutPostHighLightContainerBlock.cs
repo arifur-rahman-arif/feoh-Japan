@@ -1,5 +1,4 @@
 using EPiServer.Core;
-using EPiServer.DataAbstraction;
 using EPiServer.DataAnnotations;
 using EPiServer.Web;
 using System.ComponentModel.DataAnnotations;
@@ -21,17 +20,17 @@ namespace FEO.CMS.HBG.Core.Blocks.Outpost
         [CultureSpecific]
         public virtual ContentReference ComponentClass { get; set; }
 
-        [Display(Name = "Title Image", GroupName = SystemTabNames.Content, Order = 500)]
+        [Display(Name = "Title Image", GroupName = "Settings", Order = 500)]
         [CultureSpecific]
         [UIHint(UIHint.Image)]
         public virtual ContentReference TitleImage { get; set; }
 
-        [Display(Name = "Background Image", GroupName = SystemTabNames.Content, Order = 600)]
+        [Display(Name = "Background Image", GroupName = "Settings", Order = 600)]
         [CultureSpecific]
         [UIHint(UIHint.Image)]
         public virtual ContentReference BackgroundImage { get; set; }
 
-        [Display(Name = "SubTitle", GroupName = SystemTabNames.Content, Order = 700)]
+        [Display(Name = "SubTitle", GroupName = "Settings", Order = 700)]
         [CultureSpecific]
         public virtual string SubTitle { get; set; }
 

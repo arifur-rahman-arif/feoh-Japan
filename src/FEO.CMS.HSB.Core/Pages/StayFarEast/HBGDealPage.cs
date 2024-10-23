@@ -1,5 +1,4 @@
 using EPiServer.Core;
-using EPiServer.DataAbstraction;
 using EPiServer.DataAnnotations;
 using EPiServer.Web;
 using System.ComponentModel.DataAnnotations;
@@ -13,7 +12,7 @@ namespace FEO.CMS.HBG.Core.Pages.StayFarEast
         [CultureSpecific]
         public virtual ContentArea ChildDeals { get; set; }
 
-        [Display(Name = "Generic Terms and Conditions", GroupName = SystemTabNames.Content, Order = 150)]
+        [Display(Name = "Generic Terms and Conditions", GroupName = "Profile", Order = 150)]
         [CultureSpecific]
         public virtual bool GenericTermsandConditions { get; set; }
 
@@ -21,24 +20,24 @@ namespace FEO.CMS.HBG.Core.Pages.StayFarEast
         [CultureSpecific]
         public virtual ContentArea ParticipatingListings { get; set; }
 
-        [Display(Name = "Terms Conditions Title", GroupName = SystemTabNames.Content, Order = 200)]
+        [Display(Name = "Terms Conditions Title", GroupName = "Profile", Order = 200)]
         [CultureSpecific]
         public virtual string TermsConditionsTitle { get; set; }
 
-        [Display(Name = "Terms Conditions Content", GroupName = SystemTabNames.Content, Order = 300)]
+        [Display(Name = "Terms Conditions Content", GroupName = "Profile", Order = 300)]
         [CultureSpecific]
         [UIHint(UIHint.Textarea)]
         public virtual XhtmlString TermsConditionsContent { get; set; }
 
-        [Display(Name = "Discount Code", GroupName = SystemTabNames.Content, Order = 400)]
+        [Display(Name = "Discount Code", GroupName = "Profile", Order = 400)]
         [CultureSpecific]
         public virtual string DiscountCode { get; set; }
 
-        [Display(Name = "Validity Message", GroupName = SystemTabNames.Content, Order = 500)]
+        [Display(Name = "Validity Message", GroupName = "Profile", Order = 500)]
         [CultureSpecific]
         public virtual string ValidityMessage { get; set; }
 
-        [Display(Name = "Featuring Properties Message", GroupName = SystemTabNames.Content, Order = 600)]
+        [Display(Name = "Featuring Properties Message", GroupName = "Profile", Order = 600)]
         [CultureSpecific]
         public virtual string FeaturingPropertiesMessage { get; set; }
 

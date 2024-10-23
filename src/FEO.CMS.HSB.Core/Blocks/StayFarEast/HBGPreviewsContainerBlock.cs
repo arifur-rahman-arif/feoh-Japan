@@ -25,7 +25,7 @@ namespace FEO.CMS.HBG.Core.Blocks.StayFarEast
         [CultureSpecific]
         public virtual string OurHotelsMobileButtonText { get; set; }
 
-        [Display(Name = "Serviced Residence Previews", GroupName = SystemTabNames.Content, Order = 200)]
+        [Display(Name = "Serviced Residence Previews", GroupName = "Buttons", Order = 200)]
         [CultureSpecific]
         public virtual ContentArea ServicedResidencePreviews { get; set; }
 

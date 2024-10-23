@@ -22,16 +22,16 @@ namespace FEO.CMS.HBG.Core.Pages.Village
         [UIHint(UIHint.Image)]
         public virtual ContentReference MetaImage { get; set; }
 
-        [Display(Name = "Special Offer Description", GroupName = SystemTabNames.Content, Order = 200)]
+        [Display(Name = "Special Offer Description", GroupName = "SEO", Order = 200)]
         [CultureSpecific]
         public virtual string SpecialOfferDescription { get; set; }
 
-        [Display(Name = "Special Offer Icon", GroupName = SystemTabNames.Content, Order = 300)]
+        [Display(Name = "Special Offer Icon", GroupName = "SEO", Order = 300)]
         [CultureSpecific]
         [UIHint(UIHint.Image)]
         public virtual ContentReference SpecialOfferIcon { get; set; }
 
-        [Display(Name = "USP List", GroupName = SystemTabNames.Content, Order = 500)]
+        [Display(Name = "USP List", GroupName = "SEO", Order = 500)]
         [CultureSpecific]
         public virtual ContentArea USPList { get; set; }
 

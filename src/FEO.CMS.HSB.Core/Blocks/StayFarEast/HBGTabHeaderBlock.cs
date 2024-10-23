@@ -16,7 +16,7 @@ namespace FEO.CMS.HBG.Core.Blocks.StayFarEast
         [CultureSpecific]
         public virtual string TabValue { get; set; }
 
-        [Display(Name = "Anchor", GroupName = SystemTabNames.Content, Order = 200)]
+        [Display(Name = "Anchor", GroupName = "Settings", Order = 200)]
         [CultureSpecific]
         public virtual LinkItem Anchor { get; set; }
 

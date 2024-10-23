@@ -7,6 +7,10 @@ namespace FEO.CMS.HBG.Core.Blocks.StayFarEast
     [ContentType(DisplayName = "HBGStickyPromotionalFeatureBlock", GUID = "7717F049-63E8-4044-89AC-B1E254AE11CF", GroupName = "Hospitality")]
     public class HBGStickyPromotionalFeatureBlock : HBGBaseBlock
     {
+        [Display(Name = "Position Of Sticky", GroupName = "Popup Settings", Order = 50)]
+        [CultureSpecific]
+        public virtual ContentReference PositionOfSticky { get; set; }
+
         [Display(Name = "Display Behaviour Popup", GroupName = "Popup Settings", Order = 100)]
         [CultureSpecific]
         public virtual ContentReference DisplayBehaviourPopup { get; set; }
@@ -14,6 +18,10 @@ namespace FEO.CMS.HBG.Core.Blocks.StayFarEast
         [Display(Name = "Time Visibility Popup", GroupName = "Popup Settings", Order = 200)]
         [CultureSpecific]
         public virtual double TimeVisibilityPopup { get; set; }
+
+        [Display(Name = "Time Invisibility Popup", GroupName = "Popup Settings", Order = 250)]
+        [CultureSpecific]
+        public virtual double TimeInvisibilityPopup { get; set; }
 
         [Display(Name = "Background Color Popup", GroupName = "Popup Settings", Order = 300)]
         [CultureSpecific]

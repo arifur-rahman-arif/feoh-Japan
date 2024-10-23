@@ -1,4 +1,3 @@
-using EPiServer.Core;
 using EPiServer.DataAnnotations;
 using FEO.CMS.HBG.Core.Blocks.Bases;
 

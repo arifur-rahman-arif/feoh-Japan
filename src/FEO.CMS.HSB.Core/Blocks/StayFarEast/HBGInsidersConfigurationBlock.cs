@@ -172,6 +172,10 @@ namespace FEO.CMS.HBG.Core.Blocks.StayFarEast
         [CultureSpecific]
         public virtual string UpsertEndpoint2 { get; set; }
 
+        [Display(Name = "Read Endpoint", GroupName = "SFMC Configuration", Order = 1100)]
+        [CultureSpecific]
+        public virtual string ReadEndpoint { get; set; }
+
         [Display(Name = "Show Captcha on Sign In Modal", GroupName = "Settings", Order = 1100)]
         [CultureSpecific]
         public virtual bool ShowCaptchaonSignInModal { get; set; }
@@ -183,6 +187,10 @@ namespace FEO.CMS.HBG.Core.Blocks.StayFarEast
         [Display(Name = "Authentication Timeout", GroupName = "Settings", Order = 1200)]
         [CultureSpecific]
         public virtual double AuthenticationTimeout { get; set; }
+
+        [Display(Name = "Update Subscriber Endpoint", GroupName = "SFMC Configuration", Order = 1200)]
+        [CultureSpecific]
+        public virtual string UpdateSubscriberEndpoint { get; set; }
 
         [Display(Name = "Sign Out Page Redirect", GroupName = "Settings", Order = 1300)]
         [CultureSpecific]

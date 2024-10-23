@@ -20,7 +20,7 @@ namespace FEO.CMS.HBG.Core.Blocks.StayFarEast
         [UIHint(UIHint.Image)]
         public virtual ContentReference LogoImage { get; set; }
 
-        [Display(Name = "Learn more", GroupName = SystemTabNames.Content, Order = 200)]
+        [Display(Name = "Learn more", GroupName = "Images", Order = 200)]
         [CultureSpecific]
         public virtual LinkItem Learnmore { get; set; }
 

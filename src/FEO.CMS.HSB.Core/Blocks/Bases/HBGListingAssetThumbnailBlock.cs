@@ -26,6 +26,14 @@ namespace FEO.CMS.HBG.Core.Blocks.Bases
         [UIHint(UIHint.Image)]
         public virtual ContentReference Icon { get; set; }
 
+        [Display(Name = "Room Ribbon", GroupName = "Room Highlight Settings", Order = 200)]
+        [CultureSpecific]
+        public virtual ContentReference RoomRibbon { get; set; }
+
+        [Display(Name = "Bed Size", GroupName = "Profile", Order = 300)]
+        [CultureSpecific]
+        public virtual string BedSize { get; set; }
+
         [Display(Name = "Maximum Number Of Guests", GroupName = "Profile", Order = 300)]
         [CultureSpecific]
         public virtual double MaximumNumberOfGuests { get; set; }
@@ -33,6 +41,10 @@ namespace FEO.CMS.HBG.Core.Blocks.Bases
         [Display(Name = "Pillar", GroupName = "Images", Order = 300)]
         [CultureSpecific]
         public virtual string Pillar { get; set; }
+
+        [Display(Name = "Ribbon Background Color", GroupName = "Room Highlight Settings", Order = 300)]
+        [CultureSpecific]
+        public virtual ContentReference RibbonBackgroundColor { get; set; }
 
         [Display(Name = "Preview Mobile Images", GroupName = "Images", Order = 400)]
         [CultureSpecific]
