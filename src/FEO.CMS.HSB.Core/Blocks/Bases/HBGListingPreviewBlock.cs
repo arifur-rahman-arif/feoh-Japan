@@ -1,4 +1,5 @@
 using EPiServer.Core;
+using EPiServer.DataAbstraction;
 using EPiServer.DataAnnotations;
 using EPiServer.SpecializedProperties;
 using EPiServer.Web;
@@ -25,7 +26,7 @@ namespace FEO.CMS.HBG.Core.Blocks.Bases
         [CultureSpecific]
         public virtual string Rate { get; set; }
 
-        [Display(Name = "Trip Advisor Reviews", GroupName = "Content", Order = 100)]
+        [Display(Name = "Trip Advisor Reviews", GroupName = SystemTabNames.Content, Order = 100)]
         [CultureSpecific]
         public virtual XhtmlString TripAdvisorReviews { get; set; }
 

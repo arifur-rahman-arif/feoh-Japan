@@ -1,13 +1,15 @@
 using EPiServer.Core;
+using EPiServer.DataAbstraction;
 using EPiServer.DataAnnotations;
 using EPiServer.SpecializedProperties;
 using EPiServer.Web;
+using FEO.CMS.HBG.Core.Blocks.Clan;
 using System.ComponentModel.DataAnnotations;
 
 namespace FEO.CMS.HBG.Core.Blocks.Village
 {
     [ContentType(DisplayName = "HBGBannerBlock", GUID = "04B40A42-647B-4132-9F37-4F3BED06E740", GroupName = "Hospitality")]
-    public class HBGBannerBlock : HBGBaseBlock
+    public class HBGBannerBlock : HBGBackgroundVideoBlock
     {
         [Display(Name = "Description", GroupName = "Basic Info", Order = 100)]
         [CultureSpecific]
@@ -19,7 +21,7 @@ namespace FEO.CMS.HBG.Core.Blocks.Village
         [UIHint(UIHint.Image)]
         public virtual ContentReference Poster { get; set; }
 
-        [Display(Name = "Pull out text", GroupName = "Content", Order = 100)]
+        [Display(Name = "Pull out text", GroupName = SystemTabNames.Content, Order = 100)]
         [CultureSpecific]
         public virtual string Pullouttext { get; set; }
 
@@ -33,7 +35,7 @@ namespace FEO.CMS.HBG.Core.Blocks.Village
         [UIHint(UIHint.Image)]
         public virtual ContentReference PosterForMobile { get; set; }
 
-        [Display(Name = "Pull out text description", GroupName = "Content", Order = 200)]
+        [Display(Name = "Pull out text description", GroupName = SystemTabNames.Content, Order = 200)]
         [CultureSpecific]
         [UIHint(UIHint.Textarea)]
         public virtual XhtmlString Pullouttextdescription { get; set; }
@@ -42,7 +44,7 @@ namespace FEO.CMS.HBG.Core.Blocks.Village
         [CultureSpecific]
         public virtual string Summary { get; set; }
 
-        [Display(Name = "Link to Subscription page", GroupName = "Content", Order = 300)]
+        [Display(Name = "Link to Subscription page", GroupName = SystemTabNames.Content, Order = 300)]
         [CultureSpecific]
         public virtual LinkItem LinktoSubscriptionpage { get; set; }
 

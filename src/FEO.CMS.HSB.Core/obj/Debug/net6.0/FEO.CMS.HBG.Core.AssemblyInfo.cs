@@ -14,7 +14,7 @@ using System.Reflection;
 [assembly: System.Reflection.AssemblyCompanyAttribute("FEO.CMS.HBG.Core")]
 [assembly: System.Reflection.AssemblyConfigurationAttribute("Debug")]
 [assembly: System.Reflection.AssemblyFileVersionAttribute("1.0.0.0")]
-[assembly: System.Reflection.AssemblyInformationalVersionAttribute("1.0.0+4b5188bbed00cc0623f25d21a0d321a4f22445a5")]
+[assembly: System.Reflection.AssemblyInformationalVersionAttribute("1.0.0+90254164472d8efa42b514e373764ae695489095")]
 [assembly: System.Reflection.AssemblyProductAttribute("FEO.CMS.HBG.Core")]
 [assembly: System.Reflection.AssemblyTitleAttribute("FEO.CMS.HBG.Core")]
 [assembly: System.Reflection.AssemblyVersionAttribute("1.0.0.0")]

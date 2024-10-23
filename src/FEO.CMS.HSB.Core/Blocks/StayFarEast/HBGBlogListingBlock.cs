@@ -1,3 +1,4 @@
+using EPiServer.DataAbstraction;
 using EPiServer.DataAnnotations;
 using System.ComponentModel.DataAnnotations;
 
@@ -10,7 +11,7 @@ namespace FEO.CMS.HBG.Core.Blocks.StayFarEast
         [CultureSpecific]
         public virtual double PageSize { get; set; }
 
-        [Display(Name = "Title", GroupName = "Content", Order = 100)]
+        [Display(Name = "Title", GroupName = SystemTabNames.Content, Order = 100)]
         [CultureSpecific]
         public virtual string Title { get; set; }
 

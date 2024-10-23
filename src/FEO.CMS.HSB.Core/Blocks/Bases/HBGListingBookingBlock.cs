@@ -5,7 +5,7 @@ using System.ComponentModel.DataAnnotations;
 namespace FEO.CMS.HBG.Core.Blocks.Bases
 {
     [ContentType(DisplayName = "HBGListingBookingBlock", GUID = "85513DA3-5945-4A68-B2BF-38671442F7D2", GroupName = "Hospitality")]
-    public class HBGListingBookingBlock : HBGBaseBlock
+    public class HBGListingBookingBlock : HBGRootBlock
     {
         [Display(Name = "Booking Code", GroupName = "Settings", Order = 100)]
         [CultureSpecific]

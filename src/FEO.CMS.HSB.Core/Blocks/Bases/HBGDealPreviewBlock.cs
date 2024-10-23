@@ -7,7 +7,7 @@ using System.ComponentModel.DataAnnotations;
 namespace FEO.CMS.HBG.Core.Blocks.Bases
 {
     [ContentType(DisplayName = "HBGDealPreviewBlock", GUID = "862F97BA-3B7E-4E79-A82D-3257829BBDC5", GroupName = "Hospitality")]
-    public class HBGDealPreviewBlock : HBGBaseBlock
+    public class HBGDealPreviewBlock : HBGThumbnailPreviewBlock
     {
         [Display(Name = "Enable Promo Booking", GroupName = "Settings", Order = -50)]
         [CultureSpecific]

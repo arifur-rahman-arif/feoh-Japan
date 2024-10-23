@@ -8,6 +8,6 @@ build_property.PlatformNeutralAssembly =
 build_property.EnforceExtendedAnalyzerRules = 
 build_property._SupportedPlatformList = Linux,macOS,Windows
 build_property.RootNamespace = FEO.CMS.HBG.Core
-build_property.ProjectDir = C:\Projects\Fareast Hospitality\src\FEO.CMS.HSB.Core\
+build_property.ProjectDir = C:\Hospitality\src\FEO.CMS.HSB.Core\
 build_property.EnableComHosting = 
 build_property.EnableGeneratedComInterfaceComImportInterop = 

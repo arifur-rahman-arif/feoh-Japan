@@ -5,13 +5,12 @@
     <RestoreTool Condition=" '$(RestoreTool)' == '' ">NuGet</RestoreTool>
     <ProjectAssetsFile Condition=" '$(ProjectAssetsFile)' == '' ">$(MSBuildThisFileDirectory)project.assets.json</ProjectAssetsFile>
     <NuGetPackageRoot Condition=" '$(NuGetPackageRoot)' == '' ">$(UserProfile)\.nuget\packages\</NuGetPackageRoot>
-    <NuGetPackageFolders Condition=" '$(NuGetPackageFolders)' == '' ">C:\Users\SunilKumarAmanchi\.nuget\packages\;C:\Program Files (x86)\Microsoft Visual Studio\Shared\NuGetPackages</NuGetPackageFolders>
+    <NuGetPackageFolders Condition=" '$(NuGetPackageFolders)' == '' ">C:\Users\prane\.nuget\packages\</NuGetPackageFolders>
     <NuGetProjectStyle Condition=" '$(NuGetProjectStyle)' == '' ">PackageReference</NuGetProjectStyle>
-    <NuGetToolVersion Condition=" '$(NuGetToolVersion)' == '' ">6.10.1</NuGetToolVersion>
+    <NuGetToolVersion Condition=" '$(NuGetToolVersion)' == '' ">6.11.0</NuGetToolVersion>
   </PropertyGroup>
   <ItemGroup Condition=" '$(ExcludeRestorePackageImports)' != 'true' ">
-    <SourceRoot Include="C:\Users\SunilKumarAmanchi\.nuget\packages\" />
-    <SourceRoot Include="C:\Program Files (x86)\Microsoft Visual Studio\Shared\NuGetPackages\" />
+    <SourceRoot Include="C:\Users\prane\.nuget\packages\" />
   </ItemGroup>
   <ItemGroup Condition=" '$(ExcludeRestorePackageImports)' != 'true' ">
     <None Include="$(NuGetPackageRoot)episerver.find.cms\16.2.0\contentFiles\any\any\modules\_protected\Find\Find.zip" Condition="Exists('$(NuGetPackageRoot)episerver.find.cms\16.2.0\contentFiles\any\any\modules\_protected\Find\Find.zip')">
@@ -103,9 +102,9 @@
     </None>
   </ItemGroup>
   <PropertyGroup Condition=" '$(ExcludeRestorePackageImports)' != 'true' ">
-    <PkgMicrosoft_CodeAnalysis_Analyzers Condition=" '$(PkgMicrosoft_CodeAnalysis_Analyzers)' == '' ">C:\Users\SunilKumarAmanchi\.nuget\packages\microsoft.codeanalysis.analyzers\3.3.2</PkgMicrosoft_CodeAnalysis_Analyzers>
-    <PkgEPiServer_Framework Condition=" '$(PkgEPiServer_Framework)' == '' ">C:\Users\SunilKumarAmanchi\.nuget\packages\episerver.framework\12.21.2</PkgEPiServer_Framework>
-    <PkgEPiServer_CMS_Core Condition=" '$(PkgEPiServer_CMS_Core)' == '' ">C:\Users\SunilKumarAmanchi\.nuget\packages\episerver.cms.core\12.21.2</PkgEPiServer_CMS_Core>
-    <PkgEPiServer_Find_Cms Condition=" '$(PkgEPiServer_Find_Cms)' == '' ">C:\Users\SunilKumarAmanchi\.nuget\packages\episerver.find.cms\16.2.0</PkgEPiServer_Find_Cms>
+    <PkgMicrosoft_CodeAnalysis_Analyzers Condition=" '$(PkgMicrosoft_CodeAnalysis_Analyzers)' == '' ">C:\Users\prane\.nuget\packages\microsoft.codeanalysis.analyzers\3.3.2</PkgMicrosoft_CodeAnalysis_Analyzers>
+    <PkgEPiServer_Framework Condition=" '$(PkgEPiServer_Framework)' == '' ">C:\Users\prane\.nuget\packages\episerver.framework\12.21.2</PkgEPiServer_Framework>
+    <PkgEPiServer_CMS_Core Condition=" '$(PkgEPiServer_CMS_Core)' == '' ">C:\Users\prane\.nuget\packages\episerver.cms.core\12.21.2</PkgEPiServer_CMS_Core>
+    <PkgEPiServer_Find_Cms Condition=" '$(PkgEPiServer_Find_Cms)' == '' ">C:\Users\prane\.nuget\packages\episerver.find.cms\16.2.0</PkgEPiServer_Find_Cms>
   </PropertyGroup>
 </Project>
