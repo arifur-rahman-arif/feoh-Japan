@@ -1,4 +1,5 @@
 using EPiServer.Core;
+using EPiServer.DataAbstraction;
 using EPiServer.DataAnnotations;
 using EPiServer.SpecializedProperties;
 using EPiServer.Web;
@@ -14,7 +15,7 @@ namespace FEO.CMS.HBG.Core.Blocks.StayFarEast
         [UIHint(UIHint.Image)]
         public virtual ContentReference Background { get; set; }
 
-        [Display(Name = "Form Parameters", GroupName = "Content", Order = 100)]
+        [Display(Name = "Form Parameters", GroupName = SystemTabNames.Content, Order = 100)]
         [CultureSpecific]
         public virtual string FormParameters { get; set; }
 
@@ -23,16 +24,16 @@ namespace FEO.CMS.HBG.Core.Blocks.StayFarEast
         [UIHint(UIHint.Image)]
         public virtual ContentReference BackgroundForMobile { get; set; }
 
-        [Display(Name = "Form URL", GroupName = "Content", Order = 200)]
+        [Display(Name = "Form URL", GroupName = SystemTabNames.Content, Order = 200)]
         [CultureSpecific]
         public virtual LinkItem FormURL { get; set; }
 
-        [Display(Name = "Highlight Text", GroupName = "Content", Order = 300)]
+        [Display(Name = "Highlight Text", GroupName = SystemTabNames.Content, Order = 300)]
         [CultureSpecific]
         [UIHint(UIHint.Textarea)]
         public virtual XhtmlString HighlightText { get; set; }
 
-        [Display(Name = "Return URL", GroupName = "Content", Order = 400)]
+        [Display(Name = "Return URL", GroupName = SystemTabNames.Content, Order = 400)]
         [CultureSpecific]
         public virtual LinkItem ReturnURL { get; set; }
 

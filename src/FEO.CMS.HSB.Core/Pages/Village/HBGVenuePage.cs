@@ -1,4 +1,5 @@
 using EPiServer.Core;
+using EPiServer.DataAbstraction;
 using EPiServer.DataAnnotations;
 using EPiServer.SpecializedProperties;
 using EPiServer.Web;
@@ -13,7 +14,7 @@ namespace FEO.CMS.HBG.Core.Pages.Village
         [CultureSpecific]
         public virtual string SectionOneTitle { get; set; }
 
-        [Display(Name = "See All", GroupName = "Content", Order = 100)]
+        [Display(Name = "See All", GroupName = SystemTabNames.Content, Order = 100)]
         [CultureSpecific]
         public virtual LinkItem SeeAll { get; set; }
 
@@ -22,7 +23,7 @@ namespace FEO.CMS.HBG.Core.Pages.Village
         [UIHint(UIHint.Image)]
         public virtual ContentReference ThumbnailImage { get; set; }
 
-        [Display(Name = "Feature One", GroupName = "Content", Order = 200)]
+        [Display(Name = "Feature One", GroupName = SystemTabNames.Content, Order = 200)]
         [CultureSpecific]
         public virtual string FeatureOne { get; set; }
 
@@ -35,7 +36,7 @@ namespace FEO.CMS.HBG.Core.Pages.Village
         [UIHint(UIHint.Textarea)]
         public virtual XhtmlString SectionOneDescription1 { get; set; }
 
-        [Display(Name = "Feature Two", GroupName = "Content", Order = 300)]
+        [Display(Name = "Feature Two", GroupName = SystemTabNames.Content, Order = 300)]
         [CultureSpecific]
         public virtual string FeatureTwo { get; set; }
 
@@ -43,7 +44,7 @@ namespace FEO.CMS.HBG.Core.Pages.Village
         [CultureSpecific]
         public virtual string SectionOneSubTitle2 { get; set; }
 
-        [Display(Name = "Feature Three", GroupName = "Content", Order = 400)]
+        [Display(Name = "Feature Three", GroupName = SystemTabNames.Content, Order = 400)]
         [CultureSpecific]
         public virtual string FeatureThree { get; set; }
 
@@ -56,7 +57,7 @@ namespace FEO.CMS.HBG.Core.Pages.Village
         [CultureSpecific]
         public virtual string SectionTwoTitle { get; set; }
 
-        [Display(Name = "Capacity Range", GroupName = "Content", Order = 600)]
+        [Display(Name = "Capacity Range", GroupName = SystemTabNames.Content, Order = 600)]
         [CultureSpecific]
         public virtual ContentArea CapacityRange { get; set; }
 
@@ -65,24 +66,24 @@ namespace FEO.CMS.HBG.Core.Pages.Village
         [UIHint(UIHint.Textarea)]
         public virtual XhtmlString SectionTwoDescription { get; set; }
 
-        [Display(Name = "Special Offer Description", GroupName = "Content", Order = 700)]
+        [Display(Name = "Special Offer Description", GroupName = SystemTabNames.Content, Order = 700)]
         [CultureSpecific]
         public virtual string SpecialOfferDescription { get; set; }
 
-        [Display(Name = "Special Offer Icon", GroupName = "Content", Order = 800)]
+        [Display(Name = "Special Offer Icon", GroupName = SystemTabNames.Content, Order = 800)]
         [CultureSpecific]
         [UIHint(UIHint.Image)]
         public virtual ContentReference SpecialOfferIcon { get; set; }
 
-        [Display(Name = "Request Proposal", GroupName = "Content", Order = 900)]
+        [Display(Name = "Request Proposal", GroupName = SystemTabNames.Content, Order = 900)]
         [CultureSpecific]
         public virtual LinkItem RequestProposal { get; set; }
 
-        [Display(Name = "Label List", GroupName = "Content", Order = 1000)]
+        [Display(Name = "Label List", GroupName = SystemTabNames.Content, Order = 1000)]
         [CultureSpecific]
         public virtual ContentArea LabelList { get; set; }
 
-        [Display(Name = "Talk To Us Title", GroupName = "Content", Order = 1100)]
+        [Display(Name = "Talk To Us Title", GroupName = SystemTabNames.Content, Order = 1100)]
         [CultureSpecific]
         public virtual string TalkToUsTitle { get; set; }
 

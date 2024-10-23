@@ -1,4 +1,5 @@
 using EPiServer.Core;
+using EPiServer.DataAbstraction;
 using EPiServer.DataAnnotations;
 using EPiServer.SpecializedProperties;
 using System.ComponentModel.DataAnnotations;
@@ -8,7 +9,7 @@ namespace FEO.CMS.HBG.Core.Blocks.StayFarEast
     [ContentType(DisplayName = "HBGListingDealBlock", GUID = "A5B54E27-82D2-4E2B-84B8-4F04C12AE8A8", GroupName = "Hospitality")]
     public class HBGListingDealBlock : HBGBaseBlock
     {
-        [Display(Name = "Deal", GroupName = "Content", Order = 100)]
+        [Display(Name = "Deal", GroupName = SystemTabNames.Content, Order = 100)]
         [CultureSpecific]
         public virtual ContentReference Deal { get; set; }
 

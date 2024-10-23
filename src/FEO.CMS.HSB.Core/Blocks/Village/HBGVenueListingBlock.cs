@@ -1,18 +1,20 @@
 using EPiServer.Core;
+using EPiServer.DataAbstraction;
 using EPiServer.DataAnnotations;
 using EPiServer.SpecializedProperties;
+using FEO.CMS.HBG.Core.Blocks.Bases;
 using System.ComponentModel.DataAnnotations;
 
 namespace FEO.CMS.HBG.Core.Blocks.Village
 {
     [ContentType(DisplayName = "HBGVenueListingBlock", GUID = "7A71071A-9087-408C-87D3-06283BF639AF", GroupName = "Hospitality")]
-    public class HBGVenueListingBlock : HBGBaseBlock
+    public class HBGVenueListingBlock : HBGRootBlock
     {
-        [Display(Name = "Venue Listing", GroupName = "Content", Order = 100)]
+        [Display(Name = "Venue Listing", GroupName = SystemTabNames.Content, Order = 100)]
         [CultureSpecific]
         public virtual ContentArea VenueListing { get; set; }
 
-        [Display(Name = "See All Venues", GroupName = "Content", Order = 300)]
+        [Display(Name = "See All Venues", GroupName = SystemTabNames.Content, Order = 300)]
         [CultureSpecific]
         public virtual LinkItem SeeAllVenues { get; set; }
 

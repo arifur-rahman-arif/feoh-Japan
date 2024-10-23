@@ -1,4 +1,5 @@
 using EPiServer.Core;
+using EPiServer.DataAbstraction;
 using EPiServer.DataAnnotations;
 using EPiServer.SpecializedProperties;
 using EPiServer.Web;
@@ -17,7 +18,7 @@ namespace FEO.CMS.HBG.Core.Blocks.Village
         [CultureSpecific]
         public virtual ContentArea BrandLinks { get; set; }
 
-        [Display(Name = "Copyright", GroupName = "Content", Order = 100)]
+        [Display(Name = "Copyright", GroupName = SystemTabNames.Content, Order = 100)]
         [CultureSpecific]
         public virtual string Copyright { get; set; }
 
@@ -35,7 +36,7 @@ namespace FEO.CMS.HBG.Core.Blocks.Village
         [CultureSpecific]
         public virtual LinkItem FacebookLink { get; set; }
 
-        [Display(Name = "Hotel Email", GroupName = "Content", Order = 200)]
+        [Display(Name = "Hotel Email", GroupName = SystemTabNames.Content, Order = 200)]
         [CultureSpecific]
         public virtual LinkItem HotelEmail { get; set; }
 
@@ -55,7 +56,7 @@ namespace FEO.CMS.HBG.Core.Blocks.Village
         [CultureSpecific]
         public virtual ContentArea AffiliateBrands { get; set; }
 
-        [Display(Name = "Hotels Reservations", GroupName = "Content", Order = 300)]
+        [Display(Name = "Hotels Reservations", GroupName = SystemTabNames.Content, Order = 300)]
         [CultureSpecific]
         public virtual string HotelsReservations { get; set; }
 
@@ -71,7 +72,7 @@ namespace FEO.CMS.HBG.Core.Blocks.Village
         [CultureSpecific]
         public virtual ContentArea PartnerBrands { get; set; }
 
-        [Display(Name = "Primary Contact Country", GroupName = "Content", Order = 400)]
+        [Display(Name = "Primary Contact Country", GroupName = SystemTabNames.Content, Order = 400)]
         [CultureSpecific]
         public virtual ContentReference PrimaryContactCountry { get; set; }
 
@@ -85,7 +86,7 @@ namespace FEO.CMS.HBG.Core.Blocks.Village
         [UIHint(UIHint.Textarea)]
         public virtual XhtmlString FooterMessage { get; set; }
 
-        [Display(Name = "Primary Contact Number", GroupName = "Content", Order = 500)]
+        [Display(Name = "Primary Contact Number", GroupName = SystemTabNames.Content, Order = 500)]
         [CultureSpecific]
         public virtual string PrimaryContactNumber { get; set; }
 
@@ -93,7 +94,7 @@ namespace FEO.CMS.HBG.Core.Blocks.Village
         [CultureSpecific]
         public virtual LinkItem TwitterLink { get; set; }
 
-        [Display(Name = "Secondary Contact Country", GroupName = "Content", Order = 600)]
+        [Display(Name = "Secondary Contact Country", GroupName = SystemTabNames.Content, Order = 600)]
         [CultureSpecific]
         public virtual ContentReference SecondaryContactCountry { get; set; }
 
@@ -102,7 +103,7 @@ namespace FEO.CMS.HBG.Core.Blocks.Village
         [UIHint(UIHint.Image)]
         public virtual ContentReference YoutubeIcon { get; set; }
 
-        [Display(Name = "Secondary Contact Number", GroupName = "Content", Order = 700)]
+        [Display(Name = "Secondary Contact Number", GroupName = SystemTabNames.Content, Order = 700)]
         [CultureSpecific]
         public virtual string SecondaryContactNumber { get; set; }
 
@@ -110,19 +111,19 @@ namespace FEO.CMS.HBG.Core.Blocks.Village
         [CultureSpecific]
         public virtual LinkItem YoutubeLink { get; set; }
 
-        [Display(Name = "Serviced Residences Email", GroupName = "Content", Order = 800)]
+        [Display(Name = "Serviced Residences Email", GroupName = SystemTabNames.Content, Order = 800)]
         [CultureSpecific]
         public virtual LinkItem ServicedResidencesEmail { get; set; }
 
-        [Display(Name = "Serviced Residences Reservations", GroupName = "Content", Order = 900)]
+        [Display(Name = "Serviced Residences Reservations", GroupName = SystemTabNames.Content, Order = 900)]
         [CultureSpecific]
         public virtual string ServicedResidencesReservations { get; set; }
 
-        [Display(Name = "Tertiary Contact Country", GroupName = "Content", Order = 1000)]
+        [Display(Name = "Tertiary Contact Country", GroupName = SystemTabNames.Content, Order = 1000)]
         [CultureSpecific]
         public virtual ContentReference TertiaryContactCountry { get; set; }
 
-        [Display(Name = "Tertiary Contact Number", GroupName = "Content", Order = 1100)]
+        [Display(Name = "Tertiary Contact Number", GroupName = SystemTabNames.Content, Order = 1100)]
         [CultureSpecific]
         public virtual string TertiaryContactNumber { get; set; }
 

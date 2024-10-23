@@ -1,4 +1,5 @@
 using EPiServer.DataAnnotations;
+using FEO.CMS.HBG.Core.Blocks.Bases;
 
 namespace FEO.CMS.HBG.Core.Blocks.StayFarEast
 {

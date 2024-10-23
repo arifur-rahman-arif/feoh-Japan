@@ -1,4 +1,5 @@
 using EPiServer.Core;
+using EPiServer.DataAbstraction;
 using EPiServer.DataAnnotations;
 using EPiServer.SpecializedProperties;
 using System.ComponentModel.DataAnnotations;
@@ -8,7 +9,7 @@ namespace FEO.CMS.HBG.Core.Blocks.StayFarEast
     [ContentType(DisplayName = "HBGPreviewsContainerBlock", GUID = "04207811-4D7B-4448-A32E-40D1CE5B49A1", GroupName = "Hospitality")]
     public class HBGPreviewsContainerBlock : HBGBaseBlock
     {
-        [Display(Name = "Hotel Previews", GroupName = "Content", Order = 100)]
+        [Display(Name = "Hotel Previews", GroupName = SystemTabNames.Content, Order = 100)]
         [CultureSpecific]
         public virtual ContentArea HotelPreviews { get; set; }
 
@@ -24,7 +25,7 @@ namespace FEO.CMS.HBG.Core.Blocks.StayFarEast
         [CultureSpecific]
         public virtual string OurHotelsMobileButtonText { get; set; }
 
-        [Display(Name = "Serviced Residence Previews", GroupName = "Content", Order = 200)]
+        [Display(Name = "Serviced Residence Previews", GroupName = SystemTabNames.Content, Order = 200)]
         [CultureSpecific]
         public virtual ContentArea ServicedResidencePreviews { get; set; }
 

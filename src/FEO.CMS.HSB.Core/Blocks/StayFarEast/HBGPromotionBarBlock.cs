@@ -1,4 +1,5 @@
 using EPiServer.Core;
+using EPiServer.DataAbstraction;
 using EPiServer.DataAnnotations;
 using EPiServer.Web;
 using System.ComponentModel.DataAnnotations;
@@ -12,7 +13,7 @@ namespace FEO.CMS.HBG.Core.Blocks.StayFarEast
         [CultureSpecific]
         public virtual bool Enabled { get; set; }
 
-        [Display(Name = "Main Content", GroupName = "Content", Order = 100)]
+        [Display(Name = "Main Content", GroupName = SystemTabNames.Content, Order = 100)]
         [CultureSpecific]
         [UIHint(UIHint.Textarea)]
         public virtual XhtmlString MainContent { get; set; }
@@ -21,12 +22,12 @@ namespace FEO.CMS.HBG.Core.Blocks.StayFarEast
         [CultureSpecific]
         public virtual DateTime EndDate { get; set; }
 
-        [Display(Name = "Main Content For Mobile", GroupName = "Content", Order = 200)]
+        [Display(Name = "Main Content For Mobile", GroupName = SystemTabNames.Content, Order = 200)]
         [CultureSpecific]
         [UIHint(UIHint.Textarea)]
         public virtual XhtmlString MainContentForMobile { get; set; }
 
-        [Display(Name = "Main Content For Tablet", GroupName = "Content", Order = 300)]
+        [Display(Name = "Main Content For Tablet", GroupName = SystemTabNames.Content, Order = 300)]
         [CultureSpecific]
         [UIHint(UIHint.Textarea)]
         public virtual XhtmlString MainContentForTablet { get; set; }
