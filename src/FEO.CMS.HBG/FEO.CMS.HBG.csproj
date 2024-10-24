@@ -44,7 +44,6 @@
     <Folder Include="Views\FarEastHospitality\Clan\Layouts\" />
     <Folder Include="Views\FarEastHospitality\Clan\Pages\" />
     <Folder Include="Views\FarEastHospitality\StayFarEast\Blocks\" />
-    <Folder Include="Views\FarEastHospitality\StayFarEast\Layouts\" />
     <Folder Include="Views\FarEastHospitality\StayFarEast\Pages\" />
     <Folder Include="Views\FarEastHospitality\Oasia\Blocks\" />
     <Folder Include="Views\FarEastHospitality\Oasia\Layouts\" />
@@ -58,7 +57,6 @@
     <Folder Include="Views\FarEastHospitality\Rendezvous\Blocks\" />
     <Folder Include="Views\FarEastHospitality\Rendezvous\Layouts\" />
     <Folder Include="Views\FarEastHospitality\Rendezvous\Pages\" />
-    <Folder Include="Views\FarEastHospitality\Shared\Blocks\" />
     <Folder Include="Views\FarEastHospitality\Shared\Layouts\" />
     <Folder Include="Views\FarEastHospitality\Shared\Pages\" />
     <Folder Include="Views\FarEastHospitality\Village\Blocks\" />

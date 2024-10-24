@@ -1,6 +1,7 @@
 ﻿using EPiServer.Framework;
 using EPiServer.Framework.Initialization;
 using EPiServer.ServiceLocation;
+using FEO.CMS.HBG.ViewModels;
 
 namespace FEO.CMS.HBG.Business.InitializationModules
 {
@@ -9,7 +10,10 @@ namespace FEO.CMS.HBG.Business.InitializationModules
     {
         public void ConfigureContainer(ServiceConfigurationContext context)
         {
-            // Register the service in the DI container
+            var configuration = context.Services.BuildServiceProvider().GetRequiredService<IConfiguration>();
+
+            // Configure MySettings
+            context.Services.Configure<SessionSettings>(configuration.GetSection("SessionSettings"));
         }
 
         public void Initialize(InitializationEngine context)

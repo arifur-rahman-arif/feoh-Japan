@@ -1,0 +1,245 @@
+﻿@using FEO.CMS.HBG.Business.ExtensionMethods
+@using FEO.CMS.HBG.Core.Blocks.Rendezvous
+@model IPageViewModel<HBGBasePage>
+
+@{
+    var currentPage = PageRouteHelper.Page;
+    var rootPageReference = ContentReference.RootPage;
+    var site = ContentRepository.Get<HBGSite>(rootPageReference);
+    ViewData.Add("Model", Model);
+
+    var config = ContentLoader.Get<HBGWebsiteConfigBlock>(site.WebsiteConfig);
+    var insiderConfig = ContentLoader.Get<HBGInsidersConfigurationBlock>(site.WebsiteConfig);
+    var gtmConfig = ContentLoader.Get<HBGGoogleTagManagerBlock>(site.GTMConfig);
+
+    var request = Context.Request;
+    var absoluteUri = string.Concat(
+                request.Scheme,
+                "://",
+                request.Host.ToUriComponent(),
+                request.PathBase.ToUriComponent(),
+                request.Path.ToUriComponent(),
+                request.QueryString.ToUriComponent());
+
+    string SignOutPageRedirect = absoluteUri;
+
+    if (insiderConfig != null && insiderConfig.SignOutPageRedirect != null)
+    {
+        SignOutPageRedirect = Url.ContentUrl(insiderConfig?.SignOutPageRedirect.Href);
+    }
+    string domainName = $"{request.Scheme}://{request.Host}";
+    var timeOut = SessionSetting.Value.TimeoutInMinutes;
+    var session = Context.Session;
+    string token = session.GetString(FieldNames.InsidersFieldName.SessionEmail) ?? string.Empty;
+
+    @functions {
+        protected HtmlString RenderTitle()
+        {
+            var model = ViewData["Model"] as View;
+            var title = string.IsNullOrWhiteSpace(Model.CurrentPage.TitleOverride)
+                ? Model.CurrentPage.Title : Model.CurrentPage.TitleOverride;
+
+            return new HtmlString(title);
+        }
+    }
+
+    <!DOCTYPE html>
+    <html class="no-js" lang="@ContentLanguage.PreferredCulture.Name">
+    <head>
+        <meta charset="utf-8">
+        <title>@RenderTitle()</title>
+        <base target="_top" />
+        <meta http-equiv="X-UA-Compatible" content="IE=edge">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+        @if (!string.IsNullOrWhiteSpace(Model.CurrentPage.MetaDescription))
+        {
+            <meta name="description" content="@(Model.CurrentPage.MetaDescription)">
+        }
+        @if (!string.IsNullOrWhiteSpace(Model.CurrentPage.MetaKeywords))
+        {
+            <meta name="keywords" content="@(Model.CurrentPage.MetaKeywords)">
+        }
+        @*Open Graph Implementation*@
+
+        @if (!string.IsNullOrWhiteSpace(Model.CurrentPage.Title))
+        {
+            <meta property="og:title" content="@(Model.CurrentPage.Title)">
+        }
+        @if (!string.IsNullOrWhiteSpace(Model.CurrentPage.MetaDescription))
+        {
+            <meta property="og:description" content="@(Model.CurrentPage.MetaDescription)">
+        }
+        @if (Model.CurrentPage.OpenGraphImage != null)
+        {
+            <meta property="og:image" content="@(domainName+ Url.ContentUrl(Model.CurrentPage.OpenGraphImage))">
+            <meta property="og:image:width" content="1200">
+            <meta property="og:image:height" content="630">
+        }
+        @if (!string.IsNullOrWhiteSpace(Model.CurrentPage.CanonicalUrl))
+        {
+            <meta property="og:url" content="@(Model.CurrentPage.CanonicalUrl)">
+        }
+        else
+        {
+            @Html.GetMetaOgUrl()
+        }
+        @if (Model.CurrentPage.OpenGraphType != null)
+        {
+            <meta property="og:type" content="@(Model.CurrentPage.OpenGraphType)">
+        }
+        @*End of OG*@
+
+        @if (config != null && !string.IsNullOrWhiteSpace(config.FaviconURL))
+        {
+            <link rel="shortcut icon" href="@config.FaviconURL">
+        }
+        @if (config != null && config.AppleTouchIcon != null)
+        {
+            <link rel="apple-touch-icon" href="@Url.ContentUrl(config.AppleTouchIcon)">
+        }
+        @if (!string.IsNullOrWhiteSpace(Model.CurrentPage.CanonicalUrl))
+        {
+            <link rel="canonical" href="@(Model.CurrentPage.CanonicalUrl)">
+        }
+        else
+        {
+            @Html.CanonicalLink()
+        }
+
+        @if (!LangUtil.IsContextLanguageDefaultSiteLanguage())
+        {
+            @Html.HrefLangLink()
+            @Html.BingLangMeta()
+        }
+
+        @Html.Partial(ViewsPath.Hospitality_Shared_BLOCKS_PATH + "/MetaTags/Index.cshtml")
+        <link rel="stylesheet" href="~/assets/content/vendor-bundle.min.css" asp-append-version="true" />
+        <link rel="stylesheet" href="~/assets/content/stayfareast-bundle.min.css" asp-append-version="true" />
+
+        <script src="~/assets/scripts/modernizr.js"></script>
+        <script src="~/assets/scripts/mobile-detect"></script>
+        <script src="~/assets/scripts/vendor-bundle.min.js" asp-append-version="true"></script>
+        <script src="~/assets/scripts/stayfareast-bundle.min.js" asp-append-version="true"></script>
+        <script src="~/assets/scripts/generic.js" asp-append-version="true"></script>
+
+        @Html.PropertyFor(x => x.CurrentPage.SentosaContentArea)
+
+        <script type="text/javascript">
+            (function () {
+                const userToken = '@token';
+                if (userToken) {
+                    const idleDurationSecs = @timeOut;
+                    const redirectUrl = '@SignOutPageRedirect';
+                    let idleTimeout;
+
+                    const resetIdleTimeout = function () {
+                        if (idleTimeout) clearTimeout(idleTimeout);
+                        idleTimeout = setTimeout(() => location.href = redirectUrl, idleDurationSecs * 60000);
+                    };
+                    resetIdleTimeout();
+                    ['click', 'touchstart', 'mousemove'].forEach(evt =>
+                        document.addEventListener(evt, resetIdleTimeout, false)
+                    );
+                }
+            })();
+        </script>
+        <script type="text/javascript">
+            setTimeout(function () {
+                $.ajax({
+                    url: "/api/sitecore/StayFarEastInsiders/PushDataLayer",
+                    type: 'POST',
+                    cache: false,
+                    contentType: false,
+                    processData: false,
+                    success: function (response) {
+                        if (response != "" && response.userID.length > 0) {
+                            var dataLayer = window.dataLayer = window.dataLayer || [];
+                            dataLayer.push({
+                                "feh": {
+                                    'userID': response.userID,
+                                    'userIsMember': 'Y',
+                                    'birthDay': response.birthday,
+                                    'country': response.country
+                                }
+                            });
+                        }
+                    }
+                });
+            }, 4000);
+        </script>
+
+        @if (gtmConfig != null && gtmConfig.IsEnabled)
+        {
+            @Html.Raw(gtmConfig.GTMHeadScript)
+        }
+
+        <script type="text/javascript">
+
+            var _elqQ = _elqQ || [];
+            _elqQ.push(['elqSetSiteId', '1471975134']);
+            _elqQ.push(['elqTrackPageView']);
+            (function () {
+                function async_load() {
+                    var s = document.createElement('script'); s.type = 'text/javascript'; s.async = true;
+                    s.src = '//img03.en25.com/i/elqCfg.min.js';
+                    var x = document.getElementsByTagName('script')[0]; x.parentNode.insertBefore(s, x);
+                }
+                if (window.addEventListener) window.addEventListener('DOMContentLoaded', async_load, false);
+                else if (window.attachEvent) window.attachEvent('onload', async_load);
+            })();
+            function recaptcha_callback() {
+                $(".g-recaptcha").closest(".form-group").find(".field-validation-error").hide();
+            }
+        </script>
+        <script src="~/assets/scripts/special/lazy-load.js" asp-append-version="true"></script>
+    </head>
+    <body class="@(Model.CurrentPage.BodyClassName)">
+        @if (Model.CurrentPage is HBGHomePage)
+        {
+            if (config != null && !string.IsNullOrWhiteSpace(config.WebSiteSchemaUrl) && !string.IsNullOrWhiteSpace(config.WebSiteSchemaName))
+            {
+                <div itemscope itemtype="https://schema.org/WebSite">
+                    <meta itemprop="url" content="@config.WebSiteSchemaUrl" />
+                    <meta itemprop="name" content="@config.WebSiteSchemaName" />
+                </div>
+            }
+        }
+
+        @if (gtmConfig != null && gtmConfig.IsEnabled)
+        {
+            @Html.Raw(gtmConfig.GTMBodyScript)
+        }
+        <input type="hidden" value="@Model.CurrentPage.IsAccountPage" id="isAcountPage" data-is-acount-page="@Model.CurrentPage.IsAccountPage" />
+        <!--[if lt IE 10]>
+          <p class="browsehappy">You are using an <strong>outdated</strong> browser. Please <a href="http://browsehappy.com/">upgrade your browser</a>
+          to improve your experience.</p>
+        <![endif]-->
+        @Html.PropertyFor(x => x.Layout.Header)
+
+        @Html.PropertyFor(x => x.CurrentPage.MainContentArea)
+        @RenderBody()
+        @Html.PropertyFor(x => x.Layout.Footer)
+
+        @if (config != null && config.EnableScrollToTop)
+        {
+            <div class="btn-to-top" data-back-to-top>
+                <svg xmlns="http://www.w3.org/2000/svg" width="17.414" height="10.123" viewBox="0 0 17.414 10.123">
+                    <path id="Path_49147" data-name="Path 49147" d="M0,0,8,8l4-4,4-4" transform="translate(16.707 9.416) rotate(180)" fill="none" stroke="#866531" stroke-width="2" />
+                </svg>
+            </div>
+        }
+        @RenderSection("html-dump", required: false)
+        @RenderSection("Scripts", required: false)
+        @RenderSection("FormStyles", required: false)
+        @RenderSection("FormScripts", required: false)
+
+        <required-client-resources area="Footer" />
+        <script>
+            (function ($) {
+                $(document).ready(function () { setTimeout(function () { $.getScript('https://www.google.com/recaptcha/api.js'); }, 4000); });
+            })(jQuery);
+        </script>
+    </body>
+    </html>
+}

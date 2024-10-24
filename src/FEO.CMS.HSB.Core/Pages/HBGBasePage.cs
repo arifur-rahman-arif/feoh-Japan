@@ -32,6 +32,9 @@ namespace FEO.CMS.HBG.Core.Pages
         [Display(GroupName = SystemTabNames.Content, Name = "Main Content Area", Description = "main", Order = 100)]
         public virtual ContentArea MainContentArea { get; set; }
 
+        [Display(GroupName = SystemTabNames.Content, Name = "Sentosa Content Area", Description = "sentosa-content", Order = 100)]
+        public virtual ContentArea SentosaContentArea { get; set; }
+
         [Display(GroupName = SystemTabNames.Content, Name = "Header", Description = "head", Order = 100)]
         public virtual ContentArea Header { get; set; }
 
