@@ -46,9 +46,9 @@ namespace FEO.CMS.HBG.Core.Pages
 
         [Display(GroupName = SystemTabNames.Content, Name = "Footer", Description = "Footer", Order = 100)]
         public virtual ContentArea Footer { get; set; }
-        public bool HideHeader { get; set; }
-        public bool HideFooter { get; set; }
-        public bool HideBreadcrumb { get; set; }
+        public virtual bool HideHeader { get; set; }
+        public virtual bool HideFooter { get; set; }
+        public virtual bool HideBreadcrumb { get; set; }
 
         //HBGViewBlock
         [Display(Name = "Open Graph Image", GroupName = "SEO", Order = 50)]
