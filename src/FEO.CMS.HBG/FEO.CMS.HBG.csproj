@@ -43,7 +43,6 @@
     <Folder Include="Views\FarEastHospitality\Clan\Blocks\" />
     <Folder Include="Views\FarEastHospitality\Clan\Layouts\" />
     <Folder Include="Views\FarEastHospitality\Clan\Pages\" />
-    <Folder Include="Views\FarEastHospitality\StayFarEast\Blocks\" />
     <Folder Include="Views\FarEastHospitality\StayFarEast\Pages\" />
     <Folder Include="Views\FarEastHospitality\Oasia\Blocks\" />
     <Folder Include="Views\FarEastHospitality\Oasia\Layouts\" />
