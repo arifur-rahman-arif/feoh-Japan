@@ -6,31 +6,42 @@ using System.ComponentModel.DataAnnotations;
 
 namespace FEO.CMS.HBG.Core.Blocks.StayFarEast
 {
-    [ContentType(DisplayName = "HBGBannerBlock", GUID = "74C5F2D0-243F-4928-AEF8-67CF435B47CD", GroupName = "Hospitality")]
+    [ContentType(DisplayName = "HBGBannerBlock", GUID = "9C294E22-AEB3-4343-A4CD-0E111CD52C40", GroupName = "Hospitality")]
     public class HBGBannerBlock : HBGBaseBlock
     {
-        [Display(Name = "Image Desktop", GroupName = SystemTabNames.Content, Order = 100)]
+        [Display(Name = "Caption", GroupName = SystemTabNames.Content, Order = 100)]
         [CultureSpecific]
         [UIHint(UIHint.Image)]
-        public virtual ContentReference ImageDesktop { get; set; }
+        public virtual string Caption { get; set; }
 
-        [Display(Name = "Image Tablet", GroupName = SystemTabNames.Content, Order = 150)]
-        [CultureSpecific]
+        [Display(Name = "Poster", GroupName = Globals.GroupNames.Images, Order = 150)]
         [UIHint(UIHint.Image)]
-        public virtual ContentReference ImageTablet { get; set; }
+        public virtual ContentReference Poster { get; set; }
 
-        [Display(Name = "Image Mobile", GroupName = SystemTabNames.Content, Order = 200)]
-        [CultureSpecific]
+        [Display(Name = "Poster For Mobile", GroupName = Globals.GroupNames.Images, Order = 200)]
         [UIHint(UIHint.Image)]
-        public virtual ContentReference ImageMobile { get; set; }
+        public virtual ContentReference PosterForMobile { get; set; }
 
-        [Display(Name = "Title", GroupName = SystemTabNames.Content, Order = 300)]
-        [CultureSpecific]
-        public virtual string Title { get; set; }
+        [Display(Name = "Autoplay", GroupName = SystemTabNames.Settings, Order = 300)]
+        public virtual bool Autoplay { get; set; }
 
-        [Display(Name = "Sub Title", GroupName = SystemTabNames.Content, Order = 400)]
-        [CultureSpecific]
-        public virtual string SubTitle { get; set; }
+        [Display(Name = "Embed as Background", GroupName = SystemTabNames.Settings, Order = 400)]
+        public virtual bool EmbedAsBackground { get; set; }
+
+        [Display(Name = "Has Controls", GroupName = SystemTabNames.Settings, Order = 500)]
+        public virtual bool HasControls { get; set; }
+
+        [Display(Name = "Height", GroupName = SystemTabNames.Settings, Order = 600)]
+        public virtual int Height { get; set; }
+
+        [Display(Name = "Is Loop", GroupName = SystemTabNames.Settings, Order = 700)]
+        public virtual bool IsLoop { get; set; }
+
+        [Display(Name = "Mute", GroupName = SystemTabNames.Settings, Order = 800)]
+        public virtual bool Mute { get; set; }
+
+        [Display(Name = "Width", GroupName = SystemTabNames.Settings, Order = 900)]
+        public virtual int Width { get; set; }
 
     }
 }
