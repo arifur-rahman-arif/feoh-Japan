@@ -17,6 +17,7 @@
     <PackageReference Include="EPiServer.CMS.TinyMce" Version="4.7.2" />
     <PackageReference Include="EPiServer.Find.Cms" Version="16.2.0" />
     <PackageReference Include="EPiServer.Forms" Version="5.8.2" />
+    <PackageReference Include="Microsoft.VisualStudio.Web.CodeGeneration.Design" Version="8.0.6" />
   </ItemGroup>
   
   <ItemGroup>
@@ -43,7 +44,6 @@
     <Folder Include="Views\FarEastHospitality\Clan\Blocks\" />
     <Folder Include="Views\FarEastHospitality\Clan\Layouts\" />
     <Folder Include="Views\FarEastHospitality\Clan\Pages\" />
-    <Folder Include="Views\FarEastHospitality\StayFarEast\Blocks\" />
     <Folder Include="Views\FarEastHospitality\StayFarEast\Pages\" />
     <Folder Include="Views\FarEastHospitality\Oasia\Blocks\" />
     <Folder Include="Views\FarEastHospitality\Oasia\Layouts\" />

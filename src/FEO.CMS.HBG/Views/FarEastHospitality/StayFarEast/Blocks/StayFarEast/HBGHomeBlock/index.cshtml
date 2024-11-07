@@ -1,0 +1,85 @@
+﻿@using FEO.CMS.HBG.Core.Pages.StayFarEast
+@using FEO.CMS.HBG.Helper
+@model HBGHomeBlock;
+@{
+    var currentPage = BlockHelper.GetCurrentPage<HBGHomePage>();
+    // Define a default position
+    var position = GenericConstants.Middle;
+
+    // Check if the PositionBookingWidget ContentReference is set
+    if (currentPage?.PositionBookingWidget != null && !ContentReference.IsNullOrEmpty(currentPage.PositionBookingWidget))
+    {
+        // Use ContentLoader to load the referenced content
+        var positionContent = ContentLoader.Get<IContent>(currentPage.PositionBookingWidget) as HBGNameValuePairBlock;
+
+        // If the content was loaded and has a Position property, use it
+        if (positionContent != null && positionContent.Value != null)
+        {
+            position = positionContent.Value;
+        }
+    }
+   
+}
+
+<!-- 1st section hotel banner -->
+<div class="container-fluid home-banner static-content">
+    <input type="hidden" class="noResults" name="noResults" value="@Dictionary.GetValue(DictionaryKeys.NoResultsMessage)" />
+    
+    @Html.PropertyFor(x => currentPage.Banner)
+
+    <div class="banner-content text-center">
+        <div class="content-table-container">
+            <div class="table-v-middle">
+                <h1 class="text-jumbo"> @Html.PropertyFor(x => currentPage.WelcomeText)</h1>
+                <p>@Html.PropertyFor(x => currentPage.Summary)</p>
+                <div class="SFE_banner_booking_widget hidden-xs hidden-sm @position">@Html.Sitecore().Placeholder("booking-widget")</div>
+
+                <div class="row hidden-desktop @position">
+                    <div class="col-md-offset-3 col-md-6 search-wrapper">
+                        @if (currentPage.SearchResultsURL != null)
+                        {
+                            <form id="home-search" method="GET" action="" class="home-banner-search" data-action="@(currentPage.SearchResultsURL.Href)">
+                                <!-- search to button -->
+                                <div class="input-group searchbar">
+                                    <input readonly type="text" autocomplete="off" class="form-control input-lg" id="homebanner-search" placeholder="@Html.PropertyFor(x => currentPage.SearchInputPlaceholder)">
+                                    <div id="search-params"></div>
+                                    <span class="input-group-btn">
+                                        <p class="btn btn-lg btn-search"><span class="glyphicon glyphicon-search"></span></p>
+                                    </span>
+                                </div>
+                            </form>
+                        }
+
+                    </div>
+                    <!-- home banner search -->
+                    <div class="">
+                        <div class="input-group ">
+                            <label class="sr-only" for="homebanner-search">@Html.PropertyFor(x => currentPage.SearchInputPlaceholder)</label>
+
+                            <span class="input-group-btn">
+                                <button type="button" class="btn btn-default btn-lg" id="homebannersearch" aria-label="home banner search"></button>
+                            </span>
+                        </div><!-- /input-group -->
+                    </div>
+                </div>
+
+                @if (currentPage.ShowAllLink != null)
+                {
+                    <div class="inspire-me text-uppercase text-left hidden-xs">
+                        <a href="@Url.ContentUrl(currentPage.ShowAllLink.Href)" class="color-white">@Html.PropertyFor(x => currentPage.ShowAllLink.Text)<span class="glyphicon glyphicon-chevron-right color-pink"></span></a>
+                    </div>
+                }
+            </div>
+        </div>
+        <div class="note color-white hidden-xs hidden-sm"><i>@Html.PropertyFor(x => currentPage.Caption)</i></div>
+        @if (config != null && config.ShowDownwardArrow && position != GenericConstants.Bottom)
+        {
+            <div class="banner-arrow hidden-xs">
+                <a href="#hotel-recommend" class="color-white scrollto arrow">
+                    <span>@Dictionary.GetValue(DictionaryKeys.MorePropertiesText)</span><br />
+                    <span class="lnr lnr-chevron-down"></span>
+                </a>
+            </div>
+        }
+    </div>
+</div>
