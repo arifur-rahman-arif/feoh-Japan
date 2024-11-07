@@ -3,7 +3,7 @@
     "FEO.CMS.HBG": {
       "commandName": "Project",
       "launchBrowser": true,
-      "applicationUrl": "https://localhost:5000/",
+      "applicationUrl": "https://localhost:5020/",
       "environmentVariables": {
         "ASPNETCORE_ENVIRONMENT": "Development"
       }
