@@ -1,9 +1,8 @@
-﻿using EPiServer.Web.Routing;
-using EPiServer.Web;
-using Microsoft.AspNetCore.Mvc.Rendering;
-using Microsoft.AspNetCore.Html;
-using EPiServer.Globalization;
+﻿using EPiServer.Globalization;
 using EPiServer.ServiceLocation;
+using EPiServer.Web.Routing;
+using Microsoft.AspNetCore.Html;
+using Microsoft.AspNetCore.Mvc.Rendering;
 
 namespace FEO.CMS.HBG.Business.Helpers
 {

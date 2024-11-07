@@ -3,12 +3,13 @@ using EPiServer.DataAbstraction;
 using EPiServer.DataAnnotations;
 using EPiServer.SpecializedProperties;
 using EPiServer.Web;
+using FEO.CMS.HBG.Core.Blocks.Bases;
 using System.ComponentModel.DataAnnotations;
 
 namespace FEO.CMS.HBG.Core.Blocks.StayFarEast
 {
     [ContentType(DisplayName = "HBGStickyWidgetBlock", GUID = "C9A001D6-D66A-4C70-A27C-F32D56677658", GroupName = "Hospitality")]
-    public class HBGStickyWidgetBlock : HBGBaseBlock
+    public class HBGStickyWidgetBlock : HBGLinkBlock
     {
         [Display(Name = "Pull out text", GroupName = SystemTabNames.Content, Order = 100)]
         [CultureSpecific]

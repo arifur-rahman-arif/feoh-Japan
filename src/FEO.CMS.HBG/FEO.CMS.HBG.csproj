@@ -3,6 +3,7 @@
     <TargetFramework>net8.0</TargetFramework>
     <Nullable>enable</Nullable>
     <ImplicitUsings>enable</ImplicitUsings>
+    <GeneratePackageOnBuild>True</GeneratePackageOnBuild>
   </PropertyGroup>
 
   <ItemGroup>
@@ -31,20 +32,21 @@
   </ItemGroup>
   
   <ItemGroup>
+    <Content Remove="Views\FarEastHospitality\StayFarEast\Blocks\HBGCarouselBlock\Index.cshtml" />
+  </ItemGroup>
+  
+  <ItemGroup>
     <ProjectReference Include="..\FEO.CMS.HSB.Core\FEO.CMS.HBG.Core.csproj" />
   </ItemGroup>
   
   <ItemGroup>
     <Folder Include="Controllers\Blocks\" />
-    <Folder Include="Controllers\Pages\" />
     <Folder Include="Views\FarEastHospitality\Barrack\Blocks\" />
     <Folder Include="Views\FarEastHospitality\Barrack\Layouts\" />
     <Folder Include="Views\FarEastHospitality\Barrack\Pages\" />
     <Folder Include="Views\FarEastHospitality\Clan\Blocks\" />
     <Folder Include="Views\FarEastHospitality\Clan\Layouts\" />
     <Folder Include="Views\FarEastHospitality\Clan\Pages\" />
-    <Folder Include="Views\FarEastHospitality\StayFarEast\Blocks\" />
-    <Folder Include="Views\FarEastHospitality\StayFarEast\Pages\" />
     <Folder Include="Views\FarEastHospitality\Oasia\Blocks\" />
     <Folder Include="Views\FarEastHospitality\Oasia\Layouts\" />
     <Folder Include="Views\FarEastHospitality\Oasia\Pages\" />
@@ -59,6 +61,7 @@
     <Folder Include="Views\FarEastHospitality\Rendezvous\Pages\" />
     <Folder Include="Views\FarEastHospitality\Shared\Layouts\" />
     <Folder Include="Views\FarEastHospitality\Shared\Pages\" />
+    <Folder Include="Views\FarEastHospitality\StayFarEast\Blocks\HBGCarouselBlock\" />
     <Folder Include="Views\FarEastHospitality\Village\Blocks\" />
     <Folder Include="Views\FarEastHospitality\Village\Layouts\" />
     <Folder Include="Views\FarEastHospitality\Village\Pages\" />

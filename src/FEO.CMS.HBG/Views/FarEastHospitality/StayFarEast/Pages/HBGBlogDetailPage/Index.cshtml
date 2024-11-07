@@ -1,0 +1,65 @@
+﻿@model PageViewModel<HBGBlogDetailPage>
+@{
+    string cssClass = Model.CurrentPage.ThumbnailToUse  != null ? ContentLoader.Get<HBGNameValuePairBlock>(Model.CurrentPage.ThumbnailToUse).Value : string.Empty;
+
+    @functions {
+        protected string GetCssClasses(string config)
+        {
+            switch (config)
+            {
+                case "large":
+                    return "long col-md-12 col-sm-12";
+                case "medium":
+                    var medium = "long col-md-8 col-sm-12";
+                    var mediumOffset = GetOffsetInstruction(config);
+                    return string.IsNullOrWhiteSpace(mediumOffset) ? medium : string.Format("{0} {1}4", medium, mediumOffset);
+                case "small":
+                default:
+                    var def = "col-sm-6 col-md-4";
+                    var defOffset = GetOffsetInstruction(config);
+                    return string.IsNullOrWhiteSpace(defOffset) ? def : string.Format("{0} {1}8", def, defOffset);
+            }
+        }
+
+        protected string GetOffsetInstruction(string config)
+        {
+            switch (config)
+            {
+                case "push":
+                    return "col-md-push-";
+                case "pull":
+                    return "col-md-pull-";
+                default:
+                    return string.Empty;
+            }
+        }
+    }
+
+    <div class="@GetCssClasses(cssClass)">
+        <div class="deal-image image-with-txt">
+            <a href="@Model.CurrentPage.LinkURL">
+
+                /*TODO: add image alt, height and width*/
+                @switch (cssClass)
+                {
+                    case "small":
+                        <img class="lazy-hidden img-lazy-block" data-lazy-type="image" data-lazy-src="@Url.ContentUrl(Model.CurrentPage.SmallThumbnail)" alt="" />
+                        break;
+                    case "medium":
+                        <img class="lazy-hidden img-lazy-block" data-lazy-type="image" data-lazy-srcset="@Url.ContentUrl(Model.CurrentPage.SmallThumbnail) 767w, @Url.ContentUrl(Model.CurrentPage.MediumThumbnail)" alt="" />
+                        break;
+                    case "large":
+                        <img class="lazy-hidden img-lazy-block" data-lazy-type="image" data-lazy-srcset="@Url.ContentUrl(Model.CurrentPage.SmallThumbnail) 767w, @Url.ContentUrl(Model.CurrentPage.LargeThumbnail)" alt="" />
+                        break;
+                }
+
+                <div class="caption">
+                    <div class="content-v-align">
+                        <p class="text-uppercase">@Html.PropertyFor(x => x.CurrentPage.Category)</p>
+                        <h4>@Html.PropertyFor(x => x.CurrentPage.Title)</h4>
+                    </div>
+                </div>
+            </a>
+        </div>
+    </div>
+}

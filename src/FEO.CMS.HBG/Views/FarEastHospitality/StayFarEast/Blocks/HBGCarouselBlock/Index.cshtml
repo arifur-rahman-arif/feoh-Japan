@@ -1,0 +1,199 @@
+﻿@model HBGCarouselBlock
+
+@{
+    var itemCount = Model.Items.Count();
+    var config = Model.Config;
+
+    var CarouselIdName = config?.CarouselIdName?.Value != null ? config.CarouselIdName.Value : "carousel-slide";
+    string imageDarkenedOverlay = config != null && config.EnableDarknessOverlayImage ? "image-darkened-overlay" : string.Empty;
+}
+
+<!-- carousel -->
+<div class="@config.CssClassName @(config.RemoveContentPadding ? string.Empty : "static-content")">
+    <div id="@CarouselIdName" class="video-masthead carousel slide @imageDarkenedOverlay" data-interval="false">
+        @if (Model.IsBac)
+        {
+            <div class="video-control container">
+                <span class="video-play active">
+                    <svg class="on" xmlns="http://www.w3.org/2000/svg" width="21.831" height="25" viewBox="0 0 21.831 25">
+                        <path id="Polygon_1" data-name="Polygon 1" d="M12.5,0,25,21.831H0Z" transform="translate(21.831) rotate(90)" fill="rgba(241,241,241,0.9)" />
+                    </svg>
+                    <svg class="off" xmlns="http://www.w3.org/2000/svg" width="15" height="25" viewBox="0 0 15 25">
+                        <g id="Group_124603" data-name="Group 124603" transform="translate(-88 -535)">
+                            <rect id="Rectangle_3525" data-name="Rectangle 3525" width="5" height="25" transform="translate(88 535)" fill="rgba(241,241,241,0.9)" />
+                            <rect id="Rectangle_3526" data-name="Rectangle 3526" width="5" height="25" transform="translate(98 535)" fill="rgba(241,241,241,0.9)" />
+                        </g>
+                    </svg>
+                </span>
+            </div>
+        }
+
+        @if ((Model.Items == null || !Model.Items.Any()) && Glass.IsInEditingMode)
+        {
+            <h2 class="text-center">Add Carousel Items</h2>
+        }
+        @if (config.ShowIndicator && itemCount > 1)
+        {
+            <!-- Indicators -->
+            <ol class="carousel-indicators">
+                @for (int index = 0; index < itemCount; index++)
+                {
+                    if (index == 0)
+                    {
+                        <li data-target="#@CarouselIdName" data-slide-to="@index" class="active"></li>
+                    }
+                    else
+                    {
+                        <li data-target="#@CarouselIdName" data-slide-to="@index"></li>
+                    }
+                }
+            </ol>
+        }
+
+        <!-- Wrapper for slides -->
+        <div class="carousel-inner 11">
+
+            @for (int index = 0; index < itemCount; index++)
+            {
+                var item = Model.Items.ElementAt(index);
+
+                <div class="item @(item.IsBackgroundVideo ? "item-video" : string.Empty)  @(index == 0 ? "active" : string.Empty) @(item.IsVideo || item.IsFeatured || item.IsBackgroundVideo ? "carousel-image" : string.Empty)">
+
+                    @if (item.IsVideo)
+                    {
+                        <a class="thumb-34" href="#" data-toggle="modal" data-target="#@Model.VideoTarget" data-videosource="@item.VideoSource.Url">
+                            <img width="1300" height="500" class="lazy-hidden" data-lazy-type="image" data-lazy-srcset="@(!string.IsNullOrEmpty(item.ImageForMobile?.Src) ? $"{item.ImageForMobile.GetMediaUrlWithProtectHash()} 767w" : string.Empty), @item.Image.GetMediaUrlWithProtectHash()" alt="@(item.Image?.Alt)" />
+                        </a>
+                    }
+                    else
+                    {
+                        <div class="thumb-34">
+                            @if (item.IsBackgroundVideo)
+                            {
+                                <video class="video-playing" playsinline @(itemCount == 1 ? "loop='loop'" : string.Empty) autoplay="autoplay" muted="muted" poster="@(item.Image?.Src)">
+                                    <source src="@(item.BackgroundVideo?.Url)">
+                                </video>
+                            }
+                            else
+                            {
+                                <img width="1300" height="500" class="lazy-hidden" data-lazy-type="image" data-lazy-srcset="@(!string.IsNullOrEmpty(item.ImageForMobile?.Src) ? $"{item.ImageForMobile.GetMediaUrlWithProtectHash()} 767w" : string.Empty), @item.Image.GetMediaUrlWithProtectHash()" alt="@(item.Image?.Alt)" />
+                            }
+                        </div>
+                    }
+
+                    <div class="carousel-caption @(config.IsVerticalAligned ? "carousel-v-caption" : string.Empty)">
+                        @if (item.IsVideo)
+                        {
+                            <a href="#" data-toggle="modal" data-target="#@Model.VideoTarget" data-videosource="@item.VideoSource.Url">
+                                <img loading="lazy" src="~/content/images/play-btn.png" alt="" />
+                            </a>
+                        }
+                        @if (!string.IsNullOrWhiteSpace(item.FeaturedTitle))
+                        {
+                            <p class="feature">@Glass.Editable(item, model => model.FeaturedTitle)</p>
+                        }
+                        @if (config.IsVerticalAligned)
+                        {
+                            <div class="carousel-v-align">
+                                @if (config.ShowTitle)
+                                {
+                                    <h2 aria-label="@Model.Title">@Glass.Editable(item, model => model.Title)</h2>
+                                }
+                                @if (config.ShowSummary)
+                                {
+                                    <p>@Glass.Editable(item, model => model.Summary)</p>
+                                }
+                            </div>
+                        }
+                        else
+                        {
+                            if (config.ShowTitle)
+                            {
+                                <h2 aria-label="@Model.Title">@Glass.Editable(item, model => model.Title)</h2>
+                            }
+                            if (config.ShowSummary)
+                            {
+                                <p>@Glass.Editable(item, model => model.Summary)</p>
+                            }
+                        }
+                        @if (item.LinkedContent != null && !string.IsNullOrWhiteSpace(item.LinkedContent.Url))
+                        {
+                            @StayFarEast.RenderLinkDynamicSite(item, model => model.LinkedContent, config.RedirectToCurrentSite, isEditable: true)
+                        }
+                        @if (config.ShowDivider)
+                        {
+                            <div class="hidden-xs line-divider pink-line-divider"></div>
+                        }
+                    </div>
+                    <div class="note color-white hidden-xs"><i>@Glass.Editable(item, model => model.Caption)</i></div>
+                </div>
+            }
+
+        </div>
+
+        @if (itemCount > 1)
+        {
+            <!-- Controls -->
+            <a class="left carousel-control" href="#@CarouselIdName" role="button" data-slide="prev">
+                <span class="lnr lnr-chevron-left" aria-hidden="true"></span>
+                <span class="sr-only">Previous</span>
+            </a>
+            <a class="right carousel-control" href="#@CarouselIdName" role="button" data-slide="next">
+                <span class="lnr lnr-chevron-right" aria-hidden="true"></span>
+                <span class="sr-only">Next</span>
+            </a>
+        }
+    </div>
+</div>
+
+@if (Model.HasVideo)
+{
+    <!-- YOUTUBE VIDEO MODAL -->
+    <div class="modal fade video" id="@Model.VideoTarget" tabindex="-1" role="dialog" aria-labelledby="@Model.VideoTarget" aria-hidden="true">
+        <div class="modal-dialog">
+            <div class="modal-content">
+                <div class="modal-body">
+                    <button type="button" class="close btn" data-dismiss="modal" aria-hidden="true">
+                        <a href="#">
+                            <p class="pull-left">@Dictionary.GetValue(DictionaryKeys.CloseButtonText)</p>
+                            <div class="burger-bar open">
+                                <span></span>
+                                <span></span>
+                                <span></span>
+                                <span></span>
+                            </div>
+                        </a>
+                    </button>
+                    <div class="embed-responsive embed-responsive-16by9">
+                        <iframe allowfullscreen="allowfullscreen" class="embed-responsive-item" width="100%" height="350" src=""></iframe>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+}
+
+@if (Model.Config.ShowPullOutWidget)
+{
+    var fontcolorClass = Model.Config.FontColor?.Value;
+    var backgroundClass = Model.Config.BackgroundColor?.Value;
+    <div class="extra-off">
+        <div class="extra-offinner">
+            <div class="extra-off-title @backgroundClass @fontcolorClass">@Glass.Editable(Model, model => model.PullOutText)</div>
+            <div class="extra-off-detail">
+                @if (Sitecore.Context.PageMode.IsExperienceEditor)
+                {
+                    using (Html.Glass().BeginRenderLink(Model, model => model.LinkToSubscriptionPage, null, isEditable: true))
+                    {
+                        @Html.Raw(@Glass.Editable(Model, model => model.PullOutTextDescription))
+                    }
+                }
+                else
+                {
+                    <a href=@(Model.LinkToSubscriptionPage != null ? Model.LinkToSubscriptionPage.Url : "#" )> @Html.Raw(@Model.PullOutTextDescription)</a>
+                }
+
+            </div>
+        </div>
+    </div>
+}

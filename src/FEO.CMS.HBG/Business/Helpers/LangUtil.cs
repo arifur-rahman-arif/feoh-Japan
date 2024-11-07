@@ -6,7 +6,7 @@ using System.Globalization;
 namespace FEO.CMS.HBG.Business.Helpers
 {
     public static class LangUtil
-    {       
+    {
         public static bool LanguageExistsInDatabase(string languageName)
         {
             if (string.IsNullOrWhiteSpace(languageName))

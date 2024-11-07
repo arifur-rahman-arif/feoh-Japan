@@ -1,0 +1,14 @@
+﻿@model HBGInstagramBlock
+
+@if (Model != null && Model.JuicerData != null)
+{
+    <div data-hideable="true" class="sec-custom-highlight @RazorUtil.JoinCssClass(Model.StyleNames) shadow section-onepage lazy-load-instagram" id="instagram">
+        <div class="section container instagram-container-wrap">
+            <h3 class="header text-center">@Html.PropertyFor(x => x.Title)</h3>
+            <p class="text-center sub-description">@Html.PropertyFor(x => x.SubTitle)</p>
+            <div class="instagramRawdata">
+                @Html.PropertyFor(x => x.JuicerData)
+            </div>
+        </div>
+    </div>
+}

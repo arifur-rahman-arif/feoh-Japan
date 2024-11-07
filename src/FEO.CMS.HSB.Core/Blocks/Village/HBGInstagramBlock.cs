@@ -6,8 +6,8 @@ using System.ComponentModel.DataAnnotations;
 
 namespace FEO.CMS.HBG.Core.Blocks.Village
 {
-    [ContentType(DisplayName = "HBGInstagramBlock", GUID = "8A8AC62D-9023-4A0E-86AE-293E9573A812", GroupName = "Hospitality")]
-    public class HBGInstagramBlock : HBGBaseBlock
+    [ContentType(DisplayName = "Village HBGInstagramBlock", GUID = "8A8AC62D-9023-4A0E-86AE-293E9573A812", GroupName = "Hospitality")]
+    public class VillageHBGInstagramBlock : HBGBaseBlock
     {
         [Display(Name = "Title", GroupName = SystemTabNames.Content, Order = 50)]
         [CultureSpecific]
