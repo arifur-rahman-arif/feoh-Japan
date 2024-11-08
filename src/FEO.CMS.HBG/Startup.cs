@@ -28,6 +28,10 @@ namespace FEO.CMS.HBG
                 services.Configure<SchedulerOptions>(options => options.Enabled = false);
             }
 
+            services.AddSession(options =>
+            {
+                options.IdleTimeout = TimeSpan.FromMinutes(1);
+            });
             services.AddBootstrapHospitalityServices();
 
             services
@@ -46,7 +50,7 @@ namespace FEO.CMS.HBG
             {
                 app.UseDeveloperExceptionPage();
             }
-
+            app.UseSession();
             app.UseStaticFiles();
             app.UseRouting();
             app.UseAuthentication();

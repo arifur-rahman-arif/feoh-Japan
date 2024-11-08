@@ -22,5 +22,9 @@ namespace FEO.CMS.HBG.Core.Blocks.StayFarEast
         [UIHint(UIHint.Textarea)]
         public virtual XhtmlString JuicerData { get; set; }
 
+        [Display(Name = "Style Names", GroupName = SystemTabNames.Content, Order = 200)]
+        [CultureSpecific]
+        public virtual ContentReference StyleNames { get; set; }
+
     }
 }

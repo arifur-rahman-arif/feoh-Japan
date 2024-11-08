@@ -1,0 +1,6 @@
+﻿@model HBGMemebershipBenefitBlock
+
+@if (Model != null && Model.Benefits != null &&  Model.Benefits.Items.Any())
+{
+    @Html.Partial("~/Views/Shared/Blocks/_MembershipBenefit.cshtml", Model)
+}

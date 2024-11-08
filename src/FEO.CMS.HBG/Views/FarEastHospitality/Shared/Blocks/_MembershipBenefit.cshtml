@@ -1,0 +1,48 @@
+﻿@model HBGMemebershipBenefitBlock
+
+@if (Model != null)
+{
+    <div class="membership-component">
+        <div class="membership-benefits">
+            @foreach (var item in Model.Benefits.Items)
+            {
+                var benefit = ContentLoader.Get<HBGBenefitItemBlock>(item.ContentLink);
+                <div class="membership-benefits-item">
+                    @if (benefit.BenefitIcon != null)
+                    {
+                        <div class="membership-benefits-item__icon">
+                            @if (benefit.BenefitIcon != null && Url.ContentUrl(benefit.BenefitIcon).EndsWith(".svg"))
+                            {
+                                <span class="img-svg">
+                                    @Html.PropertyFor(x => benefit.BenefitIcon);
+                                </span>
+                            }
+                            else
+                            {
+                                <img class="img-svg lazy-hidden" data-lazy-type="image" data-lazy-src="@Url.ContentUrl(benefit.BenefitIcon)" alt="" />
+                            }
+                        </div>
+                    }
+                    @if (!string.IsNullOrEmpty(benefit.Title))
+                    {
+                        <div class="membership-benefits-item__title">
+                            <h5>@Html.PropertyFor(x => benefit.Title)</h5>
+                        </div>
+                    }
+                    @if (benefit.Description != null)
+                    {
+                        <div class="membership-benefits-item__desc">
+                            @Html.PropertyFor(x => benefit.Description)
+                        </div>
+                    }
+                </div>
+            }
+        </div>
+        @if (Model.CTALink != null && !string.IsNullOrEmpty(Model.CTATitle))
+        {
+            <div class="membership-button">
+                <a class="membership-button__cta" href="@Url.ContentUrl(Model.CTALink?.Href)" target="@Model.CTALink?.Target">@(!string.IsNullOrEmpty(Model.CTATitle) ? Model.CTATitle : Model.CTALink?.Text)</a>
+            </div>
+        }
+    </div>
+}

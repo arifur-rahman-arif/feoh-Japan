@@ -4,13 +4,14 @@
 
 @{
     var currentPage = PageRouteHelper.Page;
-    var rootPageReference = ContentReference.RootPage;
-    var site = ContentRepository.Get<HBGSite>(rootPageReference);
+    var rootPageReference = ContentReference.StartPage;
+    var sitePageReference = ContentRepository.Get<PageData>(rootPageReference).ParentLink;
+    var site = ContentRepository.Get<HBGSite>(sitePageReference);
     ViewData.Add("Model", Model);
 
-    var config = ContentLoader.Get<HBGWebsiteConfigBlock>(site.WebsiteConfig);
-    var insiderConfig = ContentLoader.Get<HBGInsidersConfigurationBlock>(site.WebsiteConfig);
-    var gtmConfig = ContentLoader.Get<HBGGoogleTagManagerBlock>(site.GTMConfig);
+    var config = site.WebsiteConfig != null ? ContentLoader.Get<HBGWebsiteConfigBlock>(site.WebsiteConfig) : null;
+    var insiderConfig = site.WebsiteConfig != null ? ContentLoader.Get<HBGInsidersConfigurationBlock>(site.WebsiteConfig) : null;
+    var gtmConfig = site.WebsiteConfig != null ? ContentLoader.Get<HBGGoogleTagManagerBlock>(site.GTMConfig) : null;
 
     var request = Context.Request;
     var absoluteUri = string.Concat(
@@ -113,7 +114,6 @@
             @Html.BingLangMeta()
         }
 
-        @Html.Partial(ViewsPath.Hospitality_Shared_BLOCKS_PATH + "/MetaTags/Index.cshtml")
         <link rel="stylesheet" href="~/assets/content/vendor-bundle.min.css" asp-append-version="true" />
         <link rel="stylesheet" href="~/assets/content/stayfareast-bundle.min.css" asp-append-version="true" />
 

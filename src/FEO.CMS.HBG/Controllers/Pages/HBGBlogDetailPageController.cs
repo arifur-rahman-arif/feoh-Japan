@@ -5,12 +5,12 @@ using Microsoft.AspNetCore.Mvc;
 
 namespace FEO.CMS.HBG.Controllers.Pages
 {
-    public class HBGHomePageController : PageControllerBase<HBGHomePage>
+    public class HBGBlogDetailPageController : PageControllerBase<HBGBlogDetailPage>
     {
-        public ActionResult Index(HBGHomePage currentPage)
+        public ActionResult Index(HBGBlogDetailPage currentPage)
         {
             var model = PageViewModel.Create(currentPage);
-            return View($"{ViewsPath.Hospitality_StayFarEast_PAGES_PATH}/HBGHomePage/Index.cshtml", model);
+            return View($"{ViewsPath.Hospitality_StayFarEast_PAGES_PATH}/HBGBlogDetailPage/Index.cshtml", model);
         }
     }
 }
