@@ -1,16 +1,21 @@
 ﻿@using FEO.CMS.HBG.Core.Pages.StayFarEast
+@using FEO.CMS.HBG.Core.Blocks.StayFarEast
 @using FEO.CMS.HBG.Helper
 @model HBGHomeBlock;
 @{
     var currentPage = BlockHelper.GetCurrentPage<HBGHomePage>();
+    var rootPageReference = ContentReference.RootPage;
+    var site = ContentRepository.Get<HBGSite>(rootPageReference);
     // Define a default position
     var position = GenericConstants.Middle;
 
+    var homeBannerConfig = ContentLoader.Get<HBGHomeBannerConfigBlock>(site.WebsiteConfig);
+    var bannerConfig = ContentLoader.Get<FEO.CMS.HBG.Core.Blocks.StayFarEast.HBGBannerConfigBlock>(site.WebsiteConfig);
     // Check if the PositionBookingWidget ContentReference is set
-    if (currentPage?.PositionBookingWidget != null && !ContentReference.IsNullOrEmpty(currentPage.PositionBookingWidget))
+    if (homeBannerConfig?.PositionBookingWidget != null && !ContentReference.IsNullOrEmpty(homeBannerConfig.PositionBookingWidget))
     {
         // Use ContentLoader to load the referenced content
-        var positionContent = ContentLoader.Get<IContent>(currentPage.PositionBookingWidget) as HBGNameValuePairBlock;
+        var positionContent = ContentLoader.Get<IContent>(homeBannerConfig.PositionBookingWidget) as HBGNameValuePairBlock;
 
         // If the content was loaded and has a Position property, use it
         if (positionContent != null && positionContent.Value != null)
@@ -72,7 +77,7 @@
             </div>
         </div>
         <div class="note color-white hidden-xs hidden-sm"><i>@Html.PropertyFor(x => currentPage.Caption)</i></div>
-        @if (config != null && config.ShowDownwardArrow && position != GenericConstants.Bottom)
+        @if (bannerConfig != null && bannerConfig. && position != GenericConstants.Bottom)
         {
             <div class="banner-arrow hidden-xs">
                 <a href="#hotel-recommend" class="color-white scrollto arrow">

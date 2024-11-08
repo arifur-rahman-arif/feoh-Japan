@@ -29,5 +29,14 @@ namespace FEO.CMS.HBG.Core.Pages
         [CultureSpecific]
         public virtual ContentReference GTMConfig { get; set; }
 
+        [Display(Name = "Home Banner Config", GroupName = "Configuration", Order = 100)]
+        [CultureSpecific]
+        public virtual ContentReference HomeBannerConfig { get; set; }
+
+
+        [Display(Name = "Banner Config", GroupName = "Configuration", Order = 100)]
+        [CultureSpecific]
+        public virtual ContentReference BannerConfig { get; set; }
+
     }
 }
