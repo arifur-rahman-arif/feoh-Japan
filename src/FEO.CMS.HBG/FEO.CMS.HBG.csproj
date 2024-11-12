@@ -37,11 +37,16 @@
   </ItemGroup>
   
   <ItemGroup>
+    <Compile Include="Models\BlogItemModel.cs" />
+    <Compile Include="Models\SearchFilter.cs" />
+    <Compile Include="Models\SearchParam.cs" />
+  </ItemGroup>
+  
+  <ItemGroup>
     <ProjectReference Include="..\FEO.CMS.HSB.Core\FEO.CMS.HBG.Core.csproj" />
   </ItemGroup>
   
   <ItemGroup>
-    <Folder Include="Controllers\Blocks\" />
     <Folder Include="Views\FarEastHospitality\Barrack\Blocks\" />
     <Folder Include="Views\FarEastHospitality\Barrack\Layouts\" />
     <Folder Include="Views\FarEastHospitality\Barrack\Pages\" />

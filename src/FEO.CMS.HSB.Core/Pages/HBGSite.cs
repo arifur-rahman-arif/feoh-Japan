@@ -28,9 +28,14 @@ namespace FEO.CMS.HBG.Core.Pages
         public virtual ContentReference HomeBannerConfig { get; set; }
 
 
-        [Display(Name = "Banner Config", GroupName = "Configuration", Order = 100)]
+        [Display(Name = "Banner DownwardArrow Config", GroupName = "Configuration", Order = 100)]
         [CultureSpecific]
-        public virtual ContentReference BannerConfig { get; set; }
+        public virtual ContentReference BannerDownwardArrowConfig { get; set; }
+
+        [Display(Name = "Background Config", GroupName = "Configuration", Order = 100)]
+        [CultureSpecific]
+        public virtual ContentReference BackgroundConfig { get; set; }
+        
 
     }
 }
