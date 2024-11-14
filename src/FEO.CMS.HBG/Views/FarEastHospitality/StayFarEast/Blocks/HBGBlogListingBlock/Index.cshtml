@@ -1,4 +1,5 @@
 ﻿@inject IContentLoader ContentLoader
+@using FEO.CMS.HBG.Business.Dictionary
 @model BlogListingViewModel
 @if (Model != null)
 {
@@ -14,48 +15,48 @@
 
             <h2 class="s-title">@Model.ComponentTitle</h2>
             <div class="filter-by">
-                <span class="title">@Dictionary.GetValue(DictionaryKeys.FilterBy)</span>
-                <span class="clear hidden">@Dictionary.GetValue(DictionaryKeys.ClearAll)</span>
+                <span class="title">@DictionaryHelper.DictionaryEntry(DictionaryKeys.FilterBy)</span>
+                <span class="clear hidden">@DictionaryHelper.DictionaryEntry(DictionaryKeys.ClearAll)</span>
             </div>
 
             <div class="blog-filter">
-                @if (Model.Seasons != null && Model.Seasons.Options.IsNotNullAndAny())
+                @if (Model.Seasons != null && Model.Seasons.Options.Any())
                 {
-                    <select name="Seasons" class="custom-select" multiple type="checkbox" placeholder="@Dictionary.GetValue(DictionaryKeys.Seasons)">
+                    <select name="Seasons" class="custom-select" multiple type="checkbox" placeholder="@DictionaryHelper.DictionaryEntry(DictionaryKeys.Seasons)">
                         @foreach (var item in Model.Seasons.Options)
                         {
                             <option value="@item.Value">@item.Name</option>
                         }
                     </select>
                 }
-                @if (Model.Locations != null && Model.Locations.Options.IsNotNullAndAny())
+                @if (Model.Locations != null && Model.Locations.Options.Any())
                 {
-                    <select name="locations" class="custom-select" multiple type="checkbox" placeholder="@Dictionary.GetValue(DictionaryKeys.Locations)">
+                    <select name="locations" class="custom-select" multiple type="checkbox" placeholder="@DictionaryHelper.DictionaryEntry(DictionaryKeys.Locations)">
                         @foreach (var item in Model.Locations.Options)
                         {
                             <option value="@item.Value">@item.Name</option>
                         }
                     </select>
                 }
-                @if (Model.Types != null && Model.Types.Options.IsNotNullAndAny())
+                @if (Model.Types != null && Model.Types.Options.Any())
                 {
-                    <select name="Types" class="custom-select" multiple type="checkbox" placeholder="@Dictionary.GetValue(DictionaryKeys.Types)">
+                    <select name="Types" class="custom-select" multiple type="checkbox" placeholder="@DictionaryHelper.DictionaryEntry(DictionaryKeys.Types)">
                         @foreach (var item in Model.Types.Options)
                         {
                             <option value="@item.Value">@item.Name</option>
                         }
                     </select>
                 }
-                @if (Model.Purposes != null && Model.Purposes.Options.IsNotNullAndAny())
+                @if (Model.Purposes != null && Model.Purposes.Options.Any())
                 {
-                    <select name="Purposes" class="custom-select" multiple type="checkbox" placeholder="@Dictionary.GetValue(DictionaryKeys.Purposes)">
+                    <select name="Purposes" class="custom-select" multiple type="checkbox" placeholder="@DictionaryHelper.DictionaryEntry(DictionaryKeys.Purposes)">
                         @foreach (var item in Model.Purposes.Options)
                         {
                             <option value="@item.Value">@item.Name</option>
                         }
                     </select>
                 }
-                @if (Model.OrderBy != null && Model.OrderBy.Options.IsNotNullAndAny())
+                @if (Model.OrderBy != null && Model.OrderBy.Options.Any())
                 {
                     <select name="OrderBy" class="custom-select">
                         @foreach (var item in Model.OrderBy.Options)
@@ -68,8 +69,8 @@
             <div class="wrap-blog-listing">
                 <div class="lds-spinner"><div></div><div></div><div></div><div></div><div></div><div></div><div></div><div></div><div></div><div></div><div></div><div></div></div>
                 <div class="blog-listing"></div>
-                <div class="result-total" data-multiple-result="@Dictionary.GetValue(DictionaryKeys.Articles)" data-sigle-result="@Dictionary.GetValue(DictionaryKeys.Article)">@Dictionary.GetValue(DictionaryKeys.Total) <span class="number">0</span> <span class="text">@Dictionary.GetValue(DictionaryKeys.Articles)</span></div>
-                <div class="text-emty">@Dictionary.GetValue(DictionaryKeys.NotFoundMessage)</div>
+                <div class="result-total" data-multiple-result="@DictionaryHelper.DictionaryEntry(DictionaryKeys.Articles)" data-sigle-result="@DictionaryHelper.DictionaryEntry(DictionaryKeys.Article)">@DictionaryHelper.DictionaryEntry(DictionaryKeys.Total) <span class="number">0</span> <span class="text">@DictionaryHelper.DictionaryEntry(DictionaryKeys.Articles)</span></div>
+                <div class="text-emty">@DictionaryHelper.DictionaryEntry(DictionaryKeys.NotFoundMessage)</div>
             </div>
 
 
