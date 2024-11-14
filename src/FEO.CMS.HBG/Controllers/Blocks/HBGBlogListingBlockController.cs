@@ -1,6 +1,4 @@
-﻿using EPiServer.Core.Internal;
-using EPiServer.Find;
-using EPiServer.ServiceLocation;
+﻿using EPiServer.Find;
 using EPiServer.Web.Mvc;
 using FEO.CMS.HBG.Business.Helpers;
 using FEO.CMS.HBG.Business.Helpers.Interfaces;
@@ -10,9 +8,7 @@ using FEO.CMS.HBG.Core.Pages;
 using FEO.CMS.HBG.Models;
 using FEO.CMS.HBG.ViewModels;
 using Microsoft.AspNetCore.Mvc;
-using Newtonsoft.Json.Linq;
 using static FEO.CMS.HBG.Core.Constants.FieldNames;
-using static NuGet.Packaging.PackagingConstants;
 
 namespace FEO.CMS.HBG.Controllers.Blocks
 {
@@ -31,8 +27,8 @@ namespace FEO.CMS.HBG.Controllers.Blocks
         {
             var rootPageReference = ContentReference.StartPage;
             var sitePageReference = _contentRepository.Get<PageData>(rootPageReference).ParentLink;
-            var site = _contentRepository.Get<HBGSite>(sitePageReference);           
-            
+            var site = _contentRepository.Get<HBGSite>(sitePageReference);
+
             var viewModel = new BlogListingViewModel();
             viewModel.Config = _contentLoader.Get<HBGBackgroundConfigBlock>(site.BackgroundConfig);
             SearchParam searchParam = new SearchParam()
@@ -42,7 +38,7 @@ namespace FEO.CMS.HBG.Controllers.Blocks
                 PageNumber = 1,
                 Type = "blog"
             };
-           
+
             var results = _searchHelper.SearchBlog(searchParam);
             var facets = results.Facets;
             PopulateFilter(viewModel, facets);
@@ -132,11 +128,11 @@ namespace FEO.CMS.HBG.Controllers.Blocks
         {
             var contentRefernce = _contentLoader.Get<IContent>(folderGuid);
             // Use TryGet to ensure content exists for the provided GUID
-           
-                return contentRefernce.ContentLink;
-            
 
-            
+            return contentRefernce.ContentLink;
+
+
+
         }
     }
 }

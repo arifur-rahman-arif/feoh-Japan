@@ -69,8 +69,8 @@
             public static Guid Purposes = new Guid("{963B005D-9BC7-4782-AB0A-41EA4D69FCFD}");
             public static Guid Seasons = new Guid("{F5B72115-C25F-4596-AAC7-44D8C77865BD}");
             public static Guid Countries = new Guid("{96AC74CF-489D-42FE-98DA-55BEF197423F}");
-           
+
         }
     }
-    
+
 }

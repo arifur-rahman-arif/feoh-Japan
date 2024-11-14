@@ -35,7 +35,7 @@ namespace FEO.CMS.HBG.Core.Pages
         [Display(Name = "Background Config", GroupName = "Configuration", Order = 100)]
         [CultureSpecific]
         public virtual ContentReference BackgroundConfig { get; set; }
-        
+
 
     }
 }

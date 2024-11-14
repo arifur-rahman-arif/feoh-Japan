@@ -1,12 +1,7 @@
 ﻿using EPiServer.Core;
 using EPiServer.DataAnnotations;
 using EPiServer.Web;
-using System;
-using System.Collections.Generic;
 using System.ComponentModel.DataAnnotations;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 
 namespace FEO.CMS.HBG.Core.Blocks.Bases
 {

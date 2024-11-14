@@ -11,7 +11,7 @@
                         <div class="left_lpo">
                             @if (Model.LogoImage != null)
                             {
-                                <img width="109" height="104" class="lazy-hidden img-lazy-block" data-lazy-type="image" data-lazy-src="@Model.LogoImage.GetMediaUrlWithProtectHash()" alt="@Model.LogoImage.Alt" />
+                                <img width="109" height="104" class="lazy-hidden img-lazy-block" data-lazy-type="image" data-lazy-src="@Url.ContentUrl(Model.LogoImage)" alt="" />
                             }
                         </div>
                     </div>

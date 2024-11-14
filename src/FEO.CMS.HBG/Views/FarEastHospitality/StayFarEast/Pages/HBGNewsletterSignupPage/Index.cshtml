@@ -49,24 +49,24 @@
                 <input type="hidden" id="date_time" name="subscribe_time">
 
                 <div class="form-group input-group-lg">
-                    <input id="emailaddress2" type="email" class="form-control" name="EmailAddress" placeholder="@DictionaryHelper(DictionaryKeys.EmailAddressPlaceholder)" required pattern="@(@"^[A-Za-z0-9._%+-]+@[A-Za-z0-9.-]+\.[A-Za-z]{2,17}$")" value="@email" data-error="@DictionaryHelper(DictionaryKeys.InputRequiredErrorMessage)">
+                    <input id="emailaddress2" type="email" class="form-control" name="EmailAddress" placeholder="@DictionaryHelper.DictionaryEntry(DictionaryKeys.EmailAddressPlaceholder)" required pattern="@(@"^[A-Za-z0-9._%+-]+@[A-Za-z0-9.-]+\.[A-Za-z]{2,17}$")" value="@email" data-error="@DictionaryHelper.DictionaryEntry(DictionaryKeys.InputRequiredErrorMessage)">
                     <div class="help-block with-errors"></div>
                 </div>
 
                 <div class="form-group input-group-lg">
-                    <input type="text" class="form-control" name="FirstName" maxlength="50" placeholder="@DictionaryHelper(DictionaryKeys.FirstNamePlaceholder)" required data-error="@DictionaryHelper(DictionaryKeys.InputRequiredErrorMessage)">
+                    <input type="text" class="form-control" name="FirstName" maxlength="50" placeholder="@DictionaryHelper.DictionaryEntry(DictionaryKeys.FirstNamePlaceholder)" required data-error="@DictionaryHelper.DictionaryEntry(DictionaryKeys.InputRequiredErrorMessage)">
                     <div class="help-block with-errors"></div>
                 </div>
 
                 <div class="form-group input-group-lg display-none">
-                    <input type="text" class="form-control" name="LastName" maxlength="50" placeholder="@DictionaryHelper(DictionaryKeys.LastNamePlaceholder)" required data-error="@DictionaryHelper(DictionaryKeys.InputRequiredErrorMessage)">
+                    <input type="text" class="form-control" name="LastName" maxlength="50" placeholder="@DictionaryHelper.DictionaryEntry(DictionaryKeys.LastNamePlaceholder)" required data-error="@DictionaryHelper.DictionaryEntry(DictionaryKeys.InputRequiredErrorMessage)">
                     <div class="help-block with-errors"></div>
                 </div>
 
                 <div class="row">
                     <div class="col-sm-4">
                         <div class="form-group input-group-lg">
-                            <select id="Day-Birth" name="Day-Birth" class="selectpicker form-control input-lg empty contact" title="@DictionaryHelper(DictionaryKeys.BirthdayPlaceholder)" required data-width="100%" data-error="@DictionaryHelper(DictionaryKeys.SelectionRequiredErrorMessage)">
+                            <select id="Day-Birth" name="Day-Birth" class="selectpicker form-control input-lg empty contact" title="@DictionaryHelper.DictionaryEntry(DictionaryKeys.BirthdayPlaceholder)" required data-width="100%" data-error="@DictionaryHelper.DictionaryEntry(DictionaryKeys.SelectionRequiredErrorMessage)">
                                 <option value="1">01</option>
                                 <option value="2">02</option>
                                 <option value="3">03</option>
@@ -105,7 +105,7 @@
 
                     <div class="col-sm-4">
                         <div class="form-group input-group-lg">
-                            <select id="Month-Birth" name="Month-Birth" class="selectpicker form-control input-lg empty contact" title="@DictionaryHelper(DictionaryKeys.BirthMonthPlaceholder)" required data-width="100%" data-error="@DictionaryHelper(DictionaryKeys.SelectionRequiredErrorMessage)">
+                            <select id="Month-Birth" name="Month-Birth" class="selectpicker form-control input-lg empty contact" title="@DictionaryHelper.DictionaryEntry(DictionaryKeys.BirthMonthPlaceholder)" required data-width="100%" data-error="@DictionaryHelper.DictionaryEntry(DictionaryKeys.SelectionRequiredErrorMessage)">
                                 <option value="January">01</option>
                                 <option value="February">02</option>
                                 <option value="March">03</option>
@@ -125,7 +125,7 @@
 
                     <div class="col-sm-4">
                         <div class="form-group input-group-lg">
-                            <select id="Year-Birth" name="Year-Birth" class="selectpicker form-control input-lg empty contact" title="@DictionaryHelper(DictionaryKeys.BirthYearPlaceholder)" required data-width="100%" data-error="@DictionaryHelper(DictionaryKeys.SelectionRequiredErrorMessage)">
+                            <select id="Year-Birth" name="Year-Birth" class="selectpicker form-control input-lg empty contact" title="@DictionaryHelper.DictionaryEntry(DictionaryKeys.BirthYearPlaceholder)" required data-width="100%" data-error="@DictionaryHelper.DictionaryEntry(DictionaryKeys.SelectionRequiredErrorMessage)">
 
                                 @for (var endYear = now.Year; endYear > startYear; --endYear)
                                 {
@@ -140,7 +140,7 @@
                 </div>
 
                 <div class="form-group input-group-lg">
-                    <select name="Country" class="selectpicker form-control input-lg empty" title="@DictionaryHelper(DictionaryKeys.CountryResidencePlaceholder)" required data-error="@DictionaryHelper(DictionaryKeys.SelectionRequiredErrorMessage)">
+                    <select name="Country" class="selectpicker form-control input-lg empty" title="@DictionaryHelper.DictionaryEntry(DictionaryKeys.CountryResidencePlaceholder)" required data-error="@DictionaryHelper.DictionaryEntry(DictionaryKeys.SelectionRequiredErrorMessage)">
                         <option value="AF">Afghanistan</option>
                         <option value="AL">Albania</option>
                         <option value="DZ">Algeria</option>
@@ -391,7 +391,7 @@
                 </div>
 
                 <div class="text-center btn-lg">
-                    <button id="submitForm" class="btn btn-primary text-center text-uppercase" href="#" role="button" type="submit">@DictionaryHelper(DictionaryKeys.SubscribeButtonText)</button>
+                    <button id="submitForm" class="btn btn-primary text-center text-uppercase" href="#" role="button" type="submit">@DictionaryHelper.DictionaryEntry(DictionaryKeys.SubscribeButtonText)</button>
                 </div>
 
             </form>

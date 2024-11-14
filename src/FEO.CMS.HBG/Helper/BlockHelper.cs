@@ -1,5 +1,4 @@
 ﻿using EPiServer.ServiceLocation;
-using EPiServer.SpecializedProperties;
 using EPiServer.Web.Routing;
 
 namespace FEO.CMS.HBG.Helper
@@ -22,7 +21,7 @@ namespace FEO.CMS.HBG.Helper
         {
             return src.GetType().GetProperty(propName)?.GetValue(src, null);
         }
-              
+
         public static ContentReference GetDescendantPath(this ContentReference root, string path)
         {
             var segments = path.Split(new[] { '/' }, StringSplitOptions.RemoveEmptyEntries);

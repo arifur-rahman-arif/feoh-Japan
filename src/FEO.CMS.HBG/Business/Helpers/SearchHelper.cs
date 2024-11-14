@@ -1,19 +1,17 @@
 ﻿using EPiServer.Find;
-using EPiServer.Find.Framework;
-using FEO.CMS.HBG.Business.Helpers.Interfaces;
-using FEO.CMS.HBG.Models;
-using EPiServer.Logging;
-using FEO.CMS.HBG.Core.Pages.StayFarEast;
-using EPiServer.Globalization;
-using EPiServer.Find.Cms;
-using System;
 using EPiServer.Find.Api.Facets;
-using EPiServer.Web.Routing;
+using EPiServer.Find.Cms;
+using EPiServer.Find.Framework;
+using EPiServer.Logging;
 using EPiServer.SpecializedProperties;
+using EPiServer.Web.Routing;
+using FEO.CMS.HBG.Business.Helpers.Interfaces;
+using FEO.CMS.HBG.Core.Pages.StayFarEast;
+using FEO.CMS.HBG.Models;
 
 namespace FEO.CMS.HBG.Business.Helpers
 {
-    public class SearchHelper: ISearchHelper
+    public class SearchHelper : ISearchHelper
     {
         #region Private Members
         private readonly IClient _client;
@@ -53,21 +51,21 @@ namespace FEO.CMS.HBG.Business.Helpers
             if (searchData != null && searchData.Facets.Any())
             {
                 Dictionary<string, IEnumerable<string>> filters = new Dictionary<string, IEnumerable<string>>();
-                foreach(var facet in searchData.Facets)
+                foreach (var facet in searchData.Facets)
                 {
                     string name = facet.Name;
-                    var terms=((TermsFacet)facet).Terms.Select(x=>x.Term).ToList();
-                     filters.Add(name, terms);
-                  
+                    var terms = ((TermsFacet)facet).Terms.Select(x => x.Term).ToList();
+                    filters.Add(name, terms);
+
                 }
-               
+
 
             }
             return null;
         }
         public SearchResult<BlogItemModel> SearchBlog(SearchParam searchParam)
         {
-            
+
             try
             {
                 string language = string.IsNullOrEmpty(searchParam.Language) ? "en" : searchParam.Language;
@@ -88,15 +86,15 @@ namespace FEO.CMS.HBG.Business.Helpers
                         switch (filter.Name)
                         {
                             case "location":
-                               
+
                                 var locations = filter.Value;
                                 if (locations != null && locations.Any())
                                 {
                                     foreach (var location in locations)
                                     {
-                                      query = query.OrFilter(x => x.Location.Match(location));
+                                        query = query.OrFilter(x => x.Location.Match(location));
                                     }
-                                   
+
                                 }
                                 break;
                             case "season":
@@ -144,8 +142,8 @@ namespace FEO.CMS.HBG.Business.Helpers
 
                 var result = query.Take(searchParam.PageSize)
                     .Skip((searchParam.PageNumber - 1) * searchParam.PageSize)
-                    .TermsFacetFor(x=>x.SearchIndexLocation,facet=> { facet.Size = 1000;  })
-                    .TermsFacetFor(x=>x.SearchIndexPurpose, facet => { facet.Size = 1000; })
+                    .TermsFacetFor(x => x.SearchIndexLocation, facet => { facet.Size = 1000; })
+                    .TermsFacetFor(x => x.SearchIndexPurpose, facet => { facet.Size = 1000; })
                     .TermsFacetFor(x => x.SearchIndexSeason, facet => { facet.Size = 1000; })
                     .TermsFacetFor(x => x.SearchIndexType, facet => { facet.Size = 1000; })
                     .GetResult();
@@ -169,7 +167,7 @@ namespace FEO.CMS.HBG.Business.Helpers
                     AlternateUrl = new LinkItem
                     {
                         Href = hit.Document.AlternateURL.Href
-                        
+
                     }
                 }).ToList();
 

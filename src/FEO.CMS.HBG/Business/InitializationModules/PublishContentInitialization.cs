@@ -1,8 +1,8 @@
-﻿using EPiServer.Framework.Initialization;
-using EPiServer.Framework;
+﻿using EPiServer.Framework;
+using EPiServer.Framework.Initialization;
 using EPiServer.ServiceLocation;
-using FEO.CMS.HBG.Core.Pages.StayFarEast;
 using FEO.CMS.HBG.Core.Blocks.StayFarEast;
+using FEO.CMS.HBG.Core.Pages.StayFarEast;
 
 namespace FEO.CMS.HBG.Business.InitializationModules
 {
@@ -58,7 +58,7 @@ namespace FEO.CMS.HBG.Business.InitializationModules
                     hBGBlogDetailPage.SearchIndexType = typeToIndex;
                 }
             }
-           
+
         }
         public void Uninitialize(InitializationEngine context)
         {
