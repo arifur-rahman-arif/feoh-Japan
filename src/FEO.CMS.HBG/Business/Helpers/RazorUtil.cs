@@ -1,5 +1,6 @@
 ﻿using EPiServer.ServiceLocation;
 using FEO.CMS.HBG.Core.Blocks.StayFarEast;
+using Microsoft.AspNetCore.WebUtilities;
 
 namespace FEO.CMS.HBG.Business.Helpers
 {
@@ -46,6 +47,24 @@ namespace FEO.CMS.HBG.Business.Helpers
             var offsetClass = string.Format("col-lg-offset-{0}", offsetSize);
 
             return string.Format("{0} {1}", columnClass, offsetClass);
+        }
+
+        public static Dictionary<string, string> ParseQueryString(string queryString)
+        {
+            // Parse the query string using QueryHelpers
+            var parsedQuery = QueryHelpers.ParseQuery(queryString);
+
+            // Convert the parsed query to a Dictionary<string, string>
+            var queryDictionary = new Dictionary<string, string>();
+
+            foreach (var keyValuePair in parsedQuery)
+            {
+                // Since QueryHelpers.ParseQuery returns an IEnumerable of values for each key, 
+                // we are assuming that each key has a single value.
+                queryDictionary[keyValuePair.Key] = keyValuePair.Value.ToString();
+            }
+
+            return queryDictionary;
         }
     }
 }

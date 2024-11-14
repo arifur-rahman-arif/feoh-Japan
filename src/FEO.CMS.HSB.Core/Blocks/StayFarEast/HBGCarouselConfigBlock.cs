@@ -42,6 +42,5 @@ namespace FEO.CMS.HBG.Core.Blocks.StayFarEast
         [Display(Name = "Carousel Id Name", GroupName = "Settings", Order = 1000)]
         [CultureSpecific]
         public virtual ContentReference CarouselIdName { get; set; }
-
     }
 }

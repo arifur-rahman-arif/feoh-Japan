@@ -22,6 +22,8 @@
 @inject IContentRepository ContentRepository
 @inject IContentLoader ContentLoader
 @inject IOptions<SessionSettings> SessionSetting
+@inject IContextModeResolver ContextMode
+@inject IHttpContextAccessor HttpContextAccessor
 
 @addTagHelper *, Microsoft.AspNetCore.Mvc.TagHelpers
 

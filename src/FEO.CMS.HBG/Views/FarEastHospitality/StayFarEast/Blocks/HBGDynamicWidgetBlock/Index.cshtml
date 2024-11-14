@@ -1,0 +1,25 @@
+﻿@model HBGDynamicWidgetBlock
+
+<!-- Dynamic Widget -->
+@{
+    var BackgroundColor = (Model.BackgroundColor as IContent)?.Name;
+    var HighlightTextColor = (Model.BackgroundColor as IContent)?.Name;
+    var Alignment = (Model.Alignment as IContent)?.Name;
+}
+<div data-timeframe="@Model.TimeFrame" class="@(@Model.HideOnMobile ? "hidden-xs" : string.Empty) dynamic-wiget-container @Alignment">
+    @if (Model.NavigationLink != null)
+    {
+        <a href="@Url.ContentUrl(Model.NavigationLink.Href)" target="@Model.NavigationLink.Target" class="dynamic-wiget-placeholder @BackgroundColor?.ToLower()">
+            <p class="header text-center @HighlightTextColor.?ToLower()">@Html.PropertyFor(x => x.HighlightText)<span class="glyphicon glyphicon-menu-right"></span></p>
+            <span class="close"></span>
+        </a>
+    }
+    else
+    {
+        <div class="dynamic-wiget-placeholder @BackgroundColor?.ToLower()">
+            <p class="header text-center @HighlightTextColor?.ToLower()">@Html.PropertyFor(x => x.HighlightText)</p>
+            <span class="close"></span>
+        </div>
+    }
+</div>
+

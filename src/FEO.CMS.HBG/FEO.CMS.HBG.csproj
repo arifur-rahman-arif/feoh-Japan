@@ -33,10 +33,6 @@
 	</ItemGroup>
 
 	<ItemGroup>
-		<Content Remove="Views\FarEastHospitality\StayFarEast\Blocks\HBGCarouselBlock\Index.cshtml" />
-	</ItemGroup>
-
-	<ItemGroup>
 		<ProjectReference Include="..\FEO.CMS.HSB.Core\FEO.CMS.HBG.Core.csproj" />
 	</ItemGroup>
 
@@ -62,7 +58,6 @@
 		<Folder Include="Views\FarEastHospitality\Rendezvous\Pages\" />
 		<Folder Include="Views\FarEastHospitality\Shared\Layouts\" />
 		<Folder Include="Views\FarEastHospitality\Shared\Pages\" />
-		<Folder Include="Views\FarEastHospitality\StayFarEast\Blocks\HBGCarouselBlock\" />
 		<Folder Include="Views\FarEastHospitality\Village\Blocks\" />
 		<Folder Include="Views\FarEastHospitality\Village\Layouts\" />
 		<Folder Include="Views\FarEastHospitality\Village\Pages\" />

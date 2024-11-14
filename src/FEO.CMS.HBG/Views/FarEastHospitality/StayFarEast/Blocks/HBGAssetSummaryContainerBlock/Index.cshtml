@@ -1,0 +1,45 @@
+﻿@model HBGAssetSummaryContainerBlock
+
+@if (Model != null)
+{
+    var assets = ContentLoader.GetChildren<HBGAssetSummaryBlock>((Model as IContent)?.ContentLink);
+    <div class="about-carousel">
+        <div class="row">
+            @if (assets != null && assets.Any())
+            {
+                foreach (var asset in assets)
+                {
+                    <div class="col-md-3 col-sm-6">
+                        @if (asset.Link != null)
+                        {
+                            <a href="@Url.ContentUrl(asset.Link.Href)">
+                                <div class="image-with-txt">
+                                    @Html.PropertyFor(x => asset.Image)
+                                    <div class="caption">
+                                        <div class="content-v-align">
+                                            <h3>@Html.PropertyFor(x => asset.Count)</h3>
+                                            <p>@Html.PropertyFor(x => asset.Subject)</p>
+                                        </div>
+                                    </div>
+                                </div>
+                            </a>
+                        }
+                        else
+                        {
+                            <div class="image-with-txt">
+                                @Html.PropertyFor(x => asset.Image)
+                                <div class="caption">
+                                    <div class="content-v-align">
+                                        <h3>@Html.PropertyFor(x => asset.Count)</h3>
+                                        <p>@Html.PropertyFor(x => asset.Subject)</p>
+                                    </div>
+                                </div>
+                            </div>
+                        }
+                    </div>
+                }
+            }
+
+        </div>
+    </div>
+}

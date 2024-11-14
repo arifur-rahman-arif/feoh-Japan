@@ -1,0 +1,452 @@
+﻿@model HBGNewsletterSingupPage
+
+@{
+    var email = ViewData["SubscriberEmail"];
+    var now = DateTime.Now;
+    var startYear = now.Year - 115;
+
+    var parameters = !string.IsNullOrWhiteSpace(Model.FormParameters) ?
+        RazorUtil.ParseQueryString(Model.FormParameters) : default(Dictionary<string, string>);
+
+    var scheme = HttpContextAccessor.HttpContext?.Request.Scheme;
+    var host = HttpContextAccessor.HttpContext?.Request.Host.Host;
+}
+
+<!-- NEWSLETTER form -->
+<div class="section container newsletter-form" id="newsletter">
+    <div class="row">
+
+        @if (Model.HeaderText != null || ContextMode.CurrentMode.EditOrPreview())
+        {
+            <div class="row">
+                <div class="col-xs-12 col-sm-12 col-md-12 col-lg-12">
+                    @Html.PropertyFor(x => x.HeaderText)
+                </div>
+            </div>
+        }
+
+        <div class="col-md-offset-3 col-md-6">
+
+            @if (Model.ReturnURL != null)
+            {
+                <input id="returnUrl" type="hidden" value="@(string.Format("{0}{1}{2}{3}", scheme, Uri.SchemeDelimiter, host, Model.FormURL?.Href))" />
+            }
+
+            <form class="form-claim form-style" action="@(Model.FormURL == null ? "/" : Model.FormURL?.Href)" method="post" data-toggle="validator" id="signupform">
+
+                @if (parameters.Any())
+                {
+                    foreach (var pair in parameters)
+                    {
+                        <input type="hidden" name="@pair.Key" value="@pair.Value" />
+                    }
+                }
+
+                <input type="hidden" id="emailaddress" value="@email">
+                <input type="hidden" name="ThankyouUrl" id="tyurl" value="@(Model.ReturnURL != null ? string.Format("{0}{1}{2}{3}?email={4}", scheme, Uri.SchemeDelimiter, host, Model.ReturnURL.Href, email) : string.Empty)">
+                <input type="hidden" id="New_Date_of_Brith" name="New_Date_of_Brith" value="" required="">
+                <input type="hidden" name="Birth_Date" id="id-birthdate" value="">
+                <input type="hidden" id="date_time" name="subscribe_time">
+
+                <div class="form-group input-group-lg">
+                    <input id="emailaddress2" type="email" class="form-control" name="EmailAddress" placeholder="@DictionaryHelper(DictionaryKeys.EmailAddressPlaceholder)" required pattern="@(@"^[A-Za-z0-9._%+-]+@[A-Za-z0-9.-]+\.[A-Za-z]{2,17}$")" value="@email" data-error="@DictionaryHelper(DictionaryKeys.InputRequiredErrorMessage)">
+                    <div class="help-block with-errors"></div>
+                </div>
+
+                <div class="form-group input-group-lg">
+                    <input type="text" class="form-control" name="FirstName" maxlength="50" placeholder="@DictionaryHelper(DictionaryKeys.FirstNamePlaceholder)" required data-error="@DictionaryHelper(DictionaryKeys.InputRequiredErrorMessage)">
+                    <div class="help-block with-errors"></div>
+                </div>
+
+                <div class="form-group input-group-lg display-none">
+                    <input type="text" class="form-control" name="LastName" maxlength="50" placeholder="@DictionaryHelper(DictionaryKeys.LastNamePlaceholder)" required data-error="@DictionaryHelper(DictionaryKeys.InputRequiredErrorMessage)">
+                    <div class="help-block with-errors"></div>
+                </div>
+
+                <div class="row">
+                    <div class="col-sm-4">
+                        <div class="form-group input-group-lg">
+                            <select id="Day-Birth" name="Day-Birth" class="selectpicker form-control input-lg empty contact" title="@DictionaryHelper(DictionaryKeys.BirthdayPlaceholder)" required data-width="100%" data-error="@DictionaryHelper(DictionaryKeys.SelectionRequiredErrorMessage)">
+                                <option value="1">01</option>
+                                <option value="2">02</option>
+                                <option value="3">03</option>
+                                <option value="4">04</option>
+                                <option value="5">05</option>
+                                <option value="6">06</option>
+                                <option value="7">07</option>
+                                <option value="8">08</option>
+                                <option value="9">09</option>
+                                <option value="10">10</option>
+                                <option value="11">11</option>
+                                <option value="12">12</option>
+                                <option value="13">13</option>
+                                <option value="14">14</option>
+                                <option value="15">15</option>
+                                <option value="16">16</option>
+                                <option value="17">17</option>
+                                <option value="18">18</option>
+                                <option value="19">19</option>
+                                <option value="20">20</option>
+                                <option value="21">21</option>
+                                <option value="22">22</option>
+                                <option value="23">23</option>
+                                <option value="24">24</option>
+                                <option value="25">25</option>
+                                <option value="26">26</option>
+                                <option value="27">27</option>
+                                <option value="28">28</option>
+                                <option value="29">29</option>
+                                <option value="30">30</option>
+                                <option value="31">31</option>
+                            </select>
+                            <div class="help-block with-errors"></div>
+                        </div>
+                    </div>
+
+                    <div class="col-sm-4">
+                        <div class="form-group input-group-lg">
+                            <select id="Month-Birth" name="Month-Birth" class="selectpicker form-control input-lg empty contact" title="@DictionaryHelper(DictionaryKeys.BirthMonthPlaceholder)" required data-width="100%" data-error="@DictionaryHelper(DictionaryKeys.SelectionRequiredErrorMessage)">
+                                <option value="January">01</option>
+                                <option value="February">02</option>
+                                <option value="March">03</option>
+                                <option value="April">04</option>
+                                <option value="May">05</option>
+                                <option value="June">06</option>
+                                <option value="July">07</option>
+                                <option value="August">08</option>
+                                <option value="September">09</option>
+                                <option value="October">10</option>
+                                <option value="November">11</option>
+                                <option value="December">12</option>
+                            </select>
+                            <div class="help-block with-errors"></div>
+                        </div>
+                    </div>
+
+                    <div class="col-sm-4">
+                        <div class="form-group input-group-lg">
+                            <select id="Year-Birth" name="Year-Birth" class="selectpicker form-control input-lg empty contact" title="@DictionaryHelper(DictionaryKeys.BirthYearPlaceholder)" required data-width="100%" data-error="@DictionaryHelper(DictionaryKeys.SelectionRequiredErrorMessage)">
+
+                                @for (var endYear = now.Year; endYear > startYear; --endYear)
+                                {
+                                    <option value="@endYear">@endYear</option>
+                                }
+
+                            </select>
+                            <div class="help-block with-errors"></div>
+                        </div>
+                    </div>
+
+                </div>
+
+                <div class="form-group input-group-lg">
+                    <select name="Country" class="selectpicker form-control input-lg empty" title="@DictionaryHelper(DictionaryKeys.CountryResidencePlaceholder)" required data-error="@DictionaryHelper(DictionaryKeys.SelectionRequiredErrorMessage)">
+                        <option value="AF">Afghanistan</option>
+                        <option value="AL">Albania</option>
+                        <option value="DZ">Algeria</option>
+                        <option value="AS">American Samoa</option>
+                        <option value="AD">Andorra</option>
+                        <option value="AO">Angola</option>
+                        <option value="AI">Anguilla/St Kitts</option>
+                        <option value="AQ">Antarctica</option>
+                        <option value="AG">Antigua and Barbuda</option>
+                        <option value="AR">Argentina</option>
+                        <option value="AM">Armenia</option>
+                        <option value="AW">Aruba</option>
+                        <option value="AU">Australia</option>
+                        <option value="AT">Austria</option>
+                        <option value="AZ">Azerbaijan</option>
+                        <option value="BS">Bahamas</option>
+                        <option value="BH">Bahrain</option>
+                        <option value="BD">Bangladesh</option>
+                        <option value="BB">Barbados</option>
+                        <option value="BY">Belarus</option>
+                        <option value="BE">Belgium</option>
+                        <option value="BZ">Belize</option>
+                        <option value="BJ">Benin</option>
+                        <option value="BM">Bermuda</option>
+                        <option value="BT">Bhutan</option>
+                        <option value="BO">Bolivia</option>
+                        <option value="BA">Bosnia and Herzegovina</option>
+                        <option value="BW">Botswana</option>
+                        <option value="BV">Bouvet Island</option>
+                        <option value="BR">Brazil</option>
+                        <option value="IO">British Indian Ocean Territory</option>
+                        <option value="BN">Brunei Darussalam</option>
+                        <option value="BG">Bulgaria</option>
+                        <option value="BF">Burkina Faso</option>
+                        <option value="BI">Burundi</option>
+                        <option value="KH">Cambodia</option>
+                        <option value="CM">Cameroon</option>
+                        <option value="CA">Canada</option>
+                        <option value="CV">Cape Verde</option>
+                        <option value="KY">Cayman Islands</option>
+                        <option value="CF">Central African Republic</option>
+                        <option value="TD">Chad</option>
+                        <option value="CL">Chile</option>
+                        <option value="CN">China</option>
+                        <option value="CX">Christmas Island</option>
+                        <option value="CC">Cocos (Keeling) Islands</option>
+                        <option value="CO">Colombia</option>
+                        <option value="KM">Comoros</option>
+                        <option value="CG">Congo</option>
+                        <option value="CD">Congo, the Democratic Republic of the</option>
+                        <option value="CK">Cook Islands</option>
+                        <option value="CR">Costa Rica</option>
+                        <option value="CI">Côte d'Ivoire</option>
+                        <option value="HR">Croatia</option>
+                        <option value="CU">Cuba</option>
+                        <option value="CY">Cyprus</option>
+                        <option value="CZ">Czech Republic</option>
+                        <option value="DK">Denmark</option>
+                        <option value="DJ">Djibouti</option>
+                        <option value="DM">Dominica</option>
+                        <option value="DO">Dominican Republic</option>
+                        <option value="TP">East Timor</option>
+                        <option value="EC">Ecuador</option>
+                        <option value="EG">Egypt</option>
+                        <option value="SV">El Salvador</option>
+                        <option value="GQ">Equatorial Guinea</option>
+                        <option value="ER">Eritrea</option>
+                        <option value="EE">Estonia</option>
+                        <option value="ET">Ethiopia</option>
+                        <option value="FK">Falkland Islands</option>
+                        <option value="FO">Faroe Islands</option>
+                        <option value="FJ">Fiji</option>
+                        <option value="FI">Finland</option>
+                        <option value="FR">France</option>
+                        <option value="GF">French Guiana</option>
+                        <option value="PF">French Polynesia</option>
+                        <option value="TF">French Southern Territories</option>
+                        <option value="GA">Gabon</option>
+                        <option value="GM">Gambia</option>
+                        <option value="GE">Georgia</option>
+                        <option value="DE">Germany</option>
+                        <option value="GH">Ghana</option>
+                        <option value="GI">Gibraltar</option>
+                        <option value="GB">Great Britain</option>
+                        <option value="GR">Greece</option>
+                        <option value="GL">Greenland</option>
+                        <option value="GD">Grenada</option>
+                        <option value="GP">Guadeloupe/St Martin</option>
+                        <option value="GU">Guam</option>
+                        <option value="GT">Guatemala</option>
+                        <option value="GN">Guinea</option>
+                        <option value="GW">Guinea Bissau</option>
+                        <option value="GY">Guyana</option>
+                        <option value="HT">Haiti</option>
+                        <option value="HM">Heard Island and McDonald Islands</option>
+                        <option value="HN">Honduras</option>
+                        <option value="HK">Hong Kong SAR</option>
+                        <option value="HU">Hungary</option>
+                        <option value="IS">Iceland</option>
+                        <option value="IN">India</option>
+                        <option value="ID">Indonesia</option>
+                        <option value="IR">Iran</option>
+                        <option value="IQ">Iraq</option>
+                        <option value="IE">Ireland</option>
+                        <option value="IM">Isle of Man</option>
+                        <option value="IL">Israel</option>
+                        <option value="IT">Italy</option>
+                        <option value="JM">Jamaica</option>
+                        <option value="JP">Japan</option>
+                        <option value="JO">Jordan</option>
+                        <option value="KZ">Kazakhstan</option>
+                        <option value="KE">Kenya</option>
+                        <option value="KI">Kiribati</option>
+                        <option value="KP">Korea, Democratic People's Republic of</option>
+                        <option value="KR">Korea, Republic of</option>
+                        <option value="KW">Kuwait</option>
+                        <option value="KG">Kyrgyzstan</option>
+                        <option value="LA">Laos</option>
+                        <option value="LV">Latvia</option>
+                        <option value="LB">Lebanon</option>
+                        <option value="LS">Lesotho</option>
+                        <option value="LR">Liberia</option>
+                        <option value="LY">Libyan Arab Jamahiriya</option>
+                        <option value="LI">Liechtenstein</option>
+                        <option value="LT">Lithuania</option>
+                        <option value="LU">Luxembourg</option>
+                        <option value="MO">Macau SAR</option>
+                        <option value="MK">Macedonia</option>
+                        <option value="MG">Madagascar</option>
+                        <option value="MW">Malawi</option>
+                        <option value="MY">Malaysia</option>
+                        <option value="MV">Maldives</option>
+                        <option value="ML">Mali</option>
+                        <option value="MT">Malta</option>
+                        <option value="MH">Marshall Islands</option>
+                        <option value="MI">Marshall Islands</option>
+                        <option value="MQ">Martinique</option>
+                        <option value="MR">Mauritania</option>
+                        <option value="MU">Mauritius</option>
+                        <option value="YT">Mayotte</option>
+                        <option value="MX">Mexico</option>
+                        <option value="FM">Micronesia, Federated States of</option>
+                        <option value="MD">Moldova</option>
+                        <option value="MC">Monaco</option>
+                        <option value="MN">Mongolia</option>
+                        <option value="ME">Montenegro</option>
+                        <option value="MS">Montserrat</option>
+                        <option value="MA">Morocco</option>
+                        <option value="MZ">Mozambique</option>
+                        <option value="MM">Myanmar</option>
+                        <option value="NA">Namibia</option>
+                        <option value="NR">Nauru</option>
+                        <option value="NP">Nepal</option>
+                        <option value="NL">Netherlands</option>
+                        <option value="AN">Netherlands Antilles</option>
+                        <option value="NC">New Caledonia</option>
+                        <option value="NZ">New Zealand</option>
+                        <option value="NI">Nicaragua</option>
+                        <option value="NE">Niger</option>
+                        <option value="NG">Nigeria</option>
+                        <option value="NU">Niue</option>
+                        <option value="NF">Norfolk Island</option>
+                        <option value="MP">Northern Mariana Islands</option>
+                        <option value="NO">Norway</option>
+                        <option value="OM">Oman</option>
+                        <option value="OT">Others</option>
+                        <option value="PK">Pakistan</option>
+                        <option value="PW">Palau</option>
+                        <option value="PA">Panama</option>
+                        <option value="PG">Papua New Guinea</option>
+                        <option value="PY">Paraguay</option>
+                        <option value="PE">Peru</option>
+                        <option value="PH">Philippines</option>
+                        <option value="PN">Pitcairn</option>
+                        <option value="PL">Poland</option>
+                        <option value="PT">Portugal</option>
+                        <option value="PR">Puerto Rico</option>
+                        <option value="QA">Qatar</option>
+                        <option value="RE">Réunion</option>
+                        <option value="RO">Romania</option>
+                        <option value="RU">Russian</option>
+                        <option value="RQ">Russian Federation</option>
+                        <option value="RW">Rwanda</option>
+                        <option value="SH">Saint Helena</option>
+                        <option value="KN">Saint Kitts and Nevis</option>
+                        <option value="LC">Saint Lucia</option>
+                        <option value="PM">Saint Pierre and Miquelon</option>
+                        <option value="VC">Saint Vincent and the Grenadines</option>
+                        <option value="WS">Samoa</option>
+                        <option value="SM">San Marino</option>
+                        <option value="ST">Sao Tome and Principe</option>
+                        <option value="SA">Saudi Arabia</option>
+                        <option value="SN">Senegal</option>
+                        <option value="RS">Serbia</option>
+                        <option value="SC">Seychelles</option>
+                        <option value="SL">Sierra Leone</option>
+                        <option value="SG">Singapore</option>
+                        <option value="SK">Slovakia</option>
+                        <option value="SI">Slovenia</option>
+                        <option value="SB">Solomon Islands</option>
+                        <option value="SO">Somalia</option>
+                        <option value="ZA">South Africa</option>
+                        <option value="GS">South Georgia and the South Sandwich Islands</option>
+                        <option value="ES">Spain</option>
+                        <option value="LK">Sri Lanka</option>
+                        <option value="SD">Sudan</option>
+                        <option value="SR">Suriname</option>
+                        <option value="SJ">Svalbard and Jan Mayen Islands</option>
+                        <option value="SZ">Swaziland</option>
+                        <option value="SE">Sweden</option>
+                        <option value="CH">Switzerland</option>
+                        <option value="SY">Syrian</option>
+                        <option value="TW">Taiwan</option>
+                        <option value="TJ">Tajikistan</option>
+                        <option value="TZ">Tanzania</option>
+                        <option value="TH">Thailand</option>
+                        <option value="TG">Togo</option>
+                        <option value="TK">Tokelau</option>
+                        <option value="TO">Tonga</option>
+                        <option value="TT">Trinidad and Tobago</option>
+                        <option value="TN">Tunisia</option>
+                        <option value="TR">Turkey</option>
+                        <option value="TM">Turkmenistan</option>
+                        <option value="TC">Turks and Caicos Islands</option>
+                        <option value="TV">Tuvalu</option>
+                        <option value="UG">Uganda</option>
+                        <option value="UA">Ukraine</option>
+                        <option value="AE">United Arab Emirates</option>
+                        <option value="US">United States</option>
+                        <option value="UM">United States Minor Outlying Islands</option>
+                        <option value="UY">Uruguay</option>
+                        <option value="UZ">Uzbekistan</option>
+                        <option value="VU">Vanuatu</option>
+                        <option value="VA">Vatican City State</option>
+                        <option value="VE">Venezuela</option>
+                        <option value="VN">Viet Nam</option>
+                        <option value="VG">Virgin Islands, British</option>
+                        <option value="VI">Virgin Islands, U.S.</option>
+                        <option value="WF">Wallis and Futuna Islands</option>
+                        <option value="EH">Western Sahara</option>
+                        <option value="YE">Yemen</option>
+                        <option value="YU">Yugoslavia</option>
+                        <option value="ZR">Zaire</option>
+                        <option value="ZM">Zambia</option>
+                        <option value="ZW">Zimbabwe</option>
+                    </select>
+                    <div class="help-block with-errors"></div>
+                </div>
+
+                <div class="text-center btn-lg">
+                    <button id="submitForm" class="btn btn-primary text-center text-uppercase" href="#" role="button" type="submit">@DictionaryHelper(DictionaryKeys.SubscribeButtonText)</button>
+                </div>
+
+            </form>
+        </div>
+
+        @if (Model.FooterText != null || ContextMode.CurrentMode.EditOrPreview())
+        {
+            <div class="row">
+                <div class="col-xs-12 col-sm-12 col-md-12 col-lg-12">
+                    @Html.PropertyFor(x => x.FooterText)
+                </div>
+            </div>
+        }
+
+    </div>
+</div>
+
+<script type="text/javascript">
+
+    function getSelectedDate() {
+        var bmonth = $('#Month-Birth option:selected').val();
+        var bday = $('#Day-Birth option:selected').text();
+        var byear = $('#Year-Birth option:selected').text();
+        return bmonth + " " + bday + ", " + byear;
+    }
+
+    function getDateOfBirth() {
+        var bmonth = $('#Month-Birth option:selected').val();
+        var bday = $('#Day-Birth option:selected').text();
+        var byear = $('#Year-Birth option:selected').text();
+        return bmonth + " " + bday + ", " + "@now.Year.ToString()";
+    }
+
+    $(function () {
+        $('#submitForm').on('click', function () {
+            var returnUrl = $('#returnUrl').val(),
+                emailAddress = $('#emailaddress2').val();
+            $('#tyurl').val(returnUrl + "?email=" + emailAddress);
+
+            var date = new Date();
+            var year = date.getFullYear(),
+                month = date.getMonth(),
+                d = date.getDate();
+
+            var result = String('00' + (month + 1)).slice(-2) + '/' + d + '/' + year;
+            $('#date_time').val(result);
+        });
+
+        $('#Year-Birth, #Month-Birth, #Day-Birth').on('change', function () {
+            var selectedDate = getSelectedDate();
+            $('#id-birthdate').val(selectedDate);
+
+            var dateOfBirth = getDateOfBirth();
+            $('#New_Date_of_Brith').val(dateOfBirth);
+        });
+    });
+
+</script>

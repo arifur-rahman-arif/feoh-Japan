@@ -2,12 +2,13 @@ using EPiServer.Core;
 using EPiServer.DataAbstraction;
 using EPiServer.DataAnnotations;
 using EPiServer.Web;
+using FEO.CMS.HBG.Core.Blocks.Bases;
 using System.ComponentModel.DataAnnotations;
 
 namespace FEO.CMS.HBG.Core.Blocks.StayFarEast
 {
     [ContentType(DisplayName = "HBGInstagramBlock", GUID = "65639A12-67A8-4B95-A9C4-62C021F802F7", GroupName = "Hospitality")]
-    public class HBGInstagramBlock : HBGBaseBlock
+    public class HBGInstagramBlock : HBgStyleConfigBlock
     {
         [Display(Name = "Title", GroupName = SystemTabNames.Content, Order = 100)]
         [CultureSpecific]
@@ -21,10 +22,6 @@ namespace FEO.CMS.HBG.Core.Blocks.StayFarEast
         [CultureSpecific]
         [UIHint(UIHint.Textarea)]
         public virtual XhtmlString JuicerData { get; set; }
-
-        [Display(Name = "Style Names", GroupName = SystemTabNames.Content, Order = 200)]
-        [CultureSpecific]
-        public virtual ContentReference StyleNames { get; set; }
 
     }
 }

@@ -1,17 +1,17 @@
 ﻿@model HBGCarouselBlock
 
 @{
-    var itemCount = Model.Items.Count();
-    var config = Model.Config;
+    var items = ContentLoader.GetChildren<HBGCarouselItemBlock>((Model as IContent)?.ContentLink);
 
-    var CarouselIdName = config?.CarouselIdName?.Value != null ? config.CarouselIdName.Value : "carousel-slide";
-    string imageDarkenedOverlay = config != null && config.EnableDarknessOverlayImage ? "image-darkened-overlay" : string.Empty;
+    var CarouselIdBlock = ContentLoader.Get<HBGNameValuePairBlock>(Model.CarouselIdName);
+    var CarouselIdName = !string.IsNullOrEmpty(CarouselIdBlock.Value) ? CarouselIdBlock.Value : "carousel-slide";
+    string imageDarkenedOverlay = Model != null && Model.EnableDarknessOverlayImage ? "image-darkened-overlay" : string.Empty;
 }
 
 <!-- carousel -->
-<div class="@config.CssClassName @(config.RemoveContentPadding ? string.Empty : "static-content")">
+<div class="@Model.CSSClassName @(Model.RemoveContentPadding ? string.Empty : "static-content")">
     <div id="@CarouselIdName" class="video-masthead carousel slide @imageDarkenedOverlay" data-interval="false">
-        @if (Model.IsBac)
+        @if (items.Any(x => x.IsBackgroundVideo))
         {
             <div class="video-control container">
                 <span class="video-play active">
@@ -28,15 +28,15 @@
             </div>
         }
 
-        @if ((Model.Items == null || !Model.Items.Any()) && Glass.IsInEditingMode)
+        @if ((items == null || !items.Any()) && ContextMode.CurrentMode.EditOrPreview())
         {
             <h2 class="text-center">Add Carousel Items</h2>
         }
-        @if (config.ShowIndicator && itemCount > 1)
+        @if (Model.ShowIndicator && items.Count() > 1)
         {
             <!-- Indicators -->
             <ol class="carousel-indicators">
-                @for (int index = 0; index < itemCount; index++)
+                @for (int index = 0; index < items?.Count(); index++)
                 {
                     if (index == 0)
                     {
@@ -53,16 +53,16 @@
         <!-- Wrapper for slides -->
         <div class="carousel-inner 11">
 
-            @for (int index = 0; index < itemCount; index++)
+            @for (int index = 0; index < items?.Count(); index++)
             {
-                var item = Model.Items.ElementAt(index);
+                var item = items.ElementAt(index);
 
                 <div class="item @(item.IsBackgroundVideo ? "item-video" : string.Empty)  @(index == 0 ? "active" : string.Empty) @(item.IsVideo || item.IsFeatured || item.IsBackgroundVideo ? "carousel-image" : string.Empty)">
 
                     @if (item.IsVideo)
                     {
-                        <a class="thumb-34" href="#" data-toggle="modal" data-target="#@Model.VideoTarget" data-videosource="@item.VideoSource.Url">
-                            <img width="1300" height="500" class="lazy-hidden" data-lazy-type="image" data-lazy-srcset="@(!string.IsNullOrEmpty(item.ImageForMobile?.Src) ? $"{item.ImageForMobile.GetMediaUrlWithProtectHash()} 767w" : string.Empty), @item.Image.GetMediaUrlWithProtectHash()" alt="@(item.Image?.Alt)" />
+                        <a class="thumb-34" href="#" data-toggle="modal" data-target="#@Model.VideoTarget" data-videosource="@item.VideoSource?.Href">
+                            <img width="1300" height="500" class="lazy-hidden" data-lazy-type="image" data-lazy-srcset="@((item.ImageForMobile != null) ? $"{Url.ContentUrl(item.ImageForMobile)} 767w" : string.Empty), @Url.ContentUrl(item.Image)" alt="" />
                         </a>
                     }
                     else
@@ -70,68 +70,72 @@
                         <div class="thumb-34">
                             @if (item.IsBackgroundVideo)
                             {
-                                <video class="video-playing" playsinline @(itemCount == 1 ? "loop='loop'" : string.Empty) autoplay="autoplay" muted="muted" poster="@(item.Image?.Src)">
-                                    <source src="@(item.BackgroundVideo?.Url)">
+                                <video class="video-playing" playsinline @(items.Count() == 1 ? "loop='loop'" : string.Empty) autoplay="autoplay" muted="muted" poster="@(Url.ContentUrl(item.Image))">
+                                    <source src="@(item.BackgroundVideo?.Href)">
                                 </video>
                             }
                             else
                             {
-                                <img width="1300" height="500" class="lazy-hidden" data-lazy-type="image" data-lazy-srcset="@(!string.IsNullOrEmpty(item.ImageForMobile?.Src) ? $"{item.ImageForMobile.GetMediaUrlWithProtectHash()} 767w" : string.Empty), @item.Image.GetMediaUrlWithProtectHash()" alt="@(item.Image?.Alt)" />
+                                <img width="1300" height="500" class="lazy-hidden" data-lazy-type="image" data-lazy-srcset="@((item.ImageForMobile != null) ? $"{Url.ContentUrl(item.ImageForMobile)} 767w" : string.Empty), @Url.ContentUrl(item.Image)" alt="" />
                             }
                         </div>
                     }
 
-                    <div class="carousel-caption @(config.IsVerticalAligned ? "carousel-v-caption" : string.Empty)">
+                    <div class="carousel-caption @(Model.IsVerticalAligned ? "carousel-v-caption" : string.Empty)">
                         @if (item.IsVideo)
                         {
-                            <a href="#" data-toggle="modal" data-target="#@Model.VideoTarget" data-videosource="@item.VideoSource.Url">
+                            <a href="#" data-toggle="modal" data-target="#@Model.VideoTarget" data-videosource="@item.VideoSource?.Href">
                                 <img loading="lazy" src="~/content/images/play-btn.png" alt="" />
                             </a>
                         }
                         @if (!string.IsNullOrWhiteSpace(item.FeaturedTitle))
                         {
-                            <p class="feature">@Glass.Editable(item, model => model.FeaturedTitle)</p>
+                            <p class="feature">@Html.PropertyFor(x => item.FeaturedTitle)</p>
                         }
-                        @if (config.IsVerticalAligned)
+                        @if (Model.IsVerticalAligned)
                         {
                             <div class="carousel-v-align">
-                                @if (config.ShowTitle)
+                                @if (Model.ShowTitle)
                                 {
-                                    <h2 aria-label="@Model.Title">@Glass.Editable(item, model => model.Title)</h2>
+                                    <h2 aria-label="@Model.Title">@Html.PropertyFor(x => x.Title)</h2>
                                 }
-                                @if (config.ShowSummary)
+                                @if (Model.ShowSummary)
                                 {
-                                    <p>@Glass.Editable(item, model => model.Summary)</p>
+                                    <p>@Html.PropertyFor(x => x.Summary)</p>
                                 }
                             </div>
                         }
                         else
                         {
-                            if (config.ShowTitle)
+                            if (Model.ShowTitle)
                             {
-                                <h2 aria-label="@Model.Title">@Glass.Editable(item, model => model.Title)</h2>
+                                <h2 aria-label="@Model.Title">@Html.PropertyFor(x => x.Title)</h2>
                             }
-                            if (config.ShowSummary)
+                            if (Model.ShowSummary)
                             {
-                                <p>@Glass.Editable(item, model => model.Summary)</p>
+                                <p>@Html.PropertyFor(x => x.Summary)</p>
                             }
                         }
-                        @if (item.LinkedContent != null && !string.IsNullOrWhiteSpace(item.LinkedContent.Url))
+                        @if (item.LinkedContent != null && !string.IsNullOrWhiteSpace(item.LinkedContent?.Href))
                         {
-                            @StayFarEast.RenderLinkDynamicSite(item, model => model.LinkedContent, config.RedirectToCurrentSite, isEditable: true)
+                            /*TODO
+                            @StayFarEast.RenderLinkDynamicSite(item, model => model.LinkedContent, Model.RedirectToCurrentSite, isEditable: true)*/
+
+                            @Html.PropertyFor(x => item.LinkedContent)
+
                         }
-                        @if (config.ShowDivider)
+                        @if (Model.ShowDivider)
                         {
                             <div class="hidden-xs line-divider pink-line-divider"></div>
                         }
                     </div>
-                    <div class="note color-white hidden-xs"><i>@Glass.Editable(item, model => model.Caption)</i></div>
+                    <div class="note color-white hidden-xs"><i>@Html.PropertyFor(x => item.Caption)</i></div>
                 </div>
             }
 
         </div>
 
-        @if (itemCount > 1)
+        @if (items.Count() > 1)
         {
             <!-- Controls -->
             <a class="left carousel-control" href="#@CarouselIdName" role="button" data-slide="prev">
@@ -146,7 +150,7 @@
     </div>
 </div>
 
-@if (Model.HasVideo)
+@if (items.Any(x => x.IsVideo))
 {
     <!-- YOUTUBE VIDEO MODAL -->
     <div class="modal fade video" id="@Model.VideoTarget" tabindex="-1" role="dialog" aria-labelledby="@Model.VideoTarget" aria-hidden="true">
@@ -155,7 +159,7 @@
                 <div class="modal-body">
                     <button type="button" class="close btn" data-dismiss="modal" aria-hidden="true">
                         <a href="#">
-                            <p class="pull-left">@Dictionary.GetValue(DictionaryKeys.CloseButtonText)</p>
+                            <p class="pull-left">@DictionaryHelper(DictionaryKeys.CloseButtonText)</p>
                             <div class="burger-bar open">
                                 <span></span>
                                 <span></span>
@@ -173,26 +177,23 @@
     </div>
 }
 
-@if (Model.Config.ShowPullOutWidget)
+@if (Model.ShowPullOutWidget)
 {
-    var fontcolorClass = Model.Config.FontColor?.Value;
-    var backgroundClass = Model.Config.BackgroundColor?.Value;
+    var fontcolorClass = ContentLoader.Get<HBGNameValuePairBlock>(Model.FontColor)?.Value;
+    var backgroundClass = ContentLoader.Get<HBGNameValuePairBlock>(Model.BackgroundColorStyleNames)?.Value;
     <div class="extra-off">
         <div class="extra-offinner">
-            <div class="extra-off-title @backgroundClass @fontcolorClass">@Glass.Editable(Model, model => model.PullOutText)</div>
+            <div class="extra-off-title @backgroundClass @fontcolorClass">@Html.PropertyFor(x => x.Pullouttext)</div>
             <div class="extra-off-detail">
-                @if (Sitecore.Context.PageMode.IsExperienceEditor)
+                @if (ContextMode.CurrentMode.EditOrPreview())
                 {
-                    using (Html.Glass().BeginRenderLink(Model, model => model.LinkToSubscriptionPage, null, isEditable: true))
-                    {
-                        @Html.Raw(@Glass.Editable(Model, model => model.PullOutTextDescription))
-                    }
+                    @Html.PropertyFor(x => x.LinktoSubscriptionpage)
+                    @Html.PropertyFor(x => x.Pullouttextdescription)
                 }
                 else
                 {
-                    <a href=@(Model.LinkToSubscriptionPage != null ? Model.LinkToSubscriptionPage.Url : "#" )> @Html.Raw(@Model.PullOutTextDescription)</a>
+                    <a href=@(Model.LinktoSubscriptionpage != null ? Model.LinktoSubscriptionpage?.Href : "#" )> @Html.PropertyFor(x => x.Pullouttextdescription)</a>
                 }
-
             </div>
         </div>
     </div>

@@ -1,0 +1,16 @@
+﻿@model HBGStaycationAvailabilityBlock
+
+<section class="sfe-content-section banner-section sfe-content-section-8">
+    <div class="sfe-content-wrap">
+        <header class="sfe-content-title">
+            <h1 class="">
+                @Html.PropertyFor(x => x.ClosingTitle)
+            </h1>
+        </header>
+        <div class="sfe-content-cta">
+            <a href="@(Model.MobileCTALink!=null? Model.MobileCTALink.Href : "#")">
+                @Html.PropertyFor(x => x.CTAText)
+            </a>
+        </div>
+    </div>
+</section>

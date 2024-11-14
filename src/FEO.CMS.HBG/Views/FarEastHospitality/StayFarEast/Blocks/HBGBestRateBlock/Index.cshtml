@@ -1,0 +1,49 @@
+﻿@model HBGBestRateBlock
+
+<!-- WE WANT ONLY THE BEST FOR YOU -->
+<div class="@RazorUtil.JoinCssClass(Model.StyleNames)">
+    <div class="synsix_lpo">
+        <div class="discount-custom discount section container">
+            @if (Model.HighlightText != null)
+            {
+                <div class="row s_lpo">
+                    <div class="col-md-5 col-sm-4 col-xs-4">
+                        <div class="left_lpo">
+                            @if (Model.LogoImage != null)
+                            {
+                                <img width="109" height="104" class="lazy-hidden img-lazy-block" data-lazy-type="image" data-lazy-src="@Model.LogoImage.GetMediaUrlWithProtectHash()" alt="@Model.LogoImage.Alt" />
+                            }
+                        </div>
+                    </div>
+
+                    <div class="col-xs-6 col-sm-4 col-md-4 col-lg-3 discount-title">
+                        @Html.PropertyFor(x => x.HighlightText)
+                    </div>
+
+                    <div class="discount-content col-md-7 col-sm-8 col-xs-8">
+                        <div class="right_lpo">
+                            @Html.PropertyFor(x => x.Description)
+                        </div>
+                    </div>
+                </div>
+            }
+            else
+            {
+                <div class="row">
+                    <div class="col-xs-offset-1 col-xs-4 col-sm-offset-0 col-sm-2 col-md-2 col-lg-2 col-lg-offset-1">
+                        @if (Model.LogoImage != null)
+                        {
+                            <img width="109" height="104" class="lazy-hidden img-lazy-block" data-lazy-type="image" data-lazy-src="@Url.ContentUrl(Model.LogoImage)" alt="" />
+                        }
+                    </div>
+                    <div class="@(Model.LogoImage == null ? "col-xs-12" : "col-xs-6") col-sm-4 col-md-4 col-lg-3 discount-title">
+                        @Html.PropertyFor(x => x.HighlightText)
+                    </div>
+                    <div class="col-xs-12 col-sm-6 discount-content col-md-6 col-lg-5">
+                        @Html.PropertyFor(x => x.Description)
+                    </div>
+                </div>
+            }
+        </div>
+    </div>
+</div>

@@ -3,12 +3,13 @@ using EPiServer.DataAbstraction;
 using EPiServer.DataAnnotations;
 using EPiServer.SpecializedProperties;
 using EPiServer.Web;
+using FEO.CMS.HBG.Core.Blocks.Bases;
 using System.ComponentModel.DataAnnotations;
 
 namespace FEO.CMS.HBG.Core.Blocks.StayFarEast
 {
     [ContentType(DisplayName = "HBGCarouselItemBlock", GUID = "51080BCF-072D-47F9-99EB-A81A8F990282", GroupName = "Hospitality")]
-    public class HBGCarouselItemBlock : HBGBaseBlock
+    public class HBGCarouselItemBlock : HBGBackgroundVideoBlock
     {
         [Display(Name = "Caption", GroupName = SystemTabNames.Content, Order = 100)]
         [CultureSpecific]
@@ -34,6 +35,25 @@ namespace FEO.CMS.HBG.Core.Blocks.StayFarEast
         [CultureSpecific]
         [UIHint(UIHint.Textarea)]
         public virtual XhtmlString Summary { get; set; }
+
+        // Unmapped properties
+        [Ignore]
+        public bool IsVideo
+        {
+            get
+            {
+                return VideoSource != null;
+            }
+        }
+
+        [Ignore]
+        public bool IsBackgroundVideo
+        {
+            get
+            {
+                return BackgroundVideo != null && !string.IsNullOrEmpty(BackgroundVideo?.Href);
+            }
+        }
 
     }
 }
