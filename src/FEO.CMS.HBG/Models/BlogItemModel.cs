@@ -1,4 +1,6 @@
-﻿namespace FEO.CMS.HBG.Models
+﻿using EPiServer.SpecializedProperties;
+
+namespace FEO.CMS.HBG.Models
 {
     public class BlogItemModel
     {
@@ -8,7 +10,7 @@
         public string MediumThumbnail { get; set; }
         public string LargeThumbnail { get; set;}
         public string Url { get; set; }
-        public string AlternateUrl { get;set; }
-        public IEnumerable<string> Tags { get; set; }
+        public LinkItem AlternateUrl { get;set; }
+        public string Tags { get; set; }
     }
 }

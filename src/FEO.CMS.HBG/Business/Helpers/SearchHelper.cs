@@ -6,6 +6,10 @@ using EPiServer.Logging;
 using FEO.CMS.HBG.Core.Pages.StayFarEast;
 using EPiServer.Globalization;
 using EPiServer.Find.Cms;
+using System;
+using EPiServer.Find.Api.Facets;
+using EPiServer.Web.Routing;
+using EPiServer.SpecializedProperties;
 
 namespace FEO.CMS.HBG.Business.Helpers
 {
@@ -44,15 +48,24 @@ namespace FEO.CMS.HBG.Business.Helpers
             return substrings.Any(substring => s.Contains(substring, StringComparison.OrdinalIgnoreCase));
         }
 
-        private Dictionary<string, IEnumerable<string>> GetBlogFacets(ISearchResults<BlogSearchResult> searchData)
+        private Dictionary<string, IEnumerable<string>> GetBlogFacets(SearchResults<HBGBlogDetailPage> searchData)
         {
-            if (searchData != null && searchData.TermsFacet != null)
+            if (searchData != null && searchData.Facets.Any())
             {
-                return searchData.TermsFacet.ToDictionary(facet => facet.Field, facet => facet.Terms.Select(x => x.Term));
+                Dictionary<string, IEnumerable<string>> filters = new Dictionary<string, IEnumerable<string>>();
+                foreach(var facet in searchData.Facets)
+                {
+                    string name = facet.Name;
+                    var terms=((TermsFacet)facet).Terms.Select(x=>x.Term).ToList();
+                     filters.Add(name, terms);
+                  
+                }
+               
+
             }
             return null;
         }
-        public IEnumerable<BlogItemModel> SearchBlog(SearchParam searchParam)
+        public SearchResult<BlogItemModel> SearchBlog(SearchParam searchParam)
         {
             
             try
@@ -75,16 +88,50 @@ namespace FEO.CMS.HBG.Business.Helpers
                         switch (filter.Name)
                         {
                             case "location":
-                                query = query.Filter(x => x.locations.In(filter.Value));
+                               
+                                var locations = filter.Value;
+                                if (locations != null && locations.Any())
+                                {
+                                    foreach (var location in locations)
+                                    {
+                                      query = query.OrFilter(x => x.Location.Match(location));
+                                    }
+                                   
+                                }
                                 break;
                             case "season":
-                                query = query.Filter(x => x.Season.In(filter.Value));
+                                var seasons = filter.Value;
+                                if (seasons != null && seasons.Any())
+                                {
+                                    foreach (var season in seasons)
+                                    {
+                                        query = query.Filter(x => x.Season.Match(season));
+                                    }
+
+                                }
                                 break;
                             case "type":
-                                query = query.Filter(x => x.Type.In(filter.Value));
+                                var types = filter.Value;
+                                if (types != null && types.Any())
+                                {
+                                    foreach (var type in types)
+                                    {
+                                        query = query.Filter(x => x.Type.Match(type));
+                                    }
+
+                                }
                                 break;
                             case "purpose":
-                                query = query.Filter(x => x.Purpose.In(filter.Value));
+                                var purposes = filter.Value;
+                                if (purposes != null && purposes.Any())
+                                {
+                                    foreach (var purpose in purposes)
+                                    {
+                                        query = query.Filter(x => x.Purpose.Match(purpose));
+                                    }
+
+                                }
+
                                 break;
                             case "orderby":
                                 query = filter.Value.Contains("descending")
@@ -97,26 +144,33 @@ namespace FEO.CMS.HBG.Business.Helpers
 
                 var result = query.Take(searchParam.PageSize)
                     .Skip((searchParam.PageNumber - 1) * searchParam.PageSize)
+                    .TermsFacetFor(x=>x.SearchIndexLocation,facet=> { facet.Size = 1000;  })
+                    .TermsFacetFor(x=>x.SearchIndexPurpose, facet => { facet.Size = 1000; })
+                    .TermsFacetFor(x => x.SearchIndexSeason, facet => { facet.Size = 1000; })
+                    .TermsFacetFor(x => x.SearchIndexType, facet => { facet.Size = 1000; })
                     .GetResult();
 
                 var filterOptions = GetBlogFacets(result);
 
-                var searchResult = new SearchResult<BlogItem>
+                var searchResult = new SearchResult<BlogItemModel>
                 {
                     TotalCount = result.TotalMatching,
                     Facets = filterOptions
                 };
 
-                searchResult.Results = result.Items.Select(hit => new BlogItem
+                searchResult.Results = result.Hits.Select(hit => new BlogItemModel
                 {
-                    Title = hit.Title,
-                    Summary = hit.Summary,
-                    SmallThumbnail = hit.SmallThumbnail,
-                    MediumThumbnail = hit.MediumThumbnail,
-                    LargeThumbnail = hit.LargeThumbnail,
-                    Url = !string.IsNullOrEmpty(hit.Url) ? hit.Url : string.Empty,
-                    Tags = hit.Tags,
-                    AlternateUrl = new Link { Url = hit.AlternateUrl }
+                    Title = hit.Document.Title,
+                    Summary = hit.Document.Summary,
+                    SmallThumbnail = UrlResolver.Current.GetUrl(hit.Document.SmallThumbnail),
+                    MediumThumbnail = UrlResolver.Current.GetUrl(hit.Document.MediumThumbnail),
+                    LargeThumbnail = UrlResolver.Current.GetUrl(hit.Document.LargeThumbnail),
+                    Tags = hit.Document.FeaturedTags,
+                    AlternateUrl = new LinkItem
+                    {
+                        Href = hit.Document.AlternateURL.Href
+                        
+                    }
                 }).ToList();
 
                 _logger.Information("Blog Search Completed");

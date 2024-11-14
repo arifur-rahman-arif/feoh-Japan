@@ -14,7 +14,7 @@ namespace FEO.CMS.HBG.ViewModels
         public BlogFilterGroup Seasons { get; set; }
         public BlogFilterGroup OrderBy { get; set; }
 
-        public HBGStyleConfigBlock Config { get; set; }
+        public HBGBackgroundConfigBlock Config { get; set; }
     }
     public class BlogFilterOption
     {

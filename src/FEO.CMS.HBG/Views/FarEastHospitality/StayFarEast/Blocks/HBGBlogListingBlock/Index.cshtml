@@ -1,5 +1,81 @@
-﻿@*
-    For more information on enabling MVC for empty projects, visit https://go.microsoft.com/fwlink/?LinkID=397860
-*@
-@{
+﻿@inject IContentLoader ContentLoader
+@model BlogListingViewModel
+@if (Model != null)
+{
+    var bgConfig = Model.Config;
+    string bgClass = string.Empty;
+    if (bgConfig?.BackgroundColor != null)
+    {
+        var backgroundColor = ContentLoader.Get<HBGNameValuePairBlock>(bgConfig.BackgroundColor);
+        bgClass = "section-" + backgroundColor.Value;
+    }
+    <div class="wrap-new-section section-blog-listing @bgClass" data-desktop="@Model.PageSize" data-mobile="@Model.PageSizeForMobile">
+        <div class="container">
+
+            <h2 class="s-title">@Model.ComponentTitle</h2>
+            <div class="filter-by">
+                <span class="title">@Dictionary.GetValue(DictionaryKeys.FilterBy)</span>
+                <span class="clear hidden">@Dictionary.GetValue(DictionaryKeys.ClearAll)</span>
+            </div>
+
+            <div class="blog-filter">
+                @if (Model.Seasons != null && Model.Seasons.Options.IsNotNullAndAny())
+                {
+                    <select name="Seasons" class="custom-select" multiple type="checkbox" placeholder="@Dictionary.GetValue(DictionaryKeys.Seasons)">
+                        @foreach (var item in Model.Seasons.Options)
+                        {
+                            <option value="@item.Value">@item.Name</option>
+                        }
+                    </select>
+                }
+                @if (Model.Locations != null && Model.Locations.Options.IsNotNullAndAny())
+                {
+                    <select name="locations" class="custom-select" multiple type="checkbox" placeholder="@Dictionary.GetValue(DictionaryKeys.Locations)">
+                        @foreach (var item in Model.Locations.Options)
+                        {
+                            <option value="@item.Value">@item.Name</option>
+                        }
+                    </select>
+                }
+                @if (Model.Types != null && Model.Types.Options.IsNotNullAndAny())
+                {
+                    <select name="Types" class="custom-select" multiple type="checkbox" placeholder="@Dictionary.GetValue(DictionaryKeys.Types)">
+                        @foreach (var item in Model.Types.Options)
+                        {
+                            <option value="@item.Value">@item.Name</option>
+                        }
+                    </select>
+                }
+                @if (Model.Purposes != null && Model.Purposes.Options.IsNotNullAndAny())
+                {
+                    <select name="Purposes" class="custom-select" multiple type="checkbox" placeholder="@Dictionary.GetValue(DictionaryKeys.Purposes)">
+                        @foreach (var item in Model.Purposes.Options)
+                        {
+                            <option value="@item.Value">@item.Name</option>
+                        }
+                    </select>
+                }
+                @if (Model.OrderBy != null && Model.OrderBy.Options.IsNotNullAndAny())
+                {
+                    <select name="OrderBy" class="custom-select">
+                        @foreach (var item in Model.OrderBy.Options)
+                        {
+                            <option value="@item.Value">@item.Name</option>
+                        }
+                    </select>
+                }
+            </div>
+            <div class="wrap-blog-listing">
+                <div class="lds-spinner"><div></div><div></div><div></div><div></div><div></div><div></div><div></div><div></div><div></div><div></div><div></div><div></div></div>
+                <div class="blog-listing"></div>
+                <div class="result-total" data-multiple-result="@Dictionary.GetValue(DictionaryKeys.Articles)" data-sigle-result="@Dictionary.GetValue(DictionaryKeys.Article)">@Dictionary.GetValue(DictionaryKeys.Total) <span class="number">0</span> <span class="text">@Dictionary.GetValue(DictionaryKeys.Articles)</span></div>
+                <div class="text-emty">@Dictionary.GetValue(DictionaryKeys.NotFoundMessage)</div>
+            </div>
+
+
+
+        </div>
+    </div>
 }
+<script src="~/scripts/special/custom-select.js"></script>
+<script src="~/scripts/special/blog.js"></script>

@@ -40,6 +40,7 @@
     <Compile Include="Models\BlogItemModel.cs" />
     <Compile Include="Models\SearchFilter.cs" />
     <Compile Include="Models\SearchParam.cs" />
+    <Compile Include="Models\SearchResult.cs" />
   </ItemGroup>
   
   <ItemGroup>

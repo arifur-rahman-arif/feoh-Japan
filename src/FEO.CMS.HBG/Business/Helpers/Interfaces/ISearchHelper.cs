@@ -5,7 +5,8 @@ namespace FEO.CMS.HBG.Business.Helpers.Interfaces
 {
     public interface ISearchHelper
     {
-        IEnumerable<BlogItemModel> SearchBlog( SearchParam searchParam);
-       
+        SearchResult<BlogItemModel> SearchBlog(SearchParam searchParam);
+
+
     }
 }
