@@ -2,6 +2,7 @@
 using EPiServer.Cms.TinyMce.Core;
 using EPiServer.Forms.Internal.Security;
 using EPiServer.ServiceLocation;
+using FEO.CMS.HBG.Business.Dictionary;
 using FEO.CMS.HBG;
 using FEO.CMS.HBG.Business;
 using Microsoft.AspNetCore.Mvc;
@@ -17,7 +18,7 @@ namespace FEO.CMS.HSB
             {
                 options.ViewLocationExpanders.Add(new SiteViewEngineLocationExpander());
             });
-
+            services.AddHttpContextOrThreadScoped<IDictionaryRepository>(x => x.GetInstance<DictionaryRepository>());
             services.AddControllers().AddJsonOptions(delegate (JsonOptions options)
             {
                 options.JsonSerializerOptions.PropertyNamingPolicy = null;
