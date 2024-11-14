@@ -60,5 +60,17 @@
             public const string SFMCHeaderContentTypeValue = "application/json";
             public const string SFMCHeaderAuthorisation = "Authorization";
         }
+        public struct ItemIds
+        {
+            public static Guid StatsBlade = new Guid("{4F804FEA-545E-4A37-A37D-C272B2FE2B18}");
+            //Blog filter options folder
+            public static Guid ArticleTypes = new Guid("{9E5DE9F5-14C8-4D3E-9B06-C60324E208C9}");
+            public static Guid OrderBy = new Guid("{58E47641-F54D-40F2-90ED-10DBB83FC8B5}");
+            public static Guid Purposes = new Guid("{963B005D-9BC7-4782-AB0A-41EA4D69FCFD}");
+            public static Guid Seasons = new Guid("{F5B72115-C25F-4596-AAC7-44D8C77865BD}");
+            public static Guid Countries = new Guid("{96AC74CF-489D-42FE-98DA-55BEF197423F}");
+           
+        }
+    }
     }
 }

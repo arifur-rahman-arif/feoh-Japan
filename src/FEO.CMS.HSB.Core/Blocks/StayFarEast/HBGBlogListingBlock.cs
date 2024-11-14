@@ -8,7 +8,7 @@ namespace FEO.CMS.HBG.Core.Blocks.StayFarEast
     {
         [Display(Name = "Page Size", GroupName = "Settings", Order = 100)]
         [CultureSpecific]
-        public virtual double PageSize { get; set; }
+        public virtual int PageSize { get; set; }
 
         [Display(Name = "Title", GroupName = "Settings", Order = 100)]
         [CultureSpecific]
@@ -16,7 +16,7 @@ namespace FEO.CMS.HBG.Core.Blocks.StayFarEast
 
         [Display(Name = "Page Size For Mobile", GroupName = "Settings", Order = 200)]
         [CultureSpecific]
-        public virtual double PageSizeForMobile { get; set; }
+        public virtual int PageSizeForMobile { get; set; }
 
     }
 }

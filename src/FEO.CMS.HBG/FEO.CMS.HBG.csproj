@@ -7,122 +7,135 @@
 		<IsPackable>true</IsPackable>
 	</PropertyGroup>
 
-	<ItemGroup>
-		<Using Include="EPiServer" />
-		<Using Include="EPiServer.Core" />
-		<Using Include="EPiServer.DataAbstraction" />
-		<Using Include="EPiServer.DataAnnotations" />
-	</ItemGroup>
-
-	<ItemGroup>
-		<PackageReference Include="EPiServer.CMS" Version="12.29.0" />
-		<PackageReference Include="EPiServer.CMS.TinyMce" Version="4.7.2" />
-		<PackageReference Include="EPiServer.Find.Cms" Version="16.2.0" />
-		<PackageReference Include="EPiServer.Forms" Version="5.8.2" />
-	</ItemGroup>
-
-	<ItemGroup>
-		<EmbeddedResource Include="Resources\Translations\**\*" />
-	</ItemGroup>
-
-	<ItemGroup>
-		<Compile Remove="Models\**" />
-		<Content Remove="Models\**" />
-		<EmbeddedResource Remove="Models\**" />
-		<None Remove="Models\**" />
-	</ItemGroup>
-
-	<ItemGroup>
-		<ProjectReference Include="..\FEO.CMS.HSB.Core\FEO.CMS.HBG.Core.csproj" />
-	</ItemGroup>
-
-	<ItemGroup>
-		<Folder Include="Controllers\Blocks\" />
-		<Folder Include="Views\FarEastHospitality\Barrack\Blocks\" />
-		<Folder Include="Views\FarEastHospitality\Barrack\Layouts\" />
-		<Folder Include="Views\FarEastHospitality\Barrack\Pages\" />
-		<Folder Include="Views\FarEastHospitality\Clan\Blocks\" />
-		<Folder Include="Views\FarEastHospitality\Clan\Layouts\" />
-		<Folder Include="Views\FarEastHospitality\Clan\Pages\" />
-		<Folder Include="Views\FarEastHospitality\Oasia\Blocks\" />
-		<Folder Include="Views\FarEastHospitality\Oasia\Layouts\" />
-		<Folder Include="Views\FarEastHospitality\Oasia\Pages\" />
-		<Folder Include="Views\FarEastHospitality\Outpost\Blocks\" />
-		<Folder Include="Views\FarEastHospitality\Outpost\Layouts\" />
-		<Folder Include="Views\FarEastHospitality\Outpost\Pages\" />
-		<Folder Include="Views\FarEastHospitality\Quincy\Blocks\" />
-		<Folder Include="Views\FarEastHospitality\Quincy\Layouts\" />
-		<Folder Include="Views\FarEastHospitality\Quincy\Pages\" />
-		<Folder Include="Views\FarEastHospitality\Rendezvous\Blocks\" />
-		<Folder Include="Views\FarEastHospitality\Rendezvous\Layouts\" />
-		<Folder Include="Views\FarEastHospitality\Rendezvous\Pages\" />
-		<Folder Include="Views\FarEastHospitality\Shared\Layouts\" />
-		<Folder Include="Views\FarEastHospitality\Shared\Pages\" />
-		<Folder Include="Views\FarEastHospitality\Village\Blocks\" />
-		<Folder Include="Views\FarEastHospitality\Village\Layouts\" />
-		<Folder Include="Views\FarEastHospitality\Village\Pages\" />
-	</ItemGroup>
-
-	<ItemGroup>
-		<Content Update="Views\FarEastHospitality\Barrack\_ViewImports.cshtml">
-			<ExcludeFromSingleFile>true</ExcludeFromSingleFile>
-			<CopyToPublishDirectory>PreserveNewest</CopyToPublishDirectory>
-		</Content>
-		<Content Update="Views\FarEastHospitality\Barrack\_ViewStart.cshtml">
-			<ExcludeFromSingleFile>true</ExcludeFromSingleFile>
-			<CopyToPublishDirectory>PreserveNewest</CopyToPublishDirectory>
-		</Content>
-		<Content Update="Views\FarEastHospitality\Clan\_ViewImports.cshtml">
-			<ExcludeFromSingleFile>true</ExcludeFromSingleFile>
-			<CopyToPublishDirectory>PreserveNewest</CopyToPublishDirectory>
-		</Content>
-		<Content Update="Views\FarEastHospitality\Clan\_ViewStart.cshtml">
-			<ExcludeFromSingleFile>true</ExcludeFromSingleFile>
-			<CopyToPublishDirectory>PreserveNewest</CopyToPublishDirectory>
-		</Content>
-		<Content Update="Views\FarEastHospitality\Oasia\_ViewImports.cshtml">
-			<ExcludeFromSingleFile>true</ExcludeFromSingleFile>
-			<CopyToPublishDirectory>PreserveNewest</CopyToPublishDirectory>
-		</Content>
-		<Content Update="Views\FarEastHospitality\Oasia\_ViewStart.cshtml">
-			<ExcludeFromSingleFile>true</ExcludeFromSingleFile>
-			<CopyToPublishDirectory>PreserveNewest</CopyToPublishDirectory>
-		</Content>
-		<Content Update="Views\FarEastHospitality\Outpost\_ViewImports.cshtml">
-			<ExcludeFromSingleFile>true</ExcludeFromSingleFile>
-			<CopyToPublishDirectory>PreserveNewest</CopyToPublishDirectory>
-		</Content>
-		<Content Update="Views\FarEastHospitality\Outpost\_ViewStart.cshtml">
-			<ExcludeFromSingleFile>true</ExcludeFromSingleFile>
-			<CopyToPublishDirectory>PreserveNewest</CopyToPublishDirectory>
-		</Content>
-		<Content Update="Views\FarEastHospitality\Quincy\_ViewImports.cshtml">
-			<ExcludeFromSingleFile>true</ExcludeFromSingleFile>
-			<CopyToPublishDirectory>PreserveNewest</CopyToPublishDirectory>
-		</Content>
-		<Content Update="Views\FarEastHospitality\Quincy\_ViewStart.cshtml">
-			<ExcludeFromSingleFile>true</ExcludeFromSingleFile>
-			<CopyToPublishDirectory>PreserveNewest</CopyToPublishDirectory>
-		</Content>
-		<Content Update="Views\FarEastHospitality\Rendezvous\_ViewImports.cshtml">
-			<ExcludeFromSingleFile>true</ExcludeFromSingleFile>
-			<CopyToPublishDirectory>PreserveNewest</CopyToPublishDirectory>
-		</Content>
-		<Content Update="Views\FarEastHospitality\Rendezvous\_ViewStart.cshtml">
-			<ExcludeFromSingleFile>true</ExcludeFromSingleFile>
-			<CopyToPublishDirectory>PreserveNewest</CopyToPublishDirectory>
-		</Content>
-		<Content Update="Views\FarEastHospitality\Shared\_ViewImports.cshtml">
-			<ExcludeFromSingleFile>true</ExcludeFromSingleFile>
-			<CopyToPublishDirectory>PreserveNewest</CopyToPublishDirectory>
-		</Content>
-		<Content Update="Views\FarEastHospitality\Village\_ViewImports.cshtml">
-			<ExcludeFromSingleFile>true</ExcludeFromSingleFile>
-			<CopyToPublishDirectory>PreserveNewest</CopyToPublishDirectory>
-		</Content>
-		<Content Update="Views\FarEastHospitality\Village\_ViewStart.cshtml">
-			<ExcludeFromSingleFile>true</ExcludeFromSingleFile>
-			<CopyToPublishDirectory>PreserveNewest</CopyToPublishDirectory>
-		</Content>
-	</ItemGroup>
+  <ItemGroup>
+    <Using Include="EPiServer" />
+    <Using Include="EPiServer.Core" />
+    <Using Include="EPiServer.DataAbstraction" />
+    <Using Include="EPiServer.DataAnnotations" />
+  </ItemGroup>
+  
+  <ItemGroup>
+    <PackageReference Include="EPiServer.CMS" Version="12.29.0" />
+    <PackageReference Include="EPiServer.CMS.TinyMce" Version="4.7.2" />
+    <PackageReference Include="EPiServer.Find.Cms" Version="16.2.0" />
+    <PackageReference Include="EPiServer.Forms" Version="5.8.2" />
+    <PackageReference Include="Microsoft.VisualStudio.Web.CodeGeneration.Design" Version="8.0.6" />
+  </ItemGroup>
+  
+  <ItemGroup>
+    <EmbeddedResource Include="Resources\Translations\**\*" />
+  </ItemGroup>
+  
+  <ItemGroup>
+    <Compile Remove="Models\**" />
+    <Content Remove="Models\**" />
+    <EmbeddedResource Remove="Models\**" />
+    <None Remove="Models\**" />
+  </ItemGroup>
+  
+  <ItemGroup>
+    <Content Remove="Views\FarEastHospitality\StayFarEast\Blocks\HBGCarouselBlock\Index.cshtml" />
+  </ItemGroup>
+  
+  <ItemGroup>
+    <Compile Include="Models\BlogItemModel.cs" />
+    <Compile Include="Models\SearchFilter.cs" />
+    <Compile Include="Models\SearchParam.cs" />
+    <Compile Include="Models\SearchResult.cs" />
+  </ItemGroup>
+  
+  <ItemGroup>
+    <ProjectReference Include="..\FEO.CMS.HSB.Core\FEO.CMS.HBG.Core.csproj" />
+  </ItemGroup>
+  
+  <ItemGroup>
+    <Folder Include="Views\FarEastHospitality\Barrack\Blocks\" />
+    <Folder Include="Views\FarEastHospitality\Barrack\Layouts\" />
+    <Folder Include="Views\FarEastHospitality\Barrack\Pages\" />
+    <Folder Include="Views\FarEastHospitality\Clan\Blocks\" />
+    <Folder Include="Views\FarEastHospitality\Clan\Layouts\" />
+    <Folder Include="Views\FarEastHospitality\Clan\Pages\" />
+    <Folder Include="Views\FarEastHospitality\StayFarEast\Pages\" />
+    <Folder Include="Views\FarEastHospitality\Oasia\Blocks\" />
+    <Folder Include="Views\FarEastHospitality\Oasia\Layouts\" />
+    <Folder Include="Views\FarEastHospitality\Oasia\Pages\" />
+    <Folder Include="Views\FarEastHospitality\Outpost\Blocks\" />
+    <Folder Include="Views\FarEastHospitality\Outpost\Layouts\" />
+    <Folder Include="Views\FarEastHospitality\Outpost\Pages\" />
+    <Folder Include="Views\FarEastHospitality\Quincy\Blocks\" />
+    <Folder Include="Views\FarEastHospitality\Quincy\Layouts\" />
+    <Folder Include="Views\FarEastHospitality\Quincy\Pages\" />
+    <Folder Include="Views\FarEastHospitality\Rendezvous\Blocks\" />
+    <Folder Include="Views\FarEastHospitality\Rendezvous\Layouts\" />
+    <Folder Include="Views\FarEastHospitality\Rendezvous\Pages\" />
+    <Folder Include="Views\FarEastHospitality\Shared\Layouts\" />
+    <Folder Include="Views\FarEastHospitality\Shared\Pages\" />
+    <Folder Include="Views\FarEastHospitality\StayFarEast\Blocks\HBGCarouselBlock\" />
+    <Folder Include="Views\FarEastHospitality\Village\Blocks\" />
+    <Folder Include="Views\FarEastHospitality\Village\Layouts\" />
+    <Folder Include="Views\FarEastHospitality\Village\Pages\" />
+  </ItemGroup>
+  
+  <ItemGroup>
+    <Content Update="Views\FarEastHospitality\Barrack\_ViewImports.cshtml">
+      <ExcludeFromSingleFile>true</ExcludeFromSingleFile>
+      <CopyToPublishDirectory>PreserveNewest</CopyToPublishDirectory>
+    </Content>
+    <Content Update="Views\FarEastHospitality\Barrack\_ViewStart.cshtml">
+      <ExcludeFromSingleFile>true</ExcludeFromSingleFile>
+      <CopyToPublishDirectory>PreserveNewest</CopyToPublishDirectory>
+    </Content>
+    <Content Update="Views\FarEastHospitality\Clan\_ViewImports.cshtml">
+      <ExcludeFromSingleFile>true</ExcludeFromSingleFile>
+      <CopyToPublishDirectory>PreserveNewest</CopyToPublishDirectory>
+    </Content>
+    <Content Update="Views\FarEastHospitality\Clan\_ViewStart.cshtml">
+      <ExcludeFromSingleFile>true</ExcludeFromSingleFile>
+      <CopyToPublishDirectory>PreserveNewest</CopyToPublishDirectory>
+    </Content>
+    <Content Update="Views\FarEastHospitality\Oasia\_ViewImports.cshtml">
+      <ExcludeFromSingleFile>true</ExcludeFromSingleFile>
+      <CopyToPublishDirectory>PreserveNewest</CopyToPublishDirectory>
+    </Content>
+    <Content Update="Views\FarEastHospitality\Oasia\_ViewStart.cshtml">
+      <ExcludeFromSingleFile>true</ExcludeFromSingleFile>
+      <CopyToPublishDirectory>PreserveNewest</CopyToPublishDirectory>
+    </Content>
+    <Content Update="Views\FarEastHospitality\Outpost\_ViewImports.cshtml">
+      <ExcludeFromSingleFile>true</ExcludeFromSingleFile>
+      <CopyToPublishDirectory>PreserveNewest</CopyToPublishDirectory>
+    </Content>
+    <Content Update="Views\FarEastHospitality\Outpost\_ViewStart.cshtml">
+      <ExcludeFromSingleFile>true</ExcludeFromSingleFile>
+      <CopyToPublishDirectory>PreserveNewest</CopyToPublishDirectory>
+    </Content>
+    <Content Update="Views\FarEastHospitality\Quincy\_ViewImports.cshtml">
+      <ExcludeFromSingleFile>true</ExcludeFromSingleFile>
+      <CopyToPublishDirectory>PreserveNewest</CopyToPublishDirectory>
+    </Content>
+    <Content Update="Views\FarEastHospitality\Quincy\_ViewStart.cshtml">
+      <ExcludeFromSingleFile>true</ExcludeFromSingleFile>
+      <CopyToPublishDirectory>PreserveNewest</CopyToPublishDirectory>
+    </Content>
+    <Content Update="Views\FarEastHospitality\Rendezvous\_ViewImports.cshtml">
+      <ExcludeFromSingleFile>true</ExcludeFromSingleFile>
+      <CopyToPublishDirectory>PreserveNewest</CopyToPublishDirectory>
+    </Content>
+    <Content Update="Views\FarEastHospitality\Rendezvous\_ViewStart.cshtml">
+      <ExcludeFromSingleFile>true</ExcludeFromSingleFile>
+      <CopyToPublishDirectory>PreserveNewest</CopyToPublishDirectory>
+    </Content>
+    <Content Update="Views\FarEastHospitality\Shared\_ViewImports.cshtml">
+      <ExcludeFromSingleFile>true</ExcludeFromSingleFile>
+      <CopyToPublishDirectory>PreserveNewest</CopyToPublishDirectory>
+    </Content>
+    <Content Update="Views\FarEastHospitality\Village\_ViewImports.cshtml">
+      <ExcludeFromSingleFile>true</ExcludeFromSingleFile>
+      <CopyToPublishDirectory>PreserveNewest</CopyToPublishDirectory>
+    </Content>
+    <Content Update="Views\FarEastHospitality\Village\_ViewStart.cshtml">
+      <ExcludeFromSingleFile>true</ExcludeFromSingleFile>
+      <CopyToPublishDirectory>PreserveNewest</CopyToPublishDirectory>
+    </Content>
+  </ItemGroup>
 </Project>
