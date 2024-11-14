@@ -1,0 +1,557 @@
+﻿using System;
+using System.Collections.Generic;
+using System.Linq;
+using System.Text;
+using System.Threading.Tasks;
+
+namespace FEO.CMS.HBG.Core.Constants
+{
+    public struct DictionaryKeys
+    {
+        public const string StayFarEastDomain = "StayFarEast";
+        // Labels
+        public const string CheckInDateInputPlaceholder = "CheckInDateInputPlaceholder";
+        public const string CheckOutDateInputPlaceholder = "CheckOutDateInputPlaceholder";
+        public const string DateFieldsSeparator = "DateFieldsSeparator";
+        public const string ApartmentAssetsSummaryLabel = "ApartmentAssetsSummaryLabel";
+        public const string TextSeparator = "TextSeparator";
+        public const string EmailInputPlaceholder = "EmailInputPlaceholder";
+        public const string FromText = "FromText";
+        public const string PerNightText = "PerNightText";
+        public const string IncludedFacilitiesText = "IncludedFacilitiesText";
+        public const string YouMayAlsoLikeText = "YouMayAlsoLikeText";
+        public const string ShowAllDealsText = "ShowAllDealsText";
+        public const string TollFreeLabel = "TollFreeLabel";
+        public const string CentralReservationsLabel = "CentralReservationsLabel";
+        public const string SendEmailLabel = "SendEmailLabel";
+        public const string HotelsEmailLabel = "HotelsEmailLabel";
+        public const string ServicedResidencesEmailLabel = "ServicedResidencesEmailLabel";
+        public const string HotelsReservationLabel = "HotelsReservationLabel";
+        public const string ServicedResidencesReservationLabel = "ServicedResidencesReservationLabel";
+        public const string AllHotelsLabel = "AllHotelsLabel";
+        public const string SelectedHotelsLabel = "SelectedHotelsLabel";
+        public const string NoHotelsLabel = "NoHotelsLabel";
+        public const string IataLabel = "IataLabel";
+        public const string IataInputPlaceholder = "IataInputPlaceholder";
+        public const string MakeClaimLabel = "MakeClaimLabel";
+        public const string AllPropertiesLabel = "AllPropertiesLabel";
+        public const string AllTypesOfStayLabel = "AllTypesOfStayLabel";
+        public const string AllLocationsLabel = "AllLocationsLabel";
+        public const string CountryLabel = "CountryLabel";
+        public const string EmailAddressErrorMessage = "EmailAddressErrorMessage";
+        public const string PropertyLabel = "PropertyLabel";
+        public const string CityCountryLabel = "CityCountryLabel";
+        public const string NoResultsMessage = "NoResultsMessage";
+        public const string EmailAddressPlaceholder = "Email Address";
+        public const string FirstNamePlaceholder = "First Name";
+        public const string LastNamePlaceholder = "Last Name";
+        public const string BirthdayPlaceholder = "Birthday";
+        public const string BirthMonthPlaceholder = "Birth Month";
+        public const string BirthYearPlaceholder = "Birth Year";
+        public const string CountryResidencePlaceholder = "Country/ Region";
+        public const string SelectionRequiredErrorMessage = "Selection Required";
+        public const string InputRequiredErrorMessage = "Required Field";
+        public const string SelectAdults = "SelectAdults";
+        public const string SelectChildren = "SelectChildrens";
+        public const string MaxNumberOfGuests = "MaxNoOfGuests";
+        public const string BookDateLabel = "BookDateLabel";
+        public const string StayDateLabel = "StayDateLabel";
+        public const string CheckInLabel = "CheckInLabel";
+        public const string CheckOutLabel = "CheckOutLabel";
+        public const string HotelContactNumberLabel = "HotelContactNumberLabel";
+        public const string ReservationsContactNumberLabel = "ReservationsContactNumberLabel";
+        public const string EmailLabel = "EmailLabel";
+        public const string GetInTouchLabel = "GetInTouchLabel";
+        public const string TotalRoomsText = "TotalRoomsText";
+        public const string TotalApartmentsText = "TotalApartmentsText";
+        public const string AddAnotherRoomText = "AddAnotherRoomText";
+        public const string RoomNoText = "RoomNoText";
+        public const string RemoveRoomText = "RemoveRoomText";
+        public const string PreviuosRoomsText = "PreviuosRoomsText";
+        public const string NextRoomsText = "NextRoomsText";
+        public const string RoomNumberSlideText = "RoomNumberSlideText";
+        public const string DealEndInText = "DealEndInText";
+        public const string DealExpiredText = "DealExpiredText";
+        public const string DealSingularDayText = "DealSingularDayText";
+        public const string DealPluralDayText = "DealPluralDayText";
+        public const string DealSingularHourText = "DealSingularHourText";
+        public const string DealSingularMinuteText = "DealSingularMinuteText";
+        public const string DealSingularSecondText = "DealSingularSecondText";
+        public const string DealPluralHourText = "DealPluralHourText";
+        public const string DealPluralMinuteText = "DealPluralMinuteText";
+        public const string DealPluralSecondText = "DealPluralSecondText";
+        public const string GuestCapacityText = "GuestCapacityText";
+
+        // New Booking Widget
+        public const string BookingDestinationText = "BookingDestinationText";
+        public const string BookingPopularDestinationsText = "BookingPopularDestinationsText";
+        public const string BookingPopularCitiesText = "BookingPopularCitiesText";
+        public const string BookingPopularPropertiesText = "BookingPopularPropertiesText";
+        public const string BookingCountriesText = "BookingCountriesText";
+        public const string BookingCitiesText = "BookingCitiesText";
+        public const string BookingPropertiesText = "BookingPropertiesText";
+        public const string BookingSingularPropertyText = "BookingSingularPropertiesText";
+        public const string BookingPluralPropertyText = "BookingPluralPropertiesText";
+        public const string BookingNoResultsMatchedText = "BookingNoResultsMatchedText";
+
+        // Buttons
+        public const string LearnMoreText = "LearnMoreText";
+        public const string RefreshResultsText = "RefreshResultsText";
+        public const string MoreAboutText = "MoreAboutText";
+        public const string AmenityGalleryText = "AmenityGalleryText";
+        public const string OtherServicesText = "OtherServicesText";
+        public const string GetQuoteText = "GetQuoteText";
+        public const string CheckAvailabilityText = "CheckAvailabilityText";
+        public const string ViewFloorPlanText = "ViewFloorPlanText";
+        public const string ServicesText = "ServicesText";
+        public const string TourText = "TourText";
+        public const string VideoText = "VideoText";
+        public const string CheckNowText = "CheckNowText";
+        public const string DetailsText = "DetailsText";
+        public const string View360Text = "View360Text";
+        public const string BookNowText = "BookNowText";
+        public const string BookNowForMobileText = "BookNowForMobileText";
+        public const string ReadMoreText = "ReadMoreText";
+        public const string RoomDetailsText = "RoomDetailsText";
+        public const string ListingDealsText = "ListingDealsText";
+        public const string LessAboutText = "LessAboutText";
+        public const string MorePropertiesText = "MorePropertiesText";
+        public const string SubscribeButtonText = "SubscribeButtonText";
+        public const string CloseButtonText = "CloseButtonText";
+        public const string ViewAllHotelsText = "ViewAllHotelsText";
+        public const string ViewAllResidencesText = "ViewAllResidencesText";
+        public const string EnquireForMonthlyRateText = "EnquireForMonthlyRateText";
+        public const string BookAtDailyRateText = "BookAtDailyRateText";
+        public const string DealLearnMore = "DealLearnMore";
+        public const string VisitWebsite = "Visit Website";
+        public const string JumpTo = "Jump to";
+        public const string SelectItem = "Select Item";
+        public const string AmenityShow = "Show";
+        public const string AmenityItem = "Item";
+        public const string AmenityItems = "Items";
+        public const string FilterBy = "FilterBy";
+        public const string ClearAll = "ClearAll";
+        public const string Locations = "Locations";
+        public const string Seasons = "Seasons";
+        public const string Types = "Types";
+        public const string Purposes = "Purposes";
+        public const string Total = "Total";
+        public const string Articles = "Articles";
+        public const string Article = "Article";
+        public const string NotFoundMessage = "NotFoundMessage";
+        public const string PreviousArticle = "Previous Article";
+        public const string NextArticle = "Next Article";
+        public const string Summary = "Summary";
+        public const string ViewMoreInclusions = "ViewMoreInclusionText";
+        public const string ViewMoreText = "ViewMoreText";
+        public const string ParticipatingPropertiesText = "ParticipatingPropertiesText";
+        public const string BookDealNowText = "BookDealNowText";
+        public const string ViewLessText = "ViewLessText";
+        public const string CountParticipatingPropertySingluarText = "CountParticipatingPropertySingluarText";
+        public const string CountParticipatingPropertyPluralText = "CountParticipatingPropertyPluralText";
+        public const string DownloadText = "DownloadText";
+        public const string SendRequestText = "SendRequestText";
+        public const string ViewAllText = "ViewAllText";
+        public const string ViewReviewText = "ViewReviewText";
+
+        //Property Listing
+        public const string ApplySelectedText = "ApplySelectedText";
+        public const string BrandText = "BrandText";
+        public const string CheckRateText = "CheckRateText";
+        public const string DistanceToCenterText = "DistanceToCenterText";
+        public const string FilterText = "FilterText";
+        public const string FromPriceText = "FromPriceText";
+        public const string GetDirectionText = "GetDirectionText";
+        public const string LocationText = "LocationText";
+        public const string PropertyTypeText = "PropertyTypeText";
+        public const string ResetFilterText = "ResetFilterText";
+        public const string SearchText = "SearchText";
+        public const string SortByText = "SortByText";
+        public const string ViewHotelButtonText = "ViewHotelButtonText";
+        public const string CountPropertyListingText = "CountPropertyListingText";
+        public const string NextPageText = "NextPageText";
+        public const string PageNumberText = "PageNumberText";
+        public const string PreviousPageText = "PreviousPageText";
+        public const string HotelInformationRateText = "HotelInformationRateText";
+        public const string ServiceResidenceInformationRateText = "ServiceResidenceInformationRateText";
+        public const string CurrencyText = "CurrencyText";
+        public const string CheckAllText = "CheckAllText";
+        public const string UnCheckAllText = "UnCheckAllText";
+        public const string SelectedText = "SelectedText";
+        public const string ToCenterCityText = "ToCenterCityText";
+        public const string SubmitEnquiryText = "SubmitEnquiryText";
+
+        //Event
+        public const string EventApplySelectedText = "EventApplySelectedText";
+        public const string EventCapacityCategoryText = "EventCapacityCategoryText";
+        public const string EventCountParticipatingPackageText = "EventCountParticipatingPackageText";
+        public const string EventCountParticipatingVenueText = "EventCountParticipatingVenueText";
+        public const string EventEmailAddressText = "EventEmailAddressText";
+        public const string EventMeetingEnquiryFormCTAText = "EventMeetingEnquiryFormCTAText";
+        public const string EventWeddingEnquiryFormCTAText = "EventWeddingEnquiryFormCTAText";
+        public const string EventFilterText = "EventFilterText";
+        public const string EventFloorPlanText = "EventFloorPlanText";
+        public const string EventGetInTouchText = "EventGetInTouchText";
+        public const string EventHotelCategoryText = "EventHotelCategoryText";
+        public const string EventImageGalleryText = "EventImageGalleryText";
+        public const string EventLearnMoreText = "EventLearnMoreText";
+        public const string EventPackageIncludeText = "EventPackageIncludeText";
+        public const string EventPackageOverviewText = "EventPackageOverviewText";
+        public const string EventPackageTabText = "EventPackageTabText";
+        public const string EventPhoneText = "EventPhoneText";
+        public const string EventResetFilterText = "EventResetFilterText";
+        public const string EventRoomFeatureText = "EventRoomFeatureText";
+        public const string EventRoomLayoutText = "EventRoomLayoutText";
+        public const string EventRoomSettingCategoryText = "EventRoomSettingCategoryText";
+        public const string EventRoomSizeAndCapacityText = "EventRoomSizeAndCapacityText";
+        public const string EventRoomSizeNumberText = "EventRoomSizeNumberText";
+        public const string EventRoomCapacityNumberText = "EventRoomCapacityNumberText";
+        public const string EventVenueTabText = "EventVenueTabText";
+        public const string EventViewOtherPackageText = "EventViewOtherPackageText";
+        public const string EventViewOtherVenueText = "EventViewOtherVenueText";
+        public const string EventSizeText = "EventSizeText";
+        public const string EventVenueText = "EventVenueText";
+        public const string EventDownloadBrochureText = "EventDownloadBrochureText";
+        public const string EventOccasionCategoryText = "EventOccasionCategoryText";
+        public const string EventMultipleHotelsText = "EventMultipleHotelsText";
+        public const string EventHotelsText = "EventHotelsText";
+        public const string EventHotelsListShareContactText = "EventHotelsListShareContactText";
+
+        //Deal
+        public const string SingularDayLeftText = "SingularDayLeftText";
+        public const string PluralDayLeftText = "PluralDayLeftText";
+
+        //Oasia
+        public const string OasiaDomain = "Oasia";
+        public const string BookNow = "BookNow";
+        public const string BookNowForMobile = "BookNowForMobile";
+        public const string OurLocations = "OurLocations";
+        public const string OasiaExperience = "OasiaExperience";
+        public const string OasiaEvents = "OasiaEvents";
+        public const string ChooseAnOasia = "ChooseAnOasia";
+        public const string Hotel = "Hotel";
+        public const string ServicedResidences = "ServicedResidences";
+        public const string PromoCode = "PromoCode";
+        public const string FindMyBooking = "FindMyBooking";
+        public const string EnterCode = "EnterCode";
+        public const string GetThisOffer = "GetThisOffer";
+        public const string ViewAllDeals = "ViewAllDeals";
+        public const string ScrollForMore = "ScrollForMore";
+        public const string At = "At";
+        public const string ExploreNow = "ExploreNow";
+        public const string XClose = "XClose";
+        public const string Privileges = "Privileges";
+        public const string SeeHotel = "SeeHotel";
+        public const string SeeResidence = "SeeResidence";
+        public const string BackToTop = "BackToTop";
+        public const string Amenity = "Amenity";
+        public const string ApartmentAmentity = "ApartmentAmentity";
+        public const string RequestQuotation = "RequestQuotation";
+        public const string FloorPlan = "FloorPlan";
+        public const string FindAnOasia = "FindAnOasia";
+        public const string SeeAllMentions = "SeeAllMentions";
+        public const string AllCountries = "AllCountries";
+        public const string TakeAPhotoTour = "TakeAPhotoTour";
+        public const string StepInsideAndExperience = "StepInsideAndExperience";
+        public const string RotateForABetterView = "RotateForABetterView";
+        public const string NoFileChosen = "NoFileChosen";
+        public const string PressReleases = "PressReleases";
+        public const string MediaMentions = "MediaMentions";
+        public const string ParticipatingHotels = "ParticipatingHotels";
+        public const string DownLoadPdf = "DownLoadPdf";
+        public const string Submit = "Submit";
+        public const string CheckInDate = "CheckInDate";
+        public const string CheckOutDate = "CheckOutDate";
+        public const string CentralReservations = "CentralReservations";
+        public const string SendEmail = "SendEmail";
+        public const string ForHotels = "ForHotels";
+        public const string ForServicedResidences = "ForServicedResidences";
+        public const string EmailAddress = "EmailAddress";
+        public const string FirstName = "FirstName";
+        public const string LastName = "LastName";
+        public const string DateOfBirth = "DateOfBirth";
+        public const string SelectAProperty = "SelectAProperty";
+        public const string CodeApplied = "CodeApplied";
+        public const string BookingWidgetFormId = "BookingWidgetFormId";
+        public const string CountryOfResidence = "CountryOfResidence";
+        public const string ViewAllVenues = "ViewAllVenues";
+        public const string SeePackages = "SeePackages";
+        public const string DownloadVenueBrochure = "DownloadVenueBrochure";
+        public const string LoadMoreVenues = "LoadMoreVenues";
+        public const string Capacity = "Capacity";
+        public const string Size = "Size";
+        public const string Setting = "Setting";
+        public const string ResetFilters = "ResetFilters";
+        public const string Filter = "Filter";
+        public const string GetThisArticle = "GetThisArticle";
+        public const string MaxNumberOfGuestsforOasia = "MaxNoOfGuestsforOasia";
+        public const string OasiaOtherLocations = "OasiaOtherLocations";
+        public const string More = "More";
+
+        //Fields
+        public const string AlternateURL = "Alternate URL";
+
+        //village
+        public const string VillageDomain = "Village";
+        public const string LabelVillageHotels = "village_hotels";
+        public const string LabelVillageResidences = "village_serviced_residences";
+        public const string LabelVillageProperties = "village_properties";
+        public const string TheVillagePromise = "TheVillagePromise";
+        public const string BookDirectAndSave = "BookDirectAndSave";
+        public const string ManageBooking = "ManageBooking";
+        public const string VillageBookNowText = "VillageBookNowText";
+        public const string VillageBookYourStay = "VillageBookYourStay";
+        public const string VillageChooseDestination = "VillageChooseDestination";
+        public const string VillageResidenceMinimumStay = "VillageResidenceMinimumStay";
+        public const string PropertyNotSelected = "PropertyNotSelected";
+        public const string VillagePromoCode = "VillagePromoCode";
+        public const string VillageChooseYourStay = "VillageChooseYourStay";
+        public const string VillageCheckInDateInputPlaceHolder = "VillageCheckInDateInputPlaceHolder";
+        public const string VillageCheckOutDateInputPlaceHolder = "VillageCheckOutDateInputPlaceHolder";
+        public const string VillagePromoCodePlaceHolder = "VillagePromoCodePlaceHolder";
+        public const string VillageEmailInputPlaceholder = "VillageEmailInputPlaceholder";
+        public const string ViewHotelText = "ViewHotelText";
+        public const string ViewResidenceText = "ViewResidenceText";
+        public const string ButtonMoreInfo = "VillageMoreInfo";
+        public const string ButtonPassportDownload = "VillagePassportDownload";
+        public const string ButtonSeeAllThingsToDo = "VillageSeeAllThingsToDo";
+        public const string LabelPassport = "VillagePassport";
+        public const string SeeAll = "SeeAll";
+        public const string RoomDetails = "RoomDetails";
+        public const string DiscountCode = "VillageDiscountCode";
+        public const string VillageSubmit = "VillageSubmit";
+        public const string VillageValidationMessage = "SignupValidationMessage";
+        public const string VillageCountryofResidence = "CountryofResidence";
+        public const string VillageDefaultCountry = "DefaultCountryResidence";
+        public const string VillageValidEmailAddress = "ValidEMailAddress";
+        public const string VillageMoreInfo = "VillageMoreInfo";
+        public const string VillageLocationInfo = "VillageLocationInfo";
+        public const string VillageEmailAddress = "VillageEmailAddress";
+        public const string VillageRequiredField = "VillageRequiredField";
+        public const string VillageFirstName = "VillageFirstName";
+        public const string VillageLastName = "VillageLastName";
+        public const string VillageDateofBirth = "VillageDateofBirth";
+        public const string VillageEventSpecialistHeader = "EventSpecialist";
+        public const string Explore = "Explore";
+        public const string VillageVenueDetails = "VillageVenueDetails";
+        public const string LearnMore = "LearnMore";
+        public const string VillageVenues = "VillageVenues";
+        public const string VillageVenuePackage = "VillageVenuePackages";
+        public const string VillagePackage = "VillagePackage";
+        public const string VillageDefaultHotelFilter = "VillageDefaultHotelFilter";
+        public const string VenueCapacity = "VenueCapacity";
+        public const string VillageViewVenue = "VillageViewVenue";
+        public const string VillageRequestProposal = "VillageRequestProposal";
+        public const string VillageViewPackage = "VillageViewPackage";
+        public const string VillageEnquiryNow = "VillageEnquiryNow";
+        public const string VillageDefaultCapacity = "VillageDefaultCapacity";
+        public const string VillageNoPackageMessage = "VillageNoPackageMessage";
+        public const string VillageNoVenueMessage = "VillageNoVenueMessage";
+        public const string Email = "Email";
+        public const string Contact = "Contact";
+        public const string VillageAccordionSeeAll = "AccordionSeeAll";
+        public const string VillageAccordionCollapseAll = "AccordionCollapseAll";
+        public const string VillageDefaultCountryFilter = "VillageDefaultCountryFilter";
+        public const string VillageDealAllPropertiesFilter = "VillageDealAllPropertiesFilter";
+        public const string VillageDealFilterLabel = "VillageDealFilterLabel";
+        public const string VillageHotelTabFilter = "VillageHotelTabFilter";
+        public const string VillageResidenceTabFilter = "VillageResidenceTabFilter";
+        public const string LocationInfoButtonText = "LocationInfoButtonText";
+        public const string ShowMore = "ShowMore";
+        public const string ShowLess = "ShowLess";
+
+        //SentosaPrecint
+        public const string SentosaPrecintDomain = "SentosaPrecint";
+        public const string SentosaExplore = "Explore";
+        public const string SentosaAddress = "Address";
+        public const string SentosaContact = "Contact";
+        public const string SentosaNearestStation = "NearestStation";
+        public const string SentosaOperatingHours = "OperatingHours";
+        public const string SentosaPointofInterest = "SentosaPointofInterest";
+
+        public const string SentosaLearnMore = "SentosaLearnMore";
+        public const string SentosaCloseDiv = "SentosaPopupClose";
+
+        public const string SentosaSeeMore = "SeeMore";
+        public const string SentosaSeeLess = "SeeLess";
+        public const string SentosaEnquireNow = "EnquireNow";
+        public const string SentosaReadMore = "Read More";
+
+        public const string SentosaLeft = "Left";
+        public const string SentosaRight = "Right";
+        public const string SentosaGuestCapacity = "GuestCapacity";
+        public const string LabelSentosaHotels = "sentosa_hotels";
+        public const string LabelSentosaResidences = "sentosa_serviced_residences";
+        public const string LabelSentosaProperties = "sentosa_properties";
+        public const string LabelSentosaNoDeals = "SentosaNoDealsMessage";
+        public const string BookingWidgetRequiredError = "BookingWidgetRequiredError";
+
+        //Outpost
+        public const string OutpostDomain = "Outpost";
+        public const string OutpostBookNow = "Outpost_BookNow";
+        public const string OutpostJoinMailList = "Outpost_JoinMailList";
+        public const string OutPostViewDetails = "OutPostViewDetails";
+        public const string OutPostViewPackage = "OutPostViewPackage";
+        public const string OutpostSeeallrooms = "SeeAllRooms";
+        public const string OutpostVenueCapacity = "OutpostVenueCapacity";
+        public const string OutpostNext = "OutpostNext";
+        public const string OutpostPrevious = "OutpostPrevious";
+        public const string OutpostLearnMore = "OutpostLearnMore";
+        public const string OutpostViewRoom = "OutpostViewRoom";
+        public const string OutpostCheckAvailability = "OutpostCheckAvailability";
+        public const string OutpostViewThreeSixty = "OutpostViewThreeSixty";
+        public const string OutpostClose = "OutpostClose";
+
+        public const string OutpostMoreInfo = "More info";
+        public const string OutpostShowMore = "OutpostShowMore";
+        public const string OutpostShowLess = "OutpostShowLess";
+        public const string OutpostNoDeals = "OutpostNoDeals";
+        public const string OutpostEnquireNow = "OutpostEnquireNow";
+        public const string OutpostCloseButtonText = "CloseButtonText";
+        public const string OutpostView360Text = "View360Text";
+
+        public const string OutpostValidationMessage = "SignupValidationMessage";
+        public const string OutpostEmailAddress = "OutpostEmailAddress";
+        public const string OutpostRequiredField = "OutpostRequiredField";
+        public const string OutpostValidEmailAddress = "ValidEMailAddress";
+        public const string OutpostFirstName = "OutpostFirstName";
+        public const string OutpostLastName = "OutpostLastName";
+        public const string OutpostDateofBirth = "OutpostDateofBirth";
+        public const string OutpostCountryofResidence = "OutpostCountryofResidence";
+        public const string OutpostDefaultCountry = "DefaultCountryResidence";
+        public const string OutpostSubmit = "OutpostSubmit";
+        public const string OutpostTollFreeNumber = "Outpost_TollFreeHotline";
+        public const string OutpostNoDinings = "Outpost_No_Dinings";
+        public const string OutpostNoPackage = "OutpostNoPackage";
+        public const string OutpostNoAmenities = "Outpost_No_Amenities";
+        public const string OutpostCentralReservationsLabel = "Outpost_CentralReservationsLabel";
+        public const string OutpostHotelsEmailLabel = "Outpost_HotelsEmailLabel";
+        public const string OutpostHotelsReservationLabel = "Outpost_HotelsReservationLabel";
+        public const string OutpostSendEmailLabel = "Outpost_SendEmailLabel";
+        public const string OutpostServicedResidencesEmailLabel = "Outpost_ServicedResidencesEmailLabel";
+        public const string OutpostServicedResidencesReservationLabel = "Outpost_ServicedResidencesReservationLabel";
+        public const string OutpostNoVenues = "Outpost_No_Venues";
+        public const string OutpostOperatingHours = "Outpost_OperatingHours";
+        public const string OutpostAddress = "Outpost_Address";
+        public const string OutpostPhoneNumber = "Outpost_PhoneNumber";
+        public const string InsidersEmailLabel = "Insiders_EmailLabel";
+        public const string InsidersPasswordLabel = "Insiders_PasswordLabel";
+        public const string InsidersPasswordPlaceHolder = "Insiders_PasswordPlaceHolder";
+        public const string InsidersPasswordShow = "Insiders_PasswordShow";
+        public const string InsidersPasswordHide = "Insiders_PasswordHide";
+        public const string InsidersConfirmPasswordLabel = "Insiders_ConfirmPasswordLabel";
+        public const string InsidersSignInButton = "Insiders_SignInButton";
+        public const string InsidersPrefix = "Insiders_Prefix";
+        public const string InsidersOptional = "Insiders_Optional";
+        public const string InsidersFirstName = "Insiders_FirstName";
+        public const string InsidersLastName = "Insiders_LastName";
+        public const string InsidersBirthday = "Insiders_Birthday";
+        public const string InsidersCountry = "Insiders_Country";
+        public const string InsidersAddress = "Insiders_Address";
+        public const string InsidersUpdate = "Insiders_Update";
+        public const string InsidersSubmit = "Insiders_Submit";
+        public const string InsidersSignIn = "Insiders_SignIn";
+        public const string InsidersClickOnMe = "Insiders_ClickOnMe";
+        public const string InsidersCurrentPassword = "Insiders_CurrentPassword";
+        public const string InsidersConfirmPassword = "Insiders_ConfirmPassword";
+        public const string InsidersNewPassword = "Insiders_NewPassword";
+        public const string InsidersConfirmNewPassword = "Insiders_ConfirmNewPassword";
+        public const string InsidersFormChangesUpdated = "Insiders_FormChangesUpdated";
+        public const string InsidersSubscribeText = "Insiders_SubscribeText";
+        public const string InsidersUnsubscribeText = "Insiders_UnsubscribeText";
+        public const string InsidersUnsubscribeConditionText = "Insiders_UnsubscribeConditionText";
+        public const string InsidersFormAgreementMessage = "Insiders_FormAgreementMessage";
+        public const string InsidersFieldsRequired = "Insiders_FieldsRequired";
+        public const string InsidersCaptchErrorMessage = "Insiders_CaptchErrorMessage";
+        public const string InsidersCreditCardNumber = "Insiders_CreditCardNumber";
+        public const string InsidersCreditCardExpiryDate = "Insiders_CreditCardExpiryDate";
+        public const string InsidersCreditCardHolderName = "Insiders_CreditCardHolderName";
+        public const string InsidersCreditCardSaveButton = "Insiders_CreditCardSaveButton";
+        public const string InsidersCreditCardAddNewCard = "Insiders_CreditCardAddNewCard";
+
+        public const string InsidersValidCreditCardType = "Insiders_ValidCreditCardType";
+        public const string InsidersValidCreditCardNumber = "Insiders_ValidCreditCardNumber";
+
+
+        public const string InsidersEnterEmailAddress = "Insiders_EnterEmailAddress";
+        public const string InsidersEnterValidEmailAddress = "Insiders_EnterValidEmailAddress";
+        public const string InsidersPasswordDoNotMatch = "Insiders_PasswordDoNotMatch";
+        public const string InsidersSignUpErrorMsg = "Insiders_SignUpErrorMsg";
+        public const string InsidersLoginErrorMsg = "Insiders_LoginErrorMsg";
+        public const string InsidersLogOutButton = "Insiders_LogOutButton";
+        public const string InsidersCaptchaVerification = "Insiders_CaptchaVerification";
+        public const string InsidersCaptchaErrorMessage = "Insiders_CaptchErrorMessage";
+        public const string InsidersPasswordCriteriaMessage = "Insiders_PasswordCriteriaMessage";
+
+        public const string InsidersPasswordFormatMessage = "Insiders_PasswordFormatMessage";
+        public const string InsidersEnterPassword = "Insiders_EnterPasswordMessage";
+        public const string InsidersEnterFirstName = "Insiders_EnterFirstNameMessage";
+        public const string InsidersEnterLastName = "Insiders_EnterLastNameMessage";
+        public const string InsidersEnterCountry = "Insiders_EnterCountryMessage";
+        public const string InsidersEnterBirthday = "Insiders_EnterBirthdayMessage";
+        public const string InsidersEnterCorrectYear = "Insiders_EnterCorrectYearMessage";
+
+        public const string EnquireForRateSuccessMessage = "EnquireForRateSuccessMessage";
+        public const string EnquireForRateFailMessage = "EnquireForRateFailMessage";
+
+        public const string InsidersEmailToolTip = "Insiders_EmailToolTip";
+        public const string InsidersEmlTolTipUpdtPrfle = "Insiders_EmailToolTipUpdateProfile";
+        public const string InsidersEmailplaceholder = "Insiders_Emailplaceholder";
+        public const string InsidersPasswordToolTip = "Insiders_PasswordToolTip";
+        public const string InsidersCnfmPasswordToolTip = "Insiders_ConfirmPasswordToolTip";
+        public const string InsidersNewPasswordToolTip = "Insiders_NewPasswordToolTip";
+        public const string InsidersConfirmPasswordToolTip = "Insiders_ConfirmPasswordToolTip";
+        public const string InsidersFirstNameToolTip = "Insiders_FirstNameToolTip";
+        public const string InsidersLastNameToolTip = "Insiders_LastNameToolTip";
+        public const string InsidersCountryToolTip = "Insiders_CountryToolTip";
+        public const string InsidersSubscribeTextToolTip = "Insiders_SubscribeTextToolTip";
+        public const string InsidersUnsubscribeTextToolTip = "Insiders_UnsubscribeTextToolTip";
+        public const string InsidersCountryPlaceholder = "Insiders_CountryPlaceholder";
+        public const string InsidersBirthdayToolTip = "Insiders_BirthdayToolTip";
+        public const string InsidersBirthdayPlaceholder = "Insiders_BirthdayPlaceholder";
+        public const string InsidersDatePlaceholder = "Insiders_DatePlaceholder";
+        public const string InsidersTypeInCountryPlaceholder = "Insiders_TypeInCountryPlaceholder";
+        public const string InsidersTypeInPropertyPlaceholder = "Insiders_TypeInPropertyPlaceholder";
+        public const string InsidersPrivacyPolicyMessage = "Insiders_PrivacyPolicyMessage";
+
+        public const string LoadingButtonText = "LoadingButtonText";
+
+        //SignUp-FrontOffice
+        public const string InsidersStaffProperty = "InsidersStaffProperty";
+        public const string InsidersStaffPropertyToolTip = "InsidersStaffPropertyToolTip";
+        public const string InsidersEnterStaffProperty = "InsidersEnterStaffProperty";
+        public const string InsidersStaffId = "InsidersStaffId";
+        public const string InsidersStaffIdToolTip = "InsidersStaffIdToolTip";
+        public const string InsidersEnterStaffId = "InsidersEnterStaffId";
+        public const string InsidersUserCreateSuccessMessage = "InsidersUserCreateSuccessMessage";
+        public const string InsidersFormAgreementMessageForFrontOffice = "InsidersFormAgreementMessageForFrontOffice";
+        public const string PrivacyPolicyMessageForFrontOffice = "PrivacyPolicyMessageForFrontOffice";
+        public const string InsidersSignUpErrorMsgForFrontOffice = "InsidersSignUpErrorMsgForFrontOffice";
+
+        //Clan
+        public const string BackToMapText = "BackToMapText";
+        public const string LocationTypeText = "LocationTypeText";
+        public const string ExploreHereText = "ExploreHereText";
+        public const string ScrollText = "ScrollText";
+        public const string SummaryText = "SummaryText";
+
+        //village
+        public const string RateText = "RateText";
+
+        //SFE
+        public const string PropertiesText = "PropertiesText";
+        public const string PropertyText = "PropertyText";
+        public const string CitiesText = "CitiesText";
+        public const string CityText = "CityText";
+
+        //Quincy
+        public const string AwardedText = "AwardedText";
+        public const string ViewAllAwardsText = "ViewAllAwardsText";
+        public const string OurAwardsText = "OurAwardsText";
+
+        //village and Quincy
+        public const string ShareText = "ShareText";
+
+
+    }
+}
