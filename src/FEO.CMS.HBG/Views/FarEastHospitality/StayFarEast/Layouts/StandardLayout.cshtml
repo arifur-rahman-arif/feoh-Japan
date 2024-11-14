@@ -114,14 +114,14 @@
             @Html.BingLangMeta()
         }
 
-        <link rel="stylesheet" href="~/assets/content/vendor-bundle.min.css" asp-append-version="true" />
-        <link rel="stylesheet" href="~/assets/content/stayfareast-bundle.min.css" asp-append-version="true" />
+        <link rel="stylesheet" href="~/assets/hospitality/content/vendor-bundle.min.css" asp-append-version="true" />
+        <link rel="stylesheet" href="~/assets/hospitality/content/stayfareast-bundle.min.css" asp-append-version="true" />
 
-        <script src="~/assets/scripts/modernizr.js"></script>
-        <script src="~/assets/scripts/mobile-detect"></script>
-        <script src="~/assets/scripts/vendor-bundle.min.js" asp-append-version="true"></script>
-        <script src="~/assets/scripts/stayfareast-bundle.min.js" asp-append-version="true"></script>
-        <script src="~/assets/scripts/generic.js" asp-append-version="true"></script>
+        <script src="~/assets/hospitality/scripts/modernizr.js"></script>
+        <script src="~/assets/hospitality/scripts/mobile-detect"></script>
+        <script src="~/assets/hospitality/scripts/vendor-bundle.min.js" asp-append-version="true"></script>
+        <script src="~/assets/hospitality/scripts/stayfareast-bundle.min.js" asp-append-version="true"></script>
+        <script src="~/assets/hospitality/scripts/generic.js" asp-append-version="true"></script>
 
         @Html.PropertyFor(x => x.CurrentPage.SentosaContentArea)
 
@@ -192,7 +192,7 @@
                 $(".g-recaptcha").closest(".form-group").find(".field-validation-error").hide();
             }
         </script>
-        <script src="~/assets/scripts/special/lazy-load.js" asp-append-version="true"></script>
+        <script src="~/assets/hospitality/scripts/special/lazy-load.js" asp-append-version="true"></script>
     </head>
     <body class="@(Model.CurrentPage.BodyClassName)">
         @if (Model.CurrentPage is HBGHomePage)
@@ -233,8 +233,6 @@
         @RenderSection("Scripts", required: false)
         @RenderSection("FormStyles", required: false)
         @RenderSection("FormScripts", required: false)
-
-        <required-client-resources area="Footer" />
         <script>
             (function ($) {
                 $(document).ready(function () { setTimeout(function () { $.getScript('https://www.google.com/recaptcha/api.js'); }, 4000); });
