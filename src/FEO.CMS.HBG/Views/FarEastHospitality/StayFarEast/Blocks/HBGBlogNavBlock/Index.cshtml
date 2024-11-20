@@ -1,0 +1,47 @@
+﻿@model HBGBlogNavBlock
+@if (Model != null)
+{
+    <br>
+    <div class="blog-navigation">
+        <div class="row-flex">
+
+            <div class="col-xs-6">
+                @if (!string.IsNullOrEmpty(Model.PreviousItemUrl))
+                {
+                    <div class="pre-nav">
+                        <a href="@Model.PreviousItemUrl">
+                            <svg xmlns="http://www.w3.org/2000/svg" width="22.859" height="13.762" viewBox="0 0 22.859 13.762">
+                                <g id="Group_124520" data-name="Group 124520" transform="translate(610.93)">
+                                    <path id="Path_235" data-name="Path 235" d="M6.881,0,0,6.88,2.05,8.93,6.881,4.1,11.712,8.93l2.05-2.049Z" transform="translate(-597 13.762) rotate(-90)" fill="#303030" />
+                                    <path id="Path_234" data-name="Path 234" d="M6.881,0,0,6.88,2.05,8.93,6.881,4.1,11.712,8.93l2.05-2.049Z" transform="translate(-610.93 13.762) rotate(-90)" fill="#303030" />
+                                </g>
+                            </svg>
+
+                            @DictionaryHelper.DictionaryEntry(DictionaryKeys.PreviousArticle)
+                        </a>
+                        <div>@Model.PreviousItemTitle</div>
+                    </div>
+                }
+            </div>
+
+
+            <div class="col-xs-6">
+                @if (!string.IsNullOrEmpty(Model.NextItemUrl))
+                {
+                    <div class="next-nav">
+                        <a href="@Model.NextItemUrl">
+                            @DictionaryHelper.DictionaryEntry(DictionaryKeys.NextArticle)
+                            <svg xmlns="http://www.w3.org/2000/svg" width="22.859" height="13.761" viewBox="0 0 22.859 13.761">
+                                <g id="Group_124520" data-name="Group 124520" transform="translate(-602 -5863.12)">
+                                    <path id="Path_235" data-name="Path 235" d="M8.88,10.93,2,4.049,4.049,2,8.88,6.831,13.711,2,15.76,4.049Z" transform="translate(613.93 5878.881) rotate(-90)" fill="#303030" />
+                                    <path id="Path_234" data-name="Path 234" d="M8.88,10.93,2,4.049,4.049,2,8.88,6.831,13.711,2,15.76,4.049Z" transform="translate(600 5878.881) rotate(-90)" fill="#303030" />
+                                </g>
+                            </svg>
+                        </a>
+                        <div>@Model.NextItemTitle</div>
+                    </div>
+                }
+            </div>
+        </div>
+    </div>
+}

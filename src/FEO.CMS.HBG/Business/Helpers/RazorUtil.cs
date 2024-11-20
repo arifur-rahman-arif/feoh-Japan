@@ -15,7 +15,7 @@ namespace FEO.CMS.HBG.Business.Helpers
                 var contentLoader = ServiceLocator.Current.GetInstance<IContentLoader>();
 
                 //Get Content Reference Block
-                var styleNames = contentLoader.Get<HBGStyleConfigBlock>(styleConfigBlock);
+                var styleNames = contentLoader.Get<StayFarEastHBGStyleConfigBlock>(styleConfigBlock);
 
                 //Add Content Area items to list
                 foreach (var styles in styleNames.StyleNames.Items)
