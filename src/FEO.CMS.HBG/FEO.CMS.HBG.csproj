@@ -34,6 +34,8 @@
   
   <ItemGroup>
     <Content Remove="Views\FarEastHospitality\StayFarEast\Blocks\HBGCarouselBlock\Index.cshtml" />
+    <Content Remove="wwwroot\assets\hospitality\content\.gitignore" />
+    <Content Remove="wwwroot\assets\hospitality\scripts\.gitignore" />
   </ItemGroup>
   
   <ItemGroup>
