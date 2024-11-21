@@ -4,13 +4,13 @@
 
 @{
     var currentPage = PageRouteHelper.Page;
-    var rootPageReference = ContentReference.RootPage;
-    var site = ContentRepository.Get<HBGSite>(rootPageReference);
+    var rootPageReference = GetParentOfStartPage();
+    var site = ContentRepository.Get<HBGSite>(rootPageReference.ContentLink);
     ViewData.Add("Model", Model);
 
-    var config = ContentLoader.Get<HBGWebsiteConfigBlock>(site.WebsiteConfig);
-    var insiderConfig = ContentLoader.Get<HBGInsidersConfigurationBlock>(site.WebsiteConfig);
-    var gtmConfig = ContentLoader.Get<HBGGoogleTagManagerBlock>(site.GTMConfig);
+    var config = site.WebsiteConfig != null ? ContentLoader.Get<HBGWebsiteConfigBlock>(site.WebsiteConfig) : null;
+    var insiderConfig = site.WebsiteConfig != null ? ContentLoader.Get<HBGInsidersConfigurationBlock>(site.WebsiteConfig) : null;
+    var gtmConfig = site.GTMConfig != null ? ContentLoader.Get<HBGGoogleTagManagerBlock>(site.GTMConfig) : null;
 
     var request = Context.Request;
     var absoluteUri = string.Concat(
@@ -29,8 +29,9 @@
     }
     string domainName = $"{request.Scheme}://{request.Host}";
     var timeOut = SessionSetting.Value.TimeoutInMinutes;
-    var session = Context.Session;
-    string token = session.GetString(FieldNames.InsidersFieldName.SessionEmail) ?? string.Empty;
+    // var session = Context.Session;
+    // string token = session.GetString(FieldNames.InsidersFieldName.SessionEmail) ?? string.Empty;
+    string token = string.Empty;
 
     @functions {
         protected HtmlString RenderTitle()
@@ -40,6 +41,20 @@
                 ? Model.CurrentPage.Title : Model.CurrentPage.TitleOverride;
 
             return new HtmlString(title);
+        }
+
+        public IContent GetParentOfStartPage()
+        {
+            if (ContentLoader.TryGet<IContent>(ContentReference.StartPage, out var startPage))
+            {
+                var parentPageRef = startPage.ParentLink;
+                if (!ContentReference.IsNullOrEmpty(parentPageRef))
+                {
+                    ContentLoader.TryGet<IContent>(parentPageRef, out var parentPage);
+                    return parentPage;
+                }
+            }
+            return null;
         }
     }
 
@@ -113,7 +128,7 @@
             @Html.BingLangMeta()
         }
 
-        @Html.Partial(ViewsPath.Hospitality_Shared_BLOCKS_PATH + "/MetaTags/Index.cshtml")
+        @Html.Partial("~/Views/FarEastHospitality/Shared/Blocks" + "/MetaTags/Index.cshtml")
         <link rel="stylesheet" href="~/assets/content/vendor-bundle.min.css" asp-append-version="true" />
         <link rel="stylesheet" href="~/assets/content/stayfareast-bundle.min.css" asp-append-version="true" />
 
