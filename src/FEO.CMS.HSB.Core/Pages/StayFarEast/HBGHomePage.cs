@@ -134,5 +134,10 @@ namespace FEO.CMS.HBG.Core.Pages.StayFarEast
         [CultureSpecific]
         public virtual ContentReference BackgroundColor { get; set; }
 
+        [Display(GroupName = SystemTabNames.Content, Name = "Banner Content Area", Description = "banner", Order = 100)]
+        public virtual ContentArea BannerContentArea { get; set; }
+
+        [Display(GroupName = SystemTabNames.Content, Name = "Booking Widget Content Area", Description = "booking-widget", Order = 100)]
+        public virtual ContentArea BookingWidgetContentArea { get; set; }
     }
 }

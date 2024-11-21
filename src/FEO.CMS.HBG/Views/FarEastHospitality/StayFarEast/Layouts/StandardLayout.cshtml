@@ -30,8 +30,9 @@
     }
     string domainName = $"{request.Scheme}://{request.Host}";
     var timeOut = SessionSetting.Value.TimeoutInMinutes;
-    var session = Context.Session;
-    string token = session.GetString(FieldNames.InsidersFieldName.SessionEmail) ?? string.Empty;
+    // var session = Context.Session;
+    // string token = session.GetString(FieldNames.InsidersFieldName.SessionEmail) ?? string.Empty;
+    string token = string.Empty;
 
     @functions {
         protected HtmlString RenderTitle()
@@ -114,8 +115,9 @@
             @Html.BingLangMeta()
         }
 
-        <link rel="stylesheet" href="~/assets/hospitality/content/vendor-bundle.min.css" asp-append-version="true" />
-        <link rel="stylesheet" href="~/assets/hospitality/content/stayfareast-bundle.min.css" asp-append-version="true" />
+        @Html.Partial(ViewsPath.Hospitality_Shared_BLOCKS_PATH + "/MetaTags/Index.cshtml")
+        <link rel="stylesheet" href="~/assets/content/vendor-bundle.min.css" asp-append-version="true" />
+        <link rel="stylesheet" href="~/assets/content/stayfareast-bundle.min.css" asp-append-version="true" />
 
         <script src="~/assets/hospitality/scripts/modernizr.js"></script>
         <script src="~/assets/hospitality/scripts/mobile-detect"></script>
