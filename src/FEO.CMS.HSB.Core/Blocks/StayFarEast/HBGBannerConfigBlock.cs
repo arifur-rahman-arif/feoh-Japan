@@ -1,10 +1,11 @@
 using EPiServer.DataAnnotations;
+using MyOptimizelyProject.Models.Pages;
 using System.ComponentModel.DataAnnotations;
 
 namespace FEO.CMS.HBG.Core.Blocks.StayFarEast
 {
     [ContentType(DisplayName = "HBGBannerConfigBlock", GUID = "32D961F0-8FA2-4C94-B9AD-9BFB3BDD5838", GroupName = "Hospitality")]
-    public class HBGBannerConfigBlock : HBGBaseBlock
+    public class HBGBannerConfigBlock : HBGImageDarknessOverlayConfig
     {
         [Display(Name = "Enlarge Current Item Title", GroupName = "Settings", Order = 100)]
         [CultureSpecific]
