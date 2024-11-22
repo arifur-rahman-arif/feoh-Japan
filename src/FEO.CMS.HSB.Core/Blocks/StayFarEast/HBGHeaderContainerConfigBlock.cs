@@ -5,7 +5,7 @@ using System.ComponentModel.DataAnnotations;
 namespace FEO.CMS.HBG.Core.Blocks.StayFarEast
 {
     [ContentType(DisplayName = "HBGHeaderContainerConfigBlock", GUID = "D71714E0-8C16-4903-9618-DF4BA070EBC8", GroupName = "Hospitality")]
-    public class HBGHeaderContainerConfigBlock : HBGBaseBlock
+    public class HBGHeaderContainerConfigBlock : HBGStyleConfigBlock
     {
         [Display(Name = "Component ID", GroupName = "Settings", Order = 100)]
         [CultureSpecific]

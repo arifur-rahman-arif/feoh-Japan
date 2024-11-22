@@ -1,0 +1,76 @@
+﻿@model HBGInsidersCarouselFolderBlock
+
+@{
+    var ContentLoader = ServiceLocator.Current.GetInstance<IContentLoader>();
+    var CarouselItems = Model.CarouselFolder != null ? ContentLoader.GetDescendents(Model.CarouselFolder).ToList() : null;
+    var renderingCssClass = string.Empty;
+    if (Model.StyleNames != null)
+    {
+        List<string> cssClass = new List<string>();
+        var styleNames = BlockHelper.GetContentAreaItems(Model.StyleNames);
+        foreach (var item in styleNames)
+        {
+            cssClass.Add(ContentLoader.Get<HBGNameValuePairBlock>(item.ContentLink).Value);
+        }
+        renderingCssClass = String.Join(" ", cssClass);
+    }
+}
+
+<div class="container-fluid @renderingCssClass">
+    <div class="container">
+        <div class="lpo_header text-center">@Model.Title</div>
+        <div>
+            <p class="lpo_desc text-center">@Model.SubTitle</p>
+        </div>
+        <div class="findoutmore FAQ">
+            <div class="owl-carousel owl-theme">
+                @if (CarouselItems != null)
+                {
+                    foreach (var carouselitem in CarouselItems)
+                    {
+                        var getType = ContentLoader.Get<IContent>(carouselitem);
+                        if (getType.GetOriginalType() == typeof(HBGInsidersCarouselBlock))
+                        {
+                            var item = ContentLoader.Get<HBGInsidersCarouselBlock>(getType.ContentLink);
+                            <div class="item">
+                                <div class="leftitem">
+                                    @if (item.Image != null)
+                                    {
+                                        <img width="570" height="402" class="lazy-hidden img-lazy-block" data-lazy-type="image" data-lazy-src="@Url.ContentUrl(item.Image)" alt="" />
+                                    }
+                                    @if (!string.IsNullOrEmpty(item.ImageSubtitle) || !string.IsNullOrEmpty(item.ImageTitle))
+                                    {
+                                        <div class="lpo_text">
+                                            <p>@item.ImageTitle</p>
+                                            <span>@item.ImageSubtitle</span>
+                                        </div>
+                                    }
+                                </div>
+                                <div class="rightitem">
+                                    <h1>@Html.PropertyFor(item => item.Title)</h1>
+                                    <div class="divider"></div>
+                                    <span>
+                                        @Html.PropertyFor(item => item.Description)
+                                    </span>
+                                    @if (!string.IsNullOrWhiteSpace(item?.ReadMore?.Href))
+                                    {
+                                        <a href="@item?.ReadMore?.Href" class="btn text-uppercase">@item?.ReadMore?.Text</a>
+                                    }
+                                </div>
+                            </div>
+                        }
+                    }
+                }
+            </div>
+        </div>
+    </div>
+</div>
+@* <script type="text/javascript">
+	$(document).ready(function() {
+		$('.ellipsis').ellipsis();
+	});
+
+	$( window ).resize(function() {
+    $('.ellipsis').ellipsis();
+    });
+</script> *@
