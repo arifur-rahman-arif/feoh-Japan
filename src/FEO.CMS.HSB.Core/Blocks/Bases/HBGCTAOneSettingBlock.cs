@@ -7,7 +7,7 @@ using System.ComponentModel.DataAnnotations;
 namespace FEO.CMS.HBG.Core.Blocks.Bases
 {
     [ContentType(DisplayName = "HBGCTAOneSettingBlock", GUID = "A0ECDBA2-0C12-4933-B981-7D9D15EAB32A", GroupName = "Hospitality")]
-    public class HBGCTAOneSettingBlock : HBGBaseBlock
+    public class HBGCTAOneSettingBlock : HBGCTATwoSettingBlock
     {
         [Display(Name = "CTA Enable", GroupName = "CTA One", Order = 50)]
         [CultureSpecific]

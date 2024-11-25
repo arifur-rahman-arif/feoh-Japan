@@ -2,12 +2,13 @@ using EPiServer.Core;
 using EPiServer.DataAbstraction;
 using EPiServer.DataAnnotations;
 using EPiServer.Web;
+using FEO.CMS.HBG.Core.Blocks.Bases;
 using System.ComponentModel.DataAnnotations;
 
 namespace FEO.CMS.HBG.Core.Blocks.StayFarEast
 {
     [ContentType(DisplayName = "HBGImageTextGridBlock", GUID = "0D293883-4FCC-427F-8C28-67CDF08E75BE", GroupName = "Hospitality")]
-    public class HBGImageTextGridBlock : HBGBaseBlock
+    public class HBGImageTextGridBlock : HBGCTAOneSettingBlock
     {
         [Display(Name = "Content", GroupName = SystemTabNames.Content, Order = 100)]
         [CultureSpecific]

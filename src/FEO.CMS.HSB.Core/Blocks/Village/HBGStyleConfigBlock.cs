@@ -4,8 +4,8 @@ using System.ComponentModel.DataAnnotations;
 
 namespace FEO.CMS.HBG.Core.Blocks.Village
 {
-    [ContentType(DisplayName = "HBGStyleConfigBlock", GUID = "9C523811-08B1-4F8C-B9D1-8B9BC700D573", GroupName = "Hospitality")]
-    public class HBGStyleConfigBlock : HBGBaseBlock
+    [ContentType(DisplayName = "Village HBGStyleConfigBlock", GUID = "9C523811-08B1-4F8C-B9D1-8B9BC700D573", GroupName = "Hospitality")]
+    public class VillageHBGStyleConfigBlock : HBGBaseBlock
     {
         [Display(Name = "Divider Color Style Names", GroupName = "Settings", Order = 200)]
         [CultureSpecific]
