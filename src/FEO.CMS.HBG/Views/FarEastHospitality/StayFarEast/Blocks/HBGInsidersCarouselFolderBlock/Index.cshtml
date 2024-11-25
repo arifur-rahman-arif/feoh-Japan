@@ -49,9 +49,10 @@
                                 <div class="rightitem">
                                     <h1>@Html.PropertyFor(item => item.Title)</h1>
                                     <div class="divider"></div>
-                                    <span>
-                                        @Html.PropertyFor(item => item.Description)
-                                    </span>
+                                    @* <span>
+                                        
+                                    </span> *@
+                                    @Html.PropertyFor(x => item.ICDescription)
                                     @if (!string.IsNullOrWhiteSpace(item?.ReadMore?.Href))
                                     {
                                         <a href="@item?.ReadMore?.Href" class="btn text-uppercase">@item?.ReadMore?.Text</a>

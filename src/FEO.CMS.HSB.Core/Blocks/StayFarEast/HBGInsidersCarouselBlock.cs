@@ -34,7 +34,7 @@ namespace FEO.CMS.HBG.Core.Blocks.StayFarEast
         [Display(Name = "Description", GroupName = SystemTabNames.Content, Order = 600)]
         [CultureSpecific]
         [UIHint(UIHint.Textarea)]
-        public virtual XhtmlString Description { get; set; }
+        public virtual XhtmlString ICDescription { get; set; }
 
         [Display(Name = "Read More", GroupName = SystemTabNames.Content, Order = 700)]
         [CultureSpecific]
