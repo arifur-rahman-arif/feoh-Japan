@@ -1,8 +1,9 @@
-﻿@model HBGDestinationsBlock;
+﻿@using EPiServer.Framework.Web.Resources
+@model HBGDestinationsBlock;
 
 @{
     var currentItem = ContentLoader.Get<HBGStayFarEastMapComponentBlock>(Model.Datasource);
-    var seeAllPropertyUrl = currentItem?.SeeAllProperty?.Href;
+    var seeAllPropertyUrl = Url.ContentUrl(currentItem?.SeeAllProperty?.Href);
     var propertyText = string.Empty;//Sitecore.Globalization.Translate.Text(DictionaryKeys.PropertyText);
     var propertiesText = string.Empty;//Sitecore.Globalization.Translate.Text(DictionaryKeys.PropertiesText);
     EPiServer.Framework.Web.Resources.ClientResources.RequireScript("/assets/scripts/special/destination.js").AtFooter();
@@ -68,9 +69,4 @@
         REGCONFIG.cityIconSrc = '@currentItem?.CityIcon';
         REGCONFIG.dragMessageIconSrc = '@currentItem?.DragMessageIcon'
     </script>
-
-    @* using (Html.BeginScripts())
-    {
-        <script src="/scripts/special/destination.js"></script>
-    } *@
 }
