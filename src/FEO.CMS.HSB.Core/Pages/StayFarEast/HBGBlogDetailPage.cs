@@ -41,7 +41,7 @@ namespace FEO.CMS.HBG.Core.Pages.StayFarEast
 
         [Display(Name = "Category", GroupName = "Profile", Order = 100)]
         [CultureSpecific]
-        public virtual ContentReference Category { get; set; }
+        public virtual ContentReference Categories { get; set; }
 
         [Display(Name = "Article Category Name", GroupName = "Profile", Order = 200)]
         [CultureSpecific]
