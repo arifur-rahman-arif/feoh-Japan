@@ -7,7 +7,7 @@ using System.ComponentModel.DataAnnotations;
 namespace FEO.CMS.HBG.Core.Blocks.StayFarEast
 {
     [ContentType(DisplayName = "HBGVenueHighlightBlock", GUID = "1E59E1CB-871D-4B67-94C8-8D935259516D", GroupName = "Hospitality")]
-    public class HBGVenueHighlightBlock : HBGBaseBlock
+    public class HBGVenueHighlightBlock : HBGVenueHighlightConfigurationBlock
     {
         [Display(Name = "Title", GroupName = SystemTabNames.Content, Order = 100)]
         [CultureSpecific]

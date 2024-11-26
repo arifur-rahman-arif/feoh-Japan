@@ -1,0 +1,104 @@
+﻿@model HBGVenueHighlightBlock
+
+@if (Model != null)
+{
+    string stringSummary = string.Empty;
+    string stringClass = string.Empty;
+    if (!string.IsNullOrEmpty(Model.StickySummaryText))
+    {
+        stringSummary = "data-menu='" + Model.StickySummaryText + "'";
+        stringClass = "is-menu-sidebar";
+    }
+    <div class="block-content block-content-venue-highlight   @stringClass" @Html.Raw(stringSummary)>
+
+        <div class="box-venue">
+            <h3 class="title">@Model.Title</h3>
+            <div class="row-flex">
+                @if (!string.IsNullOrEmpty(Model.Location))
+                {
+                    <div class="col-md-6 col-xs-12">
+                        <div class="item">
+                            <i>
+                                @if (Model?.LocationIcon != null)
+                                {
+                                    <img loading="lazy" src="@Url.ContentUrl(Model.LocationIcon)" alt="" />
+                                }
+                                else
+                                {
+                                    <svg xmlns="http://www.w3.org/2000/svg" width="20" height="28.572" viewBox="0 0 20 28.572">
+                                        <path id="ic_place_24px" d="M15,2A9.993,9.993,0,0,0,5,12c0,7.5,10,18.571,10,18.571S25,19.5,25,12A9.993,9.993,0,0,0,15,2Zm0,13.571A3.571,3.571,0,1,1,18.571,12,3.573,3.573,0,0,1,15,15.571Z" transform="translate(-5 -2)" fill="#a88142" />
+                                    </svg>
+                                }
+                            </i>
+                            <div class="val">@Html.PropertyFor(x => x.Location)</div>
+                        </div>
+                    </div>
+                }
+                @if (!string.IsNullOrEmpty(Model.ContactNumber))
+                {
+                    <div class="col-md-6 col-xs-12">
+                        <div class="item">
+                            <i>
+                                @if (Model.ContactIcon != null)
+                                {
+                                    <img loading="lazy" src="@Url.ContentUrl(Model.ContactIcon)" alt="" />
+                                }
+                                else
+                                {
+                                    <svg xmlns="http://www.w3.org/2000/svg" width="25" height="25" viewBox="0 0 25 25">
+                                        <path id="ic_call_24px" d="M8.028,13.819a21.04,21.04,0,0,0,9.153,9.153l3.056-3.056a1.381,1.381,0,0,1,1.417-.333,15.843,15.843,0,0,0,4.958.792A1.393,1.393,0,0,1,28,21.764v4.847A1.393,1.393,0,0,1,26.611,28,23.609,23.609,0,0,1,3,4.389,1.393,1.393,0,0,1,4.389,3H9.25a1.393,1.393,0,0,1,1.389,1.389,15.778,15.778,0,0,0,.792,4.958,1.394,1.394,0,0,1-.347,1.417Z" transform="translate(-3 -3)" fill="#a88142" />
+                                    </svg>
+                                }
+                            </i>
+                            <div class="val">@Html.PropertyFor(x => x.ContactNumber)</div>
+                        </div>
+                    </div>
+                }
+                @if (Model.OpeningHours != null)
+                {
+                    <div class="col-md-6 col-xs-12">
+                        <div class="item">
+                            <i>
+                                @if (Model.OpenHourIcon != null)
+                                {
+                                    <img loading="lazy" src="@Url.ContentUrl(Model.OpenHourIcon)" alt="" />
+                                }
+                                else
+                                {
+                                    <svg xmlns="http://www.w3.org/2000/svg" width="25" height="25" viewBox="0 0 25 25">
+                                        <path id="Path_13" data-name="Path 13" d="M3.75,3.75A11.348,11.348,0,0,1,12.5,0a11.348,11.348,0,0,1,8.75,3.75A11.348,11.348,0,0,1,25,12.5a11.348,11.348,0,0,1-3.75,8.75A11.348,11.348,0,0,1,12.5,25a11.348,11.348,0,0,1-8.75-3.75A12.475,12.475,0,0,1,0,12.5,11.348,11.348,0,0,1,3.75,3.75ZM18.125,18.125l1.458-1.458-5.208-5.208L12.5,3.125H10.417V12.5a1.891,1.891,0,0,0,.625,1.458.727.727,0,0,0,.417.208Z" fill="#a88142" />
+                                    </svg>
+                                }
+                            </i>
+                            @{
+                                string openHourString = Model.OpeningHours.ToString().Replace("\r\n", "<br />");
+                            }
+                            <div class="val">@Html.Raw(openHourString)</div>
+                        </div>
+                    </div>
+                }
+
+                @if (Model.Website != null)
+                {
+                    <div class="col-md-6 col-xs-12">
+                        <div class="item">
+                            <i>
+                                @if (Model.WebsiteIcon != null)
+                                {
+                                    <img loading="lazy" src="@Url.ContentUrl(Model.WebsiteIcon)" alt="" />
+                                }
+                                else
+                                {
+                                    <svg xmlns="http://www.w3.org/2000/svg" width="25" height="25" viewBox="0 0 25 25">
+                                        <path id="Path_4" data-name="Path 4" d="M3.75,3.75A11.348,11.348,0,0,1,12.5,0a11.348,11.348,0,0,1,8.75,3.75A11.348,11.348,0,0,1,25,12.5a11.348,11.348,0,0,1-3.75,8.75A11.348,11.348,0,0,1,12.5,25a11.348,11.348,0,0,1-8.75-3.75A12.475,12.475,0,0,1,0,12.5,11.348,11.348,0,0,1,3.75,3.75ZM14.167,22.5q1.25,0,3.125-1.875A9.1,9.1,0,0,0,18.75,16.25a3.45,3.45,0,0,0-1.042-2.5A3.667,3.667,0,0,0,15,12.5H12.917a6.083,6.083,0,0,1-1.875-.417,1.891,1.891,0,0,1-.625-1.458,1.082,1.082,0,0,1,.417-.833,1.579,1.579,0,0,1,.833-.417A1.422,1.422,0,0,1,12.708,10c.417.208.625.417.833.417a1.253,1.253,0,0,0,.833-.208,1.253,1.253,0,0,0,.208-.833,3.315,3.315,0,0,0-1.042-2.083,8.617,8.617,0,0,0,1.042-3.958.448.448,0,0,0-.417-.417A6.44,6.44,0,0,0,12.5,2.5,10.421,10.421,0,0,0,7.083,4.167,5.245,5.245,0,0,0,5.208,8.333a5.334,5.334,0,0,0,1.667,3.958,5.692,5.692,0,0,0,3.958,1.667h0v.833a2.675,2.675,0,0,0,.833,2.083,3.034,3.034,0,0,0,1.875,1.25v3.75c0,.208,0,.208.208.417S13.958,22.5,14.167,22.5Z" fill="#a88142" />
+                                    </svg>
+                                }
+                            </i>
+                            <a class="val" href="@Model.Website?.Href">@Html.PropertyFor(x => x.Website.Href)</a>
+                        </div>
+                    </div>
+                }
+            </div>
+        </div>
+    </div>
+}
