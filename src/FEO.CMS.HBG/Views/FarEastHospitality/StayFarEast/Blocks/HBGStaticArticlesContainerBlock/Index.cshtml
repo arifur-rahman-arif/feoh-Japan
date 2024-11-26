@@ -1,0 +1,44 @@
+﻿@model HBGStaticArticlesContainerBlock
+<div class="latest-article">
+    <div class="latest-article-container">
+        <div class="row">
+
+            @if ((Model.Previews == null || Model.Previews.Items != null && Model.Previews.Items.Any()) && ContextMode.CurrentMode.EditOrPreview())
+            {
+                <h2 class="text-center">Add preview items</h2>
+            }
+
+            @if (Model.Previews.Items != null && Model.Previews.Items.Any())
+            {
+                var previewCount = 3;
+                var previews = Model.Previews.Items.Take(previewCount);
+
+                foreach (var item in previews)
+                {
+                    var preview = ContentLoader.Get<HBGArticlePage>(item.ContentLink);
+                   @* TODO string dynamicsiteUrl = SitecoreHelperExtension.GetDynamicRedirectSiteURL(preview.Id.ToString());
+                    preview.Url = (!string.IsNullOrEmpty(dynamicsiteUrl)) ? dynamicsiteUrl : preview.Url; *@
+                    <div class="col-sm-4">
+                        <div class="deal-image image-with-txt">
+                            <a href="@(string.IsNullOrWhiteSpace(preview.LinkURL) ? "#" : preview.LinkURL)">
+                                @Html.PropertyFor(x => preview.SmallThumbnail)
+                                @* StayFarEast.RenderImage(preview, model => model.SmallThumbnail, isEditable: true) *@
+
+                                <div class="caption">
+                                    <div class="content-v-align">
+                                        <p class="text-uppercase">@Html.PropertyFor(x=>preview.Category)</p>
+                                                                @* Glass.Editable(preview, model => model.Category) *@
+                                        <h3>@Html.PropertyFor(x => preview.Title)</h3>
+                                        @* Glass.Editable(preview, model => model.Title) *@
+                                    </div>
+                                </div>
+                            </a>
+                        </div>
+                    </div>
+                }
+            }
+
+        </div>
+    </div>
+</div>
+

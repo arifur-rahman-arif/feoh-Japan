@@ -2,6 +2,7 @@ using EPiServer.Core;
 using EPiServer.DataAbstraction;
 using EPiServer.DataAnnotations;
 using EPiServer.SpecializedProperties;
+using FEO.CMS.HBG.Core.Pages.StayFarEast;
 using System.ComponentModel.DataAnnotations;
 
 namespace FEO.CMS.HBG.Core.Blocks.StayFarEast
@@ -11,6 +12,7 @@ namespace FEO.CMS.HBG.Core.Blocks.StayFarEast
     {
         [Display(Name = "Previews", GroupName = SystemTabNames.Content, Order = 100)]
         [CultureSpecific]
+        [AllowedTypes(AllowedTypes = new[] { typeof(HBGArticlePage)})]
         public virtual ContentArea Previews { get; set; }
 
         [Display(Name = "Show All Button Link", GroupName = "Buttons", Order = 100)]
