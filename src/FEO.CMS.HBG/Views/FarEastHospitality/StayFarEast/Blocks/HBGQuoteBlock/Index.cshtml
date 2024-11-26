@@ -1,0 +1,20 @@
+﻿@model HBGQuoteBlock
+@if (Model != null)
+{
+    string bgClass = string.Empty;
+    string stringSummary = string.Empty;
+    string stringClass = string.Empty;
+    if (!string.IsNullOrEmpty(Model.StickySummaryText))
+    {
+        stringSummary = "data-menu='" + Model.StickySummaryText + "'";
+        stringClass = "is-menu-sidebar";
+    }
+    if (Model.BackgroundColor != null)
+    {
+        bgClass = "section-" + ContentLoader.Get<HBGNameValuePairBlock>(Model.BackgroundColor).Value;
+    }
+
+    <div class="block-content block-content-quote  @stringClass  @bgClass" @Html.PropertyFor(x=>x.Summary)>
+        @Html.PropertyFor(x=>x.Quote)
+    </div>
+}
