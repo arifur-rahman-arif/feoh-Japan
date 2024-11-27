@@ -6,7 +6,7 @@ using System.ComponentModel.DataAnnotations;
 namespace FEO.CMS.HBG.Core.Blocks.Bases
 {
     [ContentType(DisplayName = "HBGImageButtonBlock", GUID = "68A54B2F-DE99-48B8-958F-9B4917907710", GroupName = "Hospitality")]
-    public class HBGImageButtonBlock : HBGRootBlock
+    public class HBGImageButtonBlock : HBGBaseBlock
     {
         [Display(Name = "Button Image", GroupName = "Images", Order = 100)]
         [CultureSpecific]

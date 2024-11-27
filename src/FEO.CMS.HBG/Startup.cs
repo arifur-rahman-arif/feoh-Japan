@@ -5,7 +5,6 @@ using EPiServer.Globalization;
 using EPiServer.Scheduler;
 using EPiServer.ServiceLocation;
 using EPiServer.Web.Routing;
-using FEO.CMS.HSB;
 
 namespace FEO.CMS.HBG
 {

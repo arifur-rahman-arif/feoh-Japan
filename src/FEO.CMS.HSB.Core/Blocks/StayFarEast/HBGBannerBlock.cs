@@ -6,7 +6,7 @@ using System.ComponentModel.DataAnnotations;
 
 namespace FEO.CMS.HBG.Core.Blocks.StayFarEast
 {
-    [ContentType(DisplayName = "HBGBannerBlock", GUID = "9C294E22-AEB3-4343-A4CD-0E111CD52C40", GroupName = "Hospitality")]
+    [ContentType(DisplayName = "StayFarEast HBGBannerBlock", GUID = "9C294E22-AEB3-4343-A4CD-0E111CD52C40", GroupName = "Hospitality")]
     public class HBGBannerBlock : HBGBaseBlock
     {
         [Display(Name = "Caption", GroupName = SystemTabNames.Content, Order = 100)]
