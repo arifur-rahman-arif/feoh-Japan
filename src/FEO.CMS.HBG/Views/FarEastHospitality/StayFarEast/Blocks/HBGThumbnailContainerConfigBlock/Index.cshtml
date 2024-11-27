@@ -1,0 +1,12 @@
+﻿@model HBGThumbnailContainerConfigBlock
+
+@{
+    var config = ContentLoader.Get<HBGNameValuePairBlock>(Model.Theme);
+}
+
+<div class="five-blocks-wrapper five-blocks @(Model!= null ? config.Value : string.Empty)">
+    <div class="row five-blocks-container">
+        @Html.PropertyFor(x => x.thumbnails)
+    </div>
+</div>
+
