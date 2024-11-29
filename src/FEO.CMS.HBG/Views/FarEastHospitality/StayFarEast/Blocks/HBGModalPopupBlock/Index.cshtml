@@ -1,0 +1,36 @@
+﻿@model HBGModalPopupBlock
+
+@{
+    if (Model != null)
+    {
+        <div class="modal fade" id="@Model.ComponentID" tabindex="-1" role="dialog" aria-labelledby="@Model.ComponentID" aria-hidden="true">
+            <div class="modal-dialog">
+                <div class="modal-content">
+                    <div class="modal-header">
+                        <button type="button" class="close" data-dismiss="modal" aria-hidden="true">
+                            <a href="#">
+                                <div class="burger-bar open">
+                                    <span></span>
+                                    <span></span>
+                                    <span></span>
+                                    <span></span>
+                                </div>
+                            </a>
+                        </button>
+                    </div>
+                    <div class="modal-body">
+
+                        <h2 class="text-center">@Html.PropertyFor(x => x.Title) </h2>
+                        <div class="row">
+                            <div class="col-md-offset-2 col-md-8">
+                                <p class="text-center">@Html.PropertyFor(x => x.SubTitle)</p>
+                                @Html.PropertyFor(x => x.Modal)
+                            </div>
+                        </div>
+
+                    </div>
+                </div>
+            </div>
+        </div>
+    }
+}

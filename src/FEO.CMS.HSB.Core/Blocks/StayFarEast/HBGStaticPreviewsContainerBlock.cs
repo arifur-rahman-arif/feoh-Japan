@@ -2,7 +2,6 @@ using EPiServer.Core;
 using EPiServer.DataAbstraction;
 using EPiServer.DataAnnotations;
 using EPiServer.SpecializedProperties;
-using FEO.CMS.HBG.Core.Blocks.Bases;
 using System.ComponentModel.DataAnnotations;
 
 namespace FEO.CMS.HBG.Core.Blocks.StayFarEast

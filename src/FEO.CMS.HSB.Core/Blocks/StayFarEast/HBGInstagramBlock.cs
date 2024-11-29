@@ -8,7 +8,7 @@ using System.ComponentModel.DataAnnotations;
 namespace FEO.CMS.HBG.Core.Blocks.StayFarEast
 {
     [ContentType(DisplayName = "HBGInstagramBlock", GUID = "65639A12-67A8-4B95-A9C4-62C021F802F7", GroupName = "Hospitality")]
-    public class HBGInstagramBlock : HBgStyleConfigBlock
+    public class HBGInstagramBlock : HBGStyleConfigBlock
     {
         [Display(Name = "Title", GroupName = SystemTabNames.Content, Order = 100)]
         [CultureSpecific]

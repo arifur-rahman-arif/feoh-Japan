@@ -43,7 +43,7 @@ namespace FEO.CMS.HBG
             });
 
             services.AddTransient<IAntiForgeryService, AntiForgeryService>();
-
+            services.AddSingleton<IDictionaryRepository, DictionaryRepository>();
             return services;
         }
     }
