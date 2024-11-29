@@ -1,6 +1,7 @@
 using EPiServer.Core;
 using EPiServer.DataAbstraction;
 using EPiServer.DataAnnotations;
+using EPiServer.Web;
 using System.ComponentModel.DataAnnotations;
 
 namespace FEO.CMS.HBG.Core.Pages.StayFarEast

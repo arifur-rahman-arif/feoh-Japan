@@ -133,7 +133,6 @@ namespace FEO.CMS.HBG.Core.Pages
         [UIHint(UIHint.Image)]
         public virtual ContentReference SmallThumbnail { get; set; }
 
-        //HBGRootBlock
         [Display(Name = "Description", GroupName = "Basic Info", Order = 100)]
         [CultureSpecific]
         [UIHint(UIHint.Textarea)]
@@ -146,6 +145,5 @@ namespace FEO.CMS.HBG.Core.Pages
         [Display(Name = "Title", GroupName = "Basic Info", Order = 300)]
         [CultureSpecific]
         public virtual string Title { get; set; }
-
     }
 }
