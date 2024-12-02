@@ -1,0 +1,268 @@
+﻿@model HBGFooterBlock
+@* <!-- 
+@using StayFarEast.Web.Bootstrapper.Utils
+@using StayFarEast.Web.Helpers
+@using StayFarEast.ContentManagement.Constants --> *@
+
+@{
+    var image = ContentLoader.Get<ImageFile>(Model.FEHLogoImage);
+}
+<div class="smp_new_footer">
+    <div class="smp_footer_container">        
+        @if (Model.FEHLogoImage != null)
+        {
+            <div class="footer-head">
+                <img  width="450" height="100" class="lazy-hidden" data-lazy-type="image" data-lazy-src="@Url.ContentUrl(Model.FEHLogoImage)" alt="@* @Model.FEHLogoImage *@" />
+                @if (Model.FEHLogoDesc != null)
+                {
+                    <div class="desc">@Html.Raw(Model.FEHLogoDesc)</div>
+                }
+            </div>
+            <div class="divider"></div>
+        }
+
+
+        @* @if (Model.BrandGroups != null && Model.BrandGroups.Any())
+        {
+            foreach (var brandGroup in Model.BrandGroups)
+            {
+                <div class="brand_row">
+                    <h3 class="brand_title">@Glass.Editable(brandGroup, x => x.Heading)</h3>
+                    @if (brandGroup.Brands != null && brandGroup.Brands.Any())
+                    {
+                        <ul class="brand_content">
+                            @foreach (var brand in brandGroup.Brands)
+                            {
+                                <li class="brand_logos">
+
+                                    @if (brand.FooterUrl != null)
+                                    {
+                                        Sitecore.Data.Items.Item branditem = Sitecore.Context.Database.GetItem(brand.FooterUrl.TargetId.ToString());
+                                        if (branditem != null)
+                                        {
+                                            string dynamicshowallUrl = SitecoreHelperExtension.GetDynamicRedirectSiteURL(branditem.ID.ToString());
+                                            brand.FooterUrl.Url = (!string.IsNullOrEmpty(dynamicshowallUrl)) ? dynamicshowallUrl : brand.FooterUrl.Url;
+                                        }
+                                        <a href="@brand.FooterUrl.Url" aria-label="brand logo">
+                                            <figure>
+                                                <img width="@(brand.BrandLogoWhite?.Width)" height="@(brand.BrandLogoWhite?.Height)" class="lazy-hidden" data-lazy-type="image" data-lazy-src="@brand.BrandLogoWhite.GetMediaUrlWithProtectHash()" alt="@(brand.BrandLogoWhite?.Alt)" />
+                                            </figure>
+                                        </a>
+                                    }
+                                    else
+                                    {
+                                        Sitecore.Data.Items.Item branditem = Sitecore.Context.Database.GetItem(brand.Id.ToString());
+                                        if (branditem != null)
+                                        {
+                                            string dynamicshowallUrl = SitecoreHelperExtension.GetDynamicRedirectSiteURL(branditem.ID.ToString());
+                                            brand.Url = (!string.IsNullOrEmpty(dynamicshowallUrl)) ? dynamicshowallUrl : brand.Url;
+                                        }
+                                        <a href="@brand.Url">
+                                            <figure>
+                                                <img  width="@(brand.BrandLogoWhite?.Width)" height="@(brand.BrandLogoWhite?.Height)" class="lazy-hidden" data-lazy-type="image" data-lazy-src="@brand.BrandLogoWhite.GetMediaUrlWithProtectHash()" alt="@(brand.BrandLogoWhite?.Alt)" />
+                                            </figure>
+                                        </a>
+                                    }
+                                </li>
+                            }
+                        </ul>
+                    }
+                </div>
+
+            }
+        }
+
+        @if (Model.FooterMessage != null)
+        {
+            <p class="RTE_text">@Model.FooterMessage.ToString()</p>
+        }
+
+        <div class="divider"></div>
+        @if (Model.DisplayCTAPortions)
+
+        {
+            <div class="singup_row">
+                <div class="row-flex">
+                    
+                    <div class="col-md-6">
+                        <div class="row-flex">
+                            @if (Model.InsidersLogoImage != null)
+                            {
+                                <div class="col-xs-6">
+                                    <span class="logo">
+                                        <img  width="@Model.InsidersLogoImage.Width" height="@Model.InsidersLogoImage.Height" class="lazy-hidden" data-lazy-type="image" data-lazy-src="@Model.InsidersLogoImage.GetMediaUrlWithProtectHash()" alt="@Model.InsidersLogoImage.Alt" />
+                                    </span>
+                                </div>
+                            }
+                            <div class="col-xs-6">
+                                <div class="item">
+                                    @if (!string.IsNullOrEmpty(Model.InsidersLogoDesc))
+                                    {
+                                        <div class="desc">@Html.Raw(Model.InsidersLogoDesc)</div>
+                                    }
+                                    @if (Model.InsidersCTALink != null)
+                                    {
+                                        <a class="signup" href="@Model.InsidersCTALink.Url" target="@Model.InsidersCTALink.Target">@Model.InsidersCTALink.Text</a>
+                                    }
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    @if (!(string.IsNullOrEmpty(Model.BDCtaDesc) && Model.BDCtaLink == null))
+                    {
+                        <div class="col-md-6">
+                            <div class="item">
+                                @if (!string.IsNullOrEmpty(Model.BDCtaDesc))
+                                {
+                                    <div class="desc">
+                                        @Html.Raw(Model.BDCtaDesc)
+                                    </div>
+                                }
+                                @if (Model.BDCtaLink != null)
+                                {
+                                    <a class="signup" href="@Model.BDCtaLink.Url" target="@Model.InsidersCTALink.Target">@Model.BDCtaLink.Text</a>
+                                }
+                            </div>
+                        </div>
+                    }
+
+                </div>
+            </div>
+            <div class="divider"></div>
+        }
+        <div class="smp_hotlines">
+            <div class="row-flex">
+                @if (!string.IsNullOrWhiteSpace(Model.PrimaryContactNumber) || !string.IsNullOrWhiteSpace(Model.SecondaryContactNumber) || !string.IsNullOrWhiteSpace(Model.TertiaryContactNumber))
+                {
+                    <div class="col-sm-4">
+                        <div class="smp_hotline_links">
+
+                            <h4 class="title">@Dictionary.GetValue(DictionaryKeys.TollFreeLabel)</h4>
+                            <ul>
+                                @if (!string.IsNullOrWhiteSpace(Model.PrimaryContactNumber))
+                                {
+                                    <li>
+                                        <span>@(Model.PrimaryContactCountry == null ? string.Empty : Model.PrimaryContactCountry.Title + ":") </span><a href="tel:@Model.PrimaryContactNumber"><span>@Glass.Editable(Model, model => model.PrimaryContactNumber)</span></a>
+                                    </li>
+                                }
+                                @if (!string.IsNullOrWhiteSpace(Model.SecondaryContactNumber))
+                                {
+                                    <li>
+                                        <span>@(Model.SecondaryContactCountry == null ? string.Empty : Model.SecondaryContactCountry.Title + ":")</span>  <a href="tel:@Model.SecondaryContactNumber"><span>@Glass.Editable(Model, model => model.SecondaryContactNumber)</span></a>
+                                    </li>
+                                }
+                                @if (!string.IsNullOrWhiteSpace(Model.TertiaryContactNumber))
+                                {
+                                    <li>
+                                        <span>@(Model.TertiaryContactCountry == null ? string.Empty : Model.TertiaryContactCountry.Title + ":")</span>  <a href="tel:@Model.TertiaryContactNumber"><span>@Glass.Editable(Model, model => model.TertiaryContactNumber)</span></a>
+                                    </li>
+                                }
+                            </ul>
+                        </div>
+                    </div>
+                }
+
+                @if (!string.IsNullOrWhiteSpace(Model.HotelsReservations) || !string.IsNullOrWhiteSpace(Model.ServicedResidencesReservations))
+                {
+                    <div class="col-sm-4">
+                        <div class="smp_hotline_links">
+
+                            <h4 class="title">@Sitecore.Globalization.Translate.Text(DictionaryKeys.CentralReservationsLabel)</h4>
+                            <ul>
+                                @if (!string.IsNullOrWhiteSpace(Model.HotelsReservations))
+                                {
+                                    <li>
+                                        <span>@Sitecore.Globalization.Translate.Text(DictionaryKeys.HotelsReservationLabel)</span>
+                                        <a href="tel:@Glass.Editable(Model,model=>model.HotelsReservations)" id="tag-reservations-hotels">
+                                            <span> @Model.HotelsReservations</span>
+                                        </a>
+                                    </li>
+                                }
+
+                                @if (!string.IsNullOrWhiteSpace(Model.ServicedResidencesReservations))
+                                {
+                                    <li>
+                                        <span>@Sitecore.Globalization.Translate.Text(DictionaryKeys.ServicedResidencesReservationLabel)</span>
+                                        <a href="tel:@Glass.Editable(Model,model=>model.ServicedResidencesReservations)" id="tag-reservations-service-residences">
+                                            <span> @Model.ServicedResidencesReservations</span>
+                                        </a>
+                                    </li>
+                                }
+                            </ul>
+                        </div>
+                    </div>
+                }
+
+                @if ((Model.HotelEmail != null && !string.IsNullOrWhiteSpace(Model.HotelEmail.Url) && !string.IsNullOrWhiteSpace(Model.HotelEmail.Text)) || (Model.ServicedResidenceEmail != null && !string.IsNullOrWhiteSpace(Model.ServicedResidenceEmail.Url) && !string.IsNullOrWhiteSpace(Model.ServicedResidenceEmail.Text)))
+                {
+                    <div class="col-sm-4">
+                        <div class="smp_hotline_links">
+
+                            <h4 class="title">@Sitecore.Globalization.Translate.Text(DictionaryKeys.SendEmailLabel)</h4>
+                            <ul>
+                                @if (Model.HotelEmail != null && !string.IsNullOrWhiteSpace(Model.HotelEmail.Url) && !string.IsNullOrWhiteSpace(Model.HotelEmail.Text))
+                                {
+                                    <li>
+                                        <span>@Sitecore.Globalization.Translate.Text(DictionaryKeys.HotelsEmailLabel)</span>
+                                        @StayFarEast.RenderLink(Model, model => model.HotelEmail, isEditable: true)
+                                    </li>
+                                }
+
+                                @if (Model.ServicedResidenceEmail != null && !string.IsNullOrWhiteSpace(Model.ServicedResidenceEmail.Url) && !string.IsNullOrWhiteSpace(Model.ServicedResidenceEmail.Text))
+                                {
+                                    <li>
+                                        <span>@Sitecore.Globalization.Translate.Text(DictionaryKeys.ServicedResidencesEmailLabel)</span>
+                                        @StayFarEast.RenderLink(Model, model => model.ServicedResidenceEmail, isEditable: true)
+                                    </li>
+                                }
+                            </ul>
+                        </div>
+                    </div>
+                }
+            </div>
+        </div>
+        <div class="smp_ftr_links">
+            @if (Model.PrimaryLinks != null && Model.PrimaryLinks.Any())
+            {
+                <ul>
+                    @foreach (var link in Model.PrimaryLinks)
+                    {
+                        string dynamicshowallUrl = SitecoreHelperExtension.GetDynamicRedirectSiteURL(link.Id.ToString());
+                        link.Url = (!string.IsNullOrEmpty(dynamicshowallUrl)) ? dynamicshowallUrl : link.Url;
+                        <li><a href="@link.Url" title="@link.LinkTitle">@link.Title</a></li>
+                    }
+                </ul>
+            }
+        </div>
+        <div class="smp_ftr_media">
+            <ul>
+                @if (Model.FacebookLink != null)
+                {
+                    <li>
+                        <a class="facebook-app-embed-link" itemprop="sameAs" href="@Model.FacebookLink.Url" data-href-desktop="@Model.FacebookLink.Url" data-href-mobile="@(SitecoreHelperExtension.GetFacebookAppURL(Model.FacebookLink.Url))" target="@Model.FacebookLink.Target">
+                            <img width="@Model.FacebookIcon.Width" height="@Model.FacebookIcon.Height" class="lazy-hidden" data-lazy-type="image" data-lazy-src="@Model.FacebookIcon.GetMediaUrlWithProtectHash()" alt="@Model.FacebookIcon.Alt" />
+                        </a>
+                    </li>
+                }
+                @if (Model.TwitterLink != null)
+                {
+                    <li>
+                        <a itemprop="sameAs" href="@Model.TwitterLink.Url" target="@Model.TwitterLink.Target">
+                            <img width="@Model.TwitterIcon.Width" height="@Model.TwitterIcon.Height" class="lazy-hidden" data-lazy-type="image" data-lazy-src="@Model.TwitterIcon.GetMediaUrlWithProtectHash()" alt="@Model.TwitterIcon.Alt" />
+                        </a>
+                    </li>
+                }
+
+                @if (Model.YoutubeLink != null)
+                {
+                    <li>
+                        <a itemprop="sameAs" href="@Model.YoutubeLink.Url" target="@Model.YoutubeLink.Target">
+                            <img width="@Model.YoutubeIcon.Width" height="@Model.YoutubeIcon.Height" class="lazy-hidden" data-lazy-type="image" data-lazy-src="@Model.YoutubeIcon.GetMediaUrlWithProtectHash()" alt="@Model.YoutubeIcon.Alt" />
+                        </a>
+                    </li>
+                }
+            </ul>
+        </div> *@
+        <div class="smp_copyright">@Model.Copyright</div>
+    </div>
+</div>

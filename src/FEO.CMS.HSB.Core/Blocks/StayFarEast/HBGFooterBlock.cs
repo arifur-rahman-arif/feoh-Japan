@@ -2,12 +2,13 @@ using EPiServer.Core;
 using EPiServer.DataAnnotations;
 using EPiServer.SpecializedProperties;
 using EPiServer.Web;
+using FEO.CMS.HBG.Core.Blocks.Bases;
 using System.ComponentModel.DataAnnotations;
 
 namespace FEO.CMS.HBG.Core.Blocks.StayFarEast
 {
     [ContentType(DisplayName = "HBGFooterBlock", GUID = "A292B32D-4FE1-4D43-A52E-9D9670AEC56C", GroupName = "Hospitality")]
-    public class HBGFooterBlock : HBGBaseBlock
+    public class HBGFooterBlock : HBGFooterDataBlock
     {
         [Display(Name = "Our Brands", GroupName = "Menu", Order = 50)]
         [CultureSpecific]
