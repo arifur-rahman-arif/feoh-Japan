@@ -1,0 +1,140 @@
+﻿@model HBGNewsletterSubscriptionBlock
+
+@{
+    var parameters = !string.IsNullOrWhiteSpace(Model.FormParameters) ?
+    RazorUtil.ParseQueryString(Model.FormParameters) : default(Dictionary<string, string>);
+
+    var scheme = HttpContextAccessor.HttpContext?.Request.Scheme;
+    var host = HttpContextAccessor.HttpContext?.Request.Host.Host;
+}
+
+<!-- NEWSLETTER MODAL -->
+<div class="modal fade newsletter subscription" id="newsletter" role="dialog" aria-labelledby="newsletter" aria-hidden="true">
+    <div class="modal-dialog">
+        <div class="modal-content">
+            <div class="newsletter-bg">
+                @Html.PropertyFor(x => x.Background, new { @class = Model.BackgroundForMobile == null ? string.Empty : "hidden-xs" })
+                @if (Model.BackgroundForMobile != null)
+                {
+                    @Html.PropertyFor(x => x.BackgroundForMobile, new { @class = "visible-xs" })
+                }
+            </div>
+
+            <div class="modal-header">
+                <button type="button" class="close" data-dismiss="modal" aria-hidden="true">
+                    <a href="#">
+                        <div class="burger-bar open">
+                            <span></span>
+                            <span></span>
+                            <span></span>
+                            <span></span>
+                        </div>
+                    </a>
+                </button>
+            </div>
+
+            @if (Model.ReturnURL != null)
+            {
+                <input id="returnUrl" type="hidden" value="@(string.Format("{0}{1}{2}{3}", scheme, Uri.SchemeDelimiter, host, Model.FormURL?.Href))" />
+            }
+
+            <div class="modal-body">
+                <h2 class="text-center">
+                    @Html.PropertyFor(x => x.HighlightText)
+                </h2>
+                <p class="text-center color-white">
+                    @Html.PropertyFor(x => x.Summary)
+                </p>
+                <form id="popup-form" class="" target="_blank" action="@(Model.FormURL != null ? @Model.FormURL: "/") @* @(Model.FormUrl != null ? Model.FormUrl.Url : " /") *@ " method="post">
+                    @if (parameters != null && parameters.Any())
+                    {
+                        foreach (var pair in parameters)
+                        {
+                            <input type="hidden" name="@pair.Key" value="@pair.Value" />
+                        }
+                    }
+                    <input id="elQsubURL_popup" type="hidden" name="subURL" />
+
+                    <div class="input-group input-group-lg">
+                        <input id="emailAddress_popup" type="email" class="form-control required" name="emailAddress" required pattern="@(@"^[A-Za-z0-9._%+-]+@[A-Za-z0-9.-]+\.[A-Za-z]{2,17}$")" placeholder="@DictionaryHelper.DictionaryEntry(DictionaryKeys.EmailInputPlaceholder)" aria-describedby="sizing-addon1">
+                        <span class="input-group-btn">
+                            <button id="newsletter-popup-btn" class="btn btn-default" type="submit"><span id="newsletter-btn" class="glyphicon glyphicon-envelope"></span></button>
+                        </span>
+                    </div><!-- /input-group -->
+                </form>
+            </div>
+        </div>
+    </div>
+</div>
+
+<script>
+    $(function () {
+
+        function updatePopupEmailValue(emailAddress) {
+            var returnUrl = $('#returnUrl_popup').val();
+            $('#elQsubURL_popup').val(returnUrl + "?email=" + emailAddress);
+            $.cookie('newsletter-subscriber', emailAddress);
+        }
+
+        $('#newsletter').on('initNewsletter', function () {
+
+            H5F.setup(document.getElementById('popup-form'));
+
+            var isInvalid = false;
+            var popupTimeout;
+            $('#popup-form').validator({
+                delay: 0,
+                focus: false
+            }).on('invalid.bs.validator', function (e) {
+                clearTimeout(popupTimeout);
+                $('#emailAddress_popup').popover('show');
+            }).on('valid.bs.validator', function (e) {
+                clearTimeout(popupTimeout);
+                $('#emailAddress_popup').popover('hide');
+                this.submit();
+            }).on('validated.bs.validator', function (e) {
+                if (isInvalid) {
+                    isInvalid = false;
+                    return;
+                }
+                var emailField = $('#emailAddress_popup');
+                var pattern = emailField.attr('pattern');
+                var value = emailField.val();
+                var regex = new RegExp(pattern);
+                if (!regex.test(value)) {
+                    clearTimeout(popupTimeout);
+                    $('#emailAddress_popup').popover('show');
+                }
+            }).off('input.bs.validator change.bs.validator focusout.bs.validator');
+
+            $('#emailAddress_popup').on('blur', function () {
+                var emailAddress = $(this).val();
+                updatePopupEmailValue(emailAddress);
+            }).on('keypress', function (e) {
+                if (e.which === 13) {
+                    var self = $(this);
+                    var emailAddress = self.val();
+                    updatePopupEmailValue(emailAddress);
+
+                    var form = e.target.form;
+                    $(form).validator('validate');
+                }
+            }).popover({
+                title: 'Error',
+                content: 'Please enter a valid email address.',
+                delay: {
+                    show: 500,
+                    hide: 100
+                },
+                placement: 'bottom',
+                trigger: 'manual'
+            }).on('shown.bs.popover', function (e) {
+                popupTimeout = setTimeout(function () {
+                    $(e.target).popover('hide');
+                    clearTimeout(popupTimeout);
+                }, 3000);
+            });
+        });
+
+    });
+</script>

@@ -1,0 +1,7 @@
+﻿@model HBGMemberRelatedTextBlock
+
+@if (Model != null && Model.ShowMemberMessage && Model.MemberMessage != null)
+{
+    var message = ContentLoader.Get<HBGMemberMessageBlock>(Model.MemberMessage);
+    <div class="content-member-message">@Html.PropertyFor(x => message.MemberMessageDescription)</div>
+}

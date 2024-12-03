@@ -1,0 +1,17 @@
+﻿@model HBGHotelBrandPage
+@{
+    var currentPage = ContentLoader.Get<HBGHotelBrandPage>((Model as IContent).ParentLink);
+}
+
+<div class="about-hotel section container">
+    <div class="about-hotel-content brand-content">
+        <div class="row">
+            <div class="col-sm-4 text-center">
+                @Html.PropertyFor(x => currentPage.LogoImage)
+            </div>
+            <div class="col-sm-8">
+                @Html.PropertyFor(x => currentPage.MainContent)
+            </div>
+        </div>
+    </div>
+</div>
