@@ -1,0 +1,72 @@
+﻿@using EPiServer.Framework.Web.Resources
+@model HBGDestinationsBlock;
+
+@{
+    var currentItem = ContentLoader.Get<HBGStayFarEastMapComponentBlock>(Model.Datasource);
+    var seeAllPropertyUrl = Url.ContentUrl(currentItem?.SeeAllProperty?.Href);
+    var propertyText = string.Empty;//Sitecore.Globalization.Translate.Text(DictionaryKeys.PropertyText);
+    var propertiesText = string.Empty;//Sitecore.Globalization.Translate.Text(DictionaryKeys.PropertiesText);
+    EPiServer.Framework.Web.Resources.ClientResources.RequireScript("/assets/scripts/special/destination.js").AtFooter();
+}
+
+@if (currentItem != null)
+{
+    <div class="destination-container">
+        <div class="section container destination-container-wrap">
+            <h3 class="header text-center">@currentItem?.Title</h3>
+            <p class="text-center">@currentItem?.SubTitle</p>
+        </div>
+    </div>
+
+    <div class="wrap-maps-multi-location lazy-load-maps">
+        <div class="destination-container">
+
+            <div class="container">
+                <input type="button" id="reset-state" value="reset" />
+            </div>
+            <div id="destinationMap"><img class="img-bg lazy-hidden" data-lazy-type="image" data-lazy-src="/assets/content/images/hotel/icon-maps.png" alt="maps" /></div>
+            <div class="container">
+                <div class="country-name"></div>
+                <div class="seeall-properties"><a target="_blank" href="@seeAllPropertyUrl">@currentItem?.SeeAllProperty.Text</a></div>
+                <div class="owl-carousel destination-carousel">
+                    @* @foreach (var item in Model.StayFarEastCitiesWithPropertyInfo)
+                    {
+                        <div class="destination-wrap" data-CountryScId="@item.CountryScId">
+                            <a target="_blank" href="@seeAllPropertyUrl?country=@item.CountryName&city=@item.CityName">
+
+                                <img width="177" height="177" class="lazy-hidden img-lazy-block" data-lazy-type="image" data-lazy-src="@item.ThumbnailSrc" alt="" />
+                                <div class="destination-content-wrap">
+                                    <div class="destination-content">
+                                        <div class="location">@item.CityName</div>
+                                        <div class="property-count">@string.Format("{0} {1}", item.NoOfPropertiesInCity, item.NoOfPropertiesInCity == 1 ? propertyText : propertiesText)</div>
+                                    </div>
+                                </div>
+                            </a>
+                            <p>@item.Description</p>
+                        </div>
+                    } *@
+                </div>
+            </div>
+        </div>
+    </div>
+    @*  @Html.Raw(JsonConvert.SerializeObject(currentItem, Formatting.Indented)); *@
+    @* @Html.Raw(JsonConvert.SerializeObject(Model.StayFarEastCitiesWithPropertyInfo, Formatting.Indented)); *@
+    <script>
+        var REGCONFIG = window.REGCONFIG || {};
+       @*  REGCONFIG.countries = '@string.Empty';
+        REGCONFIG.cities = '@string.Empty'; *@ 
+        REGCONFIG.seeAllPropertyUrl = '@seeAllPropertyUrl';
+        REGCONFIG.lat = @currentItem?.Latitude;
+        REGCONFIG.long = @currentItem?.Longitude;
+        REGCONFIG.desktopZoomLevel = '@currentItem?.DesktopZoomLevel';
+        REGCONFIG.tabletZoomLevel = '@currentItem?.TabletZoomLevel';
+        REGCONFIG.mobileZoomLevel = '@currentItem?.MobileZoomLevel';
+        REGCONFIG.apiKey = '@currentItem?.ApiKey';
+        REGCONFIG.propertyText = '@propertyText';
+        REGCONFIG.propertiesText = '@propertiesText';
+        REGCONFIG.cityText = '@string.Empty';@* @Sitecore.Globalization.Translate.Text(DictionaryKeys.CityText)'; *@
+        REGCONFIG.citiesText = '@string.Empty';@*  @Sitecore.Globalization.Translate.Text(DictionaryKeys.CitiesText)'; *@
+        REGCONFIG.cityIconSrc = '@currentItem?.CityIcon';
+        REGCONFIG.dragMessageIconSrc = '@currentItem?.DragMessageIcon'
+    </script>
+}

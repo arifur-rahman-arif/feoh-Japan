@@ -1,0 +1,117 @@
+﻿@* 
+
+@{
+    var config = GetConfig<PreviewConfig>();
+}
+
+@if (Model.Previews.IsNotNullAndAny() || Model.Deals.IsNotNullAndAny())
+{
+    <div class="deal">
+        <div class="deal-container">
+            <div class="three-deal">
+                <div class="row">
+
+                    @if (Model.Previews.IsNotNullAndAny())
+                    {
+                        foreach (var preview in Model.Previews.Take(3))
+                        {
+                            <div class="col-sm-4">
+                                <div class="deal-image image-with-txt">
+                                    @{
+                                        string previewURl = SitecoreHelperExtension.GetDynamicRedirectSiteURLByURL(preview.GetUrl().ToString());
+                                    }
+                                    <a href="@((!string.IsNullOrEmpty(previewURl)) ? previewURl : preview.GetUrl() ?? "#")">
+                                        <img width="360" height="360" class="lazy-hidden img-lazy-block" data-lazy-type="image" data-lazy-src="@preview.SmallThumbnail.GetMediaUrlWithProtectHash()" alt="@(preview.SmallThumbnail?.Alt)" />
+
+                                        <div class="caption">
+                                            <div class="content-v-align">
+                                                <h4>@Glass.Editable(preview, model => model.Title)</h4>
+                                                <p class="text-uppercase">@preview.GetCaption()</p>
+                                            </div>
+                                        </div>
+                                    </a>
+                                </div>
+                                <div class="description">
+                                    <h4 class="text-center">@preview.GetUnderlinedText()</h4>
+                                    <div class="line-divider @(config.DividerColor != null ? config.DividerColor.Value : string.Empty)"></div>
+                                    <p>@Glass.Editable(preview, model => model.Summary)</p>
+                                    @if (config.ShowLearnMore)
+                                    {
+                                        <a href="@((!string.IsNullOrEmpty(previewURl)) ? previewURl : preview.GetUrl() ?? "#")" class="btn-txt @(config.LearnMoreTextColor != null ? config.LearnMoreTextColor.Value : string.Empty)">@Dictionary.GetValue(DictionaryKeys.LearnMoreText)</a>
+                                    }
+                                </div>
+                            </div>
+                        }
+                    }
+                    else if (Model.Deals.IsNotNullAndAny())
+                    {
+                        foreach (var deal in Model.Deals.Take(3))
+                        {
+                            <div class="col-sm-4">
+                                <div class="deal-image image-with-txt">
+                                    @{
+                                        string previewURl = SitecoreHelperExtension.GetDynamicRedirectSiteURLByURL(deal.GetUrl().ToString());
+                                    }
+                                    <a href="@((!string.IsNullOrEmpty(previewURl)) ? previewURl : deal.GetUrl() ?? "#")">
+                                        @StayFarEast.RenderImage(deal, model => model.SmallThumbnail, isEditable: true)
+                                        <div class="caption">
+                                            <div class="content-v-align">
+                                                <h4>@Glass.Editable(deal, model => model.Title)</h4>
+                                                <p class="text-uppercase">@deal.GetCaption()</p>
+                                            </div>
+                                        </div>
+                                    </a>
+                                </div>
+                                <div class="description">
+                                    @if (deal.GetParticipantCount() > 1)
+                                    {
+                                        <h4 class="text-center">@Dictionary.GetValue(DictionaryKeys.SelectedHotelsLabel)</h4>
+                                    }
+                                    else if (deal.GetOnlyParticipant() != null)
+                                    {
+                                        <h4 class="text-center">@deal.GetOnlyParticipant().Title</h4>
+                                    }
+                                    else
+                                    {
+                                        <h4 class="text-center">@Dictionary.GetValue(DictionaryKeys.NoHotelsLabel)</h4>
+                                    }
+
+                                    <div class="line-divider @(config.DividerColor != null ? config.DividerColor.Value : string.Empty)"></div>
+                                    <p>@Glass.Editable(deal, model => model.Summary)</p>
+                                    @if (config.ShowLearnMore)
+                                    {
+                                        <a href="@((!string.IsNullOrEmpty(previewURl)) ? previewURl : deal.GetUrl() ?? "#")" class="btn-txt @(config.LearnMoreTextColor != null ? config.LearnMoreTextColor.Value : string.Empty)">@Dictionary.GetValue(DictionaryKeys.LearnMoreText)</a>
+                                    }
+                                </div>
+                            </div>
+                        }
+                    }
+                </div>
+            </div>
+        </div>
+    </div>
+
+    if (config.ShowActionButton)
+    {
+        <div class="button-wrapper btn-separator darker">
+            <div class="row">
+                <div class="col-xs-12 text-center">
+
+                    @if (!string.IsNullOrWhiteSpace(config.ActionButtonText) && Model.ShowAllButtonLink != null)
+                    {
+                        string dynamicshowallUrl = SitecoreHelperExtension.GetDynamicRedirectSiteURL(Model.ShowAllButtonLink.TargetId.ToString());
+                        Model.ShowAllButtonLink.Url = (!string.IsNullOrEmpty(dynamicshowallUrl)) ? dynamicshowallUrl : Model.ShowAllButtonLink.Url;
+                        Model.ShowAllButtonLink.Text = config.ActionButtonText;
+                    }
+
+                    @StayFarEast.RenderLink(Model, model => model.ShowAllButtonLink, new { @class = "new-button", @role = "button" }, true)
+
+                </div>
+            </div>
+        </div>
+    }
+}
+else
+{
+    <div class="deal no-deal"></div>
+} *@

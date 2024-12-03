@@ -1,3 +1,6 @@
 ﻿@using EPiServer.Framework.Web.Resources
-@ClientResources.RequireStyle("/assets/content/feh-sentosaprecint-main-style.css"))
-@ClientResources.RequireScript("/assets/scripts/feh-sentosaprecint-main-style.js"))
+
+@{
+    ClientResources.RequireStyle("/assets/content/feh-sentosaprecint-main-style.css").AtHeader();
+    ClientResources.RequireScript("/assets/scripts/feh-sentosaprecint-main-style.js").AtFooter();
+}
