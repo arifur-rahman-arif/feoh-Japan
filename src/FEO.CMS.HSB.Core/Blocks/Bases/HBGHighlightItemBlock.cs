@@ -6,7 +6,7 @@ using System.ComponentModel.DataAnnotations;
 namespace FEO.CMS.HBG.Core.Blocks.Bases
 {
     [ContentType(DisplayName = "HBGHighlightItemBlock", GUID = "8191BCDF-D7B4-4E3B-8FE3-F39B43F57048", GroupName = "Hospitality")]
-    public class HBGHighlightItemBlock : HBGRootBlock
+    public class HBGHighlightItemBlock : HBGBaseBlock
     {
         [Display(Name = "Large Image", GroupName = "Images", Order = 100)]
         [CultureSpecific]

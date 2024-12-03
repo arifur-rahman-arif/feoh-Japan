@@ -6,7 +6,7 @@ using System.ComponentModel.DataAnnotations;
 namespace FEO.CMS.HBG.Core.Blocks.Bases
 {
     [ContentType(DisplayName = "HBGStyleConfigBlock", GroupName = "Hospitality")]
-    public class HBgStyleConfigBlock : HBGBaseBlock
+    public class HBGStyleConfigBlock : HBGRootBlock
     {
         [Display(Name = "Style Names", GroupName = SystemTabNames.Content, Order = 100)]
         [CultureSpecific]

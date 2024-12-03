@@ -7,8 +7,8 @@ using System.ComponentModel.DataAnnotations;
 
 namespace FEO.CMS.HBG.Core.Blocks.Village
 {
-    [ContentType(DisplayName = "HBGBannerBlock", GUID = "04B40A42-647B-4132-9F37-4F3BED06E740", GroupName = "Hospitality")]
-    public class HBGBannerBlock : HBGBackgroundVideoBlock
+    [ContentType(DisplayName = "Village HBGBannerBlock", GUID = "04B40A42-647B-4132-9F37-4F3BED06E740", GroupName = "Hospitality")]
+    public class VillageHBGBannerBlock : HBGBackgroundVideoBlock
     {
         [Display(Name = "Description", GroupName = "Basic Info", Order = 100)]
         [CultureSpecific]

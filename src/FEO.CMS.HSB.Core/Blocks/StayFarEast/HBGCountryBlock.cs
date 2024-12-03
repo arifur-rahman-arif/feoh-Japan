@@ -1,10 +1,11 @@
 using EPiServer.DataAnnotations;
+using FEO.CMS.HBG.Core.Blocks.Bases;
 using System.ComponentModel.DataAnnotations;
 
 namespace FEO.CMS.HBG.Core.Blocks.StayFarEast
 {
     [ContentType(DisplayName = "HBGCountryBlock", GUID = "8123A58D-0216-4979-B8A5-EC2FCC554151", GroupName = "Hospitality")]
-    public class HBGCountryBlock : HBGBaseBlock
+    public class HBGCountryBlock : HBGRootBlock
     {
         [Display(Name = "ISO Code", GroupName = "Profile", Order = 100)]
         [CultureSpecific]

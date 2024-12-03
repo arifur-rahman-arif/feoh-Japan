@@ -1,0 +1,24 @@
+﻿@model HBGScrollContainerBlock
+
+@if (Model != null)
+{
+    <div class="pin-bottom-duration">
+        @if (Model.HasScrollSettings())
+        {
+            <div class="text-center pin-bottom hidden-xs">
+                @if (Model.UseAsModalButton)
+                {
+                    <a class="btn btn-primary btn-lg text-center scrollto" data-toggle="modal" data-target="#@(string.IsNullOrWhiteSpace(Model.ScrollTo) ? string.Empty : Model.ScrollTo)" role="button">@Model.ScrollMessage <span class="glyphicon glyphicon-menu-right"></span></a>
+                }
+                else
+                {
+                    <a class="btn btn-primary btn-lg text-center scrollto" href="#@(string.IsNullOrWhiteSpace(Model.ScrollTo) ? string.Empty : Model.ScrollTo)" role="button">@Model.ScrollMessage <span class="glyphicon glyphicon-menu-down"></span></a>
+                }
+
+            </div>
+        }
+        @Html.PropertyFor(x => x.Scroll)
+    </div>
+
+    <script type="text/javascript" src="~/assets/hospitality/scripts/special/pin-bottom.js"></script>
+}

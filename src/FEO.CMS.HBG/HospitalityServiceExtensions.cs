@@ -2,13 +2,12 @@
 using EPiServer.Cms.TinyMce.Core;
 using EPiServer.Forms.Internal.Security;
 using EPiServer.ServiceLocation;
-using FEO.CMS.HBG;
 using FEO.CMS.HBG.Business;
 using FEO.CMS.HBG.Business.Dictionary;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Mvc.Razor;
 
-namespace FEO.CMS.HSB
+namespace FEO.CMS.HBG
 {
     public static class HospitalityServiceExtensions
     {
@@ -44,7 +43,7 @@ namespace FEO.CMS.HSB
             });
 
             services.AddTransient<IAntiForgeryService, AntiForgeryService>();
-
+            services.AddSingleton<IDictionaryRepository, DictionaryRepository>();
             return services;
         }
     }

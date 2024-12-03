@@ -46,6 +46,11 @@ namespace FEO.CMS.HBG.Core.Blocks.StayFarEast
         [Display(Name = "Increase Text Size", GroupName = "Settings", Order = 1000)]
         [CultureSpecific]
         public virtual bool IncreaseTextSize { get; set; }
+        public bool HasScrollSettings()
+        {
+            return !string.IsNullOrWhiteSpace(ScrollTo) |
+                !string.IsNullOrWhiteSpace(ScrollMessage);
+        }
 
     }
 }
