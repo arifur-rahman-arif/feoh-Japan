@@ -1,11 +1,10 @@
 using EPiServer.DataAnnotations;
-using FEO.CMS.HBG.Core.Blocks.Bases;
 using System.ComponentModel.DataAnnotations;
 
 namespace FEO.CMS.HBG.Core.Blocks.StayFarEast
 {
     [ContentType(DisplayName = "HBGHighlightContainerConfigBlock", GUID = "5895B15A-5B74-4365-98B3-643A3029E28B", GroupName = "Hospitality")]
-    public class HBGHighlightContainerConfigBlock : HBGStyleConfigBlock
+    public class HBGHighlightContainerConfigBlock : StayFarEastHBGStyleConfigBlock
     {
         [Display(Name = "Can Be Hidden", GroupName = "Settings", Order = 100)]
         [CultureSpecific]
