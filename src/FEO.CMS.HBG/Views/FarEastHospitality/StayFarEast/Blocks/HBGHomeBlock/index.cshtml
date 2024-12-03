@@ -5,13 +5,14 @@
 @model HBGHomeBlock;
 @{
     var currentPage = BlockHelper.GetCurrentPage<HBGHomePage>();
-    var rootPageReference = ContentReference.RootPage;
-    var site = ContentRepository.Get<HBGSite>(rootPageReference);
+    var rootPageReference = ContentReference.StartPage;
+    var sitePageReference = ContentRepository.Get<PageData>(rootPageReference).ParentLink;
+    var site = ContentRepository.Get<HBGSite>(sitePageReference);
     // Define a default position
     var position = GenericConstants.Middle;
 
-    var homeBannerConfig = ContentLoader.Get<HBGHomeBannerConfigBlock>(site.WebsiteConfig);
-    var bannerConfig = ContentLoader.Get<HBGBannerDownwardArrowConfigBlock>(site.WebsiteConfig);
+    var homeBannerConfig = site.WebsiteConfig != null ? ContentLoader.Get<HBGHomeBannerConfigBlock>(site.WebsiteConfig) : null;
+    var bannerConfig = site.WebsiteConfig != null ? ContentLoader.Get<HBGBannerDownwardArrowConfigBlock>(site.WebsiteConfig) : null;
     // Check if the PositionBookingWidget ContentReference is set
     if (homeBannerConfig?.PositionBookingWidget != null && !ContentReference.IsNullOrEmpty(homeBannerConfig.PositionBookingWidget))
     {
