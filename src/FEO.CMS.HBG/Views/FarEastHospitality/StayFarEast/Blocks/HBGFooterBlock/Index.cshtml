@@ -1,12 +1,10 @@
 ﻿@model HBGFooterBlock
+@using FEO.CMS.HBG.Helper
 @* <!-- 
 @using StayFarEast.Web.Bootstrapper.Utils
 @using StayFarEast.Web.Helpers
 @using StayFarEast.ContentManagement.Constants --> *@
 
-@{
-    var image = ContentLoader.Get<ImageFile>(Model.FEHLogoImage);
-}
 <div class="smp_new_footer">
     <div class="smp_footer_container">        
         @if (Model.FEHLogoImage != null)
@@ -20,21 +18,20 @@
             </div>
             <div class="divider"></div>
         }
-
-
-        @* @if (Model.BrandGroups != null && Model.BrandGroups.Any())
+        @*@if (Model.BrandGroups != null && Model.BrandGroups.Any())
         {
-            foreach (var brandGroup in Model.BrandGroups)
+            var brandGroups = ContentLoader.GetChildren<HBGBrandGroupsPage>(Model.BrandGroups);
+
+            foreach (var brandGroup in brandGroups)
             {
                 <div class="brand_row">
-                    <h3 class="brand_title">@Glass.Editable(brandGroup, x => x.Heading)</h3>
+                    <h3 class="brand_title">@Html.PropertyFor( x => x.Heading)</h3>
                     @if (brandGroup.Brands != null && brandGroup.Brands.Any())
                     {
                         <ul class="brand_content">
                             @foreach (var brand in brandGroup.Brands)
                             {
                                 <li class="brand_logos">
-
                                     @if (brand.FooterUrl != null)
                                     {
                                         Sitecore.Data.Items.Item branditem = Sitecore.Context.Database.GetItem(brand.FooterUrl.TargetId.ToString());
@@ -68,18 +65,14 @@
                         </ul>
                     }
                 </div>
-
             }
-        }
-
+        }*@
         @if (Model.FooterMessage != null)
         {
-            <p class="RTE_text">@Model.FooterMessage.ToString()</p>
+            <p class="RTE_text">@Html.Raw(Model.FooterMessage)</p>
         }
-
         <div class="divider"></div>
         @if (Model.DisplayCTAPortions)
-
         {
             <div class="singup_row">
                 <div class="row-flex">
@@ -90,42 +83,41 @@
                             {
                                 <div class="col-xs-6">
                                     <span class="logo">
-                                        <img  width="@Model.InsidersLogoImage.Width" height="@Model.InsidersLogoImage.Height" class="lazy-hidden" data-lazy-type="image" data-lazy-src="@Model.InsidersLogoImage.GetMediaUrlWithProtectHash()" alt="@Model.InsidersLogoImage.Alt" />
+                                        <img  width="@* To do *@" height="@* To do *@" class="lazy-hidden" data-lazy-type="image" data-lazy-src="@Url.ContentUrl(Model.InsidersLogoImage)" alt="@* To do *@" />
                                     </span>
                                 </div>
                             }
                             <div class="col-xs-6">
                                 <div class="item">
-                                    @if (!string.IsNullOrEmpty(Model.InsidersLogoDesc))
+                                    @if (Model.InsidersLogoDesc != null)
                                     {
                                         <div class="desc">@Html.Raw(Model.InsidersLogoDesc)</div>
                                     }
                                     @if (Model.InsidersCTALink != null)
                                     {
-                                        <a class="signup" href="@Model.InsidersCTALink.Url" target="@Model.InsidersCTALink.Target">@Model.InsidersCTALink.Text</a>
+                                        <a class="signup" href="@Model.InsidersCTALink.Href" target="@Model.InsidersCTALink.Target">@Model.InsidersCTALink.Text</a>
                                     }
                                 </div>
                             </div>
                         </div>
                     </div>
-                    @if (!(string.IsNullOrEmpty(Model.BDCtaDesc) && Model.BDCtaLink == null))
+                    @if (!(string.IsNullOrEmpty(Model.BDDesc.ToString()) && Model.BDCTALink == null))
                     {
                         <div class="col-md-6">
                             <div class="item">
-                                @if (!string.IsNullOrEmpty(Model.BDCtaDesc))
+                                @if (!string.IsNullOrEmpty(Model.BDDesc.ToString()))
                                 {
                                     <div class="desc">
-                                        @Html.Raw(Model.BDCtaDesc)
+                                        @Html.Raw(Model.BDDesc)
                                     </div>
                                 }
-                                @if (Model.BDCtaLink != null)
+                                @if (Model.BDCTALink != null)
                                 {
-                                    <a class="signup" href="@Model.BDCtaLink.Url" target="@Model.InsidersCTALink.Target">@Model.BDCtaLink.Text</a>
+                                    <a class="signup" href="@Model.BDCTALink.Href" target="@Model.InsidersCTALink.Target">@Model.BDCTALink.Text</a>
                                 }
                             </div>
                         </div>
                     }
-
                 </div>
             </div>
             <div class="divider"></div>
@@ -136,54 +128,59 @@
                 {
                     <div class="col-sm-4">
                         <div class="smp_hotline_links">
-
-                            <h4 class="title">@Dictionary.GetValue(DictionaryKeys.TollFreeLabel)</h4>
+                            <h4 class="title">@* @DictionaryHelper.DictionaryEntry(DictionaryKeys.TollFreeLabel) *@</h4>
                             <ul>
                                 @if (!string.IsNullOrWhiteSpace(Model.PrimaryContactNumber))
                                 {
+                                    var country = ContentLoader.Get<HBGCountryBlock>(Model.PrimaryContactCountry);
+
                                     <li>
-                                        <span>@(Model.PrimaryContactCountry == null ? string.Empty : Model.PrimaryContactCountry.Title + ":") </span><a href="tel:@Model.PrimaryContactNumber"><span>@Glass.Editable(Model, model => model.PrimaryContactNumber)</span></a>
+                                        <span>@(Model.PrimaryContactCountry == null ? string.Empty : country.Title + ":") </span><a href="tel:@Model.PrimaryContactNumber"><span>@Html.PropertyFor(x => x.PrimaryContactNumber)</span></a>
                                     </li>
                                 }
                                 @if (!string.IsNullOrWhiteSpace(Model.SecondaryContactNumber))
                                 {
+                                    var country = ContentLoader.Get<HBGCountryBlock>(Model.SecondaryContactCountry);
                                     <li>
-                                        <span>@(Model.SecondaryContactCountry == null ? string.Empty : Model.SecondaryContactCountry.Title + ":")</span>  <a href="tel:@Model.SecondaryContactNumber"><span>@Glass.Editable(Model, model => model.SecondaryContactNumber)</span></a>
+                                        <span>@(Model.SecondaryContactCountry == null ? string.Empty : country.Title + ":")</span>  <a href="tel:@Model.SecondaryContactNumber"><span>@Html.PropertyFor(x => x.SecondaryContactNumber)</span></a>
                                     </li>
                                 }
                                 @if (!string.IsNullOrWhiteSpace(Model.TertiaryContactNumber))
                                 {
+                                    var country = ContentLoader.Get<HBGCountryBlock>(Model.TertiaryContactCountry);
                                     <li>
-                                        <span>@(Model.TertiaryContactCountry == null ? string.Empty : Model.TertiaryContactCountry.Title + ":")</span>  <a href="tel:@Model.TertiaryContactNumber"><span>@Glass.Editable(Model, model => model.TertiaryContactNumber)</span></a>
+                                        <span>@(Model.TertiaryContactCountry == null ? string.Empty : country.Title + ":")</span>  <a href="tel:@Model.TertiaryContactNumber">
+                                            <span>
+                                                @Html.PropertyFor(x => x.TertiaryContactNumber )
+                                            </span>
+                                        </a>
                                     </li>
                                 }
                             </ul>
                         </div>
                     </div>
                 }
-
                 @if (!string.IsNullOrWhiteSpace(Model.HotelsReservations) || !string.IsNullOrWhiteSpace(Model.ServicedResidencesReservations))
                 {
                     <div class="col-sm-4">
                         <div class="smp_hotline_links">
-
-                            <h4 class="title">@Sitecore.Globalization.Translate.Text(DictionaryKeys.CentralReservationsLabel)</h4>
+                            <h4 class="title">
+                                @* @DictionaryHelper.DictionaryEntry(DictionaryKeys.CentralReservationsLabel) *@ Central Reservations</h4>
                             <ul>
                                 @if (!string.IsNullOrWhiteSpace(Model.HotelsReservations))
                                 {
                                     <li>
-                                        <span>@Sitecore.Globalization.Translate.Text(DictionaryKeys.HotelsReservationLabel)</span>
-                                        <a href="tel:@Glass.Editable(Model,model=>model.HotelsReservations)" id="tag-reservations-hotels">
+                                        <span>@* @DictionaryHelper.DictionaryEntry(DictionaryKeys.HotelsReservationLabel) *@ For Hotels:</span>
+                                        <a href="tel:@Model.HotelsReservations" id="tag-reservations-hotels">
                                             <span> @Model.HotelsReservations</span>
                                         </a>
                                     </li>
                                 }
-
                                 @if (!string.IsNullOrWhiteSpace(Model.ServicedResidencesReservations))
                                 {
                                     <li>
-                                        <span>@Sitecore.Globalization.Translate.Text(DictionaryKeys.ServicedResidencesReservationLabel)</span>
-                                        <a href="tel:@Glass.Editable(Model,model=>model.ServicedResidencesReservations)" id="tag-reservations-service-residences">
+                                        <span>@* @DictionaryHelper.DictionaryEntry(DictionaryKeys.ServicedResidencesReservationLabel) *@ For Serviced Residences:</span>
+                                        <a href="tel:@Model.ServicedResidencesReservations" id="tag-reservations-service-residences">
                                             <span> @Model.ServicedResidencesReservations</span>
                                         </a>
                                     </li>
@@ -192,27 +189,24 @@
                         </div>
                     </div>
                 }
-
-                @if ((Model.HotelEmail != null && !string.IsNullOrWhiteSpace(Model.HotelEmail.Url) && !string.IsNullOrWhiteSpace(Model.HotelEmail.Text)) || (Model.ServicedResidenceEmail != null && !string.IsNullOrWhiteSpace(Model.ServicedResidenceEmail.Url) && !string.IsNullOrWhiteSpace(Model.ServicedResidenceEmail.Text)))
+                @if ((Model.HotelEmail != null && !string.IsNullOrWhiteSpace(Model.HotelEmail.Href) && !string.IsNullOrWhiteSpace(Model.HotelEmail.Text)) || (Model.ServicedResidencesEmail != null && !string.IsNullOrWhiteSpace(Model.ServicedResidencesEmail.Href) && !string.IsNullOrWhiteSpace(Model.ServicedResidencesEmail.Text)))
                 {
                     <div class="col-sm-4">
                         <div class="smp_hotline_links">
-
-                            <h4 class="title">@Sitecore.Globalization.Translate.Text(DictionaryKeys.SendEmailLabel)</h4>
+                            <h4 class="title">@* @DictionaryHelper.DictionaryEntry(DictionaryKeys.SendEmailLabel) *@ Send Us An Email</h4>
                             <ul>
-                                @if (Model.HotelEmail != null && !string.IsNullOrWhiteSpace(Model.HotelEmail.Url) && !string.IsNullOrWhiteSpace(Model.HotelEmail.Text))
+                                @if (Model.HotelEmail != null && !string.IsNullOrWhiteSpace(Model.HotelEmail.Href) && !string.IsNullOrWhiteSpace(Model.HotelEmail.Text))
                                 {
                                     <li>
-                                        <span>@Sitecore.Globalization.Translate.Text(DictionaryKeys.HotelsEmailLabel)</span>
-                                        @StayFarEast.RenderLink(Model, model => model.HotelEmail, isEditable: true)
+                                        <span>@* @DictionaryHelper.DictionaryEntry(DictionaryKeys.HotelsEmailLabel) *@ For Hotels:</span>
+                                        @Html.PropertyFor(x => x.HotelEmail);
                                     </li>
                                 }
-
-                                @if (Model.ServicedResidenceEmail != null && !string.IsNullOrWhiteSpace(Model.ServicedResidenceEmail.Url) && !string.IsNullOrWhiteSpace(Model.ServicedResidenceEmail.Text))
+                                @if (Model.ServicedResidencesEmail != null && !string.IsNullOrWhiteSpace(Model.ServicedResidencesEmail.Href) && !string.IsNullOrWhiteSpace(Model.ServicedResidencesEmail.Text))
                                 {
                                     <li>
-                                        <span>@Sitecore.Globalization.Translate.Text(DictionaryKeys.ServicedResidencesEmailLabel)</span>
-                                        @StayFarEast.RenderLink(Model, model => model.ServicedResidenceEmail, isEditable: true)
+                                        <span>@* @DictionaryHelper.DictionaryEntry(DictionaryKeys.ServicedResidencesEmailLabel) *@ For Serviced Residences:</span>
+                                        @Html.PropertyFor(x => x.HotelEmail);
                                     </li>
                                 }
                             </ul>
@@ -221,7 +215,7 @@
                 }
             </div>
         </div>
-        <div class="smp_ftr_links">
+        @*<div class="smp_ftr_links">
             @if (Model.PrimaryLinks != null && Model.PrimaryLinks.Any())
             {
                 <ul>
@@ -233,36 +227,35 @@
                     }
                 </ul>
             }
-        </div>
+        </div>*@
         <div class="smp_ftr_media">
             <ul>
                 @if (Model.FacebookLink != null)
                 {
                     <li>
-                        <a class="facebook-app-embed-link" itemprop="sameAs" href="@Model.FacebookLink.Url" data-href-desktop="@Model.FacebookLink.Url" data-href-mobile="@(SitecoreHelperExtension.GetFacebookAppURL(Model.FacebookLink.Url))" target="@Model.FacebookLink.Target">
-                            <img width="@Model.FacebookIcon.Width" height="@Model.FacebookIcon.Height" class="lazy-hidden" data-lazy-type="image" data-lazy-src="@Model.FacebookIcon.GetMediaUrlWithProtectHash()" alt="@Model.FacebookIcon.Alt" />
+                        <a class="facebook-app-embed-link" itemprop="sameAs" href="@Model.FacebookLink.Href" data-href-desktop="@Model.FacebookLink.Href" data-href-mobile="@(DeviceUtil.GetFacebookAppURL(Model.FacebookLink.Href))" target="@Model.FacebookLink.Target">
+                            <img width="@* To do *@" height="@* To do *@" class="lazy-hidden" data-lazy-type="image" data-lazy-src="@Url.ContentUrl(Model.FacebookIcon)" alt="@* To do *@" />
                         </a>
                     </li>
                 }
                 @if (Model.TwitterLink != null)
                 {
                     <li>
-                        <a itemprop="sameAs" href="@Model.TwitterLink.Url" target="@Model.TwitterLink.Target">
-                            <img width="@Model.TwitterIcon.Width" height="@Model.TwitterIcon.Height" class="lazy-hidden" data-lazy-type="image" data-lazy-src="@Model.TwitterIcon.GetMediaUrlWithProtectHash()" alt="@Model.TwitterIcon.Alt" />
+                        <a itemprop="sameAs" href="@Model.TwitterLink.Href" target="@Model.TwitterLink.Target">
+                            <img width="@* To do *@" height="@* To do *@" class="lazy-hidden" data-lazy-type="image" data-lazy-src="@Url.ContentUrl(Model.TwitterIcon)" alt="@* To do *@" />
                         </a>
                     </li>
                 }
-
                 @if (Model.YoutubeLink != null)
                 {
                     <li>
-                        <a itemprop="sameAs" href="@Model.YoutubeLink.Url" target="@Model.YoutubeLink.Target">
-                            <img width="@Model.YoutubeIcon.Width" height="@Model.YoutubeIcon.Height" class="lazy-hidden" data-lazy-type="image" data-lazy-src="@Model.YoutubeIcon.GetMediaUrlWithProtectHash()" alt="@Model.YoutubeIcon.Alt" />
+                        <a itemprop="sameAs" href="@Model.YoutubeLink.Href" target="@Model.YoutubeLink.Target">
+                            <img width="@* To do *@" height="@* To do *@" class="lazy-hidden" data-lazy-type="image" data-lazy-src="@Url.ContentUrl(Model.YoutubeIcon)" alt="@* To do *@" />
                         </a>
                     </li>
                 }
             </ul>
-        </div> *@
+        </div>
         <div class="smp_copyright">@Model.Copyright</div>
     </div>
 </div>
