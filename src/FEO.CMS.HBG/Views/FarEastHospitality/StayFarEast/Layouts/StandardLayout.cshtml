@@ -231,8 +231,6 @@
           to improve your experience.</p>
         <![endif]-->
         @Html.PropertyFor(x => x.Layout.Header)
-
-        @Html.PropertyFor(x => x.CurrentPage.MainContentArea)
         @RenderBody()
         @Html.PropertyFor(x => x.Layout.Footer)
 
@@ -248,7 +246,7 @@
         @RenderSection("Scripts", required: false)
         @RenderSection("FormStyles", required: false)
         @RenderSection("FormScripts", required: false)
-
+        <script src="~/assets/scripts/special/destination.js"></script>
         <required-client-resources area="Footer" />
         <script>
             (function ($) {
