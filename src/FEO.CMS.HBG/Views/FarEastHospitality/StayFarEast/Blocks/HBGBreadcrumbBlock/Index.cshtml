@@ -1,0 +1,34 @@
+﻿@model IEnumerable<HBGBasePage>
+
+@functions {
+    private string GetBreadcrumbName(HBGBasePage item)
+    {
+        return string.IsNullOrWhiteSpace(item.Title) ? item.Name : item.Title;
+    }
+}
+
+<div itemscope itemtype="http://schema.org/BreadcrumbList" class="breadcrumb-container hidden-xs">
+    <ol class="breadcrumb">
+        @for (int index = 0, count = Model.Count(); index < count; ++index)
+        {
+            var item = Model.ElementAt(index);
+            if ((index + 1) == count)
+            {
+                <li class="active">@GetBreadcrumbName(item)</li>
+                break;
+            }
+            if (item is HBGStayFarEastFolderBlock)
+            {
+                <li>@GetBreadcrumbName(item)</li>
+                continue;
+            }
+
+            <li itemprop="itemListElement" itemscope itemtype="http://schema.org/ListItem">
+                <a itemprop="item" href="@Url.ContentUrl(item.LinkURL)">
+                    <span itemprop="name">@GetBreadcrumbName(item)</span>
+                </a>
+                <meta itemprop="position" content="@(index + 1)" />
+            </li>
+        }
+    </ol>
+</div>

@@ -1,0 +1,183 @@
+﻿@model PageViewModel<HBGStaycationPage>
+
+@if (Model != null && Model.CurrentPage != null)
+{
+    <main class="sfe-main-content">
+        <header class="sfe-content-header">
+            <nav class="sfe-content-crumbs">
+                @Html.PropertyFor(x => x.CurrentPage.Breadcrumb)
+            </nav>
+            <!-- Sub Nav -->
+            <nav class="sfe-content-subnav">
+                @Html.PropertyFor(x => x.CurrentPage.ContentNav)
+            </nav>
+            <!-- End Sub Nav -->
+            <H1>@Html.PropertyFor(x => x.CurrentPage.Heading)</H1>
+        </header>
+        @Html.PropertyFor(x => x.CurrentPage.MainHighlight)
+        @Html.PropertyFor(x => x.CurrentPage.SfeMainContent)
+    </main>
+
+    <script type="text/javascript">
+        $(document).ready(function () {
+            // console.log('Ready!');
+            var $window = $(window),
+                hero = $('.mainHero'),
+                subNav = $('.sfe-content-subnav'),
+                subNavTitleMobile = subNav.find('.subnav-title'),
+                subNavLinks = subNav.find('ul li a'),
+                subNavOffset = (subNav.outerHeight(true) > 50) ? subNav.outerHeight(true) : 50,
+                sections = $('.sfe-content-section'),
+                wt = $window.scrollTop(),
+                wWidth = $window.outerWidth(),
+                wHeight = $window.outerHeight(),
+                wb = wt + $window.outerHeight(),
+                bookingWidget = $('.widget'),
+                navBar = $('.navbar');
+
+
+            if (bookingWidget && bookingWidget.length > 0) {
+                bookingWidget.css({
+                    zIndex: 4
+                })
+
+            }
+
+            var heroDetails = {
+                width: hero.outerWidth(),
+                height: hero.outerHeight(),
+                pos: {
+                    top: hero.offset().top,
+                    bottom: hero.offset().top + hero.outerHeight()
+                }
+            };
+
+            $window.click(function (e) {
+                if ($('.sfe-content-subnav ul').hasClass('active')) {
+                    // console.log('subnav is active');
+                    $('.sfe-content-subnav ul').removeClass('active');
+                }
+            });
+
+            $window.scroll(function (e) {
+                // console.log('scrolled >> ', $window.scrollTop());
+                wt = $window.scrollTop();
+                wb = wt + wHeight;
+                if (wt >= (heroDetails.pos.bottom)) {
+                    // console.log('Hit!');
+                    subNav.addClass('active');
+                    if (bookingWidget && bookingWidget.length > 0) {
+
+                        var bwTop = bookingWidget.offset().top;
+                        bookingWidget.css({
+                            top: (navBar.outerHeight() + subNav.outerHeight()) + 'px'
+                        })
+
+                    }
+                    subNavOffset = subNav.outerHeight(true);
+                    debounce(checkSectionWhenScrolled(wt, wb), 500);
+                    // console.log('subNavOffset >>>', subNavOffset);
+                } else {
+                    subNav.removeClass('active');
+
+                    if (bookingWidget && bookingWidget.length > 0) {
+                        bookingWidget.css({
+                            top: navBar.outerHeight() + 'px'
+                        });
+
+                    }
+                }
+
+            });
+
+            subNavLinks.click(function (e) {
+                e.preventDefault();
+                var currentLink = $(this);
+                var targetElem = $(currentLink.attr('href'));
+                // console.log('clicked', targetElem.offset().top);
+
+
+                $('html,body').animate({
+                    scrollTop: (targetElem.offset().top - subNavOffset) + 'px'
+                }, 1000).promise().done(function () {
+                    subNavLinks.parent().removeClass('active');
+                    currentLink.parent().addClass('active');
+                    currentLink.closest('.sfe-content-subnav').find('ul').removeClass('active');
+                });
+
+
+            });
+
+            subNavTitleMobile.on('click', function (e) {
+                e.stopPropagation();
+                var cta = $(this);
+                var navlist = cta.next();
+                navlist.toggleClass('active');
+
+
+            });
+
+            function checkSectionWhenScrolled(wt, wb) {
+                $.each(sections, function () {
+                    var section = $(this);
+                    var sectionWrap = section.find('.sfe-content-wrap, .sfe-content-promotions ');
+
+                    if (sectionWrap) {
+                        var sectionDetails = {
+                            height: section.outerHeight(),
+                            width: section.outerWidth(),
+                            pos: {
+                                top: section.offset().top,
+                                bottom: section.offset().top + section.outerHeight()
+                            }
+                        };
+                        var st = sectionDetails.pos.top;
+                        var sb = sectionDetails.pos.bottom;
+
+
+
+                        if (wb >= (st + (wHeight * 0.25)) && wt <= (sb - (wHeight * 0.25))) {
+
+                            var sectionID = sectionWrap.attr('id');
+                            if (sectionID) {
+                                // console.log(sectionID)
+
+                                $.each(subNavLinks, function () {
+                                    var link = $(this);
+                                    if (link.attr('href') === ('#' + sectionID)) {
+                                        // console.log('hit >>', sectionID);
+                                        subNavLinks.parent().removeClass('active');
+                                        link.parent().addClass('active');
+                                        link.closest('.sfe-content-subnav').find('.subnav-title h3').html(link.html());
+                                    }
+                                });
+
+                            }
+                        }
+
+                    }
+                });
+            }
+            // console.log('Hero >>> ', heroDetails);
+            // console.log('subNavOffset >>>', subNavOffset);
+            function debounce(func, wait, immediate) {
+                var timeout;
+                return function () {
+                    var context = this, args = arguments;
+                    var later = function () {
+                        timeout = null;
+                        if (immediate) {
+                            func.apply(context, args);
+                        };
+                        var callNow = immediate && !timeout;
+                        clearTimeout(timeout);
+                        timeout = setTimeout(later, wait);
+                        if (callNow) {
+                            func.apply(context, args);
+                        }
+                    }
+                }
+            }
+        });
+    </script>
+}

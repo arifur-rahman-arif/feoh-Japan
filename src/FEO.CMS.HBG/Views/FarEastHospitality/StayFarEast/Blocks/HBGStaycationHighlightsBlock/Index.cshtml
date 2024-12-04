@@ -1,0 +1,46 @@
+﻿@model HBGStaycationHighlightsBlock
+
+@if (Model != null)
+{
+    <section class="sfe-content-section sfe-content-section-1">
+        <div class="sfe-content-wrap ">
+            <div class="sfe-content-title">
+                <h1>
+                    @Html.PropertyFor(x => x.PrimaryTitle)
+                </h1>
+                <div class="sfe-contact">
+                    <address>
+                        @Html.PropertyFor(x => x.Address)
+                    </address>
+                    <p>
+                        @Html.PropertyFor(x => x.ContactInformation)
+                    </p>
+                </div>
+
+                <div class="sfe-content-social-cta">
+                    <a href="@(Model.SocialMediaButton1Link != null ? Model.SocialMediaButton1Link.Href : "#")" class="social-facebook">
+                        <i class="fa fa-facebook"></i>@Html.PropertyFor(x => x.SocialMediaButton1Text)
+                    </a>
+                    <a href="@(Model.SocialMediaButton2Link != null ? Model.SocialMediaButton2Link.Href : "#")" class="social-instagram">
+                        <i class="fa fa-instagram"></i>@Html.PropertyFor(x => x.SocialMediaButton2Text)
+                    </a>
+                </div>
+
+            </div>
+            <div class="sfe-content-highlights">
+                <p class="description">
+                    @Html.PropertyFor(x => x.LeftTextCopy)
+                </p>
+
+                <aside class="sfe-circle" style="background-color:@Html.PropertyFor(x =>x.HighlightsBackgroundColor) !important">
+
+                    <h3 style="color:@Html.PropertyFor(x =>x.HighlightsTitleColor) !important">
+                        @Html.PropertyFor(x => x.HighlightsTitle)
+                    </h3>
+                    @Html.PropertyFor(x => x.RightTextCopy)
+                </aside>
+            </div>
+
+        </div>
+    </section>
+}

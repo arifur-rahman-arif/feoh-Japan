@@ -1,3 +1,4 @@
+using EPiServer.Core;
 using EPiServer.DataAbstraction;
 using EPiServer.DataAnnotations;
 using System.ComponentModel.DataAnnotations;
@@ -11,5 +12,9 @@ namespace FEO.CMS.HBG.Core.Blocks.StayFarEast
         [CultureSpecific]
         public virtual string PrimaryTitle { get; set; }
 
+        [Display(Name = "Menus", GroupName = SystemTabNames.Content, Order = 100)]
+        [CultureSpecific]
+        [AllowedTypes(AllowedTypes = new[] { typeof(HBGStaycationMenuBlock) })]
+        public virtual ContentReference Menus { get; set; }
     }
 }

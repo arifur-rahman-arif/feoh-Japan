@@ -1,12 +1,12 @@
-﻿@model HBGNewsletterSingupPage
+﻿@model PageViewModel<HBGNewsletterSingupPage>
 
 @{
     var email = ViewData["SubscriberEmail"];
     var now = DateTime.Now;
     var startYear = now.Year - 115;
 
-    var parameters = !string.IsNullOrWhiteSpace(Model.FormParameters) ?
-        RazorUtil.ParseQueryString(Model.FormParameters) : default(Dictionary<string, string>);
+    var parameters = !string.IsNullOrWhiteSpace(Model.CurrentPage.FormParameters) ?
+        RazorUtil.ParseQueryString(Model.CurrentPage.FormParameters) : default(Dictionary<string, string>);
 
     var scheme = HttpContextAccessor.HttpContext?.Request.Scheme;
     var host = HttpContextAccessor.HttpContext?.Request.Host.Host;
@@ -16,23 +16,23 @@
 <div class="section container newsletter-form" id="newsletter">
     <div class="row">
 
-        @if (Model.HeaderText != null || ContextMode.CurrentMode.EditOrPreview())
+        @if (Model.CurrentPage.HeaderText != null || ContextMode.CurrentMode.EditOrPreview())
         {
             <div class="row">
                 <div class="col-xs-12 col-sm-12 col-md-12 col-lg-12">
-                    @Html.PropertyFor(x => x.HeaderText)
+                    @Html.PropertyFor(x => x.CurrentPage.HeaderText)
                 </div>
             </div>
         }
 
         <div class="col-md-offset-3 col-md-6">
 
-            @if (Model.ReturnURL != null)
+            @if (Model.CurrentPage.ReturnURL != null)
             {
-                <input id="returnUrl" type="hidden" value="@(string.Format("{0}{1}{2}{3}", scheme, Uri.SchemeDelimiter, host, Model.FormURL?.Href))" />
+                <input id="returnUrl" type="hidden" value="@(string.Format("{0}{1}{2}{3}", scheme, Uri.SchemeDelimiter, host, Model.CurrentPage.FormURL?.Href))" />
             }
 
-            <form class="form-claim form-style" action="@(Model.FormURL == null ? "/" : Model.FormURL?.Href)" method="post" data-toggle="validator" id="signupform">
+            <form class="form-claim form-style" action="@(Model.CurrentPage.FormURL == null ? "/" : Model.CurrentPage.FormURL?.Href)" method="post" data-toggle="validator" id="signupform">
 
                 @if (parameters.Any())
                 {
@@ -43,7 +43,7 @@
                 }
 
                 <input type="hidden" id="emailaddress" value="@email">
-                <input type="hidden" name="ThankyouUrl" id="tyurl" value="@(Model.ReturnURL != null ? string.Format("{0}{1}{2}{3}?email={4}", scheme, Uri.SchemeDelimiter, host, Model.ReturnURL.Href, email) : string.Empty)">
+                <input type="hidden" name="ThankyouUrl" id="tyurl" value="@(Model.CurrentPage.ReturnURL != null ? string.Format("{0}{1}{2}{3}?email={4}", scheme, Uri.SchemeDelimiter, host, Model.CurrentPage.ReturnURL.Href, email) : string.Empty)">
                 <input type="hidden" id="New_Date_of_Brith" name="New_Date_of_Brith" value="" required="">
                 <input type="hidden" name="Birth_Date" id="id-birthdate" value="">
                 <input type="hidden" id="date_time" name="subscribe_time">
@@ -397,11 +397,11 @@
             </form>
         </div>
 
-        @if (Model.FooterText != null || ContextMode.CurrentMode.EditOrPreview())
+        @if (Model.CurrentPage.FooterText != null || ContextMode.CurrentMode.EditOrPreview())
         {
             <div class="row">
                 <div class="col-xs-12 col-sm-12 col-md-12 col-lg-12">
-                    @Html.PropertyFor(x => x.FooterText)
+                    @Html.PropertyFor(x => x.CurrentPage.FooterText)
                 </div>
             </div>
         }

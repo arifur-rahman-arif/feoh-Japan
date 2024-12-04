@@ -44,7 +44,7 @@ namespace FEO.CMS.HSB
             });
 
             services.AddTransient<IAntiForgeryService, AntiForgeryService>();
-
+            services.AddSingleton<IDictionaryRepository, DictionaryRepository>();
             return services;
         }
     }

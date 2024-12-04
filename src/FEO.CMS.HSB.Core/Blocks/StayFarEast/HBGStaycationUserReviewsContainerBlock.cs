@@ -1,3 +1,4 @@
+using EPiServer.Core;
 using EPiServer.DataAbstraction;
 using EPiServer.DataAnnotations;
 using System.ComponentModel.DataAnnotations;
@@ -14,6 +15,11 @@ namespace FEO.CMS.HBG.Core.Blocks.StayFarEast
         [Display(Name = "BladeID", GroupName = SystemTabNames.Content, Order = 200)]
         [CultureSpecific]
         public virtual string BladeID { get; set; }
+
+        [Display(Name = "AllUserReviews", GroupName = SystemTabNames.Content, Order = 100)]
+        [CultureSpecific]
+        [AllowedTypes(AllowedTypes = new[] { typeof(HBGUserReviewBlock) })]
+        public virtual ContentReference AllUserReviews { get; set; }
 
     }
 }
