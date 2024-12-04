@@ -1,0 +1,42 @@
+@using EPiServer.Framework.Localization
+@using EPiServer.Web.Mvc.Html
+@using EPiServer.Shell.Web.Mvc.Html
+@using EPiServer.Core
+@using EPiServer.Web
+@using EPiServer.Web.Mvc
+@using EPiServer.Web.Routing
+@using EPiServer.ServiceLocation
+@using EPiServer.Globalization
+@using EPiServer.SpecializedProperties
+
+
+@using Microsoft.AspNetCore.Mvc.Razor
+@using Microsoft.AspNetCore.Html
+@using Microsoft.EntityFrameworkCore.Metadata.Internal
+
+@using Microsoft.Extensions.Options
+@using Newtonsoft.Json
+@using System.Globalization
+
+@inject IPageRouteHelper PageRouteHelper
+@inject IContentRepository ContentRepository
+@inject IContentLoader ContentLoader
+@inject IOptions<SessionSettings> SessionSetting
+@inject IContextModeResolver ContextMode
+@inject IHttpContextAccessor HttpContextAccessor
+
+@addTagHelper *, Microsoft.AspNetCore.Mvc.TagHelpers
+
+@using FEO.CMS.HBG.ViewModels
+@using FEO.CMS.HBG.Core.Media
+@using FEO.CMS.HBG.Core.Models
+@using FEO.CMS.HBG.Core.Constants
+@using FEO.CMS.HBG.Core.Blocks.Bases
+@using FEO.CMS.HBG.Core.Blocks.StayFarEast
+@using FEO.CMS.HBG.Core.Pages
+@using FEO.CMS.HBG.Core.Pages.StayFarEast
+@using FEO.CMS.HBG.Helper
+
+@using FEO.CMS.HBG.Business.Dictionary
+@using FEO.CMS.HBG.Business.Helpers
+@using FEO.CMS.HBG.Business.ExtensionMethods

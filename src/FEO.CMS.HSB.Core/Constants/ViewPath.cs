@@ -11,7 +11,7 @@
         public static string Hospitality_Clan_PAGES_PATH => string.Format("{0}/Pages", Hospitality_BASE_PATH);
         public static string Hospitality_Clan_LAYOUTS_PATH => string.Format("{0}/Layouts", Hospitality_BASE_PATH);
         public static string Hospitality_Oasia_BLOCKS_PATH => string.Format("{0}/Blocks", Hospitality_BASE_PATH);
-        public static string Hospitality_Oasia_PAGES_PATH => string.Format("{0}/Pages", Hospitality_BASE_PATH);
+        public static string Hospitality_Oasia_PAGES_PATH => string.Format("{0}/Oasia/Pages", Hospitality_BASE_PATH);
         public static string Hospitality_Oasia_LAYOUTS_PATH => string.Format("{0}/Layouts", Hospitality_BASE_PATH);
         public static string Hospitality_Outpost_BLOCKS_PATH => string.Format("{0}/Blocks", Hospitality_BASE_PATH);
         public static string Hospitality_Outpost_PAGES_PATH => string.Format("{0}/Pages", Hospitality_BASE_PATH);
