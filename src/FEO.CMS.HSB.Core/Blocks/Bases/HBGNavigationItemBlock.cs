@@ -6,7 +6,7 @@ using System.ComponentModel.DataAnnotations;
 namespace FEO.CMS.HBG.Core.Blocks.Bases
 {
     [ContentType(DisplayName = "HBGNavigationItemBlock", GUID = "5004D23C-028F-4A6D-917C-9B3F8A1B3FC1", GroupName = "Hospitality")]
-    public class HBGNavigationItemBlock : HBGRootBlock
+    public class HBGNavigationItemBlock : HBGBaseBlock
     {
         [Display(Name = "Link Title", GroupName = "SEO", Order = 100)]
         [CultureSpecific]

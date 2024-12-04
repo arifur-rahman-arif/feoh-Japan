@@ -1,0 +1,36 @@
+﻿@model FEO.CMS.HBG.Core.Blocks.StayFarEast.HBGVideoBlock;
+@if (Model != null)
+{
+    string stringSummary = string.Empty;
+    string stringClass = string.Empty;
+    if (!string.IsNullOrEmpty(Model.StickySummaryText))
+    {
+        stringSummary = "data-menu='" + Model.StickySummaryText + "'";
+        stringClass = "is-menu-sidebar";
+    }
+
+    if (Model.VideoLink != null)
+    {
+        <div class="block-content block-content-video   @stringClass" @Html.PropertyFor(x=>x.Summary)>
+            <div class="single_video   thumb-video" data-src="@Url.ContentUrl(Model.VideoLink?.Href)" data-video="?autoplay=1&controls=1&mute=0&disablekb=1&hl=en&loop=1&modestbranding=1&showinfo=0&autohide=0&color=white&iv_load_policy=3&theme=light&rel=0&enablejsapi=1">
+                @if (Model.VideoThumb != null)
+                {
+                    <img class="lazy-hidden" data-lazy-type="image" data-lazy-src="@Url.ContentUrl(Model.VideoThumb)" alt="" />
+                }
+
+                <svg class="btnvideo" xmlns="http://www.w3.org/2000/svg" width="94" height="94" viewBox="0 0 94 94">
+                    <g id="Group_124438" data-name="Group 124438" transform="translate(-380 -2664)">
+                        <path id="Ellipse_11" data-name="Ellipse 11" d="M47,3A44.012,44.012,0,0,0,29.874,87.544,44.012,44.012,0,0,0,64.126,6.456,43.722,43.722,0,0,0,47,3m0-3A47,47,0,1,1,0,47,47,47,0,0,1,47,0Z" transform="translate(380 2664)" fill="#fff" />
+                        <path id="Polygon_1" data-name="Polygon 1" d="M18,0,36,31H0Z" transform="translate(448 2693) rotate(90)" fill="#fff" />
+                    </g>
+                </svg>
+
+
+            </div>
+            @if (!string.IsNullOrEmpty(Model.VideoCaption))
+            {
+                <div class="caption">@Html.PropertyFor(x=>x.VideoCaption)</div>
+            }
+        </div>
+    }
+}

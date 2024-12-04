@@ -8,7 +8,7 @@ using System.ComponentModel.DataAnnotations;
 namespace FEO.CMS.HBG.Core.Blocks.StayFarEast
 {
     [ContentType(DisplayName = "HBGVideoBlock", GUID = "6E728F8B-7E94-4D57-9B41-98D0597928AA", GroupName = "Hospitality")]
-    public class HBGVideoBlock : HBGBaseBlock
+    public class HBGVideoBlock : HBGStickySummaryConfigBlock
     {
         [Display(Name = "Video Link", GroupName = SystemTabNames.Content, Order = 100)]
         [CultureSpecific]

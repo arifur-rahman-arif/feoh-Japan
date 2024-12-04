@@ -39,7 +39,7 @@
         <div class="deal-image image-with-txt">
             <a href="@Model.CurrentPage.LinkURL">
 
-                /*TODO: add image alt, height and width*/
+                //TODO: add image alt, height and width
                 @switch (cssClass)
                 {
                     case "small":
@@ -55,7 +55,7 @@
 
                 <div class="caption">
                     <div class="content-v-align">
-                        <p class="text-uppercase">@Html.PropertyFor(x => x.CurrentPage.Category)</p>
+                        <p class="text-uppercase">@Html.PropertyFor(x => x.CurrentPage.Categories)</p>
                         <h4>@Html.PropertyFor(x => x.CurrentPage.Title)</h4>
                     </div>
                 </div>

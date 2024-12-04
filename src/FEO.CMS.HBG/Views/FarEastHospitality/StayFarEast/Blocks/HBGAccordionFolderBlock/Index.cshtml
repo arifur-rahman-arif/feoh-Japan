@@ -1,0 +1,65 @@
+﻿@using FEO.CMS.HBG.Core.Blocks.Village
+@model HBGAccordionFolderBlock
+
+@if (Model != null)
+{
+    var site = ContentLoader.Get<PageData>(ContentReference.StartPage).ParentLink as IContent;
+    var oasiaClass = site?.Name == "oasia_website" ? "accordion-oasia wrap" : string.Empty;
+
+    <div class="@oasiaClass">
+        @if (Model.ShowSeeAllAccordionsButton)
+        {
+            <div class="text-right show-all-accordions">
+                <a href="#" class="sfefaq_seeall"> <span class="expand-all"> @DictionaryHelper.DictionaryEntry(DictionaryKeys.VillageAccordionSeeAll)</span><span class="collapse-all hide"> @DictionaryHelper.DictionaryEntry(DictionaryKeys.VillageAccordionCollapseAll)</span> <i class="arrow down"></i></a>
+            </div>
+        }
+        <div class="app-accordion">
+            <ul class="accordion__list">
+                @if (Model.Faq != null && Model.Faq.MainEntity.IsNotNullAndAny())
+                {
+                    foreach (var item in Model.Faq.MainEntity)
+                    {
+                        <li class="accordion__item">
+                            <div class="accordion__itemTitleWrap">
+                                <h2>@Html.PropertyFor(x => item.Name)</h2>
+                                <div class="accordion__itemIconWrap tag-terms-and-conditions-accordion-title">
+                                    <svg xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" width="12px" height="12px"><path fill-rule="evenodd" fill="#866531" d="M7.113,7.113 L7.113,7.113 L12.009,7.113 L12.009,4.887 L7.113,4.887 L7.113,-0.009 L4.887,-0.009 L4.887,4.887 L4.887,4.887 L4.887,4.887 L-0.009,4.887 L-0.009,7.113 L4.887,7.113 L4.887,12.009 L7.113,12.009 L7.113,7.113 L7.113,7.113 Z"></path></svg>
+                                </div>
+                            </div>
+                            <div class="accordion__itemContent">@Html.PropertyFor(x => item.Answer.Text)</div>
+                        </li>
+                    }
+                }
+            </ul>
+        </div>
+    </div>
+
+
+    <script type="application/ld+json">
+        @Html.Raw(JsonConvert.SerializeObject(Model.Faq))
+    </script>
+
+    <script>
+        var opened = 0;
+        $(".show-all-accordions a").on("click", function (e) {
+            e.preventDefault();
+            if ($(this).find("i").hasClass("down")) {
+                $(".accordion__item").addClass("is-active");
+                $(".accordion__item .accordion__itemContent").show();
+                $(".accordion__item .accordion__itemContent").animate({ 'height': '100%' }, 0);
+                $(this).find("span.expand-all").addClass("hide");
+                $(this).find("span.collapse-all").removeClass("hide");
+                $(this).find("i").removeClass("down").addClass("up");
+                opened = 1;
+            } else {
+                $(".accordion__item").removeClass("is-active");
+                $(".accordion__item .accordion__itemContent").hide();
+                $(".accordion__item .accordion__itemContent").animate({ 'height': '0' }, 0);
+                $(this).find("span.expand-all").removeClass("hide");
+                $(this).find("span.collapse-all").addClass("hide");
+                $(this).find("i").removeClass("up").addClass("down");
+                opened = 0;
+            }
+        });
+    </script>
+}

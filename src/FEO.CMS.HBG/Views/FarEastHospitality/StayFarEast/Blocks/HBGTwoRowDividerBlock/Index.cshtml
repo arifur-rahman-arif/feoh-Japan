@@ -1,0 +1,10 @@
+﻿@model HBGTwoRowDividerBlock
+
+@{
+    if (Model != null)
+    {
+        @Html.PropertyFor(x => x.Row1)
+        <div data-hideable="true" class="line-separator darker button-wrapper"></div>
+        @Html.PropertyFor(x => x.Row2)
+    }
+}

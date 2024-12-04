@@ -150,32 +150,32 @@
         </div>
     </div>
 
-    @if (items.Any(x => x.IsVideo))
-    {
-        <!-- YOUTUBE VIDEO MODAL -->
-        <div class="modal fade video" id="@Model.VideoTarget" tabindex="-1" role="dialog" aria-labelledby="@Model.VideoTarget" aria-hidden="true">
-            <div class="modal-dialog">
-                <div class="modal-content">
-                    <div class="modal-body">
-                        <button type="button" class="close btn" data-dismiss="modal" aria-hidden="true">
-                            <a href="#">
-                                <p class="pull-left">@DictionaryHelper.DictionaryEntry(DictionaryKeys.CloseButtonText)</p>
-                                <div class="burger-bar open">
-                                    <span></span>
-                                    <span></span>
-                                    <span></span>
-                                    <span></span>
-                                </div>
-                            </a>
-                        </button>
-                        <div class="embed-responsive embed-responsive-16by9">
-                            <iframe allowfullscreen="allowfullscreen" class="embed-responsive-item" width="100%" height="350" src=""></iframe>
-                        </div>
+@if (items.Any(x => x.IsVideo))
+{
+    <!-- YOUTUBE VIDEO MODAL -->
+    <div class="modal fade video" id="@Model.VideoTarget" tabindex="-1" role="dialog" aria-labelledby="@Model.VideoTarget" aria-hidden="true">
+        <div class="modal-dialog">
+            <div class="modal-content">
+                <div class="modal-body">
+                    <button type="button" class="close btn" data-dismiss="modal" aria-hidden="true">
+                        <a href="#">
+                            <p class="pull-left">@DictionaryHelper.DictionaryEntry(DictionaryKeys.CloseButtonText)</p>
+                            <div class="burger-bar open">
+                                <span></span>
+                                <span></span>
+                                <span></span>
+                                <span></span>
+                            </div>
+                        </a>
+                    </button>
+                    <div class="embed-responsive embed-responsive-16by9">
+                        <iframe allowfullscreen="allowfullscreen" class="embed-responsive-item" width="100%" height="350" src=""></iframe>
                     </div>
                 </div>
             </div>
         </div>
-    }
+    </div>
+}
 
     @if (Model.ShowPullOutWidget)
     {

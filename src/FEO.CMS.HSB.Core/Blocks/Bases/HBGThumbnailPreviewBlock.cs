@@ -7,7 +7,7 @@ using System.ComponentModel.DataAnnotations;
 namespace FEO.CMS.HBG.Core.Blocks.Bases
 {
     [ContentType(DisplayName = "HBGThumbnailPreviewBlock", GUID = "498D7F44-8DB3-4F19-AFE8-C7E3056D7B57", GroupName = "Hospitality")]
-    public class HBGThumbnailPreviewBlock : HBGRootBlock
+    public class HBGThumbnailPreviewBlock : HBGBaseBlock
     {
         [Display(Name = "Alternate URL", GroupName = "Settings", Order = 100)]
         [CultureSpecific]
