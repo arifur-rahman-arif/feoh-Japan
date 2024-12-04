@@ -1,12 +1,13 @@
 using EPiServer.DataAbstraction;
 using EPiServer.DataAnnotations;
 using EPiServer.SpecializedProperties;
+using FEO.CMS.HBG.Core.Blocks.StayFarEast;
 using System.ComponentModel.DataAnnotations;
 
 namespace FEO.CMS.HBG.Core.Blocks.Bases
 {
     [ContentType(DisplayName = "HBGBookingBlock", GUID = "ED345D6C-47A4-4579-B321-A7819E2A9763", GroupName = "Hospitality")]
-    public class HBGBookingBlock : HBGBaseBlock
+    public class HBGBookingBlock : HBGBookingEngineMappingBlock
     {
         [Display(Name = "Rooms", GroupName = "Booking Config", Order = 50)]
         [CultureSpecific]
