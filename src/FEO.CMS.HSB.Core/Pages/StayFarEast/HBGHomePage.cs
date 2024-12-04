@@ -6,7 +6,7 @@ using System.ComponentModel.DataAnnotations;
 
 namespace FEO.CMS.HBG.Core.Pages.StayFarEast
 {
-    [ContentType(DisplayName = "HBGHomePage", GUID = "EA854A69-FFFD-4A07-B178-7AEDFD14BC99", GroupName = "Hospitality")]
+    [ContentType(DisplayName = "HBGHomePage", GUID = "EA854A69-FFFD-4A07-B178-7AEDFD14BC99", GroupName = "Hospitality",Description = "StayFarEast Home")]
     public class HBGHomePage : HBGBasePage
     {
         [Display(Name = "Caption", GroupName = "Content", Order = 100)]
