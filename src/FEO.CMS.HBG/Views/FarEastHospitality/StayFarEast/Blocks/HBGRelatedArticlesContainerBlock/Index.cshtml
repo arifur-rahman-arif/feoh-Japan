@@ -1,0 +1,42 @@
+﻿@using FEO.CMS.HBG.Business.Dictionary
+@model HBGStaticArticlesContainerBlock
+
+<!-- YOU MAY ALSO LIKE  -->
+<div class="you-may-like container section">
+    <p class="text-uppercase">@DictionaryHelper.DictionaryEntry(DictionaryKeys.YouMayAlsoLikeText)</p>
+    <div class="article-tab">
+        <div class="tab-content">
+            <div class="row">
+                @if (Model.Previews != null && Model.Previews.Items != null && Model.Previews.Items.Any())
+                {
+                    var articleCount = 3;
+
+                    var articles = Model.Previews.Items.Take(articleCount);
+
+                    foreach (var item in articles)
+                    {
+                        var article = ContentLoader.Get<HBGArticlePage>(item.ContentLink);
+                        <div class="col-md-4 col-sm-4">
+                            <a href="@(string.IsNullOrWhiteSpace(article.LinkURL) ? "#" : article.LinkURL)">
+                                <img width="@(article.SmallThumbnail @* TODO Width *@)" height="@(article.SmallThumbnail @* TODO Height *@)" class="lazy-hidden" data-lazy-type="image" data-lazy-src="Cont" alt="@(article.SmallThumbnail @* TODO Alt *@)" />
+                            </a>
+                            <div class="caption">
+                                <p class="category text-uppercas11e">
+                                    @Html.PropertyFor(x => article.Category)
+                                </p>
+                                <h3>
+                                    <a href="@(string.IsNullOrWhiteSpace(article.LinkURL) ? "#" : article.LinkURL)">
+                                        @Html.PropertyFor(x => article.Title)
+                                    </a>
+                                </h3>
+                                <p>
+                                    @Html.PropertyFor(x => article.Summary)
+                                </p>
+                            </div>
+                        </div>
+                    }
+                }
+            </div>
+        </div>
+    </div>
+</div>

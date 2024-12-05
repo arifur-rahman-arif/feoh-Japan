@@ -2,12 +2,13 @@ using EPiServer.Core;
 using EPiServer.DataAnnotations;
 using EPiServer.SpecializedProperties;
 using EPiServer.Web;
+using FEO.CMS.HBG.Core.Blocks.Bases;
 using System.ComponentModel.DataAnnotations;
 
 namespace FEO.CMS.HBG.Core.Blocks.StayFarEast
 {
     [ContentType(DisplayName = "HBGNewsletterSubscriptionBlock", GUID = "9D3630F4-DB04-4642-A519-9B994A8891F8", GroupName = "Hospitality")]
-    public class HBGNewsletterSubscriptionBlock : HBGBaseBlock
+    public class HBGNewsletterSubscriptionBlock : HBGRootBlock
     {
         [Display(Name = "Background", GroupName = "Images", Order = 100)]
         [CultureSpecific]

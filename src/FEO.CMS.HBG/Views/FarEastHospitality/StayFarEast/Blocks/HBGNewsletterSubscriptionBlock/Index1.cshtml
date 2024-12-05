@@ -1,0 +1,116 @@
+﻿@model HBGNewsletterSubscriptionBlock
+
+@{
+    var parameters = !string.IsNullOrWhiteSpace(Model.FormParameters) ?
+    RazorUtil.ParseQueryString(Model.FormParameters) : default(Dictionary<string, string>);
+
+    var scheme = HttpContextAccessor.HttpContext?.Request.Scheme;
+    var host = HttpContextAccessor.HttpContext?.Request.Host.Host;
+}
+
+<!-- SignUp for newsletter -->
+<div class="green-bg">
+    <div class="subscription container section">
+        <div class="row">
+            <div class="col-md-offset-3 col-md-6">
+
+                @* @if (Model.FormURL != null) *@
+                @* { *@
+                @*     string dynamicsreturnUrl = SitecoreHelperExtension.GetDynamicRedirectSiteURL(Model.ReturnUrl.TargetId.ToString()); *@
+
+                @*     <input id="returnUrl_blade" type="hidden" value="@((!string.IsNullOrEmpty(dynamicsreturnUrl))?dynamicsreturnUrl:(string.Format("{0}{1}{2}{3}", Request.Url.Scheme, Uri.SchemeDelimiter, Request.Url.DnsSafeHost, Model.ReturnUrl.Url)))" /> *@
+                @* } *@
+
+                <p class="text-center">@Html.PropertyFor(x => x.Summary)</p>
+                <form id="blade-form" class="" target="_blank" action="@(Model.FormURL == null ? "/" : Model.FormURL.Href)" method="post">
+                    @if (parameters != null && parameters.Any())
+                    {
+                        foreach (var pair in parameters)
+                        {
+                            <input type="hidden" name="@pair.Key" value="@pair.Value" />
+                        }
+                    }
+                    <input id="elQsubURL_blade" type="hidden" name="subURL" />
+
+                    <div class="input-group input-group-lg">
+                        <input id="emailAddress_blade" type="email" class="form-control required" name="emailAddress" required pattern="@(@"^[A-Za-z0-9._%+-]+@[A-Za-z0-9.-]+\.[A-Za-z]{2,17}$")" placeholder="@DictionaryHelper.DictionaryEntry(DictionaryKeys.EmailInputPlaceholder)" aria-describedby="sizing-addon1">
+                        <span class="input-group-btn">
+                            <button class="btn btn-default" type="submit"><span class="glyphicon glyphicon-envelope"></span></button>
+                        </span>
+                    </div><!-- /input-group -->
+                </form>
+            </div>
+        </div>
+    </div>
+</div>
+
+<script>
+        $(function () {
+
+            H5F.setup(document.getElementById('blade-form'));
+
+            function updateBladeEmailValue(emailAddress) {
+                var returnUrl = $('#returnUrl_blade').val();
+                $('#elQsubURL_blade').val(returnUrl + "?email=" + emailAddress);
+                $.cookie('newsletter-subscriber', emailAddress);
+            }
+
+            var isInvalid = false;
+            var bladeTimeout;
+            $('#blade-form').validator({
+                delay: 0,
+                focus: false
+            }).on('invalid.bs.validator', function (e) {
+                isInvalid = true;
+                clearTimeout(bladeTimeout);
+                $('#emailAddress_blade').popover('show');
+            }).on('valid.bs.validator', function (e) {
+                clearTimeout(bladeTimeout);
+                $('#emailAddress_blade').popover('hide');
+                this.submit();
+            }).on('validated.bs.validator', function (e) {
+                if (isInvalid) {
+                    isInvalid = false;
+                    return;
+                }
+                var emailField = $('#emailAddress_blade');
+                var pattern = emailField.attr('pattern');
+                var value = emailField.val();
+                var regex = new RegExp(pattern);
+                if (!regex.test(value)) {
+                    clearTimeout(bladeTimeout);
+                    $('#emailAddress_blade').popover('show');
+                }
+            }).off('input.bs.validator change.bs.validator focusout.bs.validator');
+
+            $('#emailAddress_blade').on('blur', function () {
+                var emailAddress = $(this).val();
+                updateBladeEmailValue(emailAddress);
+            }).on('keypress', function (e) {
+                if (e.which === 13) {
+                    var self = $(this);
+                    var emailAddress = self.val();
+                    updateBladeEmailValue(emailAddress);
+
+                    var form = e.target.form;
+                    $(form).validator('validate');
+                }
+            }).popover({
+                title: 'Error',
+
+                content: '@DictionaryHelper.DictionaryEntry(DictionaryKeys.EmailAddressErrorMessage)',
+                delay: {
+                    show: 500,
+                    hide: 100
+                },
+                placement: 'bottom',
+                trigger: 'manual'
+            }).on('shown.bs.popover', function (e) {
+                bladeTimeout = setTimeout(function () {
+                    $(e.target).popover('hide');
+                    clearTimeout(bladeTimeout);
+                }, 3000);
+            });
+
+        });
+</script>
