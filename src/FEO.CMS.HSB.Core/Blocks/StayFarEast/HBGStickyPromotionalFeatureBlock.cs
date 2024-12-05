@@ -1,11 +1,12 @@
 using EPiServer.Core;
 using EPiServer.DataAnnotations;
+using FEO.CMS.HBG.Core.Blocks.Bases;
 using System.ComponentModel.DataAnnotations;
 
 namespace FEO.CMS.HBG.Core.Blocks.StayFarEast
 {
     [ContentType(DisplayName = "HBGStickyPromotionalFeatureBlock", GUID = "7717F049-63E8-4044-89AC-B1E254AE11CF", GroupName = "Hospitality")]
-    public class HBGStickyPromotionalFeatureBlock : HBGBaseBlock
+    public class HBGStickyPromotionalFeatureBlock : HBGCTAGeneralBlock
     {
         [Display(Name = "Position Of Sticky", GroupName = "Popup Settings", Order = 50)]
         [CultureSpecific]
