@@ -1,141 +1,182 @@
-﻿@model HBGInsidersRibbonBlock
+﻿@inject IHttpContextAccessor HttpContextAccessor
+@model HeaderNavViewModel
 
-<div class="header_ribbon">
-    <div class="header_ribbon__inner">
-        <div class="header_ribbon__logo">
-            <a target="_blank" href="https://www.fareasthospitality.com"><img loading="lazy" src="https://oasiahotelsuat.feodigitallab.com.sg/-/media/StayFarEast/Images/Insiders/Website-Icons/FEHW-Logo.png"></a>
-        </div>
+@{
+    var session = HttpContextAccessor?.HttpContext?.Session;
+    var UsrName = session?.GetString(FieldNames.InsidersFieldName.FirstName);
+}
 
-        <!-- Promo strip info desktop -->
-        <div class="header_ribbon__promoData header_ribbon__promoData_desktop">
-            <!-- info -->
-            <p>Join Far East Insiders to enjoy extra discounts of up to 12% off</p>
-            <!-- Toggler -->
-            <span class="promoData_toggler">Learn More</span>
-        </div>
-        <!-- Promo strip info desktop ends here -->
-        <!-- Promo strip info mobile -->
-        <div class="header_ribbon__promoData header_ribbon__promoData_mobile">
-            <!-- If only info text. commented for time being. -->
-            <!-- <p>Join the <b>Far East Hospitality Insiders</b> membership to enjoy additional 12% off</p> -->
-            <!-- If show more text present, Maximum of 30 charecters can be accomodate. So need to limit to 30 charecters -->
-            <span class="promoData_toggler promoData_toggler_mobile"> <p>Join Far East Insiders for extra 12% off</p></span>
-        </div>
-
-        <!-- Below section for data to be shown when toggle -->
-        <div class="header_ribbon__promoData_detail" style="">
-            <div class="header_ribbon__promoData_detail_inner">
-
-                <ul>
-                    <p>Unlock a far more rewarding stay now:</p>
+<!-- Header Ribbon Start-->
+@{ if (Model?.HideHeaderRibbon == false)
+    {
+    <div class="header_ribbon">
+        <div class="header_ribbon__inner">
+            <div class="header_ribbon__logo">
+                    <a target="@Model.RibbonLogoUrl.Target" href="@(Model.RibbonLogoUrl != null ? Url.ContentUrl(Model.RibbonLogoUrl.Href) : "#")"><img loading="lazy" src="@(Url.ContentUrl(Model?.RibbonLogoImage))" /></a>
+            </div>
+            <!-- Promo strip info desktop -->
+            <div class="header_ribbon__promoData header_ribbon__promoData_desktop">
+                <!-- info -->
+                @Html.Raw(Model?.RibbonPromo)
+                <!-- Toggler -->
+                <span class="promoData_toggler">@(Model?.LearnMore)</span>
+            </div>
+            <!-- Promo strip info desktop ends here -->
+            <!-- Promo strip info mobile -->
+            <div class="header_ribbon__promoData header_ribbon__promoData_mobile">
+                <!-- If only info text. commented for time being. -->
+                <!-- <p>Join the <b>Far East Hospitality Insiders</b> membership to enjoy additional 12% off</p> -->
+                <!-- If show more text present, Maximum of 30 charecters can be accomodate. So need to limit to 30 charecters -->
+                <span class="promoData_toggler promoData_toggler_mobile"> @Html.Raw(Model?.RibbonPromoMobile)</span>
+            </div>
+            <!-- Below section for data to be shown when toggle -->
+            <div class="header_ribbon__promoData_detail">
+                <div class="header_ribbon__promoData_detail_inner">
+                    @Html.Raw(Model?.RibbonInnerPromo)
                     <ul>
-                        <li>Enjoy rates that are up to 12% lower than anywhere else online!</li>
-                        <li>Membership is completely free. Sign up now to enjoy your benefits immediately. </li>
-                        <li>Get priority to limited-availability sales and access to private deals.</li>
+                        @Html.Raw(Model?.RibbonInnerContent)
                     </ul>
-                </ul>
-                <a target="_blank" href="https://www.fareasthospitality.com/insiders-signup">SIGN UP HERE</a>
-                <div class="close_promo_data">Close X</div>
+                        <a target="@Model.RibbonSignUpLink.Target" href="@(Model.RibbonSignUpLink != null ? Url.ContentUrl(Model.RibbonSignUpLink.Href) : "#")">@(Model?.RibbonSignUpText)</a>
+                    <div class="close_promo_data">Close X</div>
+                </div>
             </div>
-        </div>
-        <div class="sx_signup_btn">
-            <!-- Sign In / Sign Up -->
-            <div class="smp_logout">
-                <a data-bs-toggle="modal" data-bs-target="#myModal"><img loading="lazy" alt="" src="/images/account_user.svg" width="16"><span>Sign In / Sign Up</span></a>
-            </div>
-        </div>
-
-        <div class="modal modal-dialog-centered fade modal-lazy-img" id="myModal" style="display: none;" aria-hidden="true">
-
-            <div class="modal-dialog synsix_modal ">
-                <button type="button" class="close" data-dismiss="modal" data-bs-dismiss="modal"><img loading="lazy" src="/images/close.svg"></button>
-                <div class="modal-content">
-
-                    <!-- Modal body -->
-                    <div class="modal-body">
-
-                        <div class="row">
-                            <div class="col-sm-6 col-xs-12">
-                                <div class="form_left">
-                                    <div>
-                                        <p class="form_header">FAR EAST INSIDERS</p>
-                                        <p class="form_desc">Sign in to your account</p>
-                                    </div>
-
-                                    <form id="signin_modal">
-                                        <div class="form-group">
-                                            <label class="" for="ModelEmail"> Email Address*</label>
-                                            <input type="text" class="form-control" id="SignInEmail" placeholder="youremail@email.com">
-                                            <div class="synsix_error" id="SigninEmailcheck" style="display: none;">
-                                                <img loading="lazy" src="/images/error.svg">Please enter your email address
-                                            </div>
-                                            <div class="synsix_error" id="SigninEmailValid" style="display: none;">
-                                                <img loading="lazy" src="/images/error.svg">Please enter a valid email address
-                                            </div>
-                                        </div>
-                                        <div class="form-group">
-                                            <label class="" for="Modelpassword">Password*</label>
-                                            <input type="password" class="form-control" id="SignInPassword" placeholder="Your password" autocomplete="off">
-
-                                            <span id="showhide4" toggle="#SignInPassword" data-text-show="Show" data-text-hide="Hide" class="eyeshow eye_field toggle-password4">Show</span>
-                                            <div class="synsix_error" id="SigninPasswordcheck" style="display: none;">
-                                                <img loading="lazy" src="/images/error.svg">Please enter the password
-                                            </div>
-                                            <div class="synsix_error ErrorMessage" style="display: none;">
-                                                <img loading="lazy" src="/images/error.svg">Passwords do not match
-                                            </div>
-                                        </div>
-                                        <div class="form-group">
-                                            <label for="captcha">Verification</label>
-                                            <div class="g-recaptcha" data-sitekey="6Ld3XhUUAAAAAEr2b1rntq_PGarTmkRv0aIhi-io" data-callback="recaptcha_callback"><div style="width: 304px; height: 78px;"><div><iframe title="reCAPTCHA" width="304" height="78" role="presentation" name="a-lp50qa8nxxwz" frameborder="0" scrolling="no" sandbox="allow-forms allow-popups allow-same-origin allow-scripts allow-top-navigation allow-modals allow-popups-to-escape-sandbox allow-storage-access-by-user-activation" src="https://www.google.com/recaptcha/api2/anchor?ar=1&amp;k=6Ld3XhUUAAAAAEr2b1rntq_PGarTmkRv0aIhi-io&amp;co=aHR0cHM6Ly9vYXNpYWhvdGVsc3VhdC5mZW9kaWdpdGFsbGFiLmNvbS5zZzo0NDM.&amp;hl=en&amp;v=pPK749sccDmVW_9DSeTMVvh2&amp;size=normal&amp;cb=pqhj9pefjisa"></iframe></div><textarea id="g-recaptcha-response" name="g-recaptcha-response" class="g-recaptcha-response" style="width: 250px; height: 40px; border: 1px solid rgb(193, 193, 193); margin: 10px 25px; padding: 0px; resize: none; display: none;"></textarea></div><iframe style="display: none;"></iframe></div>
-                                            <div class="synsix_error" id="CaptchaError" style="display: none;">
-                                                <img loading="lazy" src="/images/error.svg">
-                                                Invalid Captcha
-                                            </div>
-                                        </div>
-                                        <button type="button" id="SignInButton" class="btn btn-block" data-loadingbutton-text="Loading...">SIGN IN</button>
-                                    </form>
-                                    <a href="https://secure2.oasiahotels.com/reset?chain=24327&amp;configcode=OASIA\&amp;level=chain&amp;locale=en-GB&amp;themecode=OASIA" class="d-inline-block" target="_blank" id="d-inline-block">Forgot Password?</a>
-                                </div>
+            @if (Model != null && Model.ShowSignIn)
+            {
+                <div class="sx_signup_btn">
+                    @if (session?.GetString(FieldNames.InsidersFieldName.Token) == null)
+                    {
+                        <!-- @Model.SignInSignUpText -->
+                        <div class="smp_logout">
+                                <a data-toggle="modal" data-target="#myModal"><img loading="lazy" alt="" src="/assets/hospitality/images/account_user.svg" width="16"><span>@Model.SignInSignUpText</span></a>
+                        </div>
+                    }
+                    else
+                    {
+                        <div class="smp_login">
+                            <div class="dropdown">
+                                <button class="btn btn-primary dropdown-toggle" type="button" data-toggle="dropdown">
+                                        <img loading="lazy" alt="" src="/assets/hospitality/images/account_user.svg" width="16">Hi&nbsp;<span class="user-name">@UsrName</span>
+                                </button>
+                                    <ul class="dropdown-menu">
+                                    @*@foreach (var item in Model.NavDropdown)
+                                    {
+                                        if (item.IsSBELink)
+                                        {
+                                            <li> @StayFarEast.RenderLink(item, model => model.MainLink, new { @class = "sbe-login-required", target = "_blank", id = "" }, true)</li>
+                                        }
+                                        else
+                                        {
+                                            <li> @StayFarEast.RenderLink(item, model => model.MainLink, new { @class = "", id = "" }, true)</li>
+                                        }
+                                    }*@
+                                    <li>
+                                            <a href="#" id="logout" data-loadingbutton-text="@DictionaryHelper.DictionaryEntry(DictionaryKeys.LoadingButtonText, string.Empty)">@DictionaryHelper.DictionaryEntry(DictionaryKeys.InsidersLogOutButton, string.Empty)</a>
+                                        <span class="loading_spinner"> </span>
+                                    </li>
+                                </ul>
                             </div>
-                            <div class="col-sm-6 col-xs-12">
-                                <div class="form_right">
-                                    <p class="form_header">Not An Insider Yet?</p>
-                                    <p class="form_desc d-inline-block">Unlock a far more rewarding stay now</p>
+                             <form id="form-sbe-login-required" method="post" target="_blank" style="display:none">
+                                @if (session?.GetString(FieldNames.InsidersFieldName.Token) != null)
+                                {
+                                    <input type="hidden" name="session" id="session" value="@session?.GetString(FieldNames.InsidersFieldName.Token).ToString()">
+                                }
+                            </form>
+                        </div>
+                    }
+                </div>
+            }
 
-                                    <ul>
-                                        <li>
-                                            <div class="icon">
+            <div class="modal modal-dialog-centered fade  modal-lazy-img" id="myModal">
+                <div class="modal-dialog synsix_modal ">
+                        <button type="button" class="close" data-dismiss="modal"><img loading="lazy" src="/assets/hospitality/images/close.svg"></button>
+                    <div class="modal-content">
+                        <!-- Modal body -->
+                        <div class="modal-body">
 
-                                                <img width="52" height="52" class="img-lazy-block loaded" data-lazy-type="image" data-lazy-src="https://oasiahotelsuat.feodigitallab.com.sg/-/media/StayFarEast/Images/Insiders/Website-Icons/Dual-Colour-Orange/Icon_Booking.png?h=222&amp;w=222&amp;hash=F5C33ADBBB62265A2CD20C904D9DAF69" alt="" src="https://oasiahotelsuat.feodigitallab.com.sg/-/media/StayFarEast/Images/Insiders/Website-Icons/Dual-Colour-Orange/Icon_Booking.png?h=222&amp;w=222&amp;hash=F5C33ADBBB62265A2CD20C904D9DAF69">
+                            <div class="row">
+                                <div class="col-sm-6 col-xs-12">
+                                    <div class="form_left">
+                                        <div>
+                                            <p class="form_header">@Model.LeftComponentTitle</p>
+                                            <p class="form_desc">@Model.LeftComponentSubTitle</p>
+                                        </div>
+                                        <form id="signin_modal">
+                                            <div class="form-group">
+                                                    <label class="" for="ModelEmail"> @DictionaryHelper.DictionaryEntry(DictionaryKeys.InsidersEmailLabel, string.Empty)</label>
+                                                    <input type="text" class="form-control" id="SignInEmail" placeholder="@DictionaryHelper.DictionaryEntry(DictionaryKeys.InsidersEmailplaceholder, string.Empty)">
+                                                <div class="synsix_error" id="SigninEmailcheck">
+                                                        <img loading="lazy" src='/assets/hospitality/images/error.svg'>@DictionaryHelper.DictionaryEntry(DictionaryKeys.InsidersEnterEmailAddress, string.Empty)
+                                                </div>
+                                                <div class="synsix_error" id="SigninEmailValid">
+                                                        <img loading="lazy" src='/assets/hospitality/images/error.svg'>@DictionaryHelper.DictionaryEntry(DictionaryKeys.InsidersEnterValidEmailAddress, string.Empty)
+                                                </div>
                                             </div>
-                                            <div>
-                                                <p class="icon_header">Lowest Online Rates</p>
-                                                <p class="icon_desc">Enjoy rates that are up to 12% lower than anywhere else online!</p>
+                                            <div class="form-group">
+                                                    <label class="" for="Modelpassword">@DictionaryHelper.DictionaryEntry(DictionaryKeys.InsidersPasswordLabel, string.Empty)</label>
+                                                    <input type="password" class="form-control" id="SignInPassword" placeholder="@DictionaryHelper.DictionaryEntry(DictionaryKeys.InsidersPasswordPlaceHolder, string.Empty)" autocomplete="off">
+                                                @{
+                                                    string showText = @DictionaryHelper.DictionaryEntry(DictionaryKeys.InsidersPasswordShow, string.Empty);
+                                                    if ((showText.Equals(DictionaryKeys.InsidersPasswordShow)) || string.IsNullOrEmpty(showText))
+                                                    {
+                                                        showText = "Show";
+                                                    }
+                                                    string hideText = @DictionaryHelper.DictionaryEntry(DictionaryKeys.InsidersPasswordHide, string.Empty);
+                                                    if ((hideText.Equals(DictionaryKeys.InsidersPasswordHide)) || string.IsNullOrEmpty(hideText))
+                                                    {
+                                                        hideText = "Hide";
+                                                    }
+                                                }
+                                                <span id="showhide4" toggle="#SignInPassword" data-text-show="@showText" data-text-hide="@hideText" class="eyeshow eye_field toggle-password4">@showText</span>
+                                                <div class="synsix_error" id="SigninPasswordcheck">
+                                                        <img loading="lazy" src='/assets/hospitality/images/error.svg'>@DictionaryHelper.DictionaryEntry(DictionaryKeys.InsidersEnterPassword, string.Empty)
+                                                </div>
+                                                <div class="synsix_error ErrorMessage">
+                                                        <img loading="lazy" src='/assets/hospitality/images/error.svg'>@DictionaryHelper.DictionaryEntry(DictionaryKeys.InsidersPasswordDoNotMatch, string.Empty)
+                                                </div>
                                             </div>
-                                        </li>
-                                        <li>
-                                            <div class="icon">
+                                            @if (Model.ShowSignInCaptcha)
+                                            {
+                                                <div class="form-group">
+                                                    <label for="captcha">@Model.CaptchaTitle</label>
+                                                    @*@Html.GoogleCaptcha()*@
+                                                    <div class="synsix_error" id="CaptchaError">
+                                                        <img loading="lazy" src='/assets/hospitality/images/error.svg'>
+                                                        @Model.CaptchaErrorMessage
+                                                    </div>
+                                                </div>
+                                            }
+                                                <button type="button" id="SignInButton" class="btn btn-block" data-loadingbutton-text="@DictionaryHelper.DictionaryEntry(DictionaryKeys.LoadingButtonText, string.Empty)">@DictionaryHelper.DictionaryEntry(DictionaryKeys.InsidersSignInButton, string.Empty)</button>
+                                        </form>
+                                        @*@StayFarEast.RenderLink(Model, model => model.ForgotPasswordLink, new { @class = "d-inline-block", id = "d-inline-block" }, true)*@
+                                    </div>
+                                </div>
+                                <div class="col-sm-6 col-xs-12">
+                                    <div class="form_right">
+                                        <p class="form_header">@Model.RightComponentTitle</p>
+                                        <p class="form_desc d-inline-block">@Model.RightComponentSubTitle</p>
+                                        @*
+                                        @if (Model.PromotionBlades != null)
+                                        {
+                                            <ul>
+                                                @foreach (var item in Model.PromotionBlades)
+                                                {
+                                                    <li>
+                                                        <div class="icon">
+                                                            StayFarEast.RenderImage(item, model => model.FeedBackImage, isEditable: true)
+                                                            <img  width="52" height="52" class="lazy-hidden-event img-lazy-block" data-lazy-type="image" data-lazy-src="@item.FeedBackImage.GetMediaUrlWithProtectHash()" alt="" />
+                                                        </div>
+                                                        <div>
+                                                            <p class="icon_header">@Glass.Editable(item, model => model.FeedbackTitle)</p>
+                                                            <p class="icon_desc">@Glass.Editable(item, model => model.FeedBackSubtitle)</p>
+                                                        </div>
+                                                    </li>
+                                                }
 
-                                                <img width="52" height="52" class="img-lazy-block loaded" data-lazy-type="image" data-lazy-src="https://oasiahotelsuat.feodigitallab.com.sg/-/media/StayFarEast/Images/Insiders/Website-Icons/Dual-Colour-Orange/Icon_Thumb.png?h=222&amp;w=222&amp;hash=3AB19FBAD07B874FD5848B7DC0715BA4" alt="" src="https://oasiahotelsuat.feodigitallab.com.sg/-/media/StayFarEast/Images/Insiders/Website-Icons/Dual-Colour-Orange/Icon_Thumb.png?h=222&amp;w=222&amp;hash=3AB19FBAD07B874FD5848B7DC0715BA4">
-                                            </div>
-                                            <div>
-                                                <p class="icon_header"></p><p class="icon_header" style="margin-bottom: 5px;">Join for Free</p><p></p>
-                                                <p class="icon_desc">Membership is completely free. Sign up now to enjoy your benefits immediately.</p>
-                                            </div>
-                                        </li>
-                                        <li>
-                                            <div class="icon">
-
-                                                <img width="52" height="52" class="img-lazy-block loaded" data-lazy-type="image" data-lazy-src="https://oasiahotelsuat.feodigitallab.com.sg/-/media/StayFarEast/Images/Insiders/Website-Icons/Dual-Colour-Orange/Icon_Priority-Access.png?h=222&amp;w=221&amp;hash=BAC73BB025632A557E1EB3E395B88F1D" alt="" src="https://oasiahotelsuat.feodigitallab.com.sg/-/media/StayFarEast/Images/Insiders/Website-Icons/Dual-Colour-Orange/Icon_Priority-Access.png?h=222&amp;w=221&amp;hash=BAC73BB025632A557E1EB3E395B88F1D">
-                                            </div>
-                                            <div>
-                                                <p class="icon_header"></p><p class="icon_header" style="margin-bottom: 5px;">Priority Access</p><p></p>
-                                                <p class="icon_desc">Get priority to limited-availability sales and access to private deals.</p>
-                                            </div>
-                                        </li>
-                                    </ul>
-                                    <a href="https://fareasthospitality.com/en/insiders-signup" class="btn" target="_blank" data-loadingbutton-text="Loading..." id="signup_link">Sign Up Here</a>
+                                            </ul>
+                                        }
+                                        @StayFarEast.RenderLink(Model, model => model.SignUpLink, new { @class = "btn", id = "signup_link", data_loadingbutton_text = Dictionary.GetValue(DictionaryKeys.LoadingButtonText) }, true)
+                                    *@
+                                    </div>
                                 </div>
                             </div>
                         </div>
@@ -144,4 +185,117 @@
             </div>
         </div>
     </div>
-</div>
+
+    <script>
+    $(function () {
+        $('.sbe-login-required').on('click',function(e){
+                    e.preventDefault();
+                    var href = $(this).attr('href'),
+                        form = $('#form-sbe-login-required');
+                    form.attr('action',href);
+                    form.submit();
+                });
+         $(document).on("click", "#logout", function (event) {
+                //$("#logout").click(function () {
+                $.ajax({
+                    url: "/api/sitecore/StayFarEastInsiders/logout",
+                    type: 'POST',
+                    cache: false,
+                    contentType: false,
+                    processData: false,
+                    data: null,
+                    success: function (response) {
+                        if (response == "success") {
+                            var signOutLink = "@Model.SignOutLink";
+                            if (signOutLink != "") {
+                                if (signOutLink == location.pathname) {
+                                    window.location.reload(true);
+                                }
+                                else {
+                                    window.location.replace(signOutLink)
+                                }
+                            }
+                            else {
+                                if ($("#isAcountPage").data('is-acount-page') == "True") {
+                                    window.location.href = "/";
+                                }
+                                else
+                                    window.location.reload(true);
+                            }
+                        }
+                        else
+                            alert("error while logging out");
+                    }
+                });
+            });
+
+        var defaultValue = $('#SignInButton').html();
+        var img_gif = '<span class="loading_spinner"> </span>';
+        var LoadingValue = $('#SignInButton').attr("data-loadingbutton-text") + '&nbsp;' + img_gif;
+        var _signInRecaptcha = $("#signin_modal").find('.g-recaptcha');
+        $("#SignInButton").click(function () {
+            if ($("#SignInEmail").val() != "" && $("#SignInPassword").val() != "" && _signInRecaptcha.find('.g-recaptcha-response').val() != "") {
+                var formData = new FormData();
+                formData.append("Email", $("#SignInEmail").val());
+                formData.append("Password", $("#SignInPassword").val());
+                formData.append("GRecaptchaToken",_signInRecaptcha.find('.g-recaptcha-response').val());
+                document.getElementById("SignInButton").innerHTML = LoadingValue;
+                $('html').addClass('fixed_page');
+                $.ajax({
+                    url: "/api/sitecore/StayFarEastNavigation/SignIn",
+                    type: 'POST',
+                    cache: false,
+                    contentType: false,
+                    processData: false,
+                    data: formData,
+                    success: function (response) {
+                        //$('.login_notification').show();
+                        $.cookie('signInUpSuccess', 'yes', { expires: 1, path: '/' });
+                        if (response.toLowerCase() == "fail") {
+                            $('.ErrorMessage').show();
+                            $('html').removeClass('fixed_page');
+                            //$('#SignInButton').removeClass('gif_added');
+                            document.getElementById("SignInButton").innerHTML = defaultValue;
+                        }
+                        else {
+                            $('.ErrorMessage').hide();
+                            var email = $("#SignInEmail").val()
+                            if (email.length > 0) {
+                                $.ajax({
+                                    url: "/api/sitecore/StayFarEastInsiders/EncryptEmail?email=" + email,
+                                    type: 'POST',
+                                    cache: false,
+                                    contentType: false,
+                                    processData: false,
+                                    success: function (response1) {
+                                        if (response1.length > 0) {
+
+                                            dataLayer.push({
+                                                'userID': response1,
+                                                'userIsMember': response[0]
+                                            });
+                                        }
+                                    }
+                                });
+                            }
+                            var returnUrl = window.location.search;
+                            var index = returnUrl.indexOf("=");
+
+                            if (index > 0) {
+                                var path = returnUrl.substring(index + 1);
+                                var url = new URL(path, location);
+                                let decoded = decodeURIComponent(url);
+                                window.location.replace(decoded);
+                            }
+                            else {
+                                window.location.reload(true);
+                            }
+                        }
+                    }
+                });
+            }
+        });
+    });
+    </script>
+    }
+}
