@@ -1,0 +1,147 @@
+﻿@model HBGInsidersRibbonBlock
+
+<div class="header_ribbon">
+    <div class="header_ribbon__inner">
+        <div class="header_ribbon__logo">
+            <a target="_blank" href="https://www.fareasthospitality.com"><img loading="lazy" src="https://oasiahotelsuat.feodigitallab.com.sg/-/media/StayFarEast/Images/Insiders/Website-Icons/FEHW-Logo.png"></a>
+        </div>
+
+        <!-- Promo strip info desktop -->
+        <div class="header_ribbon__promoData header_ribbon__promoData_desktop">
+            <!-- info -->
+            <p>Join Far East Insiders to enjoy extra discounts of up to 12% off</p>
+            <!-- Toggler -->
+            <span class="promoData_toggler">Learn More</span>
+        </div>
+        <!-- Promo strip info desktop ends here -->
+        <!-- Promo strip info mobile -->
+        <div class="header_ribbon__promoData header_ribbon__promoData_mobile">
+            <!-- If only info text. commented for time being. -->
+            <!-- <p>Join the <b>Far East Hospitality Insiders</b> membership to enjoy additional 12% off</p> -->
+            <!-- If show more text present, Maximum of 30 charecters can be accomodate. So need to limit to 30 charecters -->
+            <span class="promoData_toggler promoData_toggler_mobile"> <p>Join Far East Insiders for extra 12% off</p></span>
+        </div>
+
+        <!-- Below section for data to be shown when toggle -->
+        <div class="header_ribbon__promoData_detail" style="">
+            <div class="header_ribbon__promoData_detail_inner">
+
+                <ul>
+                    <p>Unlock a far more rewarding stay now:</p>
+                    <ul>
+                        <li>Enjoy rates that are up to 12% lower than anywhere else online!</li>
+                        <li>Membership is completely free. Sign up now to enjoy your benefits immediately. </li>
+                        <li>Get priority to limited-availability sales and access to private deals.</li>
+                    </ul>
+                </ul>
+                <a target="_blank" href="https://www.fareasthospitality.com/insiders-signup">SIGN UP HERE</a>
+                <div class="close_promo_data">Close X</div>
+            </div>
+        </div>
+        <div class="sx_signup_btn">
+            <!-- Sign In / Sign Up -->
+            <div class="smp_logout">
+                <a data-bs-toggle="modal" data-bs-target="#myModal"><img loading="lazy" alt="" src="/images/account_user.svg" width="16"><span>Sign In / Sign Up</span></a>
+            </div>
+        </div>
+
+        <div class="modal modal-dialog-centered fade modal-lazy-img" id="myModal" style="display: none;" aria-hidden="true">
+
+            <div class="modal-dialog synsix_modal ">
+                <button type="button" class="close" data-dismiss="modal" data-bs-dismiss="modal"><img loading="lazy" src="/images/close.svg"></button>
+                <div class="modal-content">
+
+                    <!-- Modal body -->
+                    <div class="modal-body">
+
+                        <div class="row">
+                            <div class="col-sm-6 col-xs-12">
+                                <div class="form_left">
+                                    <div>
+                                        <p class="form_header">FAR EAST INSIDERS</p>
+                                        <p class="form_desc">Sign in to your account</p>
+                                    </div>
+
+                                    <form id="signin_modal">
+                                        <div class="form-group">
+                                            <label class="" for="ModelEmail"> Email Address*</label>
+                                            <input type="text" class="form-control" id="SignInEmail" placeholder="youremail@email.com">
+                                            <div class="synsix_error" id="SigninEmailcheck" style="display: none;">
+                                                <img loading="lazy" src="/images/error.svg">Please enter your email address
+                                            </div>
+                                            <div class="synsix_error" id="SigninEmailValid" style="display: none;">
+                                                <img loading="lazy" src="/images/error.svg">Please enter a valid email address
+                                            </div>
+                                        </div>
+                                        <div class="form-group">
+                                            <label class="" for="Modelpassword">Password*</label>
+                                            <input type="password" class="form-control" id="SignInPassword" placeholder="Your password" autocomplete="off">
+
+                                            <span id="showhide4" toggle="#SignInPassword" data-text-show="Show" data-text-hide="Hide" class="eyeshow eye_field toggle-password4">Show</span>
+                                            <div class="synsix_error" id="SigninPasswordcheck" style="display: none;">
+                                                <img loading="lazy" src="/images/error.svg">Please enter the password
+                                            </div>
+                                            <div class="synsix_error ErrorMessage" style="display: none;">
+                                                <img loading="lazy" src="/images/error.svg">Passwords do not match
+                                            </div>
+                                        </div>
+                                        <div class="form-group">
+                                            <label for="captcha">Verification</label>
+                                            <div class="g-recaptcha" data-sitekey="6Ld3XhUUAAAAAEr2b1rntq_PGarTmkRv0aIhi-io" data-callback="recaptcha_callback"><div style="width: 304px; height: 78px;"><div><iframe title="reCAPTCHA" width="304" height="78" role="presentation" name="a-lp50qa8nxxwz" frameborder="0" scrolling="no" sandbox="allow-forms allow-popups allow-same-origin allow-scripts allow-top-navigation allow-modals allow-popups-to-escape-sandbox allow-storage-access-by-user-activation" src="https://www.google.com/recaptcha/api2/anchor?ar=1&amp;k=6Ld3XhUUAAAAAEr2b1rntq_PGarTmkRv0aIhi-io&amp;co=aHR0cHM6Ly9vYXNpYWhvdGVsc3VhdC5mZW9kaWdpdGFsbGFiLmNvbS5zZzo0NDM.&amp;hl=en&amp;v=pPK749sccDmVW_9DSeTMVvh2&amp;size=normal&amp;cb=pqhj9pefjisa"></iframe></div><textarea id="g-recaptcha-response" name="g-recaptcha-response" class="g-recaptcha-response" style="width: 250px; height: 40px; border: 1px solid rgb(193, 193, 193); margin: 10px 25px; padding: 0px; resize: none; display: none;"></textarea></div><iframe style="display: none;"></iframe></div>
+                                            <div class="synsix_error" id="CaptchaError" style="display: none;">
+                                                <img loading="lazy" src="/images/error.svg">
+                                                Invalid Captcha
+                                            </div>
+                                        </div>
+                                        <button type="button" id="SignInButton" class="btn btn-block" data-loadingbutton-text="Loading...">SIGN IN</button>
+                                    </form>
+                                    <a href="https://secure2.oasiahotels.com/reset?chain=24327&amp;configcode=OASIA\&amp;level=chain&amp;locale=en-GB&amp;themecode=OASIA" class="d-inline-block" target="_blank" id="d-inline-block">Forgot Password?</a>
+                                </div>
+                            </div>
+                            <div class="col-sm-6 col-xs-12">
+                                <div class="form_right">
+                                    <p class="form_header">Not An Insider Yet?</p>
+                                    <p class="form_desc d-inline-block">Unlock a far more rewarding stay now</p>
+
+                                    <ul>
+                                        <li>
+                                            <div class="icon">
+
+                                                <img width="52" height="52" class="img-lazy-block loaded" data-lazy-type="image" data-lazy-src="https://oasiahotelsuat.feodigitallab.com.sg/-/media/StayFarEast/Images/Insiders/Website-Icons/Dual-Colour-Orange/Icon_Booking.png?h=222&amp;w=222&amp;hash=F5C33ADBBB62265A2CD20C904D9DAF69" alt="" src="https://oasiahotelsuat.feodigitallab.com.sg/-/media/StayFarEast/Images/Insiders/Website-Icons/Dual-Colour-Orange/Icon_Booking.png?h=222&amp;w=222&amp;hash=F5C33ADBBB62265A2CD20C904D9DAF69">
+                                            </div>
+                                            <div>
+                                                <p class="icon_header">Lowest Online Rates</p>
+                                                <p class="icon_desc">Enjoy rates that are up to 12% lower than anywhere else online!</p>
+                                            </div>
+                                        </li>
+                                        <li>
+                                            <div class="icon">
+
+                                                <img width="52" height="52" class="img-lazy-block loaded" data-lazy-type="image" data-lazy-src="https://oasiahotelsuat.feodigitallab.com.sg/-/media/StayFarEast/Images/Insiders/Website-Icons/Dual-Colour-Orange/Icon_Thumb.png?h=222&amp;w=222&amp;hash=3AB19FBAD07B874FD5848B7DC0715BA4" alt="" src="https://oasiahotelsuat.feodigitallab.com.sg/-/media/StayFarEast/Images/Insiders/Website-Icons/Dual-Colour-Orange/Icon_Thumb.png?h=222&amp;w=222&amp;hash=3AB19FBAD07B874FD5848B7DC0715BA4">
+                                            </div>
+                                            <div>
+                                                <p class="icon_header"></p><p class="icon_header" style="margin-bottom: 5px;">Join for Free</p><p></p>
+                                                <p class="icon_desc">Membership is completely free. Sign up now to enjoy your benefits immediately.</p>
+                                            </div>
+                                        </li>
+                                        <li>
+                                            <div class="icon">
+
+                                                <img width="52" height="52" class="img-lazy-block loaded" data-lazy-type="image" data-lazy-src="https://oasiahotelsuat.feodigitallab.com.sg/-/media/StayFarEast/Images/Insiders/Website-Icons/Dual-Colour-Orange/Icon_Priority-Access.png?h=222&amp;w=221&amp;hash=BAC73BB025632A557E1EB3E395B88F1D" alt="" src="https://oasiahotelsuat.feodigitallab.com.sg/-/media/StayFarEast/Images/Insiders/Website-Icons/Dual-Colour-Orange/Icon_Priority-Access.png?h=222&amp;w=221&amp;hash=BAC73BB025632A557E1EB3E395B88F1D">
+                                            </div>
+                                            <div>
+                                                <p class="icon_header"></p><p class="icon_header" style="margin-bottom: 5px;">Priority Access</p><p></p>
+                                                <p class="icon_desc">Get priority to limited-availability sales and access to private deals.</p>
+                                            </div>
+                                        </li>
+                                    </ul>
+                                    <a href="https://fareasthospitality.com/en/insiders-signup" class="btn" target="_blank" data-loadingbutton-text="Loading..." id="signup_link">Sign Up Here</a>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
