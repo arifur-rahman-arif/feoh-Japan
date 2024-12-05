@@ -1,0 +1,48 @@
+﻿@model HBGImageTextGridBlock
+
+@if (Model != null)
+{
+    string stringSummary = string.Empty;
+    string stringClass = string.Empty;
+    string alignClass = string.Empty;
+    int col = 12;
+
+    
+    if (!string.IsNullOrEmpty(Model.Config?.SummaryText))
+    {
+        stringSummary = "data-menu='" + Model.Config.SummaryText + "'";
+        stringClass = "is-menu-sidebar";
+    }
+
+    
+    if (Model?.Alignment != null && Model.Alignment.Value == "right")
+    {
+        alignClass = "end"; 
+    }
+
+    <div class="block-content block-content-image-text @stringClass" @Html.PropertyFor(x => x.stringSummary)>
+        <div class="row-flex @alignClass">
+            @if (Model.Image != null)
+            {
+                col = 6; 
+                <div class="col-md-6">
+                    <div class="thumb">
+                        <img width="360" height="360" class="lazy-hidden img-lazy-block lazy"
+                             data-lazy-type="image"
+                             data-lazy-src="@Url.ContentUrl(Model.Image)"
+                             alt="@Model.Image?.GetAltText()" />
+                        @if (!string.IsNullOrEmpty(Model.ImageCaption))
+                        {
+                            <div class="caption">@Model.ImageCaption</div>
+                        }
+                    </div>
+                </div>
+            }
+
+            <div class="col-md-@col">
+                <!-- Use PropertyFor to render the Content (XhtmlString) safely -->
+                @Html.PropertyFor(x => x.Content)
+            </div>
+        </div>
+    </div>
+}

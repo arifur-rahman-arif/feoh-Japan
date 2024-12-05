@@ -1,0 +1,20 @@
+﻿@model HBGParagraphHeadingBlock
+@if (Model != null)
+
+{
+
+    string stringSummary = string.Empty;
+
+    string stringClass = string.Empty;
+
+    if (!string.IsNullOrEmpty(Model.Config?.SummaryText))
+
+    {
+
+        stringSummary = "data-menu='" + Model.Config.SummaryText + "'";
+
+        stringClass = "is-menu-sidebar";
+
+    }
+    <h2 class="block-heading @stringClass" @Html.PropertyFor(x=>x.stringSummary)>@Model.Heading</h2>
+}
