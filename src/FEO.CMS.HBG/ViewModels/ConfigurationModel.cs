@@ -30,7 +30,10 @@ namespace FEO.CMS.HBG.ViewModels
     {
         public string EPiServerDB { get; set; }
     }
-
+    public class SessionSettingsValidity
+    {
+        public int SessionValidityInDays { get; set; }
+    }
     public class CRM
     {
         public string EndpointAddress { get; set; }

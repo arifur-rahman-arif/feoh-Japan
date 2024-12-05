@@ -6,7 +6,7 @@ using System.ComponentModel.DataAnnotations;
 namespace FEO.CMS.HBG.Core.Blocks.StayFarEast
 {
     [ContentType(DisplayName = "HBGGenericPopupBlock", GUID = "FDD4EADD-BE3E-4606-8595-2F5432F36BD2", GroupName = "Hospitality")]
-    public class HBGGenericPopupBlock : HBGNewsletterSubscriptionBlock
+    public class HBGGenericPopupBlock : HBGGenericPopupRenderingBlock
     {
         [Display(Name = "Background Color", GroupName = "Enhancement Content", Order = 100)]
         [CultureSpecific]

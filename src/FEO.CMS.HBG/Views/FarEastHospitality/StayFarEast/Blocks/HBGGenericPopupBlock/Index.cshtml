@@ -1,0 +1,116 @@
+﻿@model HBGGenericPopupBlock
+
+@{
+
+    var parameters = !string.IsNullOrWhiteSpace(Model.FormParameters) ?
+
+        RazorUtil.ParseQueryString(Model.FormParameters) : default(Dictionary<string,string>);
+    
+
+    var scheme = HttpContextAccessor.HttpContext?.Request.Scheme;
+    var host = HttpContextAccessor.HttpContext?.Request.Host.Host;
+
+    var GetAppSetting = ServiceLocator.Current.GetInstance<IConfiguration>();
+    var SessionValidityInDays1 = GetAppSetting["SessionSettingsValidity:SessionValidityInDays"];
+}
+
+<div class="modal fade newsletter subscription newsletter-enhanced" id="newsletter-enhanced" role="dialog" aria-labelledby="newsletter" aria-hidden="true">
+    <div class="modal-dialog">
+        <div class="modal-content @Model.BackgroundColor" style="">
+
+            @if (Model.Background != null)
+            {
+                @if (ContextMode.CurrentMode.EditOrPreview())
+                {
+                    //@Html.PropertyFor(a => a.BackgroundForMobile)
+                   @Url.ContentUrl(Model.Background)
+                }
+                else
+                {
+                    <img src="@(Url.ContentUrl(Model.Background))" class="@(!string.IsNullOrEmpty(Model.BackgroundForMobile.ToString()) ? "hidden-xs" : "")" isEditable: true />
+                }
+            }
+      
+            @if (Model.BackgroundForMobile != null)
+            {
+                @if (ContextMode.CurrentMode.EditOrPreview())
+                {
+                    //@Html.PropertyFor(a => a.BackgroundForMobile)
+                    @Url.ContentUrl(Model.BackgroundForMobile)
+                }
+                else
+                {
+                    <img src="@Url.ContentUrl(Model.BackgroundForMobile)" class="visible-xs" isEditable: true />
+                }
+            }
+            <input type="hidden" value="@SessionValidityInDays1" name="session-validity" />
+            <input type="hidden" value="@Model.PopupTimeVisibility" name="popup-timevisibility" />
+            <input type="hidden" value="@Model.PopupTimeDelay" name="popup-timedelay" />
+            <input type="hidden" value="@Model.PopupTimeOnPage" name="popup-timeonpage" />
+            <input type="hidden" value="@Model.ExitIntent.ToString()" name="exit-intent" />
+            <div class="modal-header">
+                <button type="button" class="close" data-dismiss="modal" aria-hidden="true">
+                    <a href="#">
+                        <div class="burger-bar open">
+                            <span></span>
+                            <span></span>
+                            <span></span>
+                            <span></span>
+                        </div>
+                    </a>
+                </button>
+            </div>
+
+            @if (Model.ReturnURL != null)
+            {
+                <input id="returnUrl_popup" type="hidden" value="@(string.Format("{0}{1}{2}{3}", scheme, Uri.SchemeDelimiter, host, Model.ReturnURL.Href))" />
+            }
+
+            <div class="modal-body cta-forecolor cta-forecolor-@Model.CTATextForeColor">
+                <div class="modal-align-middle">
+                    <h2 class="text-center">@Html.PropertyFor(x => x.HighlightText)</h2>
+                    <p class="text-center color-white summary">
+                        @Html.PropertyFor(x => x.Summary)
+                    </p>
+                    @if (parameters != null)
+
+                    {
+                        <form id="popup-form" class="" target="_blank" action="@Url.ContentUrl(Model.FormURL != null ? Model.FormURL.Href : "/")" method="post">
+
+                            @foreach (var pair in parameters)
+
+                            {
+                                <input type="hidden" name="@pair.Key" value="@pair.Value" />
+                            }
+
+                            <input id="elQsubURL_popup" type="hidden" name="subURL" />
+
+                            <div class="input-group input-group-lg">
+                                <input id="emailAddress_popup" type="email" class="form-control required" name="emailAddress" required pattern="@(@"^[A-Za-z0-9._%+-]+@[A-Za-z0-9.-]+\.[A-Za-z]{2,17}$")" placeholder="@DictionaryHelper.DictionaryEntry(DictionaryKeys.EmailInputPlaceholder)" aria-describedby="sizing-addon1">
+                                <span class="input-group-btn">
+                                    <button id="newsletter-popup-btn" class="btn btn-default" type="submit"><span id="newsletter-btn" class="glyphicon glyphicon-envelope"></span></button>
+                                </span>
+                            </div><!-- /input-group -->
+                        </form>
+                    }
+
+                    else
+
+                    {
+                        <!-- Description -->
+                        <div class="description">
+                            @Html.PropertyFor(x => x.Description)
+                        </div>
+
+                        <!--CTA Button -->
+                        <!-- Add CTA Background color and fore color -->
+                        <a href="@Url.ContentUrl(Model.CTATextURL !=null ? Model.CTATextURL.Href : "#")" target="@Url.ContentUrl(Model.CTATextURL !=null? Model.CTATextURL.Target : "#")" class=" cta-bg cta-bg-@Model.CTABackgroundColor">
+                            @Html.PropertyFor(x => x.CTATextURL.Text)
+                        </a>
+
+                    }
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
