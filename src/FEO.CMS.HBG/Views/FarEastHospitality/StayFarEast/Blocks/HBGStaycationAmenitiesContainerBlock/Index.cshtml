@@ -1,0 +1,147 @@
+﻿@model HBGStaycationAmenitiesContainerBlock
+
+@if (Model != null)
+{
+    <section class="sfe-content-section">
+        <div class="sfe-content-wrap" id="@Html.PropertyFor(x =>x.BladeID)">
+            <header class="sfe-content-title">
+                <i class="sfe-title-icon">
+                    @Html.PropertyFor(x=>x.BladeIcon)
+                    @*<img loading="lazy" src="../images/staycation/staycation-icon-3.png" alt="Section Icon" />*@
+                </i>
+                <h1>
+                    @Html.PropertyFor(x =>x.AmenitiesPrimaryTitle)
+                </h1>
+                <h2>
+                    @Html.PropertyFor(x =>x.AmenitiesDescription)
+                </h2>
+            </header>
+
+            @if (Model.AllAmenities != null && Model.LayoutOptions != null && Model.LayoutOptions.Items != null && Model.LayoutOptions.Items.Any())
+            {
+                var previewCount = 5;
+                var amenities = ContentLoader.GetChildren<HBGStaycationAmenityBlock>(Model.AllAmenities);
+                string layout = ContentLoader.Get<HBGNameValuePairBlock>(Model.LayoutOptions.Items.First().ContentLink).Value.ToLower();
+                var defaultlayout = Model.DefaultLayout;
+                var offset = 0;
+                var j = 0;
+                var i = 0;
+                var prevlayout = "";
+
+                foreach (var amenity in amenities)
+                {
+                    if (i == 0 || i >= offset)
+                    {
+                        if (i != 0)
+                        {
+                            j++;
+                            if (layout == "onecolumn")
+                            {
+                            }
+                            if (layout == "twocolumn")
+                            {
+                                @:</ul>
+                                @:</div>
+                            }
+                            if (layout == "threecolumn")
+                            {
+                                @:</ul>
+                                @:</div>
+                            }
+                        }
+                        if (j < Model.LayoutOptions?.Items.Count())
+                        {
+                                layout = ContentLoader.Get<HBGNameValuePairBlock>(Model.LayoutOptions.Items[j].ContentLink).Value.ToLower();
+                        }
+                        else
+                        {
+                            if (defaultlayout != null)
+                            {
+                                layout = ContentLoader.Get<HBGNameValuePairBlock>(defaultlayout).Value.ToLower();
+                            }
+                            else
+                            {
+                                layout = "threecolumn";
+                            }
+                        }
+                        if (layout == "onecolumn")
+                        {
+                            offset += 1;
+                        }
+                        if (layout == "twocolumn")
+                        {
+                            offset += 2;
+                            @:<div class="sfe-content-articles-list list-col-2">
+                            @:<ul>
+                        }
+                        if (layout == "threecolumn")
+                        {
+                            offset += 3;
+                            @:<div class="sfe-content-articles-list list-col-3">
+                            @:<ul>
+                        }
+                    } @*end if offset *@
+                    if (layout == "onecolumn")
+                    {
+                        <div class="sfe-content-articles-list list-col-1">
+                            <article class="sfe-content-article-3">
+                                <div class="sfe-row">
+                                    <figure class="sfe-content-hero">
+                                        @Html.PropertyFor(x=>amenity.AmenitiesBanner)
+                                        @*<img loading="lazy" src="../images/staycation/staycation-feature-6.png" alt="SFE Hero">*@
+                                    </figure>
+                                    <div class="article-details">
+                                        <h3>
+                                            @Html.PropertyFor(x=>amenity.AmenitiesName)
+                                        </h3>
+                                    <p class="">
+                                        @Html.PropertyFor(x=>amenity.AmenitiesDescription)
+                                    </p>
+                                    <p class="highlight bigger">
+                                        @Html.PropertyFor(x=>amenity.AmenitiesBlurb)
+                                    </p>
+                                </div>
+                            </div>
+                        </article>
+                    </div>
+                    }
+                    if (layout == "twocolumn")
+                    {
+                        <li>
+                            <article class="sfe-content-article-5">
+                                <figure class="sfe-content-hero">
+                                    @Html.PropertyFor(x=>amenity.AmenitiesBanner)
+                                    @*<img loading="lazy" src="../images/staycation/staycation-feature-1.png" alt="SFE Hero" />*@
+                                </figure>
+                                <h3>
+                                    @Html.PropertyFor(x=>amenity.AmenitiesName)
+                                </h3>
+                                <p class="">
+                                    @Html.PropertyFor(x=>amenity.AmenitiesDescription)
+                                </p>
+                            </article>
+                        </li>
+                    }
+                    if (layout == "threecolumn")
+                    {
+                        <li>
+                            <article class="sfe-content-article-5 justify-center">
+                                <figure class="sfe-content-hero">
+                                    @Html.PropertyFor(x=>amenity.AmenitiesBanner)
+                                    @*<img loading="lazy" src="../images/staycation/staycation-feature-3.png" alt="SFE Hero" />*@
+                                </figure>
+                                <h3>
+                            @Html.PropertyFor(x=>amenity.AmenitiesName)
+                        </h3>
+                        <p class="">
+                            @Html.PropertyFor(x=>amenity.AmenitiesDescription)
+                        </p>
+                            </article>
+                        </li>
+                    }
+                    i++;
+                }   @*end foreach amenities *@
+            }   @*end if *@
+        </div>
+    </section>
+}

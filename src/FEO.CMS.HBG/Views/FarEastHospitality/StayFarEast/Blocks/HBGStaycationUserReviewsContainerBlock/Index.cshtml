@@ -1,0 +1,54 @@
+﻿@model HBGStaycationUserReviewsContainerBlock
+
+@if(Model != null)
+{
+    <section class="sfe-content-section  sfe-content-section-6">
+        <div class="sfe-content-wrap" id="whatothersaresaying">
+            <header class="sfe-content-title">
+                <h1 class="text-uppercase">         
+                    @Html.PropertyFor(x =>x.UserReviewsPrimaryTitle)
+                </h1>
+            </header>
+            @if (Model.AllUserReviews != null)
+            {
+                var reviews = ContentLoader.GetChildren<HBGUserReviewBlock>(Model.AllUserReviews);
+                var offset = 0;
+                var j = 0;
+                var i = 0;
+                foreach (var review in reviews)
+                {
+                    if (i == 0 || i >= offset)
+                    {
+                        if (i != 0)
+                        {
+                            j++;
+                            @:</ul>
+                            @:</div>
+                        }
+                    offset += 3;
+                    @:<div class="sfe-content-quote-list list-col-3">
+                        @:<ul>
+                            } @*end if offset *@
+                    <li>
+
+                        <blockquote>
+                            <figure>
+                                @Html.PropertyFor(x=> review.UserBanner)
+                                @*<img loading="lazy" src="../images/staycation/staycation-quote-1.png" alt="SFE quote" />*@
+                            </figure>
+                            <p>
+                                @*“We were greeted by a very breath-taking view of the city! My husband and I just sat on the ledge and admired the sight for a good 10 minutes.”*@
+                                 @Html.PropertyFor(x=> review.UserDescriptions)
+                                <br>
+                                <b>- @Html.PropertyFor(x=> review.UserName)</b>
+                            </p>
+                        </blockquote>
+
+                    </li>
+                            i++;
+                            }   @*end foreach reviews *@
+                            }   @*end if *@
+
+        </div>
+    </section>
+}

@@ -15,8 +15,7 @@
   </ItemGroup>
   
   <ItemGroup>
-    <PackageReference Include="EPiServer.CMS" Version="12.29.0" />
-    <PackageReference Include="EPiServer.CMS.TinyMce" Version="4.7.2" />
+    <PackageReference Include="EPiServer.CMS" Version="12.31.2" />
     <PackageReference Include="EPiServer.Find.Cms" Version="16.2.0" />
     <PackageReference Include="EPiServer.Forms" Version="5.8.2" />
   </ItemGroup>

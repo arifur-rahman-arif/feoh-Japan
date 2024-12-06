@@ -1,0 +1,144 @@
+﻿@model HBGStaycationDealsBlock
+
+@if (Model != null)
+{
+    <section class="sfe-content-section sfe-content-section-7">
+        <div class="sfe-content-promotions" id="@Html.PropertyFor(x=>x.BladeID)">
+            @if (Model.Deals != null && Model.Deals.Items != null && Model.Deals.Items.Any() && Model.LayoutOptions != null && Model.LayoutOptions.Items != null && Model.LayoutOptions.Items.Any())
+            {
+                <div>@Model.Deals.Count</div>
+
+                string layout = ContentLoader.Get<HBGNameValuePairBlock>(Model.LayoutOptions.Items.First().ContentLink).Value.ToLower();
+                var defaultlayout = "onecolumn";
+                if (Model.DefaultLayout != null)
+                {
+                    layout = ContentLoader.Get<HBGNameValuePairBlock>(Model.DefaultLayout).Value.ToLower();
+                }
+                var offset = 0;
+                var j = 0;
+                var i = 0;
+                foreach (var item in Model.Deals.Items)
+                {
+                    var deal = ContentLoader.Get<HBGThumbnailPreviewBlock>(item.ContentLink);
+                    if (i == 0 || i >= offset)
+                    {
+                        if (i != 0)
+                        {
+                            j++;
+                        }
+                        if (j < Model.LayoutOptions?.Items.Count())
+                        {
+                            layout = ContentLoader.Get<HBGNameValuePairBlock>(Model.LayoutOptions.Items[j].ContentLink).Value.ToLower();
+                        }
+                        else
+                        {
+                            if (defaultlayout != null)
+                            {
+                                layout = defaultlayout;
+                            }
+                            else
+                            {
+                                layout = "threecolumn";
+                            }
+                        }
+                        if (layout == "onecolumn")
+                        {
+                            offset += 1;
+                        }
+                        if (layout == "twocolumn")
+                        {
+                            offset += 2;
+                        }
+                        if (layout == "threecolumn")
+                        {
+                            offset += 3;
+                        }
+                    } @*end if offset *@
+                    if (layout == "onecolumn")
+                    {
+                        <div class="sfe-content-promotion-1" id="promotion-1">
+                            @*<figure style="background-image: url('../images/staycation/staycation-promotion-1.png')">
+            <img loading="lazy" src="../images/staycation/staycation-promotion-1.png" alt="promotion 1">*@
+                            <figure style="background-image: url('@Url.ContentUrl(deal.LargeThumbnail)')">
+                                @Html.PropertyFor(x => deal.LargeThumbnail)
+                            </figure>
+                            <div class="promotion-details">
+                                <h1>
+                                    <span>@Html.PropertyFor(x => deal.Title)</span>
+                                    @Html.PropertyFor(x => deal.SubTitle)
+                                </h1>
+                                <div class="sfe-content-cta">
+                                    <a href="@(Url.ContentUrl(deal.AlternateURL?.Href) ?? "#")">
+                                        @DictionaryHelper.DictionaryEntry(DictionaryKeys.LearnMoreText)
+                                    </a>
+                                </div>
+                            </div>
+                        </div>
+                    }
+                    if (layout == "twocolumn")
+                    {
+                        <div class="sfe-content-promotion-2" id="promotion-2">
+                            @*<figure style="background-image: url('../images/staycation/staycation-promotion-2.png')">*@
+                            <figure style="background-image: url('@Url.ContentUrl(deal.LargeThumbnail)')">
+                                @Html.PropertyFor(x => deal.LargeThumbnail)
+                                @*<img loading="lazy" src="../images/staycation/staycation-promotion-2.png" alt="promotion 1">*@
+                            </figure>
+                            <div class="promotion-details">
+                                <h1>
+                                    <span>@Html.PropertyFor(x => deal.Title)</span>
+                                    @Html.PropertyFor(x => deal.SubTitle)
+                                </h1>
+                                <div class="sfe-content-cta">
+                                    <a href="@(Url.ContentUrl(deal.AlternateURL?.Href) ?? "#")">
+                                        @DictionaryHelper.DictionaryEntry(DictionaryKeys.LearnMoreText)
+                                    </a>
+                                </div>
+                            </div>
+                        </div>
+                    }
+                    i++;
+                } @*end foreach deal *@
+            } @*end if *@
+
+        </div>
+    </section>
+}
+
+@*<div class="deal">
+        <div class="deal-container">
+            <div class="three-deal">
+                <div class="row">
+                    @if (Model != null)
+                    {
+                        <div>@(Model.Previews.Count())</div>
+                    }
+                    @if (Model.Previews != null && Model.Previews.Any())
+                {
+                    var previewCount = 3;
+                    var previews = Model.Previews.Take(previewCount);
+
+                    for (int index = 0, count = previews.Count(); index < count; index++)
+                    {
+                        var preview = previews.ElementAt(index);
+
+                            <div class="col-sm-4">
+                                <div class="deal-image image-with-txt">
+                                    <a href="@(preview.GetUrl() ?? "#")">
+                                        @StayFarEast.RenderImage(preview, model => model.SmallThumbnail, isEditable: true)
+                                        <div class="caption">
+                                            <div class="content-v-align">
+                                                <h4>@Glass.Editable(preview, model => model.Title)</h4>
+                                                <p class="text-uppercase">@preview.GetCaption()</p>
+                                            </div>
+                                        </div>
+                                    </a>
+                                </div>
+                            </div>
+
+                        }
+                    }
+
+                </div>
+            </div>
+        </div>
+    </div>*@

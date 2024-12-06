@@ -1,0 +1,34 @@
+﻿@model HBGStaycationMenuContainerBlock
+
+    <div class="subnav-title for-mobile">
+        <h3>@Html.PropertyFor(x=>x.PrimaryTitle)  </h3>
+    </div>
+    <ul id="subnav-list">
+    @*<li class="active"><a href="#thehotel">The Hotel</a></li>
+        <li><a href="#yourroomchoices">Your Room Choices</a></li>
+        <li><a href="#stufftodointhehotel">Stuff To Do In The Hotel</a></li>
+        <li><a href="#othergreatthingsinthearea">Other Great Things In The Area</a></li>
+        <li><a href="#whatothersaresaying">What Others Are Saying</a></li>
+        <li><a href="#promotions">Promotions</a></li>*@
+    @if (Model.Menus != null)
+    {
+        var menus = ContentLoader.GetChildren<HBGStaycationMenuBlock>(Model.Menus);
+
+        var i = 0;
+        foreach (var menu in menus)
+        {
+            if (i == 0)
+            {
+                @:<li class="active">
+            }
+            else
+            {
+                @:<li>
+            }
+
+            <a href="#@menu.MenuSelector">@Html.PropertyFor(x=>menu.MenuTitle)</a>
+            @:</li>
+            i++;
+        }   @*end foreach menus *@
+    }   @*end if *@
+</ul>

@@ -1,8 +1,8 @@
 ﻿@model HBGAssetSummaryContainerBlock
 
-@if (Model != null)
+@if (Model != null && Model.ChildrenFolderReference != null)
 {
-    var assets = ContentLoader.GetChildren<HBGAssetSummaryBlock>((Model as IContent)?.ContentLink);
+    var assets = ContentLoader.GetChildren<HBGAssetSummaryBlock>(Model.ChildrenFolderReference);
     <div class="about-carousel">
         <div class="row">
             @if (assets != null && assets.Any())
@@ -39,7 +39,6 @@
                     </div>
                 }
             }
-
         </div>
     </div>
 }

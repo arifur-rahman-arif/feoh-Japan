@@ -1,0 +1,64 @@
+﻿@model HBGStaycationPOIContainerBlock
+
+@if (Model != null)
+{
+    <section class="sfe-content-section sfe-content-section-5">
+        <div class="sfe-content-wrap" id="@Html.PropertyFor(x =>x.BladeID)">
+            <header class="sfe-content-title">
+                <i class="sfe-title-icon">
+                        @Html.PropertyFor(x=>x.BladeIcon)
+                        @*<img loading="lazy" src="../images/staycation/staycation-icon-4.png" alt="Section Icon" />*@
+                    </i>
+                    <h1>
+                        @Html.PropertyFor(x =>x.AmenitiesPrimaryTitle)
+                    </h1>
+                    <h2>
+                        @Html.PropertyFor(x =>x.AmenitiesDescription)
+                    </h2>
+                </header>
+
+             @if (Model.AllAmenities != null)
+             {
+                var amenities = ContentLoader.GetChildren<HBGStaycationPOIBlock>(Model.AllAmenities);
+                var offset = 0;
+                var j = 0;
+                var i = 0;
+                foreach (var amenity in amenities)
+                {
+                    if (i == 0 || i >= offset)
+                    {
+                        if (i != 0)
+                        {
+                            j++;
+                            @:</ul>
+                            @:</div>
+                        }
+                        offset += 3;
+                        @:<div class="sfe-content-articles-list list-col-3">
+                            @:<ul>
+                                } @*end if offset *@
+                    <li>
+
+                        <article class="sfe-content-article-6">
+                            <figure class="sfe-content-hero">
+                                @Html.PropertyFor(x=>amenity.AmenitiesBanner)
+                                @*<img loading="lazy" src="../images/staycation/staycation-other-feature-1.png" alt="SFE Hero" />*@
+                            </figure>
+                            <h3>
+                                <span>@Html.PropertyFor(x=>amenity.AmenitiesName)</span>
+                                @Html.PropertyFor(x=>amenity.AmenitiesSubName)
+                            </h3>
+                            <p class="">
+                                @Html.PropertyFor(x=>amenity.AmenitiesDescription)                   
+                            </p>
+                        </article>
+
+                    </li>
+                    i++;
+                }   @*end foreach reviews *@
+                                }   @*end if *@
+
+            </div>
+    </section>
+}
+

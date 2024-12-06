@@ -1,0 +1,50 @@
+﻿@model HBGStaycationMastHeadBlock
+
+@if (Model != null)
+{
+    <section class="sfe-content-hero mainHero">
+        <figure>
+            @Html.PropertyFor(x => x.HeroBanner)
+            @*<img loading="lazy" src="../images/staycation/masthead.png" alt="SFE Staycation Hero" />*@
+        </figure>
+        <div class="hero-content">
+            <h1>@Html.PropertyFor(x => x.BannerPrimaryText)</h1>
+            <p> @Html.PropertyFor(x => x.BannerSecondaryText)</p>
+        </div>
+    </section>
+    <!-- End SFE Content Hero -->
+    <!-- SFE Content Section 1  -->
+    @*<section class="sfe-content-section sfe-content-section-1">
+    <div class="sfe-content-wrap ">
+        <div class="sfe-content-title">
+            <h1>
+                @Glass.Editable(Model, model => model.PrimaryTitle)
+            </h1>
+            <div class="sfe-contact">
+                <address>
+                    <a href="https://www.google.com.sg/maps/?saddr=Current+Location&daddr=@Glass.Editable(Model, model => model.Address)"
+                       target="_blank">
+                       @Glass.Editable(Model, model => model.Address) <i class="fa fa-map-marker" aria-hidden="true"></i>
+                    </a>
+                </address>
+                <p>
+                    @Glass.Editable(Model, model => model.ContactInformation)
+                </p>
+            </div>
+
+            <div class="sfe-content-social-cta">
+                <a href="@Glass.Editable(Model, model => model.SocialMediaButton1Link)" class="social-facebook">
+                    <i class="fa fa-facebook"></i>@Glass.Editable(Model, model => model.SocialMediaButton1Text)
+                </a>
+                <a href="@Glass.Editable(Model, model => model.SocialMediaButton2Link)" class="social-instagram">
+                    <i class="fa fa-instagram"></i>@Glass.Editable(Model, model => model.SocialMediaButton2Text)
+                </a>
+            </div>
+
+
+
+        </div>
+
+    </div>
+</section>*@
+}
