@@ -28,5 +28,13 @@ namespace FEO.CMS.HBG.Core.Pages.StayFarEast
         [UIHint(UIHint.Textarea)]
         public virtual XhtmlString TitleContentOverride { get; set; }
 
+        [Display(Name = "Category1", GroupName = "Profile", Order = 100)]
+        [CultureSpecific]
+        public virtual ContentReference Category1 { get; set; }
+
+        [Display(Name = "Article Category Name", GroupName = "Profile", Order = 200)]
+        [CultureSpecific]
+        public virtual string ArticleCategoryName { get; set; }
+
     }
 }

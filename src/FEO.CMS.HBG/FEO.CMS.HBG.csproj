@@ -32,6 +32,7 @@
   </ItemGroup>
   
   <ItemGroup>
+    <Content Remove="Views\FarEastHospitality\StayFarEast\Blocks\HBGFeaturedBlogsBlock\Index.cshtml" />
     <Content Remove="wwwroot\assets\hospitality\content\.gitignore" />
     <Content Remove="wwwroot\assets\hospitality\scripts\.gitignore" />
   </ItemGroup>
@@ -68,6 +69,7 @@
     <Folder Include="Views\FarEastHospitality\Rendezvous\Pages\" />
     <Folder Include="Views\FarEastHospitality\Shared\Layouts\" />
     <Folder Include="Views\FarEastHospitality\Shared\Pages\" />
+    <Folder Include="Views\FarEastHospitality\StayFarEast\Blocks\HBGFeaturedBlogsBlock\" />
     <Folder Include="Views\FarEastHospitality\Village\Blocks\" />
     <Folder Include="Views\FarEastHospitality\Village\Layouts\" />
     <Folder Include="Views\FarEastHospitality\Village\Pages\" />

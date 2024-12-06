@@ -1,24 +1,18 @@
 ﻿@model HBGFeaturedBlogsBlock
 @if (Model != null)
-
 {
-
-    var bgConfig = Model.Config;
-
     string bgClass = string.Empty;
 
-    if (bgConfig?.StyleNames != null)
-
+    if (Model.StyleNames != null)
     {
-
-        bgClass = "section-" + bgConfig.StyleNames.Value;
+        var styleNames = ContentLoader.Get<HBGNameValuePairBlock>(Model.StyleNames)?.Value?.ToLower();
+        bgClass = "section-" + styleNames;
 
     }
     <div class="wrap-new-section section-blog-feature @bgClass">
         <div class="container">
             <h2 class="s-title">@Model.ComponentTitle</h2>
             @if (Model.FeaturedItems.IsNotNullAndAny())
-
             {
 
                 var finalList = Model.FeaturedItems.Take(5);
