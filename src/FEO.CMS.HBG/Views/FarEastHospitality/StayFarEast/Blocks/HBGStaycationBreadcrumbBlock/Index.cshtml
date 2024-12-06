@@ -17,11 +17,11 @@
             <li class="active">@GetBreadcrumbName(item)</li>
             break;
         }
-        if (item is HBGStayFarEastFolderBlock)
+       @*  if (item is HBGStayFarEastFolderPage)
         {
             <li>@GetBreadcrumbName(item)</li>
             continue;
-        }
+    }*@
         <li>
             <a itemprop="item" href="@Url.ContentUrl(item.LinkURL)">
                 @GetBreadcrumbName(item)

@@ -12,7 +12,14 @@
                 @Html.PropertyFor(x => x.CurrentPage.ContentNav)
             </nav>
             <!-- End Sub Nav -->
-            <H1>@Html.PropertyFor(x => x.CurrentPage.Heading)</H1>
+            @if (ContextMode.CurrentMode.EditOrPreview())
+            {
+                <H1>@Html.PropertyFor(x => x.CurrentPage.Heading)</H1>
+            }
+            else
+            {
+                @Html.Raw(Model.CurrentPage.Heading)
+            }
         </header>
         @Html.PropertyFor(x => x.CurrentPage.MainHighlight)
         @Html.PropertyFor(x => x.CurrentPage.SfeMainContent)

@@ -10,9 +10,8 @@ namespace FEO.CMS.HBG.Core.Blocks.StayFarEast
     [ContentType(DisplayName = "HBGStaycationRoomChoicesBlock", GUID = "2EEF2C14-E01B-4A86-A1D8-59E5E9931B93", GroupName = "Hospitality")]
     public class HBGStaycationRoomChoicesBlock : HBGBaseBlock
     {
-        [Display(Name = "AllAmenities", GroupName = SystemTabNames.Content, Order = 100)]
+        [Display(Name = "All Rooms", GroupName = SystemTabNames.Content, Order = 100)]
         [CultureSpecific]
-        [AllowedTypes(AllowedTypes = new[] { typeof(HBGStaycationRoomBlock) })]
         public virtual ContentReference AllRooms { get; set; }
 
         [Display(Name = "Blade Icon", GroupName = SystemTabNames.Content, Order = 200)]

@@ -1,9 +1,9 @@
 ﻿@model HBGCarouselBlock
 
 
-@if (Model != null)
+@if (Model != null && Model.ChildrenFolderReference != null)
 {
-    var items = ContentLoader.GetChildren<HBGCarouselItemBlock>((Model as IContent)?.ContentLink);
+    var items = ContentLoader.GetChildren<HBGCarouselItemBlock>(Model.ChildrenFolderReference);
     var CarouselIdBlock = ContentLoader.Get<HBGNameValuePairBlock>(Model.CarouselIdName);
     var CarouselIdName = !string.IsNullOrEmpty(CarouselIdBlock.Value) ? CarouselIdBlock.Value : "carousel-slide";
     string imageDarkenedOverlay = Model != null && Model.EnableDarknessOverlayImage ? "image-darkened-overlay" : string.Empty;

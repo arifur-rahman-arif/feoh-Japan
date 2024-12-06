@@ -24,5 +24,10 @@ namespace FEO.CMS.HBG.Core.Blocks.StayFarEast
         [CultureSpecific]
         public virtual string ImageCaption { get; set; }
 
+        [Display(Name = "ChildrenFolderReference", GroupName = SystemTabNames.Content, Order = 100)]
+        [CultureSpecific]
+        [AllowedTypes(AllowedTypes = new[] { typeof(HBGImageTextGridItemBlock) })]
+        public virtual ContentReference ChildrenFolderReference { get; set; }
+
     }
 }

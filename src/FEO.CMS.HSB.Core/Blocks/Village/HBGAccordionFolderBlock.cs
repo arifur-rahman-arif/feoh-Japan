@@ -1,5 +1,9 @@
+using EPiServer.Core;
+using EPiServer.DataAbstraction;
 using EPiServer.DataAnnotations;
+using FEO.CMS.HBG.Core.Blocks.StayFarEast;
 using FEO.CMS.HBG.Core.Models;
+using System.ComponentModel.DataAnnotations;
 
 namespace FEO.CMS.HBG.Core.Blocks.Village
 {
@@ -8,5 +12,10 @@ namespace FEO.CMS.HBG.Core.Blocks.Village
     {
         [Ignore]
         public virtual Faq Faq { get; set; }
+
+        [Display(Name = "ChildrenFolderReference", GroupName = SystemTabNames.Content, Order = 100)]
+        [CultureSpecific]
+        [AllowedTypes(AllowedTypes = new[] { typeof(HBGAccordionBlock) })]
+        public virtual ContentReference ChildrenFolderReference { get; set; }
     }
 }

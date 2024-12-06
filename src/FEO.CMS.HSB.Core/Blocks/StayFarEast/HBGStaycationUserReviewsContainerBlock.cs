@@ -16,9 +16,8 @@ namespace FEO.CMS.HBG.Core.Blocks.StayFarEast
         [CultureSpecific]
         public virtual string BladeID { get; set; }
 
-        [Display(Name = "AllUserReviews", GroupName = SystemTabNames.Content, Order = 100)]
+        [Display(Name = "All UserReviews", GroupName = SystemTabNames.Content, Order = 100)]
         [CultureSpecific]
-        [AllowedTypes(AllowedTypes = new[] { typeof(HBGUserReviewBlock) })]
         public virtual ContentReference AllUserReviews { get; set; }
 
     }
