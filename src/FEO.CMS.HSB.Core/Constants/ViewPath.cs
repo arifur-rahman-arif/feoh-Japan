@@ -22,7 +22,7 @@
         public static string Hospitality_Rendezvous_BLOCKS_PATH => string.Format("{0}/Blocks", Hospitality_BASE_PATH);
         public static string Hospitality_Rendezvous_PAGES_PATH => string.Format("{0}/Pages", Hospitality_BASE_PATH);
         public static string Hospitality_Rendezvous_LAYOUTS_PATH => string.Format("{0}/Layouts", Hospitality_BASE_PATH);
-        public static string Hospitality_Shared_BLOCKS_PATH => string.Format("{0}/Blocks", Hospitality_BASE_PATH);
+        public static string Hospitality_Shared_BLOCKS_PATH => string.Format("{0}/Shared/Blocks", Hospitality_BASE_PATH);
         public static string Hospitality_Shared_PAGES_PATH => string.Format("{0}/Pages", Hospitality_BASE_PATH);
         public static string Hospitality_Shared_LAYOUTS_PATH => string.Format("{0}/Layouts", Hospitality_BASE_PATH);
         public static string Hospitality_StayFarEast_BLOCKS_PATH => string.Format("{0}/StayFarEast/Blocks", Hospitality_BASE_PATH);
