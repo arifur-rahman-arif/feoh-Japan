@@ -1,0 +1,45 @@
+﻿@model Article
+
+<!-- ARTICLE CONTENT  -->
+<div class="article-content container section">
+    <div class="row">
+        <div class="col-md-offset-2 col-md-8 col-sm-12 content">
+
+            @if (EPiServer.Editor.PageEditing.IsInEditingMode)
+            {
+                @Html.PropertyFor(m => m.CategoryContentOverride)
+                <p class="category">@Html.PropertyFor(m => m.Category)</p>
+                @Html.PropertyFor(m => m.TitleContentOverride)
+                <h2>@Html.PropertyFor(m => m.Title)</h2>
+                @Html.PropertyFor(m => m.MainContent)
+            }
+            else
+            {
+                if (!string.IsNullOrWhiteSpace(Model.CategoryContentOverride))
+                {
+                    @Html.PropertyFor(m=> m.Model.CategoryContentOverride)
+                }
+                else if (string.IsNullOrWhiteSpace(Model.ArticleCategoryName))
+                {
+                    <p class="category">@Model.Category</p>
+                }
+                else
+                {
+                    <p class="category">@Model.ArticleCategoryName</p>
+                }
+
+                if (!string.IsNullOrWhiteSpace(Model.TitleContentOverride))
+                {
+                    @Html.PropertyFor(m => m.Model.TitleContentOverride)
+                }
+                else
+                {
+                    <h2>@Html.PropertyFor(m => m.Model.Title)</h2>
+                }
+
+                @Html.PropertyFor(Model.MainContent)
+            }
+
+        </div>
+    </div>
+</div>

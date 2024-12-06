@@ -1,0 +1,33 @@
+﻿@model HBGStickyPromotionalFeatureBlock
+
+
+@{
+    var PositionOfSticky1 = ContentLoader.Get<HBGNameValuePairBlock>(Model.PositionOfSticky);
+    var DisplayBehaviourPopup1 = ContentLoader.Get<HBGNameValuePairBlock>(Model.DisplayBehaviourPopup);
+    var BackgroundColorPopup1 = ContentLoader.Get<HBGNameValuePairBlock>(Model.BackgroundColorPopup);
+    var StickyCTAColor1 = ContentLoader.Get<HBGNameValuePairBlock>(Model.StickyCTAColor);
+}
+@if (Model != null)
+
+{
+    <div class="promotional-feature @(PositionOfSticky1?.Value)" data-expand="@(DisplayBehaviourPopup1 == null || DisplayBehaviourPopup1?.Value == Constants.Expand ? true : false)" data-timevisibility="@Model.TimeVisibilityPopup" data-timeinvisibility="@Model.TimeInvisibilityPopup">
+        <div class="promotional-feature-content @(BackgroundColorPopup1?.Value)" style="display: none">
+            <div class="promotional-feature-content__thumb">
+                <img src="@Url.ContentUrl(Model.Image)" alt="">
+            </div>
+            <div class="promotional-feature-content__title">@Model.Title</div>
+            <div class="promotional-feature-content__desc">@Html.PropertyFor(x =>x.Description)</div>
+            @if (Model.CTALink != null)
+
+            {
+                <div class="promotional-feature-content__cta">
+                    <a href="@Url.ContentUrl(Model.CTALink.Href)" target="@Model.CTALink.Target">@(!string.IsNullOrEmpty(Model.CTATitle) ? Model.CTATitle :Model.CTALink.Text)</a>
+                </div>
+            }
+        </div>
+        <div class="promotional-feature-sticky @(StickyCTAColor1?.Value)">
+            <span>@Model.StickyCTATitle</span>
+        </div>
+        <button type="button" class="close close-promotional"><img loading="lazy" src="/content/images/close_with_background.svg" alt="close"></button>
+    </div>
+}

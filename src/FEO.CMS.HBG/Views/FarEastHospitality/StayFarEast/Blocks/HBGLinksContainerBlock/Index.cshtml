@@ -1,0 +1,10 @@
+﻿@model HBGLinksContainerBlock
+
+<div class="row">
+    <div class="col-lg-offset-1 col-lg-9 text-center loyalty">
+
+        <a href="@Url.ContentUrl(Model.PrimaryLink?.Href)" class ="btn-border color-pink btn-lg text-uppercase">@Model.PrimaryLink.Text</a>
+        <a href="@Url.ContentUrl(Model.SecondaryLink?.Href)" class="btn-border color-pink btn-lg text-uppercase">@Model.SecondaryLink.Text</a>
+    </div>
+</div>
+<div class="line-separator"></div>
