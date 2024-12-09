@@ -25,6 +25,10 @@ namespace FEO.CMS.HBG.Controllers.Pages
             {
                 return View($"{ViewsPath.Hospitality_Oasia_PAGES_PATH}/HBGHomePage/Index.cshtml", model);
             }
+            else if (site.Name.ToLower() == "rendezvous")
+            {
+                return View($"{ViewsPath.Hospitality_Rendezvous_PAGES_PATH}/HBGHomePage/Index.cshtml", model);
+            }
             else
             {
                 return View($"{ViewsPath.Hospitality_StayFarEast_PAGES_PATH}/HBGHomePage/Index.cshtml", model);
