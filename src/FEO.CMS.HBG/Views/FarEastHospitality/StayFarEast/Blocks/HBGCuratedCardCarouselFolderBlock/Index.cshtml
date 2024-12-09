@@ -1,0 +1,104 @@
+﻿@model HBGCuratedCardCarouselFolderBlock
+
+@if (Model != null && Model.ChildrenFolderReference != null)
+{
+
+    var Items = ContentLoader.GetChildren<HBGCuratedCardItemBlock>(Model.ChildrenFolderReference);
+    var ctacolor1 = ContentLoader.Get<HBGNameValuePairBlock>(Model.CTAColor);
+    var ctacolor2 = ContentLoader.Get<HBGNameValuePairBlock>(Model.CTAColor2);
+    <div class="curated-card">
+        <div class="curated-card-main-content">
+            @if (!string.IsNullOrEmpty(Model.Title))
+            {
+                <h3 class="curated-card-main-content__header">@Model.Title</h3>
+            }
+
+            @if (Model.Description != null)
+            {
+                <p class="curated-card-main-content__desc">
+                    @Html.PropertyFor(x=> x.Description)
+                </p>
+            }
+
+            <div class="curated-card__buttons">
+                @if (Model.CTAEnable)
+                {
+                    if (Model.UseAsModalButton && !string.IsNullOrEmpty(Model.CTATitle) && !string.IsNullOrEmpty(Model.CTAModalFormId))
+                    {
+                        <div class="curated-card__cta @(ctacolor1?.Value ?? "primary-cta-button")">
+                            <a href="#" data-toggle="modal" data-target="#@(Model.CTAModalFormId)">@Model.CTATitle</a>
+                        </div>
+                    }
+                    else if (Model.CTALink != null &&  !string.IsNullOrEmpty(Model.CTALink.Href))
+                    {
+                        <div class="curated-card__cta @(ctacolor1?.Value ?? "primary-cta-button")">
+                            <a href="@Url.ContentUrl(Model.CTALink.Href)" target="" class="cta-anchor">@Model.CTATitle</a>
+                        </div>
+                    }
+                    else if (!string.IsNullOrEmpty(Model.CTALink?.Href) && !string.IsNullOrEmpty(Model.CTATitle))
+                    {
+                        <div class="curated-card__cta @(ctacolor1?.Value ?? "primary-cta-button")">
+                            <a href="@Url.ContentUrl(Model.CTALink.Href)" target="@(Model.CTALink?.Target)">@Model.CTATitle</a>
+                        </div>
+                    }
+                }
+
+                @if (Model.CTAEnable2)
+                {
+                    if (Model.UseAsModalButton2 && !string.IsNullOrEmpty(Model.CTATitle2) && !string.IsNullOrEmpty(Model.CTAModalFormId2))
+                    {
+                        <div class="curated-card__cta @(ctacolor2?.Value ?? "secondary-cta-button")">
+                            <a href="#" data-toggle="modal" data-target="#@(Model.CTAModalFormId2)">@Model.CTATitle2</a>
+                        </div>
+                    }
+                    else if (Model.CTALink2 != null  && !string.IsNullOrEmpty(Model.CTALink2.Href))
+                    {
+                        <div class="curated-card__cta @(ctacolor2?.Value ?? "secondary-cta-button")">
+                            <a href="@Url.ContentUrl(Model.CTALink2.Href)" target="" class="cta-anchor">@Model.CTATitle2</a>
+                        </div>
+                    }
+                    else if (!string.IsNullOrEmpty(Model.CTALink2?.Href) && !string.IsNullOrEmpty(Model.CTATitle2))
+                    {
+                        <div class="curated-card__cta @(ctacolor2?.Value ?? "secondary-cta-button")">
+                            <a href="@Url.ContentUrl(Model.CTALink2.Href)" target="@(Model.CTALink2?.Target)">@Model.CTATitle2</a>
+                        </div>
+                    }
+                }
+            </div>
+        </div>
+        <div class="curated-card-listing">
+            <div class="curated-card-listing__slider">
+                @foreach (var item in Items)
+                {
+                    <div class="curated-card-listing-item">
+                        <div class="curated-card-listing-item__thumb">
+                            <img class="lazy-hidden" data-lazy-type="image" data-lazy-src="@(item.ImageCard)" alt="" />
+                        </div>
+                        @if (!string.IsNullOrEmpty(item.Title))
+                        {
+                            <h3 class="curated-card-listing-item__title">
+                                @item.Title
+                            </h3>
+                        }
+
+                        @if (Model.Description != null)
+                        {
+                            <p class="curated-card-listing-item__desc">
+                                @Html.PropertyFor(x => item.Description)
+                            </p>
+                        }
+
+                        @if (item.Link != null && !string.IsNullOrEmpty(item.Link.Href))
+                        {
+                            <a class="curated-card-listing-item__details cta-anchor" href="@Url.ContentUrl(item.Link.Href)" target="">@DictionaryHelper.DictionaryEntry(DictionaryKeys.ViewMoreText)</a>
+                        }
+                        else if (item.Link != null && !string.IsNullOrEmpty(item.Link.Href))
+                        {
+                            <a class="curated-card-listing-item__details" href="@Url.ContentUrl(item.Link.Href)" target="@item.Link.Target">@DictionaryHelper.DictionaryEntry(DictionaryKeys.ViewMoreText)</a>
+                        }
+                    </div>
+                }
+            </div>
+        </div>
+    </div>
+}
