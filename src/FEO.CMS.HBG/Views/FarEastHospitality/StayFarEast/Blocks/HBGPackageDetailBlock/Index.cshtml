@@ -1,0 +1,243 @@
+﻿@model HBGMeetingPackageDetailPage
+@inject IContentLoader ContentLoader
+
+@if(Model != null) {
+
+    string viewAllText = DictionaryHelper.DictionaryEntry(DictionaryKeys.ViewAllText);
+    string viewLessText = DictionaryHelper.DictionaryEntry(DictionaryKeys.ViewLessText);
+    var hotelCount = 0;
+    var websiteConfigGuid = Constants.WebsiteConfigGuid;
+    var websiteConfigBlock = ContentLoader.Get<HBGWebsiteConfigBlock>(new Guid(websiteConfigGuid));
+    if(Model.ByHotel != null && Model.ByHotel.Items.IsNotNullAndAny())
+    {
+        hotelCount = Model.ByHotel.Items.Count();
+    }
+     
+
+    <!-- event -->
+    <div class="about-venue section container" id="overview">
+        <div class="overview-venue-details overview-package-details overview-hotel-details col-xs-12">
+            <div class="row">
+                @if (hotelCount == 1)
+                {
+                    var hotel = Model.ByHotel.Items[0].LoadContent() as HBGMeetingsHotelContainerPage;
+
+                    <div class="col-md-4">
+                        <div class="widget-title hotel-name" itemprop="name">@(hotel?.Title)</div>
+                        <ul class="contact-info">
+                            @if (!string.IsNullOrEmpty(hotel?.Address))
+                            {
+                                <li>
+                                    <a itemprop="location" href="@Url.ContentUrl(hotel.MapURL.Href)" target="_blank">@hotel.Address</a>
+                                </li>
+                            }
+                            @if (Model.BrochureDownload != null)
+                            {
+                                <li>
+                                    <a itemprop="location" href="@Url.ContentUrl(Model.BrochureDownload.Href)" target="_blank" title="Download Brochure">
+                                        <img src="@Url.ContentUrl(websiteConfigBlock.DownloadBrochureIcon)" alt="Download Brochure" />
+                                        @DictionaryHelper.DictionaryEntry(DictionaryKeys.EventDownloadBrochureText)
+                                    </a>
+                                </li>
+                            }
+                        </ul>
+                    </div>
+                    <div class="col-md-4">
+                        <div class="widget-title">@DictionaryHelper.DictionaryEntry(DictionaryKeys.EventDownloadBrochureText)</div>
+                        <ul class="contact-info">
+                            @if (!string.IsNullOrEmpty(hotel?.PhoneNumber))
+                            {
+                                <li>@DictionaryHelper.DictionaryEntry(DictionaryKeys.EventPhoneText): <a href="tel:@hotel.PhoneNumber">@hotel.PhoneNumber</a>
+                                </li>
+                            }
+                            @if (!string.IsNullOrEmpty(hotel?.EmailAddress?.Href))
+                            {
+                                <li class="badri">
+                                    @DictionaryHelper.DictionaryEntry(DictionaryKeys.EventEmailAddressText):
+                                    @Html.PropertyFor(x => hotel.EmailAddress)
+                                </li>
+                            }
+                        </ul>
+                        @if (Model.EnableEnquiryCTA)
+                        {
+                            <div class="book-at-daily-rate-block">
+                                <a href="#" data-toggle="modal" data-target="@Constants.MeetingEnquiry" class="btn btn-primary btn-lg text-center text-uppercase meetingenquiry">
+                                    @DictionaryHelper.DictionaryEntry(DictionaryKeys.EventMeetingEnquiryFormCTAText)
+                                </a>
+                            </div>
+                        }
+                    </div>
+                }
+                else if (hotelCount > 1)
+                {
+                    <div class="col-md-4 overview-hotel-block" data-view-more="@viewAllText" data-view-less="@viewLessText">
+                        @if (Model.ByHotel.Items.IsNotNullAndAny());
+                            <divi class="widget-title hotel-name" itemprop="name">
+                                @DictionaryHelper.DictionaryEntry(DictionaryKeys.EventMeetingEnquiryFormCTAText):
+                            </divi>
+                            <ul class="contact-info">
+                                @foreach (var hotelItem in Model.ByHotel.Items)
+                                {
+                                    var hotel = hotelItem.LoadContent() as HBGMeetingsHotelContainerPage;
+                                    <li>
+                                        @if (!string.IsNullOrEmpty(hotel?.Title))
+                                        {
+                                            <span class="contact-info__hotel--name">@hotel.Title</span>
+                                        }
+                                        @if (!string.IsNullOrEmpty(hotel?.Address))
+                                        {
+                                            <a class="contact-info__hotel--address" itemprop="location" href="@Url.ContentUrl(hotel?.MapURL.Href)" target="_blank">@hotel?.Address</a>
+                                        }
+                                    </li>
+                                }
+                            </ul>
+
+                            if (hotelCount > 3)
+                            {
+                                <div class="view-more">@viewAllText</div>
+                            }
+
+                            if (Model.BrochureDownload != null)
+                            {
+                                <div class="download-brochure">
+                                    <a itemprop="location" href="@Url.ContentUrl(Model.BrochureDownload.Href)" target="_blank" title="Download Brochure">
+                                        <img src="@Url.ContentUrl(websiteConfigBlock.DownloadBrochureIcon)" alt="Download Brochure" />
+                                        @DictionaryHelper.DictionaryEntry(DictionaryKeys.EventDownloadBrochureText)
+                                    </a>
+                                </div>
+                            }
+                        }
+                    </div>
+
+                    if(Model.DisplayGetInTouch == null) {
+                        var getInTouch = ContentLoader.Get<HBGNameValuePairBlock>(Model.DisplayGetInTouch);
+                        if (getInTouch.Value == Constants.OptionDisplayWithViewMore)
+                        {
+                            <div class="col-md-4 overview-hotel-address-block" data-type="1" data-view-more="@viewAllText" data-view-less="@viewLessText">
+                                <div class="widget-title">
+                                    @DictionaryHelper.DictionaryEntry(DictionaryKeys.EventGetInTouchText)
+                                </div>
+                                <ul class="contact-info">
+                                    @if (Model.ByHotel.Items.IsNotNullAndAny())
+                                    {
+                                        foreach (var hotelItem in Model.ByHotel.Items)
+                                        {
+                                            var hotel = hotelItem.LoadContent() as HBGMeetingsHotelContainerPage;
+
+                                            <li>
+                                                @if (!string.IsNullOrEmpty(hotel?.Title))
+                                                {
+                                                    <span class="contact-info__hotel--name">@hotel.Title</span>
+                                                }
+                                                @if (!string.IsNullOrEmpty(hotel?.PhoneNumber))
+                                                {
+                                                    <span class="contact-info__hotel--phone">@DictionaryHelper.DictionaryEntry(DictionaryKeys.EventPhoneText): <a href="tel:@hotel.PhoneNumber">@hotel.PhoneNumber</a></span>
+                                                }
+                                                @if (!string.IsNullOrEmpty(hotel?.EmailAddress?.Href))
+                                                {
+                                                    <span class="contact-info__hotel--email">@DictionaryHelper.DictionaryEntry(DictionaryKeys.EventEmailAddressText): @Html.PropertyFor(x => hotel.EmailAddress)
+                                                    </span>
+                                                }
+                                            </li>
+                                        }
+                                    }
+                                </ul>
+
+                                @if (hotelCount > 2)
+                                {
+                                    <div class="view-more">@viewAllText</div>
+                                }
+
+                                @if (Model.EnableEnquiryCTA)
+                                {
+                                    <div class="book-at-daily-rate-block">
+                                        <a href="#" data-toggle="modal" data-target="@Constants.MeetingEnquiry" class="btn btn-primary btn-lg text-center text-uppercase meetingenquiry"> @DictionaryHelper.DictionaryEntry(DictionaryKeys.EventMeetingEnquiryFormCTAText)</a>
+                                    </div>
+                                }
+                            </div>
+                        }
+                        else if (getInTouch?.Value == Constants.OptionDisplayWithShareContact)
+                        {
+                            <div class="col-md-4 overview-hotel-address-block" data-type="2">
+                                <div class="widget-title">@DictionaryHelper.DictionaryEntry(DictionaryKeys.EventGetInTouchText)</div>
+                                <ul class="contact-info">
+                                    @{
+                                        var hotelItem = Model.ByHotel.Items.FirstOrDefault();
+                                        var hotel = hotelItem.LoadContent() as HBGMeetingsHotelContainerPage;
+                                    }
+
+                                    <li>
+                                        @if (!string.IsNullOrEmpty(hotel?.PhoneNumber))
+                                        {
+                                            <span class="contact-info__hotel--phone">@DictionaryHelper.DictionaryEntry(DictionaryKeys.EventPhoneText): <a href="tel:@hotel.PhoneNumber">@hotel.PhoneNumber</a></span>
+                                        }
+                                        @if (!string.IsNullOrEmpty(hotel?.EmailAddress?.Href))
+                                        {
+                                            <span class="contact-info__hotel--email">@DictionaryHelper.DictionaryEntry(DictionaryKeys.EventEmailAddressText): @Html.PropertyFor(x => hotel.EmailAddress)</span>
+                                        }
+                                    </li>
+
+                                </ul>
+
+                                <div class="txt-only">@DictionaryHelper.DictionaryEntry(DictionaryKeys.EventHotelsListShareContactText)</div>
+
+                                @if (Model.EnableEnquiryCTA)
+                                {
+                                    <div class="book-at-daily-rate-block">
+                                        <a href="#" data-toggle="modal" data-target="@Constants.MeetingEnquiry" class="btn btn-primary btn-lg text-center text-uppercase meetingenquiry"> @DictionaryHelper.DictionaryEntry(DictionaryKeys.EventMeetingEnquiryFormCTAText)</a>
+                                    </div>
+                                }
+                            </div>
+                        }
+                    }
+                }
+
+                @if (Model.PackageOverview != null)
+                {
+                    <div class="col-md-4">
+                        <div class="widget-title"> @DictionaryHelper.DictionaryEntry(DictionaryKeys.EventPackageOverviewText)</div>
+                        <div class="venue-overview">
+                            @Html.Raw(Model.PackageOverview)
+                        </div>
+                    </div>
+                }
+            </div>
+        </div>
+        <div class="about-venue-content col-xs-12">
+            <div class="overview-description clearfix" itemprop="description">
+                @Html.Raw(Model.Description)
+            </div>
+            <div class="venue-detail section-deal-detail">
+                <div class="row">
+                    <div class="venue-detail__content">
+                         @if(Model.PackageIncludes != null)
+                        {
+                            <div class="venue-detail__include venue-detail__content--item col-sm-6">
+                                <h3>@DictionaryHelper.DictionaryEntry(DictionaryKeys.EventPackageIncludeText)</h3>
+                                <div class="venue-detail__feature--desc">@Html.Raw(Model.PackageIncludes)</div>
+
+                            </div>
+                        }
+
+                        @if (Model.GalleryList != null && Model.GalleryList.CarouselItems.IsNotNullAndAny())
+                        {
+                            <div class="venue-detail__gallery venue-detail__content--item col-sm-6">
+                                <h3>@Sitecore.Globalization.Translate.TextByDomain(Sitecore.Context.Site.DictionaryDomain, DictionaryKeys.EventImageGalleryText)</h3>
+                                @Html.Partial("~/Views/StayFarEastSharedResources/MultiMediaCarousel.cshtml", Model.GalleryList)
+                            </div>
+                        }
+                    </div>
+                    <div class="venue-detail__content">
+                        @if (!string.IsNullOrWhiteSpace(Model.TermConditionTitle) && !Model.TermConditionDescription.IsEmpty)
+                        {
+                            <div class="venue-detail__include venue-detail__content--item col-sm-6">
+                                <h3>@Model.TermConditionTitle</h3>
+                                @Html.Raw(Model.TermConditionDescription)
+                            </div>
+                        } 
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+}
