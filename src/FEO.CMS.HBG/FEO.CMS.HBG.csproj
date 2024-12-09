@@ -15,8 +15,7 @@
   </ItemGroup>
   
   <ItemGroup>
-    <PackageReference Include="EPiServer.CMS" Version="12.29.0" />
-    <PackageReference Include="EPiServer.CMS.TinyMce" Version="4.7.2" />
+    <PackageReference Include="EPiServer.CMS" Version="12.31.2" />
     <PackageReference Include="EPiServer.Find.Cms" Version="16.2.0" />
     <PackageReference Include="EPiServer.Forms" Version="5.8.2" />
   </ItemGroup>
@@ -33,6 +32,7 @@
   </ItemGroup>
   
   <ItemGroup>
+    <Content Remove="Views\FarEastHospitality\StayFarEast\Blocks\HBGFeaturedBlogsBlock\Index.cshtml" />
     <Content Remove="wwwroot\assets\hospitality\content\.gitignore" />
     <Content Remove="wwwroot\assets\hospitality\scripts\.gitignore" />
   </ItemGroup>
@@ -69,6 +69,7 @@
     <Folder Include="Views\FarEastHospitality\Rendezvous\Pages\" />
     <Folder Include="Views\FarEastHospitality\Shared\Layouts\" />
     <Folder Include="Views\FarEastHospitality\Shared\Pages\" />
+    <Folder Include="Views\FarEastHospitality\StayFarEast\Blocks\HBGFeaturedBlogsBlock\" />
     <Folder Include="Views\FarEastHospitality\Village\Blocks\" />
     <Folder Include="Views\FarEastHospitality\Village\Layouts\" />
     <Folder Include="Views\FarEastHospitality\Village\Pages\" />

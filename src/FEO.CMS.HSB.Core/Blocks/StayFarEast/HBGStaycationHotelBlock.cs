@@ -7,7 +7,7 @@ using System.ComponentModel.DataAnnotations;
 namespace FEO.CMS.HBG.Core.Blocks.StayFarEast
 {
     [ContentType(DisplayName = "HBGStaycationHotelBlock", GUID = "0655CA84-B8AF-416F-8EBB-6539F4467C95", GroupName = "Hospitality")]
-    public class HBGStaycationHotelBlock : HBGBaseBlock
+    public class HBGStaycationHotelBlock : HBGStaycationHotelConfigBlock
     {
         [Display(Name = "Blade Banner", GroupName = SystemTabNames.Content, Order = 100)]
         [CultureSpecific]

@@ -4,7 +4,7 @@ using System.ComponentModel.DataAnnotations;
 namespace FEO.CMS.HBG.Core.Blocks.StayFarEast
 {
     [ContentType(DisplayName = "HBGGenericPopupRenderingBlock", GUID = "F50113E9-D80C-4D53-AA85-885268FBD2E5", GroupName = "Hospitality")]
-    public class HBGGenericPopupRenderingBlock : HBGBaseBlock
+    public class HBGGenericPopupRenderingBlock : HBGNewsletterSubscriptionBlock
     {
         [Display(Name = "ExitIntent", GroupName = "Exit Intent Section", Order = 100)]
         [CultureSpecific]

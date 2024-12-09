@@ -11,5 +11,10 @@ namespace FEO.CMS.HBG.Core.Blocks.StayFarEast
         [CultureSpecific]
         public virtual ContentReference Theme { get; set; }
 
+        [Display(Name = "thumbnails", GroupName = "Settings", Order = 200)]
+        [CultureSpecific]
+        public virtual ContentArea thumbnails { get; set; }
+
+
     }
 }

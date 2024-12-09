@@ -1,0 +1,102 @@
+﻿@model HBGFeaturedBlogsBlock
+@if (Model != null)
+{
+    string bgClass = string.Empty;
+
+    if (Model.StyleNames != null)
+    {
+        var styleNames = ContentLoader.Get<HBGNameValuePairBlock>(Model.StyleNames)?.Value?.ToLower();
+        bgClass = "section-" + styleNames;
+
+    }
+    <div class="wrap-new-section section-blog-feature @bgClass">
+        <div class="container">
+            <h2 class="s-title">@Model.ComponentTitle</h2>
+            @if (Model.FeaturedItems.IsNotNullAndAny())
+            {
+
+                var finalList = Model.FeaturedItems.Take(5);
+
+                int numberOfItem = finalList.Count();
+
+                int i = 1;
+
+                if (Model != null)
+
+                {
+                    <ul class="list-blog-feature count-@numberOfItem">
+                        @foreach (var item in Model.FeaturedItems)
+
+                        {
+
+                            var tags = item.GetFeaturedTags();
+
+                            string srcSmall = item.SmallThumbnail.Src;
+
+                            string srcThumb = item.LargeThumbnail.Src;
+
+                            if (numberOfItem == 2 || numberOfItem == 5)
+                            {
+
+                                srcThumb = srcSmall;
+
+                            }
+                            else if (numberOfItem == 3)
+                            {
+
+                                if (i == 1)
+                                {
+
+                                    srcThumb = srcSmall;
+
+                                }
+
+                            }
+                            else if (numberOfItem == 4)
+                            {
+
+                                if (i != 4)
+                                {
+
+                                    srcThumb = srcSmall;
+
+                                }
+
+                            }
+                            <li class="li-@i">
+                                <a class="card i-@i" href="@item.Url">
+                                    <div class="thumb-50">
+                                        <img class="lazy-hidden" data-lazy-type="image" data-lazy-src="@srcThumb" data-small="@(item.SmallThumbnail != null ? item.SmallThumbnail.Src : "")" data-large="@(item.LargeThumbnail != null ? item.LargeThumbnail.Src : "")" />
+                                    </div>
+                                    <div class="divtext">
+                                        <div class="tags">
+                                            @if (tags.IsNotNullAndAny())
+                                            {
+
+                                                foreach (var tag in tags.Take(2))
+
+                                                {
+                                                    <span>
+                                                        @tag
+                                                    </span>
+                                                }
+                                            }
+                                        </div>
+                                        <h3 class="title">@item.Title</h3>
+                                        <div class="desc">@item.Summary</div>
+                                    </div>
+                                </a>
+                            </li>
+                            i++;
+
+                        }
+                    </ul>
+                }
+
+
+
+            }
+
+        </div>
+    </div>
+}

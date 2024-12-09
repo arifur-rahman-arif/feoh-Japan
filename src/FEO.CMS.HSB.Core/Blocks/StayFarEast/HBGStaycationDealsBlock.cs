@@ -1,6 +1,7 @@
 using EPiServer.Core;
 using EPiServer.DataAbstraction;
 using EPiServer.DataAnnotations;
+using FEO.CMS.HBG.Core.Blocks.Bases;
 using System.ComponentModel.DataAnnotations;
 
 namespace FEO.CMS.HBG.Core.Blocks.StayFarEast
@@ -8,6 +9,7 @@ namespace FEO.CMS.HBG.Core.Blocks.StayFarEast
     [ContentType(DisplayName = "HBGStaycationDealsBlock", GUID = "2ECAAE1B-ABAC-4469-AF8D-66939A090D5A", GroupName = "Hospitality")]
     public class HBGStaycationDealsBlock : HBGBaseBlock
     {
+
         [Display(Name = "Featured Deals", GroupName = SystemTabNames.Content, Order = 100)]
         [CultureSpecific]
         public virtual ContentArea FeaturedDeals { get; set; }
@@ -22,6 +24,7 @@ namespace FEO.CMS.HBG.Core.Blocks.StayFarEast
 
         [Display(Name = "Deals", GroupName = SystemTabNames.Content, Order = 400)]
         [CultureSpecific]
+        [AllowedTypes(AllowedTypes = new[] { typeof(HBGThumbnailPreviewBlock) })]
         public virtual ContentArea Deals { get; set; }
 
         [Display(Name = "BladeID", GroupName = SystemTabNames.Content, Order = 500)]

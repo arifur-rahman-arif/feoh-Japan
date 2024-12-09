@@ -1,0 +1,31 @@
+﻿@model IEnumerable<HBGBasePage>
+
+@functions {
+    private string GetBreadcrumbName(HBGBasePage item)
+    {
+        return string.IsNullOrWhiteSpace(item.Title) ? item.Name : item.Title;
+    }
+}
+
+<ul>
+    @*<li><a href="/">Home</a></li>*@
+    @for (int index = 0, count = Model.Count(); index < count; ++index)
+    {
+        var item = Model.ElementAt(index);
+        if ((index + 1) == count)
+        {
+            <li class="active">@GetBreadcrumbName(item)</li>
+            break;
+        }
+       @*  if (item is HBGStayFarEastFolderPage)
+        {
+            <li>@GetBreadcrumbName(item)</li>
+            continue;
+    }*@
+        <li>
+            <a itemprop="item" href="@Url.ContentUrl(item.LinkURL)">
+                @GetBreadcrumbName(item)
+            </a>
+        </li>
+    }
+</ul>
