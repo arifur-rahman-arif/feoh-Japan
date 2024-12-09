@@ -1,0 +1,39 @@
+﻿@model HBGStaycationHotelBlock
+
+@if (Model != null)
+{
+    <section class="sfe-content-section">
+        <div class="sfe-content-wrap " id="@Html.PropertyFor(x =>x.BladeID)">
+            <header class="sfe-content-title">
+                <i class="sfe-title-icon">
+                    @Html.PropertyFor(x => x.BladeIcon)
+                    @*<img loading="lazy" src="../images/staycation/staycation-icon-1.png" alt="Section Icon" />*@
+                </i>
+                <h1>
+                    @Html.PropertyFor(x => x.BladeTitle)
+                    @*Step into an Oasis*@
+                </h1>
+            </header>
+
+            <article class="sfe-content-article-1">
+                <figure class="sfe-content-hero">
+                    @Html.PropertyFor(x => x.BladeBanner)
+                    @*<img loading="lazy" src="../images/staycation/staycation-masthead-2.png" alt="SFE Hero" />*@
+                </figure>
+                <h1>
+                    @Html.PropertyFor(x => x.HotelTitle)
+                </h1>
+                <div class="sfe-row">
+                    <p class="">
+                        @Html.PropertyFor(x => x.HotelDescription)
+                        @*Tucked away near the city centre, Oasia Hotel Novena is conveniently located next to Novena MRT Station. You’ll find that it’s easy to get to, yet secluded and tranquil enough to feel like an escape from the concrete jungle. It is also in the centre of the Velocity @ Novena Square and Square 2 malls, so you have a variety of dining and shopping options right at your doorstep. Step into the hotel lobby and you’ll be greeted by its signature Uplifting Scent. The exquisite blend of lavender, lemon and black tea infused with coriander and ginger ensures that your staycation is off to a relaxing start.*@
+                    </p>
+                    <p class="highlight">
+                        @Html.PropertyFor(x => x.HotelBlurb)
+                        @*The exquisite blend of lavender, lemon and black tea infused with coriander and ginger ensures that your staycation is off to a relaxing start.*@
+                    </p>
+                </div>
+            </article>
+        </div>
+    </section>
+}

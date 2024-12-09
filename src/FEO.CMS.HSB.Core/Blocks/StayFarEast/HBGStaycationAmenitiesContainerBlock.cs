@@ -7,8 +7,12 @@ using System.ComponentModel.DataAnnotations;
 namespace FEO.CMS.HBG.Core.Blocks.StayFarEast
 {
     [ContentType(DisplayName = "HBGStaycationAmenitiesContainerBlock", GUID = "2026F537-08D7-4B1E-B602-9CAA9B95F43F", GroupName = "Hospitality")]
-    public class HBGStaycationAmenitiesContainerBlock : HBGBaseBlock
+    public class HBGStaycationAmenitiesContainerBlock : HBGStaycationAmenitiesContainerConfigBlock
     {
+        [Display(Name = "All Amenities", GroupName = SystemTabNames.Content, Order = 100)]
+        [CultureSpecific]
+        public virtual ContentReference AllAmenities { get; set; }
+
         [Display(Name = "FeaturedAmenities", GroupName = SystemTabNames.Content, Order = 100)]
         [CultureSpecific]
         public virtual ContentArea FeaturedAmenities { get; set; }

@@ -1,0 +1,144 @@
+﻿@model HBGStaycationRoomChoicesBlock
+
+@if (Model != null)
+{
+    <section class="sfe-content-section" id="sfe-content-section-3">
+        <div class="sfe-content-wrap" id="@Html.PropertyFor(x =>x.BladeID)">
+
+            <header class="sfe-content-title">
+                <i class="sfe-title-icon">
+                    @*<img loading="lazy" src="../images/staycation/staycation-icon-2.png" alt="Section Icon" />*@
+                    @Html.PropertyFor(x => x.BladeIcon)
+                </i>
+                <h1>
+                    @Html.PropertyFor(x => x.BladeTitle)
+                </h1>
+            </header>
+
+            @if (Model.AllRooms != null && Model.LayoutOptions != null && Model.LayoutOptions.Items != null && Model.LayoutOptions.Items.Any())
+            {
+                var rooms = ContentLoader.GetChildren<HBGStaycationRoomBlock>(Model.AllRooms);
+                string layout = ContentLoader.Get<HBGNameValuePairBlock>(Model.LayoutOptions.Items.First().ContentLink).Value.ToLower();
+                var defaultlayout = Model.DefaultLayout;
+                var j = 0;
+                var i = 0;
+                foreach (var room in rooms)
+                {
+                    if (i != 0)
+                    {
+                        j++;
+                    }
+                    if (j < Model.LayoutOptions?.Items.Count())
+                    {
+                        layout = ContentLoader.Get<HBGNameValuePairBlock>(Model.LayoutOptions.Items[j].ContentLink).Value.ToLower();
+                    }
+                    else
+                    {
+                        if (defaultlayout != null)
+                        {
+                            layout = ContentLoader.Get<HBGNameValuePairBlock>(defaultlayout).Value.ToLower();
+                        }
+                        else
+                        {
+                            layout = "fullwidthimagewithnote";
+                        }
+                    }
+                    if (layout == "fullwidthimage")
+                    {
+                        <article class="sfe-content-article-2">
+                            <figure class="sfe-content-hero">
+                                @Html.PropertyFor(x => room.MainImage)
+                            </figure>
+                            <h3>
+                                @Html.PropertyFor(x => room.RoomTitle)
+                            </h3>
+                            <p class="">
+                                @Html.PropertyFor(x => room.RoomDescription)
+                            </p>
+                        </article>
+                    }
+                    if (layout == "leftimagewithhighlight")
+                    {
+                        <article class="sfe-content-article-3">
+
+                            <div class="sfe-row">
+                                <figure class="sfe-content-hero">
+                                    @*<img loading="lazy" src="../images/staycation/staycation-room-deluxe.png" alt="SFE Hero" />*@
+                                    @Html.PropertyFor(x => room.MainImage)
+                                </figure>
+                                <div class="article-details">
+                                    <h3>
+                                        @Html.PropertyFor(x => room.RoomTitle)
+                                    </h3>
+                                    <p class="">
+                                        @Html.PropertyFor(x => room.RoomDescription)
+                                    </p>
+                                    <p class="highlight">
+                                        @Html.PropertyFor(x => room.RoomHighlight)
+                                    </p>
+                                </div>
+                            </div>
+                        </article>
+
+                    }
+                    if (layout == "threeimages")
+                    {
+                        <article class="sfe-content-article-4">
+
+                            <div class="sfe-content-heroes">
+                                <figure>
+                                    @*<img loading="lazy" src="../images/staycation/staycation-room-club-1.png" alt="SFE Hero" />*@
+                                    @Html.PropertyFor(x => room.LeftImage)
+                                </figure>
+                                <figure>
+                                    @*<img loading="lazy" src="../images/staycation/staycation-room-club-2.png" alt="SFE Hero" />*@
+                                    @Html.PropertyFor(x => room.MiddleImage)
+                                </figure>
+                                <figure>
+                                    @*<img loading="lazy" src="../images/staycation/staycation-room-club-3.png" alt="SFE Hero" />*@
+                                    @Html.PropertyFor(x => room.RightImage)
+                                </figure>
+                            </div>
+                            <h3>
+                                @Html.PropertyFor(x => room.RoomTitle)
+                            </h3>
+                            <p class="">
+                                @Html.PropertyFor(x => room.RoomDescription)
+                            </p>
+                        </article>
+                    }
+                    if (layout == "fullwidthimagewithnote")
+                    {
+                        <article class="sfe-content-article-2">
+                            <figure class="sfe-content-hero">
+                                @*<img loading="lazy" src="../images/staycation/staycation-room-club-suite.png" alt="SFE Hero" />*@
+                                @Html.PropertyFor(x => room.MainImage)
+                            </figure>
+                            <h3>
+                                @Html.PropertyFor(x => room.RoomTitle)
+                            </h3>
+                            <p class="">
+                                @Html.PropertyFor(x => room.RoomDescription)
+                            </p>
+                            <p class="note">
+                                @Html.PropertyFor(x => room.RoomHighlight)
+                            </p>
+                        </article>
+                    }
+                    i++;
+                }   @*end foreach amenities *@
+            }   @*end if *@
+
+            <div class="sfe-content-cta">
+                @if (DeviceUtil.IsSmallDevice())
+                {
+                    <a href="@(Model.AllRoomsMobileLink != null ? Model.AllRoomsMobileLink.Href : "#")"> @Html.PropertyFor(x => x.AllRoomsText)</a>
+                }
+                else
+                {
+                    <a href="@(Model.AllRoomsLink != null ? Model.AllRoomsLink.Href : "#")"> @Html.PropertyFor(x => x.AllRoomsText)</a>
+                }
+            </div>
+        </div>
+    </section>
+}

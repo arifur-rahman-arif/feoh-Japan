@@ -23,19 +23,22 @@ namespace FEO.CMS.HBG.Controllers.Blocks
         {
             HBGAccordionFolderBlock model = new HBGAccordionFolderBlock();
 
-            var faq = _contentLoader.GetChildren<HBGAccordionBlock>((currentBlock as IContent)?.ContentLink);
-            Faq faqs = new Faq() { MainEntity = new List<MainEntity>() };
-
-            foreach (var item in faq)
+            if (currentBlock.ChildrenFolderReference != null)
             {
-                if (!string.IsNullOrEmpty(item.Title) && item.Description != null)
-                    faqs.MainEntity.Add(new MainEntity() { Name = item.Title, Answer = new Answer() { Text = item.Description.ToString() } });
+                var faq = _contentLoader.GetChildren<HBGAccordionBlock>(currentBlock.ChildrenFolderReference);
+                Faq faqs = new Faq() { MainEntity = new List<MainEntity>() };
+
+                foreach (var item in faq)
+                {
+                    if (!string.IsNullOrEmpty(item.Title) && item.Description != null)
+                        faqs.MainEntity.Add(new MainEntity() { Name = item.Title, Answer = new Answer() { Text = item.Description.ToString() } });
+                }
+                HBGAccordionFolderBlock faqViewModel = new HBGAccordionFolderBlock()
+                {
+                    Faq = faqs
+
+                };
             }
-            HBGAccordionFolderBlock faqViewModel = new HBGAccordionFolderBlock()
-            {
-                Faq = faqs
-
-            };
             return View($"{ViewsPath.Hospitality_StayFarEast_BLOCKS_PATH}/HBGAccordionFolderBlock/index.cshtml", model);
         }
     }

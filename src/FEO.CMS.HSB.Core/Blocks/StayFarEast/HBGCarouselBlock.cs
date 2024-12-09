@@ -68,5 +68,10 @@ namespace FEO.CMS.HBG.Core.Blocks.StayFarEast
         [CultureSpecific]
         public virtual ContentReference BackgroundColorStyleNames { get; set; }
 
+        [Display(Name = "ChildrenFolderReference", GroupName = SystemTabNames.Content, Order = 100)]
+        [CultureSpecific]
+        [AllowedTypes(AllowedTypes = new[] { typeof(HBGCarouselItemBlock) })]
+        public virtual ContentReference ChildrenFolderReference { get; set; }
+
     }
 }

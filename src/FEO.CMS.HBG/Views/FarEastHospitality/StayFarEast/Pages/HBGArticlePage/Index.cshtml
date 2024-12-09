@@ -1,0 +1,33 @@
+﻿@model HBGArticlePage
+
+<!-- ARTICLE CONTENT  -->
+<div class="article-content container section">
+    <div class="row">
+        <div class="col-md-offset-2 col-md-8 col-sm-12 content">
+            @if (Model.CategoryContentOverride != null)
+            {                
+                @Html.PropertyFor(x => x.CategoryContentOverride)
+            }
+            else if (string.IsNullOrWhiteSpace(Model.ArticleCategoryName))
+            {
+                var categoryName = ContentLoader.Get<IContent>(Model.Category1).Name;
+                <p class="category">@categoryName</p>
+            }
+            else
+            {
+                <p class="category">@Model.ArticleCategoryName</p>
+            }
+
+            @if (Model.TitleContentOverride != null)
+            {
+                @Html.PropertyFor(x => x.TitleContentOverride)
+            }
+            else
+            {
+                <h2>@Html.PropertyFor(x => x.Title)</h2>
+            }
+
+            @Html.PropertyFor(x => x.MainContent)
+        </div>
+    </div>
+</div>

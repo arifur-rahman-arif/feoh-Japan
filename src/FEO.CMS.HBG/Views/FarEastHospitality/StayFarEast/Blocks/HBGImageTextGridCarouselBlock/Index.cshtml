@@ -1,111 +1,112 @@
 ﻿@model HBGImageTextGridBlock
-@{
-    var index = 1;
-    var items = ContentLoader.GetChildren<HBGImageTextGridItemBlock>((Model as IContent)?.ContentLink);
-}
-@if (Model != null && items.Any())
+@if (Model != null && Model.ChildrenFolderReference != null)
 {
-    var itemCount = items.Count();
-    <div class="image-text-grid">
-        <div class="image-text-grid-wrapper">
-            @foreach (var item in items)
-            {
-                string alignment = ContentLoader.Get<HBGNameValuePairBlock>(item.Alignment)?.Value;
-                <div class="image-text-grid-item" data-dot="@index/@itemCount" data-view-type="@(alignment == Constants.Right ? Constants.Right : Constants.Left)">
-                    @if (item.PreviewImages != null && item.PreviewImages.Items != null && item.PreviewImages.Items.Any())
-                    {
-                        <div class="image-text-grid-item-preview">
-                            <div class="image-text-grid-item-preview-slider">
-                                @foreach (var img in item.PreviewImages.Items)
-                                {
-                                    var image = ContentLoader.Get<ImageFile>(img.ContentLink);
-                                    <div class="image-text-grid-item-preview__thumb">
-                                        <img class="lazy-hidden" data-lazy-type="image" data-lazy-src="@Url.ContentUrl(image.ContentLink)" alt="" />
-
-                                        @if (!string.IsNullOrEmpty(image.AltText))
-                                        {
-                                            <div class="image-text-grid-item-preview__caption">
-                                                @image.AltText
-                                            </div>
-                                        }
-                                    </div>
-                                }
-                            </div>
-                        </div>
-                    }
-
-                    <div class="image-text-grid-item-info">
-                        @if (!string.IsNullOrEmpty(item.USPCategory))
+    var index = 1;
+    var items = ContentLoader.GetChildren<HBGImageTextGridItemBlock>(Model.ChildrenFolderReference);
+    if (items.Any())
+    {
+        var itemCount = items.Count();
+        <div class="image-text-grid">
+            <div class="image-text-grid-wrapper">
+                @foreach (var item in items)
+                {
+                    string alignment = ContentLoader.Get<HBGNameValuePairBlock>(item.Alignment)?.Value;
+                    <div class="image-text-grid-item" data-dot="@index/@itemCount" data-view-type="@(alignment == Constants.Right ? Constants.Right : Constants.Left)">
+                        @if (item.PreviewImages != null && item.PreviewImages.Items != null && item.PreviewImages.Items.Any())
                         {
-                            <div class="image-text-grid-item-info__usp">@item.USPCategory</div>
-                        }
+                            <div class="image-text-grid-item-preview">
+                                <div class="image-text-grid-item-preview-slider">
+                                    @foreach (var img in item.PreviewImages.Items)
+                                    {
+                                        var image = ContentLoader.Get<ImageFile>(img.ContentLink);
+                                        <div class="image-text-grid-item-preview__thumb">
+                                            <img class="lazy-hidden" data-lazy-type="image" data-lazy-src="@Url.ContentUrl(image.ContentLink)" alt="" />
 
-                        @if (!string.IsNullOrEmpty(item.Title))
-                        {
-                            <div class="image-text-grid-item-info__title">
-                                @item.Title
+                                            @if (!string.IsNullOrEmpty(image.AltText))
+                                            {
+                                                <div class="image-text-grid-item-preview__caption">
+                                                    @image.AltText
+                                                </div>
+                                            }
+                                        </div>
+                                    }
+                                </div>
                             </div>
                         }
 
-                        @if (item.Description != null)
-                        {
-                            <div class="image-text-grid-item-info__desc">
-                                @Html.Raw(item.Description)
-                            </div>
-                        }
-
-                        <div class="image-text-grid-item-info__buttons">
-                            @if (item.CTAEnable)
+                        <div class="image-text-grid-item-info">
+                            @if (!string.IsNullOrEmpty(item.USPCategory))
                             {
-                                string color = ContentLoader.Get<HBGNameValuePairBlock>(Model.CTAColor)?.Value;
-                                if (item.UseAsModalButton && !string.IsNullOrEmpty(item.CTATitle) && !string.IsNullOrEmpty(item.CTAModalFormId))
-                                {
-                                    <div class="image-text-grid-item-button @(color ?? "secondary-cta-button")">
-                                        <a href="#" data-toggle="modal" data-target="#@(item.CTAModalFormId)">@item.CTATitle</a>
-                                    </div>
-                                }
-                                else if (item.CTALink != null)
-                                {
-                                    <div class="image-text-grid-item-button @(color ?? "secondary-cta-button")">
-                                        <a href="@item.CTALink.Href" target="" class="cta-anchor">@item.CTATitle</a>
-                                    </div>
-                                }
-                                else if (item.CTALink != null && !string.IsNullOrEmpty(item.CTATitle))
-                                {
-                                    <div class="image-text-grid-item-button @(color ?? "secondary-cta-button")">
-                                        <a href="@item.CTALink.Href" target="@(item.CTALink?.Target)">@item.CTATitle</a>
-                                    </div>
-                                }
+                                <div class="image-text-grid-item-info__usp">@item.USPCategory</div>
                             }
 
-                            @if (item.CTAEnable2)
+                            @if (!string.IsNullOrEmpty(item.Title))
                             {
-                                string color = ContentLoader.Get<HBGNameValuePairBlock>(Model.CTAColor2)?.Value;
-                                if (item.UseAsModalButton2 && !string.IsNullOrEmpty(item.CTATitle2) && !string.IsNullOrEmpty(item.CTAModalFormId2))
-                                {
-                                    <div class="image-text-grid-item-button @(color ?? "primary-cta-button")">
-                                        <a href="#" data-toggle="modal" data-target="#@(item.CTAModalFormId2)">@item.CTATitle2</a>
-                                    </div>
-                                }
-                                else if (item.CTALink2 != null)
-                                {
-                                    <div class="image-text-grid-item-button @(color ?? "primary-cta-button")">
-                                        <a href="@item.CTALink2.Href" target="" class="cta-anchor">@item.CTATitle2</a>
-                                    </div>
-                                }
-                                else if (item.CTALink2 != null && !string.IsNullOrEmpty(item.CTATitle2))
-                                {
-                                    <div class="image-text-grid-item-button @(color ?? "primary-cta-button")">
-                                        <a href="@(!string.IsNullOrEmpty(item.CTALink2.Href) ? item.CTALink2.Href : "#")" target="@(item.CTALink2?.Target)">@item.CTATitle2</a>
-                                    </div>
-                                }
+                                <div class="image-text-grid-item-info__title">
+                                    @item.Title
+                                </div>
                             }
+
+                            @if (item.Description != null)
+                            {
+                                <div class="image-text-grid-item-info__desc">
+                                    @Html.Raw(item.Description)
+                                </div>
+                            }
+
+                            <div class="image-text-grid-item-info__buttons">
+                                @if (item.CTAEnable)
+                                {
+                                    string color = ContentLoader.Get<HBGNameValuePairBlock>(Model.CTAColor)?.Value;
+                                    if (item.UseAsModalButton && !string.IsNullOrEmpty(item.CTATitle) && !string.IsNullOrEmpty(item.CTAModalFormId))
+                                    {
+                                        <div class="image-text-grid-item-button @(color ?? "secondary-cta-button")">
+                                            <a href="#" data-toggle="modal" data-target="#@(item.CTAModalFormId)">@item.CTATitle</a>
+                                        </div>
+                                    }
+                                    else if (item.CTALink != null)
+                                    {
+                                        <div class="image-text-grid-item-button @(color ?? "secondary-cta-button")">
+                                            <a href="@item.CTALink.Href" target="" class="cta-anchor">@item.CTATitle</a>
+                                        </div>
+                                    }
+                                    else if (item.CTALink != null && !string.IsNullOrEmpty(item.CTATitle))
+                                    {
+                                        <div class="image-text-grid-item-button @(color ?? "secondary-cta-button")">
+                                            <a href="@item.CTALink.Href" target="@(item.CTALink?.Target)">@item.CTATitle</a>
+                                        </div>
+                                    }
+                                }
+
+                                @if (item.CTAEnable2)
+                                {
+                                    string color = ContentLoader.Get<HBGNameValuePairBlock>(Model.CTAColor2)?.Value;
+                                    if (item.UseAsModalButton2 && !string.IsNullOrEmpty(item.CTATitle2) && !string.IsNullOrEmpty(item.CTAModalFormId2))
+                                    {
+                                        <div class="image-text-grid-item-button @(color ?? "primary-cta-button")">
+                                            <a href="#" data-toggle="modal" data-target="#@(item.CTAModalFormId2)">@item.CTATitle2</a>
+                                        </div>
+                                    }
+                                    else if (item.CTALink2 != null)
+                                    {
+                                        <div class="image-text-grid-item-button @(color ?? "primary-cta-button")">
+                                            <a href="@item.CTALink2.Href" target="" class="cta-anchor">@item.CTATitle2</a>
+                                        </div>
+                                    }
+                                    else if (item.CTALink2 != null && !string.IsNullOrEmpty(item.CTATitle2))
+                                    {
+                                        <div class="image-text-grid-item-button @(color ?? "primary-cta-button")">
+                                            <a href="@(!string.IsNullOrEmpty(item.CTALink2.Href) ? item.CTALink2.Href : "#")" target="@(item.CTALink2?.Target)">@item.CTATitle2</a>
+                                        </div>
+                                    }
+                                }
+                            </div>
                         </div>
                     </div>
-                </div>
-                index++;
-            }
+                    index++;
+                }
+            </div>
         </div>
-    </div>
+    }
 }
 

@@ -7,30 +7,32 @@
     string alignClass = string.Empty;
     int col = 12;
 
-    
-    if (!string.IsNullOrEmpty(Model.Config?.SummaryText))
+    if (!string.IsNullOrEmpty(Model.StickySummaryText))
     {
-        stringSummary = "data-menu='" + Model.Config.SummaryText + "'";
+        stringSummary = "data-menu='" + Model.StickySummaryText + "'";
         stringClass = "is-menu-sidebar";
     }
 
-    
-    if (Model?.Alignment != null && Model.Alignment.Value == "right")
+    if (Model.Alignment != null)
     {
-        alignClass = "end"; 
+        var alignment = ContentLoader.Get<HBGNameValuePairBlock>(Model.Alignment)?.Value?.ToLower();
+        if (alignment == "right")
+        {
+            alignClass = "end";
+        }
     }
 
-    <div class="block-content block-content-image-text @stringClass" @Html.PropertyFor(x => x.stringSummary)>
+    <div class="block-content block-content-image-text @stringClass" @Html.Raw(stringSummary)>
         <div class="row-flex @alignClass">
             @if (Model.Image != null)
             {
-                col = 6; 
+                col = 6;
                 <div class="col-md-6">
                     <div class="thumb">
                         <img width="360" height="360" class="lazy-hidden img-lazy-block lazy"
                              data-lazy-type="image"
                              data-lazy-src="@Url.ContentUrl(Model.Image)"
-                             alt="@Model.Image?.GetAltText()" />
+                             alt="" />
                         @if (!string.IsNullOrEmpty(Model.ImageCaption))
                         {
                             <div class="caption">@Model.ImageCaption</div>
@@ -38,7 +40,6 @@
                     </div>
                 </div>
             }
-
             <div class="col-md-@col">
                 <!-- Use PropertyFor to render the Content (XhtmlString) safely -->
                 @Html.PropertyFor(x => x.Content)
