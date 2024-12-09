@@ -29,9 +29,6 @@ namespace FEO.CMS.HBG.Controllers.Blocks
 
             if (model is HBGMeetingPackageDetailPage)
             {
-
-                var websiteConfigGuid = Constants.WebsiteConfigGuid;
-                var websiteConfigBlock = ContentLoader.Get<HBGWebsiteConfigBlock>(new Guid(websiteConfigGuid));
                 return View($"{ViewsPath.Hospitality_StayFarEast_BLOCKS_PATH}/HBGPackageDetailBlock/index.cshtml", model);
             }
 

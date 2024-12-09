@@ -219,11 +219,13 @@
                             </div>
                         }
 
-                        @if (Model.GalleryList != null && Model.GalleryList.CarouselItems.IsNotNullAndAny())
+                        @if (Model.Gallery != null )
                         {
+
+                            var galleryList = ContentLoader.Get<HBGMultiMediaCarouselFolderBlock>(Model.Gallery);
                             <div class="venue-detail__gallery venue-detail__content--item col-sm-6">
-                                <h3>@Sitecore.Globalization.Translate.TextByDomain(Sitecore.Context.Site.DictionaryDomain, DictionaryKeys.EventImageGalleryText)</h3>
-                                @Html.Partial("~/Views/StayFarEastSharedResources/MultiMediaCarousel.cshtml", Model.GalleryList)
+                                <h3>@DictionaryHelper.DictionaryEntry(DictionaryKeys.EventImageGalleryText)</h3>
+                                @Html.Partial($"{ViewsPath.Hospitality_StayFarEast_BLOCKS_PATH}/HBGMultiMediaCarouselFolderBlock/index.cshtml", galleryList)
                             </div>
                         }
                     </div>

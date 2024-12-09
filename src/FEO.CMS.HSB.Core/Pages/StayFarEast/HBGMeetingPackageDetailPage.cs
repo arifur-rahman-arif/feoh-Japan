@@ -106,7 +106,8 @@ namespace FEO.CMS.HBG.Core.Pages.StayFarEast
 
         [Display(Name = "Gallery", GroupName = "Images", Order = 850)]
         [CultureSpecific]
-        public virtual string Gallery { get; set; }
+        [AllowedTypes(AllowedTypes = new[] { typeof(HBGMultiMediaCarouselFolderBlock) })]
+        public virtual ContentReference Gallery { get; set; }
 
         [Display(Name = "Brochure Download", GroupName = "Images", Order = 1000)]
         [CultureSpecific]
