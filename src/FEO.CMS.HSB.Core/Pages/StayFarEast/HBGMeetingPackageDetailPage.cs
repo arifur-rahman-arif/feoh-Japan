@@ -174,9 +174,5 @@ namespace FEO.CMS.HBG.Core.Pages.StayFarEast
         [Display(Name = "View All Venue URL", GroupName = "Related Venues", Order = 500)]
         [CultureSpecific]
         public virtual LinkItem ViewAllVenueURL { get; set; }
-
-        [Display(Name = "Components", GroupName = "Filters", Order = 50)]
-        [CultureSpecific]
-        public virtual ContentArea Components { get; set; }
     }
 }

@@ -29,7 +29,7 @@ namespace FEO.CMS.HBG.Controllers.Blocks
 
             if (model is HBGMeetingPackageDetailPage)
             {
-                return View($"{ViewsPath.Hospitality_StayFarEast_BLOCKS_PATH}/HBGPackageDetailBlock/index.cshtml", model);
+                return View($"{ViewsPath.Hospitality_StayFarEast_BLOCKS_PATH}/HBGMeetingPackageDetailBlock/index.cshtml", model);
             }
 
             if (model is HBGWeddingPackageDetailPage)
@@ -37,7 +37,7 @@ namespace FEO.CMS.HBG.Controllers.Blocks
                 return View($"{ViewsPath.Hospitality_StayFarEast_BLOCKS_PATH}/HBGWeedingPackageDetailBlock/index.cshtml", model);
             }
 
-            return View($"{ViewsPath.Hospitality_StayFarEast_BLOCKS_PATH}/HBGEventBlock/index.cshtml", model);
+            return View($"{ViewsPath.Hospitality_StayFarEast_BLOCKS_PATH}/HBGEventNotFoundBlock/index.cshtml", model);
         }
     }
 }

@@ -5,7 +5,7 @@ using Microsoft.AspNetCore.Mvc;
 
 namespace FEO.CMS.HBG.Controllers.Pages
 {
-    public class HBGMeetingPackageDetailController : PageControllerBase<HBGMeetingPackageDetailPage>
+    public class HBGMeetingPackageDetailPageController : PageControllerBase<HBGMeetingPackageDetailPage>
     {
         public ActionResult Index(HBGMeetingPackageDetailPage currentPage)
         {
