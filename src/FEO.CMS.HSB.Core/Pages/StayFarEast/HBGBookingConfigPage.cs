@@ -1,14 +1,23 @@
-using EPiServer.DataAbstraction;
+﻿using System;
+using System.Collections.Generic;
+using System.ComponentModel.DataAnnotations;
+using System.Linq;
+using System.Text;
+using System.Threading.Tasks;
 using EPiServer.DataAnnotations;
 using EPiServer.SpecializedProperties;
-using FEO.CMS.HBG.Core.Blocks.StayFarEast;
-using System.ComponentModel.DataAnnotations;
+using FEO.CMS.HBG.Core.Blocks.Bases;
 
-namespace FEO.CMS.HBG.Core.Blocks.Bases
+namespace FEO.CMS.HBG.Core.Pages.StayFarEast
 {
-    [ContentType(DisplayName = "HBGBookingBlock", GUID = "ED345D6C-47A4-4579-B321-A7819E2A9763", GroupName = "Hospitality")]
-    public class HBGBookingBlock : HBGBookingEngineMappingBlock
+    [ContentType(DisplayName = "HBGBookingConfigPage", GUID = "7A26E118-A9E9-4AF7-B635-338FA0AAAD3D", GroupName = "Hospitality")]
+    public class HBGBookingConfigPage
     {
+        [Display(Name = "Hotel Code Field Name", GroupName = "Settings", Order = 100)]
+        [CultureSpecific]
+        public virtual string HotelCodeFieldName { get; set; }
+
+        //HBGBookingBlock
         [Display(Name = "Rooms", GroupName = "Booking Config", Order = 50)]
         [CultureSpecific]
         public virtual string Rooms { get; set; }
@@ -61,5 +70,14 @@ namespace FEO.CMS.HBG.Core.Blocks.Bases
         [CultureSpecific]
         public virtual double MaximumNumberOfChildren { get; set; }
 
+        //HBGBookingEngineMappingBlock
+        [Display(Name = "BookingMapping", GroupName = "Settings", Order = 100)]
+        [CultureSpecific]
+        public virtual string BookingMapping { get; set; }
+
+        //HBGDayInAdvanceBlock
+        [Display(Name = "Number of Days in Advance", GroupName = "Booking Config", Order = 600)]
+        [CultureSpecific]
+        public virtual double NumberofDaysinAdvance { get; set; }
     }
 }

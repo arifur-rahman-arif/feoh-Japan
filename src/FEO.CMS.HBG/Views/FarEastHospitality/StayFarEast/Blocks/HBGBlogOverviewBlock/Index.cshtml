@@ -1,0 +1,49 @@
+﻿@model HBGBlogOverviewBlock
+@{
+    var versions = ContentVersionRepository.List((Model as IContent)?.ContentLink);
+    var firstVersion = versions.OrderBy(v => v.Saved).FirstOrDefault()?.Saved;
+}
+@if (Model != null)
+{
+    string fullTags = string.Join(" ", Model.GetFullTags());
+    var tags = Model.GetFullTags();
+    <div class="wrap-new-section section-blog-overview">
+        <div class="container">
+            <div class="row-top">
+                <div class="text">
+
+                    @if (tags!=null && tags.Any())
+                    {
+                        <div class="tags">
+                            @foreach (var tag in tags)
+                            {
+                                <span> @tag </span>
+                            }
+                        </div>
+                     }
+                    <h1 class="b-title">@Model.Title</h1>
+                    <div class="sub-title">@Model.SubTitle</div>
+                </div>
+
+
+                <ul class="author">
+                    @if (!string.IsNullOrEmpty(Model.Author))
+                    {
+                         <li class="name">@Model.Author</li>
+                    }
+                    <li>Block Created on: @firstVersion?.ToString("dd MMMM yyyy")</li>
+                </ul>
+
+            </div>
+
+            @if (Model.LargeThumbnail != null)
+            {
+                <div class="thumb">
+                    <img width="1300" height="500" class="height-auto lazy-hidden" data-lazy-type="image" data-lazy-srcset="@(!string.IsNullOrEmpty(@Url.ContentUrl(Model.SmallThumbnail)) ? $"{@Url.ContentUrl(Model.SmallThumbnail)} 575w," : string.Empty) @Url.ContentUrl(Model.LargeThumbnail)" alt="@Model.LargeThumbnail" />
+                </div>
+
+            }
+
+        </div>
+    </div>
+}

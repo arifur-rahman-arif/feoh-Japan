@@ -1,0 +1,57 @@
+﻿@model PageViewModel<HBGRichContentPage>
+
+@{
+    var parameters = ViewData["Parameters"] as Dictionary<string,string>;
+}
+
+@if(Model!=null)
+{
+<!-- CONTENT FOR PRESS -->
+<div class="rich-content @(Model.CurrentPage.AsStandAloneComponent ? string.Empty : "container") @(Model.CurrentPage.RemoveContentPadding ? string.Empty : "static-content") @(Model.CurrentPage.RemovePadding ? string.Empty : "section")">
+
+    @if (Model.CurrentPage.AsStandAloneComponent)
+    {
+        @Html.PropertyFor(x => Model.CurrentPage.MainContent)
+    }
+    else
+    {
+        @Html.PropertyFor(x=>x.CurrentPage.ContentHeader)
+        if (Model.CurrentPage != null && Model.CurrentPage.ShowHeaderDivider)
+        {
+            <div class="line-separator"></div>
+        }
+        <div class="row">
+
+            <div class="@RazorUtil.GetColumnClass(Model.CurrentPage.ColumnSpanSize?.ToString())">
+
+                @if (Model?.CurrentPage != null || Model.CurrentPage.ShowTitle)
+                {
+                    if (Model.CurrentPage.TitleContentOverride != null)
+                    {
+                        @Html.PropertyFor(x => x.CurrentPage.TitleContentOverride)
+                    }
+                    else
+                    {
+                        <h2>@Html.PropertyFor(x => x.CurrentPage.Title)</h2>
+                    }
+                }
+
+                @if (parameters == null || ContextMode.CurrentMode.EditOrPreview())
+                {
+                    @Html.PropertyFor(x => x.CurrentPage.MainContent)
+                }
+                @if (parameters != null && !ContextMode.CurrentMode.EditOrPreview())
+                {
+                    var param = parameters.Values.
+                    Where(item => !string.IsNullOrWhiteSpace(item))
+                    .ToArray();
+
+                    @Html.PropertyFor(x => x.CurrentPage.MainContent,param)
+                }
+            </div>
+        </div>
+        @Html.PropertyFor(x=>x.CurrentPage.ContentFooter)
+    }
+
+</div>
+}
