@@ -1,0 +1,170 @@
+﻿@model HBGMeetingVenueDetailPage
+
+
+<h1>Meeting Venue Detail</h1>
+@Model.Title
+@* @if (Model != null)
+{
+     var hotel = Model.ByHotel.Items.IsNotNullAndAny() ? Model.ByHotel.FirstOrDefault() : new StayFarEast.Domain.Models.SfeEvent.MeetingHotelContainer(); 
+    <!-- event -->
+    <div class="about-venue section container" id="overview">
+        <div class="overview-venue-details overview-hotel-details col-xs-12">
+            <div class="row">
+                <div class="col-md-4">
+                    <div class="widget-title hotel-name" itemprop="name">
+                        @{
+                            string hotelAndLocation = string.Empty;
+                        }
+                        @if (!string.IsNullOrWhiteSpace(hotel?.Title))
+                        {
+                            hotelAndLocation = hotel.Title;
+                        }
+                        @if (!string.IsNullOrWhiteSpace(Model.VenueLocation))
+                        {
+                            string location = !string.IsNullOrWhiteSpace(hotel?.Title) ? $", {Model.VenueLocation}" : $"{Model.VenueLocation}";
+
+                            hotelAndLocation = hotelAndLocation + location;
+                        }
+                        @hotelAndLocation
+                    </div>
+                    <ul class="contact-info">
+                        @if (!string.IsNullOrWhiteSpace(hotel?.Address))
+                        {
+                            <li>
+                                <a itemprop="location" href="@(hotel?.MapURL?.Url)" target="_blank">@hotel.Address</a>
+                            </li>
+                        }
+
+                        @if (Model.BrochureDownload != null && Model.BrochureDownload.TargetId != Guid.Empty)
+                        {
+                            <li>
+                                <a itemprop="location" href="@MediaUtil.GetMediaUrl(Model.BrochureDownload.TargetId)" target="_blank" title="Download Brochure">
+                                    <img src="@Model.BrochureDownloadIcon" alt="Download Brochure" />
+                                    @Sitecore.Globalization.Translate.TextByDomain(Sitecore.Context.Site.DictionaryDomain, DictionaryKeys.EventDownloadBrochureText)
+                                </a>
+                            </li>
+                        }
+
+                    </ul>
+                </div>
+                <div class="col-md-4">
+                    <div class="widget-title">@Sitecore.Globalization.Translate.TextByDomain(Sitecore.Context.Site.DictionaryDomain, DictionaryKeys.EventGetInTouchText)</div>
+                    <ul class="contact-info">
+                        @if (!string.IsNullOrWhiteSpace(hotel?.PhoneNumber))
+                        {
+                            <li>
+                                @Sitecore.Globalization.Translate.TextByDomain(Sitecore.Context.Site.DictionaryDomain, DictionaryKeys.EventPhoneText): <a href="tel:@hotel.PhoneNumber">@hotel.PhoneNumber</a>
+                            </li>
+                        }
+
+                        @if (hotel?.EmailAddress != null)
+                        {
+                            <li>
+                                @Sitecore.Globalization.Translate.TextByDomain(Sitecore.Context.Site.DictionaryDomain, DictionaryKeys.EventEmailAddressText): @StayFarEast.RenderLink(hotel, model => model.EmailAddress)
+                            </li>
+                        }
+                    </ul>
+                    @if (Model.EnableEnquireMonthlyRateCTA)
+                    {
+                        <div class="book-at-daily-rate-block">
+                            <a href="#" data-toggle="modal" data-target="@Constants.MeetingEnquiry" class="btn btn-primary btn-lg text-center text-uppercase meetingenquiry"> @Sitecore.Globalization.Translate.TextByDomain(Sitecore.Context.Site.DictionaryDomain, DictionaryKeys.EventMeetingEnquiryFormCTAText)</a>
+                        </div>
+                    }
+                </div>
+                <div class="col-md-4">
+                    @if (!string.IsNullOrWhiteSpace(Model.VenueRoomSize) || !string.IsNullOrWhiteSpace(Model.VenueMaximumCapacity))
+                    {
+                        <div class="widget-title">@Sitecore.Globalization.Translate.TextByDomain(Sitecore.Context.Site.DictionaryDomain, DictionaryKeys.EventRoomSizeAndCapacityText)</div>
+                        <p class="venue-location">
+                            @{
+                                string roomSizeAndCapacity = string.Empty;
+                            }
+                            @if (!string.IsNullOrWhiteSpace(Model.VenueRoomSize))
+                            {
+                                roomSizeAndCapacity = string.Format(Sitecore.Globalization.Translate.TextByDomain(Sitecore.Context.Site.DictionaryDomain, DictionaryKeys.EventRoomSizeNumberText), Model.VenueRoomSize);
+                            }
+                            @if (!string.IsNullOrWhiteSpace(Model.VenueMaximumCapacity))
+                            {
+                                string roomCapacity = !string.IsNullOrWhiteSpace(Model.VenueRoomSize) ? $" • {string.Format(Sitecore.Globalization.Translate.TextByDomain(Sitecore.Context.Site.DictionaryDomain, DictionaryKeys.EventRoomCapacityNumberText), Model.VenueMaximumCapacity)}" : $"{string.Format(Sitecore.Globalization.Translate.TextByDomain(Sitecore.Context.Site.DictionaryDomain, DictionaryKeys.EventRoomCapacityNumberText), Model.VenueMaximumCapacity)}";
+
+                                roomSizeAndCapacity = roomSizeAndCapacity + roomCapacity;
+                            }
+                            @roomSizeAndCapacity
+                        </p>
+                    }
+                </div>
+            </div>
+        </div>
+        <div class="about-venue-content col-xs-12">
+            <div class="overview-description clearfix" itemprop="description">
+                @Html.Raw(Model.Description)
+            </div>
+            <div class="venue-detail section-deal-detail">
+                <div class="row">
+                    <div class="venue-detail__content">
+                        @if (!string.IsNullOrEmpty(Model.VenueRoomFeatures))
+                        {
+                            <div class="venue-detail__feature venue-detail__content--item col-sm-6">
+                                <h3>@Sitecore.Globalization.Translate.TextByDomain(Sitecore.Context.Site.DictionaryDomain, DictionaryKeys.EventRoomFeatureText)</h3>
+                                <div class="venue-detail__feature--desc">@Html.Raw(Model.VenueRoomFeatures)</div>
+                            </div>
+                        }
+
+                        @if (Model.GalleryList != null && Model.GalleryList.CarouselItems.IsNotNullAndAny())
+                        {
+                            <div class="venue-detail__gallery venue-detail__content--item col-sm-6 custom-default-nav-carousel">
+                                <h3>@Sitecore.Globalization.Translate.TextByDomain(Sitecore.Context.Site.DictionaryDomain, DictionaryKeys.EventImageGalleryText)</h3>
+                                @Html.Partial("~/Views/StayFarEastSharedResources/MultiMediaCarousel.cshtml", Model.GalleryList)
+                            </div>
+                        }
+                    </div>
+                </div>
+                <div class="row">
+                    <div class="venue-detail__content">
+                        @if (Model.RoomLayouts.IsNotNullAndAny())
+                        {
+                            <div class="venue-detail__roomlayout venue-detail__content--item col-sm-6">
+                                <h3>@Sitecore.Globalization.Translate.TextByDomain(Sitecore.Context.Site.DictionaryDomain, DictionaryKeys.EventRoomLayoutText)</h3>
+                                <ul class="roomlayout-list">
+                                    @foreach (var room in Model.RoomLayouts)
+                                    {
+                                        <li class="roomlayout-list-item">
+                                            @if (room.Icon != null && room.Icon.Icon != null)
+                                            {
+                                                @sfeHelper.HtmlHelperExtensions.RenderSvgByImageField(room.Icon.Icon)
+                                            }
+                                            <span class="roomlayout-list-item-name">@room.Title</span><span class="roomlayout-list-item-capacity">@room.Capacity</span>
+                                        </li>
+                                    }
+                                </ul>
+                            </div>
+                        }
+
+                        @if (Model.VenueFloorPlanImage != null && !string.IsNullOrEmpty(Model.VenueFloorPlanImage.Src))
+                        {
+                            <div class="venue-detail__floorplan venue-detail__content--item col-sm-6">
+                                <h3>@Sitecore.Globalization.Translate.TextByDomain(Sitecore.Context.Site.DictionaryDomain, DictionaryKeys.EventFloorPlanText)</h3>
+                                <div class="floorplan-img">
+                                    @if (Model.VenueFloorPlanFile != null && Model.VenueFloorPlanFile.TargetId != Guid.Empty)
+                                    {
+                                        <a href="@MediaUtil.GetMediaUrl(Model.VenueFloorPlanFile.TargetId)" target="_blank" title="View Floor Plan File"><img width="540" class="lazy-hidden" data-lazy-type="image" data-lazy-src="@Model.VenueFloorPlanImage.Src" alt="@Model.VenueFloorPlanImage.Alt"></a>
+                                    }
+                                    else
+                                    {
+                                        <img width="540" class="lazy-hidden" data-lazy-type="image" data-lazy-src="@Model.VenueFloorPlanImage.Src" alt="@Model.VenueFloorPlanImage.Alt">
+                                    }
+                                </div>
+                            </div>
+                        }
+                    </div>
+
+                </div>
+            </div>
+        </div>
+    </div>
+
+    using (Html.BeginScripts())
+    {
+        <script src="~/scripts/special/event-listing.js"></script>
+    }
+} *@
