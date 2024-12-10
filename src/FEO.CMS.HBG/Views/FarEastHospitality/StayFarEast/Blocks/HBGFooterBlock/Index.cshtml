@@ -1,0 +1,243 @@
+﻿@model HBGFooterBlock
+@using FEO.CMS.HBG.Helper
+@inject IContentLoader ContentLoader
+
+@if(Model != null)
+{
+    <div class="smp_new_footer">
+        <div class="smp_footer_container">        
+            @if (Model.FEHLogoImage != null)
+            {
+                <div class="footer-head">
+                    <img  width="450" height="100" class="lazy-hidden" data-lazy-type="image" data-lazy-src="@Url.ContentUrl(Model.FEHLogoImage)" alt="@* To do *@" />
+                    @if (Model.FEHLogoDesc != null)
+                    {
+                        <div class="desc">@Html.Raw(Model.FEHLogoDesc)</div>
+                    }
+                </div>
+                <div class="divider"></div>
+            }
+            @if (Model.BrandGroups != null && Model.BrandGroups.Items.Any())
+            {
+                foreach (var brandGroupItem in Model.BrandGroups.Items)
+                {
+                    var brandGroupPage = brandGroupItem.LoadContent() as HBGBrandGroupsPage;
+
+                    <div class="brand_row">
+                        <h3 class="brand_title">@brandGroupPage?.Heading</h3>
+                        @if (brandGroupPage?.Brands != null && brandGroupPage.Brands.Items.Any())
+                        {
+                            <ul class="brand_content">
+                                @foreach (var branditem in brandGroupPage.Brands.Items)
+                                {
+                                    var brandPage = branditem.LoadContent() as HBGHotelBrandPage;
+                                    <li class="brand_logos">
+                                        @if (brandPage?.FooterURL != null)
+                                        {
+                                            <a href="@Url.ContentUrl(brandPage.FooterURL.Href))" aria-label="brand logo">
+                                                <figure>
+                                                    <img width="@* To do *@" height="@* To do *@" class="lazy-hidden" data-lazy-type="image" data-lazy-src="@Url.ContentUrl(brandPage.BrandLogoWhite)" alt="@* To do *@" />
+                                                </figure>
+                                            </a>
+                                        }
+                                    </li>
+                                }
+                            </ul>
+                        }
+                    </div>
+                }
+            }
+            @if (Model.FooterMessage != null)
+            {
+                <p class="RTE_text">@Html.Raw(Model.FooterMessage)</p>
+            }
+            <div class="divider"></div>
+            @if (Model.DisplayCTAPortions)
+            {
+                <div class="singup_row">
+                    <div class="row-flex">
+                    
+                        <div class="col-md-6">
+                            <div class="row-flex">
+                                @if (Model.InsidersLogoImage != null)
+                                {
+                                    <div class="col-xs-6">
+                                        <span class="logo">
+                                            <img  width="@* To do *@" height="@* To do *@" class="lazy-hidden" data-lazy-type="image" data-lazy-src="@Url.ContentUrl(Model.InsidersLogoImage)" alt="@* To do *@" />
+                                        </span>
+                                    </div>
+                                }
+                                <div class="col-xs-6">
+                                    <div class="item">
+                                        @if (Model.InsidersLogoDesc != null)
+                                        {
+                                            <div class="desc">@Html.Raw(Model.InsidersLogoDesc)</div>
+                                        }
+                                        @if (Model.InsidersCTALink != null)
+                                        {
+                                            <a class="signup" href="@Url.ContentUrl(Model.InsidersCTALink.Href)" target="@Model.InsidersCTALink.Target">@Model.InsidersCTALink.Text</a>
+                                        }
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        @if (!(string.IsNullOrEmpty(Model.BDDesc.ToString()) && Model.BDCTALink == null))
+                        {
+                            <div class="col-md-6">
+                                <div class="item">
+                                    @if (!string.IsNullOrEmpty(Model.BDDesc.ToString()))
+                                    {
+                                        <div class="desc">
+                                            @Html.Raw(Model.BDDesc)
+                                        </div>
+                                    }
+                                    @if (Model.BDCTALink != null)
+                                    {
+                                        <a class="signup" href="@Url.ContentUrl(Model.BDCTALink.Href)" target="@Model.InsidersCTALink?.Target">@Model.BDCTALink.Text</a>
+                                    }
+                                </div>
+                            </div>
+                        }
+                    </div>
+                </div>
+                <div class="divider"></div>
+            }
+            <div class="smp_hotlines">
+                <div class="row-flex">
+                    @if (!string.IsNullOrWhiteSpace(Model.PrimaryContactNumber) || !string.IsNullOrWhiteSpace(Model.SecondaryContactNumber) || !string.IsNullOrWhiteSpace(Model.TertiaryContactNumber))
+                    {
+                        <div class="col-sm-4">
+                            <div class="smp_hotline_links">
+                                <h4 class="title">@DictionaryHelper.DictionaryEntry(DictionaryKeys.TollFreeLabel)</h4>
+                                <ul>
+                                    @if (!string.IsNullOrWhiteSpace(Model.PrimaryContactNumber))
+                                    {
+                                        var country = ContentLoader.Get<HBGCountryBlock>(Model.PrimaryContactCountry);
+
+                                        <li>
+                                            <span>@(Model.PrimaryContactCountry == null ? string.Empty : country.Title + ":") </span><a href="tel:@Model.PrimaryContactNumber"><span>@Html.PropertyFor(x => x.PrimaryContactNumber)</span></a>
+                                        </li>
+                                    }
+                                    @if (!string.IsNullOrWhiteSpace(Model.SecondaryContactNumber))
+                                    {
+                                        var country = ContentLoader.Get<HBGCountryBlock>(Model.SecondaryContactCountry);
+                                        <li>
+                                            <span>@(Model.SecondaryContactCountry == null ? string.Empty : country.Title + ":")</span>  <a href="tel:@Model.SecondaryContactNumber"><span>@Html.PropertyFor(x => x.SecondaryContactNumber)</span></a>
+                                        </li>
+                                    }
+                                    @if (!string.IsNullOrWhiteSpace(Model.TertiaryContactNumber))
+                                    {
+                                        var country = ContentLoader.Get<HBGCountryBlock>(Model.TertiaryContactCountry);
+                                        <li>
+                                            <span>@(Model.TertiaryContactCountry == null ? string.Empty : country.Title + ":")</span>  <a href="tel:@Model.TertiaryContactNumber">
+                                                <span>
+                                                    @Html.PropertyFor(x => x.TertiaryContactNumber )
+                                                </span>
+                                            </a>
+                                        </li>
+                                    }
+                                </ul>
+                            </div>
+                        </div>
+                    }
+                    @if (!string.IsNullOrWhiteSpace(Model.HotelsReservations) || !string.IsNullOrWhiteSpace(Model.ServicedResidencesReservations))
+                    {
+                        <div class="col-sm-4">
+                            <div class="smp_hotline_links">
+                                <h4 class="title">
+                                    @DictionaryHelper.DictionaryEntry(DictionaryKeys.CentralReservationsLabel)</h4>
+                                <ul>
+                                    @if (!string.IsNullOrWhiteSpace(Model.HotelsReservations))
+                                    {
+                                        <li>
+                                            <span>@DictionaryHelper.DictionaryEntry(DictionaryKeys.HotelsReservationLabel)</span>
+                                            <a href="tel:@Model.HotelsReservations" id="tag-reservations-hotels">
+                                                <span> @Model.HotelsReservations</span>
+                                            </a>
+                                        </li>
+                                    }
+                                    @if (!string.IsNullOrWhiteSpace(Model.ServicedResidencesReservations))
+                                    {
+                                        <li>
+                                            <span>@DictionaryHelper.DictionaryEntry(DictionaryKeys.ServicedResidencesReservationLabel)</span>
+                                            <a href="tel:@Model.ServicedResidencesReservations" id="tag-reservations-service-residences">
+                                                <span> @Model.ServicedResidencesReservations</span>
+                                            </a>
+                                        </li>
+                                    }
+                                </ul>
+                            </div>
+                        </div>
+                    }
+                    @if ((Model.HotelEmail != null && !string.IsNullOrWhiteSpace(Model.HotelEmail.Href) && !string.IsNullOrWhiteSpace(Model.HotelEmail.Text)) || (Model.ServicedResidencesEmail != null && !string.IsNullOrWhiteSpace(Model.ServicedResidencesEmail.Href) && !string.IsNullOrWhiteSpace(Model.ServicedResidencesEmail.Text)))
+                    {
+                        <div class="col-sm-4">
+                            <div class="smp_hotline_links">
+                                <h4 class="title">@DictionaryHelper.DictionaryEntry(DictionaryKeys.SendEmailLabel)</h4>
+                                <ul>
+                                    @if (Model.HotelEmail != null && !string.IsNullOrWhiteSpace(Model.HotelEmail.Href) && !string.IsNullOrWhiteSpace(Model.HotelEmail.Text))
+                                    {
+                                        <li>
+                                            <span>@DictionaryHelper.DictionaryEntry(DictionaryKeys.HotelsEmailLabel)</span>
+                                            @Html.PropertyFor(x => x.HotelEmail);
+                                        </li>
+                                    }
+                                    @if (Model.ServicedResidencesEmail != null && !string.IsNullOrWhiteSpace(Model.ServicedResidencesEmail.Href) && !string.IsNullOrWhiteSpace(Model.ServicedResidencesEmail.Text))
+                                    {
+                                        <li>
+                                            <span>@DictionaryHelper.DictionaryEntry(DictionaryKeys.ServicedResidencesEmailLabel)</span>
+                                            @Html.PropertyFor(x => x.HotelEmail);
+                                        </li>
+                                    }
+                                </ul>
+                            </div>
+                        </div>
+                    }
+                </div>
+            </div>
+            <div class="smp_ftr_links">
+                @if (Model.PrimaryLinks != null && Model.PrimaryLinks.Items.Any())
+                {  
+                
+                    <ul><li></li>
+                        @foreach (var link in Model.PrimaryLinks.Items)
+                        {
+                            var linkContent = link.LoadContent() as HBGBasePage;
+
+                            <li><a href="@Url.ContentUrl(linkContent?.LinkURL)" title="@linkContent?.LinkTitle">@linkContent?.Title</a></li>
+                        }
+                    </ul>
+                }
+            </div>
+            <div class="smp_ftr_media">
+                <ul>
+                    @if (Model.FacebookLink != null)
+                    {
+                        <li>
+                            <a class="facebook-app-embed-link" itemprop="sameAs" href="@Url.ContentUrl(Model.FacebookLink?.Href)" data-href-desktop="@Model.FacebookLink?.Href)" data-href-mobile="@(DeviceUtil.GetFacebookAppURL(Model.FacebookLink.Href)))" target="@Model.FacebookLink.Target">
+                                <img width="@* To do *@" height="@* To do *@" class="lazy-hidden" data-lazy-type="image" data-lazy-src="@Url.ContentUrl(Model.FacebookIcon)" alt="@* To do *@" />
+                            </a>
+                        </li>
+                    }
+                    @if (Model.TwitterLink != null)
+                    {
+                        <li>
+                            <a itemprop="sameAs" href="@Url.ContentUrl(Model.TwitterLink.Href)" target="@Model.TwitterLink?.Target">
+                                <img width="@* To do *@" height="@* To do *@" class="lazy-hidden" data-lazy-type="image" data-lazy-src="@Url.ContentUrl(Model.TwitterIcon)" alt="@* To do *@" />
+                            </a>
+                        </li>
+                    }
+                    @if (Model.YoutubeLink != null)
+                    {
+                        <li>
+                            <a itemprop="sameAs" href="@Url.ContentUrl(Model.YoutubeLink.Href)" target="@Model.YoutubeLink?.Target">
+                                <img width="@* To do *@" height="@* To do *@" class="lazy-hidden" data-lazy-type="image" data-lazy-src="@Url.ContentUrl(Model.YoutubeIcon)" alt="@* To do *@" />
+                            </a>
+                        </li>
+                    }
+                </ul>
+            </div>
+            <div class="smp_copyright">@Model.Copyright</div>
+        </div>
+    </div>
+}

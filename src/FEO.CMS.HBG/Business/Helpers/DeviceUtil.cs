@@ -26,5 +26,17 @@
             string userAgent = CurrentContext.Request.Headers["User-Agent"].ToString();
             return userAgent.Contains("Tablet", StringComparison.OrdinalIgnoreCase) || userAgent.Contains("iPad", StringComparison.OrdinalIgnoreCase);
         }
+
+        public static string GetFacebookAppURL(string url)
+        {
+            if (!string.IsNullOrEmpty(url))
+            {
+                return "fb://facewebmodal/f?href=" + url;
+            }
+            else
+            {
+                return url;
+            }
+        }
     }
 }

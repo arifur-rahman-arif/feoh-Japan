@@ -2,12 +2,14 @@ using EPiServer.Core;
 using EPiServer.DataAnnotations;
 using EPiServer.SpecializedProperties;
 using EPiServer.Web;
+using FEO.CMS.HBG.Core.Blocks.Bases;
+using FEO.CMS.HBG.Core.Pages.StayFarEast;
 using System.ComponentModel.DataAnnotations;
 
 namespace FEO.CMS.HBG.Core.Blocks.StayFarEast
 {
-    [ContentType(DisplayName = "HBGFooterBlock", GUID = "A292B32D-4FE1-4D43-A52E-9D9670AEC56C", GroupName = "Hospitality")]
-    public class HBGFooterBlock : HBGBaseBlock
+    [ContentType(DisplayName = "StayFarEastHBGFooterBlock", GUID = "A292B32D-4FE1-4D43-A52E-9D9670AEC56C", GroupName = "Hospitality")]
+    public class HBGFooterBlock : HBGFooterDataBlock
     {
         [Display(Name = "Our Brands", GroupName = "Menu", Order = 50)]
         [CultureSpecific]
@@ -41,6 +43,7 @@ namespace FEO.CMS.HBG.Core.Blocks.StayFarEast
 
         [Display(Name = "Primary Links", GroupName = "Menu", Order = 200)]
         [CultureSpecific]
+        [AllowedTypes(AllowedTypes = [ typeof(HBGVisualContainerPage), typeof(HBGRichContentPage)])]
         public virtual ContentArea PrimaryLinks { get; set; }
 
         [Display(Name = "Mobile Facebook Link", GroupName = "Buttons", Order = 250)]
@@ -125,6 +128,11 @@ namespace FEO.CMS.HBG.Core.Blocks.StayFarEast
         [Display(Name = "Tertiary Contact Number", GroupName = "Buttons", Order = 1100)]
         [CultureSpecific]
         public virtual string TertiaryContactNumber { get; set; }
+
+        [Display(Name = "Brand Groups", GroupName = "Logos and CTAs", Order = 800)]
+        [CultureSpecific]
+        [AllowedTypes(AllowedTypes = new[] { typeof(HBGBrandGroupsPage) })]
+        public virtual ContentArea BrandGroups { get; set; }
 
     }
 }
