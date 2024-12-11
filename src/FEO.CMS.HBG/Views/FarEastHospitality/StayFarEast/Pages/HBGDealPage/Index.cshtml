@@ -1,0 +1,95 @@
+﻿@model PageViewModel<HBGDealPage>
+
+@{
+    var bookingConfig = ViewData["BookingConfig"] as HBGBookingConfigPage;
+    string bookUrl = string.Empty;
+    if (bookingConfig != null && bookingConfig.DealBookingURL != null && !string.IsNullOrWhiteSpace(bookingConfig.DealBookingURL.Href))
+    {
+        bookUrl = bookingConfig.DealBookingURL.Href;
+        if (!string.IsNullOrWhiteSpace(Model.CurrentPage.Parameters))
+        {
+            if (Model.CurrentPage.Parameters.StartsWith("&"))
+            {
+                bookUrl = $"{bookUrl}{Model.CurrentPage.Parameters}";
+            }
+            else
+            {
+                bookUrl = $"{bookUrl}&{Model.CurrentPage.Parameters}";
+            }
+        }
+    }
+}
+
+@if (Model != null)
+{
+    <div class="section-deal-detail">
+        <div class="container">
+            <div class="row-flex end">
+                <div class="col-md-4 deal-sidebar-widget">
+                    @if (Model.CurrentPage.EnableCountdownTime && Model.CurrentPage.EndDate != null && Model.CurrentPage.EndDate != DateTime.MinValue)
+                    {
+                        @Html.Partial("~/Views/Shared/_DealCountdownTimer.cshtml", "", new ViewDataDictionary(ViewData) { { "Deal", Model }, { "BookUrl", bookUrl } })
+                    }
+
+                    <div class="widget-book-deal">
+                        @if (!string.IsNullOrEmpty(Model.CurrentPage.DealPromoDate?.ToString()))
+                        {
+                            <div class="desc">
+                                @Html.PropertyFor(x=>x.CurrentPage.DealPromoDate)
+                            </div>
+                        }
+
+                        @if (!string.IsNullOrEmpty(Model.CurrentPage.GetBookDate()))
+                        {
+                            <p>
+                                <strong>@DictionaryHelper.DictionaryEntry(DictionaryKeys.BookDateLabel)Book Period:</strong> @Model.CurrentPage.GetBookDate()
+                            </p>
+                        }
+
+                        @if (!string.IsNullOrEmpty(Model.CurrentPage.GetStayDate()))
+                        {
+                            <p>
+                                <strong>@DictionaryHelper.DictionaryEntry(DictionaryKeys.StayDateLabel)Stay Period:</strong> @Model.CurrentPage.GetStayDate()
+                            </p>
+                        }
+
+                        @if (Model.CurrentPage.GetParticipantCount() > 0)
+                        {
+                            <div class="mb20">
+                                <a href="#participatinghotels" class="btn-book-1">@DictionaryHelper.DictionaryEntry(DictionaryKeys.ParticipatingPropertiesText)Participating Properties</a>
+                            </div>
+                        }
+
+                        @if (Model.CurrentPage.EnablePromoBooking && !string.IsNullOrEmpty(bookUrl) && !Model.CurrentPage.EnableCountdownTime)
+                        {
+                            <a href="@bookUrl" target="_blank" class="btn-book-2">@DictionaryHelper.DictionaryEntry(DictionaryKeys.BookDealNowText)Book Offer</a>
+                        }
+                    </div>
+                </div>
+                <div class="col-md-8">
+                    @Html.PropertyFor(x=>x.CurrentPage.MemberMessage)
+
+                    @if (Model.CurrentPage.Position == null || ContentLoader.Get<HBGNameValuePairBlock>(Model.CurrentPage.Position)?.Value?.ToLower() == "top")
+                    {
+                        @Html.PropertyFor(x=>x.CurrentPage.carousel)
+                    }
+
+                    @if (!string.IsNullOrEmpty(Model.CurrentPage.MainContentArea?.ToString()))
+                    {
+                        <div class="rich-content">
+                            @Html.Raw(Model.CurrentPage.MainContent)
+                        </div>
+                    }
+                    @if(Model.CurrentPage.Position != null)
+                    {
+                        @if (ContentLoader.Get<HBGNameValuePairBlock>(Model.CurrentPage.Position)?.Value?.ToLower() == "bottom")
+                        {
+                                @Html.PropertyFor(x=>x.CurrentPage.carousel)
+                        }
+                    }
+                </div>
+
+            </div>
+        </div>
+    </div>
+}

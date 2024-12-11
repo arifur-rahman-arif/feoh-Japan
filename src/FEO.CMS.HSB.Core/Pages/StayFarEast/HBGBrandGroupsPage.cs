@@ -22,5 +22,10 @@ namespace FEO.CMS.HBG.Core.Pages.StayFarEast
         [CultureSpecific]
         public virtual LinkItem LogoUrl { get; set; }
 
+        [Display(Name = "Brands", GroupName = "Logos and CTAs", Order = 800)]
+        [CultureSpecific]
+        [AllowedTypes(AllowedTypes = new[] { typeof(HBGHotelBrandPage) })]
+        public virtual ContentArea Brands { get; set; }
+
     }
 }

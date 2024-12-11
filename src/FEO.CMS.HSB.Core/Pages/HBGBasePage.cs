@@ -109,6 +109,10 @@ namespace FEO.CMS.HBG.Core.Pages
         [CultureSpecific]
         public virtual string CanonicalUrl { get; set; }
 
+        [Display(Name = "Link Title", GroupName = "SEO", Order = 500)]
+        [CultureSpecific]
+        public virtual string LinkTitle { get; set; }
+
         //HBGThumbnailPreviewBlock
         [Display(Name = "Alternate URL", GroupName = "Settings", Order = 100)]
         [CultureSpecific]

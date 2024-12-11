@@ -69,5 +69,8 @@
         //Position Booking Widget
         public const string Middle = "middle";
         public const string Bottom = "bottom";
+
+        //Site
+        public const string WebsiteConfigGuid = "FC4920F3-C783-4F56-9001-325DCEB547E0";
     }
 }

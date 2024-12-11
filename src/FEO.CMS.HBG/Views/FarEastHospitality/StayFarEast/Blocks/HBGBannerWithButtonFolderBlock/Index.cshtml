@@ -1,0 +1,183 @@
+﻿@model HBGBannerWithButtonFolderBlock
+
+@if (Model != null && Model.ChildrenFolderReference != null)
+{
+    var bannerWithButton = ContentLoader.GetChildren<HBGBannerWithButtonItemBlock>(Model.ChildrenFolderReference);
+
+
+    @if (bannerWithButton != null && bannerWithButton.Any())
+    {
+        var itemCount = bannerWithButton.Count();
+        var carouselIdName = "carousel-slide";
+        <!-- carousel -->
+        <div class="static-content">
+            <div id="@carouselIdName" class="banner-with-button video-masthead carousel slide" data-interval="false" data-overlay="@(Model != null ? Model.EnableDarknessOverlayImage.ToString().ToLower() : "false")">
+                @if (bannerWithButton.Any(x => !string.IsNullOrEmpty(x.BackgroundVideo?.Href)))
+                {
+                    <div class="video-control container">
+                        <span class="video-play active">
+                            <svg class="on" xmlns="http://www.w3.org/2000/svg" width="21.831" height="25" viewBox="0 0 21.831 25">
+                                <path id="Polygon_1" data-name="Polygon 1" d="M12.5,0,25,21.831H0Z" transform="translate(21.831) rotate(90)" fill="rgba(241,241,241,0.9)" />
+                            </svg>
+                            <svg class="off" xmlns="http://www.w3.org/2000/svg" width="15" height="25" viewBox="0 0 15 25">
+                                <g id="Group_124603" data-name="Group 124603" transform="translate(-88 -535)">
+                                    <rect id="Rectangle_3525" data-name="Rectangle 3525" width="5" height="25" transform="translate(88 535)" fill="rgba(241,241,241,0.9)" />
+                                    <rect id="Rectangle_3526" data-name="Rectangle 3526" width="5" height="25" transform="translate(98 535)" fill="rgba(241,241,241,0.9)" />
+                                </g>
+                            </svg>
+                        </span>
+                    </div>
+                }
+
+                <!-- Indicators -->
+                @if (itemCount > 1)
+                {
+                    <ol class="carousel-indicators">
+                        @for (int index = 0; index < itemCount; index++)
+                        {
+                            if (index == 0)
+                            {
+                                <li data-target="#@carouselIdName" data-slide-to="@index" class="active"></li>
+                            }
+                            else
+                            {
+                                <li data-target="#@carouselIdName" data-slide-to="@index"></li>
+                            }
+                        }
+                    </ol>
+                }
+                <!-- Wrapper for slides -->
+                <div class="carousel-inner">
+
+                    @for (int index = 0; index < itemCount; index++)
+                    {
+
+                        var item = bannerWithButton.ElementAt(index);
+
+                        @if (item.CTAColor != null && item.CTAColor2 != null)
+                        {
+                            var ctacolor1 = ContentLoader.Get<HBGNameValuePairBlock>(item.CTAColor);
+                            var ctacolor2 = ContentLoader.Get<HBGNameValuePairBlock>(item.CTAColor2);
+
+                            <div class="item @(item.BackgroundVideo != null ? "item-video carousel-image" : string.Empty)  @(index == 0 ? "active" : string.Empty)">
+
+                                <div class="thumb-34">
+                                    @if (item.BackgroundVideo != null)
+                                    {
+                                        <video class="video-playing" playsinline @(itemCount == 1 ? "loop='loop'" : string.Empty) autoplay="autoplay" muted="muted" poster="@Url.ContentUrl(item.Image)">
+                                            <source src="@(item.BackgroundVideo.Href)">
+                                        </video>
+                                    }
+                                    else
+                                    {
+                                        <img width="1300" height="500" class="lazy-hidden" data-lazy-type="image" data-lazy-srcset="@((item.ImageForMobile != null) ? $"{item.ImageForMobile} 767w" : string.Empty), @Url.ContentUrl(item.Image)" alt="" />
+                                    }
+                                </div>
+
+                                <div class="carousel-caption carousel-v-caption">
+                                    <div class="carousel-v-align">
+                                        @if (!string.IsNullOrEmpty(item.Title))
+
+                                        {
+                                            <h2 aria-label="@item.Title">@Html.PropertyFor(m => item.Title)</h2>
+                                        }
+                                        @if (!string.IsNullOrEmpty(item.Summary))
+
+                                        {
+                                            <p>@Html.PropertyFor(m => item.Summary)</p>
+                                        }
+                                    </div>
+                                    <div class="carousel-buttons masthead-cta-wrapper">
+                                        @if (item.CTAEnable)
+                                        {
+                                            if (item.UseAsModalButton && !string.IsNullOrEmpty(item.CTATitle) && !string.IsNullOrEmpty(item.CTAModalFormId))
+                                            {
+                                                <div class="masthead-cta-button @(item.CTAColor.ToString() ?? "primary-cta-button")">
+                                                    <a href="#" data-toggle="modal" data-target="#@(item.CTAModalFormId)">@item.CTATitle</a>
+                                                </div>
+                                            }
+                                            else if (item.CTALink != null && !string.IsNullOrEmpty(item.CTALink.Href))
+
+                                            {
+                                                <div class="masthead-cta-button @(ctacolor1?.Value ?? "primary-cta-button")">
+                                                    <a href="@Url.ContentUrl(item.CTALink.Href)" target="" class="cta-anchor">@item.CTATitle</a>
+                                                </div>
+                                            }
+
+                                            else if (!string.IsNullOrEmpty(item.CTALink?.Href) && !string.IsNullOrEmpty(item.CTATitle))
+
+                                            {
+                                                <div class="masthead-cta-button @(ctacolor1?.Value ?? "primary-cta-button")">
+                                                    <a href="@(!string.IsNullOrEmpty(item.CTALink.Href) ? item.CTALink.Href : "#")" target="@(item.CTALink?.Target)">@item.CTATitle</a>
+                                                </div>
+                                            }
+
+                                        }
+
+                                        @if (item.CTAEnable2)
+
+                                        {
+
+                                            if (item.UseAsModalButton2 && !string.IsNullOrEmpty(item.CTATitle2) && !string.IsNullOrEmpty(item.CTAModalFormId2))
+
+                                            {
+                                                <div class="masthead-cta-button @(ctacolor2?.Value ?? "secondary-cta-button")">
+                                                    <a href="#" data-toggle="modal" data-target="#@(item.CTAModalFormId2)">@item.CTATitle2</a>
+                                                </div>
+                                            }
+
+                                            else if (item.CTALink2 != null && !string.IsNullOrEmpty(item.CTALink2.Href))
+                                            {
+                                                <div class="masthead-cta-button @(ctacolor2?.Value ?? "secondary-cta-button")">
+                                                    <a href="@Url.ContentUrl(item.CTALink2.Href)" target="" class="cta-anchor">@item.CTATitle2</a>
+                                                </div>
+                                            }
+
+                                            else if (!string.IsNullOrEmpty(item.CTALink2?.Href) && !string.IsNullOrEmpty(item.CTATitle2))
+
+                                            {
+                                                <div class="masthead-cta-button @(ctacolor2?.Value ?? "secondary-cta-button")">
+                                                    <a href="@(!string.IsNullOrEmpty(item.CTALink2.Href) ? item.CTALink2.Href : "#")" target="@(item.CTALink2?.Target)">@item.CTATitle2</a>
+                                                </div>
+                                            }
+
+                                        }
+                                    </div>
+                                </div>
+
+                            </div>
+                        }
+                    }
+
+                </div>
+
+                @if (itemCount > 1)
+                {
+                    <!-- Controls -->
+                    <a class="left carousel-control" href="#@carouselIdName" role="button" data-slide="prev">
+                        <span class="lnr lnr-chevron-left" aria-hidden="true"></span>
+                        <span class="sr-only">Previous</span>
+                    </a>
+                    <a class="right carousel-control" href="#@carouselIdName" role="button" data-slide="next">
+                        <span class="lnr lnr-chevron-right" aria-hidden="true"></span>
+                        <span class="sr-only">Next</span>
+                    </a>
+                }
+
+                @if (Model != null && Model.ShowDownwardArrow)
+
+                {
+                    <div class="banner-arrow">
+                        <a href="#main-content" class="color-white scrollto arrow cta-anchor">
+                            <span class="text">@DictionaryHelper.DictionaryEntry(DictionaryKeys.ScrollText)</span>
+                            <span class="lnr lnr-chevron-down"></span>
+                        </a>
+                    </div>
+                }
+            </div>
+        </div>
+        <div id="main-content"></div>
+    }
+}
+
+
