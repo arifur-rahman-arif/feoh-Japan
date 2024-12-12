@@ -2,8 +2,8 @@
 {
     public struct HBGPathConstants
     {
-        public const string Root = "/sitecore";
-        public const string Content = Root + "/content";
+        public const string Root = "/fareast";
+        public const string Content = Root + "/hospitality";
         public const string StayFarEast = Content + "/StayFarEast";
         public const string Village = Content + "/Village";
         public const string Outpost = Content + "/Outpost";
