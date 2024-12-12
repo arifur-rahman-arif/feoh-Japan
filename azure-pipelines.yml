@@ -42,7 +42,7 @@ steps:
   displayName: 'Create packed NuGet files Core'
   inputs:
     command: 'pack'
-    packagesToPack: 'src/FEO.CMS.HBG.Core/FEO.CMS.HBG.Core.csproj'
+    packagesToPack: 'src/FEO.CMS.HSB.Core/FEO.CMS.HBG.Core.csproj'
     packDirectory: '$(Build.ArtifactStagingDirectory)'
     versioningScheme: byPrereleaseNumber
 
