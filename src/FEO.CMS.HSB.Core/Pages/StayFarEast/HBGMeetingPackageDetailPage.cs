@@ -16,12 +16,12 @@ namespace FEO.CMS.HBG.Core.Pages.StayFarEast
         [AllowedTypes(AllowedTypes = new[] { typeof(HBGNameValuePairBlock) })]
         public virtual ContentReference DisplayGetInTouch { get; set; }
 
-        [Display(Name = "Package Overview", GroupName = "Settings", Order = 100)]
+        [Display(Name = "Package Overview", GroupName = SystemTabNames.Content, Order = 100)]
         [CultureSpecific]
         [UIHint(UIHint.Textarea)]
         public virtual XhtmlString PackageOverview { get; set; }
 
-        [Display(Name = "Package Includes", GroupName = "Settings", Order = 200)]
+        [Display(Name = "Package Includes", GroupName = SystemTabNames.Content, Order = 200)]
         [CultureSpecific]
         [UIHint(UIHint.Textarea)]
         public virtual XhtmlString PackageIncludes { get; set; }
@@ -30,28 +30,28 @@ namespace FEO.CMS.HBG.Core.Pages.StayFarEast
         [CultureSpecific]
         public virtual string PreviewImages { get; set; }
 
-        [Display(Name = "Gallery", GroupName = "Images", Order = 850)]
+        [Display(Name = "Gallery", GroupName = SystemTabNames.Content, Order = 500)]
         [CultureSpecific]
         [AllowedTypes(AllowedTypes = new[] { typeof(HBGMultiMediaCarouselFolderBlock) })]
         public virtual ContentReference Gallery { get; set; }
 
-        [Display(Name = "Brochure Download", GroupName = "Images", Order = 1000)]
+        [Display(Name = "Brochure Download", GroupName = SystemTabNames.Content, Order = 600)]
         [CultureSpecific]
         public virtual LinkItem BrochureDownload { get; set; }
 
-        [Display(Name = "Ribbon Text", GroupName = "Images", Order = 1100)]
+        [Display(Name = "Ribbon Text", GroupName = SystemTabNames.Content, Order = 700)]
         [CultureSpecific]
         public virtual string RibbonText { get; set; }
 
-        [Display(Name = "Enable Enquiry CTA", GroupName = "Images", Order = 1200)]
+        [Display(Name = "Enable Enquiry CTA", GroupName = SystemTabNames.Content, Order = 800)]
         [CultureSpecific]
         public virtual bool EnableEnquiryCTA { get; set; }
 
-        [Display(Name = "Term Condition Title", GroupName = SystemTabNames.Content, Order = 200)]
+        [Display(Name = "Term Condition Title", GroupName = SystemTabNames.Content, Order = 300)]
         [CultureSpecific]
         public virtual string TermConditionTitle { get; set; }
 
-        [Display(Name = "Term Condition Description", GroupName = SystemTabNames.Content, Order = 300)]
+        [Display(Name = "Term Condition Description", GroupName = SystemTabNames.Content, Order = 400)]
         [CultureSpecific]
         [UIHint(UIHint.Textarea)]
         public virtual XhtmlString TermConditionDescription { get; set; }

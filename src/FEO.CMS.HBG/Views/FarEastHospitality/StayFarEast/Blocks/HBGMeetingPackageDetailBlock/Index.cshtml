@@ -52,7 +52,7 @@
                             }
                             @if (!string.IsNullOrEmpty(hotel?.EmailAddress?.Href))
                             {
-                                <li class="badri">
+                                <li>
                                     @DictionaryHelper.DictionaryEntry(DictionaryKeys.EventEmailAddressText):
                                     @Html.PropertyFor(x => hotel.EmailAddress)
                                 </li>

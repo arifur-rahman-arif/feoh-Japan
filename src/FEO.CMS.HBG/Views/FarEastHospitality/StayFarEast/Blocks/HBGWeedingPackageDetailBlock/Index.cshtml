@@ -21,7 +21,7 @@
             <div class="row">
                 @if (hotelCount == 1)
                 {
-                    var hotel = Model.ByHotel.Items[0].LoadContent() as HBGMeetingsHotelContainerPage;
+                    var hotel = Model.ByHotel.Items[0].LoadContent() as HBGWeddingsHotelContainerPage;
 
                     <div class="col-md-4">
                         <div class="widget-title hotel-name" itemprop="name">@(hotel?.Title)</div>
@@ -80,7 +80,7 @@
                         <ul class="contact-info">
                             @foreach (var hotelItem in Model.ByHotel.Items)
                             {
-                                var hotel = hotelItem.LoadContent() as HBGMeetingsHotelContainerPage;
+                                var hotel = hotelItem.LoadContent() as HBGWeddingsHotelContainerPage;
                                 <li>
                                     @if (!string.IsNullOrEmpty(hotel?.Title))
                                     {
@@ -125,7 +125,7 @@
                                     {
                                         foreach (var hotelItem in Model.ByHotel.Items)
                                         {
-                                            var hotel = hotelItem.LoadContent() as HBGMeetingsHotelContainerPage;
+                                            var hotel = hotelItem.LoadContent() as HBGWeddingsHotelContainerPage;
 
                                             <li>
                                                 @if (!string.IsNullOrEmpty(hotel?.Title))
@@ -167,7 +167,7 @@
                                 <ul class="contact-info">
                                     @{
                                         var hotelItem = Model.ByHotel.Items.FirstOrDefault();
-                                        var hotel = hotelItem.LoadContent() as HBGMeetingsHotelContainerPage;
+                                        var hotel = hotelItem.LoadContent() as HBGWeddingsHotelContainerPage;
                                     }
 
                                     <li>
