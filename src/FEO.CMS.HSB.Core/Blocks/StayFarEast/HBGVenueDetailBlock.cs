@@ -10,5 +10,6 @@ namespace FEO.CMS.HBG.Core.Blocks.StayFarEast
     [ContentType(DisplayName = "HBGVenueDetailBlock", GroupName = "Hospitality")]
     public class HBGVenueDetailBlock : HBGBaseBlock
     {
+        
     }
 }
