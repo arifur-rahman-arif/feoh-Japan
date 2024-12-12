@@ -77,7 +77,8 @@
         public const string SiteBookingConfig = "/Shared/Config/Site/BookingConfig";
         //====relative path=====
         // TemplateIds.SiteTemplate
-        public const string RelativeRoot = "query:./ancestor::*[@@templateid='{4253FE15-B33D-4F78-AAE0-08A0D9AEE709}']";
+        // HBGSiteRoot
+        public const string RelativeRoot = "/fareast/hospitality/StayFarEast";//"query:./ancestor::*[@@templateid='{4253FE15-B33D-4F78-AAE0-08A0D9AEE709}']";
         public const string RelativeHome = RelativeRoot + "/Home";
         public const string RelativeExperiences = RelativeHome + "/Experiences";
         public const string RelativeHotels = RelativeHome + "/Hotels";

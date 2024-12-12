@@ -14,6 +14,15 @@ namespace FEO.CMS.HBG.Core.Blocks.StayFarEast
         [Display(Name = "Sub Title", GroupName = SystemTabNames.Content, Order = 200)]
         [CultureSpecific]
         public virtual string SubTitle { get; set; }
+        
+        [Ignore]
+        public HotelAmenities HotelAmenities { get; set; }
+        [Ignore]
+        public HBGNameValuePairBlock BackgroundColorStyleNames { get; set; }
 
+    }
+    public class HotelAmenities
+    {
+        public virtual IEnumerable<HBGHotelAmenityCategoryBlock> Categories { get; set; }
     }
 }
