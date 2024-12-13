@@ -3,6 +3,7 @@ using EPiServer.DataAbstraction;
 using EPiServer.DataAnnotations;
 using EPiServer.SpecializedProperties;
 using EPiServer.Web;
+using FEO.CMS.HBG.Core.Blocks.StayFarEast;
 using System.ComponentModel.DataAnnotations;
 
 namespace FEO.CMS.HBG.Core.Pages.StayFarEast
@@ -54,5 +55,7 @@ namespace FEO.CMS.HBG.Core.Pages.StayFarEast
         public virtual string Currency { get; set; }
         [Ignore]
         public virtual int MaxNumberOfGuests { get; set; }
+        [Ignore]
+        public virtual IEnumerable<HBGRoomBlock> Rooms { get; set; }
     }
 }
