@@ -1,0 +1,84 @@
+﻿@model HBGAwardsComponentBlock
+
+@{
+    var index = 0;
+    var count = Model.Awards.Count();
+    var AwardsOrderedForPopUp = ViewData["AwardsOrderedForPopUp"] as IEnumerable<HBGAwardsBlock>;
+    var OverlayLogo = ViewData["OverlayLogo"] as ImageFile;
+}
+
+@if (Model != null && Model.Awards.IsNotNullAndAny())
+{
+    <div class="widget-title">@DictionaryHelper.DictionaryEntry(DictionaryKeys.AwardedText, string.Empty)</div>
+    <div class="wrap-awards-item">
+        <div class="awards-list">
+            @foreach (var item in Model.Awards.OrderBy(x => x.SortOrder))
+            {
+                index = index + 1;
+                <div class="awards_item">
+                    @if (item.Icon != null)
+                    {
+                        var alt = ContentLoader.Get<ImageFile>(item.Icon);
+                        <div class="img"><img class="lazy-hidden" data-lazy-type="image" data-lazy-src="@Url.ContentUrl(item.Icon)" alt="@alt" /></div>
+                    }
+                    <div class="divtext">
+                        <div class="title">@item.Title</div>
+                        <div class="desc">@item.Summary</div>
+                    </div>
+
+                </div>
+
+                if (index > 1)
+                {
+                    break;
+                }
+            }
+
+        </div>
+        @if (count > 2)
+        {
+            <a class="see_all_awards" href="#">@DictionaryHelper.DictionaryEntry(DictionaryKeys.ViewAllAwardsText, string.Empty)</a>
+        }
+    </div>
+
+    if (count > 2)
+    {
+        <div class="awards_popup_modal">
+            <div class="close-icon">X Close</div>
+            <div class="gallery-logo">
+                @if (OverlayLogo != null)
+                {
+                    <img loading="lazy" src="@Url.ContentUrl(OverlayLogo.ContentLink)" alt="@OverlayLogo.AltText" />
+                }
+            </div>
+            <div class="awards_popup_modal__container">
+                <h2 class="awards_popup_modal__title">@DictionaryHelper.DictionaryEntry(DictionaryKeys.OurAwardsText, string.Empty)</h2>
+                <div class="swiper-container swiper-container-awards">
+                    <div class="swiper-wrapper">
+                        @foreach (var item in AwardsOrderedForPopUp)
+                        {
+                            <div class="swiper-slide awards_slider_item">
+                                <div class="awards_slider_item__inner">
+                                    <div class="image_holder">
+                                        @if (item.Icon != null)
+                                        {
+                                            var alt = ContentLoader.Get<ImageFile>(item.Icon);
+                                            <img loading="lazy" src="@Url.ContentUrl(item.Icon)" alt="@alt" />
+                                        }
+                                    </div>
+                                    <h3>@item.Title</h3>
+                                    <p>@item.Summary</p>
+                                </div>
+                            </div>
+                        }
+                    </div>
+                    <!-- Add Pagination -->
+                    <div class="swiper-pagination"></div>
+                    <!-- Add Arrows -->
+                    <div class="swiper-button-next"></div>
+                    <div class="swiper-button-prev"></div>
+                </div>
+            </div>
+        </div>
+    }
+}
