@@ -5,7 +5,7 @@ using System.ComponentModel.DataAnnotations;
 
 namespace FEO.CMS.HBG.Core.Pages.StayFarEast
 {
-    [ContentType(DisplayName = "HBGVenueCapacityItemBlock", /*GUID = "AD532904-48F5-482B-8E64-8F654D4AB185"*/ GroupName = "Hospitality")]
+    [ContentType(DisplayName = "HBGVenueCapacityItemBlock", GUID = "AD532904-48F5-482B-8E64-8F654D4AB185", GroupName = "Hospitality")]
     public class HBGVenueCapacityItemBlock : HBGBaseBlock
     {
         [Display(Name = "Title", GroupName = "Main Content", Order = 100)]
