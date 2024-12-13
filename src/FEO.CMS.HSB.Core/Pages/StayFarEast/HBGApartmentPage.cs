@@ -8,7 +8,7 @@ using System.ComponentModel.DataAnnotations;
 namespace FEO.CMS.HBG.Core.Pages.StayFarEast
 {
     [ContentType(DisplayName = "HBGApartmentPage", GUID = "88169925-526E-4737-AABD-C237E69A63C1", GroupName = "Hospitality")]
-    public class HBGApartmentPage : HBGBasePage
+    public class HBGApartmentPage : HBGListingAssetThumbnailPage
     {
         [Display(Name = "Assets Summary", GroupName = SystemTabNames.Content, Order = 100)]
         [CultureSpecific]
@@ -46,6 +46,13 @@ namespace FEO.CMS.HBG.Core.Pages.StayFarEast
         [Display(Name = "EnquireForMonthlyRateCTA", GroupName = "Images", Order = 600)]
         [CultureSpecific]
         public virtual LinkItem EnquireForMonthlyRateCTA { get; set; }
-
+        [Ignore]
+        public virtual HBGListingPage ParentListing { get; set; }
+        [Ignore]
+        public virtual bool EnableToShowRate { get; set; }
+        [Ignore]
+        public virtual string Currency { get; set; }
+        [Ignore]
+        public virtual int MaxNumberOfGuests { get; set; }
     }
 }

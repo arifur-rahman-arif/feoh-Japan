@@ -13,7 +13,7 @@ namespace FEO.CMS.HBG.Controllers.Blocks
 {
     public class HBGHotelAmenitiesBlockController : BlockComponent<HBGHotelAmenitiesBlock>
     {
-        private readonly EPiServer.Logging.ILogger logger = LogManager.GetLogger(typeof(HBGInsidersRibbonBlockController));
+        private readonly EPiServer.Logging.ILogger logger = LogManager.GetLogger(typeof(HBGHotelAmenitiesBlockController));
         private static IContentLoader contentLoader = ServiceLocator.Current.GetInstance<IContentLoader>();
         protected override IViewComponentResult InvokeComponent(HBGHotelAmenitiesBlock currentBlock)
         {

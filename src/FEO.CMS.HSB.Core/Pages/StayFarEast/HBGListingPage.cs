@@ -2,6 +2,7 @@ using EPiServer.Core;
 using EPiServer.DataAnnotations;
 using EPiServer.SpecializedProperties;
 using EPiServer.Web;
+using FEO.CMS.HBG.Core.Blocks.StayFarEast;
 using System.ComponentModel.DataAnnotations;
 
 namespace FEO.CMS.HBG.Core.Pages.StayFarEast
@@ -78,6 +79,11 @@ namespace FEO.CMS.HBG.Core.Pages.StayFarEast
         [Display(Name = "Ribbon", GroupName = "Profile", Order = 1000)]
         [CultureSpecific]
         public virtual string Ribbon { get; set; }
-
+        [Ignore]
+        public virtual HBGCountryBlock Country { get; set; }
+        [Ignore]
+        public virtual string MinNightsText { get; set; }
+        [Ignore]
+        public virtual int MinNights { get; set; }
     }
 }

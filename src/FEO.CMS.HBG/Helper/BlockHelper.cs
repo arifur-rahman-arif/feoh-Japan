@@ -1,5 +1,6 @@
 ﻿using EPiServer.ServiceLocation;
 using EPiServer.Web.Routing;
+using System.Globalization;
 
 namespace FEO.CMS.HBG.Helper
 {
@@ -100,6 +101,47 @@ namespace FEO.CMS.HBG.Helper
                     return content;
                 }
             }
+            return null;
+        }
+
+        public static string GetCurrencySymbol(string isoCode)
+        {
+            try
+            {
+                if (!string.IsNullOrWhiteSpace(isoCode))
+                {
+                    RegionInfo regionInfo = new RegionInfo(isoCode);
+                    return regionInfo?.ISOCurrencySymbol;
+                }
+            }
+            catch (Exception ex)
+            {
+                return string.Empty;
+            }
+            return string.Empty;
+        }
+        public static T GetParentWithTemplate<T>(ContentReference currentPageReference) where T : PageData
+        {
+            if (currentPageReference == null || PageReference.IsNullOrEmpty(currentPageReference))
+            {
+                return null;
+            }
+
+            var contentLoader = ServiceLocator.Current.GetInstance<IContentLoader>();
+            var content = contentLoader.Get<IContent>(currentPageReference).ParentLink;
+
+            while (content != null && !PageReference.IsNullOrEmpty(content))
+            {
+                var parentContent = contentLoader.Get<IContent>(content);
+
+                if (parentContent is T parentPage)
+                {
+                    return parentPage;
+                }
+
+                content = parentContent?.ParentLink;
+            }
+
             return null;
         }
     }
