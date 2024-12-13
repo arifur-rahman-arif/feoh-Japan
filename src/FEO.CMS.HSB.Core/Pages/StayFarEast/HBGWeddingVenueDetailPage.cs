@@ -79,8 +79,9 @@ namespace FEO.CMS.HBG.Core.Pages.StayFarEast
         [CultureSpecific]
         public virtual LinkItem ViewAllPackageURL { get; set; }
 
-        [Display(Name = "Venue Capacity Items", GroupName = "Content", Order = 850)]
+        [Display(Name = "Venue Capacity Items", GroupName = SystemTabNames.Content, Order = 850)]
         [CultureSpecific]
+        [AllowedTypes(RestrictedTypes = new [] {typeof(BlockData)})]
         public virtual ContentReference VenueCapacityItems { get; set; }
 
     }

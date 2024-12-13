@@ -15,10 +15,12 @@
     }
     if (Model.VenueCapacityItems != null)
     {
-        venueCapacityItems = ContentLoader.GetChildren<HBGVenueCapacityItemBlock>
-                            (Model.VenueCapacityItems);
-        double venueMaximum = venueCapacityItems.OrderByDescending(x => x.Capacity).FirstOrDefault().Capacity;
-        venueMaximumCapacity = venueMaximum > 0 ? venueMaximum.ToString() : string.Empty;
+        venueCapacityItems = ContentLoader.GetChildren<HBGVenueCapacityItemBlock>(Model.VenueCapacityItems);
+        if (venueCapacityItems != null && venueCapacityItems.Any())
+        {
+            double venueMaximum = venueCapacityItems.OrderByDescending(x => x.Capacity).FirstOrDefault().Capacity;
+            venueMaximumCapacity = venueMaximum > 0 ? venueMaximum.ToString() : string.Empty;
+        }
     }  
     
     <!-- event -->
