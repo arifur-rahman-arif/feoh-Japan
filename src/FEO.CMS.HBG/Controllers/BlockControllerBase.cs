@@ -139,5 +139,23 @@ namespace FEO.CMS.HBG.Controllers
                 return null;
             }
         }
+        public HBGInsidersConfigurationBlock CreateInsiderConfig(HBGSite site)
+        {
+            try
+            {
+                var insiderConfigPath = HBGPathConstants.RelativeConfig.Replace("StayFarEast", site.Name.ToString()) + "/" + TemplateNames.InsidersConfiguration;
+                if (string.IsNullOrWhiteSpace(insiderConfigPath))
+                    return null;
+
+                var getInsiderConfig = BlockHelper.GetDescendantPath(ContentReference.GlobalBlockFolder, insiderConfigPath);
+                var insiderConfig = getInsiderConfig != null ? contentLoader.Get<HBGInsidersConfigurationBlock>(getInsiderConfig) : null;
+                return insiderConfig;
+            }
+            catch (Exception exp)
+            {
+                logger.Error("Error in CreateInsiderConfig(): " + exp.InnerException, this);
+                return null;
+            }
+        }
     }
 }

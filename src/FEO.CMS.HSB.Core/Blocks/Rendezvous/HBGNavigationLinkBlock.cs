@@ -55,6 +55,12 @@ namespace FEO.CMS.HBG.Core.Blocks.Rendezvous
         [Display(Name = "IsDeal", GroupName = "Link Details", Order = 1400)]
         [CultureSpecific]
         public virtual bool IsDeal { get; set; }
-
+        //[Ignore]
+        //public IEnumerable<HBGNavigationLinkBlock> MenuLinks { get; set; }
+        [Ignore]
+        public IEnumerable<HBGSubNavigationLinkBlock> SubnavigationLinks { get; set; }
+        [Display(Name = "SortOrder", GroupName = "Settings", Order = 200)]
+        [CultureSpecific]
+        public virtual int SortOrder { get; set; }
     }
 }

@@ -1,17 +1,18 @@
 ﻿@model HBGHeaderNavBlock
 
 @{
-    // var bookingConfig = Model.SfeBookingConfig;
+    var bookingConfig = Model.SfeBookingConfig;
+    var session = HttpContextAccessor?.HttpContext?.Session;
     // var popularDestination = (ViewData["PopularDestination"] as Tuple<IEnumerable<PopularDestination>, IEnumerable<PopularDestination>>);
     // var cities = popularDestination?.Item1;
     // var properties = popularDestination?.Item2;
     var listingsJson = ViewData["ListingsJson"] as string;
-    // var subNav = ViewData["SubNavigation"] as IEnumerable<NameValuePair>;
+    var subNav = ViewData["SubNavigation"] as IEnumerable<HBGNameValuePairBlock>;
     var viewallhotels = DictionaryHelper.DictionaryEntry(DictionaryKeys.ViewHotelText, string.Empty);
     var viewallresidences = DictionaryHelper.DictionaryEntry(DictionaryKeys.ViewResidenceText, string.Empty);
     var BookNowText = DictionaryHelper.DictionaryEntry(DictionaryKeys.BookNowText, string.Empty);
     var BookNowForMobileText = DictionaryHelper.DictionaryEntry(DictionaryKeys.BookNowForMobileText, string.Empty);
-    // var UsrName = Session[FieldNames.InsidersFieldName.FirstName];
+    var UsrName = session?.GetString(FieldNames.InsidersFieldName.FirstName)?.ToString();
     // if (Model != null && Model.BookingWidgetData != null && !String.IsNullOrEmpty(Model.BookingWidgetData.BookNowText))
     // {
     //     BookNowText = Model.BookingWidgetData.BookNowText;
@@ -48,9 +49,8 @@
     //     number_days_advance = bookingConfig.NumberOfDaysInAdvance;
     //     max_num_room = bookingConfig.MaximumNumberOfRooms;
     // }
-    var session = HttpContextAccessor?.HttpContext?.Session;
 }
-@if (session?.GetString(FieldNames.InsidersFieldName.Token) == null)// && Model?.ShouldDisplaySignUpPopup == true
+@if (session?.GetString(FieldNames.InsidersFieldName.Token) == null && Model?.ShouldDisplaySignUpPopup == true)
 {
     <div class="signupnow_pop" data-delay-time="@Model.DelayTime" data-time-on-page="@Model.TimeOnPage" data-display-again-after="@Model.DisplayPopUpAgainAfter" data-cookie="signup">
         <div class="content">
@@ -63,7 +63,7 @@
         }
     </div>
 }
-else if (session?.GetString(FieldNames.InsidersFieldName.Token) != null) // && Model?.ShouldDisplayPopupAfterLogin == true
+else if (session?.GetString(FieldNames.InsidersFieldName.Token) != null && Model?.ShouldDisplayPopupAfterLogin == true)
 {
     <div class="signupnow_pop" data-delay-time="@Model.SignInDelayTime" data-time-on-page="@Model.SignInTimeOnPage" data-display-again-after="@Model.SignInDisplayPopUpAgainAfter" data-cookie="signin">
         <div class="content">
@@ -488,7 +488,7 @@ else if (session?.GetString(FieldNames.InsidersFieldName.Token) != null) // && M
                         <ul class="first_level">
                             <div class="menu_fxd_top">
                             <li class="backto_home menu_back_btn">
-                                <img loading="lazy" src="/images/wht_arw_lft.svg">
+                                <img loading="lazy" src="~/assets/hospitality/images/wht_arw_lft.svg">
                                 <p>Back</p>
                             </li>
                             <p class="hotel_SR_header"><img loading="lazy" src="/images/user_ins.svg">Hi <span class="user-name">@UsrName</span></p>
@@ -512,21 +512,22 @@ else if (session?.GetString(FieldNames.InsidersFieldName.Token) != null) // && M
             @{
                 int i = 0;
             }
-            @* @foreach (var item in Model.Columns.Where(lst => (lst?.BottomLink == false)))
+            @foreach (var item in Model.MenuLinks.Where(lst => (lst?.BottomLink == false)))
             {
-                if (item.MenuLinks.Any())
+                if (true)
                 {
+                    @*.MenuLinks.Any()*@
                     var id = item.CssClass;
-                    bool isDealHasExternalLink = !item.IsDeal || (item.IsDeal && item.DealList.IsNotNullAndAny()) || (item.IsDeal && item.MenuLinks.IsNotNullAndAny() && item.MenuLinks.Where(x => x.MainLink != null && (int)x.MainLink?.Type == 2).IsNotNullAndAny());
-
+                   @*  bool isDealHasExternalLink = !item.IsDeal || (item.IsDeal && item.DealList.IsNotNullAndAny()) || (item.IsDeal && item.MenuLinks.IsNotNullAndAny() && item.MenuLinks.Where(x => x.MainLink != null && (int)x.MainLink?.Type == 2).IsNotNullAndAny()); *@
+@* 
                     if (isDealHasExternalLink)
-                    {
-                <li id="menu_@id">
+                    { *@
+                        <li id="menu_@id">
                     <p>@item.Title</p>
-                    <ul class="first_level">
+                    @* <ul class="first_level">
                         <div class="menu_fxd_top">
                         <li class="backto_home menu_back_btn">
-                            <img loading="lazy" src="/images/wht_arw_lft.svg">
+                            <img loading="lazy" src="~/assets/hospitality/images/wht_arw_lft.svg">
                             <p>@Model.BackButtonText</p>
                         </li>
                         <p class="hotel_SR_header">@item.Title</p>
@@ -552,7 +553,7 @@ else if (session?.GetString(FieldNames.InsidersFieldName.Token) != null) // && M
                                             <ul class="second_level second_level_no_filter" id="second_level">
                                                 <div class="menu_fxd_top">
                                                 <li class="backto_first_level menu_back_btn">
-                                                    <img loading="lazy" src="/images/wht_arw_lft.svg">
+                                                    <img loading="lazy" src="~/assets/hospitality/images/wht_arw_lft.svg">
                                                     <p>@Model.BackButtonText</p>
                                                 </li>
 
@@ -600,7 +601,7 @@ else if (session?.GetString(FieldNames.InsidersFieldName.Token) != null) // && M
                                         <ul class="second_level" id="second_level">
                                             <div class="menu_fxd_top">
                                             <li class="backto_first_level menu_back_btn">
-                                                <img loading="lazy" src="/images/wht_arw_lft.svg">
+                                                <img loading="lazy" src="~/assets/hospitality/images/wht_arw_lft.svg">
                                                 <p>@Model.BackButtonText</p>
                                             </li>
                                             <p class="hotel_SR_header">@country</p>
@@ -638,7 +639,7 @@ else if (session?.GetString(FieldNames.InsidersFieldName.Token) != null) // && M
                                             </div>
                                             </div>
                                             <div class="sticky_nav_by_alpha">
-                                                        @* @{
+                                                        @{
                                                             List<string> cityListDistinct = new List<string>();
                                                             IEnumerable<SubColumnMenuLinks> cntryList = item.MenuLinks.Where(lst => (lst?.Country) != null && (lst?.Country).Equals(country));
                                                             cityListDistinct = cntryList.Select(o => o.City).Distinct().OrderBy(x => x).ToList();
@@ -662,7 +663,7 @@ else if (session?.GetString(FieldNames.InsidersFieldName.Token) != null) // && M
                                                             </ul>
                                                                 }
                                                             }
-                                                        } *@
+                                                        }
                                             </div>
                                         </ul>
                                     </li>
@@ -678,7 +679,7 @@ else if (session?.GetString(FieldNames.InsidersFieldName.Token) != null) // && M
                                         foreach (var deal in item.DealList)
                                         {
                                     <li>
-                                        @* <a href="@(deal != null ? deal.GetUrl() : "")" target="">@deal.Title</a> *@
+                                        <a href="@(deal != null ? deal.GetUrl() : "")" target="">@deal.Title</a>
                                     </li>
                                         }
                                     }
@@ -690,7 +691,7 @@ else if (session?.GetString(FieldNames.InsidersFieldName.Token) != null) // && M
                                             if (!string.IsNullOrEmpty(Submenus.Title) && !string.IsNullOrEmpty(Submenus.MainLink?.Url))
                                             {
                                         <li>
-                                            @* <a href="@(Submenus.MainLink != null ? Submenus.MainLink.Url : "")" target="@(Submenus.MainLink != null ? Submenus.MainLink.Target : "")">@Submenus.Title</a> *@
+                                            <a href="@(Submenus.MainLink != null ? Submenus.MainLink.Url : "")" target="@(Submenus.MainLink != null ? Submenus.MainLink.Target : "")">@Submenus.Title</a>
                                         </li>
                                             }
                                         }
@@ -702,53 +703,53 @@ else if (session?.GetString(FieldNames.InsidersFieldName.Token) != null) // && M
                                     {
                                         if (!string.IsNullOrEmpty(Submenus.Title) && !string.IsNullOrEmpty(Submenus.MainLink?.Url))
                                         {
-                                    @* <li><a href="@(Submenus.MainLink != null ? Submenus.MainLink.Url : "")" target="@(Submenus.MainLink != null ? Submenus.MainLink.Target : "")">@Submenus.Title</a></li> *@
+                                    <li><a href="@(Submenus.MainLink != null ? Submenus.MainLink.Url : "")" target="@(Submenus.MainLink != null ? Submenus.MainLink.Target : "")">@Submenus.Title</a></li>
                                         }
                                     }
                                 }
-                    </ul>
+                    </ul> *@
                 </li>
-                    }
+                    @* } *@
                 }
                 else if (!string.IsNullOrEmpty(item.Title))
                 {
-           @*  <li> <a href="@(item.ReferenceLink != null ? item.ReferenceLink.Url : "")" target="@(item.ReferenceLink != null ? item.ReferenceLink.Target : "")">@item.Title</a></li> *@
+         @*    <li> <a href="@(item.ReferenceLink != null ? item.ReferenceLink.Url : "")" target="@(item.ReferenceLink != null ? item.ReferenceLink.Target : "")">@item.Title</a></li> *@
                 }
             }
 
 </ul>
 <div class="overlay_menu_new_divider"></div>
 <ul class="menu_listing_new btm">
-            @* @foreach (var item in Model.Columns.Where(lst => (lst?.BottomLink == true)))
+            @foreach (var item in Model.MenuLinks.Where(lst => (lst?.BottomLink == true)))
             {
-                if (item.MenuLinks.Any())
-                {
+                @* if (item.MenuLinks.Any())
+                { *@
                     var id = item.CssClass;
             <li id="menu_@id">
                 <p>@item.Title</p>
                 <ul class="first_level">
                     <div class="menu_fxd_top">
                     <li class="backto_home menu_back_btn">
-                        <img loading="lazy" src="/images/wht_arw_lft.svg">
+                            <img loading="lazy" src="~/assets/hospitality/images/wht_arw_lft.svg">
                         <p>@Model.BackButtonText</p>
                     </li>
                     <p class="hotel_SR_header">@item.Title</p>
                     </div>
-                            @foreach (var Submenus in item.MenuLinks)
+                           @*  @foreach (var Submenus in item.MenuLinks)
                             {
                                 if (!string.IsNullOrEmpty(Submenus.Title) && !string.IsNullOrEmpty(Submenus.MainLink.Url))
                                 {
                             <li><a href="@(Submenus.MainLink != null ? Submenus.MainLink.Url : "")" target="@(Submenus.MainLink != null ? Submenus.MainLink.Target : "")">@Submenus.Title</a></li>
                                 }
-                            }
+                            } *@
                 </ul>
             </li>
-                }
+               @*  }
                 else if (!string.IsNullOrEmpty(item.Title))
                 {
             <li> <a href="@(item.ReferenceLink != null ? item.ReferenceLink.Url : "")" target="@(item.ReferenceLink != null ? item.ReferenceLink.Target : "")">@item.Title</a></li>
-                }
-            } *@
+                } *@
+            }
 </ul>
 <div class="LPO_add">
             @if (Model.LpoImage != null)
@@ -762,7 +763,7 @@ else if (session?.GetString(FieldNames.InsidersFieldName.Token) != null) // && M
                 <h3>@Model.LpoTitle</h3>
                 <p> @Html.Raw(Model.LpoDescription)</p>
             </div>
-            <img loading="lazy" src="/images/wht_arw_rgt.svg" alt="lpo">
+            <img loading="lazy" src="~/assets/hospitality/images/wht_arw_rgt.svg" alt="lpo">
         </div>
     </a>
 </div>
@@ -1311,8 +1312,8 @@ else if (session?.GetString(FieldNames.InsidersFieldName.Token) != null) // && M
             </div>
         </div>
     </div>
-@* } *@
-@* @if (subNav.IsNotNullAndAny())
+}
+@if (subNav.IsNotNullAndAny())
 {
     <nav class="app-inpage-nav">
         <div class="text-active"></div>
@@ -1327,7 +1328,7 @@ else if (session?.GetString(FieldNames.InsidersFieldName.Token) != null) // && M
             }
         </ul>
     </nav>
-} *@
+}
 @* @Html.Partial("~/Views/Shared/GenericPopUpSiteWide.cshtml", Model) *@
 
 @* @using (Html.BeginScripts())
