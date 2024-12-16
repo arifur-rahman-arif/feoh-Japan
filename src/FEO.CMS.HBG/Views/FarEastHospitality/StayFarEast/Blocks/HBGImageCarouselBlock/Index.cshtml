@@ -8,7 +8,7 @@
         stringSummary = "data-menu='" + Model.StickySummaryText + "'";
         stringClass = "is-menu-sidebar";
     }
-    var carousel = ContentLoader.GetChildren<HBGImageCarouselItemBlock>((Model as IContent)?.ContentLink);
+    var carousel = ContentLoader.GetChildren<HBGImageCarouselItemBlock>(Model.ChildrenReference);
 
     if (carousel != null && carousel.Any())
     {
@@ -24,7 +24,7 @@
                     if (item.Image != null)
                     {
                         <div class="thumb">
-                            <img class="lazy-hidden" data-lazy-type="image" data-lazy-src="@Url.ContentUrl(item.Image)" @* alt="//todo" *@ />
+                            <img class="lazy-hidden" data-lazy-type="image" data-lazy-src="@Url.ContentUrl(item.Image)" alt src="@Url.ContentUrl(item.Image)" />
                             @if (!string.IsNullOrEmpty(item.ImageCaption))
                             {
                                 <div class="caption">@item.ImageCaption</div>

@@ -2,7 +2,7 @@
 
 @if (Model != null)
 {
-    var multimedia = ContentLoader.GetChildren<HBGMultiMediaCarouselItemBlock>((Model as IContent)?.ContentLink);
+    var multimedia = ContentLoader.GetChildren<HBGMultiMediaCarouselItemBlock>(Model.ChildrenReference);
 
     if (multimedia != null && multimedia.Any())
     {
@@ -15,7 +15,7 @@
                         @if (item.VideoSource != null)
                         {
                             <div class="thumb-16-9 single_yt_owl" data-id="@Url.ContentUrl(item.VideoSource.Href)" data-video="autoplay=1&amp;controls=1&amp;mute=0">
-                                <img class="lazy-hidden" data-lazy-type="image" data-lazy-src="@Url.ContentUrl(item.Image)" @* alt="//todo" *@ />
+                                <img class="lazy-hidden" data-lazy-type="image" data-lazy-src="@Url.ContentUrl(item.Image)" alt src="@Url.ContentUrl(item.Image)" />
                                 <span class="btnvideo"><i class="icon-play"></i></span>
                             </div>
                         }

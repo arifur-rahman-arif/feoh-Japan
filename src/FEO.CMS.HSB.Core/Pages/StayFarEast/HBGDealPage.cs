@@ -49,7 +49,7 @@ namespace FEO.CMS.HBG.Core.Pages.StayFarEast
 
         [Display(Name = "Carousel", GroupName = "Profile", Order = 700)]
         [CultureSpecific]
-        public virtual ContentReference carousel { get; set; }
+        public virtual ContentArea carousel { get; set; }
 
         //DetailsBlock
         [Display(Name = "Short Summary", GroupName = "Basic Info", Order = 100)]
@@ -205,6 +205,10 @@ namespace FEO.CMS.HBG.Core.Pages.StayFarEast
         [Display(Name = "Member Message", GroupName = "Member Related Text", Order = 200)]
         [CultureSpecific]
         public virtual ContentReference MemberMessage { get; set; }
+
+        [Display(Name = "Member Related Text", Description = "Member Related Text", GroupName = "Member Related Text", Order = 200)]
+        [CultureSpecific]
+        public virtual ContentArea MemberRelatedText { get; set; }
         public string GetBookDate()
         {
             string bookDate = string.Empty;
@@ -225,7 +229,7 @@ namespace FEO.CMS.HBG.Core.Pages.StayFarEast
         public string GetStayDate()
         {
             string stayDate = string.Empty;
-            string culture =CultureInfo.CurrentCulture.Name;
+            string culture = CultureInfo.CurrentCulture.Name;
             if (StayStartDate == DateTime.MinValue && StayEndDate == DateTime.MinValue)
                 return stayDate;
 
