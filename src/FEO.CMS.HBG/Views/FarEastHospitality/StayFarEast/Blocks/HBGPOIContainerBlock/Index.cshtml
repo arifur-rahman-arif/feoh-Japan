@@ -1,0 +1,30 @@
+﻿@model HBGPOIContainerBlock
+
+<div class="row nearby-area">
+    @if ((Model == null) && ContextMode.CurrentMode.EditOrPreview())
+    {
+        <h2 class="text-center">Add Point of Interests (POI) in the POI folder</h2>
+    }
+
+    @if (Model != null && Model.ChildrenFolderReference != null)
+    {
+        var assets = ContentLoader.GetChildren<HBGPOIBlock>(Model.ChildrenFolderReference);
+        foreach (var poi in assets)
+        {
+            <div class="col-md-3 col-sm-6">
+                <div class="icon">
+                    @if (poi.Icon != null)
+                    {
+                        <span class="@(ContentLoader.Get<HBGNameValuePairBlock>(poi.Icon).Value)"></span>
+                    }
+                </div>
+                <div class="desc">
+                    <p class="color-dark-gray"><b>@Html.PropertyFor(x => poi.Title)</b></p>
+                    <p class="color-gray">@Html.PropertyFor(x => poi.MarkerName)</p>
+                    <p class="color-gray-light">(@Html.PropertyFor(x => poi.Summary))</p>
+                </div>
+            </div>
+        }
+    }
+
+</div>
