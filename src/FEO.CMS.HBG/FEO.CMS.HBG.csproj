@@ -25,9 +25,13 @@
   </ItemGroup>
   
   <ItemGroup>
+    <Compile Remove="App_Data\**" />
     <Compile Remove="Models\**" />
+    <Content Remove="App_Data\**" />
     <Content Remove="Models\**" />
+    <EmbeddedResource Remove="App_Data\**" />
     <EmbeddedResource Remove="Models\**" />
+    <None Remove="App_Data\**" />
     <None Remove="Models\**" />
   </ItemGroup>
   

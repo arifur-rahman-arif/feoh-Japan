@@ -37,11 +37,11 @@ namespace FEO.CMS.HBG.Core.Pages.StayFarEast
         [CultureSpecific]
         public virtual ContentArea Banner { get; set; }
 
-        [Display(Name = "Position Booking Widget", GroupName = "Settings", Order = 100)]
+        [Display(Name = "Position Booking Widget", GroupName = SystemTabNames.Settings, Order = 100)]
         [CultureSpecific]
         public virtual ContentReference PositionBookingWidget { get; set; }
 
-        [Display(Name = "Background Color", GroupName = "Settings", Order = 200)]
+        [Display(Name = "Background Color", GroupName = SystemTabNames.Settings, Order = 200)]
         [CultureSpecific]
         public virtual ContentReference BackgroundColor { get; set; }
 

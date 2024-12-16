@@ -43,7 +43,7 @@ namespace FEO.CMS.HBG.Core.Blocks.StayFarEast
 
         [Display(Name = "Primary Links", GroupName = "Menu", Order = 200)]
         [CultureSpecific]
-        [AllowedTypes(AllowedTypes = [ typeof(HBGVisualContainerPage), typeof(HBGRichContentPage)])]
+        [AllowedTypes(AllowedTypes = [typeof(HBGVisualContainerPage), typeof(HBGRichContentPage)])]
         public virtual ContentArea PrimaryLinks { get; set; }
 
         [Display(Name = "Mobile Facebook Link", GroupName = "Buttons", Order = 250)]

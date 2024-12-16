@@ -17,7 +17,7 @@ namespace FEO.CMS.HBG.Core.Blocks.StayFarEast
         [CultureSpecific]
         public virtual string ProfileManagerAPIUrl { get; set; }
 
-        [Display(Name = "Sign Up Page", GroupName = "Settings", Order = 100)]
+        [Display(Name = "Sign Up Page", GroupName = SystemTabNames.Settings, Order = 100)]
         [CultureSpecific]
         public virtual LinkItem SignUpPage { get; set; }
 
@@ -33,7 +33,7 @@ namespace FEO.CMS.HBG.Core.Blocks.StayFarEast
         [CultureSpecific]
         public virtual string TokenEndpoint { get; set; }
 
-        [Display(Name = "Forgot Password Page", GroupName = "Settings", Order = 200)]
+        [Display(Name = "Forgot Password Page", GroupName = SystemTabNames.Settings, Order = 200)]
         [CultureSpecific]
         public virtual LinkItem ForgotPasswordPage { get; set; }
 
@@ -65,7 +65,7 @@ namespace FEO.CMS.HBG.Core.Blocks.StayFarEast
         [CultureSpecific]
         public virtual string ProfileManagerAPIPassword { get; set; }
 
-        [Display(Name = "Sign Up Success Page", GroupName = "Settings", Order = 300)]
+        [Display(Name = "Sign Up Success Page", GroupName = SystemTabNames.Settings, Order = 300)]
         [CultureSpecific]
         public virtual LinkItem SignUpSuccessPage { get; set; }
 
@@ -98,11 +98,11 @@ namespace FEO.CMS.HBG.Core.Blocks.StayFarEast
         [CultureSpecific]
         public virtual string ProgramID { get; set; }
 
-        [Display(Name = "Reset Password Success Page", GroupName = "Settings", Order = 400)]
+        [Display(Name = "Reset Password Success Page", GroupName = SystemTabNames.Settings, Order = 400)]
         [CultureSpecific]
         public virtual LinkItem ResetPasswordSuccessPage { get; set; }
 
-        [Display(Name = "Sign Out Page", GroupName = "Settings", Order = 450)]
+        [Display(Name = "Sign Out Page", GroupName = SystemTabNames.Settings, Order = 450)]
         [CultureSpecific]
         public virtual LinkItem SignOutPage { get; set; }
 
@@ -114,7 +114,7 @@ namespace FEO.CMS.HBG.Core.Blocks.StayFarEast
         [CultureSpecific]
         public virtual string LoyalLevel { get; set; }
 
-        [Display(Name = "Show Captcha on Sign Up Page", GroupName = "Settings", Order = 500)]
+        [Display(Name = "Show Captcha on Sign Up Page", GroupName = SystemTabNames.Settings, Order = 500)]
         [CultureSpecific]
         public virtual bool ShowCaptchaonSignUpPage { get; set; }
 
@@ -126,7 +126,7 @@ namespace FEO.CMS.HBG.Core.Blocks.StayFarEast
         [CultureSpecific]
         public virtual string Scope { get; set; }
 
-        [Display(Name = "User Logged In Text", GroupName = "Settings", Order = 600)]
+        [Display(Name = "User Logged In Text", GroupName = SystemTabNames.Settings, Order = 600)]
         [CultureSpecific]
         public virtual string UserLoggedInText { get; set; }
 
@@ -134,7 +134,7 @@ namespace FEO.CMS.HBG.Core.Blocks.StayFarEast
         [CultureSpecific]
         public virtual string AccountId { get; set; }
 
-        [Display(Name = "Thank You Message For New User", GroupName = "Settings", Order = 700)]
+        [Display(Name = "Thank You Message For New User", GroupName = SystemTabNames.Settings, Order = 700)]
         [CultureSpecific]
         [UIHint(UIHint.Textarea)]
         public virtual XhtmlString ThankYouMessageForNewUser { get; set; }
@@ -143,7 +143,7 @@ namespace FEO.CMS.HBG.Core.Blocks.StayFarEast
         [CultureSpecific]
         public virtual string EventDefinitionKey { get; set; }
 
-        [Display(Name = "Thank You Message For Existing User", GroupName = "Settings", Order = 800)]
+        [Display(Name = "Thank You Message For Existing User", GroupName = SystemTabNames.Settings, Order = 800)]
         [CultureSpecific]
         [UIHint(UIHint.Textarea)]
         public virtual XhtmlString ThankYouMessageForExistingUser { get; set; }
@@ -156,7 +156,7 @@ namespace FEO.CMS.HBG.Core.Blocks.StayFarEast
         [CultureSpecific]
         public virtual string EventDefinitionKeyFO { get; set; }
 
-        [Display(Name = "Show Sign In Drop down In header", GroupName = "Settings", Order = 900)]
+        [Display(Name = "Show Sign In Drop down In header", GroupName = SystemTabNames.Settings, Order = 900)]
         [CultureSpecific]
         public virtual bool ShowSignInDropdownInheader { get; set; }
 
@@ -164,7 +164,7 @@ namespace FEO.CMS.HBG.Core.Blocks.StayFarEast
         [CultureSpecific]
         public virtual string IDContext { get; set; }
 
-        [Display(Name = "Sign In Sign Up Text", GroupName = "Settings", Order = 1000)]
+        [Display(Name = "Sign In Sign Up Text", GroupName = SystemTabNames.Settings, Order = 1000)]
         [CultureSpecific]
         public virtual string SignInSignUpText { get; set; }
 
@@ -176,7 +176,7 @@ namespace FEO.CMS.HBG.Core.Blocks.StayFarEast
         [CultureSpecific]
         public virtual string ReadEndpoint { get; set; }
 
-        [Display(Name = "Show Captcha on Sign In Modal", GroupName = "Settings", Order = 1100)]
+        [Display(Name = "Show Captcha on Sign In Modal", GroupName = SystemTabNames.Settings, Order = 1100)]
         [CultureSpecific]
         public virtual bool ShowCaptchaonSignInModal { get; set; }
 
@@ -184,7 +184,7 @@ namespace FEO.CMS.HBG.Core.Blocks.StayFarEast
         [CultureSpecific]
         public virtual string SSOAPIHttpVersion { get; set; }
 
-        [Display(Name = "Authentication Timeout", GroupName = "Settings", Order = 1200)]
+        [Display(Name = "Authentication Timeout", GroupName = SystemTabNames.Settings, Order = 1200)]
         [CultureSpecific]
         public virtual double AuthenticationTimeout { get; set; }
 
@@ -192,7 +192,7 @@ namespace FEO.CMS.HBG.Core.Blocks.StayFarEast
         [CultureSpecific]
         public virtual string UpdateSubscriberEndpoint { get; set; }
 
-        [Display(Name = "Sign Out Page Redirect", GroupName = "Settings", Order = 1300)]
+        [Display(Name = "Sign Out Page Redirect", GroupName = SystemTabNames.Settings, Order = 1300)]
         [CultureSpecific]
         public virtual LinkItem SignOutPageRedirect { get; set; }
 

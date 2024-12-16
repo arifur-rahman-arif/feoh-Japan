@@ -8,7 +8,7 @@ namespace FEO.CMS.HBG.Core.Pages.Outpost
     [ContentType(DisplayName = "HBGVenuePage", GUID = "2858202B-7824-4DD5-B31B-DE91EFBD2284", GroupName = "Hospitality")]
     public class HBGVenuePage : HBGBasePage
     {
-        [Display(Name = "Enable Link", GroupName = "Settings", Order = 100)]
+        [Display(Name = "Enable Link", GroupName = SystemTabNames.Settings, Order = 100)]
         [CultureSpecific]
         public virtual bool EnableLink { get; set; }
 
@@ -38,7 +38,7 @@ namespace FEO.CMS.HBG.Core.Pages.Outpost
         [CultureSpecific]
         public virtual string SectionOneSubTitle1 { get; set; }
 
-        [Display(Name = "Services", GroupName = "Settings", Order = 200)]
+        [Display(Name = "Services", GroupName = SystemTabNames.Settings, Order = 200)]
         [CultureSpecific]
         public virtual ContentArea Services { get; set; }
 

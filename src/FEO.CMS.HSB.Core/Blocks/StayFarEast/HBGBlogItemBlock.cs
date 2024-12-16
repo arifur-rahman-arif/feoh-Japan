@@ -1,4 +1,5 @@
 using EPiServer.Core;
+using EPiServer.DataAbstraction;
 using EPiServer.DataAnnotations;
 using FEO.CMS.HBG.Core.Blocks.Bases;
 using System.ComponentModel.DataAnnotations;
@@ -12,37 +13,25 @@ namespace FEO.CMS.HBG.Core.Blocks.StayFarEast
         [CultureSpecific]
         public virtual string Author { get; set; }
 
-        [Display(Name = "Location", GroupName = "Settings", Order = 100)]
+        [Display(Name = "Location", GroupName = SystemTabNames.Settings, Order = 100)]
         [CultureSpecific]
         public virtual ContentArea Location { get; set; }
 
-        [Display(Name = "Season", GroupName = "Settings", Order = 200)]
+        [Display(Name = "Season", GroupName = SystemTabNames.Settings, Order = 200)]
         [CultureSpecific]
         public virtual ContentArea Season { get; set; }
 
-        [Display(Name = "Type", GroupName = "Settings", Order = 300)]
+        [Display(Name = "Type", GroupName = SystemTabNames.Settings, Order = 300)]
         [CultureSpecific]
         public virtual ContentArea Type { get; set; }
 
-        [Display(Name = "Purpose", GroupName = "Settings", Order = 400)]
+        [Display(Name = "Purpose", GroupName = SystemTabNames.Settings, Order = 400)]
         [CultureSpecific]
         public virtual ContentArea Purpose { get; set; }
 
-        [Display(Name = "Featured Tags", GroupName = "Settings", Order = 500)]
+        [Display(Name = "Featured Tags", GroupName = SystemTabNames.Settings, Order = 500)]
         [CultureSpecific]
         public virtual string FeaturedTags { get; set; }
-
-        [Display(Name = "Blog Content", GroupName = "Settings", Order = 500)]
-        [CultureSpecific]
-        public virtual ContentReference BlogContent { get; set; }
-
-        [Display(Name = "Blog Sidebar", GroupName = "Settings", Order = 500)]
-        [CultureSpecific]
-        public virtual ContentReference BlogSidebar { get; set; }
-
-        [Display(Name = "Blog Nav", GroupName = "Settings", Order = 500)]
-        [CultureSpecific]
-        public virtual ContentReference BlogNav { get; set; }
 
     }
 }

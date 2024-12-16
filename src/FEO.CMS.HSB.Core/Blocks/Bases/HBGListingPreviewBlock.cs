@@ -1,4 +1,5 @@
 using EPiServer.Core;
+using EPiServer.DataAbstraction;
 using EPiServer.DataAnnotations;
 using EPiServer.SpecializedProperties;
 using EPiServer.Web;
@@ -13,7 +14,7 @@ namespace FEO.CMS.HBG.Core.Blocks.Bases
         [CultureSpecific]
         public virtual ContentReference Area { get; set; }
 
-        [Display(Name = "External URL", GroupName = "Settings", Order = 100)]
+        [Display(Name = "External URL", GroupName = SystemTabNames.Settings, Order = 100)]
         [CultureSpecific]
         public virtual LinkItem ExternalURL { get; set; }
 
@@ -37,7 +38,7 @@ namespace FEO.CMS.HBG.Core.Blocks.Bases
         [CultureSpecific]
         public virtual bool EnableMonthRatesCTA { get; set; }
 
-        [Display(Name = "Map URL", GroupName = "Settings", Order = 200)]
+        [Display(Name = "Map URL", GroupName = SystemTabNames.Settings, Order = 200)]
         [CultureSpecific]
         public virtual LinkItem MapURL { get; set; }
 
@@ -45,7 +46,7 @@ namespace FEO.CMS.HBG.Core.Blocks.Bases
         [CultureSpecific]
         public virtual string Category { get; set; }
 
-        [Display(Name = "Hotel Id", GroupName = "Settings", Order = 300)]
+        [Display(Name = "Hotel Id", GroupName = SystemTabNames.Settings, Order = 300)]
         [CultureSpecific]
         public virtual string HotelId { get; set; }
 

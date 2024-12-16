@@ -12,11 +12,11 @@ namespace FEO.CMS.HBG.Core.Blocks.StayFarEast
         [CultureSpecific]
         public virtual bool Active { get; set; }
 
-        [Display(Name = "Tab Value", GroupName = "Settings", Order = 100)]
+        [Display(Name = "Tab Value", GroupName = SystemTabNames.Settings, Order = 100)]
         [CultureSpecific]
         public virtual string TabValue { get; set; }
 
-        [Display(Name = "Anchor", GroupName = "Settings", Order = 200)]
+        [Display(Name = "Anchor", GroupName = SystemTabNames.Settings, Order = 200)]
         [CultureSpecific]
         public virtual LinkItem Anchor { get; set; }
 

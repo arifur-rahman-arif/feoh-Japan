@@ -12,7 +12,7 @@ namespace FEO.CMS.HBG.Core.Blocks.StayFarEast
         [CultureSpecific]
         public virtual ContentReference BackgroundColor { get; set; }
 
-        [Display(Name = "ExitIntent", GroupName = "Settings", Order = 100)]
+        [Display(Name = "ExitIntent", GroupName = SystemTabNames.Settings, Order = 100)]
         [CultureSpecific]
         public virtual bool ExitIntent { get; set; }
 
@@ -20,7 +20,7 @@ namespace FEO.CMS.HBG.Core.Blocks.StayFarEast
         [CultureSpecific]
         public virtual LinkItem CTATextURL { get; set; }
 
-        [Display(Name = "Enable", GroupName = "Settings", Order = 200)]
+        [Display(Name = "Enable", GroupName = SystemTabNames.Settings, Order = 200)]
         [CultureSpecific]
         public virtual bool Enable { get; set; }
 

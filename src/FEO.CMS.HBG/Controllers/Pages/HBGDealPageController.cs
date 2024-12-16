@@ -1,9 +1,7 @@
-﻿using EPiServer.Shell.Web;
-using FEO.CMS.HBG.Core.Constants;
+﻿using FEO.CMS.HBG.Core.Constants;
 using FEO.CMS.HBG.Core.Models;
 using FEO.CMS.HBG.Core.Pages.StayFarEast;
 using Microsoft.AspNetCore.Mvc;
-using Microsoft.EntityFrameworkCore.Metadata.Internal;
 
 namespace FEO.CMS.HBG.Controllers.Pages
 {

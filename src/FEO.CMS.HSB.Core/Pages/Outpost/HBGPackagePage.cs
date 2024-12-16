@@ -18,7 +18,7 @@ namespace FEO.CMS.HBG.Core.Pages.Outpost
         [UIHint(UIHint.Image)]
         public virtual ContentReference LargeThumbnailMobile { get; set; }
 
-        [Display(Name = "IsLearnMoreDisable", GroupName = "Settings", Order = 100)]
+        [Display(Name = "IsLearnMoreDisable", GroupName = SystemTabNames.Settings, Order = 100)]
         [CultureSpecific]
         public virtual bool IsLearnMoreDisable { get; set; }
 

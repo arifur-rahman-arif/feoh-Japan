@@ -1,7 +1,5 @@
-﻿using EPiServer.Core.Internal;
-using EPiServer.ServiceLocation;
+﻿using EPiServer.ServiceLocation;
 using EPiServer.Web.Mvc;
-using EPiServer.Web.Mvc.Html;
 using EPiServer.Web.Routing;
 using FEO.CMS.HBG.Core.Blocks.StayFarEast;
 using FEO.CMS.HBG.Core.Constants;
@@ -14,7 +12,7 @@ namespace FEO.CMS.HBG.Controllers.Blocks
     {
         private readonly IContentLoader _contentLoader;
         private readonly IContentRepository _contentRepository;
-        public HBGPackageDetailBlockController( IContentLoader contentLoader, IContentRepository contentRepository)
+        public HBGPackageDetailBlockController(IContentLoader contentLoader, IContentRepository contentRepository)
         {
             _contentLoader = contentLoader;
             _contentRepository = contentRepository;

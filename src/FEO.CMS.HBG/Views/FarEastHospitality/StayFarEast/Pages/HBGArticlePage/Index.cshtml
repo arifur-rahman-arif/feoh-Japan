@@ -1,33 +1,33 @@
-﻿@model HBGArticlePage
+﻿@model PageViewModel<HBGArticlePage>
 
 <!-- ARTICLE CONTENT  -->
 <div class="article-content container section">
     <div class="row">
         <div class="col-md-offset-2 col-md-8 col-sm-12 content">
-            @if (Model.CategoryContentOverride != null)
+            @if (Model.CurrentPage.CategoryContentOverride != null)
             {                
-                @Html.PropertyFor(x => x.CategoryContentOverride)
+                @Html.PropertyFor(x => x.CurrentPage.CategoryContentOverride)
             }
-            else if (string.IsNullOrWhiteSpace(Model.ArticleCategoryName))
+            else if (string.IsNullOrWhiteSpace(Model.CurrentPage.ArticleCategoryName))
             {
-                var categoryName = ContentLoader.Get<IContent>(Model.Category1).Name;
+                var categoryName = ContentLoader.Get<IContent>(Model.CurrentPage.Category1).Name;
                 <p class="category">@categoryName</p>
             }
             else
             {
-                <p class="category">@Model.ArticleCategoryName</p>
+                <p class="category">@Html.PropertyFor(x=>x.CurrentPage.ArticleCategoryName)</p>
             }
 
-            @if (Model.TitleContentOverride != null)
+            @if (Model.CurrentPage.TitleContentOverride != null)
             {
-                @Html.PropertyFor(x => x.TitleContentOverride)
+                @Html.PropertyFor(x => x.CurrentPage.TitleContentOverride)
             }
             else
             {
-                <h2>@Html.PropertyFor(x => x.Title)</h2>
+                <h2>@Html.PropertyFor(x => x.CurrentPage.Title)</h2>
             }
 
-            @Html.PropertyFor(x => x.MainContent)
+            @Html.PropertyFor(x => x.CurrentPage.MainContent)
         </div>
     </div>
 </div>
