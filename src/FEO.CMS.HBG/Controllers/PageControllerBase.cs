@@ -1,10 +1,14 @@
-﻿using EPiServer.ServiceLocation;
+﻿using EPiServer.Logging;
+using EPiServer.ServiceLocation;
 using EPiServer.Shell.Security;
 using EPiServer.Web.Mvc;
 using EPiServer.Web.Routing;
 using FEO.CMS.HBG.Business;
+using FEO.CMS.HBG.Core.Blocks.StayFarEast;
+using FEO.CMS.HBG.Core.Constants;
 using FEO.CMS.HBG.Core.Models;
 using FEO.CMS.HBG.Core.Pages;
+using FEO.CMS.HBG.Helper;
 using Microsoft.AspNetCore.Mvc;
 using System.Web;
 
@@ -17,6 +21,8 @@ namespace FEO.CMS.HBG.Controllers
     public abstract class PageControllerBase<T> : PageController<T>, IModifyLayout
         where T : HBGBasePage
     {
+        private static IContentLoader contentLoader = ServiceLocator.Current.GetInstance<IContentLoader>();
+        private readonly EPiServer.Logging.ILogger logger = LogManager.GetLogger(typeof(PageControllerBase<T>));
         protected readonly Injected<UISignInManager> UISignInManager;
 
         /// <summary>
@@ -113,5 +119,62 @@ namespace FEO.CMS.HBG.Controllers
         }
 
         #endregion Cookies
+
+        #region Settings
+        public HBGWebsiteConfigBlock CreateWebsiteConfig(HBGSite site)
+        {
+            try
+            {
+                var websiteConfigPath = HBGPathConstants.RelativeConfig.Replace("StayFarEast", site.Name.ToString()) + "/Site/" + TemplateNames.WebsiteConfig;
+                if (string.IsNullOrWhiteSpace(websiteConfigPath))
+                    return null;
+
+                var getWebsiteConfig = BlockHelper.GetDescendantPath(ContentReference.GlobalBlockFolder, websiteConfigPath);
+                var websiteConfig = getWebsiteConfig != null ? contentLoader.Get<HBGWebsiteConfigBlock>(getWebsiteConfig) : null;
+                return websiteConfig;
+            }
+            catch (Exception exp)
+            {
+                logger.Error("Error in CreateWebsiteConfig(): " + exp.InnerException, this);
+                return null;
+            }
+        }
+        public HBGListingConfigBlock CreateListingConfig(HBGSite site)
+        {
+            try
+            {
+                var listingConfigPath = HBGPathConstants.RelativeConfig.Replace("StayFarEast", site.Name.ToString()) + "/Site/" + TemplateNames.ListingConfig;
+                if (string.IsNullOrWhiteSpace(listingConfigPath))
+                    return null;
+
+                var getListingConfig = BlockHelper.GetDescendantPath(ContentReference.GlobalBlockFolder, listingConfigPath);
+                var listingConfig = getListingConfig != null ? contentLoader.Get<HBGListingConfigBlock>(getListingConfig) : null;
+                return listingConfig;
+            }
+            catch (Exception exp)
+            {
+                logger.Error("Error in CreateListingConfig(): " + exp.InnerException, this);
+                return null;
+            }
+        }
+        public HBGBookingConfigBlock CreateBookingConfig(HBGSite site)
+        {
+            try
+            {
+                var bookingConfigPath = HBGPathConstants.RelativeConfig.Replace("StayFarEast", site.Name.ToString()) + "/Site/" + TemplateNames.BookingConfig;
+                if (string.IsNullOrWhiteSpace(bookingConfigPath))
+                    return null;
+
+                var getBookingConfig = BlockHelper.GetDescendantPath(ContentReference.GlobalBlockFolder, bookingConfigPath);
+                var bookingConfig = getBookingConfig != null ? contentLoader.Get<HBGBookingConfigBlock>(getBookingConfig) : null;
+                return bookingConfig;
+            }
+            catch (Exception exp)
+            {
+                logger.Error("Error in CreateBookingConfig(): " + exp.InnerException, this);
+                return null;
+            }
+        }
+        #endregion
     }
 }

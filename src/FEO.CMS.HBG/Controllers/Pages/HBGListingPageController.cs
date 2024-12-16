@@ -20,7 +20,9 @@ namespace FEO.CMS.HBG.Controllers.Pages
             var rootPageReference = ContentReference.StartPage;
             var sitePageReference = ContentLoader.Get<PageData>(rootPageReference).ParentLink;
             var site = ContentLoader.Get<HBGSite>(sitePageReference);
-            
+
+            currentPage.Config = CreateListingConfig(site);
+
             return View($"{ViewsPath.Hospitality_StayFarEast_PAGES_PATH}/HBGListingPage/Index.cshtml", model);
         }
     }
