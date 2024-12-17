@@ -1,0 +1,52 @@
+﻿@model HBGServicesContainerBlock
+
+@if (PageRouteHelper.Page is HBGApartmentPage)
+{
+    var currentPage = PageRouteHelper.Page as HBGApartmentPage;
+    <div class="our-amenities">
+        <div class="section container">
+            <div class="btn-txt text-center color-pink">
+                <a class="color-pink btn-collapse arrow">
+                    @DictionaryHelper.DictionaryEntry(DictionaryKeys.ServicesText) <br />
+                    <span class="glyphicon glyphicon-menu-down"></span>
+                </a>
+            </div>
+
+            <div class="amenities-list content-collapse">
+
+                @{
+                    var index = 0;
+                    var take = 6;
+                }
+
+                @if (Model != null && currentPage.Services != null)
+                {
+                    while (true)
+                    {
+                        var skip = index++ * take;
+                        var services = currentPage.Services.Items.Skip(skip).Take(take);
+                        if (!services.Any())
+                        {
+                            break;
+                        }
+
+                        <div class="row">
+                            @foreach (var item in services)
+                            {
+                                var service = ContentLoader.Get<HBGNameValuePairBlock>(item.ContentLink);
+                                <div class="col-md-2 col-sm-4 col-xs-6 amenities-icon">
+                                <div class="icon">
+                                        <span class="@service.Value"></span>
+                                </div>
+                                <p>@service.Name</p>
+                            </div>
+                        }
+                    </div>
+                }
+            }
+
+        </div>
+
+    </div>
+</div>
+}
