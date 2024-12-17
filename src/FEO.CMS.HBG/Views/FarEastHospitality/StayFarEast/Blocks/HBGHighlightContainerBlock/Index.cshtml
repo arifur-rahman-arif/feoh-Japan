@@ -1,0 +1,70 @@
+﻿@model HBGHighlightContainerBlock
+
+@{
+    var config = Model;
+    var hasScrollSettings = false; //config.HasScrollSettings();
+    string subNavId = string.Empty;
+
+    var renderingCssClass = string.Empty;
+
+    if (Model.StyleNames != null)
+    {
+        List<string> cssClass = new List<string>();
+        var styleNames = BlockHelper.GetContentAreaItems(Model.StyleNames);
+        foreach (var item in styleNames)
+        {
+            cssClass.Add(ContentLoader.Get<HBGNameValuePairBlock>(item.ContentLink).Value);
+
+        }
+        renderingCssClass = String.Join(" ", cssClass);
+    }
+
+    // if(config.SubNavigationId!=null && !string.IsNullOrEmpty(config.SubNavigationId?.Value))
+    // {
+    //     subNavId = "id='"+ config.SubNavigationId.Value.Substring(1) + "'";
+    // }
+}
+
+@* @helper RenderButton(HighlightContainerConfig config)
+{
+    if (config.UseAsModalButton)
+    {
+        <a class="btn btn-primary btn-lg text-center scrollto" data-toggle="modal" data-target="#@(string.IsNullOrWhiteSpace(config.ScrollTo) ? string.Empty : config.ScrollTo)" role="button">@config.ScrollMessage <span class="glyphicon glyphicon-menu-right"></span></a>
+    }
+    else
+    {
+        <a class="btn btn-primary btn-lg text-center scrollto" href="#@(string.IsNullOrWhiteSpace(config.ScrollTo) ? string.Empty : config.ScrollTo)" role="button">@config.ScrollMessage <span class="glyphicon glyphicon-menu-down"></span></a>
+    }
+} *@
+
+<div data-hideable="@config.CanBeHidden.ToString().ToLower()" class="section-highlight @renderingCssClass @(hasScrollSettings ? "pin-duration" : string.Empty) @(config.HideOnMobile ? "hidden-xs" : string.Empty)" @Html.Raw(subNavId)>
+    @if (hasScrollSettings)
+    {
+        <div class="text-center pin-bottom hidden-xs">
+            @* @RenderButton(config) *@
+        </div>
+    }
+    <div class="@(config.InheritParentContainer ? string.Empty : "section container")" id="@config.ContentTypeID">
+        @if (config.IncreaseTextSize)
+        {
+            if (!string.IsNullOrWhiteSpace(config.Title))
+            {
+                <h1 class="text-center">@config.Title</h1>
+            }
+        }
+        else
+        {
+            if (!string.IsNullOrWhiteSpace(config.Title))
+            {
+                <p class="header text-center">@config.Title</p>
+            }
+        }
+        @if (!string.IsNullOrWhiteSpace(config.SubTitle))
+        {
+            <p class="text-center sub-description">@config.SubTitle</p>
+        }
+
+        @Html.PropertyFor(x=>x.HighlightContentArea)
+
+    </div>
+</div>

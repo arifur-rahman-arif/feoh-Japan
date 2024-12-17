@@ -16,5 +16,9 @@ namespace FEO.CMS.HBG.Core.Blocks.StayFarEast
         [CultureSpecific]
         public virtual ContentReference BackgroundColor { get; set; }
 
+        [Display(Name = "Show Downward Arrow", GroupName = "Settings", Order = 300)]
+        [CultureSpecific]
+        public virtual bool ShowDownwardArrow { get; set; }
+
     }
 }

@@ -24,6 +24,8 @@ namespace FEO.CMS.HBG.Core.Blocks.StayFarEast
         [CultureSpecific]
         [UIHint(UIHint.Image)]
         public virtual ContentReference LanguageIcon { get; set; }
+        [Ignore]
+        public virtual string LanguageName { get; set; }
 
     }
 }

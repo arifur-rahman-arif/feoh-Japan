@@ -1,6 +1,8 @@
 ﻿using EPiServer.Cms.Shell;
 using EPiServer.Cms.TinyMce.Core;
+using EPiServer.Cms.UI.AspNetIdentity;
 using EPiServer.Forms.Internal.Security;
+using EPiServer.OpenIDConnect;
 using EPiServer.ServiceLocation;
 using FEO.CMS.HBG.Business;
 using FEO.CMS.HBG.Business.Dictionary;
@@ -31,6 +33,24 @@ namespace FEO.CMS.HBG
                 .AddEmbeddedLocalization<Startup>()
                 .AddAuthorizationCore()
                 .AddAuthorization();
+
+            services.AddContentDeliveryApi(options => { options.SiteDefinitionApiEnabled = true; }).WithFriendlyUrl();
+
+            services.AddContentManagementApi(OpenIDConnectOptionsDefaults.AuthenticationScheme, options =>
+            {
+                options.DisableScopeValidation = true;
+            })
+                .AddOpenIDConnect<ApplicationUser>(
+                 useDevelopmentCertificate: true,
+                 signingCertificate: null,
+                 encryptionCertificate: null,
+                 createSchema: true
+             )
+            .AddOpenIDConnectUI();
+            services.AddContentDefinitionsApi(OpenIDConnectOptionsDefaults.AuthenticationScheme, options =>
+            {
+                options.DisableScopeValidation = true;
+            });
 
             services.Configure<TinyMceConfiguration>(config =>
             {

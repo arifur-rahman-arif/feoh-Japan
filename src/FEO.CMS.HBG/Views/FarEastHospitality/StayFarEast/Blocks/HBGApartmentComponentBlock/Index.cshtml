@@ -1,0 +1,74 @@
+﻿@using EPiServer.Framework.Web.Resources
+@model HBGApartmentPage
+
+@if (Model != null)
+{
+    var parent = Model.ParentListing;
+    var bookingUrl = ViewData["BookingUrl"] as string;
+
+    var fromText = DictionaryHelper.DictionaryEntry(DictionaryKeys.FromText, string.Empty);
+    var checkRateText = DictionaryHelper.DictionaryEntry(DictionaryKeys.CheckAvailabilityText, string.Empty);
+    var perNightText = DictionaryHelper.DictionaryEntry(DictionaryKeys.PerNightText, string.Empty);
+    var informationRateText = $"{parent.MinNightsText}. {DictionaryHelper.DictionaryEntry(DictionaryKeys.ServiceResidenceInformationRateText, string.Empty)}";
+
+    <div class="about-hotel section container">
+        <div class="about-hotel-content">
+            <input type="hidden" class="listingid" value="@(parent != null ? parent.ContentGuid.ToString("B").ToUpper() : string.Empty)" />
+            <input type="hidden" class="minnights" value="@(parent != null ? parent.MinNights.ToString() : string.Empty)" />
+            <div class="row">
+                <div class="col-sm-4">
+                    <h2>@(parent != null ? parent.Title : string.Empty) @Html.PropertyFor(m => m.Title)</h2>
+                    <p>
+                        @Html.PropertyFor(m => m.Size)<br />@Html.PropertyFor(m => m.AdditionalInfo)
+                    </p>
+                    <div class="icon">
+                        @for (var index = 0; index < Model.MaxNumberOfGuests; ++index)
+                        {
+                            <span class="icon-guest big"></span>
+                        }
+                    </div>
+                    <div class="line-divider pink-line-divider"></div>
+
+                    @if (Model.EnableToShowRate)
+                    {
+                        <div class="group-bottom">
+                            @if (Model.Price > 0)
+                            {
+                                <div class="group-info">
+                                    <div class="text">@fromText</div>
+                                    <div class="info-tooltip">
+                                        <svg data-name="Group 126130" xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 16 16"><path id="Path_48966" data-name="Path 48966" d="M8,15a7,7,0,1,1,7-7,7,7,0,0,1-7,7m0,1A8,8,0,1,0,0,8a8,8,0,0,0,8,8"></path><path id="Path_48967" data-name="Path 48967" d="M8.93,6.588l-2.29.287-.082.38.45.083c.294.07.352.176.288.469l-.738,3.468c-.194.9.105,1.319.808,1.319A2.071,2.071,0,0,0,8.831,12l.088-.416a1.108,1.108,0,0,1-.686.246c-.275,0-.375-.193-.3-.533ZM9,4.5a1,1,0,1,1-1-1,1,1,0,0,1,1,1"></path></svg>
+                                        <div class="content"><div class="text">@informationRateText</div> </div>
+                                    </div>
+                                </div>
+                                <div class="prices">
+                                    <div class="number">@Math.Ceiling(Model.Price).ToString("N0")</div>
+                                    <div class="unit">@($"{Model.Currency}{perNightText}")</div>
+                                </div>
+                            }
+
+                            <a href="@(string.IsNullOrWhiteSpace(bookingUrl) ? "#" : bookingUrl)" class="check-rates" target="_blank">@checkRateText</a>
+                        </div>
+                    }
+                </div>
+                <div class="col-sm-8">
+                    @Html.PropertyFor(m => m.MainContent)
+
+                    <div class="book-at-daily-rate-block">
+                        @if (Model?.BookAtDailyRate?.Href != null && !string.IsNullOrWhiteSpace(Model?.BookAtDailyRate?.Href))
+                        {
+                            <a class="btn btn-primary btn-lg text-center text-uppercase book-at-daily-rate" href="@Html.PropertyFor(m => Url.ContentUrl(m.BookAtDailyRate.Href))&arrive=@DateTime.Now.ToString("yyyy-MM-dd")&nights=1" target="_blank">
+                                @Html.PropertyFor(m => m.BookAtDailyRate.Text)
+                            </a>
+                        }
+                        <a href="#" data-toggle="modal" data-target="#residenceMonthlyQuote" class="btn btn-primary btn-lg text-center text-uppercase residenceMonthlyQuote"> @DictionaryHelper.DictionaryEntry(DictionaryKeys.EnquireForMonthlyRateText, string.Empty) </a>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    @section Scripts {
+        @ClientResources.RequireScript("~/assets/hospitality/scripts/special/hotel.js")
+    }
+}

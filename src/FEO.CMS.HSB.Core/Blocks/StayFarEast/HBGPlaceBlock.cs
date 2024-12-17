@@ -1,12 +1,13 @@
 using EPiServer.Core;
 using EPiServer.DataAnnotations;
 using EPiServer.Web;
+using FEO.CMS.HBG.Core.Blocks.Bases;
 using System.ComponentModel.DataAnnotations;
 
 namespace FEO.CMS.HBG.Core.Blocks.StayFarEast
 {
     [ContentType(DisplayName = "HBGPlaceBlock", GUID = "1E169C36-2C8C-485E-9554-438D27CF3A02", GroupName = "Hospitality")]
-    public class HBGPlaceBlock : HBGBaseBlock
+    public class HBGPlaceBlock : HBGRootBlock
     {
         [Display(Name = "Latitude", GroupName = "Coordinates", Order = 50)]
         [CultureSpecific]

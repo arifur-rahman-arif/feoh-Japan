@@ -1,0 +1,301 @@
+﻿@inject IHttpContextAccessor HttpContextAccessor
+@model HBGHeaderNavBlock
+
+@{
+    var session = HttpContextAccessor?.HttpContext?.Session;
+    var UsrName = session?.GetString(FieldNames.InsidersFieldName.FirstName);
+}
+
+<!-- Header Ribbon Start-->
+@{ if (Model?.HideHeaderRibbon == false)
+    {
+    <div class="header_ribbon">
+        <div class="header_ribbon__inner">
+            <div class="header_ribbon__logo">
+                    <a target="@Model.RibbonLogoUrl.Target" href="@(Model.RibbonLogoUrl != null ? Url.ContentUrl(Model.RibbonLogoUrl.Href) : "#")"><img loading="lazy" src="@(Url.ContentUrl(Model?.RibbonLogoImage))" /></a>
+            </div>
+            <!-- Promo strip info desktop -->
+            <div class="header_ribbon__promoData header_ribbon__promoData_desktop">
+                <!-- info -->
+                @Html.Raw(Model?.RibbonPromo)
+                <!-- Toggler -->
+                <span class="promoData_toggler">@(Model?.LearnMore)</span>
+            </div>
+            <!-- Promo strip info desktop ends here -->
+            <!-- Promo strip info mobile -->
+            <div class="header_ribbon__promoData header_ribbon__promoData_mobile">
+                <!-- If only info text. commented for time being. -->
+                <!-- <p>Join the <b>Far East Hospitality Insiders</b> membership to enjoy additional 12% off</p> -->
+                <!-- If show more text present, Maximum of 30 charecters can be accomodate. So need to limit to 30 charecters -->
+                <span class="promoData_toggler promoData_toggler_mobile"> @Html.Raw(Model?.RibbonPromoMobile)</span>
+            </div>
+            <!-- Below section for data to be shown when toggle -->
+            <div class="header_ribbon__promoData_detail">
+                <div class="header_ribbon__promoData_detail_inner">
+                    @Html.Raw(Model?.RibbonInnerPromo)
+                    <ul>
+                        @Html.Raw(Model?.RibbonInnerContent)
+                    </ul>
+                        <a target="@Model.RibbonSignUpLink.Target" href="@(Model.RibbonSignUpLink != null ? Url.ContentUrl(Model.RibbonSignUpLink.Href) : "#")">@(Model?.RibbonSignUpText)</a>
+                    <div class="close_promo_data">Close X</div>
+                </div>
+            </div>
+            @if (Model != null && Model.ShowSignIn)
+            {
+                <div class="sx_signup_btn">
+                    @if (session?.GetString(FieldNames.InsidersFieldName.Token) == null)
+                    {
+                        <!-- @Model.SignInSignUpText -->
+                        <div class="smp_logout">
+                                <a data-toggle="modal" data-target="#myModal"><img loading="lazy" alt="" src="/assets/hospitality/images/account_user.svg" width="16"><span>@Model.SignInSignUpText</span></a>
+                        </div>
+                    }
+                    else
+                    {
+                        <div class="smp_login">
+                            <div class="dropdown">
+                                <button class="btn btn-primary dropdown-toggle" type="button" data-toggle="dropdown">
+                                        <img loading="lazy" alt="" src="/assets/hospitality/images/account_user.svg" width="16">Hi&nbsp;<span class="user-name">@UsrName</span>
+                                </button>
+                                    <ul class="dropdown-menu">
+                                    @*@foreach (var item in Model.NavDropdown)
+                                    {
+                                        if (item.IsSBELink)
+                                        {
+                                            <li> @StayFarEast.RenderLink(item, model => model.MainLink, new { @class = "sbe-login-required", target = "_blank", id = "" }, true)</li>
+                                        }
+                                        else
+                                        {
+                                            <li> @StayFarEast.RenderLink(item, model => model.MainLink, new { @class = "", id = "" }, true)</li>
+                                        }
+                                    }*@
+                                    <li>
+                                            <a href="#" id="logout" data-loadingbutton-text="@DictionaryHelper.DictionaryEntry(DictionaryKeys.LoadingButtonText, string.Empty)">@DictionaryHelper.DictionaryEntry(DictionaryKeys.InsidersLogOutButton, string.Empty)</a>
+                                        <span class="loading_spinner"> </span>
+                                    </li>
+                                </ul>
+                            </div>
+                             <form id="form-sbe-login-required" method="post" target="_blank" style="display:none">
+                                @if (session?.GetString(FieldNames.InsidersFieldName.Token) != null)
+                                {
+                                    <input type="hidden" name="session" id="session" value="@session?.GetString(FieldNames.InsidersFieldName.Token).ToString()">
+                                }
+                            </form>
+                        </div>
+                    }
+                </div>
+            }
+
+            <div class="modal modal-dialog-centered fade  modal-lazy-img" id="myModal">
+                <div class="modal-dialog synsix_modal ">
+                        <button type="button" class="close" data-dismiss="modal"><img loading="lazy" src="/assets/hospitality/images/close.svg"></button>
+                    <div class="modal-content">
+                        <!-- Modal body -->
+                        <div class="modal-body">
+
+                            <div class="row">
+                                <div class="col-sm-6 col-xs-12">
+                                    <div class="form_left">
+                                        <div>
+                                            <p class="form_header">@Model.LeftComponentTitle</p>
+                                            @*<p class="form_desc">@Model.LeftComponentSubTitle</p>*@
+                                        </div>
+                                        <form id="signin_modal">
+                                            <div class="form-group">
+                                                    <label class="" for="ModelEmail"> @DictionaryHelper.DictionaryEntry(DictionaryKeys.InsidersEmailLabel, string.Empty)</label>
+                                                    <input type="text" class="form-control" id="SignInEmail" placeholder="@DictionaryHelper.DictionaryEntry(DictionaryKeys.InsidersEmailplaceholder, string.Empty)">
+                                                <div class="synsix_error" id="SigninEmailcheck">
+                                                        <img loading="lazy" src='/assets/hospitality/images/error.svg'>@DictionaryHelper.DictionaryEntry(DictionaryKeys.InsidersEnterEmailAddress, string.Empty)
+                                                </div>
+                                                <div class="synsix_error" id="SigninEmailValid">
+                                                        <img loading="lazy" src='/assets/hospitality/images/error.svg'>@DictionaryHelper.DictionaryEntry(DictionaryKeys.InsidersEnterValidEmailAddress, string.Empty)
+                                                </div>
+                                            </div>
+                                            <div class="form-group">
+                                                    <label class="" for="Modelpassword">@DictionaryHelper.DictionaryEntry(DictionaryKeys.InsidersPasswordLabel, string.Empty)</label>
+                                                    <input type="password" class="form-control" id="SignInPassword" placeholder="@DictionaryHelper.DictionaryEntry(DictionaryKeys.InsidersPasswordPlaceHolder, string.Empty)" autocomplete="off">
+                                                @{
+                                                    string showText = @DictionaryHelper.DictionaryEntry(DictionaryKeys.InsidersPasswordShow, string.Empty);
+                                                    if ((showText.Equals(DictionaryKeys.InsidersPasswordShow)) || string.IsNullOrEmpty(showText))
+                                                    {
+                                                        showText = "Show";
+                                                    }
+                                                    string hideText = @DictionaryHelper.DictionaryEntry(DictionaryKeys.InsidersPasswordHide, string.Empty);
+                                                    if ((hideText.Equals(DictionaryKeys.InsidersPasswordHide)) || string.IsNullOrEmpty(hideText))
+                                                    {
+                                                        hideText = "Hide";
+                                                    }
+                                                }
+                                                <span id="showhide4" toggle="#SignInPassword" data-text-show="@showText" data-text-hide="@hideText" class="eyeshow eye_field toggle-password4">@showText</span>
+                                                <div class="synsix_error" id="SigninPasswordcheck">
+                                                        <img loading="lazy" src='/assets/hospitality/images/error.svg'>@DictionaryHelper.DictionaryEntry(DictionaryKeys.InsidersEnterPassword, string.Empty)
+                                                </div>
+                                                <div class="synsix_error ErrorMessage">
+                                                        <img loading="lazy" src='/assets/hospitality/images/error.svg'>@DictionaryHelper.DictionaryEntry(DictionaryKeys.InsidersPasswordDoNotMatch, string.Empty)
+                                                </div>
+                                            </div>
+                                            @if (Model.ShowSignInCaptcha)
+                                            {
+                                                <div class="form-group">
+                                                    <label for="captcha">@Model.CaptchaTitle</label>
+                                                    @*@Html.GoogleCaptcha()*@
+                                                    <div class="synsix_error" id="CaptchaError">
+                                                        <img loading="lazy" src='/assets/hospitality/images/error.svg'>
+                                                        @Model.CaptchaErrorMessage
+                                                    </div>
+                                                </div>
+                                            }
+                                                <button type="button" id="SignInButton" class="btn btn-block" data-loadingbutton-text="@DictionaryHelper.DictionaryEntry(DictionaryKeys.LoadingButtonText, string.Empty)">@DictionaryHelper.DictionaryEntry(DictionaryKeys.InsidersSignInButton, string.Empty)</button>
+                                        </form>
+                                        @*@StayFarEast.RenderLink(Model, model => model.ForgotPasswordLink, new { @class = "d-inline-block", id = "d-inline-block" }, true)*@
+                                    </div>
+                                </div>
+                                <div class="col-sm-6 col-xs-12">
+                                    <div class="form_right">
+                                        <p class="form_header">@Model.RightComponentTitle</p>
+                                        @*<p class="form_desc d-inline-block">@Model.RightComponentSubTitle</p>*@
+                                        @*
+                                        @if (Model.PromotionBlades != null)
+                                        {
+                                            <ul>
+                                                @foreach (var item in Model.PromotionBlades)
+                                                {
+                                                    <li>
+                                                        <div class="icon">
+                                                            StayFarEast.RenderImage(item, model => model.FeedBackImage, isEditable: true)
+                                                            <img  width="52" height="52" class="lazy-hidden-event img-lazy-block" data-lazy-type="image" data-lazy-src="@item.FeedBackImage.GetMediaUrlWithProtectHash()" alt="" />
+                                                        </div>
+                                                        <div>
+                                                            <p class="icon_header">@Glass.Editable(item, model => model.FeedbackTitle)</p>
+                                                            <p class="icon_desc">@Glass.Editable(item, model => model.FeedBackSubtitle)</p>
+                                                        </div>
+                                                    </li>
+                                                }
+
+                                            </ul>
+                                        }
+                                        @StayFarEast.RenderLink(Model, model => model.SignUpLink, new { @class = "btn", id = "signup_link", data_loadingbutton_text = Dictionary.GetValue(DictionaryKeys.LoadingButtonText) }, true)
+                                    *@
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <script>
+    $(function () {
+        $('.sbe-login-required').on('click',function(e){
+                    e.preventDefault();
+                    var href = $(this).attr('href'),
+                        form = $('#form-sbe-login-required');
+                    form.attr('action',href);
+                    form.submit();
+                });
+         $(document).on("click", "#logout", function (event) {
+                //$("#logout").click(function () {
+                $.ajax({
+                    url: "/api/sitecore/StayFarEastInsiders/logout",
+                    type: 'POST',
+                    cache: false,
+                    contentType: false,
+                    processData: false,
+                    data: null,
+                    success: function (response) {
+                        if (response == "success") {
+                            var signOutLink = "@Model.SignOutLink";
+                            if (signOutLink != "") {
+                                if (signOutLink == location.pathname) {
+                                    window.location.reload(true);
+                                }
+                                else {
+                                    window.location.replace(signOutLink)
+                                }
+                            }
+                            else {
+                                if ($("#isAcountPage").data('is-acount-page') == "True") {
+                                    window.location.href = "/";
+                                }
+                                else
+                                    window.location.reload(true);
+                            }
+                        }
+                        else
+                            alert("error while logging out");
+                    }
+                });
+            });
+
+        var defaultValue = $('#SignInButton').html();
+        var img_gif = '<span class="loading_spinner"> </span>';
+        var LoadingValue = $('#SignInButton').attr("data-loadingbutton-text") + '&nbsp;' + img_gif;
+        var _signInRecaptcha = $("#signin_modal").find('.g-recaptcha');
+        $("#SignInButton").click(function () {
+            if ($("#SignInEmail").val() != "" && $("#SignInPassword").val() != "" && _signInRecaptcha.find('.g-recaptcha-response').val() != "") {
+                var formData = new FormData();
+                formData.append("Email", $("#SignInEmail").val());
+                formData.append("Password", $("#SignInPassword").val());
+                formData.append("GRecaptchaToken",_signInRecaptcha.find('.g-recaptcha-response').val());
+                document.getElementById("SignInButton").innerHTML = LoadingValue;
+                $('html').addClass('fixed_page');
+                $.ajax({
+                    url: "/api/sitecore/StayFarEastNavigation/SignIn",
+                    type: 'POST',
+                    cache: false,
+                    contentType: false,
+                    processData: false,
+                    data: formData,
+                    success: function (response) {
+                        //$('.login_notification').show();
+                        $.cookie('signInUpSuccess', 'yes', { expires: 1, path: '/' });
+                        if (response.toLowerCase() == "fail") {
+                            $('.ErrorMessage').show();
+                            $('html').removeClass('fixed_page');
+                            //$('#SignInButton').removeClass('gif_added');
+                            document.getElementById("SignInButton").innerHTML = defaultValue;
+                        }
+                        else {
+                            $('.ErrorMessage').hide();
+                            var email = $("#SignInEmail").val()
+                            if (email.length > 0) {
+                                $.ajax({
+                                    url: "/api/sitecore/StayFarEastInsiders/EncryptEmail?email=" + email,
+                                    type: 'POST',
+                                    cache: false,
+                                    contentType: false,
+                                    processData: false,
+                                    success: function (response1) {
+                                        if (response1.length > 0) {
+
+                                            dataLayer.push({
+                                                'userID': response1,
+                                                'userIsMember': response[0]
+                                            });
+                                        }
+                                    }
+                                });
+                            }
+                            var returnUrl = window.location.search;
+                            var index = returnUrl.indexOf("=");
+
+                            if (index > 0) {
+                                var path = returnUrl.substring(index + 1);
+                                var url = new URL(path, location);
+                                let decoded = decodeURIComponent(url);
+                                window.location.replace(decoded);
+                            }
+                            else {
+                                window.location.reload(true);
+                            }
+                        }
+                    }
+                });
+            }
+        });
+    });
+    </script>
+    }
+}

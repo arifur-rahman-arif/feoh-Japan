@@ -1,0 +1,105 @@
+﻿@model DealParticipantListingViewModel
+
+@{
+    // var config = ViewData["BookingConfig"] as SfeBookingConfig;
+    var dealParams = ViewData["DealParams"] as string;
+    var dealRibbon = ViewData["DealRibbon"] as string;
+    var RedirectToExistingSite = ViewData["RedirectToExistingSite"] as string;
+    // var LocConfig = ViewData["ListingConfig"] as ListingConfig;
+}
+
+<div class="hotel listing-container">
+    <div class="row">
+        @* @if (Model != null && Model.Participants != null && Model.Participants.Any())
+        {
+            foreach (var participant in Model.Participants)
+            {
+                var listing = participant.Listing;
+                var avaialbilityUrl = participant.RedirectUrl != null && !string.IsNullOrWhiteSpace(participant.RedirectUrl.Url) ?
+                    participant.RedirectUrl.Url : listing.CreateBookingUrl(dealParams, participant.Parameters);
+                string itempath = string.Empty;
+                var RedirectToExistingSiteTrue = !string.IsNullOrEmpty(listing.Url) &&
+                                               RedirectToExistingSite != null &&
+                                               RedirectToExistingSite == "1";
+                if (RedirectToExistingSiteTrue)
+                {
+                    itempath = listing.Url;
+                }
+                else
+                {
+                    itempath = SitecoreHelperExtension.GetDynamicRedirectSiteURL(listing.Id.ToString());
+                }
+
+                <div class="col-sm-6 hotel-wrapper">
+                    @if (dealRibbon != null && dealRibbon == "1" && !String.IsNullOrWhiteSpace(participant.RibbonText))
+                    {
+                        <p class="ribbon-text">@participant.RibbonText </p>
+                    }
+                    <div class="hotel-image-slider-wrapper">
+                        <div class="hotel-image-slider owl-carousel">
+                            @if (listing != null && listing.PreviewImages != null && listing.PreviewImages.Any())
+                            {
+                                foreach (var previewImage in listing.PreviewImages)
+                                {
+                                    <a href="@(listing != null ? itempath : "#")">@Html.MediaImage(previewImage)</a>
+                                }
+                            }
+                        </div>
+                        @if (listing != null)
+                        {
+                            <div class="note">@listing.GetCaption()</div>
+                        }
+                    </div>
+                    <h2><a href="@(listing != null ? itempath : "#")">@Model.CTAText)</a></h2>
+                    @if (dealRibbon != null && dealRibbon == "0")
+                    {
+                        if (Glass.IsInEditingMode)
+                        {
+                            <p class="summary">@Glass.Editable(participant, model => model.Summary) </p>
+                        }
+                        else
+                        {
+                            <p class="summary">@participant.Summary.Truncate() </p>
+                        }
+                    }
+                    else
+                    {
+                        <p class="location">
+                            @(participant.Listing != null && !String.IsNullOrEmpty(participant.Listing.FullAddress) ? participant.Listing.FullAddress : string.Empty )
+                            <span class="hidden-xs">
+                                <a href="@(listing != null && listing.MapUrl != null ? listing.MapUrl.Url : "#")" target="_blank">
+                                    <img loading="lazy" src="@(LocConfig.LocationMarkerImage != null ? LocConfig.LocationMarkerImage.Src : "#")" alt="" />
+                                </a>
+                            </span>
+                        </p>
+                        if (string.IsNullOrWhiteSpace(participant.Label1) && string.IsNullOrWhiteSpace(participant.Label2) && string.IsNullOrWhiteSpace(participant.Label3))
+                        {
+                            <p class="summary">@Glass.Editable(participant, model => model.Summary) </p>
+                        }
+
+                        if (!string.IsNullOrWhiteSpace(participant.Label1))
+                        {
+                            <p class="label-info">@participant.Label1</p>
+                        }
+                        if (!string.IsNullOrWhiteSpace(participant.Label2))
+                        {
+                            <p class="label-info">@participant.Label2</p>
+                        }
+
+                        if (!string.IsNullOrWhiteSpace(participant.Label3))
+                        {
+                            <p class="label-info">@participant.Label3</p>
+                        }
+                        <br clear="all" />
+                    }
+
+                    <a href="@(listing != null ? itempath : "#")" class="btn-txt color-pink">@DictionaryHelper.DictionaryEntry(DictionaryKeys.LearnMoreText, string.Empty)</a>
+
+                    <div class="check-availability">
+                        <a target="_blank" href="@avaialbilityUrl" class="btn-border sub-btn color-pink text-uppercase check-availability-btn" data-test-enabled="@(Model.Istestenabled)" data-goal-id="@(Model.Dealparticipantconfig!=null && Model.Dealparticipantconfig.CTAGoalItem!=null ? Model.Dealparticipantconfig.CTAGoalItem.Id: default(ID))">@Model.CTAText</a>
+                    </div>
+                </div>
+            }
+        } *@
+    </div>
+</div>

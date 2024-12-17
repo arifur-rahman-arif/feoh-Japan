@@ -2,8 +2,9 @@ using EPiServer.DataAnnotations;
 
 namespace FEO.CMS.HBG.Core.Blocks.StayFarEast
 {
-    [ContentType(DisplayName = "HBGHomeBlock", GUID = "D2B14AEB-E0C3-49A6-8145-67862A780ACC", GroupName = "Hospitality")]
-    public class HBGHomeBlock : HBGBaseBlock
+    //Home Rendering Settings
+    [ContentType(DisplayName = "HBGHomeBlock", GUID = "92324923-8464-4077-8015-77610E877E4B", GroupName = "Hospitality")]
+    public class HBGHomeBlock : HBGHomeBannerConfigBlock
     {
     }
 }

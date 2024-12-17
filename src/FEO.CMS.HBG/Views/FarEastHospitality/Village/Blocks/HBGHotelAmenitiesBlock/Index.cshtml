@@ -1,0 +1,40 @@
+﻿@model HBGHotelAmenityBlock
+
+@if (Model != null)
+{
+    <div class="sectionHotelAmenities @(@Model.BackgroundColorStyleNames?.Value)">
+        <div class="container">
+            <p class="header text-center">@Model.Title</p>
+            <p class="text-center sub-description">@Model.SubTitle</p>
+            @if (Model.HotelAmenities != null && Model.HotelAmenities.Categories.IsNotNullAndAny())
+            {
+                var count = 0;
+                foreach (var cate in Model.HotelAmenities.Categories)
+                {
+                    if (cate != null && cate.Items.IsNotNullAndAny())
+                    {
+                        <div class="list-hotel-amenities ">
+                            <input id="hotel-amenities-@count" type="checkbox" @(count == 0 ? "checked" : "")>
+                            <label for="hotel-amenities-@count" class="title-amenities">
+                                @if (cate.Icon != null)
+                                {
+                                    <span class="img-svg">@Url.ContentUrl(cate.Icon)</span>
+                                }
+                                <span class="text">@cate.CategoryName</span>
+                                <span class="arrow"></span>
+                            </label>
+
+                            <ul class="content-amenities">
+                                @foreach (var item in cate.Items)
+                                {
+                                    <li>@item.AmenityName</li>
+                                }
+                            </ul>
+                        </div>
+                        count++;
+                    }
+                }
+            }
+        </div>
+    </div>
+}
