@@ -1,7 +1,11 @@
 ﻿@model HBGMemberRelatedTextBlock
-
-@if (Model != null && Model.ShowMemberMessage && Model.MemberMessage != null)
+----------
+@if (PageRouteHelper.Page is HBGDealPage)
 {
-    var message = ContentLoader.Get<HBGMemberMessageBlock>(Model.MemberMessage);
-    <div class="content-member-message">@Html.PropertyFor(x => message.MemberMessageDescription)</div>
+    var currentPage = PageRouteHelper.Page as HBGDealPage;
+    @if (currentPage != null && currentPage.ShowMemberMessage && currentPage.MemberMessage != null)
+    {
+        var message = ContentLoader.Get<HBGMemberMessageBlock>(currentPage.MemberMessage);
+        <div class="content-member-message">@Html.PropertyFor(x => message.MemberMessageDescription)</div>
+    }
 }
