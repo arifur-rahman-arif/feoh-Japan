@@ -14,7 +14,7 @@
                             @if (benefit.BenefitIcon != null && Url.ContentUrl(benefit.BenefitIcon).EndsWith(".svg"))
                             {
                                 <span class="img-svg">
-                                    @Html.PropertyFor(x => benefit.BenefitIcon);
+                                    @Html.PropertyFor(x => benefit.BenefitIcon)
                                 </span>
                             }
                             else

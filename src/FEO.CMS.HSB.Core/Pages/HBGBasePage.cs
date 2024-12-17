@@ -114,7 +114,7 @@ namespace FEO.CMS.HBG.Core.Pages
         public virtual string LinkTitle { get; set; }
 
         //HBGThumbnailPreviewBlock
-        [Display(Name = "Alternate URL", GroupName = "Settings", Order = 100)]
+        [Display(Name = "Alternate URL", GroupName = SystemTabNames.Settings, Order = 100)]
         [CultureSpecific]
         public virtual LinkItem AlternateURL { get; set; }
 

@@ -1,4 +1,5 @@
 using EPiServer.Core;
+using EPiServer.DataAbstraction;
 using EPiServer.DataAnnotations;
 using EPiServer.Web;
 using System.ComponentModel.DataAnnotations;
@@ -8,7 +9,7 @@ namespace FEO.CMS.HBG.Core.Blocks.Outpost
     [ContentType(DisplayName = "HBGRoomsBlock", GUID = "DA73EF4B-0B17-4919-B546-1E7F25E5B9DC", GroupName = "Hospitality")]
     public class HBGRoomsBlock : HBGBaseBlock
     {
-        [Display(Name = "Enable Link", GroupName = "Settings", Order = 100)]
+        [Display(Name = "Enable Link", GroupName = SystemTabNames.Settings, Order = 100)]
         [CultureSpecific]
         public virtual bool EnableLink { get; set; }
 
@@ -31,7 +32,7 @@ namespace FEO.CMS.HBG.Core.Blocks.Outpost
         [CultureSpecific]
         public virtual string RoomAmenities { get; set; }
 
-        [Display(Name = "ShowAsRoomHighlighter", GroupName = "Settings", Order = 200)]
+        [Display(Name = "ShowAsRoomHighlighter", GroupName = SystemTabNames.Settings, Order = 200)]
         [CultureSpecific]
         public virtual bool ShowAsRoomHighlighter { get; set; }
 
@@ -45,7 +46,7 @@ namespace FEO.CMS.HBG.Core.Blocks.Outpost
         [UIHint(UIHint.Image)]
         public virtual ContentReference MediumThumbnailImage { get; set; }
 
-        [Display(Name = "ShowSeries", GroupName = "Settings", Order = 300)]
+        [Display(Name = "ShowSeries", GroupName = SystemTabNames.Settings, Order = 300)]
         [CultureSpecific]
         public virtual bool ShowSeries { get; set; }
 

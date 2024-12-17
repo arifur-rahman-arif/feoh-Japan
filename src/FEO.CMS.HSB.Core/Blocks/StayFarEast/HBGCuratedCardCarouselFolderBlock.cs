@@ -11,7 +11,6 @@ namespace FEO.CMS.HBG.Core.Blocks.StayFarEast
     {
         [Display(Name = "ChildrenFolderReference", GroupName = SystemTabNames.Content, Order = 100)]
         [CultureSpecific]
-        //[AllowedTypes(AllowedTypes = new[] { typeof() })]
         public virtual ContentReference ChildrenFolderReference { get; set; }
     }
 }

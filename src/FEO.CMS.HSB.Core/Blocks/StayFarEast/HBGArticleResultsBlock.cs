@@ -1,3 +1,4 @@
+using EPiServer.DataAbstraction;
 using EPiServer.DataAnnotations;
 using System.ComponentModel.DataAnnotations;
 
@@ -10,7 +11,7 @@ namespace FEO.CMS.HBG.Core.Blocks.StayFarEast
         [CultureSpecific]
         public virtual string PageNextButtonText { get; set; }
 
-        [Display(Name = "Result Count", GroupName = "Settings", Order = 100)]
+        [Display(Name = "Result Count", GroupName = SystemTabNames.Settings, Order = 100)]
         [CultureSpecific]
         public virtual double ResultCount { get; set; }
 

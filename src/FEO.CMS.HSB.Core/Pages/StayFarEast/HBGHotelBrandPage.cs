@@ -1,4 +1,5 @@
 using EPiServer.Core;
+using EPiServer.DataAbstraction;
 using EPiServer.DataAnnotations;
 using EPiServer.SpecializedProperties;
 using EPiServer.Web;
@@ -9,7 +10,7 @@ namespace FEO.CMS.HBG.Core.Pages.StayFarEast
     [ContentType(DisplayName = "HBGHotelBrandPage", GUID = "0DF2AC53-3060-4788-BEAC-AE969819352A", GroupName = "Hospitality")]
     public class HBGHotelBrandPage : HBGBasePage
     {
-        [Display(Name = "Footer URL", GroupName = "Settings", Order = 100)]
+        [Display(Name = "Footer URL", GroupName = SystemTabNames.Settings, Order = 100)]
         [CultureSpecific]
         public virtual LinkItem FooterURL { get; set; }
 

@@ -13,11 +13,11 @@ namespace FEO.CMS.HBG.Core.Blocks.Village
         [CultureSpecific]
         public virtual ContentArea FeaturedAmenities { get; set; }
 
-        [Display(Name = "OtherAmenities", GroupName = "Settings", Order = 100)]
+        [Display(Name = "OtherAmenities", GroupName = SystemTabNames.Settings, Order = 100)]
         [CultureSpecific]
         public virtual string OtherAmenities { get; set; }
 
-        [Display(Name = "SeeAll", GroupName = "Settings", Order = 200)]
+        [Display(Name = "SeeAll", GroupName = SystemTabNames.Settings, Order = 200)]
         [CultureSpecific]
         public virtual LinkItem SeeAll { get; set; }
 

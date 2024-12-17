@@ -6,25 +6,22 @@ namespace FEO.CMS.HBG.Business.Helpers
 {
     public static class RazorUtil
     {
-        public static string JoinCssClass(ContentReference styleConfigBlock)
+        public static string JoinCssClass(ContentArea styleConfigBlock)
         {
-            if (styleConfigBlock != null)
+            if (styleConfigBlock != null && styleConfigBlock.Items != null && styleConfigBlock.Items.Any())
             {
                 //Declare new list
                 var styleNamesList = new List<HBGNameValuePairBlock>();
                 var contentLoader = ServiceLocator.Current.GetInstance<IContentLoader>();
 
-                //Get Content Reference Block
-                var styleNames = contentLoader.Get<StayFarEastHBGStyleConfigBlock>(styleConfigBlock);
-
                 //Add Content Area items to list
-                foreach (var styles in styleNames.StyleNames.Items)
+                foreach (var styles in styleConfigBlock.Items)
                 {
                     var item = contentLoader.Get<HBGNameValuePairBlock>(styles.ContentLink);
                     styleNamesList.Add(item);
                 }
 
-                var cssClasses = styleConfigBlock == null || styleNames.StyleNames == null ?
+                var cssClasses = styleConfigBlock == null || styleConfigBlock.Items == null ?
                     string.Empty : string.Join(" ", styleNamesList.Select(item => item.Value));
 
                 return cssClasses;
