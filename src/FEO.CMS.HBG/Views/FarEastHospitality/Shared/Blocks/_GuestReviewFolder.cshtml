@@ -1,0 +1,71 @@
+﻿@using FEO.CMS.HBG.Business.Dictionary
+@model HBGGuestReviewFolderBlock
+
+@{
+
+    string viewReviewText = DictionaryHelper.DictionaryEntry(DictionaryKeys.ViewMoreText);
+
+  // var GuestReviews = ContentLoader.GetChildren<HBGGuestReviewItemBlock>(Model.ChildrenFolderReference);
+    var guestReviews = ViewData["GuestReviews"] as IEnumerable<HBGGuestReviewItemBlock>;
+}
+@if (guestReviews != null)
+{
+    @foreach (var review in guestReviews)
+    {
+        <div class="guest-review-item item">
+            @if (!string.IsNullOrEmpty(review.Title))
+
+            {
+                <div class="guest-review-item__header">@review.Title</div>
+            }
+            @if (!string.IsNullOrEmpty(review.Description.ToString()))
+
+            {
+                <div class="guest-review-item__desc">@Html.Raw(review.Description)</div>
+            }
+            <div class="guest-review-item__info-wrapper">
+                <div class="guest-review-item__separated"></div>
+                @if (!string.IsNullOrEmpty(review.NameOfReview) || !string.IsNullOrEmpty(review.GetDateOfReviewStr()))
+
+                {
+
+                    string nameAndDate = string.Empty;
+
+                    if (!string.IsNullOrEmpty(review.NameOfReview))
+
+                    {
+
+                        nameAndDate = review.NameOfReview;
+
+
+
+                        if (!string.IsNullOrEmpty(review.GetDateOfReviewStr()))
+
+                        {
+
+                            nameAndDate = nameAndDate + $", {review.GetDateOfReviewStr()}";
+
+                        }
+
+                    }
+
+                    else if (!string.IsNullOrEmpty(review.GetDateOfReviewStr()))
+
+                    {
+
+                        nameAndDate = review.GetDateOfReviewStr();
+
+                    }
+                    <div class="guest-review-item__date">@nameAndDate</div>
+                }
+                @if (review.PlatformOfReview != null && !string.IsNullOrEmpty(review.PlatformOfReview.Href))
+
+                {
+                    <div class="guest-review-item__details">
+                        <a href="@(review.PlatformOfReview.Href)" target="@review.PlatformOfReview.Target">@(!string.IsNullOrEmpty(review.PlatformOfReview.Text) ? review.PlatformOfReview.Text : viewReviewText)</a>
+                    </div>
+                }
+            </div>
+        </div>
+    }
+}

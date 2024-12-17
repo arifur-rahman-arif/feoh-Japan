@@ -1,0 +1,13 @@
+﻿@model HBGGuestReviewFolderBlock
+@{
+    var guestReviews = ViewData["GuestReviews"] as Dictionary<string, string>;
+}
+
+@if (Model != null)
+{
+    <div class="guest-review">
+        <div class="guest-review__carousel owl-carousel owl-loaded" data-res="3,1,1,1" paramowl="margin=30" centerowl="false">
+            @Html.Partial("~/Views/FarEastHospitality/Shared/Blocks/_GuestReviewFolder.cshtml", Model)
+        </div>
+    </div>
+}
