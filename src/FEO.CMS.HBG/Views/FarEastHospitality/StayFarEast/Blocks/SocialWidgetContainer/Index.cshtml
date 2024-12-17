@@ -1,0 +1,8 @@
+﻿@using FEO.CMS.HBG.Helper
+@model HBGSocialWidgetContainerBlock
+@{
+    var currentPage = BlockHelper.GetCurrentPage<HBGListingPage>();
+}
+<div class="tripadvisor-widget">
+    <iframe id="pagecontent_0_reviewIFrame" style="height: 870px; width: 100%;border:none;" class="lazy-hidden" data-lazy-type="iframe" data-lazy-src="@(Model != null ? currentPage.TripAdvisorWidget?.Href : string.Empty)"></iframe>
+</div>
