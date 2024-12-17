@@ -3,6 +3,7 @@ using EPiServer.DataAnnotations;
 using EPiServer.SpecializedProperties;
 using EPiServer.Web;
 using FEO.CMS.HBG.Core.Blocks.Rendezvous;
+using FEO.CMS.HBG.Core.Pages.StayFarEast;
 using System.ComponentModel.DataAnnotations;
 
 namespace FEO.CMS.HBG.Core.Blocks.StayFarEast
@@ -244,7 +245,7 @@ namespace FEO.CMS.HBG.Core.Blocks.StayFarEast
         public IEnumerable<HBGNavigationLinkBlock> MenuLinks { get; set; }
         [Ignore]
         public IEnumerable<HBGHeaderNavBlock> Columns { get; set; }
-        //[Ignore]
-        //public IEnumerable<IContent> Menus { get; set; }
+        [Ignore]
+        public HBGHomePage ValidationMessage { get; set; }
     }
 }

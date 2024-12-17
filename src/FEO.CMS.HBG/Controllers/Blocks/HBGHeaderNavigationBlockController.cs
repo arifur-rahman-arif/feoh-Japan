@@ -64,7 +64,7 @@ namespace FEO.CMS.HBG.Controllers.Blocks
 
             var bookNowMessage = home;
 
-            //model.ValidationMessage = bookNowMessage;
+            model.ValidationMessage = bookNowMessage;
             model.ForgotPasswordLink = insidersConfig.ForgotPasswordPage;
             //model.SignUpLink = new LinkItem
             //{
