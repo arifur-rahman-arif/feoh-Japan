@@ -2,6 +2,7 @@ using EPiServer;
 using EPiServer.Core;
 using EPiServer.DataAbstraction;
 using EPiServer.DataAnnotations;
+using EPiServer.ServiceLocation;
 using FEO.CMS.HBG.Core.Blocks.StayFarEast;
 using System.ComponentModel.DataAnnotations;
 
@@ -82,23 +83,17 @@ namespace FEO.CMS.HBG.Core.Pages.StayFarEast
         public virtual ContentArea BlogNav { get; set; }
 
         private readonly IContentLoader _contentLoader;
-        public HBGBlogDetailPage()
-        {
-
-        }
-        public HBGBlogDetailPage(IContentLoader contentLoader)
-        {
-            _contentLoader = contentLoader;
-        }
+       
         public IEnumerable<string> GetFullTags()
         {
+            var contentLoader = ServiceLocator.Current.GetInstance<IContentLoader>();
             List<string> tags = new List<string>();
             if (Season != null && Season.Items.Any())
             {
                 List<HBGNameValuePairBlock> SeasonItems = new List<HBGNameValuePairBlock>();
                 foreach (var item in Season.Items)
                 {
-                    SeasonItems.Add(_contentLoader.Get<HBGNameValuePairBlock>(item.ContentLink));
+                    SeasonItems.Add(contentLoader.Get<HBGNameValuePairBlock>(item.ContentLink));
                 }
 
                 tags.AddRange(SeasonItems.Select(x => x.Value));
@@ -108,7 +103,7 @@ namespace FEO.CMS.HBG.Core.Pages.StayFarEast
                 List<HBGCountryBlock> LocationItems = new List<HBGCountryBlock>();
                 foreach (var item in Location.Items)
                 {
-                    LocationItems.Add(_contentLoader.Get<HBGCountryBlock>(item.ContentLink));
+                    LocationItems.Add(contentLoader.Get<HBGCountryBlock>(item.ContentLink));
                 }
                 tags.AddRange(LocationItems.Select(x => x.Title));
             }
@@ -117,7 +112,7 @@ namespace FEO.CMS.HBG.Core.Pages.StayFarEast
                 List<HBGNameValuePairBlock> TypeItems = new List<HBGNameValuePairBlock>();
                 foreach (var item in Season.Items)
                 {
-                    TypeItems.Add(_contentLoader.Get<HBGNameValuePairBlock>(item.ContentLink));
+                    TypeItems.Add(contentLoader.Get<HBGNameValuePairBlock>(item.ContentLink));
                 }
                 tags.AddRange(TypeItems.Select(x => x.Value));
 
@@ -127,7 +122,7 @@ namespace FEO.CMS.HBG.Core.Pages.StayFarEast
                 List<HBGNameValuePairBlock> PurposeItems = new List<HBGNameValuePairBlock>();
                 foreach (var item in Purpose.Items)
                 {
-                    PurposeItems.Add(_contentLoader.Get<HBGNameValuePairBlock>(item.ContentLink));
+                    PurposeItems.Add(contentLoader.Get<HBGNameValuePairBlock>(item.ContentLink));
                 }
                 tags.AddRange(PurposeItems.Select(x => x.Value));
             }
