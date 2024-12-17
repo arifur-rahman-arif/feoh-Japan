@@ -1,6 +1,6 @@
-﻿using EPiServer.Find.Cms.Statistics;
-using EPiServer.Web.Mvc;
+﻿using EPiServer.Web.Mvc;
 using EPiServer.Web.Mvc.Html;
+using EPiServer.Web.Routing;
 using FEO.CMS.HBG.Core.Blocks.StayFarEast;
 using FEO.CMS.HBG.Core.Constants;
 using FEO.CMS.HBG.Core.Pages.StayFarEast;
@@ -10,25 +10,23 @@ namespace FEO.CMS.HBG.Controllers.Blocks
 {
     public class HBGBlogNavBlockController : BlockComponent<HBGBlogNavBlock>
     {
-        private readonly IUrlResolver _urlResolver;
-        private readonly IContentLoader _contentLoader;
-        private readonly IContentRepository _contentRepository;
-        public HBGBlogNavBlockController(IUrlResolver urlResolver, IContentLoader contentLoader, IContentRepository contentRepository)
+        private readonly IPageRouteHelper pageRouteHelper;
+        private readonly IContentLoader contentLoader;
+        public HBGBlogNavBlockController(IPageRouteHelper PageRouteHelper, IContentLoader ContentLoader)
         {
-            _urlResolver = urlResolver;
-            _contentLoader = contentLoader;
-            _contentRepository = contentRepository;
+            pageRouteHelper = PageRouteHelper;
+            contentLoader = ContentLoader;
         }
         protected override IViewComponentResult InvokeComponent(HBGBlogNavBlock currentBlock)
         {
             HBGBlogNavBlock model = new HBGBlogNavBlock();
 
             // Get current page
-            var currentPage = _contentLoader.Get<HBGBlogDetailPage>((currentBlock as IContent)?.ParentLink);
+            var currentPage = contentLoader.Get<HBGBlogDetailPage>(pageRouteHelper.PageLink);
             model.CurrentItem = currentPage;
 
             // Find previous and next siblings
-            var siblings = _contentLoader.GetChildren<HBGBlogDetailPage>(model.CurrentItem.ParentLink).ToList();
+            var siblings = contentLoader.GetChildren<HBGBlogDetailPage>(model.CurrentItem.ParentLink).ToList();
             var currentIndex = siblings.IndexOf(currentPage);
 
             if (currentIndex > 0)

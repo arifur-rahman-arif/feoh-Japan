@@ -21,7 +21,7 @@ namespace FEO.CMS.HBG.Controllers.Blocks
         }
         protected override IViewComponentResult InvokeComponent(HBGAccordionFolderBlock currentBlock)
         {
-            HBGAccordionFolderBlock model = new HBGAccordionFolderBlock();
+            HBGAccordionFolderBlock model = null;
 
             if (currentBlock.ChildrenFolderReference != null)
             {
@@ -31,12 +31,11 @@ namespace FEO.CMS.HBG.Controllers.Blocks
                 foreach (var item in faq)
                 {
                     if (!string.IsNullOrEmpty(item.Title) && item.Description != null)
-                        faqs.MainEntity.Add(new MainEntity() { Name = item.Title, Answer = new Answer() { Text = item.Description.ToString() } });
+                        faqs.MainEntity.Add(new MainEntity() { Name = item.Title, Answer = new Answer() { Text = item.Description } });
                 }
-                HBGAccordionFolderBlock faqViewModel = new HBGAccordionFolderBlock()
+                model = new HBGAccordionFolderBlock()
                 {
                     Faq = faqs
-
                 };
             }
             return View($"{ViewsPath.Hospitality_StayFarEast_BLOCKS_PATH}/HBGAccordionFolderBlock/index.cshtml", model);

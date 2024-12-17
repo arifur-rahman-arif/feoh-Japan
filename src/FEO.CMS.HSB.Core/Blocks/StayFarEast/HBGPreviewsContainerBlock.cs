@@ -17,7 +17,7 @@ namespace FEO.CMS.HBG.Core.Blocks.StayFarEast
         [CultureSpecific]
         public virtual string OurHotelsButtonText { get; set; }
 
-        [Display(Name = "Preview Count", GroupName = "Settings", Order = 100)]
+        [Display(Name = "Preview Count", GroupName = SystemTabNames.Settings, Order = 100)]
         [CultureSpecific]
         public virtual double PreviewCount { get; set; }
 

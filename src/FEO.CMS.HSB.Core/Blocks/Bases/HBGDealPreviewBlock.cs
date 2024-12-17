@@ -1,4 +1,5 @@
 using EPiServer.Core;
+using EPiServer.DataAbstraction;
 using EPiServer.DataAnnotations;
 using EPiServer.SpecializedProperties;
 using EPiServer.Web;
@@ -9,7 +10,7 @@ namespace FEO.CMS.HBG.Core.Blocks.Bases
     [ContentType(DisplayName = "HBGDealPreviewBlock", GUID = "862F97BA-3B7E-4E79-A82D-3257829BBDC5", GroupName = "Hospitality")]
     public class HBGDealPreviewBlock : HBGThumbnailPreviewBlock
     {
-        [Display(Name = "Enable Promo Booking", GroupName = "Settings", Order = -50)]
+        [Display(Name = "Enable Promo Booking", GroupName = SystemTabNames.Settings, Order = -50)]
         [CultureSpecific]
         public virtual bool EnablePromoBooking { get; set; }
 
@@ -22,7 +23,7 @@ namespace FEO.CMS.HBG.Core.Blocks.Bases
         [UIHint(UIHint.Textarea)]
         public virtual XhtmlString DealDescription { get; set; }
 
-        [Display(Name = "Book Start Date", GroupName = "Settings", Order = 50)]
+        [Display(Name = "Book Start Date", GroupName = SystemTabNames.Settings, Order = 50)]
         [CultureSpecific]
         public virtual DateTime StartDate { get; set; }
 
@@ -34,7 +35,7 @@ namespace FEO.CMS.HBG.Core.Blocks.Bases
         [CultureSpecific]
         public virtual ContentReference Category { get; set; }
 
-        [Display(Name = "Book End Date", GroupName = "Settings", Order = 100)]
+        [Display(Name = "Book End Date", GroupName = SystemTabNames.Settings, Order = 100)]
         [CultureSpecific]
         public virtual DateTime EndDate { get; set; }
 
@@ -51,11 +52,11 @@ namespace FEO.CMS.HBG.Core.Blocks.Bases
         [CultureSpecific]
         public virtual ContentReference Icon { get; set; }
 
-        [Display(Name = "Stay Start Date", GroupName = "Settings", Order = 150)]
+        [Display(Name = "Stay Start Date", GroupName = SystemTabNames.Settings, Order = 150)]
         [CultureSpecific]
         public virtual DateTime StayStartDate { get; set; }
 
-        [Display(Name = "Stay End Date", GroupName = "Settings", Order = 175)]
+        [Display(Name = "Stay End Date", GroupName = SystemTabNames.Settings, Order = 175)]
         [CultureSpecific]
         public virtual DateTime StayEndDate { get; set; }
 
@@ -64,7 +65,7 @@ namespace FEO.CMS.HBG.Core.Blocks.Bases
         [UIHint(UIHint.Textarea)]
         public virtual XhtmlString DealPromoDate { get; set; }
 
-        [Display(Name = "Parameters", GroupName = "Settings", Order = 200)]
+        [Display(Name = "Parameters", GroupName = SystemTabNames.Settings, Order = 200)]
         [CultureSpecific]
         public virtual string Parameters { get; set; }
 
@@ -76,7 +77,7 @@ namespace FEO.CMS.HBG.Core.Blocks.Bases
         [CultureSpecific]
         public virtual ContentReference RibbonColor { get; set; }
 
-        [Display(Name = "Private", GroupName = "Settings", Order = 300)]
+        [Display(Name = "Private", GroupName = SystemTabNames.Settings, Order = 300)]
         [CultureSpecific]
         public virtual bool Private { get; set; }
 
@@ -88,7 +89,7 @@ namespace FEO.CMS.HBG.Core.Blocks.Bases
         [CultureSpecific]
         public virtual string DealCountdownMessage { get; set; }
 
-        [Display(Name = "Redirect URL", GroupName = "Settings", Order = 400)]
+        [Display(Name = "Redirect URL", GroupName = SystemTabNames.Settings, Order = 400)]
         [CultureSpecific]
         public virtual LinkItem RedirectURL { get; set; }
 

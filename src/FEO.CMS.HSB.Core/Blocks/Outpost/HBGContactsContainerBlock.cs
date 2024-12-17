@@ -1,4 +1,5 @@
 using EPiServer.Core;
+using EPiServer.DataAbstraction;
 using EPiServer.DataAnnotations;
 using EPiServer.SpecializedProperties;
 using EPiServer.Web;
@@ -14,7 +15,7 @@ namespace FEO.CMS.HBG.Core.Blocks.Outpost
         [UIHint(UIHint.Image)]
         public virtual ContentReference DesktopBackgroundImage { get; set; }
 
-        [Display(Name = "Contact", GroupName = "Settings", Order = 200)]
+        [Display(Name = "Contact", GroupName = SystemTabNames.Settings, Order = 200)]
         [CultureSpecific]
         public virtual string Contact { get; set; }
 
@@ -23,7 +24,7 @@ namespace FEO.CMS.HBG.Core.Blocks.Outpost
         [UIHint(UIHint.Image)]
         public virtual ContentReference TabletBackgroundImage { get; set; }
 
-        [Display(Name = "Email Address", GroupName = "Settings", Order = 250)]
+        [Display(Name = "Email Address", GroupName = SystemTabNames.Settings, Order = 250)]
         [CultureSpecific]
         public virtual LinkItem EmailAddress { get; set; }
 
@@ -32,12 +33,12 @@ namespace FEO.CMS.HBG.Core.Blocks.Outpost
         [UIHint(UIHint.Image)]
         public virtual ContentReference MobileBackgroundImage { get; set; }
 
-        [Display(Name = "ProposalImage", GroupName = "Settings", Order = 300)]
+        [Display(Name = "ProposalImage", GroupName = SystemTabNames.Settings, Order = 300)]
         [CultureSpecific]
         [UIHint(UIHint.Image)]
         public virtual ContentReference ProposalImage { get; set; }
 
-        [Display(Name = "ContactImage", GroupName = "Settings", Order = 400)]
+        [Display(Name = "ContactImage", GroupName = SystemTabNames.Settings, Order = 400)]
         [CultureSpecific]
         [UIHint(UIHint.Image)]
         public virtual ContentReference ContactImage { get; set; }

@@ -14,16 +14,16 @@ namespace FEO.CMS.HBG.Core.Pages.StayFarEast
         [UIHint(UIHint.Textarea)]
         public virtual XhtmlString CategoryContentOverride { get; set; }
 
-        [Display(Name = "Enable Read More Link", GroupName = "Settings", Order = 100)]
+        [Display(Name = "Enable Read More Link", GroupName = SystemTabNames.Settings, Order = 100)]
         [CultureSpecific]
         public virtual bool EnableReadMoreLink { get; set; }
 
-        [Display(Name = "Main Content", GroupName = "Settings", Order = 200)]
+        [Display(Name = "Main Content", GroupName = SystemTabNames.Settings, Order = 200)]
         [CultureSpecific]
         [UIHint(UIHint.Textarea)]
         public virtual XhtmlString MainContent { get; set; }
 
-        [Display(Name = "Title Content Override", GroupName = "Settings", Order = 300)]
+        [Display(Name = "Title Content Override", GroupName = SystemTabNames.Settings, Order = 300)]
         [CultureSpecific]
         [UIHint(UIHint.Textarea)]
         public virtual XhtmlString TitleContentOverride { get; set; }

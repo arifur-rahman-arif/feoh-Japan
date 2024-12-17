@@ -6,10 +6,10 @@ using System.ComponentModel.DataAnnotations;
 
 namespace FEO.CMS.HBG.Core.Pages.SentosaPrecinct
 {
-    [ContentType(DisplayName = "HBGArticlePage", GUID = "6C217F47-9E2F-4A8C-90D0-40040974BA51", GroupName = "Hospitality")]
-    public class HBGArticlePage : HBGBasePage
+    [ContentType(DisplayName = "SentosaPrecinct HBGArticlePage", GUID = "6C217F47-9E2F-4A8C-90D0-40040974BA51", GroupName = "Hospitality")]
+    public class SentosaPrecinctHBGArticlePage : HBGBasePage
     {
-        [Display(Name = "Is Private", GroupName = "Settings", Order = 100)]
+        [Display(Name = "Is Private", GroupName = SystemTabNames.Settings, Order = 100)]
         [CultureSpecific]
         public virtual bool IsPrivate { get; set; }
 

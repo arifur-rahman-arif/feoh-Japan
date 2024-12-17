@@ -1,4 +1,5 @@
 using EPiServer.Core;
+using EPiServer.DataAbstraction;
 using EPiServer.DataAnnotations;
 using EPiServer.SpecializedProperties;
 using EPiServer.Web;
@@ -9,7 +10,7 @@ namespace FEO.CMS.HBG.Core.Blocks.Bases
     [ContentType(DisplayName = "HBGThumbnailPreviewBlock", GUID = "498D7F44-8DB3-4F19-AFE8-C7E3056D7B57", GroupName = "Hospitality")]
     public class HBGThumbnailPreviewBlock : HBGRootBlock
     {
-        [Display(Name = "Alternate URL", GroupName = "Settings", Order = 100)]
+        [Display(Name = "Alternate URL", GroupName = SystemTabNames.Settings, Order = 100)]
         [CultureSpecific]
         public virtual LinkItem AlternateURL { get; set; }
 

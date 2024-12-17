@@ -1,4 +1,5 @@
 using EPiServer.Core;
+using EPiServer.DataAbstraction;
 using EPiServer.DataAnnotations;
 using EPiServer.SpecializedProperties;
 using EPiServer.Web;
@@ -14,7 +15,7 @@ namespace FEO.CMS.HBG.Core.Blocks.StayFarEast
         [UIHint(UIHint.Image)]
         public virtual ContentReference CertificateOfExcellenceImage { get; set; }
 
-        [Display(Name = "Map URL", GroupName = "Settings", Order = 100)]
+        [Display(Name = "Map URL", GroupName = SystemTabNames.Settings, Order = 100)]
         [CultureSpecific]
         public virtual LinkItem MapURL { get; set; }
 
@@ -23,7 +24,7 @@ namespace FEO.CMS.HBG.Core.Blocks.StayFarEast
         [UIHint(UIHint.Image)]
         public virtual ContentReference FacebookButtonIcon { get; set; }
 
-        [Display(Name = "Max Number Of Deals Displayed", GroupName = "Settings", Order = 200)]
+        [Display(Name = "Max Number Of Deals Displayed", GroupName = SystemTabNames.Settings, Order = 200)]
         [CultureSpecific]
         public virtual double MaxNumberOfDealsDisplayed { get; set; }
 
