@@ -10,7 +10,7 @@ namespace FEO.CMS.HBG.Core.Blocks.Bases
     {
         [Display(Name = "Style Names", GroupName = SystemTabNames.Content, Order = 100)]
         [CultureSpecific]
-        public virtual ContentReference StyleNames { get; set; }
+        public virtual ContentArea StyleNames { get; set; }
     }
 
 }

@@ -53,7 +53,7 @@ namespace FEO.CMS.HBG.Core.Pages.StayFarEast
         [Display(Name = "Cache Control", GroupName = "Response Header Settings", Order = 300)]
         [CultureSpecific]
         public virtual string CacheControl { get; set; }
-        
+
         //BookNowValidation
         [Display(Name = "Please Select", GroupName = "Booking Widget Field Validation", Order = 100)]
         [CultureSpecific]

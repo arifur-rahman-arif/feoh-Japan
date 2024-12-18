@@ -14,7 +14,7 @@
         bgClass = "section-" + ContentLoader.Get<HBGNameValuePairBlock>(Model.BackgroundColor).Value;
     }
 
-    <div class="block-content block-content-quote  @stringClass  @bgClass" @Html.PropertyFor(x=>x.Summary)>
+    <div class="block-content block-content-quote @stringClass @bgClass" @Html.PropertyFor(x=>x.Summary)>
         @Html.PropertyFor(x=>x.Quote)
     </div>
 }

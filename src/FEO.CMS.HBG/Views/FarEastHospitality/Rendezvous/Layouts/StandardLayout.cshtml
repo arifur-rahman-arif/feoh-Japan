@@ -1,0 +1,230 @@
+﻿@model IPageViewModel<HBGBasePage>
+
+@{
+    var currentPage = PageRouteHelper.Page;
+    var rootPageReference = ContentReference.StartPage;
+    var sitePageReference = ContentRepository.Get<PageData>(rootPageReference).ParentLink;
+    var site = ContentRepository.Get<HBGSite>(sitePageReference);
+    ViewData.Add("Model", Model);
+
+    var config = site.WebsiteConfig != null ? ContentLoader.Get<HBGWebsiteConfigBlock>(site.WebsiteConfig) : null;
+    var insiderConfig = site.WebsiteConfig != null ? ContentLoader.Get<HBGInsidersConfigurationBlock>(site.WebsiteConfig) : null;
+    var gtmConfig = site.WebsiteConfig != null ? ContentLoader.Get<HBGGoogleTagManagerBlock>(site.GTMConfig) : null;
+
+    var request = Context.Request;
+    var absoluteUri = string.Concat(
+                request.Scheme,
+                "://",
+                request.Host.ToUriComponent(),
+                request.PathBase.ToUriComponent(),
+                request.Path.ToUriComponent(),
+                request.QueryString.ToUriComponent());
+
+    string SignOutPageRedirect = absoluteUri;
+
+    if (insiderConfig != null && insiderConfig.SignOutPageRedirect != null)
+    {
+        SignOutPageRedirect = Url.ContentUrl(insiderConfig?.SignOutPageRedirect.Href);
+    }
+    string domainName = $"{request.Scheme}://{request.Host}";
+    var timeOut = SessionSetting.Value.TimeoutInMinutes;
+    // var session = Context.Session;
+    // string token = session.GetString(FieldNames.InsidersFieldName.SessionEmail) ?? string.Empty;
+    string token = string.Empty;
+ }
+
+@functions {
+    protected HtmlString RenderTitle()
+    {
+        var model = ViewData["Model"] as View;
+        var title = string.IsNullOrWhiteSpace(Model.CurrentPage.TitleOverride)
+            ? Model.CurrentPage.Title : Model.CurrentPage.TitleOverride;
+
+        return new HtmlString(title);
+    }
+
+}
+
+<!DOCTYPE html>
+<html>
+
+<head>
+    <title>@RenderTitle()</title>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    @if (!string.IsNullOrWhiteSpace(Model.CurrentPage.MetaDescription))
+    {
+        <meta name="description" content="@(Model.CurrentPage.MetaDescription)">
+    }
+    @if (!string.IsNullOrWhiteSpace(Model.CurrentPage.MetaKeywords))
+    {
+        <meta name="keywords" content="@(Model.CurrentPage.MetaKeywords)">
+    }
+   @*  @if (config != null && !string.IsNullOrWhiteSpace(config.FaviconUrl))
+    {
+        <link rel="shortcut icon" href="@config.FaviconUrl">
+    } *@
+    @*Open Graph Implementation*@
+
+    @if (!string.IsNullOrWhiteSpace(Model.CurrentPage.Title))
+    {
+        <meta property="og:title" content="@(Model.CurrentPage.Title)">
+    }
+    @if (!string.IsNullOrWhiteSpace(Model.CurrentPage.MetaDescription))
+    {
+        <meta property="og:description" content="@(Model.CurrentPage.MetaDescription)">
+    }
+    @if (Model.CurrentPage.OpenGraphImage != null)
+    {
+        <meta property="og:image" content="@(domainName+Url.ContentUrl(Model.CurrentPage.OpenGraphImage))">
+        <meta property="og:image:width" content="1200">
+        <meta property="og:image:height" content="630">
+    }
+    @if (!string.IsNullOrWhiteSpace(Model.CurrentPage.CanonicalUrl))
+    {
+        <meta property="og:url" content="@(Model.CurrentPage.CanonicalUrl)">
+    }
+    else
+    {
+        @Html.GetMetaOgUrl()
+    }
+    @if (Model.CurrentPage.OpenGraphType != null)
+    {
+        <meta property="og:type" content="@(Model.CurrentPage.OpenGraphType)">
+    }
+    @Html.Partial(ViewsPath.Hospitality_Shared_BLOCKS_PATH + "/MetaTags/Index.cshtml")
+
+    @*Html.Sitecore().VisitorIdentification()*@
+    <!-- <link href="https://fonts.googleapis.com/css?family=Muli:200,200i,300,300i,400,400i,600,600i,700,700i,800,800i,900,900i&amp;subset=latin-ext,vietnamese" rel="stylesheet"> -->
+
+    <link rel="stylesheet" href="~/assets/hospitality/content/feh-rendezvous-main-style.css" asp-append-version="true" />
+
+    <script src="~/assets/hospitality/scripts/jquery-3.6.0.min.js" asp-append-version="true"></script>
+    <script src="~/assets/hospitality/scripts/jquery-migrate-3.0.1.min.js" asp-append-version="true"></script>
+
+    @* @Html.Sitecore().CanonicalLink() *@
+    <script>
+        function recaptcha_callback() {
+            $(".g-recaptcha").siblings(".field-validation-valid.help-block").hide();
+        }
+    </script>
+    @*<script>
+            (function(w,d,s,l,i){w[l]=w[l]||[];w[l].push({'gtm.start':
+            new Date().getTime(),event:'gtm.js'});var f=d.getElementsByTagName(s)[0],
+            j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
+            'https://www.googletagmanager.com/gtm.js?id='+i+dl;f.parentNode.insertBefore(j,f);
+            })(window,document,'script','dataLayer','GTM-KDNRR98');
+        </script>*@
+    <script src="~/assets/hospitality/scripts/feh-rendezvous-main-style.js" asp-append-version="true"></script>
+    <script src="~/assets/hospitality/scripts/jquery.cookie.js" asp-append-version="true"></script>
+    <script src="~/assets/hospitality/scripts/generic.js" asp-append-version="true"></script>
+
+    <script type="text/javascript">
+            (function () {
+                const userToken = '@token';
+			    if(userToken)
+			    {
+				    const idleDurationSecs = @timeOut;
+				    const redirectUrl = '@SignOutPageRedirect';
+				    let idleTimeout;
+
+				    const resetIdleTimeout = function () {
+					    if (idleTimeout) clearTimeout(idleTimeout);
+					    idleTimeout = setTimeout(() => location.href = redirectUrl, idleDurationSecs * 60000);
+				    };
+				    resetIdleTimeout();
+				    ['click', 'touchstart', 'mousemove'].forEach(evt =>
+					    document.addEventListener(evt, resetIdleTimeout, false)
+				    );
+			    }
+            })();
+    </script>
+    <script type="text/javascript">
+        setTimeout(function () {
+            $.ajax({
+                url: "/api/sitecore/StayFarEastInsiders/PushDataLayer",
+                type: 'POST',
+                cache: false,
+                contentType: false,
+                processData: false,
+                success: function (response) {
+                    if (response != "" && response.userID.length > 0) {
+                        var dataLayer = window.dataLayer = window.dataLayer || [];
+                        dataLayer.push({
+                            "feh": {
+                                'userID': response.userID,
+                                'userIsMember': 'Y',
+                                'birthDay': response.birthday,
+                                'country': response.country
+                            }
+                        });
+                    }
+                }
+            });
+        }, 4000);
+    </script>
+   @*  @{
+        var IsGTMEnabled = false;
+        ISitecoreContext _context = new SitecoreContext();
+        IMvcContext _mvcContext = new MvcContext();
+        IContentProvider _provider = new ContentProvider(_context, _mvcContext);
+        GoogleTagExtension _gtmx = new GoogleTagExtension(_provider);
+        var gtm = _gtmx.GetGTMEnableSite();
+
+    } 
+    @if (gtm != null)
+    {
+        IsGTMEnabled = Convert.ToBoolean(gtm.IsEnabled);
+        if (IsGTMEnabled)
+        {
+            @Html.Raw(gtm.GTMHeadScript);
+        }
+    }*@
+
+<script src="~/assets/hospitality/scripts/special/lazy-load.js"></script>
+</head>
+
+<body class="@(Model.CurrentPage.BodyClassName)">
+    @* @if (Model.CurrentPage.TemplateId == TemplateIds.Home)
+    {
+        if (config != null && !string.IsNullOrWhiteSpace(config.WebsiteSchemaUrl) && !string.IsNullOrWhiteSpace(config.WebsiteSchemaName))
+        {
+            <div itemscope itemtype="https://schema.org/WebSite">
+                <meta itemprop="url" content="@config.WebsiteSchemaUrl" />
+                <meta itemprop="name" content="@config.WebsiteSchemaName" />
+            </div>
+        }
+    }
+
+    @if (gtm != null)
+    {
+        if (IsGTMEnabled)
+        {
+            @Html.Raw(gtm.GTMBodyScript);
+        }
+    } *@
+    @Html.PropertyFor(x => x.Layout.Header)
+    <div class="main-container-wrapper">
+        @RenderBody()
+    </div>
+    @Html.PropertyFor(x => x.Layout.Footer)
+
+   @*  @if (config != null && config.EnableScrollToTop)
+    {
+        <div class="btn-to-top rhw-style" data-back-to-top>
+            <svg xmlns="http://www.w3.org/2000/svg" width="17.414" height="10.123" viewBox="0 0 17.414 10.123">
+                <path id="Path_49147" data-name="Path 49147" d="M0,0,8,8l4-4,4-4" transform="translate(16.707 9.416) rotate(180)" fill="none" stroke="#866531" stroke-width="2" />
+            </svg>
+        </div>
+    } *@
+
+    @RenderSection("FormStyles", required: false)
+    @RenderSection("FormScripts", required: false)
+
+    <script>
+        (function ($) {
+            $(document).ready(function () { setTimeout(function () { $.getScript('https://www.google.com/recaptcha/api.js'); }, 4000); });
+        })(jQuery);
+    </script>
+</body>
+</html>

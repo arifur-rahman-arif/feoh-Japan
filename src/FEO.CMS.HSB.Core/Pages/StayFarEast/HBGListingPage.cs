@@ -1,13 +1,15 @@
 using EPiServer.Core;
+using EPiServer.DataAbstraction;
 using EPiServer.DataAnnotations;
 using EPiServer.SpecializedProperties;
 using EPiServer.Web;
+using FEO.CMS.HBG.Core.Blocks.StayFarEast;
 using System.ComponentModel.DataAnnotations;
 
 namespace FEO.CMS.HBG.Core.Pages.StayFarEast
 {
     [ContentType(DisplayName = "HBGListingPage", GUID = "4580E0BC-9A32-429D-B743-360C678B3718", GroupName = "Hospitality")]
-    public class HBGListingPage : HBGBasePage
+    public class HBGListingPage : HBGListingPreviewPage
     {
         [Display(Name = "Contact Number", GroupName = "Profile", Order = 100)]
         [CultureSpecific]
@@ -74,10 +76,21 @@ namespace FEO.CMS.HBG.Core.Pages.StayFarEast
         [Display(Name = "Hotel Amenities", GroupName = "Trip Advisor", Order = 400)]
         [CultureSpecific]
         public virtual ContentArea HotelAmenities { get; set; }
+        
+        [Display(Name = "BodyAwardsArea", GroupName = SystemTabNames.Content, Description = "body-awards", Order = 200)]
+        [CultureSpecific]
+        public virtual ContentArea BodyAwardsArea { get; set; }
 
         [Display(Name = "Ribbon", GroupName = "Profile", Order = 1000)]
         [CultureSpecific]
         public virtual string Ribbon { get; set; }
-
+        [Ignore]
+        public virtual HBGCountryBlock Country { get; set; }
+        [Ignore]
+        public virtual string MinNightsText { get; set; }
+        [Ignore]
+        public virtual int MinNights { get; set; }
+        [Ignore]
+        public HBGListingConfigBlock Config { get; set; }
     }
 }

@@ -35,7 +35,7 @@
                         @if (!string.IsNullOrEmpty(Model.CurrentPage.DealPromoDate?.ToString()))
                         {
                             <div class="desc">
-                                @Html.PropertyFor(x=>x.CurrentPage.DealPromoDate)
+                                @Html.PropertyFor(x => x.CurrentPage.DealPromoDate)
                             </div>
                         }
 
@@ -67,11 +67,11 @@
                     </div>
                 </div>
                 <div class="col-md-8">
-                    @Html.PropertyFor(x=>x.CurrentPage.MemberMessage)
+                    @Html.PropertyFor(x => x.CurrentPage.MemberRelatedText)
 
                     @if (Model.CurrentPage.Position == null || ContentLoader.Get<HBGNameValuePairBlock>(Model.CurrentPage.Position)?.Value?.ToLower() == "top")
                     {
-                        @Html.PropertyFor(x=>x.CurrentPage.carousel)
+                        @Html.PropertyFor(x => x.CurrentPage.carousel)
                     }
 
                     @if (!string.IsNullOrEmpty(Model.CurrentPage.MainContentArea?.ToString()))
@@ -80,11 +80,11 @@
                             @Html.Raw(Model.CurrentPage.MainContent)
                         </div>
                     }
-                    @if(Model.CurrentPage.Position != null)
+                    @if (Model.CurrentPage.Position != null)
                     {
                         @if (ContentLoader.Get<HBGNameValuePairBlock>(Model.CurrentPage.Position)?.Value?.ToLower() == "bottom")
                         {
-                                @Html.PropertyFor(x=>x.CurrentPage.carousel)
+                            @Html.PropertyFor(x => x.CurrentPage.carousel)
                         }
                     }
                 </div>

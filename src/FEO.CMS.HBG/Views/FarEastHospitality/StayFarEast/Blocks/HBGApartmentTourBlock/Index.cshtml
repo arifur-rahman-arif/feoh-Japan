@@ -1,0 +1,143 @@
+﻿@model HBGApartmentTourBlock
+
+@* @{
+    var config = GetConfig<HighlightContainerConfig>();
+}
+
+@helper RenderButton(HighlightContainerConfig config)
+{
+if (config.UseAsModalButton)
+{
+        <a class="btn btn-primary btn-lg text-center" href="#" data-toggle="modal" data-target="#@(string.IsNullOrWhiteSpace(config.ScrollTo) ? string.Empty : config.ScrollTo)" role="button">@config.ScrollMessage <span class="glyphicon glyphicon-menu-right"></span></a>
+}
+else
+{
+        <a class="btn btn-primary btn-lg text-center scrollto" href="#@(string.IsNullOrWhiteSpace(config.ScrollTo) ? string.Empty : config.ScrollTo)" role="button">@config.ScrollMessage <span class="glyphicon glyphicon-menu-down"></span></a>
+}
+} *@
+
+<!-- INSIDE APARTMENT -->
+<div class="">
+    @* @RazorUtil.JoinCssClass(Model.StyleNames) @(config.HasScrollSettings() ? "pin-duration" : string.Empty) *@
+    @* @if (config.HasScrollSettings())
+    {
+        <div class="text-center pin-bottom hidden-xs">
+            @RenderButton(config)
+        </div>
+    } *@
+
+    <div class="container">
+        <div class="row flex">
+            <div class="col-md-4 col-xs-12 darkestgrey-bg apartment-detail">
+                <div class="section">
+                    <h3>@DictionaryHelper.DictionaryEntry(DictionaryKeys.ApartmentAssetsSummaryLabel, string.Empty)</h3>
+                    <div class="icon">
+                        @if (Model.HBGApartmentPage.FloorplanImage != null && !string.IsNullOrEmpty(Url.ContentUrl(Model.HBGApartmentPage.FloorplanImage)))
+                        {
+                            <a href="#" data-toggle="modal" data-target="#floorplan"><u>@DictionaryHelper.DictionaryEntry(DictionaryKeys.ViewFloorPlanText, string.Empty)</u></a>
+
+                            @:&nbsp;
+                        }
+                        @if (!string.IsNullOrEmpty(Url.ContentUrl(Model.HBGApartmentPage.FloorplanImage)) && !string.IsNullOrWhiteSpace(Model.HBGApartmentPage.TourURL))
+                        {
+                            @DictionaryHelper.DictionaryEntry(DictionaryKeys.TextSeparator, string.Empty)@:&nbsp;
+                            <a href="#" data-toggle="modal" data-target="#view360"><u>@DictionaryHelper.DictionaryEntry(DictionaryKeys.View360Text, string.Empty)</u></a>
+                        }
+                        else if (string.IsNullOrEmpty(Url.ContentUrl(Model.HBGApartmentPage.FloorplanImage)) && !string.IsNullOrWhiteSpace(Model.HBGApartmentPage.TourURL))
+                        {
+                            <a href="#" data-toggle="modal" data-target="#view360"><u>@DictionaryHelper.DictionaryEntry(DictionaryKeys.View360Text, string.Empty)</u></a>
+                        }
+                    </div>
+
+                    @Html.PropertyFor(model => model.HBGApartmentPage.AssetsSummary)
+
+                    <p>
+                        <a href="#" data-toggle="modal" data-target="#residenceMonthlyQuote" class="color-pink"><u>@DictionaryHelper.DictionaryEntry(DictionaryKeys.GetQuoteText, string.Empty)</u></a>
+                    </p>
+
+                </div>
+            </div>
+            <div class="col-md-8 room-section-wrapper">
+                <div class="section">
+                    @if ((Model.HBGApartmentPage.Rooms == null || !Model.HBGApartmentPage.Rooms.Any()) && ContextMode.CurrentMode.EditOrPreview())
+                    {
+                        <h2 class="text-center">Add Rooms</h2>
+                    }
+                    @if (Model.HBGApartmentPage.Rooms.IsNotNullAndAny())
+                    {
+                        foreach (var room in Model.HBGApartmentPage.Rooms)
+                        {
+                            <div class="room-section">
+                                <div class="row">
+                                    <div class="col-md-4">
+                                        <h4>@Html.PropertyFor(model => model.HBGApartmentPage.Title)</h4>
+                                    </div>
+                                    <div class="col-md-8">
+
+                                        @Html.PropertyFor(model => model.HBGApartmentPage.Description)
+
+                                    </div>
+                                </div>
+                            </div>
+                        }
+                    }
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+@* @using (Html.BeginCollectHtml("html-dump"))
+{ *@
+    @if (Model.HBGApartmentPage.FloorplanImage != null && !string.IsNullOrEmpty(Url.ContentUrl(Model.HBGApartmentPage.FloorplanImage)))
+    {
+        <!-- RESIDENCE FLOOR PLAN MODAL -->
+        <div class="modal fade floorplan" id="floorplan" tabindex="-1" role="dialog" aria-labelledby="floorplan" aria-hidden="true">
+            <div class="modal-dialog">
+                <div class="modal-content">
+                    <div class="modal-header">
+                        <button type="button" class="close" data-dismiss="modal" aria-hidden="true">
+                            <a href="#">
+                                <div class="burger-bar open">
+                                    <span></span>
+                                    <span></span>
+                                    <span></span>
+                                    <span></span>
+                                </div>
+                            </a>
+                        </button>
+                    </div>
+                    <div class="modal-body">
+                        @* @StayFarEast.RenderImage(Model, model => model.FloorplanImage, isEditable: true) *@
+                    </div>
+                </div>
+            </div>
+        </div>
+    }
+
+    @if (!string.IsNullOrWhiteSpace(Model.HBGApartmentPage.TourURL))
+    {
+        <!-- RESIDENCE 360 view MODAL -->
+        <div class="modal fade view360" id="view360" tabindex="-1" role="dialog" aria-labelledby="view360" aria-hidden="true">
+            <div class="modal-dialog">
+                <div class="modal-content">
+                    <div class="modal-header">
+                        <button type="button" class="close" data-dismiss="modal" aria-hidden="true">
+                            <a href="#">
+                                <div class="burger-bar open">
+                                    <span></span>
+                                    <span></span>
+                                    <span></span>
+                                    <span></span>
+                                </div>
+                            </a>
+                        </button>
+                    </div>
+                    <div class="modal-body">
+                        <iframe src="@Url.ContentUrl(Model.HBGApartmentPage.TourURL)" width="100%" height="700" frameborder="0" style="border:0" allowfullscreen></iframe>
+                    </div>
+                </div>
+            </div>
+        </div>
+    }
+}

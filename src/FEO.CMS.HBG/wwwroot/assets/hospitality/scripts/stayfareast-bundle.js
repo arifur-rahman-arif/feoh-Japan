@@ -1836,7 +1836,7 @@ $(document).ready(function () {
         margin: 10,
         nav: true,
         dots:true,
-        navText: ["<img loading='lazy' src='/images/left.svg' alt='left'>","<img loading='lazy' src='/images/right.svg' alt='right'>"],
+        navText: ["<img loading='lazy' src='/assets/hospitality/images/left.svg' alt='left'>","<img loading='lazy' src='/assets/hospitality/images/right.svg' alt='right'>"],
         autoplay: false,
         autoplayHoverPause: true,
         responsive: {

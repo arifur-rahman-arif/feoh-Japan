@@ -114,11 +114,12 @@
             @Html.BingLangMeta()
         }
 
+        @Html.Partial(ViewsPath.Hospitality_Shared_BLOCKS_PATH + "/MetaTags/Index.cshtml")
         <link rel="stylesheet" href="~/assets/hospitality/content/vendor-bundle.min.css" asp-append-version="true" />
         <link rel="stylesheet" href="~/assets/hospitality/content/stayfareast-bundle.min.css" asp-append-version="true" />
 
         <script src="~/assets/hospitality/scripts/modernizr.js"></script>
-        <script src="~/assets/hospitality/scripts/mobile-detect"></script>
+        <script src="~/assets/hospitality/scripts/mobile-detect.js"></script>
         <script src="~/assets/hospitality/scripts/vendor-bundle.min.js" asp-append-version="true"></script>
         <script src="~/assets/hospitality/scripts/stayfareast-bundle.min.js" asp-append-version="true"></script>
         <script src="~/assets/hospitality/scripts/generic.js" asp-append-version="true"></script>
@@ -216,7 +217,6 @@
           to improve your experience.</p>
         <![endif]-->
         @Html.PropertyFor(x => x.Layout.Header)
-
         @Html.PropertyFor(x => x.CurrentPage.MainContentArea)
         @RenderBody()
         @Html.PropertyFor(x => x.Layout.Footer)
@@ -233,6 +233,8 @@
         @RenderSection("Scripts", required: false)
         @RenderSection("FormStyles", required: false)
         @RenderSection("FormScripts", required: false)
+        <script src="~/assets/hospitality/scripts/special/destination.js"></script>
+        <required-client-resources area="Footer" />
         <script>
             (function ($) {
                 $(document).ready(function () { setTimeout(function () { $.getScript('https://www.google.com/recaptcha/api.js'); }, 4000); });

@@ -17,6 +17,8 @@ namespace FEO.CMS.HBG.Core.Blocks.StayFarEast
         [Display(Name = "Category Name", GroupName = SystemTabNames.Content, Order = 200)]
         [CultureSpecific]
         public virtual string CategoryName { get; set; }
+        [Ignore]
+        public virtual IEnumerable<HBGHotelAmenityItemBlock> Items { get; set; }
 
     }
 }

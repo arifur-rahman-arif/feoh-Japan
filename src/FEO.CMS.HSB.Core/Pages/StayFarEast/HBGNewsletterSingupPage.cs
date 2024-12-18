@@ -8,7 +8,7 @@ using System.ComponentModel.DataAnnotations;
 namespace FEO.CMS.HBG.Core.Pages.StayFarEast
 {
     [ContentType(DisplayName = "HBGNewsletterSingupPage", GUID = "3C96D2FC-D804-40C6-988B-F12982B650ED", GroupName = "Hospitality")]
-    public class HBGNewsletterSingupPage : HBGBasePage
+    public class HBGNewsletterSignupPage : HBGBasePage
     {
         [Display(Name = "Footer Text", GroupName = SystemTabNames.Content, Order = 100)]
         [CultureSpecific]

@@ -6,7 +6,7 @@ using System.ComponentModel.DataAnnotations;
 
 namespace FEO.CMS.HBG.Core.Pages.StayFarEast
 {
-    [ContentType(DisplayName = "HBGHomePage", GUID = "EA854A69-FFFD-4A07-B178-7AEDFD14BC99", GroupName = "Hospitality")]
+    [ContentType(DisplayName = "HBGHomePage", GUID = "EA854A69-FFFD-4A07-B178-7AEDFD14BC99", GroupName = "Hospitality",Description = "StayFarEast Home")]
     public class HBGHomePage : HBGBasePage
     {
         [Display(Name = "Caption", GroupName = "Content", Order = 100)]
@@ -37,13 +37,18 @@ namespace FEO.CMS.HBG.Core.Pages.StayFarEast
         [CultureSpecific]
         public virtual ContentArea Banner { get; set; }
 
-        [Display(Name = "Position Booking Widget", GroupName = "Settings", Order = 100)]
+        [Display(Name = "Position Booking Widget", GroupName = SystemTabNames.Settings, Order = 100)]
         [CultureSpecific]
         public virtual ContentReference PositionBookingWidget { get; set; }
 
-        [Display(Name = "Background Color", GroupName = "Settings", Order = 200)]
+        [Display(Name = "Background Color", GroupName = SystemTabNames.Settings, Order = 200)]
         [CultureSpecific]
         public virtual ContentReference BackgroundColor { get; set; }
 
+        [Display(GroupName = SystemTabNames.Content, Name = "Banner Content Area", Description = "banner", Order = 100)]
+        public virtual ContentArea BannerContentArea { get; set; }
+
+        [Display(GroupName = SystemTabNames.Content, Name = "Booking Widget Content Area", Description = "booking-widget", Order = 100)]
+        public virtual ContentArea BookingWidgetContentArea { get; set; }
     }
 }

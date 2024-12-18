@@ -1,4 +1,5 @@
 using EPiServer.Core;
+using EPiServer.DataAbstraction;
 using EPiServer.DataAnnotations;
 using EPiServer.SpecializedProperties;
 using EPiServer.Web;
@@ -13,7 +14,7 @@ namespace FEO.CMS.HBG.Core.Blocks.StayFarEast
         [CultureSpecific]
         public virtual ContentArea PropertyListing { get; set; }
 
-        [Display(Name = "Default Sort Filter", GroupName = "Settings", Order = 100)]
+        [Display(Name = "Default Sort Filter", GroupName = SystemTabNames.Settings, Order = 100)]
         [CultureSpecific]
         public virtual ContentReference DefaultSortFilter { get; set; }
 
@@ -30,31 +31,31 @@ namespace FEO.CMS.HBG.Core.Blocks.StayFarEast
         [UIHint(UIHint.Textarea)]
         public virtual XhtmlString HeadingDescription { get; set; }
 
-        [Display(Name = "Price Min", GroupName = "Settings", Order = 200)]
+        [Display(Name = "Price Min", GroupName = SystemTabNames.Settings, Order = 200)]
         [CultureSpecific]
         public virtual double PriceMin { get; set; }
 
-        [Display(Name = "Price Max", GroupName = "Settings", Order = 250)]
+        [Display(Name = "Price Max", GroupName = SystemTabNames.Settings, Order = 250)]
         [CultureSpecific]
         public virtual double PriceMax { get; set; }
 
-        [Display(Name = "Hide Filter", GroupName = "Settings", Order = 300)]
+        [Display(Name = "Hide Filter", GroupName = SystemTabNames.Settings, Order = 300)]
         [CultureSpecific]
         public virtual bool HideFilter { get; set; }
 
-        [Display(Name = "Enable Submit Enquiry CTA", GroupName = "Settings", Order = 400)]
+        [Display(Name = "Enable Submit Enquiry CTA", GroupName = SystemTabNames.Settings, Order = 400)]
         [CultureSpecific]
         public virtual bool EnableSubmitEnquiryCTA { get; set; }
 
-        [Display(Name = "Submit Enquiry Link", GroupName = "Settings", Order = 500)]
+        [Display(Name = "Submit Enquiry Link", GroupName = SystemTabNames.Settings, Order = 500)]
         [CultureSpecific]
         public virtual LinkItem SubmitEnquiryLink { get; set; }
 
-        [Display(Name = "Use As Modal Button", GroupName = "Settings", Order = 600)]
+        [Display(Name = "Use As Modal Button", GroupName = SystemTabNames.Settings, Order = 600)]
         [CultureSpecific]
         public virtual bool UseAsModalButton { get; set; }
 
-        [Display(Name = "Submit Enquiry CTA Id", GroupName = "Settings", Order = 700)]
+        [Display(Name = "Submit Enquiry CTA Id", GroupName = SystemTabNames.Settings, Order = 700)]
         [CultureSpecific]
         public virtual string SubmitEnquiryCTAId { get; set; }
 

@@ -3,12 +3,13 @@ using EPiServer.DataAbstraction;
 using EPiServer.DataAnnotations;
 using EPiServer.SpecializedProperties;
 using EPiServer.Web;
+using FEO.CMS.HBG.Core.Blocks.Bases;
 using System.ComponentModel.DataAnnotations;
 
 namespace FEO.CMS.HBG.Core.Blocks.StayFarEast
 {
     [ContentType(DisplayName = "HBGAmenityBlock", GUID = "E10A0F58-D941-419C-BB0A-CA2E9AFAD5C9", GroupName = "Hospitality")]
-    public class HBGAmenityBlock : HBGBaseBlock
+    public class HBGAmenityBlock : HBGRootBlock
     {
         [Display(Name = "Icon", GroupName = SystemTabNames.Content, Order = 100)]
         [CultureSpecific]

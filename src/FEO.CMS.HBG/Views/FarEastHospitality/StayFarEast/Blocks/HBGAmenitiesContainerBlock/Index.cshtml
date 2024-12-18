@@ -1,0 +1,152 @@
+﻿@using EPiServer.Framework.Web.Resources
+@model HBGAmenitiesContainerBlock
+
+@{
+    var contextLanguage = CultureInfo.CurrentCulture;
+    var content = Model as IContent;
+    var ListingId = content.ContentLink.ID;
+}
+@{
+    var componentId = "commingFromSitecore";
+    int numberOfAmenity = ContentLoader.GetChildren<HBGAmenitiesContainerBlock>(Model.AllAmenities).Count();
+}
+@if(PageRouteHelper.Page is HBGApartmentPage)
+{
+    var currentPage = PageRouteHelper.Page as HBGApartmentPage;
+<div id="@componentId" class="amenities-container__outer">
+    <div class="amenities-container">
+        <div class="row">
+
+            @if ((Model.FeaturedAmenities == null || !Model.FeaturedAmenities.Items.Any()) && ContextMode.CurrentMode.EditOrPreview())
+            {
+                <h2 class="text-center">Add amenities</h2>
+
+            }
+
+            @if (Model.FeaturedAmenities != null && Model.FeaturedAmenities.Items.Any())
+            {
+                var previewCount = 3;
+                var amenities = Model.FeaturedAmenities.Items.Take(previewCount);
+
+                foreach (var item in amenities)
+                {
+                    var amenity = ContentLoader.Get<HBGAmenityBlock>(item.ContentLink);
+                    <div class="col-sm-4">
+                        <div class="amenities-image image-with-txt">
+                            <a href="#" data-toggle="modal" data-target="#@Model.GalleryList.ToString(new CultureInfo("N")).ToUpper()">
+                                <img width="360" height="360" class="lazy-hidden img-lazy-block" data-lazy-type="image" data-lazy-src="@Url.ContentUrl(amenity.Thumbnail)" alt="" />
+                            </a>
+                        </div>
+                        <div class="description">
+                            <h4 class="text-center">@Html.PropertyFor(x => amenity.Title)</h4>
+                            <div class="line-divider pink-line-divider"></div>
+                            <p>
+                                @Html.PropertyFor(x => amenity.Summary)
+                            </p>
+                        </div>
+                    </div>
+                }
+            }
+
+        </div>
+
+        <div class="button-wrapper text-center">
+            @{
+                string gallerBtnText = string.Format("{0} {1} {2}", DictionaryHelper.DictionaryEntry(DictionaryKeys.AmenityShow), numberOfAmenity, numberOfAmenity > 1 ? DictionaryHelper.DictionaryEntry(DictionaryKeys.AmenityItems) : DictionaryHelper.DictionaryEntry(DictionaryKeys.AmenityItem));
+            }
+            <a href="#" class="new-button" data-toggle="modal" data-target="#@Model.GalleryList.ToString(new CultureInfo("N")).ToUpper()">@gallerBtnText</a>
+        </div>
+    </div>
+
+    @if (!Model.HideServicesSection)
+    {
+        <div class="btn-txt text-center color-pink button-wrapper btn-separator darker">
+            <a class="color-pink btn-collapse arrow">
+                @DictionaryHelper.DictionaryEntry(DictionaryKeys.OtherServicesText) <br />
+                <span class="glyphicon glyphicon-menu-up"></span>
+            </a>
+        </div>
+
+        <div class="amenities-list content-collapse our-amenities">
+
+            @{
+                var index = 0;
+                var take = 6;
+            }
+
+            @if (currentPage.Services != null && currentPage.Services.Items.Any())
+            {
+                while (true)
+                {
+                    var skip = index++ * take;
+                    var services = currentPage.Services.Items.Skip(skip).Take(take);
+                    if (!services.Any())
+                    {
+                        break;
+                    }
+
+                    <div class="row">
+                        @foreach (var item in services)
+                        {
+                                var service = ContentLoader.Get<HBGNameValuePairBlock>(item.ContentLink);
+                            <div class="col-md-2 col-sm-4 col-xs-6 amenities-icon">
+                                <div class="icon">
+                                    <span class="@service.Value"></span>
+                                </div>
+                                <p>@Html.PropertyFor(x => service.Name)</p>
+                            </div>
+                        }
+                    </div>
+                }
+            }
+
+        </div>
+    }
+    <!-- GALLERY MODAL -->
+    <div class="modal fade gallery modal-lazy-img" id="@Model.GalleryList.ToString(new CultureInfo("N")).ToUpper()" tabindex="-1" role="dialog" aria-labelledby="gallery" aria-hidden="true" data-lightbox="gallery" data-listing="@ListingId.ToString(new CultureInfo("B")).ToUpper();@Model.GalleryList.ToString(new CultureInfo("B")).ToUpper()">
+        <div class="modal-dialog">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <button type="button" class="close-room-detail btn" data-dismiss="modal" aria-hidden="true">
+                        <a href="#">
+                            <div class="burger-bar open">
+                                <span></span>
+                                <span></span>
+                                <span></span>
+                                <span></span>
+                            </div>
+                        </a>
+                    </button>
+                </div>
+                <input type="hidden" id="contextLanguage" value="@contextLanguage" />
+                <div class="modal-body">
+                    <div class="gallery-carousel">
+                    </div>
+                    <div class="wrap-select-jump-to">
+                        <div class="labelx">@DictionaryHelper.DictionaryEntry(DictionaryKeys.JumpTo)</div>
+                        <div class="select-jump-to">
+                            <div class="title">
+                                <span class="tx" data-text="@DictionaryHelper.DictionaryEntry(DictionaryKeys.SelectItem)">@DictionaryHelper.DictionaryEntry(DictionaryKeys.SelectItem)</span>
+                                <span class="glyphicon glyphicon-menu-down"></span>
+                            </div>
+                            <div class="content">
+                                <ul class="list"></ul>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="content-gallery-wrapper ">
+                    </div>
+
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+@section Scripts 
+{
+    @ClientResources.RequireScript("~/assets/hospitality/scripts/special/amenity.js")
+     @* @<script type="text/javascript" src="https://www.youtube.com/iframe_api"></script>
+     <script async defer src="https://maps.googleapis.com/maps/api/js?key=AIzaSyCuN-khWmLiljZmL0gEaWywgu4E4B0SXJ8"></script> *@
+}
+}

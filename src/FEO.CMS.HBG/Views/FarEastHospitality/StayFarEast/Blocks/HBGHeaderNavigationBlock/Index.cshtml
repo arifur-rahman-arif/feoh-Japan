@@ -1,0 +1,1341 @@
+﻿@model HBGHeaderNavBlock
+
+@{
+    var bookingConfig = Model.SfeBookingConfig;
+    var session = HttpContextAccessor?.HttpContext?.Session;
+    // var popularDestination = (ViewData["PopularDestination"] as Tuple<IEnumerable<PopularDestination>, IEnumerable<PopularDestination>>);
+    // var cities = popularDestination?.Item1;
+    // var properties = popularDestination?.Item2;
+    var listingsJson = ViewData["ListingsJson"] as string;
+    var subNav = ViewData["SubNavigation"] as IEnumerable<HBGNameValuePairBlock>;
+    var viewallhotels = DictionaryHelper.DictionaryEntry(DictionaryKeys.ViewHotelText, string.Empty);
+    var viewallresidences = DictionaryHelper.DictionaryEntry(DictionaryKeys.ViewResidenceText, string.Empty);
+    var BookNowText = DictionaryHelper.DictionaryEntry(DictionaryKeys.BookNowText, string.Empty);
+    var BookNowForMobileText = DictionaryHelper.DictionaryEntry(DictionaryKeys.BookNowForMobileText, string.Empty);
+    var UsrName = session?.GetString(FieldNames.InsidersFieldName.FirstName)?.ToString();
+    // if (Model != null && Model.BookingWidgetData != null && !String.IsNullOrEmpty(Model.BookingWidgetData.BookNowText))
+    // {
+    //     BookNowText = Model.BookingWidgetData.BookNowText;
+    // }
+    // if (Model != null && Model.BookingWidgetData != null && !String.IsNullOrEmpty(Model.BookingWidgetData.BookNowForMobileText))
+    // {
+    //     BookNowForMobileText = Model.BookingWidgetData.BookNowForMobileText;
+    // }
+
+    var CheckAvailabilityText = DictionaryHelper.DictionaryEntry(DictionaryKeys.CheckAvailabilityText, string.Empty);
+    // if (Model != null && Model.BookingWidgetData != null && !String.IsNullOrEmpty(Model.BookingWidgetData.CheckAvailabilityText))
+    // {
+    //     CheckAvailabilityText = Model.BookingWidgetData.CheckAvailabilityText;
+    // }
+
+    string roomNoText = DictionaryHelper.DictionaryEntry(DictionaryKeys.RoomNoText, string.Empty);
+    string removeRoomText = DictionaryHelper.DictionaryEntry(DictionaryKeys.RemoveRoomText, string.Empty);
+    string addAnotherRoomText = DictionaryHelper.DictionaryEntry(DictionaryKeys.AddAnotherRoomText, string.Empty);
+
+    var istestenabled = ViewData["Istestenabled"];
+    // var config = GetConfig<HeaderNavConfig>();
+    string adultstext = "", childrentext = "", adultsdropdowntext = "", childrendropdowntext = "", roomstext = "";
+    int? adults_range_min = 1, children_range_min = 0, default_num_rooms = 0, default_num_adults = 0, default_num_children = 0, number_days_advance = 0, max_num_room = 0;
+    // if (bookingConfig != null)
+    // {
+    //     roomstext = bookingConfig.RoomsText;
+    //     adultstext = bookingConfig.AdultsText;
+    //     childrentext = bookingConfig.ChildrenText;
+    //     adultsdropdowntext = bookingConfig.AdultDropdownText;
+    //     childrendropdowntext = bookingConfig.ChildrenDropdownText;
+    //     default_num_rooms = 1;
+    //     default_num_adults = bookingConfig.DefaultNumberOfAdults;
+    //     default_num_children = bookingConfig.DefaultNumberOfChildren;
+    //     number_days_advance = bookingConfig.NumberOfDaysInAdvance;
+    //     max_num_room = bookingConfig.MaximumNumberOfRooms;
+    // }
+}
+@if (session?.GetString(FieldNames.InsidersFieldName.Token) == null && Model?.ShouldDisplaySignUpPopup == true)
+{
+    <div class="signupnow_pop" data-delay-time="@Model.DelayTime" data-time-on-page="@Model.TimeOnPage" data-display-again-after="@Model.DisplayPopUpAgainAfter" data-cookie="signup">
+        <div class="content">
+            <div class="close_btn"><img loading="lazy" src="/images/closebtn.svg"></div>
+            @Html.Raw(Model?.TextMessage)
+        </div>
+        @if (Model?.SignUpLink != null)
+        {
+            <a class="signupnow_btn" href="@Model.SignUpLink.Href" target="_blank">@Model.SignUpLink.Text</a>
+        }
+    </div>
+}
+else if (session?.GetString(FieldNames.InsidersFieldName.Token) != null && Model?.ShouldDisplayPopupAfterLogin == true)
+{
+    <div class="signupnow_pop" data-delay-time="@Model.SignInDelayTime" data-time-on-page="@Model.SignInTimeOnPage" data-display-again-after="@Model.SignInDisplayPopUpAgainAfter" data-cookie="signin">
+        <div class="content">
+            <div class="close_btn"><img loading="lazy" src="/images/closebtn.svg"></div>
+            @Html.Raw(Model?.SignInTextMessage)
+        </div>
+        @if (Model.SignInPopUpLink != null)
+        {
+            <a class="signupnow_btn" href="@Model.SignInPopUpLink.Href" target="_blank">@Model.SignInPopUpLink.Text</a>
+        }
+    </div>
+}
+
+@if (session?.GetString(FieldNames.InsidersFieldName.Token) != null)
+{
+    <div class="login_notification" data-auto-close="@Model.AutoCloseTime">
+        <div class="content">
+            <div class="close_btn"><img loading="lazy" src="/images/closebtn.svg"></div>
+            @Html.Raw(Model?.MobileLoginText)
+        </div>
+    </div>
+}
+
+
+<nav class="navbar navbar-default header-group-feh">
+    <!-- menu burger bar-->
+    <ul class="nav navbar-nav  menu-burger">
+        <li>
+            <a href="#" title="menu hambuger" aria-label="menu hambuger">
+                <p class="pull-left"></p>
+                <div class="burger-bar">
+                    <span></span>
+                    <span></span>
+                    <span></span>
+                    <span></span>
+                </div>
+            </a>
+        </li>
+    </ul>
+
+    <div class="navbar-wrapper">
+        <div itemscope itemtype="http://schema.org/LocalBusiness" class="navbar-header">
+            @* <div class="desktop-only">
+                <a itemprop="url" class="navbar-brand hidden-xs" href="@Model.LogoUrl.Url" title="@Model.LogoUrl.Title" aria-label="logo desktop">
+                    @StayFarEast.RenderImage(Model, model => model.LogoImage, new { itemprop = "logo" }, isEditable: true, isNotLazy: true)
+                </a>
+            </div>
+            <div class="mobile-only">
+                <a itemprop="url" class="navbar-brand" href="@Model.LogoUrl.Url" title="@Model.LogoUrl.Title" aria-label="logo mobile">
+                    @StayFarEast.RenderImage(Model, model => model.LogoImageForMobile, new { itemprop = "logo" }, isEditable: true, isNotLazy: true)
+                </a>
+            </div> *@
+        </div>
+
+        <ul class="nav navbar-nav navbar-right second-navi">
+            <!-- language dropdown -->
+            @if (!DeviceUtil.IsMobile())
+            {
+                <li class="bk_btn">
+                    <div class="desktop-only">
+                        @* <a id="top-book-now" href="#" class="booking booking-btn book-now-btn" title="Book Hotels & Serviced Residences" data-test-enabled="@(istestenabled)" data-goal-id="@(config != null && config.BookNowGoalItem != null ? config.BookNowGoalItem.Id : default(ID))">@BookNowText</a> *@
+                    </div>
+                    <div class="mobile-only">
+                        @* <a id="top-book-now" href="#" class="booking book-now-btn" data-toggle="modal" data-target="#booknow-widget" data-test-enabled="@(istestenabled)" data-goal-id="@(config != null && config.BookNowGoalItem != null ? config.BookNowGoalItem.Id : default(ID))">@BookNowText</a> *@
+                    </div>
+                </li>
+            }
+            else
+            {
+                <li class="bk_btn">
+                    <div class="desktop-only">
+                        @* <a id="top-book-now" href="#" class="booking booking-btn book-now-btn" title="Book Hotels & Serviced Residences" data-test-enabled="@(istestenabled)" data-goal-id="@(config != null && config.BookNowGoalItem != null ? config.BookNowGoalItem.Id : default(ID))">@BookNowText</a> *@
+                    </div>
+                    <div class="mobile-only">
+                        @* <a id="top-book-now" href="#" class="booking book-now-btn" data-toggle="modal" data-target="#booknow-widget" data-test-enabled="@(istestenabled)" data-goal-id="@(config != null && config.BookNowGoalItem != null ? config.BookNowGoalItem.Id : default(ID))">@BookNowText</a> *@
+                    </div>
+                </li>
+            }
+            <li class="hidden-xs hidden-sm language-selector-li sfe_menu" id="language-selector-li">
+                <select name="sfe-language" id="languageselector" class="form-control language language-selector nav-select" style="display:none;">
+                    @* @if (Model.Languages.IsNotNullAndAny())
+                    {
+                        var currentLanguage = Sitecore.Context.Language;
+                        foreach (var language in Model.Languages)
+                        {
+                            if (language != null && !language.HideLanguage)
+                            {
+                                var selected = language.Language == null || currentLanguage == null ? false :
+                                (language.Language.Name ?? string.Empty).Equals(currentLanguage.Name, StringComparison.InvariantCultureIgnoreCase);
+                                <option value="@(language.Language != null ? language.Language.Name : string.Empty)" @(selected ? "selected" : string.Empty)>@(language.Title ?? "Unknown")</option>
+                            }
+                        }
+                    } *@
+                </select>
+                <a href="#" class="dropdown-toggle selected-ln" data-toggle="dropdown" role="button" aria-expanded="false">
+                    <span class="lan"></span>
+                    <span class="caret"></span>
+                </a>
+                <ul class="dropdown-menu language-selector-ul" role="menu">
+                    @* @if (Model.Languages != null && Model.Languages.IsNotNullAndAny())
+                    {
+                        var currentLanguage = Sitecore.Context.Language;
+                        foreach (var language in Model.Languages)
+                        {
+                            if (language != null && !language.HideLanguage)
+                            {
+                                var selected = language.Language == null || currentLanguage == null ? false :
+                                (language.Language.Name ?? string.Empty).Equals(currentLanguage.Name, StringComparison.InvariantCultureIgnoreCase);
+                                <li language="@(language.Language != null ? language.Language.Name : string.Empty)">
+                                    <a>
+                                        @(language.Title ?? "Unknown")
+                                        @if (language.LanguageIcon != null)
+                                        {
+                                            <span class="lang_img"><img loading="lazy" src="@(language.LanguageIcon?.Src)"></span>
+                                        }
+                                    </a>
+                                </li>
+                            }
+                        }
+                    } *@
+                </ul>
+            </li>
+            @* @if (Model.ShowSignIn)
+            {
+                <!-- synsix sign up UI -->
+                <div class="sx_signup_btn">
+
+                    @if (session?.GetString(FieldNames.InsidersFieldName.Token) == null)
+                    {
+                        <div class="smp_logout"><img loading="lazy" alt="" src="/images/account_user.svg" width="16"><a href="#" data-toggle="modal" data-target="#myModal">@Model.SignInSignUpText</a></div>
+                    }
+
+                    else
+                    {
+
+
+                        <div class="smp_login">
+                            <div class="dropdown">
+                                <button class="btn btn-primary dropdown-toggle" type="button" data-toggle="dropdown">
+
+                                    <img loading="lazy" alt="" src="/images/account_user.svg" width="16">Hi <span class="user-name">@UsrName</span>
+                                    <span class="arrow_btm_top"></span>
+                                </button>
+                                <ul class="dropdown-menu">
+                                    @foreach (var item in Model.NavDropdown)
+                                    {
+                                        if (item.IsSBELink)
+                                        {
+                                            <li> @StayFarEast.RenderLink(item, model => model.MainLink, new { @class = "sbe-login-required", target = "_blank", id = "" }, true)</li>
+                                        }
+                                        else
+                                        {
+                                            <li> @StayFarEast.RenderLink(item, model => model.MainLink, new { @class = "", id = "" }, true)</li>
+                                        }
+
+                                    }
+            <li><a href="#" id="logout" data-loadingbutton-text="@DictionaryHelper.DictionaryEntry(DictionaryKeys.LoadingButtonText, string.Empty)">@DictionaryHelper.DictionaryEntry(DictionaryKeys.InsidersLogOutButton, string.Empty)</a><span class="loading_spinner"> </span></li>
+                                </ul>
+                            </div>
+                            <form id="form-sbe-login-required" method="post" target="_blank" style="display:none">
+                                @if (session?.GetString(FieldNames.InsidersFieldName.Token) != null)
+                                {
+                                    <input type="hidden" name="session" id="session" value="@session?.GetString(FieldNames.InsidersFieldName.Token).ToString()">
+                                }
+                            </form>
+                        </div>
+                    }
+                </div>
+            } *@
+            <!-- synsix sign up UI -->
+            <!-- my booking -->
+            @* @if (Model.HasAnnouncement)
+            {
+                <!-- announcement navigation -->
+                <li class="icon-announcement">
+                    <a href="#" id="announcement-icon">
+                        <img class="icon-open" alt="" src="~/content/images/icon-announcement.png" width="16">
+                        <img class="icon-close" alt="" src="~/content/images/icon-announcement-open.png" width="16">
+                    </a>
+                    <div id="announcement-triangle">
+                        <img loading="lazy" src="~/content/images/icon-triangle.png" width="16" />
+                    </div>
+                </li>
+                <!-- announcement navigation -->
+            }
+            else
+            { *@
+                <!-- announcement navigation -->
+                <li class="icon-announcement" style="background-color:transparent !important">
+                    <a href="#" id="announcement-icon">
+                        &nbsp;
+                    </a>
+                    <div id="announcement-triangle">
+                        &nbsp;
+                    </div>
+                </li>
+                <!-- announcement navigation -->
+            @* } *@
+        </ul>
+    </div>
+
+</nav>
+
+<!-- OPEN / CLOSE MENU -->
+<div class="header-overlay-wrapper">
+    <nav class="navbar navbar-default navbar-popup">
+        <div class="navbar-wrapper">
+            <div itemscope itemtype="http://schema.org/LocalBusiness" class="navbar-header">
+                <div class="desktop-only">
+                    @* <a itemprop="url" class="navbar-brand hidden-xs" href="@Model.LogoUrl.Url" title="@Model.LogoUrl.Title">
+                        @StayFarEast.RenderImage(Model, model => model.LogoImage, new { itemprop = "logo" }, isEditable: true)
+                    </a> *@
+                </div>
+                <div class="mobile-only">
+                    @* <a itemprop="url" class="navbar-brand" href="@Model.LogoUrl.Url" title="@Model.LogoUrl.Title">
+                        @StayFarEast.RenderImage(Model, model => model.LogoImageForMobile, new { itemprop = "logo" }, isEditable: true)
+                    </a> *@
+                </div>
+            </div>
+
+            <ul class="nav navbar-nav navbar-right second-navi">
+                <!-- language dropdown -->
+                @if (!DeviceUtil.IsMobile())
+                {
+                    <li class="bk_btn">
+                        <div class="desktop-only">
+                            @* <a id="top-book-now" href="#" class="booking booking-btn book-now-btn" title="Book Hotels & Serviced Residences" data-test-enabled="@(istestenabled)" data-goal-id="@(config != null && config.BookNowGoalItem != null ? config.BookNowGoalItem.Id : default(ID))">@BookNowText</a> *@
+                        </div>
+                        <div class="mobile-only">
+                            @* <a id="top-book-now" href="#" class="booking book-now-btn" data-test-enabled="@(istestenabled)" data-goal-id="@(config != null && config.BookNowGoalItem != null ? config.BookNowGoalItem.Id : default(ID))" data-toggle="modal" data-target="#booknow-widget">@BookNowText</a> *@
+                        </div>
+                    </li>
+                }
+                else
+                {
+                    <li class="bk_btn">
+                        <div class="desktop-only">
+                            @* <a id="top-book-now" href="#" class="booking booking-btn book-now-btn" title="Book Hotels & Serviced Residences" data-test-enabled="@(istestenabled)" data-goal-id="@(config != null && config.BookNowGoalItem != null ? config.BookNowGoalItem.Id : default(ID))">@BookNowText</a> *@
+                        </div>
+                        <div class="mobile-only">
+                            @* <a id="top-book-now" href="#" class="booking book-now-btn" data-test-enabled="@(istestenabled)" data-goal-id="@(config != null && config.BookNowGoalItem != null ? config.BookNowGoalItem.Id : default(ID))" data-toggle="modal" data-target="#booknow-widget">@BookNowText</a> *@
+                        </div>
+                    </li>
+                }
+                <li class="hidden-xs hidden-sm language-selector-li sfe_menu" id="language-selector-li">
+                    @*@<form method="post">*@
+                    <select name="sfe-language" id="sfe-language" class=" form-control language language-selector nav-select" style="display:none;">
+                        @* @if (Model.Languages.IsNotNullAndAny())
+                        {
+                            var currentLanguage = Sitecore.Context.Language;
+                            foreach (var language in Model.Languages)
+                            {
+                                if (language != null && !language.HideLanguage)
+                                {
+                                    var selected = language.Language == null || currentLanguage == null ? false :
+                                    (language.Language.Name ?? string.Empty).Equals(currentLanguage.Name, StringComparison.InvariantCultureIgnoreCase);
+                                    <option value="@(language.Language != null ? language.Language.Name : string.Empty)" @(selected ? "selected" : string.Empty)>@(language.Title ?? "Unknown")</option>
+                                }
+                            }
+                        } *@
+                    </select>
+                    @* NEW *@
+                    <a href="#" class="dropdown-toggle selected-ln" data-toggle="dropdown" role="button" aria-expanded="false">
+                        <span class="lan"></span>
+                        <span class="caret"></span>
+                    </a>
+                    <ul class="dropdown-menu language-selector-ul" role="menu">
+                        @* @if (Model.Languages != null && Model.Languages.IsNotNullAndAny())
+                        {
+                            var currentLanguage = Sitecore.Context.Language;
+                            foreach (var language in Model.Languages)
+                            {
+                                if (language != null && !language.HideLanguage)
+                                {
+                                    var selected = language.Language == null || currentLanguage == null ? false :
+                                    (language.Language.Name ?? string.Empty).Equals(currentLanguage.Name, StringComparison.InvariantCultureIgnoreCase);
+                                    <li language="@(language.Language != null ? language.Language.Name : string.Empty)">
+                                        <a>
+                                            @(language.Title ?? "Unknown")
+                                            @if (language.LanguageIcon != null)
+                                            {
+                                                <span class="lang_img"><img loading="lazy" src="@(language.LanguageIcon?.Src)"></span>
+                                            }
+                                        </a>
+                                    </li>
+                                }
+                            }
+                        } *@
+                    </ul>
+                </li>
+                @* @if (Model.ShowSignIn)
+                {
+                    <!-- synsix sign up UI -->
+                    <div class="sx_signup_btn">
+
+                        @if (session?.GetString(FieldNames.InsidersFieldName.Token) == null)
+                        {
+                            <div class="smp_logout"><img loading="lazy" alt="" src="/images/account_user.svg" width="16"><a data-toggle="modal" data-target="#myModal">@Model.SignInSignUpText</a></div>
+                        }
+                        else
+                        {
+                            <div class="smp_login">
+                                <div class="dropdown">
+                                    <button class="btn btn-primary dropdown-toggle" type="button" data-toggle="dropdown">
+
+                                        <img loading="lazy" alt="" src="/images/account_user.svg" width="16">Hi <span class="user-name">@UsrName</span>
+                                        <span class="arrow_btm_top"></span>
+                                    </button>
+                                    <ul class="dropdown-menu">
+                                        @foreach (var item in Model.NavDropdown)
+                                        {
+                                            <li> @StayFarEast.RenderLink(item, model => model.MainLink, new { @class = "", id = "" }, true)</li>
+
+                                        }
+                                        <li><a href="#" id="logout" data-loadingbutton-text="@DictionaryHelper.DictionaryEntry(DictionaryKeys.LoadingButtonText, string.Empty)">@DictionaryHelper.DictionaryEntry(DictionaryKeys.InsidersLogOutButton, string.Empty)</a><span class="loading_spinner"> </span></li>
+                                    </ul>
+                                </div>
+                            </div>
+                        }
+                    </div>
+                } *@
+                <!-- synsix sign up UI -->
+                <!-- my booking -->
+                @* @if (Model.HasAnnouncement)
+                {
+                    <!-- announcement navigation -->
+                    <li class="icon-announcement">
+                        <a href="#" id="announcement-icon">
+                            <img loading="lazy" class="icon-open" alt="" src="~/content/images/icon-announcement.png" width="16">
+                            <img loading="lazy" class="icon-close" alt="" src="~/content/images/icon-announcement-open.png" width="16">
+                        </a>
+                        <div id="announcement-triangle">
+                            <img loading="lazy" src="~/content/images/icon-triangle.png" width="16" />
+                        </div>
+                    </li>
+                    <!-- announcement navigation -->
+                }
+                else
+                { *@
+                    <!-- announcement navigation -->
+                    <li class="icon-announcement" style="background-color:transparent !important">
+                        <a href="#" id="announcement-icon">
+                            &nbsp;
+                        </a>
+                        <div id="announcement-triangle">
+                            &nbsp;
+                        </div>
+                    </li>
+                    <!-- announcement navigation -->
+               @*  } *@
+            </ul>
+        </div>
+    </nav>
+    @* NEW MENU 627*@
+    <nav class="overlay_menu_new" id="overlay_menu_new">
+
+        <div class="menu-burger-close">
+            <div class="burger-bar open">
+                <span></span>
+                <span></span>
+                <span></span>
+                <span></span>
+            </div>
+        </div>
+
+        <ul class="menu_listing_new visible-xs ">
+            <!-- synsix sign up UI -->
+            <li class="language-selector-li sfe_menu" id="language-selector-li">
+                <select name="sfe-language" id="languageselector" class="form-control language language-selector nav-select" style="display:none;">
+                    @* @if (Model.Languages.IsNotNullAndAny())
+                    {
+                        var currentLanguage = Sitecore.Context.Language;
+                        foreach (var language in Model.Languages)
+                        {
+                            if (language != null && !language.HideLanguage)
+                            {
+                                var selected = language.Language == null || currentLanguage == null ? false :
+                                (language.Language.Name ?? string.Empty).Equals(currentLanguage.Name, StringComparison.InvariantCultureIgnoreCase);
+                                <option value="@(language.Language != null ? language.Language.Name : string.Empty)" @(selected ? "selected" : string.Empty)>@(language.Title ?? "Unknown")</option>
+                            }
+                        }
+                    } *@
+                </select>
+                <a href="#" class="dropdown-toggle selected-ln" data-toggle="dropdown" role="button" aria-expanded="false">
+                    <span class="lan"></span>
+                    <span class="caret"></span>
+                </a>
+                <ul class="dropdown-menu language-selector-ul" role="menu">
+                    @* @if (Model.Languages != null && Model.Languages.IsNotNullAndAny())
+                    {
+                        var currentLanguage = Sitecore.Context.Language;
+                        foreach (var language in Model.Languages)
+                        {
+                            if (language != null && !language.HideLanguage)
+                            {
+                                var selected = language.Language == null || currentLanguage == null ? false :
+                                (language.Language.Name ?? string.Empty).Equals(currentLanguage.Name, StringComparison.InvariantCultureIgnoreCase);
+                                <li language="@(language.Language != null ? language.Language.Name : string.Empty)">
+                                    <a>
+                                        @(language.Title ?? "Unknown")
+                                        @if (language.LanguageIcon != null)
+                                        {
+                                            <span class="lang_img"><img loading="lazy" src="@(language.LanguageIcon?.Src)"></span>
+                                        }
+                                    </a>
+                                </li>
+                            }
+                        }
+                    } *@
+                </ul>
+            </li>
+            @* @if (Model.ShowSignIn)
+            {
+                <li id="signin_up">
+                    @if (session?.GetString(FieldNames.InsidersFieldName.Token) == null)
+                    {
+                        <p><img loading="lazy" src="/images/user_ins.svg"><a data-toggle="modal" data-target="#myModal">@Model.SignInSignUpText</a></p>
+                    }
+                    else
+                    {
+                        <p><img loading="lazy" src="/images/user_ins.svg">Hi <span class="user-name">@UsrName</span></p>
+                        <ul class="first_level">
+                            <div class="menu_fxd_top">
+                            <li class="backto_home menu_back_btn">
+                                <img loading="lazy" src="~/assets/hospitality/images/wht_arw_lft.svg">
+                                <p>Back</p>
+                            </li>
+                            <p class="hotel_SR_header"><img loading="lazy" src="/images/user_ins.svg">Hi <span class="user-name">@UsrName</span></p>
+        </div>
+
+                            @foreach (var item in Model.NavDropdown)
+                            {
+            <li> @StayFarEast.RenderLink(item, model => model.MainLink, new { @class = "", id = "" }, true)</li>
+
+                            }
+            <li class="logout_last"><a href="#" id="logout" data-loadingbutton-text="@DictionaryHelper.DictionaryEntry(DictionaryKeys.LoadingButtonText, string.Empty)">@DictionaryHelper.DictionaryEntry(DictionaryKeys.InsidersLogOutButton, string.Empty)</a><span class="loading_spinner"> </span></li>
+                                </ul>
+                    }
+                    </li>
+    <div class="overlay_menu_new_divider mt0"></div>
+            } *@
+        </ul>
+
+<ul class="menu_listing_new top">
+    <!-- synsix sign up UI -->
+            @{
+                int i = 0;
+            }
+            @foreach (var item in Model.MenuLinks.Where(lst => (lst?.BottomLink == false)))
+            {
+                if (true)
+                {
+                    @*.MenuLinks.Any()*@
+                    var id = item.CssClass;
+                   @*  bool isDealHasExternalLink = !item.IsDeal || (item.IsDeal && item.DealList.IsNotNullAndAny()) || (item.IsDeal && item.MenuLinks.IsNotNullAndAny() && item.MenuLinks.Where(x => x.MainLink != null && (int)x.MainLink?.Type == 2).IsNotNullAndAny()); *@
+@* 
+                    if (isDealHasExternalLink)
+                    { *@
+                        <li id="menu_@id">
+                    <p>@item.Title</p>
+                    @* <ul class="first_level">
+                        <div class="menu_fxd_top">
+                        <li class="backto_home menu_back_btn">
+                            <img loading="lazy" src="~/assets/hospitality/images/wht_arw_lft.svg">
+                            <p>@Model.BackButtonText</p>
+                        </li>
+                        <p class="hotel_SR_header">@item.Title</p>
+                                    @if (item.SeeAllLink != null && item.SeeAll != null)
+                                    {
+                            <a href="@(item.SeeAllLink.Url)" class="see_all">@item.SeeAllText</a>
+                                    }
+                                    @if (item.Isproperty && item.SortText != string.Empty)
+                                    {
+                            <p class="by_sort">@item.SortText</p>
+                                    }
+                        </div>
+                                @if (item.Isproperty)
+                                {
+                                    if (item.IsBrand)
+                                    {
+                                        if (item.BrandList != null && item.BrandList.Any())
+                                        {
+                                            foreach (var brand in item.BrandList)
+                                            {
+                                        <li>
+                                            <p class="country_name">@brand.Value</p>
+                                            <ul class="second_level second_level_no_filter" id="second_level">
+                                                <div class="menu_fxd_top">
+                                                <li class="backto_first_level menu_back_btn">
+                                                    <img loading="lazy" src="~/assets/hospitality/images/wht_arw_lft.svg">
+                                                    <p>@Model.BackButtonText</p>
+                                                </li>
+
+                                                            @if (item.SeeAllIn != string.Empty)
+                                                            {
+                                                    <a class="see_all" href="@(item.SeeAllLink!=null ?  item.SeeAllLink.Url +"/"+ brand.Key :"")">@item.SeeAllIn @brand.Value</a>
+                                                            }
+                                                <p class="hotel_SR_header">@brand.Value</p>
+                                                </div>
+                                                <div class="sticky_nav_by_alpha">
+                                                            @{
+                                                                IEnumerable<SubColumnMenuLinks> brandList = item.MenuLinks.Where(lst => (lst?.Brand) != null && (lst?.Brand).Equals(brand.Value));
+
+                                                                foreach (var type in item.TypeList)
+                                                                {
+                                                                    IEnumerable<SubColumnMenuLinks> brandListDistinct = brandList.Where(lst => (lst?.Type).Equals(type));
+                                                                    if (brandListDistinct.Any())
+                                                                    {
+                                                                <ul>
+                                                                    <p class="city_header">@type</p>
+                                                                            @foreach (var submenus in brandListDistinct)
+                                                                            {
+                                                                        <li><a href="@(submenus.MainLink != null ? submenus.MainLink.Url : "")" target="@(submenus.MainLink != null ? submenus.MainLink.Target : "")">@submenus.Title, @submenus.Country</a></li>
+                                                                            }
+                                                                </ul>
+                                                                    }
+                                                                }
+                                                            }
+                                                </div>
+                                            </ul>
+                                        </li>
+                                            }
+
+                                        }
+
+                                    }
+
+                                    if (item.CountryList != null && item.CountryList.Any() && item.IsBrand != true)
+                                    {
+
+                                        foreach (var country in item.CountryList)
+                                        {
+                                    <li>
+                                        <p class="country_name">@country</p>
+                                        <ul class="second_level" id="second_level">
+                                            <div class="menu_fxd_top">
+                                            <li class="backto_first_level menu_back_btn">
+                                                <img loading="lazy" src="~/assets/hospitality/images/wht_arw_lft.svg">
+                                                <p>@Model.BackButtonText</p>
+                                            </li>
+                                            <p class="hotel_SR_header">@country</p>
+                                                        @if (item.SeeAllIn != string.Empty)
+                                                        {
+                                                <a class="see_all" href="@(item.SeeAllLink!=null ?  item.SeeAllLink.Url+"?country="+ country:"")">@item.SeeAllIn @country</a>
+                                                        }
+                                            <div class="alpha_menu" id="alpha_menu">
+                                                <a href="#letter_A_@i">A</a>
+                                                <a href="#letter_B_@i">B</a>
+                                                <a href="#letter_C_@i">C</a>
+                                                <a href="#letter_D_@i">D</a>
+                                                <a href="#letter_E_@i">E</a>
+                                                <a href="#letter_F_@i">F</a>
+                                                <a href="#letter_G_@i">G</a>
+                                                <a href="#letter_H_@i">H</a>
+                                                <a href="#letter_I_@i">I</a>
+                                                <a href="#letter_J_@i">J</a>
+                                                <a href="#letter_K_@i">K</a>
+                                                <a href="#letter_L_@i">L</a>
+                                                <a href="#letter_M_@i">M</a>
+                                                <a href="#letter_N_@i">N</a>
+                                                <a href="#letter_O_@i">O</a>
+                                                <a href="#letter_P_@i">P</a>
+                                                <a href="#letter_Q_@i">Q</a>
+                                                <a href="#letter_R_@i">R</a>
+                                                <a href="#letter_S_@i">S</a>
+                                                <a href="#letter_T_@i">T</a>
+                                                <a href="#letter_U_@i">U</a>
+                                                <a href="#letter_V_@i">V</a>
+                                                <a href="#letter_W_@i">W</a>
+                                                <a href="#letter_X_@i">X</a>
+                                                <a href="#letter_Y_@i">Y</a>
+                                                <a href="#letter_Z_@i">Z</a>
+                                            </div>
+                                            </div>
+                                            <div class="sticky_nav_by_alpha">
+                                                        @{
+                                                            List<string> cityListDistinct = new List<string>();
+                                                            IEnumerable<SubColumnMenuLinks> cntryList = item.MenuLinks.Where(lst => (lst?.Country) != null && (lst?.Country).Equals(country));
+                                                            cityListDistinct = cntryList.Select(o => o.City).Distinct().OrderBy(x => x).ToList();
+
+                                                            foreach (var city in cityListDistinct)
+                                                            {
+                                                                if (!string.IsNullOrEmpty(city))
+                                                                {
+                                                                    IEnumerable<SubColumnMenuLinks> cityList = item.MenuLinks.Where(lst => (lst?.City) != null && (lst?.City) != string.Empty && (lst?.City).Equals(city));
+                                                                    var alpha = city.Substring(0, 1);
+                                                                    var ID = "letter_" + alpha + "_" + i;
+                                                            <ul>
+
+                                                                <p id=@ID class="alpha_letter">@alpha</p>
+                                                                <p class="city_header">@city</p>
+                                                                        @foreach (var submenus in cityList)
+                                                                        {
+                                                                    <li><a href="@(submenus.MainLink != null ? submenus.MainLink.Url : "")" target="@(submenus.MainLink != null ? submenus.MainLink.Target : "")">@submenus.Title</a></li>
+                                                                        }
+
+                                                            </ul>
+                                                                }
+                                                            }
+                                                        }
+                                            </div>
+                                        </ul>
+                                    </li>
+                                            i++;
+                                        }
+
+                                    }
+                                }
+                                else if (item.IsDeal)
+                                {
+                                    if (item.DealList.IsNotNullAndAny())
+                                    {
+                                        foreach (var deal in item.DealList)
+                                        {
+                                    <li>
+                                        <a href="@(deal != null ? deal.GetUrl() : "")" target="">@deal.Title</a>
+                                    </li>
+                                        }
+                                    }
+
+                                    if (item.MenuLinks.IsNotNullAndAny())
+                                    {
+                                        foreach (var Submenus in item.MenuLinks.Where(x => x.MainLink != null && (int)x.MainLink?.Type == 2))
+                                        {
+                                            if (!string.IsNullOrEmpty(Submenus.Title) && !string.IsNullOrEmpty(Submenus.MainLink?.Url))
+                                            {
+                                        <li>
+                                            <a href="@(Submenus.MainLink != null ? Submenus.MainLink.Url : "")" target="@(Submenus.MainLink != null ? Submenus.MainLink.Target : "")">@Submenus.Title</a>
+                                        </li>
+                                            }
+                                        }
+                                    }
+                                }
+                                else
+                                {
+                                    foreach (var Submenus in item.MenuLinks)
+                                    {
+                                        if (!string.IsNullOrEmpty(Submenus.Title) && !string.IsNullOrEmpty(Submenus.MainLink?.Url))
+                                        {
+                                    <li><a href="@(Submenus.MainLink != null ? Submenus.MainLink.Url : "")" target="@(Submenus.MainLink != null ? Submenus.MainLink.Target : "")">@Submenus.Title</a></li>
+                                        }
+                                    }
+                                }
+                    </ul> *@
+                </li>
+                    @* } *@
+                }
+                else if (!string.IsNullOrEmpty(item.Title))
+                {
+         @*    <li> <a href="@(item.ReferenceLink != null ? item.ReferenceLink.Url : "")" target="@(item.ReferenceLink != null ? item.ReferenceLink.Target : "")">@item.Title</a></li> *@
+                }
+            }
+
+</ul>
+<div class="overlay_menu_new_divider"></div>
+<ul class="menu_listing_new btm">
+            @foreach (var item in Model.MenuLinks.Where(lst => (lst?.BottomLink == true)))
+            {
+                @* if (item.MenuLinks.Any())
+                { *@
+                    var id = item.CssClass;
+            <li id="menu_@id">
+                <p>@item.Title</p>
+                <ul class="first_level">
+                    <div class="menu_fxd_top">
+                    <li class="backto_home menu_back_btn">
+                            <img loading="lazy" src="~/assets/hospitality/images/wht_arw_lft.svg">
+                        <p>@Model.BackButtonText</p>
+                    </li>
+                    <p class="hotel_SR_header">@item.Title</p>
+                    </div>
+                           @*  @foreach (var Submenus in item.MenuLinks)
+                            {
+                                if (!string.IsNullOrEmpty(Submenus.Title) && !string.IsNullOrEmpty(Submenus.MainLink.Url))
+                                {
+                            <li><a href="@(Submenus.MainLink != null ? Submenus.MainLink.Url : "")" target="@(Submenus.MainLink != null ? Submenus.MainLink.Target : "")">@Submenus.Title</a></li>
+                                }
+                            } *@
+                </ul>
+            </li>
+               @*  }
+                else if (!string.IsNullOrEmpty(item.Title))
+                {
+            <li> <a href="@(item.ReferenceLink != null ? item.ReferenceLink.Url : "")" target="@(item.ReferenceLink != null ? item.ReferenceLink.Target : "")">@item.Title</a></li>
+                } *@
+            }
+</ul>
+<div class="LPO_add">
+            @if (Model.LpoImage != null)
+            {
+        <img width="532" height="375" class="lazy-hidden-event img-lazy-block" data-lazy-type="image" data-lazy-src="@Url.ContentUrl(Model.LpoImage)" alt="@Model.LpoImage" />
+            }
+
+    <a href="@(Model.LpoUrl != null ? Model.LpoUrl.Href : "")">
+        <div class="LPO_content">
+            <div class="LPO_txt">
+                <h3>@Model.LpoTitle</h3>
+                <p> @Html.Raw(Model.LpoDescription)</p>
+            </div>
+            <img loading="lazy" src="~/assets/hospitality/images/wht_arw_rgt.svg" alt="lpo">
+        </div>
+    </a>
+</div>
+    </nav>
+    @* NEW MENU 627*@
+</div>
+@* @if (Model.HasPromotionBar)
+{
+    <div id="alert-bar" class="promotion-bar" style="background-color:@Glass.Editable(Model.PromotionBar, model => model.BackgroundColor != null && model.BackgroundColor != "" ? model.BackgroundColor : "#19b783") !important" data-bgcolor="@Glass.Editable(Model.PromotionBar, model => model.BackgroundColor != null && model.BackgroundColor != "" ? model.BackgroundColor : "#19b783")">
+        @*<p>
+        @* @Glass.Editable(Model.PromotionBar, model => model.MainContent) 
+        @*</p>
+        <button class="promotion-close">
+            <div class="burger-bar open">
+                <span></span>
+                <span></span>
+                <span></span>
+                <span></span>
+            </div>
+        </button>
+    </div>
+} *@
+
+
+@* @if (Model.HasAnnouncement)
+{
+    <!-- announcement blade -->
+    if (Model.HasPromotionBar)
+    {
+        <div id="announcement-container" class="announcement-widget" style="display:none !important">
+            <button class="announcement-close">
+                <div class="burger-bar open">
+                    <span></span>
+                    <span></span>
+                    <span></span>
+                    <span></span>
+                </div>
+            </button>
+            @Glass.Editable(Model.Announcement, model => model.MainContent)
+        </div>
+    }
+    else
+    {
+        <div id="announcement-container" class="announcement-widget">
+            <button class="announcement-close">
+                <div class="burger-bar open">
+                    <span></span>
+                    <span></span>
+                    <span></span>
+                    <span></span>
+                </div>
+            </button>
+            @Glass.Editable(Model.Announcement, model => model.MainContent)
+        </div>
+    }
+    <!-- announcement blade -->
+} *@
+
+<div class="desktop-only">
+    <div class="widget hidden-xs hidden-sm pin only_desk">
+        <div class="grey-bg">
+            <input type="hidden" class="mindays" name="mindays" value="0">
+
+            <form class="widget-form hidden-xs hidden-sm desktop-bookng-widget new-form-booking new-form-booking-desktop" data-maxroom="@(max_num_room != null && max_num_room != 0 ? max_num_room : 1)" target="_blank" id="header-booknow-widget" method="post" data-days-advance="@number_days_advance" data-time-on-page="(bookingConfig.PropertyListingPage?.Url)" data-singularpropertytext="@DictionaryHelper.DictionaryEntry(DictionaryKeys.BookingSingularPropertyText, string.Empty)" data-pluralpropertytext="@DictionaryHelper.DictionaryEntry(DictionaryKeys.BookingPluralPropertyText, string.Empty)" data-countrytext="@DictionaryHelper.DictionaryEntry(DictionaryKeys.BookingCountriesText, string.Empty)" data-citytext="@DictionaryHelper.DictionaryEntry(DictionaryKeys.BookingCitiesText, string.Empty)" data-propertytext="@DictionaryHelper.DictionaryEntry(DictionaryKeys.BookingPropertiesText, string.Empty)" data-noresultmatchedtext="@DictionaryHelper.DictionaryEntry(DictionaryKeys.BookingNoResultsMatchedText, string.Empty)">
+                <input type="hidden" class="mindays" name="mindays" value="0">
+                @* <input type="hidden" class="pleaseselect" id="pleaseselect" value="@Model.ValidationMessage.PleaseSelect">
+                <input type="hidden" class="checkin" id="checkin" value="@Model.ValidationMessage.CheckInDate">
+                <input type="hidden" class="checkout" id="checkout" value="@Model.ValidationMessage.CheckOutDate">
+                <input type="hidden" class="property" id="property" value="@Model.ValidationMessage.Property"> *@
+                @if (session?.GetString(FieldNames.InsidersFieldName.Token) != null)
+                {
+                    <input type="hidden" name="session" id="session" value="@session?.GetString(FieldNames.InsidersFieldName.Token).ToString()">
+                }
+
+                <div class="row top-row">
+                    <div class="col-md-5 col-sm-5 input-group-l new-search-control new-search-widget">
+                        <input id="search-widget" class="search-booking input-lg form-control" type="text" placeholder="@DictionaryHelper.DictionaryEntry(DictionaryKeys.BookingDestinationText, string.Empty)" aria-autocomplete="none" autocomplete="off" aria-haspopup="true" aria-expanded="false" style="width: 100%;" page="(bookingConfig.PropertyListingPage?.Url)" target="(bookingConfig.PropertyListingPage?.Target)">
+                        <div class="inputSearch-close">&nbsp;</div>
+                        <div id="suggestion-container-widget" class="suggestion-container" aria-live="polite">
+                        </div>
+                        <div class="popular-suggestion popular-suggestion-widget" aria-live="polite">
+                            @* @if (cities.IsNotNullAndAny())
+                            {
+                                <div class="suggestion-category">@DictionaryHelper.DictionaryEntry(DictionaryKeys.BookingPopularCitiesText, string.Empty)</div>
+                                foreach (var city in cities)
+                                {
+                                    <div class="suggestion-item" data-type="city" data-title="@city.Title" data-code="@city.Code" data-total="@city.Total" data-mindays="@city.Mindays" data-mindaytext="@city.MindayText" data-maxnoofpax="@city.MaxNoOfPax" data-minnoofadults="@city.MinNoOfAdults" data-minnoofchildren="@city.MinNoOfChildren" data-maxnoofguests="@city.MaxNoOfGuests" data-propertynote="@city.PropertyNote" data-propertynotecolor="@city.PropertyNoteColor">
+                                        @($"{city.Title} ({city.Total} {(city.Total > 1 ? DictionaryHelper.DictionaryEntry(DictionaryKeys.BookingPluralPropertyText, string.Empty) : DictionaryHelper.DictionaryEntry(DictionaryKeys.BookingSingularPropertyText, string.Empty))})")
+                                    </div>
+                                }
+                            } *@
+
+                            @* @if (properties.IsNotNullAndAny())
+                            {
+                                <div class="suggestion-category">@DictionaryHelper.DictionaryEntry(DictionaryKeys.BookingPopularPropertiesText, string.Empty)</div>
+                                foreach (var property in properties)
+                                {
+                                    <div class="suggestion-item" data-type="property" data-title="@property.Title" data-id="@property.Id" data-mindays="@property.Mindays" data-mindaytext="@property.MindayText" data-maxnoofpax="@property.MaxNoOfPax" data-minnoofadults="@property.MinNoOfAdults" data-minnoofchildren="@property.MinNoOfChildren" data-maxnoofguests="@property.MaxNoOfGuests" data-propertynote="@property.PropertyNote" data-propertynotecolor="@property.PropertyNoteColor">
+                                        @property.Title
+                                    </div>
+                                }
+                            } *@
+                        </div>
+                    </div>
+
+                    <div class="col-md-2 col-sm-2 width-15">
+                        <input type="text" class="input-md form-control checkin-date desktop datepicker" id="widget-checkin" readonly="true" name="check-in" placeholder="@DictionaryHelper.DictionaryEntry(DictionaryKeys.CheckInDateInputPlaceholder, string.Empty)" />
+                        <span class="glyphicon glyphicon-calendar"></span>
+                    </div>
+
+                    <div class="col-md-2 col-sm-2 width-15-ipad">
+                        <input type="text" class="input-md form-control checkout-date desktop datepicker" id="widget-checkout" readonly="true" name="check-out" placeholder="@DictionaryHelper.DictionaryEntry(DictionaryKeys.CheckOutDateInputPlaceholder, string.Empty)" />
+                        <span class="glyphicon glyphicon-calendar"></span>
+                    </div>
+                    <div class="col-md-3 col-sm-3 width-22">
+
+                        <div class="add-adult-child-dropdown opacity">
+                            <div class="title-adult-child">
+                                <div class="display-adult-child">
+                                    <text class="room">1</text> @roomstext,
+                                    <text class="adults">@(default_num_adults != null ? default_num_adults : 1)</text> @adultstext,
+                                    <text class="children">@(default_num_children != null ? default_num_children : 0)</text> @childrentext
+                                </div>
+                                <div class="chevron-down">
+                                    <svg xmlns="http://www.w3.org/2000/svg" width="16.971" height="16.971" viewBox="0 0 16.971 16.971">
+                                        <path d="M10,11a1,1,0,0,1-1-1V1H0A1,1,0,0,1-1,0,1,1,0,0,1,0-1H11V10A1,1,0,0,1,10,11Z" transform="translate(15.556 8.485) rotate(135)" />
+                                    </svg>
+                                </div>
+                                <div class="value-submit-adult-child">
+                                    <text class="adults">@(default_num_adults != null ? default_num_adults : 1)</text>
+                                    <text class="childrens">@(default_num_children != null ? default_num_children : 0)</text>
+                                </div>
+                            </div>
+                            <div class="content-dropdown">
+                                <div class="inner">
+                                    <div class="content-desc">
+                                        <div class="note-guest"></div>
+                                    </div>
+
+                                    <div class="list-rooms">
+                                        <div class="item-rooms first" data-defaultadults="@(default_num_adults != null ? default_num_adults : 1)" data-defaultchildren="@(default_num_children != null ? default_num_children : 0)">
+                                            <div class="title-room" data-text="@removeRoomText">
+                                                <div class="text">@roomNoText <span class="count"></span></div>
+                                            </div>
+                                            <ul class="ul-rooms widget-ul-rooms">
+                                                <li class="guest-blocks adults-block">
+                                                    <span class="add-less-guest minus-guest ">
+                                                        <svg xmlns="http://www.w3.org/2000/svg" width="18" height="18" viewBox="0 0 18 18">
+                                                            <circle id="Ellipse_286" data-name="Ellipse 286" cx="9" cy="9" r="9" />
+                                                            <g id="Group_126009" data-name="Group 126009" transform="translate(4 8.444)">
+                                                                <rect id="Rectangle_3498" data-name="Rectangle 3498" width="2" height="10" transform="translate(10) rotate(90)" fill="#fff" />
+                                                            </g>
+                                                        </svg>
+                                                    </span>
+                                                    <div class="guest-selected">
+                                                        <span class="guest-number adults-number">@(default_num_adults != null ? default_num_adults : 1)</span>
+                                                        <span class="">@adultsdropdowntext</span>
+                                                    </div>
+                                                    <span class="add-less-guest plus-guest ">
+                                                        <svg xmlns="http://www.w3.org/2000/svg" width="18" height="18" viewBox="0 0 18 18">
+                                                            <g id="Group_126133" data-name="Group 126133">
+                                                                <circle id="Ellipse_287" data-name="Ellipse 287" cx="9" cy="9" r="9" />
+                                                                <g id="Group_126010" data-name="Group 126010" transform="translate(4 4)">
+                                                                    <rect id="Rectangle_3497" data-name="Rectangle 3497" width="2" height="10" transform="translate(3.999)" fill="#fff" />
+                                                                    <rect id="Rectangle_3498" data-name="Rectangle 3498" width="2" height="10" transform="translate(10 4.444) rotate(90)" fill="#fff" />
+                                                                </g>
+                                                            </g>
+                                                        </svg>
+                                                    </span>
+
+                                                </li>
+                                                <li class="guest-blocks children-block">
+                                                    <span class="add-less-guest minus-guest ">
+                                                        <svg xmlns="http://www.w3.org/2000/svg" width="18" height="18" viewBox="0 0 18 18">
+                                                            <circle id="Ellipse_286" data-name="Ellipse 286" cx="9" cy="9" r="9" />
+                                                            <g id="Group_126009" data-name="Group 126009" transform="translate(4 8.444)">
+                                                                <rect id="Rectangle_3498" data-name="Rectangle 3498" width="2" height="10" transform="translate(10) rotate(90)" fill="#fff" />
+                                                            </g>
+                                                        </svg>
+                                                    </span>
+                                                    <div class="guest-selected">
+                                                        <span class="guest-number children-number">@(default_num_children != null ? default_num_children : 0)</span>
+                                                        <span class="">@childrendropdowntext</span>
+                                                    </div>
+                                                    <span class="add-less-guest plus-guest ">
+                                                        <svg xmlns="http://www.w3.org/2000/svg" width="18" height="18" viewBox="0 0 18 18">
+                                                            <g id="Group_126133" data-name="Group 126133">
+                                                                <circle id="Ellipse_287" data-name="Ellipse 287" cx="9" cy="9" r="9" />
+                                                                <g id="Group_126010" data-name="Group 126010" transform="translate(4 4)">
+                                                                    <rect id="Rectangle_3497" data-name="Rectangle 3497" width="2" height="10" transform="translate(3.999)" fill="#fff" />
+                                                                    <rect id="Rectangle_3498" data-name="Rectangle 3498" width="2" height="10" transform="translate(10 4.444) rotate(90)" fill="#fff" />
+                                                                </g>
+                                                            </g>
+                                                        </svg>
+                                                    </span>
+                                                </li>
+                                            </ul>
+                                        </div>
+                                    </div>
+
+
+                                    <div class="bottom-action">
+                                        @if (max_num_room != null && max_num_room > 1)
+                                        {
+                                            <div class="add-more-room">
+                                                @addAnotherRoomText
+                                            </div>
+                                        }
+                                    </div>
+                                </div>
+
+
+                            </div>
+
+                        </div>
+
+                    </div>
+
+                    <div class="col-lg-1 col-md-1 col-sm-1 width-16-check-avail newbtnright">
+                       @*  <button class="btn-submit text-uppercase check-availability-btn" type="submit" name="call-booking" data-test-enabled="@(istestenabled)" data-goal-id="@(config != null && config.CTAGoalItem != null ? config.CTAGoalItem.Id : default(ID))">@CheckAvailabilityText</button> *@
+                        <p class="sfeclosebtn">X</p>
+                    </div>
+                </div>
+                <div class="shownote"></div>
+                <div class="error-placement"></div>
+                <div class="row">
+                    <div class="col-lg-2 col-md-3 col-sm-3 promocode-wrapper">
+                        <div class="promo-wrapper">
+                            <div class="promocode-container grey-bg">
+                                <a class="promo label">@DictionaryHelper.DictionaryEntry(DictionaryKeys.IataLabel, string.Empty)</a>
+                                <div class="input-wrapper">
+                                    <input type="text" class="input-md form-control promocode" id="promocode" name="iata" placeholder="@DictionaryHelper.DictionaryEntry(DictionaryKeys.IataInputPlaceholder, string.Empty)" />
+                                    <a href="#" class="promo close-btn">X</a>
+                                </div>
+                               @*  @if (Model.SfeBookingConfig?.ReservationLink != null)
+                                {
+                                    <div><a href="@Model.SfeBookingConfig.ReservationLink.Url" class="label reservation-link">@DictionaryHelper.DictionaryEntry(DictionaryKeys.FindMyBooking, string.Empty)</a></div>
+                                } *@
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </form>
+            <input type="hidden" class="hiddenadults" name="adults" value="@(default_num_adults != null ? default_num_adults : 1)" />
+            <input type="hidden" class="hiddenchildren" name="children" value="@(default_num_children != null ? default_num_children : 0)" />
+            <input type="hidden" class="hiddendefaultAdults" name="defaultAdults" value="@(default_num_adults != null ? default_num_adults : 1)" />
+            <input type="hidden" class="hiddendefaultChildren" name="defaultChildren" value="@(default_num_children != null ? default_num_children : 0)" />
+        </div>
+    </div>
+</div>
+
+
+@* @using (Html.BeginCollectHtml("html-dump"))
+{ *@
+    <div class="mobile-only">
+        <!-- BOOK NOW WIDGET MODAL -->
+        <div class="modal fade booknow-widget" id="booknow-widget" tabindex="-1" role="dialog" aria-labelledby="booknow-widget" aria-hidden="true">
+            <div class="modal-dialog">
+                <div class="modal-content">
+                    <div class="modal-header">
+                        <h4 class="text-center">@BookNowText</h4>
+                        <button type="button" class="close" data-dismiss="modal" aria-hidden="true">
+                            <a href="#" title="menu burger" aria-label="menu burger">
+                                <div class="burger-bar open">
+                                    <span></span>
+                                    <span></span>
+                                    <span></span>
+                                    <span></span>
+                                </div>
+                            </a>
+                        </button>
+                    </div>
+                    <div class="modal-body">
+                        <input type="hidden" class="mindays" name="mindays" value="0">
+
+                        <form class="widget-form form-modal mobile-bookng-widget new-form-booking new-form-booking-mobile" data-maxroom="@(max_num_room != null && max_num_room != 0 ? max_num_room : 1)" target="_blank" id="header-mobile-booknow-widget" method="POST" data-days-advance="@number_days_advance" data-time-on-page="(bookingConfig.PropertyListingPage?.Url)" data-singularpropertytext="@DictionaryHelper.DictionaryEntry(DictionaryKeys.BookingSingularPropertyText, string.Empty)" data-pluralpropertytext="@DictionaryHelper.DictionaryEntry(DictionaryKeys.BookingPluralPropertyText, string.Empty)" data-countrytext="@DictionaryHelper.DictionaryEntry(DictionaryKeys.BookingCountriesText, string.Empty)" data-citytext="@DictionaryHelper.DictionaryEntry(DictionaryKeys.BookingCitiesText, string.Empty)" data-propertytext="@DictionaryHelper.DictionaryEntry(DictionaryKeys.BookingPropertiesText, string.Empty)" data-noresultmatchedtext="@DictionaryHelper.DictionaryEntry(DictionaryKeys.BookingNoResultsMatchedText, string.Empty)">
+                            @if (session?.GetString(FieldNames.InsidersFieldName.Token) != null)
+                            {
+                                <input type="hidden" name="session" id="session" value="@session?.GetString(FieldNames.InsidersFieldName.Token).ToString()">
+                            }
+
+                            <div class="row">
+                                <div class="col-xs-12">
+                                    <div class="form-group input-group-lg new-search-control new-search-mobile">
+                                       @*  <input id="search-mobile" class="search-booking input-lg form-control mobile" type="text" placeholder="@DictionaryHelper.DictionaryEntry(DictionaryKeys.BookingDestinationText, string.Empty)" aria-autocomplete="none" autocomplete="off" aria-haspopup="true" aria-expanded="false" style="width: 100%;" page="@(bookingConfig.PropertyListingPage?.Url)" target="@(bookingConfig.PropertyListingPage?.Target)"> *@
+                                        <div class="inputSearch-close">&nbsp;</div>
+                                        <div id="suggestion-container-mobile" class="suggestion-container" aria-live="polite"></div>
+                                        <div class="popular-suggestion popular-suggestion-mobile" aria-live="polite">
+                                            @* @if (cities.IsNotNullAndAny())
+                                            {
+                                                <div class="suggestion-category">@DictionaryHelper.DictionaryEntry(DictionaryKeys.BookingPopularCitiesText, string.Empty)</div>
+                                                foreach (var city in cities)
+                                                {
+                                                    <div class="suggestion-item" data-type="city" data-title="@city.Title" data-code="@city.Code" data-total="@city.Total" data-mindays="@city.Mindays" data-mindaytext="@city.MindayText" data-maxnoofpax="@city.MaxNoOfPax" data-minnoofadults="@city.MinNoOfAdults" data-minnoofchildren="@city.MinNoOfChildren" data-maxnoofguests="@city.MaxNoOfGuests" data-propertynote="@city.PropertyNote" data-propertynotecolor="@city.PropertyNoteColor">
+                                                        @($"{city.Title} ({city.Total} {(city.Total > 1 ? DictionaryHelper.DictionaryEntry(DictionaryKeys.BookingPluralPropertyText, string.Empty) : DictionaryHelper.DictionaryEntry(DictionaryKeys.BookingSingularPropertyText, string.Empty))})")
+                                                    </div>
+                                                }
+                                            } *@
+
+                                            @* @if (properties.IsNotNullAndAny())
+                                            {
+                                                <div class="suggestion-category">@DictionaryHelper.DictionaryEntry(DictionaryKeys.BookingPopularPropertiesText, string.Empty)</div>
+                                                foreach (var property in properties)
+                                                {
+                                                    <div class="suggestion-item" data-type="property" data-title="@property.Title" data-id="@property.Id" data-mindays="@property.Mindays" data-mindaytext="@property.MindayText" data-maxnoofpax="@property.MaxNoOfPax" data-minnoofadults="@property.MinNoOfAdults" data-minnoofchildren="@property.MinNoOfChildren" data-maxnoofguests="@property.MaxNoOfGuests" data-propertynote="@property.PropertyNote" data-propertynotecolor="@property.PropertyNoteColor">
+                                                        @property.Title
+                                                    </div>
+                                                }
+                                            } *@
+                                        </div>
+                                        <div class="shownote"></div>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="row">
+                                <div class="col-xs-6">
+                                    <div class="form-group input-group-lg">
+                                        <input type="text" readonly="true" class="input-lg form-control checkin-date mobile datepicker" id="widget-mobile-checkin" name="check-in" placeholder="@DictionaryHelper.DictionaryEntry(DictionaryKeys.CheckInDateInputPlaceholder, string.Empty)" />
+                                    </div>
+                                </div>
+                                <div class="col-xs-6">
+                                    <div class="form-group input-group-lg">
+                                        <input type="text" readonly="true" class="input-lg form-control checkout-date mobile datepicker" id="widget-mobile-checkout" name="check-out" placeholder="@DictionaryHelper.DictionaryEntry(DictionaryKeys.CheckOutDateInputPlaceholder, string.Empty)" />
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="row">
+                                <div class="col-xs-12 col-sm-6">
+                                    <div class="add-adult-child-dropdown opacity">
+                                        <div class="title-adult-child">
+                                            <div class="display-adult-child">
+                                                <text class="room">1</text> @roomstext,
+                                                <text class="adults">@(default_num_adults != null ? default_num_adults : 1)</text> @adultstext,
+                                                <text class="children">@(default_num_children != null ? default_num_children : 0)</text> @childrentext
+                                            </div>
+                                            <div class="chevron-down">
+                                                <svg xmlns="http://www.w3.org/2000/svg" width="16.971" height="16.971" viewBox="0 0 16.971 16.971">
+                                                    <path d="M10,11a1,1,0,0,1-1-1V1H0A1,1,0,0,1-1,0,1,1,0,0,1,0-1H11V10A1,1,0,0,1,10,11Z" transform="translate(15.556 8.485) rotate(135)" />
+                                                </svg>
+                                            </div>
+                                            <div class="value-submit-adult-child">
+                                                <text class="adults">@(default_num_adults != null ? default_num_adults : 1)</text>
+                                                <text class="childrens">@(default_num_children != null ? default_num_children : 0)</text>
+                                            </div>
+                                        </div>
+                                        <div class="content-dropdown">
+                                            <div class="inner">
+                                                <div class="content-desc">
+                                                    <div class="note-guest"></div>
+                                                </div>
+
+                                                <div class="list-rooms">
+                                                    <div class="item-rooms first" data-defaultadults="@(default_num_adults != null ? default_num_adults : 1)" data-defaultchildren="@(default_num_children != null ? default_num_children : 0)">
+                                                        <div class="title-room" data-text="@removeRoomText">
+                                                            <div class="text">@roomNoText <span class="count"></span></div>
+                                                        </div>
+                                                        <ul class="ul-rooms mobile-ul-rooms">
+                                                            <li class="guest-blocks adults-block">
+                                                                <span class="add-less-guest minus-guest ">
+                                                                    <svg xmlns="http://www.w3.org/2000/svg" width="18" height="18" viewBox="0 0 18 18">
+                                                                        <circle id="Ellipse_286" data-name="Ellipse 286" cx="9" cy="9" r="9" />
+                                                                        <g id="Group_126009" data-name="Group 126009" transform="translate(4 8.444)">
+                                                                            <rect id="Rectangle_3498" data-name="Rectangle 3498" width="2" height="10" transform="translate(10) rotate(90)" fill="#fff" />
+                                                                        </g>
+                                                                    </svg>
+                                                                </span>
+                                                                <div class="guest-selected">
+                                                                    <span class="guest-number adults-number">@(default_num_adults != null ? default_num_adults : 1)</span>
+                                                                    <span class="">@adultsdropdowntext</span>
+                                                                </div>
+                                                                <span class="add-less-guest plus-guest ">
+                                                                    <svg xmlns="http://www.w3.org/2000/svg" width="18" height="18" viewBox="0 0 18 18">
+                                                                        <g id="Group_126133" data-name="Group 126133">
+                                                                            <circle id="Ellipse_287" data-name="Ellipse 287" cx="9" cy="9" r="9" />
+                                                                            <g id="Group_126010" data-name="Group 126010" transform="translate(4 4)">
+                                                                                <rect id="Rectangle_3497" data-name="Rectangle 3497" width="2" height="10" transform="translate(3.999)" fill="#fff" />
+                                                                                <rect id="Rectangle_3498" data-name="Rectangle 3498" width="2" height="10" transform="translate(10 4.444) rotate(90)" fill="#fff" />
+                                                                            </g>
+                                                                        </g>
+                                                                    </svg>
+                                                                </span>
+
+                                                            </li>
+                                                            <li class="guest-blocks children-block">
+                                                                <span class="add-less-guest minus-guest ">
+                                                                    <svg xmlns="http://www.w3.org/2000/svg" width="18" height="18" viewBox="0 0 18 18">
+                                                                        <circle id="Ellipse_286" data-name="Ellipse 286" cx="9" cy="9" r="9" />
+                                                                        <g id="Group_126009" data-name="Group 126009" transform="translate(4 8.444)">
+                                                                            <rect id="Rectangle_3498" data-name="Rectangle 3498" width="2" height="10" transform="translate(10) rotate(90)" fill="#fff" />
+                                                                        </g>
+                                                                    </svg>
+                                                                </span>
+                                                                <div class="guest-selected">
+                                                                    <span class="guest-number children-number">@(default_num_children != null ? default_num_children : 0)</span>
+                                                                    <span class="">@childrendropdowntext</span>
+                                                                </div>
+                                                                <span class="add-less-guest plus-guest ">
+                                                                    <svg xmlns="http://www.w3.org/2000/svg" width="18" height="18" viewBox="0 0 18 18">
+                                                                        <g id="Group_126133" data-name="Group 126133">
+                                                                            <circle id="Ellipse_287" data-name="Ellipse 287" cx="9" cy="9" r="9" />
+                                                                            <g id="Group_126010" data-name="Group 126010" transform="translate(4 4)">
+                                                                                <rect id="Rectangle_3497" data-name="Rectangle 3497" width="2" height="10" transform="translate(3.999)" fill="#fff" />
+                                                                                <rect id="Rectangle_3498" data-name="Rectangle 3498" width="2" height="10" transform="translate(10 4.444) rotate(90)" fill="#fff" />
+                                                                            </g>
+                                                                        </g>
+                                                                    </svg>
+                                                                </span>
+                                                            </li>
+                                                        </ul>
+                                                    </div>
+                                                </div>
+
+                                                <div class="bottom-action">
+                                                    <div class="add-more-room">
+                                                        @addAnotherRoomText
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="col-xs-12 col-sm-6">
+                                    <div class="promocode-wrapper">
+                                        <a href="#" class="promo label">@DictionaryHelper.DictionaryEntry(DictionaryKeys.IataLabel, string.Empty)</a>
+                                        <div class="form-group input-group-lg input-wrapper">
+                                            <div class="row">
+                                                <div class="col-xs-10">
+                                                    <input type="text" class="input-lg form-control promocode" id="promocode" name="iata" placeholder="@DictionaryHelper.DictionaryEntry(DictionaryKeys.IataInputPlaceholder, string.Empty)">
+                                                </div>
+                                                <div class="col-xs-2">
+                                                    <a href="#" class="promo close-btn">X</a>
+                                                </div>
+                                            </div>
+                                        </div>
+                                        @* @if (Model.SfeBookingConfig?.ReservationLink != null)
+                                        {
+                                            <div><a href="@Model.SfeBookingConfig.ReservationLink.Url" class="label reservation-link">@DictionaryHelper.DictionaryEntry(DictionaryKeys.FindMyBooking, string.Empty)</a></div>
+                                        } *@
+                                    </div>
+                                </div>
+                            </div>
+
+                            <div class="text-center">
+                                @* <button class="btn btn-primary btn-lg text-center text-uppercase btn-submit check-availability-btn" role="button" type="submit" name="call-booking" data-test-enabled="@(istestenabled)" data-goal-id="@(config != null && config.CTAGoalItem != null ? config.CTAGoalItem.Id : default(ID))">@CheckAvailabilityText</button> *@
+                            </div>
+
+                            <div class="error-placement"></div>
+
+                        </form>
+                        <input type="hidden" class="hiddenadults" name="adults" value="@(default_num_adults != null ? default_num_adults : 1)" />
+                        <input type="hidden" class="hiddenchildren" name="children" value="@(default_num_children != null ? default_num_children : 0)" />
+                        <input type="hidden" class="hiddendefaultAdults" name="defaultAdults" value="@(default_num_adults != null ? default_num_adults : 1)" />
+                        <input type="hidden" class="hiddendefaultChildren" name="defaultChildren" value="@(default_num_children != null ? default_num_children : 0)" />
+
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- The Modal -->
+    <div class="modal modal-dialog-centered fade modal-lazy-img " id="myModal">
+        <div class="modal-dialog synsix_modal ">
+            <button type="button" class="close" data-dismiss="modal"><img loading="lazy" src="/images/close.svg" alt="close"></button>
+            <div class="modal-content">
+                <!-- Modal body -->
+                <div class="modal-body">
+                    <div class="row">
+                        <div class="col-sm-6 col-xs-12">
+                            <div class="form_left">
+                                <div>
+                                    <p class="form_header text-uppercase">@Model.LeftComponentTitle</p>
+                                    @* <p class="form_desc">@Model.LeftComponentSubTitle</p> *@
+                                </div>
+
+                                <form id="signin_modal">
+                                    <div class="form-group">
+                                        <label class="text-uppercase" for="ModelEmail"> @DictionaryHelper.DictionaryEntry(DictionaryKeys.InsidersEmailLabel, string.Empty)</label>
+                                        <input type="text" class="form-control" id="SignInEmail" placeholder="@DictionaryHelper.DictionaryEntry(DictionaryKeys.InsidersEmailplaceholder, string.Empty)">
+                                        <div class="synsix_error" id="SigninEmailcheck"><img loading="lazy" src='/images/error.svg' alt="error">@DictionaryHelper.DictionaryEntry(DictionaryKeys.InsidersEnterEmailAddress, string.Empty)</div>
+                                        <div class="synsix_error" id="SigninEmailValid"><img loading="lazy" src='/images/error.svg' alt="error">@DictionaryHelper.DictionaryEntry(DictionaryKeys.InsidersEnterValidEmailAddress, string.Empty)</div>
+                                    </div>
+                                    <div class="form-group">
+                                        <label class="text-uppercase" for="Modelpassword">@DictionaryHelper.DictionaryEntry(DictionaryKeys.InsidersPasswordLabel, string.Empty)</label>
+                                        <input type="password" class="form-control" id="SignInPassword" placeholder="@DictionaryHelper.DictionaryEntry(DictionaryKeys.InsidersPasswordPlaceHolder, string.Empty)" autocomplete="off">
+                                        @{
+                                            string showText = DictionaryHelper.DictionaryEntry(DictionaryKeys.InsidersPasswordShow, string.Empty);
+                                            if ((showText.Equals(DictionaryKeys.InsidersPasswordShow)) || string.IsNullOrEmpty(showText))
+                                            {
+                                                showText = "Show";
+                                            }
+                                            string hideText = DictionaryHelper.DictionaryEntry(DictionaryKeys.InsidersPasswordHide, string.Empty);
+                                            if ((hideText.Equals(DictionaryKeys.InsidersPasswordHide)) || string.IsNullOrEmpty(hideText))
+                                            {
+                                                hideText = "Hide";
+                                            }
+                                        }
+                                        <span id="showhide4" toggle="#SignInPassword" data-text-show="@showText" data-text-hide="@hideText" class="eyeshow eye_field toggle-password4">@showText</span>
+                                        <div class="synsix_error" id="SigninPasswordcheck"><img loading="lazy" src='/images/error.svg' alt="error">@DictionaryHelper.DictionaryEntry(DictionaryKeys.InsidersEnterPassword, string.Empty)</div>
+                                        <div class="synsix_error ErrorMessage"><img loading="lazy" src='/images/error.svg' alt="error">@ViewData["ErrorMessage"]</div>
+                                    </div>
+                                    @* @if (Model.ShowSignInCaptcha)
+                                    {
+                                        <div class="form-group">
+                                            <label for="captcha">@Model.CaptchaTitle</label>
+                                            @Html.GoogleCaptcha()
+                                            <div class="synsix_error" id="CaptchaError">
+                                                <img loading="lazy" src='/images/error.svg' alt="error">
+                                                @Model.CaptchaErrorMessage
+                                            </div>
+                                        </div>
+                                    } *@
+                                    <button type="button" id="SignInButton" class="btn btn-block text-uppercase" data-loadingbutton-text="@DictionaryHelper.DictionaryEntry(DictionaryKeys.LoadingButtonText, string.Empty)">@DictionaryHelper.DictionaryEntry(DictionaryKeys.InsidersSignInButton, string.Empty)</button>
+                                </form>
+                               @*  @StayFarEast.RenderLink(Model, model => model.ForgotPasswordLink, new { @class = "d-inline-block", id = "d-inline-block" }, true) *@
+                            </div>
+                        </div>
+
+                        <div class="col-sm-6 col-xs-12">
+                            <div class="form_right">
+                                <p class="form_header">@Model.RightComponentTitle</p>
+                                @* <p class="form_desc d-inline-block">@Model.RightComponentSubTitle</p> *@
+
+                                @if (Model.PromotionBlades != null)
+                                {
+                                    <ul>
+                                       @*  @foreach (var item in Model.PromotionBlades)
+                                        {
+                                            <li>
+                                                <div class="icon">
+                                                    <img width="52" height="52" class="lazy-hidden-event img-lazy-block" data-lazy-type="image" data-lazy-src="@item.FeedBackImage.GetMediaUrlWithProtectHash()" alt="@(item.FeedBackImage?.Alt)" />
+                                                </div>
+                                                <div>
+                                                    <p class="icon_header">@Model.FeedbackTitle)</p>
+                                                    <p class="icon_desc">@Model.FeedBackSubtitle)</p>
+                                                </div>
+                                            </li>
+                                        } *@
+                                    </ul>
+                                }
+                                @* @StayFarEast.RenderLink(Model, model => model.SignUpLink, new { @class = "btn text-uppercase", id = "signup_link", data_loadingbutton_text = DictionaryHelper.DictionaryEntry(DictionaryKeys.LoadingButtonText, string.Empty) }, true) *@
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+}
+@if (subNav.IsNotNullAndAny())
+{
+    <nav class="app-inpage-nav">
+        <div class="text-active"></div>
+        <ul>
+            @foreach (var nav in subNav)
+            {
+                <li>
+                    <a href="@nav.Value.ToLower()" class="tag-inner-nav">
+                        @nav.Name
+                    </a>
+                </li>
+            }
+        </ul>
+    </nav>
+}
+@* @Html.Partial("~/Views/Shared/GenericPopUpSiteWide.cshtml", Model) *@
+
+@* @using (Html.BeginScripts())
+{
+    <script type="text/javascript" src="~/scripts/special/home.js"></script>
+    <script type="text/javascript">
+        var signOutLink = "@Model.SignOutLink";
+    </script>
+    <script type="text/javascript" src="~/scripts/special/header.js"></script>
+} *@

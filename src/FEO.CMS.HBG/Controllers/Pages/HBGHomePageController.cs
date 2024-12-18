@@ -1,5 +1,8 @@
-﻿using FEO.CMS.HBG.Core.Constants;
+﻿using EPiServer.Core.Internal;
+using EPiServer.ServiceLocation;
+using FEO.CMS.HBG.Core.Constants;
 using FEO.CMS.HBG.Core.Models;
+using FEO.CMS.HBG.Core.Pages;
 using FEO.CMS.HBG.Core.Pages.StayFarEast;
 using Microsoft.AspNetCore.Mvc;
 
@@ -7,10 +10,29 @@ namespace FEO.CMS.HBG.Controllers.Pages
 {
     public class HBGHomePageController : PageControllerBase<HBGHomePage>
     {
+        private static readonly IContentLoader ContentLoader;
+        static HBGHomePageController()
+        {
+            ContentLoader = ServiceLocator.Current.GetInstance<IContentLoader>();
+        }
         public ActionResult Index(HBGHomePage currentPage)
         {
             var model = PageViewModel.Create(currentPage);
-            return View($"{ViewsPath.Hospitality_StayFarEast_PAGES_PATH}/HBGHomePage/Index.cshtml", model);
+            var rootPageReference = ContentReference.StartPage;
+            var sitePageReference = ContentLoader.Get<PageData>(rootPageReference).ParentLink;
+            var site = ContentLoader.Get<HBGSite>(sitePageReference);
+            if (site.Name.ToLower() == "oasia")
+            {
+                return View($"{ViewsPath.Hospitality_Oasia_PAGES_PATH}/HBGHomePage/Index.cshtml", model);
+            }
+            else if (site.Name.ToLower() == "rendezvous")
+            {
+                return View($"{ViewsPath.Hospitality_Rendezvous_PAGES_PATH}/HBGHomePage/Index.cshtml", model);
+            }
+            else
+            {
+                return View($"{ViewsPath.Hospitality_StayFarEast_PAGES_PATH}/HBGHomePage/Index.cshtml", model);
+            }
         }
     }
 }

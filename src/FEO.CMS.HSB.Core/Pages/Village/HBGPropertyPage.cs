@@ -13,7 +13,7 @@ namespace FEO.CMS.HBG.Core.Pages.Village
         [CultureSpecific]
         public virtual ContentArea LabelList { get; set; }
 
-        [Display(Name = "Map IFrame URL", GroupName = "Settings", Order = 100)]
+        [Display(Name = "Map IFrame URL", GroupName = SystemTabNames.Settings, Order = 100)]
         [CultureSpecific]
         public virtual string MapIFrameURL { get; set; }
 

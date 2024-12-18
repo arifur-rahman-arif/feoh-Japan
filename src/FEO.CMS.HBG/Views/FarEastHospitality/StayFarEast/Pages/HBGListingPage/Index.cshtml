@@ -1,0 +1,144 @@
+﻿@using EPiServer.Core.Internal
+@model PageViewModel<HBGListingPage>
+
+@{
+    var config = Model.CurrentPage.Config;
+    string sectionId = "overview";
+    var city = Model.CurrentPage.City != null ? ContentLoader.Get<HBGPlaceBlock>(Model.CurrentPage.City) : null;
+    var cityName = Model.CurrentPage.City != null ? ContentLoader.Get<IContent>(Model.CurrentPage.City).Name : null;
+    ClientResources.RequireScript("~/assets/hospitality/scripts/special/hotel.js");
+}
+
+@functions {
+    protected bool Collapsible(string description)
+    {
+        if (string.IsNullOrWhiteSpace(description))
+            return false;
+
+        return description.IndexOf(@"class=""content-collapse""") > -1;
+    }
+    protected string GetMapUrl()
+    {
+        var config = Model.CurrentPage.Config;
+        var mapUrl = config == null ? null : config.MapURL;
+        if (mapUrl == null)
+            return "#";
+
+        var mapUrlWithParam = string.Format("{0}{1}", Url.ContentUrl(mapUrl.Href), Model.CurrentPage.FullAddress);
+        return mapUrlWithParam;
+    }
+}
+
+<div class="about-hotel section container" id="@sectionId">
+
+    <div class="overview-hotel-details">
+        <div class="row">
+            <div class="col-md-4">
+                <h1 class="hotel-title" itemprop="name">@Html.PropertyFor(model => model.CurrentPage.Title)</h1>
+                <ul class="contact-info">
+                    <li>
+                        <a itemprop="location" href="@(Model.CurrentPage.MapURL != null ? Url.ContentUrl(Model.CurrentPage.MapURL.Href) : "#")" target="_blank">@Html.PropertyFor(model => model.CurrentPage.FullAddress)</a>
+                    </li>
+                    @if (!string.IsNullOrWhiteSpace(Model.CurrentPage.CheckIn))
+                    {
+                        <li class="">@DictionaryHelper.DictionaryEntry(DictionaryKeys.CheckInLabel, string.Empty): @Model.CurrentPage.CheckIn</li>
+                    }
+                    @if (!string.IsNullOrWhiteSpace(Model.CurrentPage.CheckOut))
+                    {
+                        <li class="">@DictionaryHelper.DictionaryEntry(DictionaryKeys.CheckOutLabel, string.Empty): @Model.CurrentPage.CheckOut</li>
+                    }
+                </ul>
+            </div>
+            <div class="col-md-4">
+                <div class="widget-title">@DictionaryHelper.DictionaryEntry(DictionaryKeys.GetInTouchLabel, string.Empty)</div>
+                <ul class="contact-info">
+                    @if (Model.CurrentPage.EmailAddress != null || ContextMode.CurrentMode.EditOrPreview())
+                    {
+                        <li>@DictionaryHelper.DictionaryEntry(DictionaryKeys.EmailLabel, string.Empty): <a href="@Url.ContentUrl(Model?.CurrentPage?.EmailAddress?.Href)">@Model?.CurrentPage?.EmailAddress?.Text</a></li>
+                    }
+                    @if (!string.IsNullOrWhiteSpace(Model.CurrentPage.HotelContactNumber) || ContextMode.CurrentMode.EditOrPreview())
+                    {
+                        <li>@DictionaryHelper.DictionaryEntry(DictionaryKeys.HotelContactNumberLabel, string.Empty): <a href="tel:@Model.CurrentPage.HotelContactNumber">@Model.CurrentPage.HotelContactNumber</a></li>
+                    }
+                    @if (!string.IsNullOrWhiteSpace(Model.CurrentPage.ReservationsContactNumber) || ContextMode.CurrentMode.EditOrPreview())
+                    {
+                        <li>@DictionaryHelper.DictionaryEntry(DictionaryKeys.ReservationsContactNumberLabel, string.Empty): <a href="tel:@Model.CurrentPage.ReservationsContactNumber">@Model.CurrentPage.ReservationsContactNumber</a></li>
+                    }
+                </ul>
+                @if (Model.CurrentPage.EnableMonthRatesCTA)
+                {
+                    <div class="book-at-daily-rate-block">
+                        <a href="#" data-toggle="modal" data-target="#enquireMonthlyRates" class="btn btn-primary btn-lg text-center text-uppercase enquireMonthlyRates"> @DictionaryHelper.DictionaryEntry(DictionaryKeys.EnquireForMonthlyRateText, string.Empty)</a>
+                    </div>
+                }
+                <div class="list-social">
+                    @if (Model.CurrentPage.SocialLink1 != null && Model.CurrentPage.SocialIcon1 != null)
+                    {
+                        <a href="@(Model.CurrentPage.SocialLink1 != null ? Url.ContentUrl(Model.CurrentPage.SocialLink1.Href) : "#")" target="@(Model.CurrentPage.SocialLink1 != null ? Model.CurrentPage.SocialLink1.Target : string.Empty)"><img src="@Url.ContentUrl(Model.CurrentPage.SocialIcon1)" alt="" /></a>
+
+                    }
+                    @if (Model.CurrentPage.SocialLink2 != null && Model.CurrentPage.SocialIcon2 != null)
+                    {
+                        <a href="@(Model.CurrentPage.SocialLink2 != null ? Url.ContentUrl(Model.CurrentPage.SocialLink2.Href) : "#")" target="@(Model.CurrentPage.SocialLink2 != null ? Model.CurrentPage.SocialLink2.Target : string.Empty)"><img src="@Url.ContentUrl(Model.CurrentPage.SocialIcon2)" alt="" /></a>
+                    }
+                    @if (Model.CurrentPage.SocialLink3 != null && Model.CurrentPage.SocialIcon3 != null)
+                    {
+                        <a href="@(Model.CurrentPage.SocialLink3 != null ? Url.ContentUrl(Model.CurrentPage.SocialLink3.Href) : "#")" target="@(Model.CurrentPage.SocialLink3 != null ? Model.CurrentPage.SocialLink3.Target : string.Empty)"><img src="@Url.ContentUrl(Model.CurrentPage.SocialIcon3)" alt="" /></a>
+                    }
+                </div>
+            </div>
+            <div class="col-md-4">
+                @Html.PropertyFor(x=>x.CurrentPage.BodyAwardsArea)
+            </div>
+        </div>
+    </div>
+
+    <div class="about-hotel-content">
+        @if (!string.IsNullOrWhiteSpace(Model.CurrentPage.NoticeTitle) || Model.CurrentPage.NoticeDescription != null)
+        {
+            <div class="box-notice">
+                <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 20 20">
+                    <path id="Path_35" data-name="Path 35" d="M10,0A10,10,0,1,0,20,10,10.029,10.029,0,0,0,10,0Zm1.375,15.25H8.625V12.875H11.5V15.25ZM11.5,6l-.75,5.5H9.25L8.5,6V4.75h3.125V6Z" />
+                </svg>
+                @if (!string.IsNullOrWhiteSpace(Model.CurrentPage.NoticeTitle))
+                {
+                    <div class="title">@Model.CurrentPage.NoticeTitle</div>
+                }
+                @if (Model.CurrentPage.NoticeDescription != null)
+                {
+                    <div class="desc">@Html.Raw(Model.CurrentPage.NoticeDescription)</div>
+                }
+            </div>
+        }
+
+        <div class="overview-description" itemprop="description">
+            @Html.PropertyFor(model => model.CurrentPage.MainContent)
+        </div>
+
+        <div class="btn-txt text-center color-pink">
+            <a class="btn-collapse visible-xs more"><span>+</span> @DictionaryHelper.DictionaryEntry(DictionaryKeys.ReadMoreText, string.Empty)</a>
+            <a class="color-pink arrow btn-collapse hidden-xs more">
+                @string.Format(DictionaryHelper.DictionaryEntry(DictionaryKeys.MoreAboutText, string.Empty), Model.CurrentPage.Title) <br />
+                <span class="glyphicon glyphicon-menu-down"></span>
+            </a>
+            <a class="color-pink arrow btn-collapse hidden-xs less">
+                @string.Format(DictionaryHelper.DictionaryEntry(DictionaryKeys.LessAboutText, string.Empty), Model.CurrentPage.Title) <br />
+                <span class="glyphicon glyphicon-menu-up"></span>
+            </a>
+        </div>
+
+        <div>
+            @if (city != null && !string.IsNullOrWhiteSpace(city.SystemCode))
+            {
+                <input type="hidden" class="cityname" value="@city.Title" />
+            }
+            <input type="hidden" class="listingname" value="@(!string.IsNullOrWhiteSpace(Model.CurrentPage.Title) ? Model.CurrentPage.Title.ToLower().Replace(" ", "-") : string.Empty)" />
+            <input type="hidden" class="listingid" value="@Model.CurrentPage.ContentGuid.ToString("B").ToUpper()" />
+            <input type="hidden" class="pageid" value="@Model.CurrentPage.ContentGuid.ToString("B").ToUpper()" />
+            <input type="hidden" class="cityname" value="@cityName" />
+
+            @* <link itemprop="url" href="@Html.CanonicalLink()"> *@
+            @Html.CanonicalLink()
+        </div>
+    </div>
+</div>

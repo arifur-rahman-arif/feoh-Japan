@@ -13,31 +13,31 @@ namespace FEO.CMS.HBG.Core.Blocks.StayFarEast
         [CultureSpecific]
         public virtual ContentReference Listing { get; set; }
 
-        [Display(Name = "Parameters", GroupName = "Settings", Order = 100)]
+        [Display(Name = "Parameters", GroupName = SystemTabNames.Settings, Order = 100)]
         [CultureSpecific]
         public virtual string Parameters { get; set; }
 
-        [Display(Name = "Redirect URL", GroupName = "Settings", Order = 200)]
+        [Display(Name = "Redirect URL", GroupName = SystemTabNames.Settings, Order = 200)]
         [CultureSpecific]
         public virtual LinkItem RedirectURL { get; set; }
 
-        [Display(Name = "RibbonText", GroupName = "Settings", Order = 200)]
+        [Display(Name = "RibbonText", GroupName = SystemTabNames.Settings, Order = 200)]
         [CultureSpecific]
         public virtual string RibbonText { get; set; }
 
-        [Display(Name = "Cover", GroupName = "Settings", Order = 300)]
+        [Display(Name = "Cover", GroupName = SystemTabNames.Settings, Order = 300)]
         [CultureSpecific]
         public virtual bool Cover { get; set; }
 
-        [Display(Name = "Label1", GroupName = "Settings", Order = 300)]
+        [Display(Name = "Label1", GroupName = SystemTabNames.Settings, Order = 300)]
         [CultureSpecific]
         public virtual string Label1 { get; set; }
 
-        [Display(Name = "Label2", GroupName = "Settings", Order = 400)]
+        [Display(Name = "Label2", GroupName = SystemTabNames.Settings, Order = 400)]
         [CultureSpecific]
         public virtual string Label2 { get; set; }
 
-        [Display(Name = "Label3", GroupName = "Settings", Order = 500)]
+        [Display(Name = "Label3", GroupName = SystemTabNames.Settings, Order = 500)]
         [CultureSpecific]
         public virtual string Label3 { get; set; }
 

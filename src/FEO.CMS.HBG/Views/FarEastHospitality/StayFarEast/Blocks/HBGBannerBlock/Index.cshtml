@@ -1,17 +1,27 @@
 ﻿@model FEO.CMS.HBG.Core.Blocks.StayFarEast.HBGBannerBlock
 
 @{
-    //var config = Model.Config;
+    var config = Model;
     var tourUrl = ViewData["TourUrl"] as string;
-    //var imageDarkenedOverlay = config != null && config.EnableDarknessOverlayImage ? "image-darkened-overlay" : string.Empty;
+    var imageDarkenedOverlay = config != null && config.EnableDarknessOverlayImage ? "image-darkened-overlay" : string.Empty;
+    var renderingCssClass = string.Empty;
+    if (Model.StyleNames != null)
+    {
+        List<string> cssClass = new List<string>();
+        var styleNames = BlockHelper.GetContentAreaItems(Model.StyleNames);
+        foreach (var item in styleNames)
+        {
+            cssClass.Add(ContentLoader.Get<HBGNameValuePairBlock>(item.ContentLink).Value);
+        }
+        renderingCssClass = String.Join(" ", cssClass);
+    }
 }
-<h1>Banner Test</h1>
-@* @if (config.IsShowingAtLeastOneText)
+@if (Model.ShowBannerTitle || Model.ShowBannerSummary || Model.ShowCurrentItemTitle || Model.ShowCurrentItemCaption)
 {
-    if (Model.Sources.IsNotNullAndAny() && !DeviceUtil.IsMobile())
+    if (Model != null)
     {
         <div class="@(Model.EmbedAsBackground ? "main-banner static-content" : "banner") @imageDarkenedOverlay">
-            @Html.Banner(Model, new { @id = "pretzel-video", @class = "video-playing" })
+            @* @Html.Banner(Model, new { @id = "pretzel-video", @class = "video-playing" }) *@
             <div class="banner-content text-center">
                 <div class="content-table-container">
                     <div class="table-v-middle">
@@ -24,24 +34,24 @@
     }
     else
     {
-        <div id="carousel-example-generic" class="carousel slide @RazorUtil.JoinCssClass(config) static-content @imageDarkenedOverlay" data-ride="carousel">
+        <div id="carousel-example-generic" class="carousel slide @renderingCssClass static-content @imageDarkenedOverlay" data-ride="carousel">
             <!-- Wrapper for slides -->
             <div class="carousel-inner" role="listbox">
                 <div class="item active carousel-image">
                     @if (Model.Poster != null)
                     {
-                        <img class="lazy-hidden @(Model.PosterForMobile == null ? string.Empty : "hidden-xs hidden-sm")" data-lazy-type="image" data-lazy-src="@Model.Poster.GetMediaUrlWithProtectHash()" alt="@Model.Poster.Alt" />
+                        <img class="lazy-hidden @(Model.PosterForMobile == null ? string.Empty : "hidden-xs hidden-sm")" data-lazy-type="image" data-lazy-src="@Url.ContentUrl(Model.Poster)" alt="" />
                     }
 
                     @if (Model.PosterForMobile != null)
                     {
-                        <img class="lazy-hidden visible-xs visible-sm" data-lazy-type="image" data-lazy-src="@Model.PosterForMobile.GetMediaUrlWithProtectHash()" alt="@Model.PosterForMobile.Alt" />
+                        <img class="lazy-hidden visible-xs visible-sm" data-lazy-type="image" data-lazy-src="@Url.ContentUrl(Model.PosterForMobile)" alt="" />
                     }
 
                     <div class="carousel-caption carousel-v-caption">
                         <div class="carousel-v-align">
 
-                            @if (config.IsCurrentItemNeeded)
+                            @if (Model.ShowCurrentItemTitle || Model.ShowCurrentItemCaption)
                             {
                                 var currentItem = Model;
                                 if (config.ShowCurrentItemTitle)
@@ -57,11 +67,11 @@
                                 }
                                 if (config.ShowCurrentItemCaption)
                                 {
-                                    var thumbnail = currentItem as IThumbnailPreview;
+                                    @* var thumbnail = currentItem as IThumbnailPreview;
                                     if (thumbnail != null)
                                     {
                                         <p class="text-uppercase">@thumbnail.GetCaption()</p>
-                                    }
+                                    } *@
                                 }
                             }
 
@@ -104,7 +114,7 @@
 else
 {
     <div class="@(Model.EmbedAsBackground ? "image-background  video-masthead main-banner" : "banner") @imageDarkenedOverlay">
-        @if (Model.Sources.IsNotNullAndAny() && !DeviceUtil.IsMobile() && Model.BackgroundVideo != null && !string.IsNullOrEmpty(Model.BackgroundVideo.Url))
+        @* @if (Model.Sources.IsNotNullAndAny() && !DeviceUtil.IsMobile() && Model.BackgroundVideo != null && !string.IsNullOrEmpty(Model.BackgroundVideo.Url))
         {
             //@Html.Banner(Model, new { @id = "pretzel-video", @class = "video-playing" })
             <div class="video-control container">
@@ -121,27 +131,26 @@ else
                 </span>
             </div>
 
-            <video class="video-playing" playsinline autoplay="autoplay" loop="loop" muted="muted" poster="@(Model.Poster?.Src)">
+            <video class="video-playing" playsinline autoplay="autoplay" loop="loop" muted="muted" poster="@(Url.ContentUrl(Model.Poster))">
                 <source src="@Model.BackgroundVideo.Url">
             </video>
         }
         else
-        {
+        { *@
             <div class="banner-img @(Model.EmbedAsBackground ? "image-container" : string.Empty)">
-                <img class="lazy-hidden" data-lazy-type="image" data-lazy-srcset="@(!string.IsNullOrEmpty(Model.PosterForMobile.GetMediaUrlWithProtectHash()) ? $"{Model.PosterForMobile.GetMediaUrlWithProtectHash()} 767w," : string.Empty) @Model.Poster.GetMediaUrlWithProtectHash()" alt="" />
+                <img class="lazy-hidden" data-lazy-type="image" data-lazy-srcset="@(!string.IsNullOrEmpty(Url.ContentUrl(Model.PosterForMobile)) ? $"{Url.ContentUrl(Model.PosterForMobile)} 767w," : string.Empty) @Url.ContentUrl(Model.Poster)" alt="" />
             </div>
-        }
+        @* } *@
     </div>
 }
 
 <div class="sfevdo_btn">
     <!-- Video FEH 724 -->
-    @if (Model.VideoSource != null && !String.IsNullOrEmpty(Model.VideoSource.Url))
+   @*  @if (Model.VideoSource != null && !String.IsNullOrEmpty(Model.VideoSource.Url))
     {
         @StayFarEast.RenderLink(Model, model => model.VideoSource, new System.Collections.Specialized.NameValueCollection { { "class", "btn btn-primary video-btn" } }, isEditable: true)
-    }
-</div> *@
-
+    } *@
+</div>
 <div class="modal fade video venue-modal" id="videoModal" tabindex="-1" role="dialog" aria-labelledby="videoModal" aria-hidden="true">
     <div class="modal-dialog">
         <div class="modal-content">

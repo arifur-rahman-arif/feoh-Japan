@@ -1,0 +1,335 @@
+﻿@model IPageViewModel<HBGBasePage>
+
+@functions {
+    protected HtmlString RenderTitle()
+    {
+        var model = ViewData["Model"] as View;
+        var title = string.IsNullOrWhiteSpace(Model.CurrentPage.TitleOverride)
+            ? Model.CurrentPage.Title : Model.CurrentPage.TitleOverride;
+
+        return new HtmlString(title);
+    }
+
+}
+<!DOCTYPE html>
+<html class="no-js" lang="">
+<head>
+    <meta charset="utf-8">
+    <title>@RenderTitle()</title>
+    <base target="_top" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+    <meta name="format-detection" content="telephone=no">
+    @if (!string.IsNullOrWhiteSpace(Model.CurrentPage.MetaDescription))
+    {
+        <meta name="description" content="@(Model.CurrentPage.MetaDescription)">
+    }
+    @if (!string.IsNullOrWhiteSpace(Model.CurrentPage.MetaKeywords))
+    {
+        <meta name="keywords" content="@(Model.CurrentPage.MetaKeywords)">
+    }
+    @*Open Graph Implementation*@
+
+    @if (!string.IsNullOrWhiteSpace(Model.CurrentPage.Title))
+    {
+        <meta property="og:title" content="@(Model.CurrentPage.Title)">
+    }
+    @if (!string.IsNullOrWhiteSpace(Model.CurrentPage.MetaDescription))
+    {
+        <meta property="og:description" content="@(Model.CurrentPage.MetaDescription)">
+    }
+    @* @if (Model.CurrentPage.OpenGraphImage != null)
+    {
+        <meta property="og:image" content="@(domainName+Model.OpenGraphImage.Src)">
+        <meta property="og:image:width" content="1200">
+        <meta property="og:image:height" content="630">
+    }
+    @if (!string.IsNullOrWhiteSpace(Model.CanonicalUrl))
+    {
+        <meta property="og:url" content="@(Model.CanonicalUrl)">
+    }
+    else
+    {
+        @Html.Sitecore().GetMetaOgUrl()
+    }
+    @if (Model.OpenGraphType != null && Model.OpenGraphType.Value != null)
+
+    {
+        <meta property="og:type" content="@(Model.OpenGraphType.Value)">
+    }
+
+    @if (config != null && !string.IsNullOrWhiteSpace(config.FaviconUrl))
+
+    {
+        <link rel="shortcut icon" href="@config.FaviconUrl">
+    }
+    @if (config != null && config.AppleTouchIcon != null)
+
+    {
+        <link rel="apple-touch-icon" href="@config.AppleTouchIcon.Src">
+    } *@
+    <link href="https://fonts.googleapis.com/css?family=Open+Sans:300,300i,400,400i,600,600i,700,700i,800,800i" rel="stylesheet">
+    @Html.Partial(ViewsPath.Hospitality_Shared_BLOCKS_PATH + "/MetaTags/Index.cshtml")
+
+    @* @Html.Sitecore().CanonicalLink()
+    @*Html.Sitecore().VisitorIdentification()
+    @if (!LangUtil.IsContextLanguageDefaultSiteLanguage())
+
+    {
+        @Html.Sitecore().HrefLangLink()
+        @Html.Sitecore().BingLangMeta()
+    } *@
+    <link rel="stylesheet" href="~/assets/hospitality/content/main.oasia.css" asp-append-version="true" />
+    @* @Styles.Render("~/bundles/oasia/styles/third-part") *@
+    <link rel="stylesheet" href="~/assets/hospitality/content/feh-oasia-main-style.css" asp-append-version="true" />
+    @* @Scripts.Render("~/bundles/oasia/scripts/third-part") *@
+    <script src="https://code.jquery.com/jquery-3.7.1.min.js" integrity="sha256-/JqT3SQfawRcv/BIHPThkBvs0OEvtFFmqPF/lYI/Cxo=" crossorigin="anonymous"></script>
+    <script src="~/assets/hospitality/scripts/isotope.pkgd.min.js"></script>
+    <script src="~/assets/hospitality/scripts/jquery-ui.min.js"></script>
+
+    @* <script type="text/javascript">
+        (function () {
+            const userToken = '@token';
+            if(userToken)
+            {
+                const idleDurationSecs = @timeOut;
+                const redirectUrl = '@SignOutPageRedirect';
+                let idleTimeout;
+
+                const resetIdleTimeout = function () {
+                    if (idleTimeout) clearTimeout(idleTimeout);
+                    idleTimeout = setTimeout(() => location.href = redirectUrl, idleDurationSecs * 60000);
+                };
+                resetIdleTimeout();
+                ['click', 'touchstart', 'mousemove'].forEach(evt =>
+                    document.addEventListener(evt, resetIdleTimeout, false)
+                );
+            }
+        })();
+    </script> *@
+    <script type="text/javascript">
+        setTimeout(function () {
+            $.ajax({
+                url: "/api/sitecore/StayFarEastInsiders/PushDataLayer",
+                type: 'POST',
+                cache: false,
+                contentType: false,
+                processData: false,
+                success: function (response) {
+                    if (response != "" && response.userID.length > 0) {
+                        var dataLayer = window.dataLayer = window.dataLayer || [];
+                        dataLayer.push({
+                            "feh": {
+                                'userID': response.userID,
+                                'userIsMember': 'Y',
+                                'birthDay': response.birthday,
+                                'country': response.country
+                            }
+                        });
+                    }
+                }
+            });
+        }, 4000);
+    </script>
+    @* @{
+        var IsGTMEnabled = false;
+
+        ISitecoreContext _context = new SitecoreContext();
+
+        IMvcContext _mvcContext = new MvcContext();
+
+        IContentProvider _provider = new ContentProvider(_context, _mvcContext);
+
+        GoogleTagExtension _gtmx = new GoogleTagExtension(_provider);
+
+        var gtm = _gtmx.GetGTMEnableSite();
+    } *@
+    @* @if (gtm != null)
+
+    {
+
+        IsGTMEnabled = Convert.ToBoolean(gtm.IsEnabled);
+
+        if (IsGTMEnabled)
+
+        {
+            @Html.Raw(gtm.GTMHeadScript)
+            ;
+
+        }
+
+    } *@
+
+    <script>
+        function recaptcha_callback() {
+            $(".g-recaptcha").siblings(".field-validation-valid.help-block").hide();
+        }
+    </script>
+
+    @* <script type="text/javascript" id="GLOBAL_VARS">
+        var wWidth = window.outerWidth || window.screen.width,
+            wHeight = window.outerHeight || window.screen.height;
+        var navigationDelay=@config.DelaySeconds;
+    </script> *@
+    <script src="~/assets/hospitality/scripts/special/lazy-load.js"></script>
+    <script src="~/assets/hospitality/scripts/feh-oasia-main-style.js" asp-append-version="true"></script>
+    <script src="~/assets/hospitality/scripts/jquery.cookie.js" asp-append-version="true"></script>
+    <script src="~/assets/hospitality/scripts/generic.js" asp-append-version="true"></script>
+</head>
+<body id="oasia-app" class="@(Model.CurrentPage.BodyClassName)">
+    @* <h1 class="page-title-hidden">@RenderH1Tag()</h1>
+
+    @if (Model.TemplateId == TemplateIds.Home)
+    {
+        if (config != null && !string.IsNullOrWhiteSpace(config.WebsiteSchemaUrl) && !string.IsNullOrWhiteSpace(config.WebsiteSchemaName))
+        {
+            <div itemscope itemtype="https://schema.org/WebSite">
+                <meta itemprop="url" content="@config.WebsiteSchemaUrl" />
+                <meta itemprop="name" content="@config.WebsiteSchemaName" />
+            </div>
+        }
+    }
+
+    @if (gtm != null)
+    {
+        if (IsGTMEnabled)
+        {
+            @Html.Raw(gtm.GTMBodyScript)
+            ;
+        }
+    } *@
+    <div class="mobile-overlay">
+        &nbsp;
+    </div>
+    <svg class="svg-defs booking-widget-bar-defs">
+        <defs>
+            <filter filterUnits="userSpaceOnUse" id="filter_0" x="0px" y="0px" width="100%" height="98px" color-interpolation-filters="sRGB">
+                <feOffset in="SourceAlpha" dx="0" dy="4" />
+                <feGaussianBlur result="blurOut" stdDeviation="2" />
+                <!-- <feGaussianBlur in="SourceGraphic" stdDeviation="30" /> -->
+                <feFlood flood-color="rgb(0, 0, 0)" result="floodOut" />
+                <feComposite operator="atop" in="floodOut" in2="blurOut" />
+                <feComponentTransfer>
+                    <feFuncA type="linear" slope="0.3" />
+                </feComponentTransfer>
+                <feMerge>
+                    <feMergeNode />
+                    <feMergeNode in="SourceGraphic" />
+                </feMerge>
+            </filter>
+
+            <filter filterUnits="userSpaceOnUse" id="filter_360_icon" x="0px" y="0px" width="90px" height="49px">
+                <feOffset in="SourceAlpha" dx="0" dy="0" />
+                <feGaussianBlur result="blurOut" stdDeviation="2.236" />
+                <feFlood flood-color="rgb(36, 36, 36)" result="floodOut" />
+                <feComposite operator="atop" in="floodOut" in2="blurOut" />
+                <feComponentTransfer><feFuncA type="linear" slope="0.4" /></feComponentTransfer>
+                <feMerge>
+                    <feMergeNode />
+                    <feMergeNode in="SourceGraphic" />
+                </feMerge>
+            </filter>
+
+
+            <filter filterUnits="userSpaceOnUse" id="filter_360_icon_2" x="0px" y="0px" width="91.7px" height="43px">
+                <feOffset in="SourceAlpha" dx="0" dy="0" />
+                <feGaussianBlur result="blurOut" stdDeviation="2.236" />
+                <feFlood flood-color="rgb(36, 36, 36)" result="floodOut" />
+                <feComposite operator="atop" in="floodOut" in2="blurOut" />
+                <feComponentTransfer><feFuncA type="linear" slope="0.4" /></feComponentTransfer>
+                <feMerge>
+                    <feMergeNode />
+                    <feMergeNode in="SourceGraphic" />
+                </feMerge>
+            </filter>
+
+
+            <mask id="cut-off-top">
+                <rect x="0" y="0" width="100%" height="6" fill="white" />
+                <rect x="0" y="0" height="6" width="6" transform="translate(50, -4) rotate(45)" fill="black"></rect>
+
+            </mask>
+
+            <mask id="mask-rating-stars">
+
+                <path fill-rule="evenodd" fill="white"
+                      d="M8.000,0.007 L10.472,4.945 L15.999,5.737 L12.000,9.581 L12.944,15.008 L8.000,12.446 L3.056,15.008 L4.000,9.581 L0.001,5.737 L5.528,4.945 L8.000,0.007 Z" />
+                <path fill-rule="evenodd" fill="white"
+                      d="M26.000,0.007 L28.472,4.945 L33.999,5.737 L30.000,9.581 L30.944,15.008 L26.000,12.446 L21.056,15.008 L22.000,9.581 L18.001,5.737 L23.528,4.945 L26.000,0.007 Z" />
+                <path fill-rule="evenodd" fill="white"
+                      d="M45.000,0.007 L47.472,4.945 L52.999,5.737 L49.000,9.581 L49.944,15.008 L45.000,12.446 L40.056,15.008 L41.000,9.581 L37.001,5.737 L42.528,4.945 L45.000,0.007 Z" />
+                <path fill-rule="evenodd" fill="white"
+                      d="M63.000,0.007 L65.472,4.945 L70.999,5.737 L67.000,9.581 L67.944,15.008 L63.000,12.446 L58.056,15.008 L59.000,9.581 L55.001,5.737 L60.528,4.945 L63.000,0.007 Z" />
+                <path fill-rule="evenodd" fill="white"
+                      d="M81.000,0.007 L83.472,4.945 L88.999,5.737 L85.000,9.581 L85.944,15.008 L81.000,12.446 L76.056,15.008 L77.000,9.581 L73.001,5.737 L78.528,4.945 L81.000,0.007 Z" />
+
+            </mask>
+            <filter id="scrolling_bar_bg">
+                <feOffset in="SourceAlpha" dx="0" dy="1" />
+                <feGaussianBlur result="blurOut" stdDeviation="1" />
+                <feFlood flood-color="rgb(1, 1, 1)" result="floodOut" />
+                <feComposite operator="out" in="floodOut" in2="blurOut" result="compOut" />
+                <feComposite operator="in" in="compOut" in2="SourceAlpha" />
+                <feComponentTransfer><feFuncA type="linear" slope="0.2" /></feComponentTransfer>
+                <feBlend mode="multiply" in2="SourceGraphic" />
+            </filter>
+
+
+        </defs>
+    </svg>
+    @Html.PropertyFor(x => x.Layout.Header)
+    @RenderBody()
+    <section class="content-footer">
+        @Html.PropertyFor(x => x.Layout.Footer)
+    </section>
+
+   @*  @if (config != null && config.EnableScrollToTop)
+
+    {
+        <div class="btn-to-top ohw-style" data-back-to-top>
+            <svg xmlns="http://www.w3.org/2000/svg" width="17.414" height="10.123" viewBox="0 0 17.414 10.123">
+                <path id="Path_49147" data-name="Path 49147" d="M0,0,8,8l4-4,4-4" transform="translate(16.707 9.416) rotate(180)" fill="none" stroke="#866531" stroke-width="2" />
+            </svg>
+        </div>
+    } *@
+
+    <div class="mobile-confirm-deals-overlay">
+        <button class="code-applied-close">
+            <img loading="lazy" src="/assets/hospitality/images/oasia/media/images/icon-close_white.svg" alt="exit code applied" />
+        </button>
+        <div class="confirm-content">
+            <span class="code-applied-mobile">
+                @* @Dictionary.GetValue(DictionaryKeys.CodeApplied) *@
+            </span>
+            @* <button class="app-button mobile-confirm-deals-cta">@Dictionary.GetValue(DictionaryKeys.BookNowForMobile)</button> *@
+        </div>
+    </div>
+    <script src="~/assets/hospitality/scripts/rafscroll.js"></script>
+    @* @Scripts.Render("~/bundles/oasia/scripts/jquery-cookie") *@
+    <script src="~/assets/hospitality/scripts/main.oasia.js" asp-append-version="true"></script>
+    <script src="~/assets/hospitality/scripts/oasia-bundle.js"></script>
+
+    @* @Html.RenderFormStyles()
+
+    @Html.RenderFormScripts()
+    @Html.PageScripts() *@
+    <script>
+        (function ($) {
+            $(document).ready(function () { setTimeout(function () { $.getScript('https://www.google.com/recaptcha/api.js'); }, 4000); });
+        })(jQuery);
+    </script>
+
+    <!-- Start iframe for 360 video-->
+    <section class="app-panoframe-mobile">
+        <div class="panoframe-instruction">
+            <figure><img loading="lazy" src="/assets/hospitality/images/oasia/media/images/icon-rotatedevice.svg" alt="rotate mobile" /></figure>
+            <p>
+                @* @Dictionary.GetValue(DictionaryKeys.RotateForABetterView) *@
+            </p>
+        </div>
+        <div class="panoframe-mobile-wrap">
+        </div>
+        <!-- End iframe for 360 video-->
+    </section>
+</body>
+</html>

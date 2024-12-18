@@ -1,4 +1,6 @@
-﻿namespace FEO.CMS.HBG.Core.Models
+﻿using EPiServer.Core;
+
+namespace FEO.CMS.HBG.Core.Models
 {
     public class Faq
     {
@@ -17,6 +19,6 @@
     public class Answer
     {
         public string Type => "Answer";
-        public string Text { get; set; }
+        public XhtmlString Text { get; set; }
     }
 }

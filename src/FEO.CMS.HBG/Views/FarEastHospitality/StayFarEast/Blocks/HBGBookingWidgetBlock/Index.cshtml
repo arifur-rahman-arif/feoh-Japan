@@ -1,0 +1,239 @@
+﻿
+@* @{
+    var bookingConfig = Model.SfeBookingConfig;
+    var popularDestination = ViewData["PopularDestination"];//(ViewData["PopularDestination"] as Tuple<IEnumerable<PopularDestination>, IEnumerable<PopularDestination>>);
+    var cities = popularDestination?.Item1;
+    var properties = popularDestination?.Item2;
+    var viewallhotels = string.Empty;//Dictionary.GetValue(DictionaryKeys.ViewHotelText);
+    var viewallresidences = string.Empty;//Dictionary.GetValue(DictionaryKeys.ViewResidenceText);
+    var BookNowText = string.Empty;//Dictionary.GetValue(DictionaryKeys.BookNowText);
+    var BookNowForMobileText = string.Empty;//Dictionary.GetValue(DictionaryKeys.BookNowForMobileText);
+    if (Model != null && Model.BookingWidgetData != null && !String.IsNullOrEmpty(Model.BookingWidgetData.BookNowText))
+    {
+        BookNowText = Model.BookingWidgetData.BookNowText;
+    }
+    if (Model != null && Model.BookingWidgetData != null && !String.IsNullOrEmpty(Model.BookingWidgetData.BookNowForMobileText))
+    {
+        BookNowForMobileText = Model.BookingWidgetData.BookNowForMobileText;
+    }
+
+    var CheckAvailabilityText = Dictionary.GetValue(DictionaryKeys.CheckAvailabilityText);
+    if (Model != null && Model.BookingWidgetData != null && !String.IsNullOrEmpty(Model.BookingWidgetData.CheckAvailabilityText))
+    {
+        CheckAvailabilityText = Model.BookingWidgetData.CheckAvailabilityText;
+    }
+
+    string roomNoText = Dictionary.GetValue(DictionaryKeys.RoomNoText);
+    string removeRoomText = Dictionary.GetValue(DictionaryKeys.RemoveRoomText);
+    string addAnotherRoomText = Dictionary.GetValue(DictionaryKeys.AddAnotherRoomText);
+
+    var istestenabled = ViewData["Istestenabled"];
+    var config = GetConfig<HeaderNavConfig>();
+    string adultstext = "", childrentext = "", adultsdropdowntext = "", childrendropdowntext = "", roomstext = "";
+    int? adults_range_min = 1, children_range_min = 0, default_num_rooms = 0, default_num_adults = 0, default_num_children = 0, number_days_advance = 0, max_num_room = 0;
+    if (bookingConfig != null)
+    {
+        roomstext = bookingConfig.RoomsText;
+        adultstext = bookingConfig.AdultsText;
+        childrentext = bookingConfig.ChildrenText;
+        adultsdropdowntext = bookingConfig.AdultDropdownText;
+        childrendropdowntext = bookingConfig.ChildrenDropdownText;
+        default_num_rooms = 1;
+        default_num_adults = bookingConfig.DefaultNumberOfAdults;
+        default_num_children = bookingConfig.DefaultNumberOfChildren;
+        number_days_advance = bookingConfig.NumberOfDaysInAdvance;
+        max_num_room = bookingConfig.MaximumNumberOfRooms;
+    }
+}
+
+<div class="">
+    <div class="widget grey-bg hidden-xs hidden-sm pin">
+        <input type="hidden" class="mindays" name="mindays" value="0">
+
+        <form id="BookingWidgetForm" class="widget-form-banner hidden-xs hidden-sm desktop-bookng-widget  new-form-booking new-form-booking-desktop" data-maxroom="@(max_num_room != null && max_num_room != 0 ? max_num_room : 1)" target="_blank" method="post" data-days-advance="@number_days_advance" data-time-on-page="@(bookingConfig.PropertyListingPage?.Url)" data-singularpropertytext="@Dictionary.GetValue(DictionaryKeys.BookingSingularPropertyText)" data-pluralpropertytext="@Dictionary.GetValue(DictionaryKeys.BookingPluralPropertyText)" data-countrytext="@Dictionary.GetValue(DictionaryKeys.BookingCountriesText)" data-citytext="@Dictionary.GetValue(DictionaryKeys.BookingCitiesText)" data-propertytext="@Dictionary.GetValue(DictionaryKeys.BookingPropertiesText)" data-noresultmatchedtext="@Dictionary.GetValue(DictionaryKeys.BookingNoResultsMatchedText)">
+            @if (HttpContext.Current.Session[FieldNames.InsidersFieldName.Token] != null)
+            {
+                <input type="hidden" name="session" id="session" value="@HttpContext.Current.Session[FieldNames.InsidersFieldName.Token].ToString()">
+            }
+
+            <input type="hidden" class="mindays" name="mindays" value="0">
+            <input type="hidden" class="pleaseselect" id="pleaseselect" value="@Model.ValidationMessage.PleaseSelect">
+            <input type="hidden" class="checkin" id="checkin" value="@Model.ValidationMessage.CheckInDate">
+            <input type="hidden" class="checkout" id="checkout" value="@Model.ValidationMessage.CheckOutDate">
+            <input type="hidden" class="property1" id="property1" value="@Model.ValidationMessage.Property">
+            <div class="row top-row">
+
+                <div class="col-md-5 col-sm-5 form-group input-group-l new-search-control new-search-desktop">
+                    <input id="search-desktop" class="search-booking input-lg form-control" type="text" placeholder="@Dictionary.GetValue(DictionaryKeys.BookingDestinationText)" aria-autocomplete="none" autocomplete="off" aria-haspopup="true" aria-expanded="false" style="width: 100%;" page="@(bookingConfig.PropertyListingPage?.Url)" target="@(bookingConfig.PropertyListingPage?.Target)">
+                    <div class="inputSearch-close">&nbsp;</div>
+                    <div id="suggestion-container-desktop" class="suggestion-container" aria-live="polite">
+                    </div>
+                    <div class="popular-suggestion popular-suggestion-desktop" aria-live="polite">
+                        @if (cities.IsNotNullAndAny())
+                        {
+                            <div class="suggestion-category">@Dictionary.GetValue(DictionaryKeys.BookingPopularCitiesText)</div>
+                            foreach (var city in cities)
+                            {
+                                <div class="suggestion-item" data-type="city" data-title="@city.Title" data-code="@city.Code" data-total="@city.Total" data-mindays="@city.Mindays" data-mindaytext="@city.MindayText" data-maxnoofpax="@city.MaxNoOfPax" data-minnoofadults="@city.MinNoOfAdults" data-minnoofchildren="@city.MinNoOfChildren" data-maxnoofguests="@city.MaxNoOfGuests" data-propertynote="@city.PropertyNote" data-propertynotecolor="@city.PropertyNoteColor">
+                                    @($"{city.Title} ({city.Total} {(city.Total > 1 ? Dictionary.GetValue(DictionaryKeys.BookingPluralPropertyText) : Dictionary.GetValue(DictionaryKeys.BookingSingularPropertyText))})")
+                                </div>
+                            }
+                        }
+
+                        @if (properties.IsNotNullAndAny())
+                        {
+                            <div class="suggestion-category">@Dictionary.GetValue(DictionaryKeys.BookingPopularPropertiesText)</div>
+                            foreach (var property in properties)
+                            {
+                                <div class="suggestion-item" data-type="property" data-title="@property.Title" data-id="@property.Id" data-mindays="@property.Mindays" data-mindaytext="@property.MindayText" data-maxnoofpax="@property.MaxNoOfPax" data-minnoofadults="@property.MinNoOfAdults" data-minnoofchildren="@property.MinNoOfChildren" data-maxnoofguests="@property.MaxNoOfGuests" data-propertynote="@property.PropertyNote" data-propertynotecolor="@property.PropertyNoteColor">
+                                    @property.Title
+                                </div>
+                            }
+                        }
+                    </div>
+                </div>
+
+                <div class="col-md-2 col-sm-2 width-15">
+                    <input type="text" class="input-md form-control checkin2 datepicker" id="checkin2" readonly="true" name="check-in" placeholder="@Dictionary.GetValue(DictionaryKeys.CheckInDateInputPlaceholder)" />
+                    <span class="glyphicon glyphicon-calendar"></span>
+                </div>
+
+                <div class="col-md-2 col-sm-2 width-15-ipad">
+                    <input type="text" class="input-md form-control checkout2 datepicker" id="checkout2" readonly="true" name="check-out" placeholder="@Dictionary.GetValue(DictionaryKeys.CheckOutDateInputPlaceholder)" />
+                    <span class="glyphicon glyphicon-calendar"></span>
+                </div>
+                <div class="col-md-3 col-sm-3 width-22">
+
+                    <div class="add-adult-child-dropdown opacity">
+                        <div class="title-adult-child">
+                            <div class="display-adult-child">
+                                <text class="room">1</text> @roomstext,
+                                <text class="adults">@(default_num_adults != null ? default_num_adults : 1)</text> @adultstext,
+                                <text class="children">@(default_num_children != null ? default_num_children : 0)</text> @childrentext
+                            </div>
+                            <div class="chevron-down">
+                                <svg xmlns="http://www.w3.org/2000/svg" width="16.971" height="16.971" viewBox="0 0 16.971 16.971">
+                                    <path d="M10,11a1,1,0,0,1-1-1V1H0A1,1,0,0,1-1,0,1,1,0,0,1,0-1H11V10A1,1,0,0,1,10,11Z" transform="translate(15.556 8.485) rotate(135)" />
+                                </svg>
+                            </div>
+                            <div class="value-submit-adult-child">
+                                <text class="adults">@(default_num_adults != null ? default_num_adults : 1)</text>
+                                <text class="childrens">@(default_num_children != null ? default_num_children : 0)</text>
+                            </div>
+                        </div>
+                        <div class="content-dropdown">
+                            <div class="inner">
+                                <div class="content-desc">
+                                    <div class="note-guest"></div>
+                                </div>
+
+                                <div class="list-rooms">
+                                    <div class="item-rooms first" data-defaultadults="@(default_num_adults != null ? default_num_adults : 1)" data-defaultchildren="@(default_num_children != null ? default_num_children : 0)">
+                                        <div class="title-room" data-text="@removeRoomText">
+                                            <div class="text">@roomNoText <span class="count"></span></div>
+                                        </div>
+                                        <ul class="ul-rooms banner-ul-rooms">
+                                            <li class="guest-blocks adults-block">
+                                                <span class="add-less-guest minus-guest ">
+                                                    <svg xmlns="http://www.w3.org/2000/svg" width="18" height="18" viewBox="0 0 18 18">
+                                                        <circle id="Ellipse_286" data-name="Ellipse 286" cx="9" cy="9" r="9" />
+                                                        <g id="Group_126009" data-name="Group 126009" transform="translate(4 8.444)">
+                                                            <rect id="Rectangle_3498" data-name="Rectangle 3498" width="2" height="10" transform="translate(10) rotate(90)" fill="#fff" />
+                                                        </g>
+                                                    </svg>
+                                                </span>
+                                                <div class="guest-selected">
+                                                    <span class="guest-number adults-number">@(default_num_adults != null ? default_num_adults : 1)</span>
+                                                    <span class="">@adultsdropdowntext</span>
+                                                </div>
+                                                <span class="add-less-guest plus-guest ">
+                                                    <svg xmlns="http://www.w3.org/2000/svg" width="18" height="18" viewBox="0 0 18 18">
+                                                        <g id="Group_126133" data-name="Group 126133">
+                                                            <circle id="Ellipse_287" data-name="Ellipse 287" cx="9" cy="9" r="9" />
+                                                            <g id="Group_126010" data-name="Group 126010" transform="translate(4 4)">
+                                                                <rect id="Rectangle_3497" data-name="Rectangle 3497" width="2" height="10" transform="translate(3.999)" fill="#fff" />
+                                                                <rect id="Rectangle_3498" data-name="Rectangle 3498" width="2" height="10" transform="translate(10 4.444) rotate(90)" fill="#fff" />
+                                                            </g>
+                                                        </g>
+                                                    </svg>
+                                                </span>
+
+                                            </li>
+                                            <li class="guest-blocks children-block">
+                                                <span class="add-less-guest minus-guest ">
+                                                    <svg xmlns="http://www.w3.org/2000/svg" width="18" height="18" viewBox="0 0 18 18">
+                                                        <circle id="Ellipse_286" data-name="Ellipse 286" cx="9" cy="9" r="9" />
+                                                        <g id="Group_126009" data-name="Group 126009" transform="translate(4 8.444)">
+                                                            <rect id="Rectangle_3498" data-name="Rectangle 3498" width="2" height="10" transform="translate(10) rotate(90)" fill="#fff" />
+                                                        </g>
+                                                    </svg>
+                                                </span>
+                                                <div class="guest-selected">
+                                                    <span class="guest-number children-number">@(default_num_children != null ? default_num_children : 0)</span>
+                                                    <span class="">@childrendropdowntext</span>
+                                                </div>
+                                                <span class="add-less-guest plus-guest ">
+                                                    <svg xmlns="http://www.w3.org/2000/svg" width="18" height="18" viewBox="0 0 18 18">
+                                                        <g id="Group_126133" data-name="Group 126133">
+                                                            <circle id="Ellipse_287" data-name="Ellipse 287" cx="9" cy="9" r="9" />
+                                                            <g id="Group_126010" data-name="Group 126010" transform="translate(4 4)">
+                                                                <rect id="Rectangle_3497" data-name="Rectangle 3497" width="2" height="10" transform="translate(3.999)" fill="#fff" />
+                                                                <rect id="Rectangle_3498" data-name="Rectangle 3498" width="2" height="10" transform="translate(10 4.444) rotate(90)" fill="#fff" />
+                                                            </g>
+                                                        </g>
+                                                    </svg>
+                                                </span>
+                                            </li>
+                                        </ul>
+                                    </div>
+                                </div>
+
+
+                                <div class="bottom-action">
+                                    @if (max_num_room != null && max_num_room > 1)
+                                    {
+                                        <div class="add-more-room">
+                                            @addAnotherRoomText
+                                        </div>
+                                    }
+                                </div>
+                            </div>
+
+
+                        </div>
+
+                    </div>
+
+                </div>
+
+                <div class="col-lg-1 col-md-1 col-sm-1 width-16-check-avail">
+                    <button class="btn-submit text-uppercase check-availability-btn" type="submit" name="call-booking" data-test-enabled="@(istestenabled)" data-goal-id="@(config!=null && config.CTAGoalItem!=null ? config.CTAGoalItem.Id: default(ID))">@CheckAvailabilityText</button>
+                </div>
+            </div>
+            <div class="shownote"></div>
+            <div class="error-placement"></div>
+            <div class="row">
+                <div class="col-lg-2 col-md-3 col-sm-3 promocode-wrapper">
+                    <div class="promo-wrapper">
+                        <div class="promocode-container grey-bg">
+                            <a href="#" class="promo label">@Dictionary.GetValue(DictionaryKeys.IataLabel)</a>
+                            <div class="input-wrapper">
+                                <input type="text" class="input-md form-control promocode" id="promocode" name="iata" placeholder="@Dictionary.GetValue(DictionaryKeys.IataInputPlaceholder)" />
+                                <a href="#" class="promo close-btn">X</a>
+                            </div>
+                            @if (Model.SfeBookingConfig?.ReservationLink != null)
+                            {
+                                <div><a href="@Model.SfeBookingConfig.ReservationLink.Url" class="label reservation-link">@Dictionary.GetValue(DictionaryKeys.FindMyBooking)</a></div>
+                            }
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </form>
+        <input type="hidden" class="hiddenadults2" name="adults" value="@(default_num_adults != null ? default_num_adults : 1)" />
+        <input type="hidden" class="hiddenchildren2" name="children" value="@(default_num_children != null ? default_num_children : 0)" />
+        <input type="hidden" class="hiddendefaultAdults2" name="defaultAdults" value="@(default_num_adults != null ? default_num_adults : 1)" />
+        <input type="hidden" class="hiddendefaultChildren2" name="defaultChildren" value="@(default_num_children != null ? default_num_children : 0)" />
+    </div>
+</div> *@
+<h1>Booking Widget</h1>

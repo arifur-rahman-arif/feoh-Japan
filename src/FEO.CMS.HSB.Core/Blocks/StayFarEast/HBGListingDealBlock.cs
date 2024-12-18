@@ -13,7 +13,7 @@ namespace FEO.CMS.HBG.Core.Blocks.StayFarEast
         [CultureSpecific]
         public virtual ContentReference Deal { get; set; }
 
-        [Display(Name = "Redirect URL", GroupName = "Settings", Order = 100)]
+        [Display(Name = "Redirect URL", GroupName = SystemTabNames.Settings, Order = 100)]
         [CultureSpecific]
         public virtual LinkItem RedirectURL { get; set; }
 

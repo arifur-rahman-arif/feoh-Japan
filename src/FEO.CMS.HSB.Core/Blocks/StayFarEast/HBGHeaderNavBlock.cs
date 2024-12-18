@@ -2,6 +2,8 @@ using EPiServer.Core;
 using EPiServer.DataAnnotations;
 using EPiServer.SpecializedProperties;
 using EPiServer.Web;
+using FEO.CMS.HBG.Core.Blocks.Rendezvous;
+using FEO.CMS.HBG.Core.Pages.StayFarEast;
 using System.ComponentModel.DataAnnotations;
 
 namespace FEO.CMS.HBG.Core.Blocks.StayFarEast
@@ -203,6 +205,47 @@ namespace FEO.CMS.HBG.Core.Blocks.StayFarEast
         [Display(Name = "DisplayPopUpAfterSignIn", GroupName = "Sign In Popup Settings", Order = 1100)]
         [CultureSpecific]
         public virtual bool DisplayPopUpAfterSignIn { get; set; }
-
+        [Ignore]
+        public virtual HBGBookingConfigBlock SfeBookingConfig { get; set; }
+        [Ignore]
+        public virtual IEnumerable<HBGSiteLanguageBlock> Languages { get; set; }
+        [Ignore]
+        public virtual string sfelanguage { get; set; }
+        [Ignore]
+        public virtual List<HBGSiteLanguageBlock> HeaderLanguagesList { get; set; }
+        [Ignore]
+        public virtual bool ShouldDisplayPopupAfterLogin { get; set; }
+        [Ignore]
+        public virtual bool ShouldDisplaySignUpPopup { get; set; }
+        [Ignore]
+        public virtual string CaptchaTitle { get; set; }
+        [Ignore]
+        public virtual string CaptchaErrorMessage { get; set; }
+        [Ignore]
+        public virtual HBGGenericPopupBlock GenericPopup { get; set; }
+        [Ignore]
+        public virtual bool ShowSignInCaptcha { get; set; }
+        [Ignore]
+        public virtual bool ShowSignIn { get; set; }
+        [Ignore]
+        public virtual string SignInSignUpText { get; set; }
+        [Ignore]
+        public virtual string ChainID { get; set; }
+        //[Ignore]
+        //public BookingWidgetValidation ValidationMessage { get; set; }
+        [Ignore]
+        public virtual LinkItem ForgotPasswordLink { get; set; }
+        [Ignore]
+        public virtual string SignOutLink { get; set; }
+        [Ignore]
+        public HBGAnnouncementBlock Announcement { get; set; }
+        [Ignore]
+        public HBGPromotionBarBlock PromotionBar { get; set; }
+        [Ignore]
+        public IEnumerable<HBGNavigationLinkBlock> MenuLinks { get; set; }
+        [Ignore]
+        public IEnumerable<HBGHeaderNavBlock> Columns { get; set; }
+        [Ignore]
+        public HBGHomePage ValidationMessage { get; set; }
     }
 }
