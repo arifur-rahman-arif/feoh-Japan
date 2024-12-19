@@ -1,0 +1,195 @@
+﻿@model HBGWeddingVenueDetailPage
+@inject IContentLoader ContentLoader
+
+
+@if (Model != null)
+{
+    var venueMaximumCapacity = string.Empty;
+    var hotel = new HBGWeddingsHotelContainerPage();
+    IEnumerable<HBGVenueCapacityItemBlock> venueCapacityItems = null;
+    var websiteConfigGuid = Constants.WebsiteConfigGuid;
+    var websiteConfigBlock = ContentLoader.Get<HBGWebsiteConfigBlock>(new Guid(websiteConfigGuid));
+    if (Model.ByHotel != null && Model.ByHotel.Items.Any())
+    {
+        hotel = Model.ByHotel.Items.FirstOrDefault().LoadContent() as HBGWeddingsHotelContainerPage;
+    }
+    if (Model.VenueCapacityItems != null)
+    {
+        venueCapacityItems = ContentLoader.GetChildren<HBGVenueCapacityItemBlock>(Model.VenueCapacityItems);
+        if(venueCapacityItems != null && venueCapacityItems.Any())
+        {
+            double venueMaximum = venueCapacityItems.OrderByDescending(x => x.Capacity).FirstOrDefault().Capacity;
+            venueMaximumCapacity = venueMaximum > 0 ? venueMaximum.ToString() : string.Empty;
+        }
+    }
+
+    <!-- event -->
+    <div class="about-venue section container" id="overview">
+        <div class="overview-venue-details overview-hotel-details col-xs-12">
+            <div class="row">
+                <div class="col-md-4">
+                    <div class="widget-title hotel-name" itemprop="name">
+                        @{
+                            string hotelAndLocation = string.Empty;
+                        }
+                        @if (!string.IsNullOrWhiteSpace(hotel?.Title))
+                        {
+                            hotelAndLocation = hotel.Title;
+                        }
+                        @if (!string.IsNullOrWhiteSpace(Model.VenueLocation))
+                        {
+                            string location = !string.IsNullOrWhiteSpace(hotel?.Title) ? $", {Model.VenueLocation}" : $"{Model.VenueLocation}";
+
+                            hotelAndLocation = hotelAndLocation + location;
+                        }
+                        @hotelAndLocation
+                    </div>
+                    <ul class="contact-info">
+                        @if (!string.IsNullOrWhiteSpace(hotel?.Address))
+                        {
+                            <li>
+                                <a itemprop="location" href="@Url.ContentUrl(hotel?.MapURL?.Href)" target="_blank">@hotel.Address</a>
+                            </li>
+                        }
+
+                        @if (Model.BrochureDownload != null)
+                        {
+                            <li>
+                                <a itemprop="location" href="@Url.ContentUrl(Model.BrochureDownload.Href)" target="_blank" title="Download Brochure">
+                                    <img src="@Url.ContentUrl(websiteConfigBlock.DownloadBrochureIcon)" alt="Download Brochure" />
+                                    @DictionaryHelper.DictionaryEntry(DictionaryKeys.EventDownloadBrochureText)
+                                </a>
+                            </li>
+                        }
+
+                    </ul>
+                </div>
+                <div class="col-md-4">
+                    <div class="widget-title">@DictionaryHelper.DictionaryEntry(DictionaryKeys.EventGetInTouchText)</div>
+                    <ul class="contact-info">
+                        @if (!string.IsNullOrWhiteSpace(hotel?.PhoneNumber))
+                        {
+                            <li>
+                                @DictionaryHelper.DictionaryEntry(DictionaryKeys.EventPhoneText): <a href="tel:@hotel.PhoneNumber">@hotel.PhoneNumber</a>
+                            </li>
+                        }
+
+                        @if (hotel?.EmailAddress != null)
+                        {
+                            <li>
+                                @DictionaryHelper.DictionaryEntry(DictionaryKeys.EventEmailAddressText): @Html.PropertyFor(x => hotel.EmailAddress)
+                            </li>
+                        }
+                    </ul>
+                    @if (Model.EnableEnquiryCTA)
+                    {
+                        <div class="book-at-daily-rate-block">
+                            <a href="#" data-toggle="modal" data-target="@Constants.WeddingEnquiry" class="btn btn-primary btn-lg text-center text-uppercase weddingenquiry">@DictionaryHelper.DictionaryEntry(DictionaryKeys.EventWeddingEnquiryFormCTAText)</a>
+                        </div>
+                    }
+                </div>
+                <div class="col-md-4">
+                    @if (!string.IsNullOrWhiteSpace(Model.VenueRoomSize.ToString()) || !string.IsNullOrWhiteSpace(venueMaximumCapacity))
+                    {
+                        <div class="widget-title">@DictionaryHelper.DictionaryEntry(DictionaryKeys.EventRoomSizeAndCapacityText)</div>
+                        <p class="venue-location">
+                            @{
+                                string roomSizeAndCapacity = string.Empty;
+                            }
+                            @if (!string.IsNullOrWhiteSpace(Model.VenueRoomSize.ToString()))
+                            {
+                                string.Format(DictionaryHelper.DictionaryEntry(DictionaryKeys.EventRoomSizeNumberText), Model.VenueRoomSize.ToString());
+                            }
+                            @if (!string.IsNullOrWhiteSpace(venueMaximumCapacity))
+                            {
+                                string EventRoomCapacityNumberText = DictionaryHelper.DictionaryEntry(DictionaryKeys.EventRoomCapacityNumberText);
+                                string roomCapacity = !string.IsNullOrWhiteSpace(Model.VenueRoomSize.ToString()) ? $" • {string.Format(EventRoomCapacityNumberText, venueMaximumCapacity)}" : $"{string.Format(EventRoomCapacityNumberText, venueMaximumCapacity)}";
+
+                                roomSizeAndCapacity = roomSizeAndCapacity + roomCapacity;
+                            }
+                            @roomSizeAndCapacity
+                        </p>
+                    }
+                </div>
+            </div>
+        </div>
+        <div class="about-venue-content col-xs-12">
+            <div class="overview-description clearfix" itemprop="description">
+                @Html.Raw(Model.Description)
+            </div>
+            <div class="venue-detail section-deal-detail">
+                <div class="row">
+                    <div class="venue-detail__content">
+                        @if (Model.VenueRoomFeatures != null)
+                        {
+                            <div class="venue-detail__feature venue-detail__content--item col-sm-6">
+                                <h3>@DictionaryHelper.DictionaryEntry(DictionaryKeys.EventRoomFeatureText)</h3>
+                                <div class="venue-detail__feature--desc">@Html.Raw(Model.VenueRoomFeatures)</div>
+                            </div>
+                        }
+
+                        @if (Model.Gallery != null)
+                        {
+
+                            var galleryList = ContentLoader.Get<HBGMultiMediaCarouselFolderBlock>(Model.Gallery);
+                            <div class="venue-detail__gallery venue-detail__content--item col-sm-6 custom-default-nav-carousel">
+                                <h3>@DictionaryHelper.DictionaryEntry(DictionaryKeys.EventImageGalleryText)</h3>
+                                @Html.Partial($"{ViewsPath.Hospitality_StayFarEast_BLOCKS_PATH}/HBGMultiMediaCarouselFolderBlock/index.cshtml", galleryList)
+                            </div>
+                        }
+                    </div>
+                </div>
+                <div class="row">
+                    <div class="venue-detail__content">
+                        @if (Model.VenueCapacityItems != null)
+                        {
+
+                            if (venueCapacityItems != null && venueCapacityItems.Any())
+                            {
+
+                                <div class="venue-detail__roomlayout venue-detail__content--item col-sm-6">
+                                    <h3>@DictionaryHelper.DictionaryEntry(DictionaryKeys.EventRoomLayoutText)</h3>
+                                    <ul class="roomlayout-list">
+                                        @foreach (var room in venueCapacityItems)
+                                        {
+                                            <li class="roomlayout-list-item">
+                                                @* @if (room.Icon != null && room.Icon.Icon != null)
+                                                    {
+                                                    To Do RenderSvgByImageField
+                                                    @sfeHelper.HtmlHelperExtensions.RenderSvgByImageField(room.Icon.Icon)
+                                                    } *@
+                                                <span class="roomlayout-list-item-name">@room.Title</span><span class="roomlayout-list-item-capacity">@room.Capacity</span>
+                                            </li>
+                                        }
+                                    </ul>
+                                </div>
+                            }
+                        }
+
+                        @if (Model.VenueFloorPlanImage != null)
+                        {
+                            <div class="venue-detail__floorplan venue-detail__content--item col-sm-6">
+                                <h3>@DictionaryHelper.DictionaryEntry(DictionaryKeys.EventFloorPlanText)</h3>
+                                <div class="floorplan-img">
+                                    @if (Model.VenueFloorPlanFile != null)
+                                    {
+                                        <a href="@Url.ContentUrl(Model.VenueFloorPlanFile.Href)" target="_blank" title="View Floor Plan File"><img width="540" class="lazy-hidden" data-lazy-type="image" data-lazy-src="@Url.ContentUrl(Model.VenueFloorPlanImage)" alt="@* To do *@"></a>
+                                    }
+                                    else
+                                    {
+                                        <img width="540" class="lazy-hidden" data-lazy-type="image" data-lazy-src="@Url.ContentUrl(Model.VenueFloorPlanImage)" alt="@* To do *@">
+                                    }
+                                </div>
+                            </div>
+                        }
+                    </div>
+
+                </div>
+            </div>
+        </div>
+    </div>
+
+
+    <script src="~/assets/hospitality/scripts/special/event-listing.js"></script>
+
+}
