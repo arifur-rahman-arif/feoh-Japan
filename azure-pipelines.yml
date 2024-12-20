@@ -46,4 +46,8 @@ steps:
     packDirectory: '$(Build.ArtifactStagingDirectory)'
     versioningScheme: byPrereleaseNumber
     
-    
+
+- task: PublishPipelineArtifact@1
+  inputs:
+    targetPath: '$(Build.ArtifactStagingDirectory)'
+    publishLocation: 'pipeline'
