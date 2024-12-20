@@ -45,13 +45,5 @@ steps:
     packagesToPack: 'src/FEO.CMS.HSB.Core/FEO.CMS.HBG.Core.csproj'
     packDirectory: '$(Build.ArtifactStagingDirectory)'
     versioningScheme: byPrereleaseNumber
-
-- task: DotNetCoreCLI@2
-  displayName: 'Push packed NuGet files'
-  inputs:
-    command: 'push'
-    packagesToPush: '$(Build.ArtifactStagingDirectory)/*.nupkg'
-    publishVstsFeed: 'FEO-Optimizely-Platform/FEOR-Optimizely-Integration'
-    nuGetFeedType: 'internal'
     
     
