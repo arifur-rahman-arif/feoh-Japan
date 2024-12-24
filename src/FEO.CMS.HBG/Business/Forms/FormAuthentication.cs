@@ -53,7 +53,6 @@ namespace FEO.CMS.HBG.Business.Forms
 
         //public static void RegenerateSessionId(string email)
         //{
-
         //    // Initialise variables for regenerating the session id
         //    HttpContext Context = HttpContext.Current;
         //    SessionIDManager manager = new SessionIDManager();

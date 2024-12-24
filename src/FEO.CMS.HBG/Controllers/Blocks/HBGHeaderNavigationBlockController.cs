@@ -328,7 +328,6 @@ namespace FEO.CMS.HBG.Controllers.Blocks
                 return null;
             }
         }
-
         //public HBGAnnouncementBlock GetAnnouncement(Guid id = default(Guid))
         //{
         //    var announcements = GetAnnouncements(id);

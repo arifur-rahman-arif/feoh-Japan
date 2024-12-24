@@ -1,6 +1,9 @@
 ﻿@model HBGHeaderNavBlock
 
 @{
+    EPiServer.Framework.Web.Resources.ClientResources.RequireScript("/assets/hospitality/scripts/special/home.js").AtFooter();
+    EPiServer.Framework.Web.Resources.ClientResources.RequireScript("/assets/hospitality/scripts/special/header.js").AtFooter();
+
     var bookingConfig = Model.SfeBookingConfig;
     var session = HttpContextAccessor?.HttpContext?.Session;
     // var popularDestination = (ViewData["PopularDestination"] as Tuple<IEnumerable<PopularDestination>, IEnumerable<PopularDestination>>);
@@ -1270,8 +1273,8 @@ else if (session?.GetString(FieldNames.InsidersFieldName.Token) != null && Model
                                     <div class="form-group">
                                         <label class="text-uppercase" for="ModelEmail"> @DictionaryHelper.DictionaryEntry(DictionaryKeys.InsidersEmailLabel, string.Empty)</label>
                                         <input type="text" class="form-control" id="SignInEmail" placeholder="@DictionaryHelper.DictionaryEntry(DictionaryKeys.InsidersEmailplaceholder, string.Empty)">
-                                        <div class="synsix_error" id="SigninEmailcheck"><img loading="lazy" src='/images/error.svg' alt="error">@DictionaryHelper.DictionaryEntry(DictionaryKeys.InsidersEnterEmailAddress, string.Empty)</div>
-                                        <div class="synsix_error" id="SigninEmailValid"><img loading="lazy" src='/images/error.svg' alt="error">@DictionaryHelper.DictionaryEntry(DictionaryKeys.InsidersEnterValidEmailAddress, string.Empty)</div>
+                                        <div class="synsix_error" id="SigninEmailcheck"><img loading="lazy" src='~/assets/hospitality/images/error.svg' alt="error">@DictionaryHelper.DictionaryEntry(DictionaryKeys.InsidersEnterEmailAddress, string.Empty)</div>
+                                        <div class="synsix_error" id="SigninEmailValid"><img loading="lazy" src='~/assets/hospitality/images/error.svg' alt="error">@DictionaryHelper.DictionaryEntry(DictionaryKeys.InsidersEnterValidEmailAddress, string.Empty)</div>
                                     </div>
                                     <div class="form-group">
                                         <label class="text-uppercase" for="Modelpassword">@DictionaryHelper.DictionaryEntry(DictionaryKeys.InsidersPasswordLabel, string.Empty)</label>
@@ -1289,23 +1292,27 @@ else if (session?.GetString(FieldNames.InsidersFieldName.Token) != null && Model
                                             }
                                         }
                                         <span id="showhide4" toggle="#SignInPassword" data-text-show="@showText" data-text-hide="@hideText" class="eyeshow eye_field toggle-password4">@showText</span>
-                                        <div class="synsix_error" id="SigninPasswordcheck"><img loading="lazy" src='/images/error.svg' alt="error">@DictionaryHelper.DictionaryEntry(DictionaryKeys.InsidersEnterPassword, string.Empty)</div>
-                                        <div class="synsix_error ErrorMessage"><img loading="lazy" src='/images/error.svg' alt="error">@ViewData["ErrorMessage"]</div>
+                                        <div class="synsix_error" id="SigninPasswordcheck"><img loading="lazy" src='~/assets/hospitality/images/error.svg' alt="error">@DictionaryHelper.DictionaryEntry(DictionaryKeys.InsidersEnterPassword, string.Empty)</div>
+                                        <div class="synsix_error ErrorMessage"><img loading="lazy" src='~/assets/hospitality/images/error.svg' alt="error">@ViewData["ErrorMessage"]</div>
                                     </div>
-                                    @* @if (Model.ShowSignInCaptcha)
+                                    @if (Model.ShowSignInCaptcha)
                                     {
                                         <div class="form-group">
                                             <label for="captcha">@Model.CaptchaTitle</label>
                                             @Html.GoogleCaptcha()
                                             <div class="synsix_error" id="CaptchaError">
-                                                <img loading="lazy" src='/images/error.svg' alt="error">
+                                                <img loading="lazy" src='~/assets/hospitality/images/error.svg' alt="error">
                                                 @Model.CaptchaErrorMessage
                                             </div>
                                         </div>
-                                    } *@
-                                    <button type="button" id="SignInButton" class="btn btn-block text-uppercase" data-loadingbutton-text="@DictionaryHelper.DictionaryEntry(DictionaryKeys.LoadingButtonText, string.Empty)">@DictionaryHelper.DictionaryEntry(DictionaryKeys.InsidersSignInButton, string.Empty)</button>
+                                    }
+                                <button type="button" id="SignInButton" class="btn btn-block text-uppercase" data-loadingbutton-text="@DictionaryHelper.DictionaryEntry(DictionaryKeys.LoadingButtonText, string.Empty)">SIGN IN</button>
+                                @* @DictionaryHelper.DictionaryEntry(DictionaryKeys.InsidersSignInButton, string.Empty) *@
                                 </form>
-                               @*  @StayFarEast.RenderLink(Model, model => model.ForgotPasswordLink, new { @class = "d-inline-block", id = "d-inline-block" }, true) *@
+                               @if(Model.ForgotPasswordLink != null)
+                               {
+                                <a href="@Model.ForgotPasswordLink.Href" class="d-inline-block" target="_blank" id="d-inline-block">@Model.ForgotPasswordLink.Text</a>
+                               }
                             </div>
                         </div>
 
