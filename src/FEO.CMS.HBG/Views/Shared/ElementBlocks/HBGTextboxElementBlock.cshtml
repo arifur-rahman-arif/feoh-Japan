@@ -1,0 +1,30 @@
+﻿@*
+    ====================================
+    Version: 5.8.0.0. Modified: 20240122
+    ====================================
+*@
+
+@using EPiServer.Forms.Helpers.Internal
+@using EPiServer.Forms.Implementation.Elements
+@using EPiServer.Forms.UI.SelectionFactory
+@using FEO.CMS.HBG.Business.Forms.FormFields
+@model HBGTextboxElementBlock
+
+@{
+    var formElement = Model.FormElement;
+    var labelText = Model.Label;
+    var cssClasses = Model.GetValidationCssClasses();
+    var autoComplete = AutoCompleteSelectionFactory.GetStringValue(Model.AutoComplete);
+}
+
+@using (Html.BeginElement(Model, new { @class = "FormTextbox" + cssClasses, data_f_type = "textbox" }))
+{
+    <label for="@formElement.Guid" class="Form__Element__Caption">@labelText</label>
+    <input name="@formElement.ElementName" id="@formElement.Guid" type="text" class="FormTextbox__Input"
+           aria-describedby="@Util.GetAriaDescribedByElementName(formElement.ElementName)"
+           placeholder="@Html.FilterHtml(Model.PlaceHolder ?? "")"
+           value="@Model.GetDefaultValue()" @Html.Raw(Model.AttributesString) data-f-datainput
+           autocomplete="@autoComplete" />
+    @Html.ValidationMessageFor(Model)
+    @Model.RenderDataList()
+}
