@@ -9,7 +9,7 @@ namespace FEO.CMS.HBG.Core.Blocks.Bases
     {
         [Display(Name = "Number of Days in Advance", GroupName = "Booking Config", Order = 600)]
         [CultureSpecific]
-        public virtual double NumberofDaysinAdvance { get; set; }
+        public virtual int NumberofDaysinAdvance { get; set; }
 
     }
 }
