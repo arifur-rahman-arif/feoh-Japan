@@ -21,7 +21,7 @@
                 @*     <input id="returnUrl_blade" type="hidden" value="@((!string.IsNullOrEmpty(dynamicsreturnUrl))?dynamicsreturnUrl:(string.Format("{0}{1}{2}{3}", Request.Url.Scheme, Uri.SchemeDelimiter, Request.Url.DnsSafeHost, Model.ReturnUrl.Url)))" /> *@
                 @* } *@
 
-                <p class="text-center">@Html.PropertyFor(x => x.Summary)</p>
+                <p class="text-center">@Html.PropertyFor(x => x.RootSummary)</p>
                 <form id="blade-form" class="" target="_blank" action="@(Model.FormURL == null ? "/" : Model.FormURL.Href)" method="post">
                     @if (parameters != null && parameters.Any())
                     {

@@ -110,7 +110,7 @@ namespace FEO.CMS.HBG.Controllers.Blocks
             .Where(x => x.Equals(x.ContentTypeID)) // Use `ContentGuid` or `ContentReference`
                 .Select(x => new BlogFilterOption
                 {
-                    Name = x.Title,
+                    Name = x.RootTitle,
                     Value = x.ContentTypeID.ToString()
                 });
 

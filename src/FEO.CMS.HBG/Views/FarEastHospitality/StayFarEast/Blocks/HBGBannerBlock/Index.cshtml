@@ -25,8 +25,8 @@
             <div class="banner-content text-center">
                 <div class="content-table-container">
                     <div class="table-v-middle">
-                        <h2>@Model.Title</h2>
-                        <p>@Model.Summary)</p>
+                        <h2>@Model.RootTitle</h2>
+                        <p>@Model.RootSummary)</p>
                     </div>
                 </div>
             </div>
@@ -58,11 +58,11 @@
                                 {
                                     if (config.EnlargeCurrentItemTitle)
                                     {
-                                        <h1>@Model.Title)</h1>
+                                        <h1>@Model.RootTitle)</h1>
                                     }
                                     else
                                     {
-                                        <h2>@Model.Title)</h2>
+                                        <h2>@Model.RootTitle)</h2>
                                     }
                                 }
                                 if (config.ShowCurrentItemCaption)
@@ -77,17 +77,17 @@
 
                             @if (config.ShowBannerTitle)
                             {
-                                <h1>@Model.Title</h1>
+                                <h1>@Model.RootTitle</h1>
                             }
                             @if (config.ShowBannerSummary)
                             {
                                 if (config.UseDescriptionAsSummary)
                                 {
-                                    @Model.Description
+                                    @Model.RootDescription
                                 }
                                 else
                                 {
-                                    <p>@Model.Summary</p>
+                                    <p>@Model.RootSummary</p>
                                 }
                             }
 

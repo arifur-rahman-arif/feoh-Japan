@@ -130,7 +130,7 @@
         <div>
             @if (city != null && !string.IsNullOrWhiteSpace(city.SystemCode))
             {
-                <input type="hidden" class="cityname" value="@city.Title" />
+                <input type="hidden" class="cityname" value="@city.RootTitle" />
             }
             <input type="hidden" class="listingname" value="@(!string.IsNullOrWhiteSpace(Model.CurrentPage.Title) ? Model.CurrentPage.Title.ToLower().Replace(" ", "-") : string.Empty)" />
             <input type="hidden" class="listingid" value="@Model.CurrentPage.ContentGuid.ToString("B").ToUpper()" />

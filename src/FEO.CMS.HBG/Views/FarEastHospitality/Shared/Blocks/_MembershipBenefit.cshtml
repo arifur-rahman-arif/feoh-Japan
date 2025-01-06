@@ -23,16 +23,16 @@
                             }
                         </div>
                     }
-                    @if (!string.IsNullOrEmpty(benefit.Title))
+                    @if (!string.IsNullOrEmpty(benefit.RootTitle))
                     {
                         <div class="membership-benefits-item__title">
-                            <h5>@Html.PropertyFor(x => benefit.Title)</h5>
+                            <h5>@Html.PropertyFor(x => benefit.RootTitle)</h5>
                         </div>
                     }
-                    @if (benefit.Description != null)
+                    @if (benefit.RootDescription != null)
                     {
                         <div class="membership-benefits-item__desc">
-                            @Html.PropertyFor(x => benefit.Description)
+                            @Html.PropertyFor(x => benefit.RootDescription)
                         </div>
                     }
                 </div>

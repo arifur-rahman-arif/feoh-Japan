@@ -97,11 +97,11 @@
                                 <div class="carousel-v-align">
                                     @if (Model.ShowTitle)
                                     {
-                                        <h2 aria-label="@Model.Title">@Html.PropertyFor(x => x.Title)</h2>
+                                        <h2 aria-label="@Model.RootTitle">@Html.PropertyFor(x => x.RootTitle)</h2>
                                     }
                                     @if (Model.ShowSummary)
                                     {
-                                        <p>@Html.PropertyFor(x => x.Summary)</p>
+                                        <p>@Html.PropertyFor(x => x.RootSummary)</p>
                                     }
                                 </div>
                             }
@@ -109,11 +109,11 @@
                             {
                                 if (Model.ShowTitle)
                                 {
-                                    <h2 aria-label="@Model.Title">@Html.PropertyFor(x => x.Title)</h2>
+                                    <h2 aria-label="@Model.RootTitle">@Html.PropertyFor(x => x.RootTitle)</h2>
                                 }
                                 if (Model.ShowSummary)
                                 {
-                                    <p>@Html.PropertyFor(x => x.Summary)</p>
+                                    <p>@Html.PropertyFor(x => x.RootSummary)</p>
                                 }
                             }
                             @if (item.LinkedContent != null && !string.IsNullOrWhiteSpace(item.LinkedContent?.Href))

@@ -11,15 +11,15 @@ namespace FEO.CMS.HBG.Core.Blocks.Bases
         [Display(Name = "Description", GroupName = "Basic Info", Order = 100)]
         [CultureSpecific]
         [UIHint(UIHint.Textarea)]
-        public virtual XhtmlString Description { get; set; }
+        public virtual XhtmlString RootDescription { get; set; }
 
         [Display(Name = "Summary", GroupName = "Basic Info", Order = 200)]
         [CultureSpecific]
-        public virtual string Summary { get; set; }
+        public virtual string RootSummary { get; set; }
 
         [Display(Name = "Title", GroupName = "Basic Info", Order = 300)]
         [CultureSpecific]
-        public virtual string Title { get; set; }
+        public virtual string RootTitle { get; set; }
 
     }
 }

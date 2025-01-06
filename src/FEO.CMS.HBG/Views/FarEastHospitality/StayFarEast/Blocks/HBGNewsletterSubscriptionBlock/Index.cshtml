@@ -43,7 +43,7 @@
                     @Html.PropertyFor(x => x.HighlightText)
                 </h2>
                 <p class="text-center color-white">
-                    @Html.PropertyFor(x => x.Summary)
+                    @Html.PropertyFor(x => x.RootSummary)
                 </p>
                 <form id="popup-form" class="" target="_blank" action="@(Model.FormURL != null ? @Model.FormURL: "/") @* @(Model.FormUrl != null ? Model.FormUrl.Url : " /") *@ " method="post">
                     @if (parameters != null && parameters.Any())

@@ -22,8 +22,8 @@
                         <div class="img"><img class="lazy-hidden" data-lazy-type="image" data-lazy-src="@Url.ContentUrl(item.Icon)" alt="@alt" /></div>
                     }
                     <div class="divtext">
-                        <div class="title">@item.Title</div>
-                        <div class="desc">@item.Summary</div>
+                        <div class="title">@item.RootTitle</div>
+                        <div class="desc">@item.RootSummary</div>
                     </div>
 
                 </div>
@@ -66,8 +66,8 @@
                                             <img loading="lazy" src="@Url.ContentUrl(item.Icon)" alt="@alt" />
                                         }
                                     </div>
-                                    <h3>@item.Title</h3>
-                                    <p>@item.Summary</p>
+                                    <h3>@item.RootTitle</h3>
+                                    <p>@item.RootSummary</p>
                                 </div>
                             </div>
                         }

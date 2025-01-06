@@ -30,8 +30,8 @@ namespace FEO.CMS.HBG.Controllers.Blocks
 
                 foreach (var item in faq)
                 {
-                    if (!string.IsNullOrEmpty(item.Title) && item.Description != null)
-                        faqs.MainEntity.Add(new MainEntity() { Name = item.Title, Answer = new Answer() { Text = item.Description } });
+                    if (!string.IsNullOrEmpty(item.RootTitle) && item.RootDescription != null)
+                        faqs.MainEntity.Add(new MainEntity() { Name = item.RootTitle, Answer = new Answer() { Text = item.RootDescription } });
                 }
                 model = new HBGAccordionFolderBlock()
                 {
