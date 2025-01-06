@@ -8,15 +8,15 @@
     var ctacolor2 = ContentLoader.Get<HBGNameValuePairBlock>(Model.CTAColor2);
     <div class="curated-card">
         <div class="curated-card-main-content">
-            @if (!string.IsNullOrEmpty(Model.Title))
+            @if (!string.IsNullOrEmpty(Model.RootTitle))
             {
-                <h3 class="curated-card-main-content__header">@Model.Title</h3>
+                <h3 class="curated-card-main-content__header">@Model.RootTitle</h3>
             }
 
-            @if (Model.Description != null)
+            @if (Model.RootDescription != null)
             {
                 <p class="curated-card-main-content__desc">
-                    @Html.PropertyFor(x=> x.Description)
+                    @Html.PropertyFor(x=> x.RootDescription)
                 </p>
             }
 
@@ -74,17 +74,17 @@
                         <div class="curated-card-listing-item__thumb">
                             <img class="lazy-hidden" data-lazy-type="image" data-lazy-src="@(item.ImageCard)" alt="" />
                         </div>
-                        @if (!string.IsNullOrEmpty(item.Title))
+                        @if (!string.IsNullOrEmpty(item.RootTitle))
                         {
                             <h3 class="curated-card-listing-item__title">
-                                @item.Title
+                                @item.RootTitle
                             </h3>
                         }
 
-                        @if (Model.Description != null)
+                        @if (Model.RootDescription != null)
                         {
                             <p class="curated-card-listing-item__desc">
-                                @Html.PropertyFor(x => item.Description)
+                                @Html.PropertyFor(x => item.RootDescription)
                             </p>
                         }
 

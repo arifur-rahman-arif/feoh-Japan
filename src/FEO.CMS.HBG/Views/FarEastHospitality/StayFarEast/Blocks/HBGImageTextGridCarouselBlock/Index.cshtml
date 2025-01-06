@@ -40,17 +40,17 @@
                                 <div class="image-text-grid-item-info__usp">@item.USPCategory</div>
                             }
 
-                            @if (!string.IsNullOrEmpty(item.Title))
+                            @if (!string.IsNullOrEmpty(item.RootTitle))
                             {
                                 <div class="image-text-grid-item-info__title">
-                                    @item.Title
+                                    @item.RootTitle
                                 </div>
                             }
 
-                            @if (item.Description != null)
+                            @if (item.RootDescription != null)
                             {
                                 <div class="image-text-grid-item-info__desc">
-                                    @Html.Raw(item.Description)
+                                    @Html.Raw(item.RootDescription)
                                 </div>
                             }
 

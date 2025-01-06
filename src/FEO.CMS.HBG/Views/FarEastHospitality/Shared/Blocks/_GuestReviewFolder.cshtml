@@ -13,15 +13,15 @@
     @foreach (var review in guestReviews)
     {
         <div class="guest-review-item item">
-            @if (!string.IsNullOrEmpty(review.Title))
+            @if (!string.IsNullOrEmpty(review.RootTitle))
 
             {
-                <div class="guest-review-item__header">@review.Title</div>
+                <div class="guest-review-item__header">@review.RootTitle</div>
             }
-            @if (!string.IsNullOrEmpty(review.Description.ToString()))
+            @if (!string.IsNullOrEmpty(review.RootDescription.ToString()))
 
             {
-                <div class="guest-review-item__desc">@Html.Raw(review.Description)</div>
+                <div class="guest-review-item__desc">@Html.Raw(review.RootDescription)</div>
             }
             <div class="guest-review-item__info-wrapper">
                 <div class="guest-review-item__separated"></div>

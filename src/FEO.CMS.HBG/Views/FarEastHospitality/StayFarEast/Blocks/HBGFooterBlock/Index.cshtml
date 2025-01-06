@@ -115,21 +115,21 @@
                                         var country = ContentLoader.Get<HBGCountryBlock>(Model.PrimaryContactCountry);
 
                                         <li>
-                                            <span>@(Model.PrimaryContactCountry == null ? string.Empty : country.Title + ":") </span><a href="tel:@Model.PrimaryContactNumber"><span>@Html.PropertyFor(x => x.PrimaryContactNumber)</span></a>
+                                            <span>@(Model.PrimaryContactCountry == null ? string.Empty : country.RootTitle + ":") </span><a href="tel:@Model.PrimaryContactNumber"><span>@Html.PropertyFor(x => x.PrimaryContactNumber)</span></a>
                                         </li>
                                     }
                                     @if (!string.IsNullOrWhiteSpace(Model.SecondaryContactNumber))
                                     {
                                         var country = ContentLoader.Get<HBGCountryBlock>(Model.SecondaryContactCountry);
                                         <li>
-                                            <span>@(Model.SecondaryContactCountry == null ? string.Empty : country.Title + ":")</span>  <a href="tel:@Model.SecondaryContactNumber"><span>@Html.PropertyFor(x => x.SecondaryContactNumber)</span></a>
+                                            <span>@(Model.SecondaryContactCountry == null ? string.Empty : country.RootTitle + ":")</span>  <a href="tel:@Model.SecondaryContactNumber"><span>@Html.PropertyFor(x => x.SecondaryContactNumber)</span></a>
                                         </li>
                                     }
                                     @if (!string.IsNullOrWhiteSpace(Model.TertiaryContactNumber))
                                     {
                                         var country = ContentLoader.Get<HBGCountryBlock>(Model.TertiaryContactCountry);
                                         <li>
-                                            <span>@(Model.TertiaryContactCountry == null ? string.Empty : country.Title + ":")</span>  <a href="tel:@Model.TertiaryContactNumber">
+                                            <span>@(Model.TertiaryContactCountry == null ? string.Empty : country.RootTitle + ":")</span>  <a href="tel:@Model.TertiaryContactNumber">
                                                 <span>
                                                     @Html.PropertyFor(x => x.TertiaryContactNumber )
                                                 </span>
