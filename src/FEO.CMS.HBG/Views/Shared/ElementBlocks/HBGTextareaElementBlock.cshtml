@@ -15,11 +15,18 @@
     var labelText = Model.Label;
     var cssClasses = Model.GetValidationCssClasses();
     var autoComplete = AutoCompleteSelectionFactory.GetStringValue(Model.AutoComplete);
+    var labelClasses = string.Format("Form__Element__Caption {0}", Model.LabelCss);
+    var inputClasses = string.Format("FormTextbox__Input {0}", Model.FieldCss);
+    var rowClasses = !string.IsNullOrEmpty(Model.RowCss) ? Model.RowCss : "required-field scfSingleLineTextBorder form-group has-feedback";
+    if (!string.IsNullOrEmpty(rowClasses))
+    {
+        cssClasses = string.Format(" {0} {1}", cssClasses, rowClasses);
+    }
 }
 @using (Html.BeginElement(Model, new { @class = "FormTextbox FormTextbox--Textarea" + cssClasses, data_f_type = "textbox", data_f_modifier = "textarea" }))
 {
-    <label for="@formElement.Guid" class="Form__Element__Caption">@labelText</label>
-    <textarea name="@formElement.ElementName" id="@formElement.Guid" class="FormTextbox__Input"
+    <label for="@formElement.Guid" class="@labelClasses">@labelText</label>
+    <textarea name="@formElement.ElementName" id="@formElement.Guid" class="@inputClasses"
               placeholder="@Html.FilterHtml(Model.PlaceHolder)"
               data-f-label="@labelText" data-f-datainput
     @Html.Raw(Model.AttributesString) aria-describedby="@Util.GetAriaDescribedByElementName(formElement.ElementName)"

@@ -65,5 +65,11 @@ namespace FEO.CMS.HBG.Business.Forms.FormFields
         GroupName = SystemTabNames.Content,
         Order = 400)]
         public virtual ContentReference CustomList { get; set; }
+
+        [Display(
+                Description = "Row Css Class",
+                GroupName = SystemTabNames.Content,
+                Order = 500)]
+        public virtual string RowCss { get; set; }
     }
 }

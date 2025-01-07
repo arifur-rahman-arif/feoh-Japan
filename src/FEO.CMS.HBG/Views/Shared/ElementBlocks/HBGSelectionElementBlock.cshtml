@@ -20,14 +20,21 @@
     var defaultValue = Model.GetDefaultValue();
     var cssClasses = Model.GetValidationCssClasses();
     var autoComplete = AutoCompleteSelectionFactory.GetStringValue(Model.AutoComplete);
+    var labelClasses = string.Format("Form__Element__Caption {0}", Model.LabelCss);
+    var inputClasses = string.Format("Form__Element__Caption {0}", Model.FieldCss);
+    var rowClasses = !string.IsNullOrEmpty(Model.RowCss) ? Model.RowCss : "required-field scfDroplistBorder form-group has-feedback";
+    if (!string.IsNullOrEmpty(rowClasses))
+    {
+        cssClasses = string.Format(" {0} {1}", cssClasses, rowClasses);
+    }
 }
 
 @using (Html.BeginElement(Model, new { @class = "FormSelection" + cssClasses, data_f_type = "selection" }))
 {
-    <label for="@formElement.Guid" class="Form__Element__Caption">@labelText</label>
+    <label for="@formElement.Guid" class="@labelClasses">@labelText</label>
     <select name="@formElement.ElementName" id="@formElement.Guid" @(Model.AllowMultiSelect ? "multiple" : "") @Html.Raw(Model.AttributesString) data-f-datainput
             aria-describedby="@Util.GetAriaDescribedByElementName(formElement.ElementName)"
-            autocomplete="@autoComplete">
+            autocomplete="@autoComplete" class="@inputClasses">
         <!option disabled="disabled" @defaultOptionSelected value="">
             @(!string.IsNullOrWhiteSpace(placeholderText) ? placeholderText
                 : Html.Translate(string.Format("/episerver/forms/viewmode/selection/{0}", Model.AllowMultiSelect ? "selectoptions" : "selectanoption")))

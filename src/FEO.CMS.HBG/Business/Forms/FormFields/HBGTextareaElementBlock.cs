@@ -16,6 +16,11 @@ namespace FEO.CMS.HBG.Business.Forms.FormFields
         {
             base.SetDefaultValues(contentType);
         }
+        [Display(
+                Description = "Row Css Class",
+                GroupName = SystemTabNames.Content,
+                Order = 100)]
+        public virtual string RowCss { get; set; }
 
         [Display(
                 Description = "Label Css Class",

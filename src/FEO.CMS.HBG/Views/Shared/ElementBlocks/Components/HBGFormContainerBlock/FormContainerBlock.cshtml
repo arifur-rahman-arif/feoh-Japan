@@ -26,6 +26,7 @@
     var formTitleId = Model.Form.FormGuid + "_label";
     var _cspNonceService = ServiceLocator.Current.GetInstance<ICspNonceService>();
     var nonceAttribute = string.IsNullOrEmpty(_cspNonceService.GetNonce()) ? "" : $"nonce = \"{_cspNonceService.GetNonce()}\"";
+    var cssClass = Model.FieldCss;
 }
 
 @{
@@ -208,7 +209,7 @@ else
         {
             <form method="post" novalidate="novalidate"
                   data-f-metadata="@Model.MetadataAttribute" aria-labelledby="@formTitleId"
-                  enctype="multipart/form-data" class="EPiServerForms @validationCssClass" data-f-type="form" id="@Model.Form.FormGuid">
+                  enctype="multipart/form-data" class="EPiServerForms @validationCssClass @cssClass" data-f-type="form" id="@Model.Form.FormGuid">
                 @{
                     RenderFormBody();
                 }

@@ -33,7 +33,7 @@ namespace FEO.CMS.HBG.Core.Pages.StayFarEast
 
         [Display(Name = "Content Footer", GroupName = SystemTabNames.Content, Order = 600)]
         [CultureSpecific]
-        public virtual ContentReference ContentFooter { get; set; }
+        public virtual ContentArea ContentFooter { get; set; }
 
         //RootBlock
         [Display(Name = "Description", GroupName = "Basic Info", Order = 100)]

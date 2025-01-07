@@ -1,6 +1,7 @@
 ﻿using EPiServer.Forms.Core;
 using EPiServer.Forms.Implementation.Elements;
 using EPiServer.ServiceLocation;
+using System.ComponentModel.DataAnnotations;
 
 namespace FEO.CMS.HBG.Business.Forms.FormFields
 {
@@ -8,5 +9,10 @@ namespace FEO.CMS.HBG.Business.Forms.FormFields
     [ServiceConfiguration(typeof(IFormContainerBlock))]
     public class HBGFormContainerBlock : FormContainerBlock
     {
+        [Display(
+        Description = "Css Class",
+        GroupName = SystemTabNames.Content,
+        Order = 100)]
+        public virtual string FieldCss { get; set; }
     }
 }
