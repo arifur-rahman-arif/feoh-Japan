@@ -15,8 +15,8 @@
             <div class="promotional-feature-content__thumb">
                 <img src="@Url.ContentUrl(Model.Image)" alt="">
             </div>
-            <div class="promotional-feature-content__title">@Model.Title</div>
-            <div class="promotional-feature-content__desc">@Html.PropertyFor(x =>x.Description)</div>
+            <div class="promotional-feature-content__title">@Model.RootTitle</div>
+            <div class="promotional-feature-content__desc">@Html.PropertyFor(x =>x.RootDescription)</div>
             @if (Model.CTALink != null)
 
             {

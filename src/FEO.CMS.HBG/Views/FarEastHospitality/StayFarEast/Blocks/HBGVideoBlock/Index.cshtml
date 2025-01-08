@@ -11,7 +11,7 @@
 
     if (Model.VideoLink != null)
     {
-        <div class="block-content block-content-video   @stringClass" @Html.PropertyFor(x=>x.Summary)>
+        <div class="block-content block-content-video   @stringClass" @Html.PropertyFor(x=>x.RootSummary)>
             <div class="single_video   thumb-video" data-src="@Url.ContentUrl(Model.VideoLink?.Href)" data-video="?autoplay=1&controls=1&mute=0&disablekb=1&hl=en&loop=1&modestbranding=1&showinfo=0&autohide=0&color=white&iv_load_policy=3&theme=light&rel=0&enablejsapi=1">
                 @if (Model.VideoThumb != null)
                 {

@@ -76,15 +76,15 @@
 
                                 <div class="carousel-caption carousel-v-caption">
                                     <div class="carousel-v-align">
-                                        @if (!string.IsNullOrEmpty(item.Title))
+                                        @if (!string.IsNullOrEmpty(item.RootTitle))
 
                                         {
-                                            <h2 aria-label="@item.Title">@Html.PropertyFor(m => item.Title)</h2>
+                                            <h2 aria-label="@item.RootTitle">@Html.PropertyFor(m => item.RootTitle)</h2>
                                         }
-                                        @if (!string.IsNullOrEmpty(item.Summary))
+                                        @if (!string.IsNullOrEmpty(item.RootSummary))
 
                                         {
-                                            <p>@Html.PropertyFor(m => item.Summary)</p>
+                                            <p>@Html.PropertyFor(m => item.RootSummary)</p>
                                         }
                                     </div>
                                     <div class="carousel-buttons masthead-cta-wrapper">

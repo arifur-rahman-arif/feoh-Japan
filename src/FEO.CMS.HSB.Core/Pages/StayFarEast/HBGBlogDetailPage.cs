@@ -105,7 +105,7 @@ namespace FEO.CMS.HBG.Core.Pages.StayFarEast
                 {
                     LocationItems.Add(contentLoader.Get<HBGCountryBlock>(item.ContentLink));
                 }
-                tags.AddRange(LocationItems.Select(x => x.Title));
+                tags.AddRange(LocationItems.Select(x => x.RootTitle));
             }
             if (Type != null && Type.Items.Any())
             {

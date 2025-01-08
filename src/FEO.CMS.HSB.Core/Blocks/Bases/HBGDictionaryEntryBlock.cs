@@ -6,7 +6,7 @@ using System.ComponentModel.DataAnnotations;
 namespace FEO.CMS.HBG.Core.Blocks.Bases
 {
 
-    [ContentType(DisplayName = "Dictionary entry", GroupName = "Dictionary")]
+    [ContentType(DisplayName = "Dictionary entry", GroupName = "Dictionary", GUID = "48c5973b-2c56-4948-89e9-e2bb54e2a319")]
     public class HBGDictionaryEntryBlock : HBGBaseBlock
     {
         [Display(Name = "Key", GroupName = "Data", Order = 100)]

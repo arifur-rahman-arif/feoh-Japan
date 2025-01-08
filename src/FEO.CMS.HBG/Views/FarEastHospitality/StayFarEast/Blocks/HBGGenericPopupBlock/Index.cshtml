@@ -70,7 +70,7 @@
                 <div class="modal-align-middle">
                     <h2 class="text-center">@Html.PropertyFor(x => x.HighlightText)</h2>
                     <p class="text-center color-white summary">
-                        @Html.PropertyFor(x => x.Summary)
+                        @Html.PropertyFor(x => x.RootSummary)
                     </p>
                     @if (parameters != null)
 
@@ -99,7 +99,7 @@
                     {
                         <!-- Description -->
                         <div class="description">
-                            @Html.PropertyFor(x => x.Description)
+                            @Html.PropertyFor(x => x.RootDescription)
                         </div>
 
                         <!--CTA Button -->
