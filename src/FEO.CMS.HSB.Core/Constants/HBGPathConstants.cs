@@ -117,8 +117,11 @@
         public const string RelativeThemes = RelativeConfig + "/Themes";
         public const string RelativeMeetings = RelativeHome + "/Meetings";
         public const string RelativeCapacitys = RelativeMeetings + "/Capacitys";
+        public const string StayFarEastHomePageID = "DD7B95F7-E482-495E-9DA1-729F286F45D7";
 
-
+        #region Oasia Site
+        public const string OasiaHomePageID = "8F4C034C-685C-4CD4-8DE4-81630BDC4652";
+        #endregion
         #region Rendezvous Site
         public const string RendezvousHome = "/Home";
         public const string RendezvousNavigation = "/Shared/Navigation";
