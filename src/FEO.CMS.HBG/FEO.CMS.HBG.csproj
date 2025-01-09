@@ -48,6 +48,9 @@
   
   <ItemGroup>
     <Compile Include="Models\BlogItemModel.cs" />
+    <Compile Include="Models\Forms\HBGCRMFormActorModel.cs" />
+    <Compile Include="Models\GoogleCaptchaResponse.cs" />
+    <Compile Include="Models\PersonalInfoSection.cs" />
     <Compile Include="Models\SearchFilter.cs" />
     <Compile Include="Models\SearchParam.cs" />
     <Compile Include="Models\SearchResult.cs" />

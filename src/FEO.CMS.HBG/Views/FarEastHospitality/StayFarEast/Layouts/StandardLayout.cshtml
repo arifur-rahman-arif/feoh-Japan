@@ -194,6 +194,7 @@
             }
         </script>
         <script src="~/assets/hospitality/scripts/special/lazy-load.js" asp-append-version="true"></script>
+        <required-client-resources area="Header" />
     </head>
     <body class="@(Model.CurrentPage.BodyClassName)">
         @if (Model.CurrentPage is HBGHomePage)
@@ -234,6 +235,8 @@
         @RenderSection("FormStyles", required: false)
         @RenderSection("FormScripts", required: false)
         <script src="~/assets/hospitality/scripts/special/destination.js"></script>
+        <script src="~/assets/hospitality/scripts/special/home.js"></script>
+        <script src="~/assets/hospitality/scripts/special/header.js"></script>
         <required-client-resources area="Footer" />
         <script>
             (function ($) {

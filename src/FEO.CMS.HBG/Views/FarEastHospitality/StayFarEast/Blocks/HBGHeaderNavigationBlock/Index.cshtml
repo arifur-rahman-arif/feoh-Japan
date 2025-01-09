@@ -1,6 +1,9 @@
 ﻿@model HBGHeaderNavBlock
 
 @{
+    EPiServer.Framework.Web.Resources.ClientResources.RequireScript("/assets/hospitality/scripts/special/home.js").AtFooter();
+    EPiServer.Framework.Web.Resources.ClientResources.RequireScript("/assets/hospitality/scripts/special/header.js").AtFooter();
+
     var bookingConfig = Model.SfeBookingConfig;
     var session = HttpContextAccessor?.HttpContext?.Session;
     // var popularDestination = (ViewData["PopularDestination"] as Tuple<IEnumerable<PopularDestination>, IEnumerable<PopularDestination>>);
@@ -49,6 +52,21 @@
     //     number_days_advance = bookingConfig.NumberOfDaysInAdvance;
     //     max_num_room = bookingConfig.MaximumNumberOfRooms;
     // }
+
+    var currentLanguage = ContentLanguage.PreferredCulture.Name;
+    var selectedLanguage = string.Empty;
+
+    foreach (var language in Model.Languages)
+    {
+        if (language != null && !language.HideLanguage)
+        {
+            var languageName = language.Language != null ? ContentLoader.Get<IContent>(language.Language).Name : "en";
+            if (languageName.Equals(currentLanguage, StringComparison.InvariantCultureIgnoreCase))
+            {
+                selectedLanguage = language.Title;
+            }
+        }
+    }
 }
 @if (session?.GetString(FieldNames.InsidersFieldName.Token) == null && Model?.ShouldDisplaySignUpPopup == true)
 {
@@ -106,16 +124,22 @@ else if (session?.GetString(FieldNames.InsidersFieldName.Token) != null && Model
 
     <div class="navbar-wrapper">
         <div itemscope itemtype="http://schema.org/LocalBusiness" class="navbar-header">
-            @* <div class="desktop-only">
-                <a itemprop="url" class="navbar-brand hidden-xs" href="@Model.LogoUrl.Url" title="@Model.LogoUrl.Title" aria-label="logo desktop">
-                    @StayFarEast.RenderImage(Model, model => model.LogoImage, new { itemprop = "logo" }, isEditable: true, isNotLazy: true)
-                </a>
+            <div class="desktop-only">
+               @if(Model.LogoURL != null)
+               {
+                    <a itemprop="url" class="navbar-brand hidden-xs" href="@Url.ContentUrl(Model.LogoURL.Href)" title="@Model.LogoURL.Title" aria-label="logo desktop">
+                    <img src="@Url.ContentUrl(Model.LogoImage)" itemprop="logo" alt="">
+                    </a>
+               }
             </div>
             <div class="mobile-only">
-                <a itemprop="url" class="navbar-brand" href="@Model.LogoUrl.Url" title="@Model.LogoUrl.Title" aria-label="logo mobile">
-                    @StayFarEast.RenderImage(Model, model => model.LogoImageForMobile, new { itemprop = "logo" }, isEditable: true, isNotLazy: true)
-                </a>
-            </div> *@
+                @if(Model.LogoURL != null)
+                {
+                    <a itemprop="url" class="navbar-brand" href="@Url.ContentUrl(Model.LogoURL.Href)" title="@Model.LogoURL.Title" aria-label="logo mobile">
+                    <img src="@Url.ContentUrl(Model.LogoImage)" itemprop="logo" alt="">
+                    </a>
+                }
+            </div>
         </div>
 
         <ul class="nav navbar-nav navbar-right second-navi">
@@ -124,7 +148,7 @@ else if (session?.GetString(FieldNames.InsidersFieldName.Token) != null && Model
             {
                 <li class="bk_btn">
                     <div class="desktop-only">
-                        @* <a id="top-book-now" href="#" class="booking booking-btn book-now-btn" title="Book Hotels & Serviced Residences" data-test-enabled="@(istestenabled)" data-goal-id="@(config != null && config.BookNowGoalItem != null ? config.BookNowGoalItem.Id : default(ID))">@BookNowText</a> *@
+                       @*  <a id="top-book-now" href="#" class="booking booking-btn book-now-btn" title="Book Hotels & Serviced Residences" data-test-enabled="@(istestenabled)" data-goal-id="@(config != null && config.BookNowGoalItem != null ? config.BookNowGoalItem.Id : default(ID))">@BookNowText</a> *@
                     </div>
                     <div class="mobile-only">
                         @* <a id="top-book-now" href="#" class="booking book-now-btn" data-toggle="modal" data-target="#booknow-widget" data-test-enabled="@(istestenabled)" data-goal-id="@(config != null && config.BookNowGoalItem != null ? config.BookNowGoalItem.Id : default(ID))">@BookNowText</a> *@
@@ -144,49 +168,50 @@ else if (session?.GetString(FieldNames.InsidersFieldName.Token) != null && Model
             }
             <li class="hidden-xs hidden-sm language-selector-li sfe_menu" id="language-selector-li">
                 <select name="sfe-language" id="languageselector" class="form-control language language-selector nav-select" style="display:none;">
-                    @* @if (Model.Languages.IsNotNullAndAny())
+                    @if (Model.Languages.IsNotNullAndAny())
                     {
-                        var currentLanguage = Sitecore.Context.Language;
                         foreach (var language in Model.Languages)
                         {
                             if (language != null && !language.HideLanguage)
                             {
+                                var languageName = language.Language != null ? ContentLoader.Get<IContent>(language.Language).Name : "en";
                                 var selected = language.Language == null || currentLanguage == null ? false :
-                                (language.Language.Name ?? string.Empty).Equals(currentLanguage.Name, StringComparison.InvariantCultureIgnoreCase);
-                                <option value="@(language.Language != null ? language.Language.Name : string.Empty)" @(selected ? "selected" : string.Empty)>@(language.Title ?? "Unknown")</option>
+                                (languageName ?? string.Empty).Equals(currentLanguage, StringComparison.InvariantCultureIgnoreCase);
+                                var isSelected = selected ? "selected" : string.Empty;
+                                <option value="@(language.Language != null ? languageName : string.Empty)" isSelected>@(language.Title ?? "Unknown")</option>
                             }
                         }
-                    } *@
+                    }
                 </select>
                 <a href="#" class="dropdown-toggle selected-ln" data-toggle="dropdown" role="button" aria-expanded="false">
-                    <span class="lan"></span>
+                    <span class="lan">@selectedLanguage</span>
                     <span class="caret"></span>
                 </a>
                 <ul class="dropdown-menu language-selector-ul" role="menu">
-                    @* @if (Model.Languages != null && Model.Languages.IsNotNullAndAny())
+                    @if (Model.Languages != null && Model.Languages.IsNotNullAndAny())
                     {
-                        var currentLanguage = Sitecore.Context.Language;
                         foreach (var language in Model.Languages)
                         {
                             if (language != null && !language.HideLanguage)
                             {
+                                var languageName = language.Language != null ? ContentLoader.Get<IContent>(language.Language).Name : "en";
                                 var selected = language.Language == null || currentLanguage == null ? false :
-                                (language.Language.Name ?? string.Empty).Equals(currentLanguage.Name, StringComparison.InvariantCultureIgnoreCase);
-                                <li language="@(language.Language != null ? language.Language.Name : string.Empty)">
+                                (languageName ?? string.Empty).Equals(currentLanguage, StringComparison.InvariantCultureIgnoreCase);
+                                <li language="@(language.Language != null ? languageName : string.Empty)">
                                     <a>
                                         @(language.Title ?? "Unknown")
                                         @if (language.LanguageIcon != null)
                                         {
-                                            <span class="lang_img"><img loading="lazy" src="@(language.LanguageIcon?.Src)"></span>
+                                            <span class="lang_img"><img loading="lazy" src="@(Url.ContentUrl(language.LanguageIcon))"></span>
                                         }
                                     </a>
                                 </li>
                             }
                         }
-                    } *@
+                    }
                 </ul>
             </li>
-            @* @if (Model.ShowSignIn)
+            @if (Model.ShowSignIn)
             {
                 <!-- synsix sign up UI -->
                 <div class="sx_signup_btn">
@@ -195,11 +220,8 @@ else if (session?.GetString(FieldNames.InsidersFieldName.Token) != null && Model
                     {
                         <div class="smp_logout"><img loading="lazy" alt="" src="/images/account_user.svg" width="16"><a href="#" data-toggle="modal" data-target="#myModal">@Model.SignInSignUpText</a></div>
                     }
-
                     else
                     {
-
-
                         <div class="smp_login">
                             <div class="dropdown">
                                 <button class="btn btn-primary dropdown-toggle" type="button" data-toggle="dropdown">
@@ -208,7 +230,7 @@ else if (session?.GetString(FieldNames.InsidersFieldName.Token) != null && Model
                                     <span class="arrow_btm_top"></span>
                                 </button>
                                 <ul class="dropdown-menu">
-                                    @foreach (var item in Model.NavDropdown)
+                                    @* @foreach (var item in Model.NavDropdown)
                                     {
                                         if (item.IsSBELink)
                                         {
@@ -218,8 +240,7 @@ else if (session?.GetString(FieldNames.InsidersFieldName.Token) != null && Model
                                         {
                                             <li> @StayFarEast.RenderLink(item, model => model.MainLink, new { @class = "", id = "" }, true)</li>
                                         }
-
-                                    }
+                                    } *@
             <li><a href="#" id="logout" data-loadingbutton-text="@DictionaryHelper.DictionaryEntry(DictionaryKeys.LoadingButtonText, string.Empty)">@DictionaryHelper.DictionaryEntry(DictionaryKeys.InsidersLogOutButton, string.Empty)</a><span class="loading_spinner"> </span></li>
                                 </ul>
                             </div>
@@ -232,7 +253,7 @@ else if (session?.GetString(FieldNames.InsidersFieldName.Token) != null && Model
                         </div>
                     }
                 </div>
-            } *@
+            }
             <!-- synsix sign up UI -->
             <!-- my booking -->
             @* @if (Model.HasAnnouncement)
@@ -273,14 +294,20 @@ else if (session?.GetString(FieldNames.InsidersFieldName.Token) != null && Model
         <div class="navbar-wrapper">
             <div itemscope itemtype="http://schema.org/LocalBusiness" class="navbar-header">
                 <div class="desktop-only">
-                    @* <a itemprop="url" class="navbar-brand hidden-xs" href="@Model.LogoUrl.Url" title="@Model.LogoUrl.Title">
-                        @StayFarEast.RenderImage(Model, model => model.LogoImage, new { itemprop = "logo" }, isEditable: true)
-                    </a> *@
+                    @if(Model.LogoURL != null)
+                    {
+                        <a itemprop="url" class="navbar-brand hidden-xs" href="@Url.ContentUrl(Model.LogoURL.Href)" title="@Model.LogoURL.Title">
+                        <img src="@Url.ContentUrl(Model.LogoImage)" itemprop="logo" alt="">
+                        </a>
+                    }
                 </div>
                 <div class="mobile-only">
-                    @* <a itemprop="url" class="navbar-brand" href="@Model.LogoUrl.Url" title="@Model.LogoUrl.Title">
-                        @StayFarEast.RenderImage(Model, model => model.LogoImageForMobile, new { itemprop = "logo" }, isEditable: true)
-                    </a> *@
+                    @if (Model.LogoURL != null)
+                    {
+                        <a itemprop="url" class="navbar-brand" href="@Url.ContentUrl(Model.LogoURL.Href)" title="@Model.LogoURL.Title">
+                        <img src="@Url.ContentUrl(Model.LogoImage)" itemprop="logo" alt="">
+                        </a>
+                    }
                 </div>
             </div>
 
@@ -311,50 +338,51 @@ else if (session?.GetString(FieldNames.InsidersFieldName.Token) != null && Model
                 <li class="hidden-xs hidden-sm language-selector-li sfe_menu" id="language-selector-li">
                     @*@<form method="post">*@
                     <select name="sfe-language" id="sfe-language" class=" form-control language language-selector nav-select" style="display:none;">
-                        @* @if (Model.Languages.IsNotNullAndAny())
+                        @if (Model.Languages.IsNotNullAndAny())
                         {
-                            var currentLanguage = Sitecore.Context.Language;
                             foreach (var language in Model.Languages)
                             {
                                 if (language != null && !language.HideLanguage)
                                 {
+                                    var languageName = language.Language != null ? ContentLoader.Get<IContent>(language.Language).Name : "en";
                                     var selected = language.Language == null || currentLanguage == null ? false :
-                                    (language.Language.Name ?? string.Empty).Equals(currentLanguage.Name, StringComparison.InvariantCultureIgnoreCase);
-                                    <option value="@(language.Language != null ? language.Language.Name : string.Empty)" @(selected ? "selected" : string.Empty)>@(language.Title ?? "Unknown")</option>
+                                    (languageName ?? string.Empty).Equals(currentLanguage, StringComparison.InvariantCultureIgnoreCase);
+                                    var isSelected = selected ? "selected" : string.Empty;
+                                    <option value="@(language.Language != null ? languageName : string.Empty)" isSelected>@(language.Title ?? "Unknown")</option>
                                 }
                             }
-                        } *@
+                        }
                     </select>
                     @* NEW *@
                     <a href="#" class="dropdown-toggle selected-ln" data-toggle="dropdown" role="button" aria-expanded="false">
-                        <span class="lan"></span>
+                        <span class="lan">@selectedLanguage</span>
                         <span class="caret"></span>
                     </a>
                     <ul class="dropdown-menu language-selector-ul" role="menu">
-                        @* @if (Model.Languages != null && Model.Languages.IsNotNullAndAny())
+                        @if (Model.Languages != null && Model.Languages.IsNotNullAndAny())
                         {
-                            var currentLanguage = Sitecore.Context.Language;
                             foreach (var language in Model.Languages)
                             {
                                 if (language != null && !language.HideLanguage)
                                 {
+                                    var languageName = language.Language != null ? ContentLoader.Get<IContent>(language.Language).Name : "en";
                                     var selected = language.Language == null || currentLanguage == null ? false :
-                                    (language.Language.Name ?? string.Empty).Equals(currentLanguage.Name, StringComparison.InvariantCultureIgnoreCase);
-                                    <li language="@(language.Language != null ? language.Language.Name : string.Empty)">
+                                    (languageName ?? string.Empty).Equals(currentLanguage, StringComparison.InvariantCultureIgnoreCase);
+                                    <li language="@(language.Language != null ? languageName : string.Empty)">
                                         <a>
                                             @(language.Title ?? "Unknown")
                                             @if (language.LanguageIcon != null)
                                             {
-                                                <span class="lang_img"><img loading="lazy" src="@(language.LanguageIcon?.Src)"></span>
+                                                <span class="lang_img"><img loading="lazy" src="@(Url.ContentUrl(language.LanguageIcon))"></span>
                                             }
                                         </a>
                                     </li>
                                 }
                             }
-                        } *@
+                        }
                     </ul>
                 </li>
-                @* @if (Model.ShowSignIn)
+                @if (Model.ShowSignIn)
                 {
                     <!-- synsix sign up UI -->
                     <div class="sx_signup_btn">
@@ -373,18 +401,18 @@ else if (session?.GetString(FieldNames.InsidersFieldName.Token) != null && Model
                                         <span class="arrow_btm_top"></span>
                                     </button>
                                     <ul class="dropdown-menu">
-                                        @foreach (var item in Model.NavDropdown)
+                                        @* @foreach (var item in Model.NavDropdown)
                                         {
                                             <li> @StayFarEast.RenderLink(item, model => model.MainLink, new { @class = "", id = "" }, true)</li>
 
-                                        }
+                                        } *@
                                         <li><a href="#" id="logout" data-loadingbutton-text="@DictionaryHelper.DictionaryEntry(DictionaryKeys.LoadingButtonText, string.Empty)">@DictionaryHelper.DictionaryEntry(DictionaryKeys.InsidersLogOutButton, string.Empty)</a><span class="loading_spinner"> </span></li>
                                     </ul>
                                 </div>
                             </div>
                         }
                     </div>
-                } *@
+                }
                 <!-- synsix sign up UI -->
                 <!-- my booking -->
                 @* @if (Model.HasAnnouncement)
@@ -433,46 +461,48 @@ else if (session?.GetString(FieldNames.InsidersFieldName.Token) != null && Model
             <!-- synsix sign up UI -->
             <li class="language-selector-li sfe_menu" id="language-selector-li">
                 <select name="sfe-language" id="languageselector" class="form-control language language-selector nav-select" style="display:none;">
-                    @* @if (Model.Languages.IsNotNullAndAny())
+                    @if (Model.Languages.IsNotNullAndAny())
                     {
-                        var currentLanguage = Sitecore.Context.Language;
                         foreach (var language in Model.Languages)
                         {
                             if (language != null && !language.HideLanguage)
                             {
+                                var languageName = language.Language != null ? ContentLoader.Get<IContent>(language.Language).Name : "en";
                                 var selected = language.Language == null || currentLanguage == null ? false :
-                                (language.Language.Name ?? string.Empty).Equals(currentLanguage.Name, StringComparison.InvariantCultureIgnoreCase);
-                                <option value="@(language.Language != null ? language.Language.Name : string.Empty)" @(selected ? "selected" : string.Empty)>@(language.Title ?? "Unknown")</option>
+                                (languageName ?? string.Empty).Equals(currentLanguage, StringComparison.InvariantCultureIgnoreCase);
+                                var isSelected = selected ? "selected" : string.Empty;
+                                var optionValue = language.Language != null ? languageName : string.Empty;
+                                <option value="@optionValue" isSelected>@(language.Title ?? "Unknown")</option>
                             }
                         }
-                    } *@
+                    }
                 </select>
                 <a href="#" class="dropdown-toggle selected-ln" data-toggle="dropdown" role="button" aria-expanded="false">
-                    <span class="lan"></span>
+                    <span class="lan">@selectedLanguage</span>
                     <span class="caret"></span>
                 </a>
                 <ul class="dropdown-menu language-selector-ul" role="menu">
-                    @* @if (Model.Languages != null && Model.Languages.IsNotNullAndAny())
+                    @if (Model.Languages != null && Model.Languages.IsNotNullAndAny())
                     {
-                        var currentLanguage = Sitecore.Context.Language;
                         foreach (var language in Model.Languages)
                         {
                             if (language != null && !language.HideLanguage)
                             {
+                                var languageName = language.Language != null ? ContentLoader.Get<IContent>(language.Language).Name : "en";
                                 var selected = language.Language == null || currentLanguage == null ? false :
-                                (language.Language.Name ?? string.Empty).Equals(currentLanguage.Name, StringComparison.InvariantCultureIgnoreCase);
-                                <li language="@(language.Language != null ? language.Language.Name : string.Empty)">
+                                (languageName ?? string.Empty).Equals(currentLanguage, StringComparison.InvariantCultureIgnoreCase);
+                                <li language="@(language.Language != null ? languageName : string.Empty)">
                                     <a>
                                         @(language.Title ?? "Unknown")
                                         @if (language.LanguageIcon != null)
                                         {
-                                            <span class="lang_img"><img loading="lazy" src="@(language.LanguageIcon?.Src)"></span>
+                                            <span class="lang_img"><img loading="lazy" src="@(Url.ContentUrl(language.LanguageIcon))"></span>
                                         }
                                     </a>
                                 </li>
                             }
                         }
-                    } *@
+                    }
                 </ul>
             </li>
             @* @if (Model.ShowSignIn)
@@ -1243,8 +1273,8 @@ else if (session?.GetString(FieldNames.InsidersFieldName.Token) != null && Model
                                     <div class="form-group">
                                         <label class="text-uppercase" for="ModelEmail"> @DictionaryHelper.DictionaryEntry(DictionaryKeys.InsidersEmailLabel, string.Empty)</label>
                                         <input type="text" class="form-control" id="SignInEmail" placeholder="@DictionaryHelper.DictionaryEntry(DictionaryKeys.InsidersEmailplaceholder, string.Empty)">
-                                        <div class="synsix_error" id="SigninEmailcheck"><img loading="lazy" src='/images/error.svg' alt="error">@DictionaryHelper.DictionaryEntry(DictionaryKeys.InsidersEnterEmailAddress, string.Empty)</div>
-                                        <div class="synsix_error" id="SigninEmailValid"><img loading="lazy" src='/images/error.svg' alt="error">@DictionaryHelper.DictionaryEntry(DictionaryKeys.InsidersEnterValidEmailAddress, string.Empty)</div>
+                                        <div class="synsix_error" id="SigninEmailcheck"><img loading="lazy" src='~/assets/hospitality/images/error.svg' alt="error">@DictionaryHelper.DictionaryEntry(DictionaryKeys.InsidersEnterEmailAddress, string.Empty)</div>
+                                        <div class="synsix_error" id="SigninEmailValid"><img loading="lazy" src='~/assets/hospitality/images/error.svg' alt="error">@DictionaryHelper.DictionaryEntry(DictionaryKeys.InsidersEnterValidEmailAddress, string.Empty)</div>
                                     </div>
                                     <div class="form-group">
                                         <label class="text-uppercase" for="Modelpassword">@DictionaryHelper.DictionaryEntry(DictionaryKeys.InsidersPasswordLabel, string.Empty)</label>
@@ -1262,23 +1292,27 @@ else if (session?.GetString(FieldNames.InsidersFieldName.Token) != null && Model
                                             }
                                         }
                                         <span id="showhide4" toggle="#SignInPassword" data-text-show="@showText" data-text-hide="@hideText" class="eyeshow eye_field toggle-password4">@showText</span>
-                                        <div class="synsix_error" id="SigninPasswordcheck"><img loading="lazy" src='/images/error.svg' alt="error">@DictionaryHelper.DictionaryEntry(DictionaryKeys.InsidersEnterPassword, string.Empty)</div>
-                                        <div class="synsix_error ErrorMessage"><img loading="lazy" src='/images/error.svg' alt="error">@ViewData["ErrorMessage"]</div>
+                                        <div class="synsix_error" id="SigninPasswordcheck"><img loading="lazy" src='~/assets/hospitality/images/error.svg' alt="error">@DictionaryHelper.DictionaryEntry(DictionaryKeys.InsidersEnterPassword, string.Empty)</div>
+                                        <div class="synsix_error ErrorMessage"><img loading="lazy" src='~/assets/hospitality/images/error.svg' alt="error">@ViewData["ErrorMessage"]</div>
                                     </div>
-                                    @* @if (Model.ShowSignInCaptcha)
+                                    @if (Model.ShowSignInCaptcha)
                                     {
                                         <div class="form-group">
                                             <label for="captcha">@Model.CaptchaTitle</label>
                                             @Html.GoogleCaptcha()
                                             <div class="synsix_error" id="CaptchaError">
-                                                <img loading="lazy" src='/images/error.svg' alt="error">
+                                                <img loading="lazy" src='~/assets/hospitality/images/error.svg' alt="error">
                                                 @Model.CaptchaErrorMessage
                                             </div>
                                         </div>
-                                    } *@
-                                    <button type="button" id="SignInButton" class="btn btn-block text-uppercase" data-loadingbutton-text="@DictionaryHelper.DictionaryEntry(DictionaryKeys.LoadingButtonText, string.Empty)">@DictionaryHelper.DictionaryEntry(DictionaryKeys.InsidersSignInButton, string.Empty)</button>
+                                    }
+                                <button type="button" id="SignInButton" class="btn btn-block text-uppercase" data-loadingbutton-text="@DictionaryHelper.DictionaryEntry(DictionaryKeys.LoadingButtonText, string.Empty)">SIGN IN</button>
+                                @* @DictionaryHelper.DictionaryEntry(DictionaryKeys.InsidersSignInButton, string.Empty) *@
                                 </form>
-                               @*  @StayFarEast.RenderLink(Model, model => model.ForgotPasswordLink, new { @class = "d-inline-block", id = "d-inline-block" }, true) *@
+                               @if(Model.ForgotPasswordLink != null)
+                               {
+                                <a href="@Model.ForgotPasswordLink.Href" class="d-inline-block" target="_blank" id="d-inline-block">@Model.ForgotPasswordLink.Text</a>
+                               }
                             </div>
                         </div>
 

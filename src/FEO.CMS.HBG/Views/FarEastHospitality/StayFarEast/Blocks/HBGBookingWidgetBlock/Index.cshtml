@@ -1,47 +1,49 @@
-﻿
-@* @{
+﻿@inject Microsoft.AspNetCore.Http.IHttpContextAccessor HttpContextAccessor
+@model HBGHeaderNavBlock
+
+@{
     var bookingConfig = Model.SfeBookingConfig;
-    var popularDestination = ViewData["PopularDestination"];//(ViewData["PopularDestination"] as Tuple<IEnumerable<PopularDestination>, IEnumerable<PopularDestination>>);
-    var cities = popularDestination?.Item1;
-    var properties = popularDestination?.Item2;
-    var viewallhotels = string.Empty;//Dictionary.GetValue(DictionaryKeys.ViewHotelText);
-    var viewallresidences = string.Empty;//Dictionary.GetValue(DictionaryKeys.ViewResidenceText);
-    var BookNowText = string.Empty;//Dictionary.GetValue(DictionaryKeys.BookNowText);
-    var BookNowForMobileText = string.Empty;//Dictionary.GetValue(DictionaryKeys.BookNowForMobileText);
-    if (Model != null && Model.BookingWidgetData != null && !String.IsNullOrEmpty(Model.BookingWidgetData.BookNowText))
-    {
-        BookNowText = Model.BookingWidgetData.BookNowText;
-    }
-    if (Model != null && Model.BookingWidgetData != null && !String.IsNullOrEmpty(Model.BookingWidgetData.BookNowForMobileText))
-    {
-        BookNowForMobileText = Model.BookingWidgetData.BookNowForMobileText;
-    }
+    // var popularDestination = (ViewData["PopularDestination"] as Tuple<IEnumerable<PopularDestination>, IEnumerable<PopularDestination>>);
+    // var cities = popularDestination?.Item1;
+    // var properties = popularDestination?.Item2;
+    var viewallhotels = DictionaryHelper.DictionaryEntry(DictionaryKeys.ViewHotelText, string.Empty);
+    var viewallresidences = DictionaryHelper.DictionaryEntry(DictionaryKeys.ViewResidenceText, string.Empty);
+    var BookNowText = DictionaryHelper.DictionaryEntry(DictionaryKeys.BookNowText, string.Empty);
+    var BookNowForMobileText = DictionaryHelper.DictionaryEntry(DictionaryKeys.BookNowForMobileText, string.Empty);
+    // if (Model != null && Model.BookingWidgetData != null && !String.IsNullOrEmpty(Model.BookingWidgetData.BookNowText))
+    // {
+    //     BookNowText = Model.BookingWidgetData.BookNowText;
+    // }
+    // if (Model != null && Model.BookingWidgetData != null && !String.IsNullOrEmpty(Model.BookingWidgetData.BookNowForMobileText))
+    // {
+    //     BookNowForMobileText = Model.BookingWidgetData.BookNowForMobileText;
+    // }
 
-    var CheckAvailabilityText = Dictionary.GetValue(DictionaryKeys.CheckAvailabilityText);
-    if (Model != null && Model.BookingWidgetData != null && !String.IsNullOrEmpty(Model.BookingWidgetData.CheckAvailabilityText))
-    {
-        CheckAvailabilityText = Model.BookingWidgetData.CheckAvailabilityText;
-    }
+    var CheckAvailabilityText = DictionaryHelper.DictionaryEntry(DictionaryKeys.CheckAvailabilityText, string.Empty);
+    // if (Model != null && Model.BookingWidgetData != null && !String.IsNullOrEmpty(Model.BookingWidgetData.CheckAvailabilityText))
+    // {
+    //     CheckAvailabilityText = Model.BookingWidgetData.CheckAvailabilityText;
+    // }
 
-    string roomNoText = Dictionary.GetValue(DictionaryKeys.RoomNoText);
-    string removeRoomText = Dictionary.GetValue(DictionaryKeys.RemoveRoomText);
-    string addAnotherRoomText = Dictionary.GetValue(DictionaryKeys.AddAnotherRoomText);
+    string roomNoText = DictionaryHelper.DictionaryEntry(DictionaryKeys.RoomNoText, string.Empty);
+    string removeRoomText = DictionaryHelper.DictionaryEntry(DictionaryKeys.RemoveRoomText, string.Empty);
+    string addAnotherRoomText = DictionaryHelper.DictionaryEntry(DictionaryKeys.AddAnotherRoomText, string.Empty);
 
     var istestenabled = ViewData["Istestenabled"];
-    var config = GetConfig<HeaderNavConfig>();
+    var config = Model;
     string adultstext = "", childrentext = "", adultsdropdowntext = "", childrendropdowntext = "", roomstext = "";
     int? adults_range_min = 1, children_range_min = 0, default_num_rooms = 0, default_num_adults = 0, default_num_children = 0, number_days_advance = 0, max_num_room = 0;
     if (bookingConfig != null)
     {
-        roomstext = bookingConfig.RoomsText;
-        adultstext = bookingConfig.AdultsText;
-        childrentext = bookingConfig.ChildrenText;
-        adultsdropdowntext = bookingConfig.AdultDropdownText;
-        childrendropdowntext = bookingConfig.ChildrenDropdownText;
+        roomstext = bookingConfig.Rooms;
+        adultstext = bookingConfig.Adults;
+        childrentext = bookingConfig.Children;
+        adultsdropdowntext = bookingConfig.AdultsDropdownLabel;
+        childrendropdowntext = bookingConfig.ChildrenDropdownLabel;
         default_num_rooms = 1;
-        default_num_adults = bookingConfig.DefaultNumberOfAdults;
-        default_num_children = bookingConfig.DefaultNumberOfChildren;
-        number_days_advance = bookingConfig.NumberOfDaysInAdvance;
+        default_num_adults = bookingConfig.DefaultNumberofAdults;
+        default_num_children = bookingConfig.DefaultNumberofChildren;
+        number_days_advance = bookingConfig.NumberofDaysinAdvance;
         max_num_room = bookingConfig.MaximumNumberOfRooms;
     }
 }
@@ -50,56 +52,56 @@
     <div class="widget grey-bg hidden-xs hidden-sm pin">
         <input type="hidden" class="mindays" name="mindays" value="0">
 
-        <form id="BookingWidgetForm" class="widget-form-banner hidden-xs hidden-sm desktop-bookng-widget  new-form-booking new-form-booking-desktop" data-maxroom="@(max_num_room != null && max_num_room != 0 ? max_num_room : 1)" target="_blank" method="post" data-days-advance="@number_days_advance" data-time-on-page="@(bookingConfig.PropertyListingPage?.Url)" data-singularpropertytext="@Dictionary.GetValue(DictionaryKeys.BookingSingularPropertyText)" data-pluralpropertytext="@Dictionary.GetValue(DictionaryKeys.BookingPluralPropertyText)" data-countrytext="@Dictionary.GetValue(DictionaryKeys.BookingCountriesText)" data-citytext="@Dictionary.GetValue(DictionaryKeys.BookingCitiesText)" data-propertytext="@Dictionary.GetValue(DictionaryKeys.BookingPropertiesText)" data-noresultmatchedtext="@Dictionary.GetValue(DictionaryKeys.BookingNoResultsMatchedText)">
-            @if (HttpContext.Current.Session[FieldNames.InsidersFieldName.Token] != null)
+        <form id="BookingWidgetForm" class="widget-form-banner hidden-xs hidden-sm desktop-bookng-widget  new-form-booking new-form-booking-desktop" data-maxroom="@(max_num_room != null && max_num_room != 0 ? max_num_room : 1)" target="_blank" method="post" data-days-advance="@number_days_advance" data-time-on-page="@(bookingConfig.PropertyListingPage?.Href)" data-singularpropertytext="@DictionaryHelper.DictionaryEntry(DictionaryKeys.BookingSingularPropertyText, string.Empty)" data-pluralpropertytext="@DictionaryHelper.DictionaryEntry(DictionaryKeys.BookingPluralPropertyText, string.Empty)" data-countrytext="@DictionaryHelper.DictionaryEntry(DictionaryKeys.BookingCountriesText, string.Empty)" data-citytext="@DictionaryHelper.DictionaryEntry(DictionaryKeys.BookingCitiesText, string.Empty)" data-propertytext="@DictionaryHelper.DictionaryEntry(DictionaryKeys.BookingPropertiesText, string.Empty)" data-noresultmatchedtext="@DictionaryHelper.DictionaryEntry(DictionaryKeys.BookingNoResultsMatchedText, string.Empty)">
+            @if (HttpContextAccessor?.HttpContext?.Session.GetString(FieldNames.InsidersFieldName.Token) != null)
             {
-                <input type="hidden" name="session" id="session" value="@HttpContext.Current.Session[FieldNames.InsidersFieldName.Token].ToString()">
+                <input type="hidden" name="session" id="session" value="@HttpContextAccessor?.HttpContext?.Session.GetString(FieldNames.InsidersFieldName.Token).ToString()">
             }
 
             <input type="hidden" class="mindays" name="mindays" value="0">
-            <input type="hidden" class="pleaseselect" id="pleaseselect" value="@Model.ValidationMessage.PleaseSelect">
-            <input type="hidden" class="checkin" id="checkin" value="@Model.ValidationMessage.CheckInDate">
-            <input type="hidden" class="checkout" id="checkout" value="@Model.ValidationMessage.CheckOutDate">
-            <input type="hidden" class="property1" id="property1" value="@Model.ValidationMessage.Property">
+            <input type="hidden" class="pleaseselect" id="pleaseselect" value="@Model?.ValidationMessage.PleaseSelect">
+            <input type="hidden" class="checkin" id="checkin" value="@Model?.ValidationMessage.CheckInDate">
+            <input type="hidden" class="checkout" id="checkout" value="@Model?.ValidationMessage.CheckOutDate">
+            <input type="hidden" class="property1" id="property1" value="@Model?.ValidationMessage.Property">
             <div class="row top-row">
 
                 <div class="col-md-5 col-sm-5 form-group input-group-l new-search-control new-search-desktop">
-                    <input id="search-desktop" class="search-booking input-lg form-control" type="text" placeholder="@Dictionary.GetValue(DictionaryKeys.BookingDestinationText)" aria-autocomplete="none" autocomplete="off" aria-haspopup="true" aria-expanded="false" style="width: 100%;" page="@(bookingConfig.PropertyListingPage?.Url)" target="@(bookingConfig.PropertyListingPage?.Target)">
+                    <input id="search-desktop" class="search-booking input-lg form-control" type="text" placeholder="@DictionaryHelper.DictionaryEntry(DictionaryKeys.BookingDestinationText, string.Empty)" aria-autocomplete="none" autocomplete="off" aria-haspopup="true" aria-expanded="false" style="width: 100%;" page="@(bookingConfig.PropertyListingPage?.Href)" target="@(bookingConfig.PropertyListingPage?.Target)">
                     <div class="inputSearch-close">&nbsp;</div>
                     <div id="suggestion-container-desktop" class="suggestion-container" aria-live="polite">
                     </div>
                     <div class="popular-suggestion popular-suggestion-desktop" aria-live="polite">
-                        @if (cities.IsNotNullAndAny())
+                        @* @if (cities.IsNotNullAndAny())
                         {
-                            <div class="suggestion-category">@Dictionary.GetValue(DictionaryKeys.BookingPopularCitiesText)</div>
+                            <div class="suggestion-category">@DictionaryHelper.DictionaryEntry(DictionaryKeys.BookingPopularCitiesText, string.Empty)</div>
                             foreach (var city in cities)
                             {
                                 <div class="suggestion-item" data-type="city" data-title="@city.Title" data-code="@city.Code" data-total="@city.Total" data-mindays="@city.Mindays" data-mindaytext="@city.MindayText" data-maxnoofpax="@city.MaxNoOfPax" data-minnoofadults="@city.MinNoOfAdults" data-minnoofchildren="@city.MinNoOfChildren" data-maxnoofguests="@city.MaxNoOfGuests" data-propertynote="@city.PropertyNote" data-propertynotecolor="@city.PropertyNoteColor">
-                                    @($"{city.Title} ({city.Total} {(city.Total > 1 ? Dictionary.GetValue(DictionaryKeys.BookingPluralPropertyText) : Dictionary.GetValue(DictionaryKeys.BookingSingularPropertyText))})")
+                                    @($"{city.Title} ({city.Total} {(city.Total > 1 ? DictionaryHelper.DictionaryEntry(DictionaryKeys.BookingPluralPropertyText, string.Empty) : DictionaryHelper.DictionaryEntry(DictionaryKeys.BookingSingularPropertyText, string.Empty))})")
                                 </div>
                             }
-                        }
+                        } *@
 
-                        @if (properties.IsNotNullAndAny())
+                        @* @if (properties.IsNotNullAndAny())
                         {
-                            <div class="suggestion-category">@Dictionary.GetValue(DictionaryKeys.BookingPopularPropertiesText)</div>
+                            <div class="suggestion-category">@DictionaryHelper.DictionaryEntry(DictionaryKeys.BookingPopularPropertiesText, string.Empty)</div>
                             foreach (var property in properties)
                             {
                                 <div class="suggestion-item" data-type="property" data-title="@property.Title" data-id="@property.Id" data-mindays="@property.Mindays" data-mindaytext="@property.MindayText" data-maxnoofpax="@property.MaxNoOfPax" data-minnoofadults="@property.MinNoOfAdults" data-minnoofchildren="@property.MinNoOfChildren" data-maxnoofguests="@property.MaxNoOfGuests" data-propertynote="@property.PropertyNote" data-propertynotecolor="@property.PropertyNoteColor">
                                     @property.Title
                                 </div>
                             }
-                        }
+                        } *@
                     </div>
                 </div>
 
                 <div class="col-md-2 col-sm-2 width-15">
-                    <input type="text" class="input-md form-control checkin2 datepicker" id="checkin2" readonly="true" name="check-in" placeholder="@Dictionary.GetValue(DictionaryKeys.CheckInDateInputPlaceholder)" />
+                    <input type="text" class="input-md form-control checkin2 datepicker" id="checkin2" readonly="true" name="check-in" placeholder="@DictionaryHelper.DictionaryEntry(DictionaryKeys.CheckInDateInputPlaceholder, string.Empty)" />
                     <span class="glyphicon glyphicon-calendar"></span>
                 </div>
 
                 <div class="col-md-2 col-sm-2 width-15-ipad">
-                    <input type="text" class="input-md form-control checkout2 datepicker" id="checkout2" readonly="true" name="check-out" placeholder="@Dictionary.GetValue(DictionaryKeys.CheckOutDateInputPlaceholder)" />
+                    <input type="text" class="input-md form-control checkout2 datepicker" id="checkout2" readonly="true" name="check-out" placeholder="@DictionaryHelper.DictionaryEntry(DictionaryKeys.CheckOutDateInputPlaceholder, string.Empty)" />
                     <span class="glyphicon glyphicon-calendar"></span>
                 </div>
                 <div class="col-md-3 col-sm-3 width-22">
@@ -207,7 +209,8 @@
                 </div>
 
                 <div class="col-lg-1 col-md-1 col-sm-1 width-16-check-avail">
-                    <button class="btn-submit text-uppercase check-availability-btn" type="submit" name="call-booking" data-test-enabled="@(istestenabled)" data-goal-id="@(config!=null && config.CTAGoalItem!=null ? config.CTAGoalItem.Id: default(ID))">@CheckAvailabilityText</button>
+                    @* <button class="btn-submit text-uppercase check-availability-btn" type="submit" name="call-booking" data-test-enabled="@(istestenabled)" data-goal-id="@(config!=null && config.CTAGoalItem!=null ? config.CTAGoalItem.Id: default(ID))">@CheckAvailabilityText</button> *@
+                    <button class="btn-submit text-uppercase check-availability-btn" type="submit" name="call-booking" data-test-enabled="@(istestenabled)" data-goal-id="@(config != null && config.CTAGoal != null ? ContentLoader.Get<IContent>(config.CTAGoal).ContentGuid.ToString() : string.Empty)">@CheckAvailabilityText</button>
                 </div>
             </div>
             <div class="shownote"></div>
@@ -216,14 +219,14 @@
                 <div class="col-lg-2 col-md-3 col-sm-3 promocode-wrapper">
                     <div class="promo-wrapper">
                         <div class="promocode-container grey-bg">
-                            <a href="#" class="promo label">@Dictionary.GetValue(DictionaryKeys.IataLabel)</a>
+                            <a href="#" class="promo label">@DictionaryHelper.DictionaryEntry(DictionaryKeys.IataLabel, string.Empty)</a>
                             <div class="input-wrapper">
-                                <input type="text" class="input-md form-control promocode" id="promocode" name="iata" placeholder="@Dictionary.GetValue(DictionaryKeys.IataInputPlaceholder)" />
+                                <input type="text" class="input-md form-control promocode" id="promocode" name="iata" placeholder="@DictionaryHelper.DictionaryEntry(DictionaryKeys.IataInputPlaceholder, string.Empty)" />
                                 <a href="#" class="promo close-btn">X</a>
                             </div>
-                            @if (Model.SfeBookingConfig?.ReservationLink != null)
+                            @if (Model?.SfeBookingConfig?.ReservationsLink != null)
                             {
-                                <div><a href="@Model.SfeBookingConfig.ReservationLink.Url" class="label reservation-link">@Dictionary.GetValue(DictionaryKeys.FindMyBooking)</a></div>
+                                <div><a href="@Model.SfeBookingConfig.ReservationsLink.Href" class="label reservation-link">@DictionaryHelper.DictionaryEntry(DictionaryKeys.FindMyBooking, string.Empty)</a></div>
                             }
                         </div>
                     </div>
@@ -235,5 +238,4 @@
         <input type="hidden" class="hiddendefaultAdults2" name="defaultAdults" value="@(default_num_adults != null ? default_num_adults : 1)" />
         <input type="hidden" class="hiddendefaultChildren2" name="defaultChildren" value="@(default_num_children != null ? default_num_children : 0)" />
     </div>
-</div> *@
-<h1>Booking Widget</h1>
+</div>
