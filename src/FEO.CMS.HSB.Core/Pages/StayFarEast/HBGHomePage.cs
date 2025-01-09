@@ -58,7 +58,7 @@ namespace FEO.CMS.HBG.Core.Pages.StayFarEast
 
         [Display(Name = "Property", GroupName = "Booking Widget Field Validation", Order = 200)]
         [CultureSpecific]
-        public virtual string Property { get; set; }
+        public virtual string Properti { get; set; }
 
         [Display(Name = "Check In Date", GroupName = "Booking Widget Field Validation", Order = 300)]
         [CultureSpecific]
