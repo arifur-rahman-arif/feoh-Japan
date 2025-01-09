@@ -35,15 +35,15 @@ namespace FEO.CMS.HBG.Core.Blocks.Bases
 
         [Display(Name = "Maximum Number Of Rooms", GroupName = "Booking Config", Order = 450)]
         [CultureSpecific]
-        public virtual double MaximumNumberOfRooms { get; set; }
+        public virtual int MaximumNumberOfRooms { get; set; }
 
         [Display(Name = "Default Number of Adults", GroupName = "Booking Config", Order = 500)]
         [CultureSpecific]
-        public virtual double DefaultNumberofAdults { get; set; }
+        public virtual int DefaultNumberofAdults { get; set; }
 
         [Display(Name = "Default Number of Children", GroupName = "Booking Config", Order = 600)]
         [CultureSpecific]
-        public virtual double DefaultNumberofChildren { get; set; }
+        public virtual int DefaultNumberofChildren { get; set; }
 
         [Display(Name = "Reservations Link", GroupName = "Booking Config", Order = 700)]
         [CultureSpecific]

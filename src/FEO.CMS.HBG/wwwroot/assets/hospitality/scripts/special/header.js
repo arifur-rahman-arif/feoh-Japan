@@ -594,7 +594,7 @@ $(function () {
             //$('#SignInButton').addClass('gif_added');
             $('html').addClass('fixed_page');
             $.ajax({
-                url: "/api/sitecore/StayFarEastNavigation/SignIn",
+                url: "/api/sitecore/StayFarEastInsiders/SignIn",
                 type: 'POST',
                 cache: false,
                 contentType: false,
@@ -606,7 +606,6 @@ $(function () {
                     if (response.toLowerCase() == "fail") {
                         $('.ErrorMessage').show();
                         $('html').removeClass('fixed_page');
-                        //$('#SignInButton').removeClass('gif_added');
                         document.getElementById("SignInButton").innerHTML = defaultValue;
                     }
                     else {
