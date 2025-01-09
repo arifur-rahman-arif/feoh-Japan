@@ -79,7 +79,7 @@
         @Html.Sitecore().HrefLangLink()
         @Html.Sitecore().BingLangMeta()
     } *@
-    <link rel="stylesheet" href="~/assets/hospitality/content/main.oasia.css" asp-append-version="true" />
+    <link rel="stylesheet" href="~/assets/hospitality/content/main.oasia.min.css" asp-append-version="true" />
     @* @Styles.Render("~/bundles/oasia/styles/third-part") *@
     <link rel="stylesheet" href="~/assets/hospitality/content/feh-oasia-main-style.css" asp-append-version="true" />
     @* @Scripts.Render("~/bundles/oasia/scripts/third-part") *@
@@ -278,6 +278,7 @@
         </defs>
     </svg>
     @Html.PropertyFor(x => x.Layout.Header)
+    @Html.PropertyFor(x => x.CurrentPage.MainContentArea)
     @RenderBody()
     <section class="content-footer">
         @Html.PropertyFor(x => x.Layout.Footer)

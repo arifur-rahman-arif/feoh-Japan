@@ -46,7 +46,8 @@ namespace FEO.CMS.HBG.Business
             var homePageData = _contentLoader.Get<HBGBasePage>(startPageContentLink);
             return new LayoutModel
             {
-                Header = homePageData.Header
+                Header = homePageData.Header,
+                Footer = homePageData.Footer
             };
         }
 

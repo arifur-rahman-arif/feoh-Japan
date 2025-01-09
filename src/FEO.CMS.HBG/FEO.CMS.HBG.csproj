@@ -68,7 +68,6 @@
     <Folder Include="Views\FarEastHospitality\Clan\Layouts\" />
     <Folder Include="Views\FarEastHospitality\Clan\Pages\" />
     <Folder Include="Views\FarEastHospitality\Oasia\Layouts\" />
-    <Folder Include="Views\FarEastHospitality\Oasia\Pages\" />
     <Folder Include="Views\FarEastHospitality\Outpost\Layouts\" />
     <Folder Include="Views\FarEastHospitality\Outpost\Pages\" />
     <Folder Include="Views\FarEastHospitality\Quincy\Blocks\" />
