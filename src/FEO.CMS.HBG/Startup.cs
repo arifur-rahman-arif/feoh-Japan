@@ -68,6 +68,7 @@ namespace FEO.CMS.HBG
 
             app.UseEndpoints(endpoints =>
             {
+                endpoints.MapControllers();
                 endpoints.MapContent();
             });
         }

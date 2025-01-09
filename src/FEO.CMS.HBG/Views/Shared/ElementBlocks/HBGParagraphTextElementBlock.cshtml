@@ -1,0 +1,51 @@
+﻿@*
+    ====================================
+    Version: 5.6.0.0. Modified: 20230620
+    ====================================
+*@
+
+@using EPiServer.Web
+@using EPiServer.ServiceLocation
+@using EPiServer.Forms.Helpers.Internal
+@using EPiServer.Forms.Implementation.Elements
+@using EPiServer.Forms.Core.Internal
+@using EPiServer.Web.Mvc.Html
+@using FEO.CMS.HBG.Business.Forms.FormFields
+
+@model HBGParagraphTextElementBlock
+
+@{
+    var formBusinessService = EPiServer.ServiceLocation.ServiceLocator.Current.GetInstance<FormBusinessService>();
+    var formElement = Model.FormElement;
+    var paragraphText = Model.ParagraphText;
+    var originalTextId = formElement.Guid + "__OriginalText";
+    var cssClasses = Model.GetValidationCssClasses();
+
+    var ParagraphTextElementBlock_js = ModuleHelper.GetWebResourceContent(typeof(HBGParagraphTextElementBlock), "EPiServer.Forms.ClientResources.ViewMode.ParagraphTextElementBlock.js");
+    ParagraphTextElementBlock_js = ParagraphTextElementBlock_js
+        .Replace("___FormElementGuid___", formElement.Guid.ToString())
+        .Replace("___DoPlaceholder___", ((!Model.DisablePlaceholdersReplacement && Model.HasPlaceHolder()) || Model.FindOwnerForm() == null).ToString().ToLower());
+
+    EPiServer.Framework.Web.Resources.ClientResources.RequireScriptInline(ParagraphTextElementBlock_js).AtFooter();
+}
+
+@using (Html.BeginElement(Model, new { @class = "FormParagraphText Form__Element--NonData" + cssClasses, @data_f_element_nondata = "" }))
+{
+    if (ServiceLocator.Current.GetInstance<IContextModeResolver>().CurrentMode == ContextMode.Edit)
+    {
+        <div id="@formElement.Guid" @Html.Raw(Model.AttributesString)>@Html.Raw(Model.EditViewFriendlyTitle)</div>
+    }
+    else
+    {
+        <div id="@formElement.Guid" @Html.Raw(Model.AttributesString)>
+            @{
+                Html.RenderFormXhtmlString(Model.ParagraphText);
+            }
+        </div>
+        <div id="@originalTextId" class="Form__Original__ParagraphText">
+            @{
+                Html.RenderFormXhtmlString(Model.OriginalParagraphXhtmlString);
+            }
+        </div>
+    }
+}
