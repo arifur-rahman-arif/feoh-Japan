@@ -9,12 +9,14 @@ using FEO.CMS.HBG.Business.Dictionary;
 using FEO.CMS.HBG.Core.Blocks.Rendezvous;
 using FEO.CMS.HBG.Core.Blocks.StayFarEast;
 using FEO.CMS.HBG.Core.Constants;
+using FEO.CMS.HBG.Core.ContentTypes.Settings;
 using FEO.CMS.HBG.Core.Pages;
 using FEO.CMS.HBG.Core.Pages.StayFarEast;
 using FEO.CMS.HBG.Helper;
 using FEO.CMS.HBG.Models;
 using Microsoft.AspNetCore.Mvc;
 using Polly;
+using System.Security.Policy;
 
 namespace FEO.CMS.HBG.Controllers.Blocks
 {
@@ -35,7 +37,7 @@ namespace FEO.CMS.HBG.Controllers.Blocks
 
             //var bookingWidgetData = mvcContext.GetDataSourceItem<IBookingWidgetData>();
             model = GetHeaderNavigation();
-            //model.Languages = GetLanguages();
+            model.Languages = GetLanguages(site);
             //model.Announcement = this.viewService.GetAnnouncement(id);
             //model.PromotionBar = this.viewService.GetPromotionBar(id);
 
@@ -50,7 +52,7 @@ namespace FEO.CMS.HBG.Controllers.Blocks
                 {
                     var header = new HBGSiteLanguageBlock();
                     header.Title = language.Title;
-                    header.LanguageName = contentLoader.Get<IContent>(language.Language).Name;
+                    header.LanguageName = language.Language != null ? contentLoader.Get<IContent>(language.Language).Name : null;
                     headerlist.Add(header);
                 }
             }
@@ -307,23 +309,25 @@ namespace FEO.CMS.HBG.Controllers.Blocks
         //    }
         //        return primarymenu;
         //}
-        //public IEnumerable<HBGSiteLanguageBlock> GetLanguages()
-        //{
-        //    var siteLanguages = Context.Query<SiteLanguage>(string.Format("{0}/*[@@templatename='{1}']",
-        //        PathMapper.Get(Paths.StayFarEastLanguages),
-        //        TemplateNames.SiteLanguage));
+        public IEnumerable<HBGSiteLanguageBlock> GetLanguages(HBGSite site)
+        {
+            try
+            {
+                var languagePath = HBGPathConstants.RelativeLanguages.Replace("StayFarEast", site.Name.ToString());
+                if (string.IsNullOrWhiteSpace(languagePath))
+                    return null;
 
-        //    foreach (var siteLanguage in siteLanguages)
-        //    {
-        //        Sitecore.Data.Items.Item _languageitem = Context.Database.GetItem(siteLanguage.Id.ToString());
-        //        Sitecore.Data.Items.Item _childlanguage = Context.Database.GetItem(_languageitem.Fields["Language"].Value);
-        //        var language = new HBGSiteLanguageBlock();
-        //        language.Name = _childlanguage?.Name;
-        //        language.CultureInfo = Sitecore.Globalization.Language.CreateCultureInfo(_childlanguage?.Name);
-        //        siteLanguage.Language = language;
-        //        yield return siteLanguage;
-        //    }
-        //}
+                var getSiteLanguages = BlockHelper.GetDescendantPath(ContentReference.GlobalBlockFolder, languagePath);
+                var siteLanguages = getSiteLanguages != null ? contentLoader.GetChildren<HBGSiteLanguageBlock>(getSiteLanguages) : null;
+
+                return siteLanguages.OrderBy(x => x.SortOrder);
+            }
+            catch (Exception exp)
+            {
+                logger.Error("Error in CreateWebsiteConfig(): " + exp.InnerException, this);
+                return null;
+            }
+        }
         //public HBGAnnouncementBlock GetAnnouncement(Guid id = default(Guid))
         //{
         //    var announcements = GetAnnouncements(id);
