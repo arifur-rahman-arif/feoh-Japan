@@ -1,0 +1,25 @@
+﻿@model HBGBestRateBlock
+
+
+<section class="discount-section">
+    <div class="wrap">
+        <div class="discount">
+            <div class="discount-title">
+                @if (Model.LogoImage != null){
+                    <figure>
+                        <img class="loaded" data-lazy-type="image" data-lazy-src="@Url.ContentUrl(Model.LogoImage)" alt="" src="@Url.ContentUrl(Model.LogoImage)">
+                    </figure>
+                }
+                
+                @Html.Raw(Model.HighlightText)
+            </div>
+            <div class="discount-description">
+                @Html.Raw(Model.RootDescription)
+                @if(Model.Learnmore != null){
+                    <a class="more-icon" href="@Url.ContentUrl(Model.Learnmore?.Href)" id="tag-best-rate-learn-more">@DictionaryHelper.DictionaryEntry(DictionaryKeys.LearnMoreText)</a>
+                }
+            </div>
+        </div>
+    </div>
+
+</section>
