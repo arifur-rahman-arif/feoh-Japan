@@ -7,7 +7,7 @@ using System.ComponentModel.DataAnnotations;
 namespace FEO.CMS.HBG.Core.Blocks.StayFarEast
 {
     [ContentType(DisplayName = "HBGHeaderRibbonBlock", GUID = "968E8625-57A0-428D-90FC-0556C75954C0", GroupName = "Hospitality")]
-    public class HBGHeaderRibbonBlock : HBGBaseBlock
+    public class HBGHeaderRibbonBlock : HBGHeaderNavConfigBlock
     {
         [Display(Name = "RibbonPromo", GroupName = "Ribbon", Order = 100)]
         [CultureSpecific]
