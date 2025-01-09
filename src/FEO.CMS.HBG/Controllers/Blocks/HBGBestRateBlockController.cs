@@ -7,10 +7,10 @@ using Microsoft.AspNetCore.Mvc;
 
 namespace FEO.CMS.HBG.Controllers.Blocks
 {
-    public class BestRateBlockController : BlockComponent<HBGBestRateBlock>
+    public class HBGBestRateBlockController : BlockComponent<HBGBestRateBlock>
     {
         private readonly IContentLoader _contentLoader;
-        public BestRateBlockController(IContentLoader contentLoader)
+        public HBGBestRateBlockController(IContentLoader contentLoader)
         {
 
             _contentLoader = contentLoader;
