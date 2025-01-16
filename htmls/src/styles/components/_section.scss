@@ -1,0 +1,12 @@
+.section {
+    margin-top: 3.75rem;
+    width: 100%;
+
+    @include media-breakpoint-up('md') {
+        margin-top: 5rem;
+    }
+
+    @include media-breakpoint-up('xl') {
+        margin-top: 6.25rem;
+    }
+}

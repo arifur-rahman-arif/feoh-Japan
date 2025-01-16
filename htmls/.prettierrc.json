@@ -1,0 +1,14 @@
+{
+	"printWidth": 120,
+	"tabWidth": 4,
+	"trailingComma": "none",
+	"singleQuote": true,
+	"semi": true,
+	"arrowParens": "avoid",
+	"plugins": [
+	  "prettier-plugin-astro",
+	  "prettier-plugin-tailwindcss",
+	  "prettier-plugin-svelte"
+	]
+  }
+  
