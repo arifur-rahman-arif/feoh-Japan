@@ -1,0 +1,80 @@
+---
+import HotelItem from './HotelItem.astro';
+
+// Mock data (replace with dynamic content from CMS or API)
+const hotels = [
+  {
+    id: 1,
+    title: 'ファーストビレッジホテル 東京有明',
+    enTitle: 'First Village Hotel Tokyo Ariake',
+    description: '東京都内で快適な宿泊体験をご提供するファーストビレッジホテル東京有明。便利なアクセスと充実の設備で、観光にもビジネスにも最適です。',
+    address: '123 Tokyo Street',
+    tel: '03-1234-5678',
+    email: 'info@hotel.com',
+    image: '/assets/images/hotel_1.png',
+    detailLink: '/hotel-detail',
+  },
+  {
+    id: 2,
+    title: 'ファーストビレッジホテル 東京東雲',
+    enTitle: 'First Village Hotel Tokyo Shinonome',
+    description: '快適な滞在を提供する東京東雲のホテル。モダンな設備とリラックスできる空間。',
+    address: '456 Tokyo Street',
+    tel: '03-8765-4321',
+    email: 'contact@hotel.com',
+    image: '/assets/images/hotel_2.png',
+    detailLink: '/hotel-detail',
+  },
+  {
+    id: 3,
+    title: 'ファーストビレッジホテル 横浜',
+    enTitle: 'First Village Hotel Yokohama',
+    description: '横浜で最高の宿泊体験を提供するホテル。ビジネスや観光に最適で、心地よいサービスと快適な滞在を楽しめます。',
+    address: '789 Yokohama Street',
+    tel: '03-2468-1357',
+    email: 'reservations@hotel.com',
+    image: '/assets/images/hotel_3.png',
+    detailLink: '/hotel-detail',
+  },
+];
+---
+
+<div class={`highlight-container gold`}>
+  <!-- Heading Section -->
+  <div class="component-heading">
+    <h2 class="main-heading">ホテル一覧</h2>
+    <div class="divider-container">
+        <div class="divider"></div>
+    </div>
+  </div>
+
+  <!-- Hotel Listing -->
+  <div class="hotel-listing">
+    {hotels.map((hotel, index) => (
+      <HotelItem {...hotel} />
+    ))}
+  </div>
+
+  <!-- View More Button -->
+  <button class="view-more" on:click={() => toggleViewMore()}>
+    全て表示する ▼
+  </button>
+</div>
+
+<script>
+  // Add interactivity for "View More" functionality
+  function toggleViewMore() {
+    const hiddenItems = document.querySelectorAll('.hotel-item.hidden');
+    const button = document.querySelector('.view-more');
+
+    if (hiddenItems.length > 0) {
+      hiddenItems.forEach((item) => item.classList.remove('hidden'));
+      button.innerHTML = '表示を少なくする ▲'; // "Show Less"
+    } else {
+      hiddenItems.forEach((item, index) => {
+        if (index >= 2) item.classList.add('hidden');
+      });
+      button.innerHTML = '全て表示する ▼'; // "View More"
+    }
+  }
+</script>
