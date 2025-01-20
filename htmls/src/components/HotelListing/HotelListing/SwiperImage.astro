@@ -1,0 +1,18 @@
+---
+export interface Props {
+  images: string[];
+}
+---
+
+<div class="swiper-container w-full overflow-hidden shadow-lg">
+  <div class="swiper-wrapper">
+    {Astro.props.images.map((image) => (
+      <div class="swiper-slide">
+        <img src={image} alt="Hotel Image" class="w-full h-auto" />
+      </div>
+    ))}
+  </div>
+  <div class="swiper-pagination"></div>
+  <div class="swiper-button-prev"></div>
+  <div class="swiper-button-next"></div>
+</div>
