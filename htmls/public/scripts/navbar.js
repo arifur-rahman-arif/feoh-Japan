@@ -1,4 +1,4 @@
-const LanguageDropdown = {
+const Navbar = {
     init: function () {
         // Mobile menu related selectors
         this.mobileMenu = document.getElementById('mobile-menu');
@@ -6,10 +6,8 @@ const LanguageDropdown = {
         this.closeMenuBtn = document.getElementById('close-menu-btn');
 
         // Language related selectors
-        this.dropdownButton = document.getElementById('languageDropdownBtn');
-        this.dropdownMenu = document.getElementById('languageDropdown');
+        this.dropdownButtons = document.querySelectorAll('.language-dropdown-btn');
         this.languageOptions = document.querySelectorAll('.lang-option');
-        this.selectedLanguage = document.getElementById('selectedLanguage');
 
         // Submenu dropdown functionality
         this.submenuDropdownButton = document.querySelectorAll('.submenu-anchor');
@@ -21,8 +19,11 @@ const LanguageDropdown = {
         this.mobileLanguageOptions = document.querySelectorAll('.lang-option-mobile');
         this.mobileSelectedLanguage = document.getElementById('mobile-selected-language');
 
-        // Bind events using arrow functions (no need for bind())
-        this.dropdownButton.addEventListener('click', () => this.toggleDropdown());
+        this.dropdownButtons.forEach(button => {
+            button.addEventListener('click', event => {
+                this.toggleDropdown(event);
+            });
+        });
 
         this.languageOptions.forEach(option => {
             option.addEventListener('click', event => this.handleLanguageSelection(event));
@@ -77,15 +78,20 @@ const LanguageDropdown = {
         submenu.classList.add('translate-x-full');
     },
 
-    toggleDropdown: function () {
-        this.dropdownMenu.classList.toggle('show');
-        document.querySelector('.language-indicator').classList.toggle('show');
+    toggleDropdown: function (event) {
+        const clickedElement = event.target;
+        const parentElement = clickedElement.closest('.dropdown-menu');
+        const dropdownMenu = parentElement.querySelector('.dropdown-content');
+        const languageIndicator = parentElement.querySelector('.language-indicator');
+
+        dropdownMenu.classList.toggle('show');
+        languageIndicator.classList.toggle('show');
     },
 
     handleLanguageSelection: function (event) {
         const lang = event.target.dataset.lang;
-        this.changeLanguage(lang);
-        this.toggleDropdown();
+        this.changeLanguage(lang, event);
+        this.toggleDropdown(event);
     },
 
     handleMobileLanguageSelection: function (event) {
@@ -94,11 +100,15 @@ const LanguageDropdown = {
         this.mobileLanguageDropdown.classList.toggle('max-h-0');
     },
 
-    changeLanguage: function (language) {
-        this.selectedLanguage.textContent = language;
+    changeLanguage: function (language, event) {
+        const clickedElement = event.target;
+        const parentElement = clickedElement.closest('.dropdown-menu');
+        const selectedLanguage = parentElement.querySelector('.selected-language');
+
+        selectedLanguage.textContent = language;
     }
 };
 
 document.addEventListener('DOMContentLoaded', function () {
-    LanguageDropdown.init();
+    Navbar.init();
 });

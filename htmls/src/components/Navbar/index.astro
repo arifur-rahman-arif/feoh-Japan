@@ -7,6 +7,7 @@ const navItems = [
     {
         name: 'ホテル一覧',
         link: '/hotels',
+        firstLine: true,
         submenu: [
             {
                 name: 'ファーイースト・ビレッジホテル 東京 有明',
@@ -24,15 +25,18 @@ const navItems = [
     },
     {
         name: 'お問い合わせ',
+        firstLine: true,
         link: '/contact'
     },
     {
         name: '法人のお客様',
+        firstLine: true,
         link: '/company'
     },
     {
         name: 'ログイン／会員登録',
         link: '/login',
+        firstLine: true,
         submenu: [
             {
                 name: '会員様ログイン',
@@ -79,28 +83,28 @@ const navItems = [
 ];
 ---
 
-<nav class="relative grid grid-cols-[1fr_auto_auto_auto] items-center lg:grid-cols-[auto_1fr_auto_auto]">
-    <a href="/" title="FEH JP" class="max-sm:max-w-20 lg:max-w-[11.2rem]">
+<nav class="relative grid grid-cols-[1fr_auto_auto_auto] items-center xl:grid-cols-[auto_1fr_auto_auto]">
+    <a href="/" title="FEH JP" class="max-sm:max-w-20 xl:max-w-[11.2rem]">
         <img src="public/logos/nav-logo.png" alt="FEH JP" width="179" height="84" class="" />
     </a>
 
     <DesktopMenu navItems={navItems} />
 
     <!-- Language dropdown -->
-    <LanguageDropdown />
+    <LanguageDropdown className="xl:hidden" />
 
     <!-- Book button -->
-    <button role="button" type="button" class="flex h-full items-center justify-center gap-1 bg-color1 px-4">
-        <img src="public/icons/icon_calendar.svg" alt="" class="lg:h-4 lg:w-4" width="16" height="16" />
-        <span class="text-sm font-500 text-color4 lg:text-xl">ご宿泊予約</span>
-        <img src="public/icons/icon-arrow-down.svg" width="14" height="14" />
+    <button role="button" type="button" class="flex h-full items-center justify-center gap-1 bg-color1 px-4 xl:gap-3">
+        <img src="public/icons/icon_calendar.svg" alt="" class="xl:h-6 xl:w-6" width="16" height="16" />
+        <span class="text-sm font-500 text-color4 xl:text-xl">ご宿泊予約</span>
+        <img src="public/icons/icon-arrow-down.svg" width="14" height="14" class="xl:h-6 xl:w-6" />
     </button>
 
     <!-- Hamburger icon -->
     <button
         type="button"
         title="Hamburger menu"
-        class="grid h-16 w-16 place-items-center lg:hidden"
+        class="grid h-16 w-16 place-items-center xl:hidden"
         id="menu-hamburger"
     >
         <svg xmlns="http://www.w3.org/2000/svg" width="36" height="36" viewBox="0 0 36 36" fill="none">
