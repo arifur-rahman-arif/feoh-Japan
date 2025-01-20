@@ -1,0 +1,7 @@
+---
+const { className } = Astro.props;
+---
+
+<button class={`${className} button`}>
+    <slot />
+</button>

@@ -1,4 +1,13 @@
-<div class="fixed top-0 h-full w-full bg-color4">
+---
+import Button from '../Button/index.astro';
+import LanguageMenuMobile from './LanguageMenuMobile.astro';
+const { navItems } = Astro.props;
+---
+
+<div
+    id="mobile-menu"
+    class="pointer-events-none fixed top-0 h-full w-full overflow-x-hidden bg-color4 opacity-0 transition-all duration-500 lg:hidden"
+>
     <!-- Container -->
     <div class="grid h-full w-full content-start">
         <!-- Logo bar -->
@@ -8,9 +17,95 @@
             </a>
 
             <!-- Close icon -->
-            <button type="button" title="Hamburger menu" class="grid h-16 w-16 place-items-center">
+            <button type="button" title="Hamburger menu" class="grid h-16 w-16 place-items-center" id="close-menu-btn">
                 <img src="public/icons/icon-close.svg" alt="Close menu" width="36" height="36" class="" />
             </button>
+        </div>
+
+        <!-- Nav items -->
+        <div class="relative grid gap-10 p-10 pb-24">
+            <ul class="grid gap-4 border-0 border-b border-solid border-[#D9D9D9] pb-10">
+                {
+                    navItems.map((item: any) => (
+                        <li>
+                            {item.submenu ? (
+                                <button
+                                    class="submenu-anchor flex items-center justify-start gap-4 text-base font-400 leading-[1.875rem]"
+                                    type="button"
+                                >
+                                    {item.name}
+                                    <img src="public/icons/icon_arrow.svg" width="12" height="12" alt="" />
+                                </button>
+                            ) : (
+                                <a href={item.link} class="text-base font-400 leading-[1.875rem]">
+                                    {item.name}
+                                </a>
+                            )}
+
+                            {/* Submenu */}
+                            {item.submenu && (
+                                <div class="submenu absolute left-0 top-0 z-[2] grid h-full w-full translate-x-full content-start justify-start gap-4 bg-color4 p-10 transition-all duration-500">
+                                    <button
+                                        type="button"
+                                        class="submenu-action-btn flex cursor-pointer items-center justify-start gap-3 text-base leading-[1.875rem] text-color1"
+                                    >
+                                        <svg
+                                            xmlns="http://www.w3.org/2000/svg"
+                                            width="12"
+                                            height="12"
+                                            viewBox="0 0 12 12"
+                                            fill="none"
+                                        >
+                                            <path
+                                                d="M4.74232 5.99968L8.00106 2.74094C8.087 2.655 8.12886 2.55269 8.12662 2.43401C8.12439 2.31533 8.0803 2.21298 7.99435 2.12696C7.90841 2.04102 7.8061 1.99805 7.68742 1.99805C7.56874 1.99805 7.46639 2.04102 7.38037 2.12696L4.06843 5.44562C3.99027 5.52385 3.93234 5.61149 3.89463 5.70853C3.85684 5.80558 3.83795 5.90263 3.83795 5.99968C3.83795 6.09673 3.85684 6.19378 3.89463 6.29083C3.93234 6.38788 3.99027 6.47551 4.06843 6.55375L7.38708 9.8724C7.47302 9.95834 7.57422 10.0002 7.69066 9.99796C7.80718 9.99573 7.90841 9.95164 7.99435 9.86569C8.0803 9.77975 8.12327 9.67744 8.12327 9.55876C8.12327 9.44008 8.0803 9.33773 7.99435 9.25171L4.74232 5.99968Z"
+                                                fill="var(--color1)"
+                                            />
+                                        </svg>
+                                        {item.name}
+                                    </button>
+                                    <ul class="grid gap-4">
+                                        {item.submenu.map((subItem: any) => (
+                                            <li>
+                                                <a href={subItem.link} class="text-base font-400 leading-[1.875rem]">
+                                                    {subItem.name}
+                                                </a>
+                                            </li>
+                                        ))}
+                                    </ul>
+                                </div>
+                            )}
+                        </li>
+                    ))
+                }
+            </ul>
+
+            <!-- CTA button -->
+            <a href="#" class="button max-w-[19.3rem]">
+                <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 20 20" fill="none">
+                    <path
+                        d="M4.42308 17.9167C4.00211 17.9167 3.64579 17.7708 3.35413 17.4792C3.06246 17.1875 2.91663 16.8312 2.91663 16.4102V5.25647C2.91663 4.8355 3.06246 4.47918 3.35413 4.18751C3.64579 3.89585 4.00211 3.75001 4.42308 3.75001H5.57683V1.9873H6.85892V3.75001H13.1731V1.9873H14.4231V3.75001H15.5768C15.9978 3.75001 16.3541 3.89585 16.6458 4.18751C16.9375 4.47918 17.0833 4.8355 17.0833 5.25647V16.4102C17.0833 16.8312 16.9375 17.1875 16.6458 17.4792C16.3541 17.7708 15.9978 17.9167 15.5768 17.9167H4.42308ZM4.42308 16.6667H15.5768C15.641 16.6667 15.6998 16.6399 15.7531 16.5865C15.8066 16.5331 15.8333 16.4744 15.8333 16.4102V8.5898H4.16663V16.4102C4.16663 16.4744 4.19336 16.5331 4.24683 16.5865C4.30017 16.6399 4.35892 16.6667 4.42308 16.6667ZM4.16663 7.3398H15.8333V5.25647C15.8333 5.1923 15.8066 5.13355 15.7531 5.08022C15.6998 5.02675 15.641 5.00001 15.5768 5.00001H4.42308C4.35892 5.00001 4.30017 5.02675 4.24683 5.08022C4.19336 5.13355 4.16663 5.1923 4.16663 5.25647V7.3398Z"
+                        fill="white"></path>
+                </svg>
+                ご宿泊予約
+                <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 16 16" fill="none">
+                    <path
+                        d="M10.2963 7.99957L5.95135 3.65459C5.83675 3.54 5.78095 3.40358 5.78393 3.24534C5.78691 3.08711 5.84569 2.95064 5.96029 2.83595C6.07488 2.72136 6.2113 2.66406 6.36954 2.66406C6.52777 2.66406 6.66424 2.72136 6.77893 2.83595L11.1949 7.26082C11.2991 7.36513 11.3763 7.48198 11.4266 7.61138C11.477 7.74078 11.5022 7.87018 11.5022 7.99957C11.5022 8.12897 11.477 8.25837 11.4266 8.38777C11.3763 8.51717 11.2991 8.63402 11.1949 8.73833L6.76999 13.1632C6.65539 13.2778 6.52047 13.3336 6.36521 13.3306C6.20985 13.3276 6.07488 13.2688 5.96029 13.1543C5.84569 13.0397 5.7884 12.9032 5.7884 12.745C5.7884 12.5868 5.84569 12.4503 5.96029 12.3356L10.2963 7.99957Z"
+                        fill="white"></path>
+                </svg>
+            </a>
+
+            <!-- Language -->
+            <LanguageMenuMobile />
+
+            <!-- Social links -->
+            <div class="flex items-center justify-start gap-4">
+                <a href="#">
+                    <img src="public/logos/logo-instagram.png" alt="Instagram" width="32" height="32" />
+                </a>
+                <a href="#">
+                    <img src="public/logos/logo-facebook.png" alt="Facebook" width="32" height="32" />
+                </a>
+            </div>
         </div>
     </div>
 </div>
