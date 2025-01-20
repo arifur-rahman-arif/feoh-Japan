@@ -19,6 +19,14 @@ const { yoastSeo, includeLottie } = Astro.props;
             href="https://fonts.googleapis.com/css2?family=Noto+Sans+JP:wght@100..900&display=swap"
             rel="stylesheet"
         />
+        <link 
+            href="https://fonts.googleapis.com/css2?family=Mulish:wght@100...900&display=swap" 
+            rel="stylesheet"
+        />
+		<link
+			rel="stylesheet"
+			href="https://cdn.jsdelivr.net/npm/swiper@11/swiper-bundle.min.css"
+		/>
         <title>FEH JP</title>
     </head>
     <body>
@@ -27,6 +35,8 @@ const { yoastSeo, includeLottie } = Astro.props;
 
         <!-- Scripts goes here -->
         <script is:inline src="public/scripts/navbar.js"></script>
+		<script is:inline src="https://cdn.jsdelivr.net/npm/swiper@11/swiper-bundle.min.js"></script>
+		<script is:inline  type="module" src="public/scripts/hotelListing.js"></script>
     </body>
 </html>
 <!-- 
