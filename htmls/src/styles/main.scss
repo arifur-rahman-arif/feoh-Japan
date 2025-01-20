@@ -1,21 +1,12 @@
 // Load utilities
-// @import 'utils/fonts';
-@import 'utils/variables';
-@import 'utils/breakpoints';
+@use 'utils/variables' as *;
+@use 'utils/breakpoints' as *;
 
 // Load components
-@import 'components/section';
-@import 'components/container';
-// @import 'components/button';
-// @import 'components/navbar';
-// @import 'components/swiper';
-// @import 'components/inputs';
-// @import 'components/video-player';
-// @import 'components/modal';
-// @import 'components/select';
-// @import 'components/pagination';
-// @import 'components/blog';
-// @import 'components/tabs';
+@use 'components/section' as *;
+@use 'components/container' as *;
+@use 'components/navbar';
+@use 'components/button';
 
 * {
     border: none;
@@ -76,7 +67,7 @@ body {
 
     &,
     * {
-		font-family: "Noto Sans JP", serif;
+        font-family: 'Noto Sans JP', serif;
     }
 
     // ========================
@@ -125,7 +116,6 @@ body {
         max-width: 100%;
     }
 
-
     h1 {
         &,
         * {
@@ -143,8 +133,6 @@ body {
             color: var(--color9);
         }
     }
-
-
 
     // ======================
     // Default heading styles

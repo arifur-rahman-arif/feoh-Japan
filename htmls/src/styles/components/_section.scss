@@ -1,3 +1,6 @@
+@use '../utils/variables' as *;
+@use '../utils/breakpoints' as *;
+
 .section {
     margin-top: 3.75rem;
     width: 100%;

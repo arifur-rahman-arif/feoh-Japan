@@ -1,0 +1,110 @@
+---
+import LanguageDropdown from './LanguageDropdown.astro';
+
+const { navItems } = Astro.props;
+
+const firstLineItems = navItems.filter(navItem => navItem.firstLine);
+const secondLineItems = navItems.filter(navItem => !navItem.firstLine);
+---
+
+<div class="grid gap-4 py-7 pr-10 max-xl:hidden">
+    <ul class="flex items-center justify-end gap-7">
+        {
+            firstLineItems.map((item: any) => (
+                <li class="group/menu relative after:absolute after:left-0 after:top-full after:h-4 after:w-full after:bg-color1 after:opacity-0 after:transition-all after:duration-500 after:content-[''] group-hover/menu:after:opacity-100">
+                    {item.submenu ? (
+                        <a
+                            href={item.link}
+                            class="submenu-anchor group/link relative flex items-center justify-start gap-1 text-sm font-500 leading-normal tracking-[0.04rem] text-color11 transition-all duration-500 hover:text-color1"
+                            type="button"
+                        >
+                            {item.name}
+                            <img src="public/icons/icon_arrow.svg" width="12" height="12" alt="" class="rotate-90" />
+
+                            <span class="absolute bottom-0 h-[1px] w-full transition-all duration-500 group-hover/link:bg-color1" />
+                        </a>
+                    ) : (
+                        <a
+                            href={item.link}
+                            class="text-sm font-500 leading-normal tracking-[0.04rem] text-color11 transition-all duration-500 hover:text-color1"
+                        >
+                            {item.name}
+                        </a>
+                    )}
+
+                    {/* Submenu */}
+                    {item.submenu && (
+                        <ul class="pointer-events-none absolute z-10 grid min-w-max translate-y-4 rounded-[0.1875rem] bg-color4 py-4 opacity-0 shadow-md transition-all duration-500 group-hover/menu:pointer-events-auto group-hover/menu:opacity-100">
+                            {item.submenu.map((subItem: any) => (
+                                <li>
+                                    <a
+                                        href={subItem.link}
+                                        class="block px-5 py-2.5 text-base font-400 leading-[1.875rem] transition-all duration-500 hover:text-color1"
+                                    >
+                                        {subItem.name}
+                                    </a>
+                                </li>
+                            ))}
+                        </ul>
+                    )}
+                </li>
+            ))
+        }
+
+        <li>
+            <LanguageDropdown className="!w-16" />
+        </li>
+    </ul>
+
+    {
+        secondLineItems?.length && (
+            <ul class="flex items-center justify-end gap-7">
+                {secondLineItems.map((item: any) => (
+                    <li class="group/menu relative after:absolute after:left-0 after:top-full after:h-4 after:w-full after:bg-color1 after:opacity-0 after:transition-all after:duration-500 after:content-[''] group-hover/menu:after:opacity-100">
+                        {item.submenu ? (
+                            <a
+                                href={item.link}
+                                class="submenu-anchor group/link relative flex items-center justify-start gap-1 text-sm font-500 leading-normal tracking-[0.04rem] text-color11 transition-all duration-500 hover:text-color1"
+                                type="button"
+                            >
+                                {item.name}
+                                <img
+                                    src="public/icons/icon_arrow.svg"
+                                    width="12"
+                                    height="12"
+                                    alt=""
+                                    class="rotate-90"
+                                />
+
+                                <span class="absolute bottom-0 h-[1px] w-full transition-all duration-500 group-hover/link:bg-color1" />
+                            </a>
+                        ) : (
+                            <a
+                                href={item.link}
+                                class="text-sm font-500 leading-normal tracking-[0.04rem] text-color11 transition-all duration-500 hover:text-color1"
+                            >
+                                {item.name}
+                            </a>
+                        )}
+
+                        {/* Submenu */}
+                        {item.submenu && (
+                            <ul class="pointer-events-none absolute grid min-w-max translate-y-4 rounded-[0.1875rem] bg-color4 py-4 opacity-0 shadow-md transition-all duration-500 group-hover/menu:pointer-events-auto group-hover/menu:opacity-100">
+                                {item.submenu.map((subItem: any) => (
+                                    <li>
+                                        <a
+                                            href={subItem.link}
+                                            class="block px-5 py-2.5 text-base font-400 leading-[1.875rem] transition-all duration-500 hover:text-color1"
+                                        >
+                                            {subItem.name}
+                                        </a>
+                                    </li>
+                                ))}
+                            </ul>
+                        )}
+                    </li>
+                ))}
+            </ul>
+        )
+    }
+</div>
