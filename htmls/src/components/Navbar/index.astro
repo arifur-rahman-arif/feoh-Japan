@@ -1,0 +1,118 @@
+---
+import LanguageDropdown from './LanguageDropdown.astro';
+import MobileMenu from './MobileMenu.astro';
+import DesktopMenu from './DesktopMenu.astro';
+
+const navItems = [
+    {
+        name: 'ホテル一覧',
+        link: '/hotels',
+        firstLine: true,
+        submenu: [
+            {
+                name: 'ファーイースト・ビレッジホテル 東京 有明',
+                link: '/hotels/fareast-village-hotel-tokyo-arai'
+            },
+            {
+                name: 'ファーイースト・ビレッジホテル 東京 浅草',
+                link: '/hotels/fareast-village-hotel-tokyo-asakusa'
+            },
+            {
+                name: 'ファーイースト・ビレッジホテル 横浜',
+                link: '/hotels/fareast-village-hotel-yokohama'
+            }
+        ]
+    },
+    {
+        name: 'お問い合わせ',
+        firstLine: true,
+        link: '/contact'
+    },
+    {
+        name: '法人のお客様',
+        firstLine: true,
+        link: '/company'
+    },
+    {
+        name: 'ログイン／会員登録',
+        link: '/login',
+        firstLine: true,
+        submenu: [
+            {
+                name: '会員様ログイン',
+                link: '/login'
+            },
+            {
+                name: '新規会員登録',
+                link: '/register'
+            }
+        ]
+    },
+    {
+        name: '採用情報',
+        link: '/recruit'
+    },
+    {
+        name: '客室',
+        link: '/rooms'
+    },
+    {
+        name: '施設・サービス',
+        link: '/facilities'
+    },
+    {
+        name: 'レストラン',
+        link: '/restaurants'
+    },
+    {
+        name: 'キャンペーン',
+        link: '/campaigns'
+    },
+    {
+        name: 'アクセス',
+        link: '/access'
+    },
+    {
+        name: 'よくあるご質問',
+        link: '/faq'
+    },
+    {
+        name: 'お知らせ',
+        link: '/news'
+    }
+];
+---
+
+<nav class="relative grid grid-cols-[1fr_auto_auto_auto] items-center xl:grid-cols-[auto_1fr_auto_auto]">
+    <a href="/" title="FEH JP" class="max-sm:max-w-20 xl:max-w-[11.2rem]">
+        <img src="public/logos/nav-logo.png" alt="FEH JP" width="179" height="84" class="" />
+    </a>
+
+    <DesktopMenu navItems={navItems} />
+
+    <!-- Language dropdown -->
+    <LanguageDropdown className="xl:hidden" />
+
+    <!-- Book button -->
+    <button role="button" type="button" class="flex h-full items-center justify-center gap-1 bg-color1 px-4 xl:gap-3">
+        <img src="public/icons/icon_calendar.svg" alt="" class="xl:h-6 xl:w-6" width="16" height="16" />
+        <span class="text-sm font-500 text-color4 xl:text-xl">ご宿泊予約</span>
+        <img src="public/icons/icon-arrow-down.svg" width="14" height="14" class="xl:h-6 xl:w-6" />
+    </button>
+
+    <!-- Hamburger icon -->
+    <button
+        type="button"
+        title="Hamburger menu"
+        class="grid h-16 w-16 place-items-center xl:hidden"
+        id="menu-hamburger"
+    >
+        <svg xmlns="http://www.w3.org/2000/svg" width="36" height="36" viewBox="0 0 36 36" fill="none">
+            <path
+                d="M6.375 26.4279C6.05625 26.4279 5.78913 26.32 5.57363 26.1043C5.35788 25.8888 5.25 25.6215 5.25 25.3025C5.25 24.9838 5.35788 24.7167 5.57363 24.5012C5.78913 24.2859 6.05625 24.1783 6.375 24.1783H29.625C29.9438 24.1783 30.2109 24.286 30.4264 24.5015C30.6421 24.7173 30.75 24.9847 30.75 25.3037C30.75 25.6224 30.6421 25.8895 30.4264 26.105C30.2109 26.3203 29.9438 26.4279 29.625 26.4279H6.375ZM6.375 19.1012C6.05625 19.1012 5.78913 18.9933 5.57363 18.7775C5.35788 18.5618 5.25 18.2945 5.25 17.9758C5.25 17.6568 5.35788 17.3897 5.57363 17.1744C5.78913 16.9589 6.05625 16.8512 6.375 16.8512H29.625C29.9438 16.8512 30.2109 16.959 30.4264 17.1748C30.6421 17.3905 30.75 17.6578 30.75 17.9765C30.75 18.2955 30.6421 18.5627 30.4264 18.7779C30.2109 18.9934 29.9438 19.1012 29.625 19.1012H6.375ZM6.375 11.774C6.05625 11.774 5.78913 11.6663 5.57363 11.4508C5.35788 11.235 5.25 10.9677 5.25 10.6487C5.25 10.3299 5.35788 10.0628 5.57363 9.84729C5.78913 9.63204 6.05625 9.52441 6.375 9.52441H29.625C29.9438 9.52441 30.2109 9.63229 30.4264 9.84804C30.6421 10.0635 30.75 10.3308 30.75 10.6498C30.75 10.9685 30.6421 11.2357 30.4264 11.4512C30.2109 11.6664 29.9438 11.774 29.625 11.774H6.375Z"
+                fill="#9D7C36"></path>
+        </svg>
+    </button>
+
+    <MobileMenu navItems={navItems} />
+</nav>

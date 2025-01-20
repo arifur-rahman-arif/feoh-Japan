@@ -1,0 +1,26 @@
+@use '../utils/variables' as *;
+@use '../utils/breakpoints' as *;
+
+.dropdown-content {
+    li {
+        &:first-child {
+            padding-top: 0.3rem;
+        }
+
+        &:last-child {
+            padding-bottom: 0.3rem;
+        }
+    }
+}
+/* Dropdown Content */
+.dropdown-content,
+.language-indicator {
+    opacity: 0;
+    pointer-events: none;
+}
+
+.dropdown-content.show,
+.language-indicator.show {
+    opacity: 1;
+    pointer-events: auto;
+}
