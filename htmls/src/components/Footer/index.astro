@@ -1,0 +1,117 @@
+---
+import InfoLinks from './InfoLinks.astro';
+import MenuLinks from './MenuLinks.astro';
+import LogoList from './LogoList.astro';
+
+const menuItems = [
+    {
+        text: 'ホテル一覧',
+        link: '#'
+    },
+    {
+        text: 'お問い合わせ',
+        link: '#'
+    },
+    {
+        text: '法人のお客様',
+        link: '#'
+    },
+    {
+        text: '会員様ログイン',
+        link: '#'
+    },
+    {
+        text: '新規会員登録',
+        link: '#'
+    },
+    {
+        text: '客室',
+        link: '#'
+    },
+    {
+        text: '施設・サービス',
+        link: '#'
+    },
+    {
+        text: 'レストラン',
+        link: '#'
+    },
+    {
+        text: 'キャンペーン',
+        link: '#'
+    },
+    {
+        text: 'アクセス',
+        link: '#'
+    },
+    {
+        text: 'よくあるご質問',
+        link: '#'
+    },
+    {
+        text: 'お知らせ',
+        link: '#'
+    }
+];
+---
+
+<footer class="w-full bg-color9 px-6 xl:px-0">
+    <div class="container grid gap-10 pb-16 pt-20">
+        <!-- Logo part -->
+        <div class="grid gap-10 md:grid-cols-[auto_1fr]">
+            <div class="grid justify-center gap-10 md:justify-items-start md:gap-16 xl:gap-20">
+                <a href="/"><img src="public/logos/footer-logo.png" alt="FEH JP" width="240" height="89" /></a>
+
+                <InfoLinks />
+            </div>
+
+            <!-- Divider -->
+            <div class="h-[0.06rem] w-full bg-color4 md:hidden"></div>
+
+            <MenuLinks menuItems={menuItems} />
+
+            <!-- Divider -->
+            <div class="h-[0.06rem] w-full bg-color4 md:hidden"></div>
+        </div>
+
+        <!-- Desktop Divider -->
+        <div class="hidden h-[0.06rem] w-full bg-color4 md:block"></div>
+
+        <LogoList />
+
+        <!-- Divider -->
+        <div class="h-[0.06rem] w-full bg-color4"></div>
+
+        <div class="-mt-6 grid items-start gap-10 md:-mt-4 md:grid-cols-[auto_1fr]">
+            <div class="flex flex-wrap items-center justify-start gap-4 md:order-2 md:justify-end md:self-end">
+                <a
+                    class="cursor-pointer text-xs font-400 leading-normal tracking-wide text-color4 decoration-color1 underline-offset-8 transition-all duration-500 hover:text-color1 hover:underline"
+                    href="#">プライバシーポリシー｜</a
+                >
+                <a
+                    class="cursor-pointer text-xs font-400 leading-normal tracking-wide text-color4 decoration-color1 underline-offset-8 transition-all duration-500 hover:text-color1 hover:underline"
+                    href="#">クッキーポリシー｜</a
+                >
+                <a
+                    class="cursor-pointer text-xs font-400 leading-normal tracking-wide text-color4 decoration-color1 underline-offset-8 transition-all duration-500 hover:text-color1 hover:underline"
+                    href="#">ホテル利用規約｜</a
+                >
+                <a
+                    class="cursor-pointer text-xs font-400 leading-normal tracking-wide text-color4 decoration-color1 underline-offset-8 transition-all duration-500 hover:text-color1 hover:underline"
+                    href="#"
+                >
+                    特定商取引法に基づく表記
+                </a>
+            </div>
+
+            <div class="flex items-center justify-center gap-4">
+                <a href="#">
+                    <img src="public/logos/logo-instagram.svg" width="32" height="32" alt="Instagram" />
+                </a>
+                <a href="#">
+                    <img src="public/logos/logo-facebook.svg" width="32" height="32" alt="Instagram" />
+                </a>
+            </div>
+        </div>
+    </div>
+</footer>
