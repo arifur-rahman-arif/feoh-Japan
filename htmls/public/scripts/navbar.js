@@ -108,7 +108,9 @@ const Navbar = {
         const parentElement = clickedElement.closest('.dropdown-menu');
         const dropdownMenu = parentElement.querySelector('.dropdown-content');
         const languageIndicator = parentElement.querySelector('.language-indicator');
-        ``;
+        const arrow = parentElement.querySelector('.dropdown-arrow');
+
+        arrow.classList.toggle('-rotate-180');
         dropdownMenu.classList.toggle('show');
         languageIndicator.classList.toggle('show');
     },
