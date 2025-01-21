@@ -83,9 +83,19 @@ const navItems = [
 ];
 ---
 
-<nav class="relative grid grid-cols-[1fr_auto_auto_auto] items-center xl:grid-cols-[auto_1fr_auto_auto]">
-    <a href="/" title="FEH JP" class="max-sm:max-w-20 xl:max-w-[11.2rem]">
-        <img src="public/logos/nav-logo.png" alt="FEH JP" width="179" height="84" class="" />
+<nav
+    id="navbar"
+    class="transparent-nav fixed top-0 z-20 grid w-full grid-cols-[1fr_auto_auto_auto] items-center shadow-sm transition-all duration-500 xl:grid-cols-[auto_1fr_auto_auto]"
+>
+    <a href="/" title="FEH JP" class="relative max-sm:max-w-20 xl:max-w-[11.2rem]">
+        <img src="public/logos/nav-logo.png" alt="FEH JP" width="179" height="84" class="logo" />
+        <img
+            src="public/logos/nav-logo-white.png"
+            alt="FEH JP"
+            width="150"
+            height="51"
+            class="logo logo--white pl-4 xl:pl-6"
+        />
     </a>
 
     <DesktopMenu navItems={navItems} />

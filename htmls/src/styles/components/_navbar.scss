@@ -24,3 +24,75 @@
     opacity: 1;
     pointer-events: auto;
 }
+
+nav {
+    .logo {
+        transition: all 0.3s ease-in-out;
+    }
+}
+
+// Navbar styles
+
+// Transparent navbar and all related children will have it's own color scheme
+.transparent-nav {
+    background-color: transparent;
+    .logo {
+        display: none;
+
+        &--white {
+            display: block;
+        }
+    }
+
+    @include media-breakpoint-up(xl) {
+        .parent-menu > li > a,
+        .selected-language {
+            color: var(--color4);
+        }
+
+        svg,
+        path {
+            fill: var(--color4);
+        }
+
+        .parent-menu > li:hover {
+            .text-bar {
+                background: var(--color4);
+            }
+
+            svg,
+            path {
+                fill: var(--color4);
+            }
+        }
+    }
+
+    #menu-hamburger,
+    .dropdown-menu {
+        svg,
+        path {
+            fill: var(--color4);
+        }
+
+        .selected-language {
+            color: var(--color4);
+        }
+    }
+
+    .language-indicator {
+        background: var(--color4);
+    }
+}
+
+// White navbar and all it's related children will have it's own color scheme
+.white-nav {
+    background-color: var(--color4);
+
+    .logo {
+        opacity: 1;
+    }
+
+    .logo--white {
+        display: none;
+    }
+}

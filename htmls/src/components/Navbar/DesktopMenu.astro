@@ -8,7 +8,7 @@ const secondLineItems = navItems.filter(navItem => !navItem.firstLine);
 ---
 
 <div class="grid gap-4 py-7 pr-10 max-xl:hidden">
-    <ul class="flex items-center justify-end gap-7">
+    <ul class="parent-menu flex items-center justify-end gap-7">
         {
             firstLineItems.map((item: any) => (
                 <li class="group/menu relative after:absolute after:left-0 after:top-full after:h-4 after:w-full after:bg-color1 after:opacity-0 after:transition-all after:duration-500 after:content-[''] group-hover/menu:after:opacity-100">
@@ -19,9 +19,25 @@ const secondLineItems = navItems.filter(navItem => !navItem.firstLine);
                             type="button"
                         >
                             {item.name}
-                            <img src="public/icons/icon_arrow.svg" width="12" height="12" alt="" class="rotate-90" />
+                            <svg
+                                width="12"
+                                height="12"
+                                viewBox="0 0 12 12"
+                                class="h-4 w-4 rotate-90 transition-all duration-500 group-hover/link:-rotate-90"
+                                fill="none"
+                                xmlns="http://www.w3.org/2000/svg"
+                            >
+                                <g id="00/icon_arrow">
+                                    <path
+                                        id="Vector"
+                                        d="M7.72215 5.99968L4.46342 2.74094C4.37747 2.655 4.33562 2.55269 4.33785 2.43401C4.34009 2.31533 4.38418 2.21298 4.47012 2.12696C4.55607 2.04102 4.65838 1.99805 4.77706 1.99805C4.89574 1.99805 4.99809 2.04102 5.0841 2.12696L8.39605 5.44562C8.47421 5.52385 8.53214 5.61149 8.56985 5.70853C8.60763 5.80558 8.62652 5.90263 8.62652 5.99968C8.62652 6.09673 8.60763 6.19378 8.56985 6.29083C8.53214 6.38788 8.47421 6.47551 8.39605 6.55375L5.0774 9.8724C4.99145 9.95834 4.89026 10.0002 4.77382 9.99796C4.6573 9.99573 4.55607 9.95164 4.47012 9.86569C4.38418 9.77975 4.34121 9.67744 4.34121 9.55876C4.34121 9.44008 4.38418 9.33773 4.47012 9.25171L7.72215 5.99968Z"
+                                        fill="#3A3D46"
+                                        class="transition-all duration-500 group-hover/link:fill-color1"
+                                    />
+                                </g>
+                            </svg>
 
-                            <span class="absolute bottom-0 h-[1px] w-full transition-all duration-500 group-hover/link:bg-color1" />
+                            <span class="text-bar absolute bottom-0 h-[1px] w-full transition-all duration-500 group-hover/link:bg-color1" />
                         </a>
                     ) : (
                         <a
@@ -34,7 +50,10 @@ const secondLineItems = navItems.filter(navItem => !navItem.firstLine);
 
                     {/* Submenu */}
                     {item.submenu && (
-                        <ul class="pointer-events-none absolute z-10 grid min-w-max translate-y-4 rounded-[0.1875rem] bg-color4 py-4 opacity-0 shadow-md transition-all duration-500 group-hover/menu:pointer-events-auto group-hover/menu:opacity-100">
+                        <ul
+                            class="pointer-events-none absolute z-10 grid min-w-max translate-y-4 rounded-[0.1875rem] bg-[rgba(255,_255,_255,_0.80)] py-4 opacity-0 shadow-md transition-all duration-500 group-hover/menu:pointer-events-auto group-hover/menu:opacity-100"
+                            style="backdrop-filter: blur(5px);"
+                        >
                             {item.submenu.map((subItem: any) => (
                                 <li>
                                     <a
@@ -58,25 +77,35 @@ const secondLineItems = navItems.filter(navItem => !navItem.firstLine);
 
     {
         secondLineItems?.length && (
-            <ul class="flex items-center justify-end gap-7">
+            <ul class="parent-menu flex items-center justify-end gap-7">
                 {secondLineItems.map((item: any) => (
                     <li class="group/menu relative after:absolute after:left-0 after:top-full after:h-4 after:w-full after:bg-color1 after:opacity-0 after:transition-all after:duration-500 after:content-[''] group-hover/menu:after:opacity-100">
                         {item.submenu ? (
                             <a
                                 href={item.link}
-                                class="submenu-anchor group/link relative flex items-center justify-start gap-1 text-sm font-500 leading-normal tracking-[0.04rem] text-color11 transition-all duration-500 hover:text-color1"
+                                class="submenu-anchor group/link relative flex items-center justify-start gap-1 text-base font-500 leading-normal tracking-[0.04rem] text-color11 transition-all duration-500 hover:text-color1"
                                 type="button"
                             >
                                 {item.name}
-                                <img
-                                    src="public/icons/icon_arrow.svg"
+                                <svg
                                     width="12"
                                     height="12"
-                                    alt=""
-                                    class="rotate-90"
-                                />
+                                    viewBox="0 0 12 12"
+                                    class="h-4 w-4 rotate-90 transition-all duration-500 group-hover/link:-rotate-90"
+                                    fill="none"
+                                    xmlns="http://www.w3.org/2000/svg"
+                                >
+                                    <g id="00/icon_arrow">
+                                        <path
+                                            id="Vector"
+                                            d="M7.72215 5.99968L4.46342 2.74094C4.37747 2.655 4.33562 2.55269 4.33785 2.43401C4.34009 2.31533 4.38418 2.21298 4.47012 2.12696C4.55607 2.04102 4.65838 1.99805 4.77706 1.99805C4.89574 1.99805 4.99809 2.04102 5.0841 2.12696L8.39605 5.44562C8.47421 5.52385 8.53214 5.61149 8.56985 5.70853C8.60763 5.80558 8.62652 5.90263 8.62652 5.99968C8.62652 6.09673 8.60763 6.19378 8.56985 6.29083C8.53214 6.38788 8.47421 6.47551 8.39605 6.55375L5.0774 9.8724C4.99145 9.95834 4.89026 10.0002 4.77382 9.99796C4.6573 9.99573 4.55607 9.95164 4.47012 9.86569C4.38418 9.77975 4.34121 9.67744 4.34121 9.55876C4.34121 9.44008 4.38418 9.33773 4.47012 9.25171L7.72215 5.99968Z"
+                                            fill="#3A3D46"
+                                            class="transition-all duration-500 group-hover/link:fill-color1"
+                                        />
+                                    </g>
+                                </svg>
 
-                                <span class="absolute bottom-0 h-[1px] w-full transition-all duration-500 group-hover/link:bg-color1" />
+                                <span class="text-bar absolute bottom-0 h-[1px] w-full transition-all duration-500 group-hover/link:bg-color1" />
                             </a>
                         ) : (
                             <a
@@ -89,7 +118,10 @@ const secondLineItems = navItems.filter(navItem => !navItem.firstLine);
 
                         {/* Submenu */}
                         {item.submenu && (
-                            <ul class="pointer-events-none absolute grid min-w-max translate-y-4 rounded-[0.1875rem] bg-color4 py-4 opacity-0 shadow-md transition-all duration-500 group-hover/menu:pointer-events-auto group-hover/menu:opacity-100">
+                            <ul
+                                class="pointer-events-none absolute grid min-w-max translate-y-4 rounded-[0.1875rem] bg-[rgba(255,_255,_255,_0.80)] py-4 opacity-0 shadow-md transition-all duration-500 group-hover/menu:pointer-events-auto group-hover/menu:opacity-100"
+                                style="backdrop-filter: blur(5px);"
+                            >
                                 {item.submenu.map((subItem: any) => (
                                     <li>
                                         <a

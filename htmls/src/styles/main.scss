@@ -11,6 +11,7 @@
 @use 'components/section-heading';
 @use 'components/static-content';
 @use 'components/btnScrollTop';
+@use 'components/swiper';
 
 * {
     border: none;
@@ -88,7 +89,7 @@ body {
     div {
         &,
         * {
-            color: var(--color12);
+            color: var(--color11);
             font-size: 1rem;
         }
     }
@@ -144,8 +145,8 @@ body {
     h1 {
         &,
         * {
-            font-size: 2.25rem;
-            line-height: 3.5rem;
+            font-size: 1.375rem;
+            line-height: 2.43rem;
             font-weight: var(--600);
             letter-spacing: 0.125rem;
 
