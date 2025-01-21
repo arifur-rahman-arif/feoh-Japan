@@ -1,0 +1,22 @@
+---
+import SwiperImage from "./SwiperImage.astro";
+import SliderInfo from "./SliderInfo.astro";
+
+const { hotel, layout } = Astro.props;
+---
+
+<div
+  class={`flex flex-col md:flex-row ${
+    layout === "right" ? "md:flex-row-reverse" : ""
+  } items-center hotel-listing-item`}
+>
+  <!-- Swiper Image Component -->
+  <div class="w-full md:w-1/2">
+    <SwiperImage images={hotel.images} />
+  </div>
+
+  <!-- Slider Info Component -->
+  <div class="w-full md:w-1/2 hotel-info-container">
+    <SliderInfo {...hotel} />
+  </div>
+</div>
