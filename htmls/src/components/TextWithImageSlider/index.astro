@@ -1,0 +1,31 @@
+---
+import Row from "../HotelListing/Row.astro";
+
+// Mock data (replace with dynamic content from CMS or API)
+const hotels = [
+  {
+    id: 1,
+    title: 'ビレッジブランド',
+    enTitle: 'Our Village Brand',
+    description: 'ビレッジブランドはホテルが位置する都会の地域のユニークさを反映したブランドです。このブランドは、「地元の人々のように食べる・遊ぶ・探索する」という当ブランドの3つの柱をとおして、地元民になりきってお過ごし頂ける思い出深い体験を、都会の探索を愛するお客様にお届けします。',
+    // address: '〒135-0063 東京都江東区有明1-2-43',
+    // tel: '03-6271-0337',
+    // email: 'info.vhat@fareast-hotels.com',
+    images: ['/assets/images/hotel_1.png', '/assets/images/hotel_2.png', '/assets/images/hotel_3.png'],
+    ctaText: '私たちについて',
+    detailLink: '/hotel-detail',
+  },
+];
+---
+
+<div class="highlight-container white">
+  <div class="hotel-listing hotel-listing-padding flex flex-col">
+    {hotels.map((hotel, index) => (
+      <Row
+        key={hotel.id}
+        hotel={hotel}
+        layout={'right'}
+      />
+    ))}
+  </div>
+</div>

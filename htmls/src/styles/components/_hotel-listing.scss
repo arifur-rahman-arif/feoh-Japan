@@ -195,6 +195,18 @@
     padding: 3rem;
 }
 
+.hotel-listing.hotel-listing-padding {
+    padding: 60px 0;
+}
+
+.hotel-listing-padding .hotel-listing-item {
+    gap: 80px;
+}
+
+.hotel-listing-padding .hotel-info-container .hotel-info-button {
+    margin-top: 50px;
+}
+
 @media (max-width: 768px) {
     .hotel-listing {
         gap: 40px;
@@ -248,5 +260,9 @@
     .hotel-listing-item .swiper-button-next,
     .hotel-listing-item .swiper-button-prev {
         display: none;
+    }
+
+    .hotel-listing-padding .hotel-info-container .hotel-info-button {
+        margin-top: 0px;
     }
 }
