@@ -2,6 +2,7 @@
 import '../styles/main.scss';
 import Navbar from '@/components/Navbar/index.astro';
 import Footer from '../components/Footer/index.astro';
+import ButtonScrollTop from '../components/ButtonScrollTop/index.astro';
 
 const { yoastSeo, includeLottie } = Astro.props;
 ---
@@ -27,11 +28,13 @@ const { yoastSeo, includeLottie } = Astro.props;
         <Navbar />
         <slot />
         <Footer />
+        <ButtonScrollTop />
 
         <!-- Scripts goes here -->
         <script is:inline src="public/scripts/navbar.js"></script>
         <script is:inline src="https://cdn.jsdelivr.net/npm/swiper@11/swiper-bundle.min.js"></script>
         <script is:inline type="module" src="public/scripts/hotelListing.js"></script>
+        <script is:inline type="module" src="public/scripts/btnScrollTop.js"></script>
     </body>
 </html>
 <!-- 
