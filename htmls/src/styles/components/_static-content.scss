@@ -1,9 +1,17 @@
 .culture-section {
+    &.white {
+        background-color: var(--color4);
+    }
+    &.grey {
+        background-color: var(--color13);
+    }
+}
+
+.culture-section {
     display: flex;
     padding: 40px 183px 80px 183px;
     flex-direction: column;
     align-items: center;
-    background: var(--color13);
 }
 
 .culture-section .section-content {

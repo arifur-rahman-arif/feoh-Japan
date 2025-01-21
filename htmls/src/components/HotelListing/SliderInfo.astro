@@ -1,5 +1,5 @@
 ---
-const { title, enTitle, description, address, tel, email, ctaLink, ctaText } = Astro.props;
+const { title, enTitle, description, address, addressLink, tel, email, ctaLink, ctaText } = Astro.props;
 ---
 
 <div class="flex flex-col justify-center p-5 space-y-4">
@@ -7,7 +7,7 @@ const { title, enTitle, description, address, tel, email, ctaLink, ctaText } = A
     <h2 class="hotel-title">{title}</h2>
     <p class="hotel-en-title">{enTitle}</p>
   </div>
-  <p class="hotel-description">{description}</p>
+  <p class="hotel-description line-clamp-5">{description}</p>
   {(address || tel || email) &&
     <div class="flex flex-col hotel-info-divider-container">
       <div class="hotel-info-divider"></div>
@@ -17,13 +17,13 @@ const { title, enTitle, description, address, tel, email, ctaLink, ctaText } = A
     {address && (
       <div class="hotel-info">
         <p class="hotel-info-title">住所:</p>
-        <p class="hotel-info-content">{address}</p>
+        <p class="hotel-info-content"><a href={addressLink}>{address}</a></p>
       </div>
     )}
     {tel && (
       <div class="hotel-info">
         <p class="hotel-info-title">TEL:</p>
-        <p class="hotel-info-content">{tel}</p>
+        <p class="hotel-info-content"><a href={`tel:${tel}`}>{tel}</a></p>
       </div>
     )}
     {email && (

@@ -1,7 +1,20 @@
 .highlight-container {
-    &.white,
-    &.grey {
+    &.white {
         background-color: var(--color4);
+        color: var(--color9);
+
+        .header-divider {
+            background: var(--color1);
+        }
+
+        .hotel-info-button {
+            background: var(--color1);
+            color: var(--color4);
+        }
+    }
+
+    &.grey {
+        background-color: var(--color13);
         color: var(--color9);
 
         .header-divider {
@@ -73,11 +86,6 @@
 }
 
 .hotel-description {
-    display: -webkit-box;
-    -webkit-line-clamp: 5;
-    -webkit-box-orient: vertical;
-    overflow: hidden;
-    text-overflow: ellipsis;
     color: var(--color11);
     font-size: 16px;
     font-weight: var(--400);
