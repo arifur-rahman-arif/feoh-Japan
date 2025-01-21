@@ -40,7 +40,7 @@
             color: var(--color4);
         }
 
-        .view-more-button svg path {
+        .show-all-button svg path {
             fill: var(--color4);
         }
 
@@ -152,7 +152,7 @@
     height: 16px;
 }
 
-.view-more-button {
+.show-all-button {
     color: var(--color11);
     display: flex;
     align-items: center;
@@ -199,7 +199,7 @@
     background: var(--color4);
 }
 
-.view-more-button-container {
+.show-all-button-container {
     padding: 3rem;
 }
 
