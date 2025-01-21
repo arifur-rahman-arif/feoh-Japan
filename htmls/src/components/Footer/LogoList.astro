@@ -1,0 +1,57 @@
+---
+const logoList = [
+    {
+        title: '独自のストーリー',
+        logos: [
+            'public/logos/Amoy1.png',
+            'public/logos/TBH1.png',
+            'public/logos/TCH1.png',
+            'public/logos/TOH1.png',
+            'public/logos/Calile.png',
+            'public/logos/Kurrajong.png',
+            'public/logos/Savoy.png',
+            'public/logos/Britomart.png'
+        ]
+    },
+    {
+        title: 'ライフスタイル',
+        logos: [
+            'public/logos/rsz_oasia1.png',
+            'public/logos/rsz_quincy1.png',
+            'public/logos/rsz_1rendezvous.png',
+            'public/logos/rsz_vibe1.png'
+        ]
+    },
+    {
+        title: '地域体験',
+        logos: ['public/logos/Village1.png', 'public/logos/Travelodge1.png']
+    },
+    {
+        title: 'ホームリビング',
+        logos: ['public/logos/Adina1.png', 'public/logos/OPS1.png', 'public/logos/OSR1.png']
+    },
+    {
+        title: 'ホテルリビング',
+        logos: ['public/logos/rsz_abyadina1.png']
+    },
+    {
+        title: '系列ブランド',
+        logos: ['public/logos/Sino-Hotels.png', 'public/logos/rsz_fullerton1.png']
+    }
+];
+---
+
+<div class="grid gap-10 md:gap-4">
+    {
+        logoList.map(item => (
+            <div class="grid items-center gap-5 md:grid-cols-[auto_1fr] md:gap-14">
+                <h3 class="text-sm font-400 leading-normal tracking-wide text-color4">{item.title}</h3>
+                <div class="flex flex-wrap items-center justify-start gap-7">
+                    {item.logos.map(logo => (
+                        <img src={logo} alt="" width="85" height="70" class="" />
+                    ))}
+                </div>
+            </div>
+        ))
+    }
+</div>
