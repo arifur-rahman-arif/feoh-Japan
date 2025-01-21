@@ -151,11 +151,35 @@
     gap: 10px;
 }
 
-.hotel-listing-item .swiper-button-next:after,
-.hotel-listing-item .swiper-button-prev:after {
+.hotel-listing-item .swiper-container {
+    height: 542px;
+}
+
+.hotel-listing-item .swiper-button-prev {
+    left: 0px;
+}
+
+.hotel-listing-item .swiper-button-next {
+    right: 0px;
+}
+
+.hotel-listing-item .swiper-button-prev,
+.hotel-listing-item .swiper-button-next {
     width: 60px;
     height: 60px;
     color: var(--color4);
+}
+
+.hotel-listing-item .swiper-button-prev svg,
+.hotel-listing-item .swiper-button-next svg {
+    width: 100%;
+    height: 100%;
+    color: var(--color4);
+}
+
+.hotel-listing-item .swiper-button-next:after,
+.hotel-listing-item .swiper-button-prev:after {
+    display: none;
 }
 
 .swiper-pagination-bullet {
@@ -178,6 +202,10 @@
 
     .hotel-listing .hotel-listing-item {
         gap: 20px;
+    }
+
+    .hotel-listing .hotel-listing-item .swiper-container {
+        height: 256px;
     }
 
     .hotel-info-container {

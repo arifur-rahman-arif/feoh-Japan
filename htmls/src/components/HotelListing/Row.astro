@@ -11,12 +11,12 @@ const { hotel, layout } = Astro.props;
   } items-center hotel-listing-item`}
 >
   <!-- Swiper Image Component -->
-  <div class="w-full md:w-1/2">
+  <div class="w-full md:w-[52%]">
     <SwiperImage images={hotel.images} />
   </div>
 
   <!-- Slider Info Component -->
-  <div class="w-full md:w-1/2 hotel-info-container">
+  <div class="w-full md:w-[48%] hotel-info-container">
     <SliderInfo {...hotel} />
   </div>
 </div>
