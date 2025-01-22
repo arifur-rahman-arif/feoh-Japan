@@ -1,9 +1,37 @@
+@use '../utils/variables' as *;
+@use '../utils/breakpoints' as *;
+
 .swiper-pagination {
     &-bullet {
         background-color: var(--color12) !important;
 
         &-active {
             background-color: var(--color4) !important;
+        }
+    }
+}
+
+.swiper-button-prev {
+    color: var(--color4);
+
+    @include media-breakpoint-up(md) {
+        left: 1.5rem;
+    }
+}
+
+.swiper-button-next {
+    color: var(--color4);
+
+    @include media-breakpoint-up(md) {
+        right: 1.5rem;
+    }
+}
+
+.swiper-button-prev,
+.swiper-button-next {
+    @include media-breakpoint-down(md) {
+        &::after {
+            font-size: 2rem;
         }
     }
 }
