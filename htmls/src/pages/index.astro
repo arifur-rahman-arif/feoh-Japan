@@ -3,6 +3,7 @@ import Layout from '../layouts/Layout.astro';
 import HotelListing from '../components/HotelListing/index.astro';
 import StaticContent from '../components/StaticContent/index.astro';
 import TextWithImageSlider from '../components/TextWithImageSlider/index.astro';
+import MastheadHome from '../components/Masthead/MastheadHome.astro';
 import DealsListing from '../components/DealsListing/index.astro';
 
 // Welcome to Astro! Wondering what to do next? Check out the Astro documentation at https://docs.astro.build
@@ -10,6 +11,15 @@ import DealsListing from '../components/DealsListing/index.astro';
 ---
 
 <Layout>
+    <MastheadHome
+        heading="ファーイースト・ホスピタリティが手掛ける 「ビレッジホテル」"
+        description="ビレッジに滞在されると、<br/>地元の人々と同じように都市をお楽しみ頂けます。"
+        images={[
+            '/assets/masthead/home-masthead-slide-1.png',
+            '/assets/masthead/home-masthead-slide-2.png',
+            '/assets/masthead/home-masthead-slide-3.png'
+        ]}
+    />
     <StaticContent />
     <HotelListing />
     <DealsListing />

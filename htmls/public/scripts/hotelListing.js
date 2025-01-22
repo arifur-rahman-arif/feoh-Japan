@@ -1,4 +1,4 @@
-import Swiper from 'swiper/bundle';
+// import Swiper from 'swiper/bundle';
 
 // Initialize Swiper
 new Swiper('.swiper-container', {
