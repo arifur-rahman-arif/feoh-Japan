@@ -1,5 +1,5 @@
 ---
-const { title, description, discount, condition, image, ctaText, ctaLink, label, labelIcon, labelColor } = Astro.props;
+const { title, description, badges, image, ctaText, ctaLink, label, labelIcon, labelColor } = Astro.props;
 ---
 
 <div class="deals-card">
@@ -16,8 +16,9 @@ const { title, description, discount, condition, image, ctaText, ctaLink, label,
         <h3 class="deals-title line-clamp-2">{title}</h3>
         <p class="deals-description line-clamp-2">{description}</p>
         <div class="deals-badges">
-          <span class="badge">{discount}</span>
-          <span class="badge">{condition}</span>
+          {badges.map((badge) => (
+            <span class="badge">{badge}</span>
+          ))}
         </div>
       </div>
       <a class="details-button" href={ctaLink}>
