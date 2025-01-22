@@ -28,6 +28,14 @@
 
     .deals-swiper {
         padding-bottom: 48px;
+
+        .single-deal {
+            justify-content: center;
+
+            .swiper-slide {
+                margin-right: 0 !important;
+            }
+        }
     }
 
     .deals-swiper .swiper-pagination-bullets {
@@ -40,8 +48,11 @@
         align-items: center;
         gap: 20px;
         background: var(--color4);
+        position: relative;
 
         .deals-img-wrapper {
+            position: relative;
+
             .deals-label {
                 display: flex;
                 padding: 6px 9px;
@@ -80,17 +91,17 @@
 
         .deals-content {
             display: flex;
-            padding-bottom: 20px;
             flex-direction: column;
-            align-items: center;
+            align-items: flex-start;
             gap: 20px;
+            flex-grow: 1;
 
             .deals-wrapper {
-                height: 245px;
                 display: flex;
                 flex-direction: column;
                 justify-content: space-between;
                 align-items: flex-start;
+                flex-grow: 1;
                 flex-shrink: 0;
                 padding: 0 20px;
 
@@ -135,20 +146,24 @@
                     }
                 }
 
-                .details-button {
-                    display: flex;
-                    justify-content: center;
-                    align-items: center;
-                    gap: 10px;
-                    padding: 16px 24px 16px 40px;
-                    height: 44px;
-                    max-width: 170px;
-                    background: var(--color3);
-                    color: var(--color4);
+                .details-button-wrapper {
+                    padding: 20px 0;
 
-                    svg {
-                        width: 16px;
-                        height: 16px;
+                    .details-button {
+                        display: flex;
+                        justify-content: center;
+                        align-items: center;
+                        gap: 10px;
+                        padding: 16px 24px 16px 40px;
+                        height: 44px;
+                        max-width: 170px;
+                        background: var(--color3);
+                        color: var(--color4);
+
+                        svg {
+                            width: 16px;
+                            height: 16px;
+                        }
                     }
                 }
             }
