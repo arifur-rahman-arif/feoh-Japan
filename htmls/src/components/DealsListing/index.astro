@@ -1,0 +1,53 @@
+---
+import SectionHeading from '../SectionHeading/index.astro';
+import DealsList from './DealsList.astro';
+import ViewAllButton from './ViewAllButton.astro';
+
+const deals = [
+  {
+    id: 1,
+    title: "クリスフライヤー（KrisFlyer）会員様向けキャンペーン",
+    description: "対象となる滞在の度に、最大500クリスフライヤーマイルを獲得できます。",
+    discount: "最大40%OFF",
+    condition: "Web予約限定",
+    image: "/assets/images/deal_1.png",
+    ctaText: "詳細を見る",
+    ctaLink: "/deal-detail"
+  },
+  {
+    id: 2,
+    title: "ベッド＆ブレックファスト",
+    description: "対象となる滞在の度に、クリスフライヤーマイルを獲得できます。",
+    discount: "客室料金・朝食が最大40%OFF",
+    condition: "Web予約限定",
+    image: "/assets/images/deal_2.png",
+    ctaText: "詳細を見る",
+    ctaLink: "/deal-detail"
+  },
+  {
+    id: 3,
+    title: "クリスフライヤー（KrisFlyer）会員様向けキャンペーン",
+    description: "対象となる滞在の度に、クリスフライヤーマイルを獲得できます。",
+    discount: "最大40%OFF",
+    condition: "Web予約限定",
+    image: "/assets/images/deal_3.png",
+    ctaText: "詳細を見る",
+    ctaLink: "/deal-detail"
+  },
+];
+---
+
+<section class="deals-listing gold">
+  <SectionHeading title="ホテル一覧" />
+  <div class="swiper container deals-swiper gold">
+    <div class="swiper-wrapper">
+      {deals.map((deal) => (
+        <div class="swiper-slide">
+          <DealsList deals={[deal]} />
+        </div>
+      ))}
+    </div>
+    <div class="swiper-pagination"></div>
+  </div>
+  <ViewAllButton href="/all-deals" text="全てを見る" />
+</section>

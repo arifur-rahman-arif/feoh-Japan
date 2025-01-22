@@ -1,0 +1,21 @@
+---
+const { title, description, discount, condition, image, ctaText, ctaLink } = Astro.props;
+---
+
+<div class="deals-card">
+  <img src={image} alt={title} class="deals-image" />
+  <div class="deals-content">
+    <h3 class="deals-title">{title}</h3>
+    <p class="deals-description">{description}</p>
+    <div class="deals-badges">
+      <span class="badge">{discount}</span>
+      <span class="badge">{condition}</span>
+    </div>
+    <a class="details-button" href={ctaLink}>
+      {ctaText}
+      <svg xmlns="http://www.w3.org/2000/svg" width="17" height="17" viewBox="0 0 17 17" fill="none">
+        <path d="M10.7963 8.49957L6.45129 4.15459C6.33669 4.04 6.28089 3.90358 6.28387 3.74534C6.28685 3.58711 6.34563 3.45064 6.46023 3.33595C6.57482 3.22136 6.71124 3.16406 6.86947 3.16406C7.02771 3.16406 7.16418 3.22136 7.27887 3.33595L11.6948 7.76082C11.799 7.86513 11.8763 7.98198 11.9265 8.11138C11.9769 8.24078 12.0021 8.37018 12.0021 8.49957C12.0021 8.62897 11.9769 8.75837 11.9265 8.88777C11.8763 9.01717 11.799 9.13402 11.6948 9.23833L7.26993 13.6632C7.15533 13.7778 7.02041 13.8336 6.86515 13.8306C6.70979 13.8276 6.57482 13.7688 6.46023 13.6543C6.34563 13.5397 6.28834 13.4032 6.28834 13.245C6.28834 13.0868 6.34563 12.9503 6.46023 12.8356L10.7963 8.49957Z" fill="white"/>
+      </svg>
+    </a>
+  </div>
+</div>

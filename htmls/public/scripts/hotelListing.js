@@ -23,7 +23,6 @@ document.addEventListener('DOMContentLoaded', () => {
     hotels.forEach((hotel, index) => {
         if (index >= 3) {
             hotel.style.display = 'none';
-            console.log(`Hiding hotel row at index ${index}`);
         }
     });
 

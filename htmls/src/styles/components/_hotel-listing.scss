@@ -40,6 +40,18 @@
             color: var(--color4);
         }
 
+        .show-all-button {
+            border: 1.5px solid var(--color4);
+            padding: 16px 0px;
+            display: flex;
+            width: 223px;
+            max-width: 247px;
+            padding: 16px 0px;
+            justify-content: center;
+            align-items: center;
+            gap: 10px;
+        }
+
         .show-all-button svg path {
             fill: var(--color4);
         }
