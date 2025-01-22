@@ -1,5 +1,3 @@
-import Swiper from 'swiper/bundle';
-
 // Initialize Swiper
 new Swiper('.deals-swiper', {
     loop: true,
