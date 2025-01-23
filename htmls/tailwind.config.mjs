@@ -17,7 +17,9 @@ export default {
                 color12: 'var(--color12)',
                 color13: 'var(--color13)',
                 color14: 'var(--color14)',
+                color14: 'var(--color14)',
                 color15: 'var(--color15)',
+                color16: 'var(--color16)',
             },
             fontFamily: {
                 sans: ['Noto Sans JP', 'serif'],

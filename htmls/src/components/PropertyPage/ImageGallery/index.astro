@@ -1,0 +1,18 @@
+---
+import SectionHeading from '../../SectionHeading/index.astro';
+import Slider from './Slider.astro';
+const { className } = Astro.props;
+---
+
+<!-- This component is used in property page  -->
+<section id="image-gallery" class={`py-5 md:py-10 ${className} bg-color13 grid gap-6 md:gap-14`}>
+    <div class="container grid justify-items-center">
+        <SectionHeading title="ここでしか味わえない<br/>特別なひとときを" />
+
+        <p class="max-w-[46.3rem] text-left font-400">
+            ファーイーストビレッジホテル東京有明は有明の穏やかなベイエリアの中心に佇んでいます。魅力的な通りを散策し、東京有数の名高いランドマーク建築を見学し、お台場のウォーターフロントの眺めと緑豊かな風景をお楽しみ下さい。
+        </p>
+    </div>
+
+    <Slider />
+</section>

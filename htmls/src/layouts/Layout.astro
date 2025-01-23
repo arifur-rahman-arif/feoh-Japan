@@ -3,8 +3,6 @@ import '../styles/main.scss';
 import Navbar from '@/components/Navbar/index.astro';
 import Footer from '../components/Footer/index.astro';
 import ButtonScrollTop from '../components/ButtonScrollTop/index.astro';
-
-const { yoastSeo, includeLottie } = Astro.props;
 ---
 
 <!doctype html>
@@ -34,6 +32,7 @@ const { yoastSeo, includeLottie } = Astro.props;
         <!-- Scripts goes here -->
         <script is:inline src="/scripts/navbar.js"></script>
         <script is:inline src="/scripts/masthead.js"></script>
+        <script is:inline src="/scripts/swiper-scripts.js"></script>
         <script is:inline type="module" src="/scripts/hotelListing.js"></script>
         <script is:inline type="module" src="/scripts/btnScrollTop.js"></script>
         <script is:inline type="module" src="/scripts/dealsListing.js"></script>

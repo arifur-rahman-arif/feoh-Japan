@@ -1,0 +1,59 @@
+---
+import Pill from '@/components/Pill/index.astro';
+
+const list = [
+    {
+        date: '2024.12.22',
+        type: '最新情報',
+        title: 'ホームページリニューアルに関するお知らせホームページリニューアルに関するお知らせ',
+        link: '#'
+    },
+    {
+        date: '2024.12.22',
+        type: '受賞歴',
+        title: 'ファーイースト・ホスピタリティが有するGSTC認証ホテルがシンガポール最多に – 16のホテル全てが国際認証を取得ファーイースト・ホスピタリティが有するGSTC認証ホテルがシンガファーイースト…',
+        link: '#'
+    },
+    {
+        date: '2024.12.22',
+        type: '最新情報',
+        title: 'ホームページリニューアルに関するお知らせホームページリニューアルに関するお知らせ',
+        link: '#'
+    }
+];
+---
+
+<div class="grid max-w-[65rem] content-start gap-8 justify-self-center md:gap-y-6">
+    <!-- News item loop -->
+    {
+        list.map(item => (
+            <div class="border-color15 grid grid-cols-[auto_1fr] items-center gap-3 border-x-0 border-y-0 border-b border-solid pb-4 md:grid-cols-[auto_auto_1fr] md:gap-8 md:border-none">
+                <div class="news-item__date text-base font-400 text-black">{item.date}</div>
+                <Pill text={item.type} className="news-item__type justify-self-start md:min-w-[6.25rem]" />
+                <a
+                    href={item.link}
+                    class="news-item__title group/link grid grid-cols-[1fr_auto] items-center gap-4 max-md:col-span-full"
+                >
+                    <span class="line-clamp-2 text-left transition-all duration-500 group-hover/link:text-color1">
+                        {item.title}
+                    </span>
+
+                    <svg
+                        xmlns="http://www.w3.org/2000/svg"
+                        width="24"
+                        height="25"
+                        viewBox="0 0 24 25"
+                        class="h-4 w-4 md:h-6 md:w-6"
+                        fill="none"
+                    >
+                        <path
+                            d="M15.4446 12.4995L8.92708 5.98201C8.75519 5.81012 8.67148 5.6055 8.67595 5.36814C8.68042 5.13078 8.7686 4.92608 8.94049 4.75405C9.11238 4.58216 9.31701 4.49622 9.55436 4.49622C9.79172 4.49622 9.99642 4.58216 10.1685 4.75405L16.7923 11.3914C16.9487 11.5478 17.0645 11.7231 17.1399 11.9172C17.2155 12.1113 17.2533 12.3054 17.2533 12.4995C17.2533 12.6936 17.2155 12.8877 17.1399 13.0818C17.0645 13.2759 16.9487 13.4512 16.7923 13.6076L10.155 20.2449C9.98315 20.4168 9.78076 20.5005 9.54787 20.496C9.31484 20.4916 9.11238 20.4034 8.94049 20.2315C8.7686 20.0596 8.68266 19.855 8.68266 19.6176C8.68266 19.3803 8.7686 19.1756 8.94049 19.0035L15.4446 12.4995Z"
+                            fill="black"
+                            class="transition-all duration-500 group-hover/link:fill-color1"
+                        />
+                    </svg>
+                </a>
+            </div>
+        ))
+    }
+</div>

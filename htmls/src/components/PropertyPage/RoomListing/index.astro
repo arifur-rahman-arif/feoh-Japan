@@ -1,0 +1,19 @@
+---
+import SectionHeading from '../../SectionHeading/index.astro';
+import Listing from './Listing.astro';
+const { className } = Astro.props;
+---
+
+<!-- This component is used in property page  -->
+<section id="image-gallery" class={`py-5 md:py-10 ${className} grid`}>
+    <div class="container grid justify-items-center">
+        <SectionHeading title="客室" />
+
+        <p class="max-w-[46.3rem] text-center font-400 leading-8">
+            ゆっくりとお過ごしいただけるお部屋をご用意しております。<br
+            />記念日でのご宿泊やご家族でのご滞在、ビジネスでのご利用など<br />目的に合わせてお過ごしください。
+        </p>
+
+        <Listing />
+    </div>
+</section>
