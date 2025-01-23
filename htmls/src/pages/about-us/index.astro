@@ -1,0 +1,17 @@
+---
+import Layout from '../../layouts/Layout.astro';
+import ImageBanner from '../../components/ImageBanner/ImageBannerHome.astro';
+import StaticContent from '../../components/StaticContent/index.astro';
+
+// Welcome to Astro! Wondering what to do next? Check out the Astro documentation at https://docs.astro.build
+// Don't want to use any of this? Delete everything in this file, the `assets`, `components`, and `layouts` directories, and start fresh.
+---
+
+<Layout>
+    <ImageBanner
+        heading="私たちについて"
+        description="ABOUT US"
+        image="../assets/images/banner_image_1.png"
+    />
+    <StaticContent />
+</Layout>
