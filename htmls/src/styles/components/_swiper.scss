@@ -47,3 +47,18 @@
         }
     }
 }
+
+.room-list-swiper {
+    .swiper-button-prev,
+    .swiper-button-next {
+        &::after {
+            font-size: 1.8rem;
+        }
+
+        @include media-breakpoint-down(md) {
+            &::after {
+                font-size: 1.5rem;
+            }
+        }
+    }
+}
