@@ -1,0 +1,64 @@
+---
+import SectionHeading from '../../SectionHeading/index.astro';
+
+const slideList = [
+    {
+        image: '/assets/section-images/service-list-image-1.png',
+        title: '専用駐車場',
+        link: ''
+    },
+    {
+        image: '/assets/section-images/service-list-image-2.png',
+        title: 'ラウンジ',
+        link: ''
+    },
+    {
+        image: '/assets/section-images/service-list-image-3.png',
+        title: '無料シャトルバス',
+        link: ''
+    },
+    {
+        image: '/assets/section-images/service-list-image-4.png',
+        title: 'コインランドリー',
+        link: ''
+    },
+    {
+        image: '/assets/section-images/service-list-image-5.png',
+        title: '外貨両替機',
+        link: ''
+    }
+];
+---
+
+<section id="services" class="section grid content-start items-start bg-color13">
+    <SectionHeading title="施設・サービス" />
+
+    <div class="service-gallery-swiper relative w-full overflow-hidden">
+        <div class="swiper-wrapper justify-center pb-20">
+            {
+                slideList.map(slide => (
+                    <a href={slide.link} class="swiper-slide relative grid max-w-[21.81rem] gap-5">
+                        <img src={slide.image} alt="" width="666" height="333" class="h-[20.81rem] w-[21.81rem]" />
+
+                        {slide.title && <span class="text-center text-lg font-500 text-color9">{slide.title}</span>}
+                    </a>
+                ))
+            }
+        </div>
+        <div class="swiper-pagination -translate-y-4 md:-translate-y-6"></div>
+    </div>
+
+    <a href="#" title="施設・サービス一覧" class="button mt-4 justify-self-center"
+        >施設・サービス一覧 <svg
+            xmlns="http://www.w3.org/2000/svg"
+            width="16"
+            height="17"
+            viewBox="0 0 16 17"
+            fill="none"
+        >
+            <path
+                d="M10.2967 8.49957L5.95171 4.15459C5.83712 4.04 5.78131 3.90358 5.78429 3.74534C5.78727 3.58711 5.84606 3.45064 5.96065 3.33595C6.07525 3.22136 6.21166 3.16406 6.3699 3.16406C6.52814 3.16406 6.6646 3.22136 6.77929 3.33595L11.1952 7.76082C11.2994 7.86513 11.3767 7.98198 11.427 8.11138C11.4773 8.24078 11.5025 8.37018 11.5025 8.49957C11.5025 8.62897 11.4773 8.75837 11.427 8.88777C11.3767 9.01717 11.2994 9.13402 11.1952 9.23833L6.77035 13.6632C6.65576 13.7778 6.52083 13.8336 6.36558 13.8306C6.21022 13.8276 6.07525 13.7688 5.96065 13.6543C5.84606 13.5397 5.78876 13.4032 5.78876 13.245C5.78876 13.0868 5.84606 12.9503 5.96065 12.8356L10.2967 8.49957Z"
+                fill="white"></path>
+        </svg>
+    </a>
+</section>

@@ -45,10 +45,10 @@ const rooms = [
 ];
 ---
 
-<div class="mt-8 grid w-full gap-5 md:mt-14 md:gap-10">
+<div class="room-list-container mt-8 grid w-full gap-5 md:mt-14 md:gap-10">
     {
         rooms.map(room => (
-            <div class="grid gap-5 bg-color13 pb-6 md:grid-cols-[auto_1fr] md:gap-10 md:pb-0">
+            <div class="card-content grid gap-5 bg-color13 pb-6 md:grid-cols-[auto_1fr] md:gap-10 md:pb-0">
                 <Slider images={room.images} />
 
                 {/* Card content */}

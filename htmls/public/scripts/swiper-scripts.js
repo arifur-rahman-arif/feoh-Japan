@@ -1,7 +1,7 @@
 // While working enable this import to have type checking
 // import Swiper from 'swiper';
 
-new Swiper('.property-gallery-swiper', {
+new Swiper('.property-gallery-swiper, .service-gallery-swiper', {
     // autoplay: {
     //     delay: 2500,
     //     disableOnInteraction: false

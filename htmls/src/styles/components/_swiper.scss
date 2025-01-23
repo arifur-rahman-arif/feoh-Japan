@@ -36,7 +36,8 @@
     }
 }
 
-.property-gallery-swiper {
+.property-gallery-swiper,
+.service-gallery-swiper {
     .swiper-pagination {
         &-bullet {
             background-color: var(--color12) !important;
