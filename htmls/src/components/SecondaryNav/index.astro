@@ -1,0 +1,32 @@
+---
+const {bgColor, navItems} = Astro.props || [];
+---
+
+<section class={`secnav-section py-5 ${bgColor}`}>
+  <!-- Navigation Container -->
+  <div class="container secnav-container">
+    {navItems.map((item) => (
+      <div class="secnav-item-wrapper">
+        <!-- Menu Item -->
+        <a href={`#${item.id}`} class="secnav-item">
+          <span class="secnav-label">{item.label}</span>
+          <svg
+            width="14"
+            height="15"
+            viewBox="0 0 14 15"
+            fill="none"
+            xmlns="http://www.w3.org/2000/svg"
+          >
+            <g id="00/icon_arrow-down">
+              <path
+                id="Vector"
+                d="M6.99842 9.53213L10.8003 5.73027C10.9005 5.63 11.0199 5.58117 11.1584 5.58378C11.2968 5.58639 11.4162 5.63782 11.5166 5.73809C11.6169 5.83836 11.667 5.95773 11.667 6.09619C11.667 6.23464 11.6169 6.35405 11.5166 6.4544L7.64483 10.3183C7.55356 10.4095 7.45131 10.4771 7.33809 10.5211C7.22487 10.5652 7.11164 10.5872 6.99842 10.5872C6.8852 10.5872 6.77197 10.5652 6.65875 10.5211C6.54553 10.4771 6.44328 10.4095 6.35201 10.3183L2.48025 6.44658C2.37998 6.34631 2.33115 6.22825 2.33376 6.0924C2.33636 5.95647 2.3878 5.83836 2.48807 5.73809C2.58834 5.63782 2.70771 5.58769 2.84616 5.58769C2.98462 5.58769 3.10403 5.63782 3.20438 5.73809L6.99842 9.53213Z"
+                fill="#9D7C36"
+              />
+            </g>
+          </svg>
+        </a>
+      </div>
+    ))}
+  </div>
+</section>

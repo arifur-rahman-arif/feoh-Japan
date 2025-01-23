@@ -1,9 +1,9 @@
 ---
 import SectionHeading from '../../SectionHeading/index.astro';
-const { bgColor, title, subtitle, content, contentPosition, images, carouselPosition } = Astro.props;
+const { sectionId, bgColor, title, subtitle, content, contentPosition, images, carouselPosition } = Astro.props;
 ---
 
-<section class={`imgTextAlt-section ${bgColor}`}>
+<section class={`imgTextAlt-section ${bgColor}`} id={`${sectionId}`}>
     <div class={`culture-section ${contentPosition}`}>
         <div class="container">
             <!-- Heading Section -->

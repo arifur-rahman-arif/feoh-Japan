@@ -1,0 +1,59 @@
+@use '../utils/variables' as *;
+@use '../utils/breakpoints' as *;
+
+.secnav-section {
+    .secnav-container {
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        flex-wrap: wrap;
+        row-gap: 1.25rem;
+
+        .secnav-item-wrapper {
+            display: flex;
+            width: 15rem;
+            height: 4rem;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+            gap: 0.375rem;
+            flex-shrink: 0;
+            border-right: 1px solid var(--color15);
+            border-left: 1px solid var(--color15);
+
+            .secnav-item {
+                color: var(--color9);
+                font-size: 1rem;
+                font-weight: 500;
+                letter-spacing: 0.05rem;
+                display: flex;
+                flex-direction: column;
+                justify-content: center;
+                align-items: center;
+            }
+        }
+    }
+
+    @include media-breakpoint-down(md) {
+        .secnav-container {
+            flex-direction: column;
+            padding: 1.5rem 2.5rem;
+            row-gap: 0rem;
+
+            .secnav-item-wrapper {
+                width: inherit;
+                border-right: none;
+                border-left: none;
+                border-bottom: 1px solid var(--color15);
+                .secnav-item {
+                    display: flex;
+                    padding: 1rem 0.625rem 1rem 0rem;
+                    justify-content: space-between;
+                    align-items: center;
+                    align-self: stretch;
+                    flex-direction: row;
+                }
+            }
+        }
+    }
+}
