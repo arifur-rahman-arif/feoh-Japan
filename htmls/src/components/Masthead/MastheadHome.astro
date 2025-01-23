@@ -1,8 +1,8 @@
 ---
-const { heading, description, images } = Astro.props;
+const { heading, description, images, className } = Astro.props;
 ---
 
-<main class="relative grid min-h-[37rem] md:min-h-[45rem] xl:min-h-[45rem]">
+<main class={`masthead relative grid min-h-[37rem] md:min-h-[45rem] xl:min-h-[45rem] ${className}`}>
     <div class="container pointer-events-none relative z-[3] grid h-full content-center justify-items-center gap-8">
         <h1 class="max-w-[55rem] text-center">{heading}</h1>
         {

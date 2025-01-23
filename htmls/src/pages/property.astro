@@ -1,0 +1,27 @@
+---
+import Layout from '../layouts/Layout.astro';
+import MastheadHome from '../components/Masthead/MastheadHome.astro';
+import NewsComponent from '../components/PropertyPage/NewsComponent/index.astro';
+import ImageGallery from '../components/PropertyPage/ImageGallery/index.astro';
+import RoomListing from '../components/PropertyPage/RoomListing/index.astro';
+
+// Welcome to Astro! Wondering what to do next? Check out the Astro documentation at https://docs.astro.build
+// Don't want to use any of this? Delete everything in this file, the `assets`, `components`, and `layouts` directories, and start fresh.
+---
+
+<Layout>
+    <MastheadHome
+        heading="ファーイーストビレッジホテル東京有明"
+        description="Far East Village Hotel Ariake, TOKYO"
+        className="masthead--property"
+        images={[
+            '/assets/masthead/property-masthead-slide-1.png',
+            '/assets/masthead/home-masthead-slide-2.png',
+            '/assets/masthead/home-masthead-slide-3.png'
+        ]}
+    />
+
+    <NewsComponent className="" />
+    <ImageGallery />
+    <RoomListing />
+</Layout>

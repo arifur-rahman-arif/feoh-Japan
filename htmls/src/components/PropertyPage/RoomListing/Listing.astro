@@ -1,0 +1,55 @@
+---
+import Slider from './Slider.astro';
+
+const rooms = [
+    {
+        images: [
+            '/assets/section-images/room-list-image-1.png',
+            '/assets/section-images/room-list-image-2.png',
+            '/assets/section-images/room-list-image-3.png'
+        ],
+        title: 'スタンダードルーム',
+        type: 'Standard Room',
+        description: '出張にもレジャーにも最適な機能的で優れたデザインの客室です。',
+        size: '16㎡',
+        capacity: '2名',
+        link: '#'
+    },
+    {
+        images: [
+            '/assets/section-images/room-list-image-2.png',
+            '/assets/section-images/room-list-image-1.png',
+            '/assets/section-images/room-list-image-3.png'
+        ],
+        title: 'スーペリアルーム',
+        type: 'Superior Room',
+        description: '出張にもレジャーにも最適な機能的で優れたデザインの客室です。',
+        size: '16㎡',
+        capacity: '2名',
+        link: '#'
+    },
+    {
+        images: [
+            '/assets/section-images/room-list-image-3.png',
+            '/assets/section-images/room-list-image-1.png',
+            '/assets/section-images/room-list-image-2.png'
+        ],
+        title: 'デラックスコーナールーム',
+        type: 'Deluxe Corner Room',
+        description: '出張にもレジャーにも最適な機能的で優れたデザインの客室です。',
+        size: '16㎡',
+        capacity: '2名',
+        link: '#'
+    }
+];
+---
+
+<div class="mt-8 grid gap-5 md:mt-14 md:gap-10">
+    {
+        rooms.map(room => (
+            <div class="grid">
+                <Slider images={room.images} />
+            </div>
+        ))
+    }
+</div>
