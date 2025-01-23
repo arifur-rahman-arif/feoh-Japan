@@ -2,9 +2,7 @@
 import Layout from '../../layouts/Layout.astro';
 import ImageBanner from '../../components/ImageBanner/ImageBannerHome.astro';
 import StaticContent from '../../components/StaticContent/index.astro';
-
-// Welcome to Astro! Wondering what to do next? Check out the Astro documentation at https://docs.astro.build
-// Don't want to use any of this? Delete everything in this file, the `assets`, `components`, and `layouts` directories, and start fresh.
+import ImgTextAlt from '../../components/AbouUSPage/ImgTextAlt/index.astro';
 ---
 
 <Layout>
@@ -13,5 +11,53 @@ import StaticContent from '../../components/StaticContent/index.astro';
         description="ABOUT US"
         image="../assets/images/banner_image_1.png"
     />
-    <StaticContent />
+    <StaticContent
+        title="ローカルのように過ごす"
+        subtitle="Live Like a Local"
+        content={`ファーイーストのホテルは東京浅草、東京有明、横浜に展開されています。世界中にある私共の受賞歴を誇るホテルやサービス付きレジデンスは、各旅先の名所観光の拠点として最適です。`}
+        contentPosition="section-left"
+    />
+    <ImgTextAlt
+        bgColor="bg-grey"
+        title="ローカルのように食べる"
+        subtitle="Eat Like a Local"
+        content={`ビレッジの朝食ビュッフェでお楽しみ頂ける各種の地元料理で、食欲を満たしましょう。
+        さらに多くの料理をお試しになりたいですか？屋台の食べ物からレストランまで、
+        本場の地元料理を出す多数の飲食施設が、ビレッジから徒歩ですぐの場所にあります。`}
+        contentPosition="section-left"
+        images={[
+            "../assets/images/img_alt_1.png",
+            "../assets/images/img_alt_2.png",
+            "../assets/images/img_alt_3.png"
+        ]}
+        carouselPosition="left"
+    />
+    <ImgTextAlt
+        bgColor="bg-white"
+        title="ローカルのように遊ぶ"
+        subtitle="Play Like a Local"
+        content={`ビレッジの朝食ビュッフェでお楽しみ頂ける各種の地元料理で、食欲を満たしましょう。
+        さらに多くの料理をお試しになりたいですか？屋台の食べ物からレストランまで、
+        本場の地元料理を出す多数の飲食施設が、ビレッジから徒歩ですぐの場所にあります。`}
+        contentPosition="section-left"
+        images={[
+            "../assets/images/img_alt_2.png",
+            "../assets/images/img_alt_3.png",
+            "../assets/images/img_alt_1.png",
+        ]}
+        carouselPosition="right"
+    />
+    <ImgTextAlt
+        bgColor="bg-grey"
+        title="ローカルのように探索する"
+        subtitle="Explore Like a Local"
+        content={`ビレッジの朝食ビュッフェでお楽しみ頂ける各種の地元料理で、食欲を満たしましょう。
+        さらに多くの料理をお試しになりたいですか？屋台の食べ物からレストランまで、
+        本場の地元料理を出す多数の飲食施設が、ビレッジから徒歩ですぐの場所にあります。`}
+        contentPosition="section-left"
+        images={[
+            "../assets/images/img_alt_3.png"
+            ]}
+        carouselPosition="left"
+    />
 </Layout>

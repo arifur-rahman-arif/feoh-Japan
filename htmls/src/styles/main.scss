@@ -14,6 +14,8 @@
 @use 'components/deals-listing';
 @use 'components/swiper';
 @use 'components/banner';
+@use 'components/_imgTextAlt';
+@use 'components/_bg_colors';
 
 * {
     border: none;

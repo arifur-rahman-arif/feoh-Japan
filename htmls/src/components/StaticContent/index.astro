@@ -1,19 +1,15 @@
 ---
+const { title, subtitle, content, contentPosition } = Astro.props;
+
 import SectionHeading from '../SectionHeading/index.astro';
 ---
 
-<!-- add section-center class to parent class for center alignment -->
-<section class="culture-section section-left grey">
+<section class={`culture-section ${contentPosition} grey`}>
   <div class="container">
     <!-- Heading Section -->
-    <SectionHeading title="ビレッジで本物の地元文化を満喫" subtitle="Live Like a Local" />
+    <SectionHeading title={title} subtitle={subtitle} />
     <div class="section-content">
-      <p>
-        色彩豊かな周辺地区の特色を反映した各ビレッジホテルは、それぞれ異なる唯一無二の体験をお届けします。どのビレッジホテルにお越しになっても、その土地ならではのユニークな魅力をお楽しみ頂けます。地元コミュニティの生き生きとしたエネルギーを反映したホテルに足を踏み入れれば、フレンドリーなスタッフがご自宅にいるようなくつろぎ感をお届けします。
-      </p>
-      <!-- <p>
-        ホテルの外に出れば、地元民になりきって食事や遊び、探索を楽しむのに、ビレッジが最高のロケーションにあることにお気づきになるでしょう。ビレッジをあなたのガイドとしてご利用下さい。都会のアドベンチャーに繰り出し、活気溢れる周辺地区の光景や音に浸りましょう。本格的な地元料理をお求めでも、優れた文化スポットをお探しでも、 ビレッジにご滞在になれば、あなたにぴったりのものがきっと見つかります。
-      </p> -->
+      <p>{content}</p>
     </div>
   </div>
 </section>

@@ -1,0 +1,52 @@
+@use '../utils/variables' as *;
+@use '../utils/breakpoints' as *;
+
+.imgTextAlt-section {
+    padding-bottom: 3rem;
+
+    &.bg-white {
+        background: linear-gradient(to bottom, transparent 75%, var(--color4) 25%);
+    }
+
+    &.bg-grey {
+        background: linear-gradient(to bottom, transparent 75%, var(--color13) 25%);
+    }
+
+    .culture-section {
+        padding: 2.5rem 11.4375rem 3.75rem 11.4375rem;
+    }
+
+    .slider-right,
+    .slider-left {
+        .slider-pagination {
+            padding-left: 55px;
+
+            .swiper-pagination-bullet {
+                background-color: var(--color12) !important;
+            }
+
+            .swiper-pagination-bullet-active {
+                background-color: var(--color1) !important;
+            }
+        }
+    }
+
+    .slider-left {
+        .slider-pagination {
+            padding-left: 10px;
+        }
+    }
+
+    @include media-breakpoint-down(md) {
+        padding-bottom: 2rem;
+
+        .culture-section {
+            padding: 0rem 0rem 3.75rem 0rem;
+        }
+
+        .slider-pagination {
+            padding-left: 0px !important;
+            text-align: center;
+        }
+    }
+}

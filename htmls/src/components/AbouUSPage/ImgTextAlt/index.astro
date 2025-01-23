@@ -1,0 +1,32 @@
+---
+import SectionHeading from '../../SectionHeading/index.astro';
+const { bgColor, title, subtitle, content, contentPosition, images, carouselPosition } = Astro.props;
+---
+
+<section class={`imgTextAlt-section ${bgColor}`}>
+    <div class={`culture-section ${contentPosition}`}>
+        <div class="container">
+            <!-- Heading Section -->
+            <SectionHeading title={title} subtitle={subtitle} />
+            <div class="section-content">
+                <p>{content}</p>
+            </div>
+        </div>
+    </div>
+    <div class={`flex flex-col md:flex-row ${carouselPosition === "right" ? "md:flex-row-reverse slider-right" : "slider-left"} items-center`}>
+        <!-- Swiper Image Component -->
+        <div class="w-full md:w-[95%]">
+            <div class="swiper imgTextAlt-swiper w-full h-[11.5625rem] md:h-[31.25rem] overflow-hidden shadow-lg">
+                <div class="swiper-wrapper">
+                    {images.map((image) => (
+                    <div class="swiper-slide">
+                        <img src={image} alt="swiper-image" class="w-full h-full object-cover" />
+                    </div>
+                    ))}
+                </div>
+            </div>
+        </div>
+        <!-- Slider Pagination Component -->
+        <div class="w-full md:w-[5%] slider-pagination"></div>
+    </div>
+</section>
