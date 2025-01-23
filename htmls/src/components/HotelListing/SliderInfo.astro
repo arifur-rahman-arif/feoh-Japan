@@ -4,8 +4,8 @@ const { title, enTitle, description, address, addressLink, tel, email, ctaLink, 
 
 <div class="flex flex-col justify-center p-5 space-y-4">
   <div class="hotel-info-title-container">
-    <h2 class="hotel-title">{title}</h2>
-    <p class="hotel-en-title">{enTitle}</p>
+    <h2 class="hotel-title line-clamp-2">{title}</h2>
+    <p class="hotel-en-title line-clamp-2">{enTitle}</p>
   </div>
   <p class="hotel-description line-clamp-5">{description}</p>
   {(address || tel || email) &&
