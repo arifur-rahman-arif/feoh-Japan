@@ -2,10 +2,10 @@
 // import Swiper from 'swiper';
 
 new Swiper('.masthead-swiper', {
-    autoplay: {
-        delay: 2500,
-        disableOnInteraction: false
-    },
+    // autoplay: {
+    //     delay: 2500,
+    //     disableOnInteraction: false
+    // },
     speed: 2000,
     slidesPerView: 1,
     navigation: {

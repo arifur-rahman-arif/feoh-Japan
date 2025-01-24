@@ -27,6 +27,10 @@
     }
 }
 
+.swiper-button-disabled {
+    opacity: 0 !important;
+}
+
 .swiper-button-prev,
 .swiper-button-next {
     @include media-breakpoint-down(md) {
