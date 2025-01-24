@@ -48,7 +48,7 @@ const rooms = [
 <div class="room-list-container mt-8 grid w-full gap-5 md:mt-14 md:gap-10">
     {
         rooms.map(room => (
-            <div class="card-content grid gap-5 bg-color13 pb-6 md:grid-cols-[auto_1fr] md:gap-10 md:pb-0">
+            <div class="card-content grid gap-5 bg-color13 pb-6 md:grid-cols-2 md:gap-10 md:pb-0 xl:grid-cols-[auto_1fr]">
                 <Slider images={room.images} />
 
                 {/* Card content */}
@@ -65,7 +65,7 @@ const rooms = [
                     <p class="line-clamp-2">{room.description}</p>
 
                     {/* Horizontal line for desktop only */}
-                    <div class="h-[1px] w-full bg-color15" />
+                    <div class="h-[1px] w-full bg-color15 max-md:hidden" />
 
                     {/* Meta data */}
                     <div class="flex items-center gap-6 md:grid md:gap-1">

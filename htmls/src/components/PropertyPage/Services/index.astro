@@ -30,11 +30,11 @@ const slideList = [
 ];
 ---
 
-<section id="services" class="section grid content-start items-start bg-color13">
+<section id="services" class="section grid content-start items-start bg-color13 pb-8 md:pb-14">
     <SectionHeading title="施設・サービス" />
 
     <div class="service-gallery-swiper relative w-full overflow-hidden">
-        <div class="swiper-wrapper justify-center pb-20">
+        <div class="swiper-wrapper pb-20">
             {
                 slideList.map(slide => (
                     <a href={slide.link} class="swiper-slide relative grid max-w-[21.81rem] gap-5">

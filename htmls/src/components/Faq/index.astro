@@ -1,0 +1,22 @@
+---
+import SectionHeading from '../SectionHeading/index.astro';
+const { className } = Astro.props;
+
+const slideImages = [
+    '/assets/section-images/dinning-slide-image-1.png',
+    '/assets/section-images/dinning-slide-image-1.png',
+    '/assets/section-images/dinning-slide-image-1.png',
+    '/assets/section-images/dinning-slide-image-1.png',
+    '/assets/section-images/dinning-slide-image-1.png'
+];
+---
+
+<style is:inline>
+    .dinning--grey-theme {
+        background-color: var(--color13);
+    }
+</style>
+
+<section id="faq" class={`section ${className} grid`}>
+    <SectionHeading title="施設・サービス" />
+</section>
