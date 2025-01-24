@@ -1,0 +1,44 @@
+---
+import SectionHeading from '../../SectionHeading/index.astro';
+import Listing from './Listing.astro';
+const { className } = Astro.props;
+---
+
+<style is:inline>
+    .room-list--grey-theme {
+        background-color: var(--color13);
+    }
+
+    .room-list--grey-theme .card-content {
+        background-color: var(--color4) !important;
+    }
+</style>
+
+<!-- Pass a class name called room-list--grey-theme to enable grey theme -->
+<!-- This component is used in property page  -->
+<section id="room-list" class={`section ${className} grid room-list`}>
+    <div class="container grid justify-items-center">
+        <SectionHeading title="客室" />
+
+        <p class="max-w-[46.3rem] text-center font-400 leading-8">
+            ゆっくりとお過ごしいただけるお部屋をご用意しております。<br
+            />記念日でのご宿泊やご家族でのご滞在、ビジネスでのご利用など<br />目的に合わせてお過ごしください。
+        </p>
+
+        <Listing />
+
+        <button
+            class="group/button mt-10 flex items-center justify-center gap-4 font-500 text-color9 transition-all duration-500 hover:text-color1"
+        >
+            全て表示する
+            <svg xmlns="http://www.w3.org/2000/svg" width="16" height="17" viewBox="0 0 16 17" fill="none">
+                <path
+                    d="M7.9975 10.8226L12.3425 6.47759C12.4571 6.363 12.5935 6.30719 12.7517 6.31017C12.91 6.31315 13.0464 6.37194 13.1611 6.48653C13.2757 6.60113 13.333 6.73754 13.333 6.89578C13.333 7.05402 13.2757 7.19048 13.1611 7.30517L8.73625 11.7211C8.63194 11.8253 8.51509 11.9026 8.38569 11.9528C8.25629 12.0032 8.12689 12.0284 7.9975 12.0284C7.8681 12.0284 7.7387 12.0032 7.6093 11.9528C7.4799 11.9026 7.36305 11.8253 7.25874 11.7211L2.83387 7.29623C2.71928 7.18164 2.66348 7.04671 2.66646 6.89145C2.66944 6.7361 2.72822 6.60113 2.84282 6.48653C2.95741 6.37194 3.09383 6.31464 3.25206 6.31464C3.4103 6.31464 3.54677 6.37194 3.66146 6.48653L7.9975 10.8226Z"
+                    fill="black"
+                    class="transition-all duration-500 group-hover/button:fill-color1"
+                >
+                </path>
+            </svg>
+        </button>
+    </div>
+</section>

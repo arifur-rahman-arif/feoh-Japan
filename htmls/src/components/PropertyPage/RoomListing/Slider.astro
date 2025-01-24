@@ -1,0 +1,18 @@
+---
+const { images } = Astro.props;
+---
+
+<div class="room-list-swiper relative w-full max-w-[43.6rem] overflow-hidden">
+    <div class="swiper-wrapper">
+        {
+            images.map(img => (
+                <a href="#" class="swiper-slide relative h-full max-h-[13.3rem] w-full md:max-h-[27.2rem]">
+                    <img src={img} alt="" width="697" height="435" class="h-full w-full object-cover" />
+                </a>
+            ))
+        }
+    </div>
+    <div class="swiper-button-next"></div>
+    <div class="swiper-button-prev"></div>
+    <div class="swiper-pagination -translate-y-1 md:-translate-y-6"></div>
+</div>

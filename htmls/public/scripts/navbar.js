@@ -146,11 +146,11 @@ const Navbar = {
     toggleNavBarOnScroll: function () {
         const updateNavBar = () => {
             if (window.scrollY > 0) {
-                this.navbar.classList.add('white-nav');
+                this.navbar.classList.add('white-nav', 'shadow-sm');
                 this.navbar.classList.remove('transparent-nav');
             } else {
                 this.navbar.classList.add('transparent-nav');
-                this.navbar.classList.remove('white-nav');
+                this.navbar.classList.remove('white-nav', 'shadow-sm');
             }
         };
 

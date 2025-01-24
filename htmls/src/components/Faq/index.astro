@@ -1,0 +1,152 @@
+---
+import SectionHeading from '../SectionHeading/index.astro';
+const { className } = Astro.props;
+
+const faqList = [
+    {
+        title: 'チェックイン／チェックアウトに関するホテルのポリシーについて',
+        description:
+            '当ホテルでは、宿泊者の利便性を考慮し、チェックイン/チェックアウトの時間を15:00/12:00に設定しています。ただし、宿泊者の要望に応じてチェックイン/チェックアウトの時間を調整することが可能です。'
+    },
+    {
+        title: '当ホテルでのお支払いに使用できるカードについて',
+        description:
+            '当ホテルでは、VISA, MasterCard, JCB, American Express, Diners Clubの5種類のクレジットカードをお受けいたします。 泊料金のお支払いには現金、クレジットカード、各種電子マネーをご利用いただけます。泊料金のお支払いには現金、クレジットカード、各種電子マネーをご利用いただけます。'
+    },
+    {
+        title: '宿泊者様の情報保護ポリシー',
+        description:
+            '当ホテルでは、宿泊者様の個人情報の保護に最重要視を払っており、適切な安全対策を講じて情報の漏えい、改ざん、破損を防止しています。泊料金のお支払いには現金、クレジットカード、各種電子マネーをご利用いただけます。 泊料金のお支払いには現金、クレジットカード、各種電子マネーをご利用いただけます。'
+    },
+    {
+        title: '当ホテルの禁煙ポリシー',
+        description:
+            '当ホテルでは、全館禁煙を実施しております。喫煙の場合は、屋外の喫煙所をご利用ください。泊料金のお支払いには現金、クレジットカード、各種電子マネーをご利用いただけます。 泊料金のお支払いには現金、クレジットカード、各種電子マネーをご利用いただけます。'
+    },
+    {
+        title: '当ホテルのペットポリシー',
+        description:
+            '当ホテルでは、ペットの宿泊を一切お断りしております。泊料金のお支払いには現金、クレジットカード、各種電子マネーをご利用いただけます。 泊料金のお支払いには現金、クレジットカード、各種電子マネーをご利用いただけます。'
+    },
+    {
+        title: 'チェックイン／チェックアウトの時間について',
+        description:
+            '当ホテルのチェックイン時間は15:00、チェックアウト時間は12:00です。泊料金のお支払いには現金、クレジットカード、各種電子マネーをご利用いただけます。泊料金のお支払いには現金、クレジットカード、各種電子マネーをご利用いただけます。'
+    },
+    {
+        title: '宿泊者の年齢制限について',
+        description:
+            '当ホテルでは、宿泊者の年齢制限を設けておりません。泊料金のお支払いには現金、クレジットカード、各種電子マネーをご利用いただけます。 泊料金のお支払いには現金、クレジットカード、各種電子マネーをご利用いただけます。'
+    },
+    {
+        title: '宿泊中の訪問客に関する規則',
+        description:
+            '当ホテルでは、宿泊中の訪問客の受け入れを一切お断りしております。泊料金のお支払いには現金、クレジットカード、各種電子マネーをご利用いただけます。'
+    },
+    {
+        title: '宿泊料金のお支払い方法',
+        description: '当ホテルでは、宿泊料金のお支払いには現金、クレジットカード、各種電子マネーをご利用いただけます。'
+    },
+    {
+        title: '宿泊中の設備の使用について',
+        description:
+            '当ホテルでは、宿泊者様が設備を使用することができます。ただし、設備の使用に際しては、当ホテルの規約に従ってください。'
+    },
+    {
+        title: '宿泊中のトラブルについて',
+        description:
+            '当ホテルでは、宿泊中のトラブルに万全の対処を講じております。ただし、トラブルが生じた場合には、当ホテルのスタッフまでお申し付けください。'
+    }
+];
+---
+
+<style is:inline>
+    .faq--grey-theme {
+        background-color: var(--color13);
+    }
+
+    .faq--grey-theme .faq-item__content {
+        background-color: var(--color4) !important;
+    }
+
+    .faq-item .faq-item__content {
+        max-height: 0;
+        overflow: hidden;
+    }
+
+    .faq-item--active .faq-item__title h3 {
+        color: var(--color1);
+    }
+
+    .faq-item--active .icon-plus {
+        opacity: 0;
+    }
+
+    .faq-item--active .icon-minus {
+        opacity: 1;
+    }
+
+    .faq-item--active .faq-item__content {
+        max-height: 1000px;
+    }
+</style>
+
+<section id="faq" class={`section ${className} faq`}>
+    <div class="container grid">
+        <SectionHeading title="よくあるご質問" />
+
+        <div class="faq-container grid max-w-[55rem] justify-self-center">
+            {
+                faqList.map((faq, index) => (
+                    <div class={`faq-item ${index === 0 ? 'faq-item--active' : ''}`}>
+                        {/* Clickable Title */}
+                        <div class="faq-item__title group/faq grid cursor-pointer grid-cols-[auto_1fr_auto] items-center gap-5 px-5 py-4 md:px-10">
+                            <img
+                                src="/public/icons/icon-question.svg"
+                                width="40"
+                                height="40"
+                                alt=""
+                                class="h-10 w-10"
+                            />
+                            <h3
+                                class={`text-base font-400 leading-normal text-black transition-all duration-500 group-hover/faq:text-color1`}
+                            >
+                                {faq.title}
+                            </h3>
+                            <div class="relative">
+                                <img
+                                    src="/public/icons/icon_plus.svg"
+                                    width="40"
+                                    height="40"
+                                    alt=""
+                                    class="icon-plus h-10 w-10 transition-all duration-500"
+                                />
+                                <img
+                                    src="/public/icons/icon_minus.svg"
+                                    width="40"
+                                    height="40"
+                                    alt=""
+                                    class={`icon-minus absolute left-0 top-0 h-10 w-10 opacity-0 transition-all duration-500`}
+                                />
+                            </div>
+                        </div>
+
+                        {/* Content */}
+                        <div class="faq-item__content bg-color13 transition-all duration-700">
+                            <div class="faq-item__description grid grid-cols-[auto_1fr] items-start gap-5 px-5 py-4 md:px-10">
+                                <img
+                                    src="/public/icons/icon-answer.svg"
+                                    width="40"
+                                    height="40"
+                                    alt=""
+                                    class="h-10 w-10"
+                                />
+                                <p>{faq.description}</p>
+                            </div>
+                        </div>
+                    </div>
+                ))
+            }
+        </div>
+    </div>
+</section>
