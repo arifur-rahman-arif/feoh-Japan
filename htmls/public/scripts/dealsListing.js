@@ -12,8 +12,9 @@ new Swiper('.deals-swiper', {
             }
         },
         420: {
-            slidesPerView: 2.6,
-            spaceBetween: 10,
+            slidesPerView: 1.2,
+            spaceBetween: 20,
+            slidesOffsetBefore: 10,
             pagination: {
                 el: '.swiper-pagination',
                 clickable: true
