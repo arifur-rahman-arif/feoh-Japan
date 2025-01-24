@@ -66,3 +66,28 @@ document.addEventListener('DOMContentLoaded', () => {
     });
 });
 // Smooth Scroll Secondary Navigation Script Ended//
+
+// Image Grid Cards Height Dynamic Script Started//
+document.addEventListener('DOMContentLoaded', () => {
+    const cards = document.querySelectorAll('.img-grid-card');
+    let maxHeight = 0;
+
+    // Reset heights to auto before recalculating
+    cards.forEach(card => {
+        card.style.height = 'auto';
+    });
+
+    // Find the tallest card
+    cards.forEach(card => {
+        const cardHeight = card.offsetHeight;
+        if (cardHeight > maxHeight) {
+            maxHeight = cardHeight;
+        }
+    });
+
+    // Apply the tallest height to all cards
+    cards.forEach(card => {
+        card.style.height = `${maxHeight}px`;
+    });
+});
+// Image Grid Cards Height Dynamic Script Ended//
