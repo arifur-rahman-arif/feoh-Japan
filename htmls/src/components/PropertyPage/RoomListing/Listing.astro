@@ -1,0 +1,114 @@
+---
+import Slider from './Slider.astro';
+
+const rooms = [
+    {
+        images: [
+            '/assets/section-images/room-list-image-1.png',
+            '/assets/section-images/room-list-image-2.png',
+            '/assets/section-images/room-list-image-3.png'
+        ],
+        title: 'スタンダードルーム',
+        type: 'Standard Room',
+        description: '出張にもレジャーにも最適な機能的で優れたデザインの客室です。',
+        size: '16㎡',
+        capacity: '2名',
+        link: '#'
+    },
+    {
+        images: [
+            '/assets/section-images/room-list-image-2.png',
+            '/assets/section-images/room-list-image-1.png',
+            '/assets/section-images/room-list-image-3.png'
+        ],
+        title: 'スーペリアルーム',
+        type: 'Superior Room',
+        description: '出張にもレジャーにも最適な機能的で優れたデザインの客室です。',
+        size: '16㎡',
+        capacity: '2名',
+        link: '#'
+    },
+    {
+        images: [
+            '/assets/section-images/room-list-image-3.png',
+            '/assets/section-images/room-list-image-1.png',
+            '/assets/section-images/room-list-image-2.png'
+        ],
+        title: 'デラックスコーナールーム',
+        type: 'Deluxe Corner Room',
+        description:
+            '出張にもレジャーにも最適な機能的で優れたデザインの客室です。出張にもレジャーにも最適な機能的で優れたデザインの客室です。出張にもレジャーにも最適な機能的で優れたデザインの客室です。',
+        size: '16㎡',
+        capacity: '2名',
+        link: '#'
+    }
+];
+---
+
+<div class="room-list-container mt-8 grid w-full gap-5 md:mt-14 md:gap-10">
+    {
+        rooms.map(room => (
+            <div class="card-content grid gap-5 bg-color13 pb-6 md:grid-cols-2 md:gap-10 md:pb-0 xl:grid-cols-[auto_1fr]">
+                <Slider images={room.images} />
+
+                {/* Card content */}
+                <div class="grid content-center gap-4 px-6 md:gap-6 md:py-8 md:pl-0 md:pr-10">
+                    <div class="grid gap-2 md:justify-items-start">
+                        <h3 class="mt-4 text-center text-lg font-500 leading-normal text-color9 md:text-left md:text-2xl">
+                            {room.title}
+                        </h3>
+                        <span class="mt-1 text-center text-sm font-400 tracking-wider text-color1 md:text-base">
+                            {room.type}
+                        </span>
+                    </div>
+
+                    <p class="line-clamp-2">{room.description}</p>
+
+                    {/* Horizontal line for desktop only */}
+                    <div class="h-[1px] w-full bg-color15 max-md:hidden" />
+
+                    {/* Meta data */}
+                    <div class="flex items-center gap-6 md:grid md:gap-1">
+                        {/* Size */}
+                        <div class="justify- flex items-center gap-3">
+                            <img
+                                src="/icons/icon_expand.svg"
+                                width="34"
+                                height="34"
+                                alt=""
+                                class="max-md:h-6 max-md:w-6"
+                            />
+                            <span class="font-400 text-black">広さ：{room.size}</span>
+                        </div>
+
+                        {/* Capacity */}
+                        <div class="flex items-center justify-start gap-3">
+                            <img
+                                src="/icons/icon_user.svg"
+                                width="34"
+                                height="34"
+                                alt=""
+                                class="max-md:h-6 max-md:w-6"
+                            />
+                            <span class="font-400 text-black">定員：{room.capacity}</span>
+                        </div>
+                    </div>
+
+                    {/* Link */}
+                    <a
+                        href={room.link}
+                        class="button mt-5 max-w-[19.3rem] justify-self-center md:mt-0 md:max-w-[10.6rem] md:justify-self-start"
+                    >
+                        客室の詳細
+                        <svg xmlns="http://www.w3.org/2000/svg" width="16" height="17" viewBox="0 0 16 17" fill="none">
+                            <path
+                                d="M10.2967 8.49957L5.95171 4.15459C5.83712 4.04 5.78131 3.90358 5.78429 3.74534C5.78727 3.58711 5.84606 3.45064 5.96065 3.33595C6.07525 3.22136 6.21166 3.16406 6.3699 3.16406C6.52814 3.16406 6.6646 3.22136 6.77929 3.33595L11.1952 7.76082C11.2994 7.86513 11.3767 7.98198 11.427 8.11138C11.4773 8.24078 11.5025 8.37018 11.5025 8.49957C11.5025 8.62897 11.4773 8.75837 11.427 8.88777C11.3767 9.01717 11.2994 9.13402 11.1952 9.23833L6.77035 13.6632C6.65576 13.7778 6.52083 13.8336 6.36558 13.8306C6.21022 13.8276 6.07525 13.7688 5.96065 13.6543C5.84606 13.5397 5.78876 13.4032 5.78876 13.245C5.78876 13.0868 5.84606 12.9503 5.96065 12.8356L10.2967 8.49957Z"
+                                fill="white"
+                            />
+                        </svg>
+                    </a>
+                </div>
+            </div>
+        ))
+    }
+</div>

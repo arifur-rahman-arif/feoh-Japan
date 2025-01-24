@@ -1,0 +1,67 @@
+---
+import SectionHeading from '../../SectionHeading/index.astro';
+import Slider from './Slider.astro';
+const { className } = Astro.props;
+
+const slideImages = [
+    '/assets/section-images/dinning-slide-image-1.png',
+    '/assets/section-images/dinning-slide-image-1.png',
+    '/assets/section-images/dinning-slide-image-1.png',
+    '/assets/section-images/dinning-slide-image-1.png',
+    '/assets/section-images/dinning-slide-image-1.png'
+];
+---
+
+<style is:inline>
+    .dinning--grey-theme {
+        background-color: var(--color13);
+    }
+</style>
+
+<section id="dinning" class={`section ${className} grid room-list`}>
+    <SectionHeading title="施設・サービス" />
+
+    <div class="grid gap-5 pb-6 max-xl:!px-0 md:grid-cols-2 md:gap-10 md:pb-0 xl:grid-cols-2 xl:gap-24 xl:pr-24">
+        <Slider images={slideImages} />
+
+        {/* Card content */}
+        <div
+            class="grid w-full content-start gap-6 px-6 md:content-center md:py-8 md:pl-0 md:pr-10 xl:max-w-[32rem] xl:px-0"
+        >
+            <p>
+                館内レストランでは、手軽で健康的な料理と、アロマコーヒーや紅茶など各種のドリンクをご用意しています。朝食時には焼きたてのパンをお楽しみになり、新鮮なサラダや特製のお粥で体にエネルギーを満たせます。シンガポールの地元料理であるラクサ（お好きなトッピングを乗せたクリーミーなスープ麺）をお試しになるのもお忘れなく。
+            </p>
+
+            {/* Horizontal line for desktop only */}
+            <div class="h-[1px] w-full bg-color15"></div>
+
+            {/* Meta data */}
+            <div class="grid gap-2">
+                {/* Size */}
+                <div class="justify- flex items-center gap-3">
+                    <img src="/icons/icon_clock.svg" width="34" height="34" alt="" class="max-md:h-6 max-md:w-6" />
+                    <span class="font-400 text-black">営業時間：毎日 7:00 am ~ 10:00 am</span>
+                </div>
+
+                {/* Capacity */}
+                <div class="flex items-center justify-start gap-3">
+                    <img src="/icons/icon_map.svg" width="34" height="34" alt="" class="max-md:h-6 max-md:w-6" />
+                    <span class="font-400 text-black">場所：1階</span>
+                </div>
+            </div>
+
+            {/* Link */}
+            <a
+                href="#"
+                class="button mt-5 w-full max-w-[19.3rem] justify-self-center md:mt-0 md:max-w-[15.6rem] md:justify-self-start"
+            >
+                レストラン詳細
+                <svg xmlns="http://www.w3.org/2000/svg" width="16" height="17" viewBox="0 0 16 17" fill="none">
+                    <path
+                        d="M10.2967 8.49957L5.95171 4.15459C5.83712 4.04 5.78131 3.90358 5.78429 3.74534C5.78727 3.58711 5.84606 3.45064 5.96065 3.33595C6.07525 3.22136 6.21166 3.16406 6.3699 3.16406C6.52814 3.16406 6.6646 3.22136 6.77929 3.33595L11.1952 7.76082C11.2994 7.86513 11.3767 7.98198 11.427 8.11138C11.4773 8.24078 11.5025 8.37018 11.5025 8.49957C11.5025 8.62897 11.4773 8.75837 11.427 8.88777C11.3767 9.01717 11.2994 9.13402 11.1952 9.23833L6.77035 13.6632C6.65576 13.7778 6.52083 13.8336 6.36558 13.8306C6.21022 13.8276 6.07525 13.7688 5.96065 13.6543C5.84606 13.5397 5.78876 13.4032 5.78876 13.245C5.78876 13.0868 5.84606 12.9503 5.96065 12.8356L10.2967 8.49957Z"
+                        fill="white"></path>
+                </svg>
+            </a>
+        </div>
+    </div>
+</section>

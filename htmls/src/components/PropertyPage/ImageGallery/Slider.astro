@@ -1,0 +1,43 @@
+---
+const slides = [
+    {
+        image: '/assets/section-images/special-gallery-slide-1.png',
+        title: 'サンプルテキストサンプルテキスト',
+        link: '#'
+    },
+    {
+        image: '/assets/section-images/special-gallery-slide-2.png',
+        title: 'サンプルテキストサンプルテキスト',
+        link: '#'
+    },
+    {
+        image: '/assets/section-images/special-gallery-slide-3.png',
+        title: 'サンプルテキストサンプルテキスト',
+        link: '#'
+    }
+];
+---
+
+<div class="property-gallery-swiper relative w-full overflow-hidden">
+    <div class="swiper-wrapper justify-center pb-16">
+        {
+            slides.map(slide => (
+                <a
+                    href={slide.link}
+                    class="swiper-slide relative h-full max-h-[10rem] w-full max-w-[19.4rem] md:max-h-[28.4rem] md:max-w-[52.3rem]"
+                >
+                    <img src={slide.image} alt="" width="838" height="455" class="h-full w-full object-cover" />
+                    {slide.title && (
+                        <h3
+                            class="absolute bottom-0 left-0 px-5 py-2 text-sm font-400 text-color4"
+                            style="background: rgba(0, 0, 0, 0.50);"
+                        >
+                            {slide.title}
+                        </h3>
+                    )}
+                </a>
+            ))
+        }
+    </div>
+    <div class="swiper-pagination -translate-y-4 md:-translate-y-6"></div>
+</div>

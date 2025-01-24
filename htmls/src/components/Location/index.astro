@@ -1,0 +1,33 @@
+---
+import SectionHeading from '../SectionHeading/index.astro';
+const { className } = Astro.props;
+---
+
+<style is:inline>
+    .location--grey-theme {
+        background-color: var(--color13);
+    }
+</style>
+
+<section id="location" class={`section ${className} faq`}>
+    <div class="grid">
+        <SectionHeading title="アクセス" />
+
+        <iframe
+            src="https://www.google.com/maps/embed?pb=!1m14!1m8!1m3!1d3988.6678995098073!2d103.8770111!3d1.3759412!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x31da165b2d1099d1%3A0xf036d6c1d05978fd!2sVillage+Residence+Hougang!5e0!3m2!1sen!2sin!4v1535445473886"
+            width="100%"
+            height="444"
+            frameborder="0"
+            style="border:0"
+            allowfullscreen=""></iframe>
+
+        <a href="#" class="button mt-6 max-w-[13rem] justify-self-center md:mt-10">
+            アクセス詳細
+            <svg xmlns="http://www.w3.org/2000/svg" width="16" height="17" viewBox="0 0 16 17" fill="none">
+                <path
+                    d="M10.2962 8.49957L5.95122 4.15459C5.83663 4.04 5.78082 3.90358 5.7838 3.74534C5.78678 3.58711 5.84557 3.45064 5.96017 3.33595C6.07476 3.22136 6.21117 3.16406 6.36941 3.16406C6.52765 3.16406 6.66412 3.22136 6.77881 3.33595L11.1947 7.76082C11.2989 7.86513 11.3762 7.98198 11.4265 8.11138C11.4768 8.24078 11.502 8.37018 11.502 8.49957C11.502 8.62897 11.4768 8.75837 11.4265 8.88777C11.3762 9.01717 11.2989 9.13402 11.1947 9.23833L6.76987 13.6632C6.65527 13.7778 6.52035 13.8336 6.36509 13.8306C6.20973 13.8276 6.07476 13.7688 5.96017 13.6543C5.84557 13.5397 5.78827 13.4032 5.78827 13.245C5.78827 13.0868 5.84557 12.9503 5.96017 12.8356L10.2962 8.49957Z"
+                    fill="white"></path>
+            </svg>
+        </a>
+    </div>
+</section>

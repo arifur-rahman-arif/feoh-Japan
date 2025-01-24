@@ -3,6 +3,8 @@ import InfoLinks from './InfoLinks.astro';
 import MenuLinks from './MenuLinks.astro';
 import LogoList from './LogoList.astro';
 
+const { currentPageTitle } = Astro.props;
+
 const menuItems = [
     {
         text: 'ホテル一覧',
@@ -55,9 +57,22 @@ const menuItems = [
 ];
 ---
 
-<div class="bg-[#F9F9F9]">
+<div class="section bg-color13">
     <div class="container py-5">
-        <a href="/" class="text-base font-500 text-color9">ホーム</a>
+        <div class="flex items-center justify-start gap-2">
+            <a class={`text-base font-500 ${currentPageTitle ? 'text-color2' : 'text-color9'}`} href="/">ホーム</a>
+
+            {
+                currentPageTitle && (
+                    <div class="flex items-center justify-start gap-2">
+                        <img src="/icons/icon_arrow.svg" alt="Arrow Right" width="16" height="16" />
+                        <a class="text-base font-500 text-color9" href="#">
+                            {currentPageTitle}
+                        </a>
+                    </div>
+                )
+            }
+        </div>
     </div>
 </div>
 <footer class="w-full bg-color9 px-6 xl:px-0">

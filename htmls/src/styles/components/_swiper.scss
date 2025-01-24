@@ -35,3 +35,31 @@
         }
     }
 }
+
+.property-gallery-swiper,
+.service-gallery-swiper {
+    .swiper-pagination {
+        &-bullet {
+            background-color: var(--color12) !important;
+
+            &-active {
+                background-color: var(--color1) !important;
+            }
+        }
+    }
+}
+
+.room-list-swiper {
+    .swiper-button-prev,
+    .swiper-button-next {
+        &::after {
+            font-size: 1.8rem;
+        }
+
+        @include media-breakpoint-down(md) {
+            &::after {
+                font-size: 1.5rem;
+            }
+        }
+    }
+}

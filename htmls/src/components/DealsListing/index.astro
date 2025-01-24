@@ -4,57 +4,58 @@ import DealsList from './DealsList.astro';
 import ViewAllButton from './ViewAllButton.astro';
 
 const deals = [
-  {
-    id: 1,
-    label: "残り1日",
-    labelIcon: "/icons/icon_time.svg",
-    labelColor: "red",
-    title: "クリスフライヤー（KrisFlyer）会員様向けキャンペーン",
-    description: "対象となる滞在の度に、最大500クリスフライヤーマイルを獲得できます。",
-    badges: ["最大40%OFF", "Web予約限定"],
-    image: "/assets/images/deal_1.png",
-    ctaText: "詳細を見る",
-    ctaLink: "/deal-detail"
-  },
-  {
-    id: 2,
-    label: "残り1日",
-    labelIcon: "/icons/icon_time.svg",
-    labelColor: "red",
-    title: "ベッド＆ブレックファスト",
-    description: "対象となる滞在の度に、クリスフライヤーマイルを獲得できます。",
-    badges: ["客室料金・朝食が最大40%OFF", "Web予約限定", "Web予約限定", "Web予約限定"],
-    image: "/assets/images/deal_2.png",
-    ctaText: "詳細を見る",
-    ctaLink: "/deal-detail"
-  },
-  {
-    id: 3,
-    label: "会員様限定",
-    labelIcon: "/icons/icon_star-filled.svg",
-    labelColor: "black",
-    title: "クリスフライヤー（KrisFlyer）会員様向けキャンペーン",
-    description: "対象となる滞在の度に、クリスフライヤーマイルを獲得できます。",
-    badges: ["最大40%OFF", "Web予約限定"],
-    image: "/assets/images/deal_3.png",
-    ctaText: "詳細を見る",
-    ctaLink: "/deal-detail"
-  },
+    {
+        id: 1,
+        label: '残り1日',
+        labelIcon: '/icons/icon_time.svg',
+        labelColor: 'red',
+        title: 'クリスフライヤー（KrisFlyer）会員様向けキャンペーン',
+        description: '対象となる滞在の度に、最大500クリスフライヤーマイルを獲得できます。',
+        badges: ['最大40%OFF', 'Web予約限定'],
+        image: '/assets/images/deal_1.png',
+        ctaText: '詳細を見る',
+        ctaLink: '/deal-detail'
+    },
+    {
+        id: 2,
+        label: '残り1日',
+        labelIcon: '/icons/icon_time.svg',
+        labelColor: 'red',
+        title: 'ベッド＆ブレックファスト',
+        description: '対象となる滞在の度に、クリスフライヤーマイルを獲得できます。',
+        badges: ['客室料金・朝食が最大40%OFF', 'Web予約限定', 'Web予約限定', 'Web予約限定'],
+        image: '/assets/images/deal_2.png',
+        ctaText: '詳細を見る',
+        ctaLink: '/deal-detail'
+    },
+    {
+        id: 3,
+        label: '会員様限定',
+        labelIcon: '/icons/icon_star-filled.svg',
+        labelColor: 'black',
+        title: 'クリスフライヤー（KrisFlyer）会員様向けキャンペーン',
+        description: '対象となる滞在の度に、クリスフライヤーマイルを獲得できます。',
+        badges: ['最大40%OFF', 'Web予約限定'],
+        image: '/assets/images/deal_3.png',
+        ctaText: '詳細を見る',
+        ctaLink: '/deal-detail'
+    }
 ];
-
 ---
 
-<section class="deals-listing gold">
-  <SectionHeading title="ホテル一覧" />
-  <div class="swiper container deals-swiper gold">
-    <div class={`swiper-wrapper ${deals.length === 1 ? 'single-deal' : ''}`}>
-      {deals.map((deal) => (
-        <div class="swiper-slide">
-          <DealsList deals={[deal]} />
+<section class="deals-listing gold section">
+    <SectionHeading title="ホテル一覧" />
+    <div class="swiper deals-swiper gold container">
+        <div class={`swiper-wrapper ${deals.length === 1 ? 'single-deal' : ''}`}>
+            {
+                deals.map(deal => (
+                    <div class="swiper-slide">
+                        <DealsList deals={[deal]} />
+                    </div>
+                ))
+            }
         </div>
-      ))}
+        <div class="swiper-pagination"></div>
     </div>
-    <div class="swiper-pagination"></div>
-  </div>
-  <ViewAllButton href="/all-deals" text="全てを見る" />
+    <ViewAllButton href="/all-deals" text="全てを見る" />
 </section>
