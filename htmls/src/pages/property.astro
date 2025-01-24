@@ -7,13 +7,14 @@ import RoomListing from '../components/PropertyPage/RoomListing/index.astro';
 import Services from '../components/PropertyPage/Services/index.astro';
 import Dinning from '../components/PropertyPage/Dinning/index.astro';
 import DealsListing from '../components/DealsListing/index.astro';
+import Location from '../components/Location/index.astro';
 import Faq from '../components/Faq/index.astro';
 
 // Welcome to Astro! Wondering what to do next? Check out the Astro documentation at https://docs.astro.build
 // Don't want to use any of this? Delete everything in this file, the `assets`, `components`, and `layouts` directories, and start fresh.
 ---
 
-<Layout>
+<Layout currentPageTitle="ファーイーストビレッジホテル東京有明">
     <MastheadHome
         heading="ファーイーストビレッジホテル東京有明"
         description="Far East Village Hotel Ariake, TOKYO"
@@ -31,5 +32,6 @@ import Faq from '../components/Faq/index.astro';
     <Services />
     <Dinning />
     <DealsListing />
+    <Location />
     <Faq />
 </Layout>
