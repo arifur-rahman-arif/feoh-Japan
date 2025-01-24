@@ -3,6 +3,7 @@
 
 .banner-section {
     background: var(--color13);
+    margin-top: 5rem;
 
     .banner-image {
         position: relative;
@@ -42,6 +43,8 @@
     }
 
     @include media-breakpoint-down(md) {
+        margin-top: 4rem;
+
         .banner-image {
             top: -0.4375rem;
         }

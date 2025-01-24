@@ -1,0 +1,94 @@
+---
+import Layout from '../../layouts/Layout.astro';
+import ImageBanner from '../../components/ImageBanner/ImageBannerHome.astro';
+import StaticContent from '../../components/StaticContent/index.astro';
+import ImgTextAlt from '../../components/AbouUSPage/ImgTextAlt/index.astro';
+import SecondaryNav from '../../components/SecondaryNav/index.astro';
+---
+
+<style is:inline>
+    .navgrid ul:nth-of-type(2) {
+        display: none;
+    }
+    .section-heading-container {
+        padding-top: 2.5rem !important;
+    }
+</style>
+<script is:inline>
+    document.addEventListener('DOMContentLoaded', function () {
+        const navbar = document.getElementById('navbar');
+
+        // Ensure 'white-nav' is always applied
+        navbar.classList.add('white-nav');
+        navbar.classList.remove('transparent-nav');
+
+        // Disable the toggle logic if the Navbar.init() is used elsewhere
+        if (typeof Navbar !== 'undefined') {
+            Navbar.toggleNavBarOnScroll = function () {
+                // Override and do nothing to ensure no toggling happens
+            };
+        }
+    });
+</script>
+
+<Layout>
+    <ImageBanner
+        heading="ホテル利用シーン"
+        description="STAY BY SCENE"
+        image="../assets/images/banner_image_2.png"
+    />
+    <StaticContent
+        title="ホテルの魅力"
+        subtitle="Who is this Hotel For"
+        content={`ファーイーストのホテルは東京浅草、東京有明、横浜に展開されています。 世界中にある私共の受賞歴を誇るホテルやサービス付きレジデンスは、
+        各旅先の名所観光の拠点として最適です。`}
+        contentPosition="section-center"
+    />
+    <SecondaryNav bgColor="bg-white" navItems={[
+        { id: "leisure", label: "レジャー" },
+        { id: "business", label: "ビジネス" },
+        { id: "event", label: "イベント" },
+    ]}
+    />
+    <ImgTextAlt
+        sectionId="leisure"
+        bgColor="bg-grey"
+        title="レジャーシーンに"
+        subtitle="For Leisure"
+        content={`ファーイーストのホテルは東京浅草、東京有明、横浜に展開されています。 世界中にある私共の受賞歴を誇るホテルやサービス付きレジデンスは、
+        各旅先の名所観光の拠点として最適です。`}
+        contentPosition="section-left"
+        images={[
+            "../assets/images/img_alt_4.png"
+        ]}
+        carouselPosition="left"
+    />
+    <ImgTextAlt
+        sectionId="business"
+        bgColor="bg-white"
+        title="ビジネスシーンに"
+        subtitle="For Business"
+        content={`ビレッジの朝食ビュッフェでお楽しみ頂ける各種の地元料理で、食欲を満たしましょう。
+        さらに多くの料理をお試しになりたいですか？屋台の食べ物からレストランまで、
+        本場の地元料理を出す多数の飲食施設が、ビレッジから徒歩ですぐの場所にあります。`}
+        contentPosition="section-center"
+        images={[
+            "../assets/images/img_alt_5.png"
+        ]}
+        carouselPosition="right"
+    />
+    <ImgTextAlt
+        sectionId="event"
+        bgColor="bg-grey"
+        title="さまざまなイベントに"
+        subtitle="For Events"
+        content={`ビレッジの朝食ビュッフェでお楽しみ頂ける各種の地元料理で、食欲を満たしましょう。
+        さらに多くの料理をお試しになりたいですか？屋台の食べ物からレストランまで、
+        本場の地元料理を出す多数の飲食施設が、ビレッジから徒歩ですぐの場所にあります。`}
+        contentPosition="section-left"
+        images={[
+            "../assets/images/img_alt_6.png"
+            ]}
+        carouselPosition="left"
+    />
+</Layout>

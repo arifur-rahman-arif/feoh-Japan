@@ -7,6 +7,31 @@ import SecondaryNav from '../../components/SecondaryNav/index.astro';
 import ImageGrid from '../../components/AbouUSPage/ImageGrid/index.astro';
 ---
 
+<style is:inline>
+    .navgrid ul:nth-of-type(2) {
+        display: none;
+    }
+    .section-heading-container {
+        padding-top: 0rem !important;
+    }
+</style>
+<script is:inline>
+    document.addEventListener('DOMContentLoaded', function () {
+        const navbar = document.getElementById('navbar');
+
+        // Ensure 'white-nav' is always applied
+        navbar.classList.add('white-nav');
+        navbar.classList.remove('transparent-nav');
+
+        // Disable the toggle logic if the Navbar.init() is used elsewhere
+        if (typeof Navbar !== 'undefined') {
+            Navbar.toggleNavBarOnScroll = function () {
+                // Override and do nothing to ensure no toggling happens
+            };
+        }
+    });
+</script>
+
 <Layout>
     <ImageBanner
         heading="私たちについて"
@@ -36,9 +61,7 @@ import ImageGrid from '../../components/AbouUSPage/ImageGrid/index.astro';
         本場の地元料理を出す多数の飲食施設が、ビレッジから徒歩ですぐの場所にあります。`}
         contentPosition="section-left"
         images={[
-            "../assets/images/img_alt_1.png",
-            "../assets/images/img_alt_2.png",
-            "../assets/images/img_alt_3.png"
+            "../assets/images/img_alt_1.png"
         ]}
         carouselPosition="left"
     />
@@ -52,9 +75,7 @@ import ImageGrid from '../../components/AbouUSPage/ImageGrid/index.astro';
         本場の地元料理を出す多数の飲食施設が、ビレッジから徒歩ですぐの場所にあります。`}
         contentPosition="section-left"
         images={[
-            "../assets/images/img_alt_2.png",
-            "../assets/images/img_alt_3.png",
-            "../assets/images/img_alt_1.png",
+            "../assets/images/img_alt_2.png"
         ]}
         carouselPosition="right"
     />

@@ -7,7 +7,7 @@ const firstLineItems = navItems.filter(navItem => navItem.firstLine);
 const secondLineItems = navItems.filter(navItem => !navItem.firstLine);
 ---
 
-<div class="grid gap-4 py-7 pr-10 max-xl:hidden">
+<div class="grid navgrid gap-4 py-7 pr-10 max-xl:hidden">
     <ul class="parent-menu flex items-center justify-end gap-7">
         {
             firstLineItems.map((item: any) => (
