@@ -1,0 +1,10 @@
+---
+const { heading } = Astro.props;
+import SectionHeading from '../SectionHeading/index.astro';
+---
+
+<section class="section">
+    <div class="container">
+        <SectionHeading title={heading} />
+    </div>
+</section>

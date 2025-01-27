@@ -154,11 +154,11 @@ const Navbar = {
             }
         };
 
-        // Check on page load
-        updateNavBar();
-
-        // Add an event listener to check on scroll
-        window.addEventListener('scroll', updateNavBar);
+        // If the navigation bar is not white, add an event listener to check on scroll
+        if (!this.navbar.classList.contains('white-nav')) {
+            window.addEventListener('scroll', updateNavBar);
+        }
+        // // Add an event listener to check on scroll
     }
 };
 
