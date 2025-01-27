@@ -23,4 +23,9 @@
             fill: var(--color1);
         }
     }
+
+    &--outline {
+        background-color: var(--color4);
+        color: var(--color1);
+    }
 }

@@ -2,6 +2,7 @@
 import Layout from '../layouts/Layout.astro';
 import MastheadRoom from '../components/Masthead/MastheadRoom.astro';
 import Room from '../components/RoomListPage/Room.astro';
+import SecondaryNav from '../components/SecondaryNav/index.astro';
 
 // Welcome to Astro! Wondering what to do next? Check out the Astro documentation at https://docs.astro.build
 // Don't want to use any of this? Delete everything in this file, the `assets`, `components`, and `layouts` directories, and start fresh.
@@ -16,5 +17,95 @@ import Room from '../components/RoomListPage/Room.astro';
 
 <Layout currentPageTitle="客室" whiteNav={true}>
     <MastheadRoom />
-    <Room heading="スタンダードルーム" />
+
+    <SecondaryNav
+        bgColor="bg-white"
+        navItems={[
+            { id: 'スタンダードルーム', label: 'スタンダードルーム' },
+            { id: 'スーペリアルーム', label: 'スーペリアルーム' },
+            { id: 'デラックスコーナールーム', label: 'デラックスコーナールーム' },
+            { id: 'デラックスルーム', label: 'デラックスルーム' },
+            { id: 'プレミアルーム', label: 'プレミアルーム' }
+        ]}
+    />
+
+    <Room
+        heading="スタンダードルーム"
+        images={[
+            '/assets/section-images/indiviual-room-slide-1.png',
+            '/assets/section-images/indiviual-room-slide-1.png',
+            '/assets/section-images/indiviual-room-slide-1.png',
+            '/assets/section-images/indiviual-room-slide-1.png'
+        ]}
+        description="出張にもレジャーにも最適な機能的で優れたデザインの客室です。スムーズな滞在に必要な各種のアメニティも取り揃えております。コネクティングルームはリクエストによりご利用頂けます（空室がある場合のみ）。"
+        area="16㎡"
+        bed="クイーン/ツイン"
+        capacity="2名"
+        haveWifi={true}
+        overviewImage="/assets/section-images/room-overview.png"
+    />
+
+    <Room
+        heading="スーペリアルーム"
+        images={[
+            '/assets/section-images/indiviual-room-slide-1.png',
+            '/assets/section-images/indiviual-room-slide-1.png',
+            '/assets/section-images/indiviual-room-slide-1.png',
+            '/assets/section-images/indiviual-room-slide-1.png'
+        ]}
+        description="出張にもレジャーにも最適な機能的で優れたデザインの客室です。スムーズな滞在に必要な各種のアメニティも取り揃えております。コネクティングルームはリクエストによりご利用頂けます（空室がある場合のみ）。"
+        area="16㎡"
+        bed="クイーン/ツイン"
+        capacity="2名"
+        haveWifi={true}
+        overviewImage="/assets/section-images/room-overview.png"
+    />
+
+    <Room
+        heading="デラックスコーナールーム"
+        images={[
+            '/assets/section-images/indiviual-room-slide-1.png',
+            '/assets/section-images/indiviual-room-slide-1.png',
+            '/assets/section-images/indiviual-room-slide-1.png',
+            '/assets/section-images/indiviual-room-slide-1.png'
+        ]}
+        description="出張にもレジャーにも最適な機能的で優れたデザインの客室です。スムーズな滞在に必要な各種のアメニティも取り揃えております。コネクティングルームはリクエストによりご利用頂けます（空室がある場合のみ）。"
+        area="16㎡"
+        bed="クイーン/ツイン"
+        capacity="2名"
+        haveWifi={true}
+        overviewImage="/assets/section-images/room-overview.png"
+    />
+
+    <Room
+        heading="デラックスルーム"
+        images={[
+            '/assets/section-images/indiviual-room-slide-1.png',
+            '/assets/section-images/indiviual-room-slide-1.png',
+            '/assets/section-images/indiviual-room-slide-1.png',
+            '/assets/section-images/indiviual-room-slide-1.png'
+        ]}
+        description="出張にもレジャーにも最適な機能的で優れたデザインの客室です。スムーズな滞在に必要な各種のアメニティも取り揃えております。コネクティングルームはリクエストによりご利用頂けます（空室がある場合のみ）。"
+        area="16㎡"
+        bed="クイーン/ツイン"
+        capacity="2名"
+        haveWifi={true}
+        overviewImage="/assets/section-images/room-overview.png"
+    />
+
+    <Room
+        heading="プレミアルーム"
+        images={[
+            '/assets/section-images/indiviual-room-slide-1.png',
+            '/assets/section-images/indiviual-room-slide-1.png',
+            '/assets/section-images/indiviual-room-slide-1.png',
+            '/assets/section-images/indiviual-room-slide-1.png'
+        ]}
+        description="出張にもレジャーにも最適な機能的で優れたデザインの客室です。スムーズな滞在に必要な各種のアメニティも取り揃えております。コネクティングルームはリクエストによりご利用頂けます（空室がある場合のみ）。"
+        area="16㎡"
+        bed="クイーン/ツイン"
+        capacity="2名"
+        haveWifi={true}
+        overviewImage="/assets/section-images/room-overview.png"
+    />
 </Layout>

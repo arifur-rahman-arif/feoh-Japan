@@ -13,6 +13,7 @@ new Swiper('.masthead-swiper', {
         prevEl: '.swiper-button-prev'
     },
     pagination: {
-        el: '.swiper-pagination'
+        el: '.swiper-pagination',
+        clickable: true
     }
 });
