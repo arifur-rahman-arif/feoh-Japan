@@ -1,0 +1,90 @@
+---
+const { heading, images, description, overviewImage, area, bed, capacity, haveWifi } = Astro.props;
+import SectionHeading from '../SectionHeading/index.astro';
+---
+
+<section class="section" id={heading}>
+    <div class="container">
+        <SectionHeading title={heading} />
+
+        <!-- Slider -->
+        <div class="masthead-swiper relative left-0 top-0 z-[2] h-full w-full overflow-hidden">
+            <div class="swiper-wrapper">
+                {
+                    images.map(image => (
+                        <div class="swiper-slide h-full w-full">
+                            <img src={image} alt="" width="1024" height="683" class="h-full w-full object-cover" />
+                        </div>
+                    ))
+                }
+            </div>
+            <div class="swiper-button-next"></div>
+            <div class="swiper-button-prev"></div>
+            <div class="swiper-pagination -translate-y-4 md:-translate-y-6"></div>
+        </div>
+
+        <!-- Content -->
+        <div class="mt-6 grid md:mt-10 md:grid-cols-2 md:gap-10 lg:pr-10 xl:grid-cols-2">
+            <!-- Desktop version image -->
+            <img src={overviewImage} alt="" width="1024" height="683" class="w-full max-md:hidden" />
+
+            <div
+                class="grid w-full gap-5 max-md:content-center md:max-w-[30rem] lg:content-start xl:grid-rows-[auto_auto_1fr_auto] xl:gap-6"
+            >
+                <p>{description}</p>
+
+                <!-- Divider -->
+                <div class="h-[1px] w-full bg-color15"></div>
+
+                <!-- Meta data -->
+                <div class="grid grid-cols-2 gap-x-4 gap-y-2 xl:self-end">
+                    <div class="flex items-center justify-start gap-3">
+                        <img src="/icons/icon_expand.svg" alt="" width="24" height="24" />
+                        <span class="text-sm font-400 text-black">広さ：{area}</span>
+                    </div>
+                    <div class="flex items-center justify-start gap-3">
+                        <img src="/icons/icon_bed.svg" alt="" width="24" height="24" />
+                        <span class="text-sm font-400 text-black">ベッド：{bed}</span>
+                    </div>
+                    <div class="flex items-center justify-start gap-3">
+                        <img src="/icons/icon_user.svg" alt="" width="24" height="24" />
+                        <span class="text-sm font-400 text-black">定員：{capacity}</span>
+                    </div>
+                    {
+                        haveWifi && (
+                            <div class="flex items-center justify-start gap-3">
+                                <img src="/icons/icon_wifi.svg" alt="" width="24" height="24" />
+                                <span class="text-sm font-400 text-black">無料 Wi-Fi</span>
+                            </div>
+                        )
+                    }
+                </div>
+
+                <!-- Mobile version image -->
+                <img src={overviewImage} alt="" width="1024" height="683" class="w-full md:hidden" />
+
+                <!-- Action button -->
+                <div class="flex w-full flex-wrap items-center justify-center gap-4 md:mt-2 md:justify-start">
+                    <!-- Modal popup button -->
+                    <button class="button button--outline w-full max-w-[21.3rem] md:max-w-max" title="Open modal">
+                        室内設備・アメニティ
+                        <svg
+                            class="h-6 w-6"
+                            xmlns="http://www.w3.org/2000/svg"
+                            width="24"
+                            height="24"
+                            viewBox="0 0 24 24"
+                            fill="none"
+                        >
+                            <path
+                                d="M11.249 12.75H6.24902C6.03652 12.75 5.85844 12.6781 5.71477 12.5343C5.57094 12.3904 5.49902 12.2123 5.49902 11.9998C5.49902 11.7871 5.57094 11.609 5.71477 11.4655C5.85844 11.3218 6.03652 11.25 6.24902 11.25H11.249V6.25C11.249 6.0375 11.3209 5.85942 11.4648 5.71575C11.6086 5.57192 11.7868 5.5 11.9993 5.5C12.2119 5.5 12.39 5.57192 12.5335 5.71575C12.6772 5.85942 12.749 6.0375 12.749 6.25V11.25H17.749C17.9615 11.25 18.1396 11.3219 18.2833 11.4658C18.4271 11.6096 18.499 11.7878 18.499 12.0003C18.499 12.2129 18.4271 12.391 18.2833 12.5345C18.1396 12.6782 17.9615 12.75 17.749 12.75H12.749V17.75C12.749 17.9625 12.6771 18.1406 12.5333 18.2843C12.3894 18.4281 12.2113 18.5 11.9988 18.5C11.7861 18.5 11.608 18.4281 11.4645 18.2843C11.3209 18.1406 11.249 17.9625 11.249 17.75V12.75Z"
+                                fill="#9D7C36"></path>
+                        </svg>
+                    </button>
+
+                    <button class="button w-full max-w-[21.3rem] md:max-w-[13.87rem]"> 空室検索する </button>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>

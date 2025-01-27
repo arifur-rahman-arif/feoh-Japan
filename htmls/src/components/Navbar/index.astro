@@ -1,4 +1,5 @@
 ---
+const { whiteNav } = Astro.props;
 import LanguageDropdown from './LanguageDropdown.astro';
 import MobileMenu from './MobileMenu.astro';
 import DesktopMenu from './DesktopMenu.astro';
@@ -85,7 +86,7 @@ const navItems = [
 
 <nav
     id="navbar"
-    class="transparent-nav fixed top-0 z-20 grid w-full grid-cols-[1fr_auto_auto_auto] items-center transition-all duration-500 xl:grid-cols-[auto_1fr_auto_auto]"
+    class={`${whiteNav ? 'white-nav' : 'transparent-nav'} fixed top-0 z-20 grid w-full grid-cols-[1fr_auto_auto_auto] items-center transition-all duration-500 xl:grid-cols-[auto_1fr_auto_auto]`}
 >
     <a href="/" title="FEH JP" class="relative max-sm:max-w-20 xl:max-w-[11.2rem]">
         <img src="/logos/nav-logo.png" alt="FEH JP" width="179" height="84" class="logo" />
