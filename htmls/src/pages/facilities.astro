@@ -3,6 +3,7 @@ import Layout from '../layouts/Layout.astro';
 import ImageBanner from '../components/ImageBanner/ImageBannerHome.astro';
 import AmenitiesImageGrid from '@/components/FacilitiesPage/AmenitiesImageGrid.astro';
 import AmenitiesDetail from '@/components/FacilitiesPage/AmenitiesDetail.astro';
+import AmenitiesFeatureOverview from '@/components/FacilitiesPage/AmenitiesFeatureOverview.astro';
 ---
 
 <style is:inline>
@@ -100,5 +101,10 @@ import AmenitiesDetail from '@/components/FacilitiesPage/AmenitiesDetail.astro';
             ctaText: "お問い合わせ",
             },
         ]}
+    />
+    <AmenitiesFeatureOverview
+        className="amenities-feature-overview"
+        bgColor="bg-white"
+        title="サービス案内"
     />
 </Layout>

@@ -2,146 +2,37 @@
 @use '../utils/breakpoints' as *;
 
 .amenities-details-section {
-    .toggle-all-button {
-        display: flex;
-        flex-direction: column;
-        align-items: flex-end;
-        gap: 0.625rem;
-        align-self: stretch;
-        margin-bottom: 1.5rem;
-
-        button {
-            display: flex;
-            width: 15.4375rem;
-            height: 3.4375rem;
-            max-width: 15.4375rem;
-            padding: 1rem 1.5rem 1rem 2.5rem;
-            justify-content: center;
-            align-items: center;
-            gap: 0.625rem;
-            color: var(--color4);
-            background-color: var(--color1);
-
-            span {
-                color: var(--color4);
-                font-size: 1rem;
-                font-weight: var(--500);
-                letter-spacing: 0.05rem;
-            }
-        }
-    }
-
-    .amenities-details-divider {
-        height: 0.0625rem;
-        background: var(--color15);
-        margin-bottom: 2.5rem;
-    }
-
-    .amenities-items {
-        display: flex;
-        flex-direction: column;
-        align-items: center;
-        gap: 2.5rem;
-        align-self: stretch;
-
-        .amenities-item {
+    .amenities-details-container {
+        padding: 0 7.5rem;
+        .toggle-all-button {
             display: flex;
             flex-direction: column;
-            align-items: center;
-            gap: 2.5rem;
+            align-items: flex-end;
+            gap: 0.625rem;
             align-self: stretch;
+            margin-bottom: 1.5rem;
 
-            .amenities-detail-item-title {
-                .details-slash {
-                    display: block;
-                    width: 0.125rem;
-                    height: 1.75rem;
-                    transform: rotate(45deg);
-                    background: var(--color6);
-                }
-                .details-title {
-                    color: var(--color3);
-                    font-size: 1.75rem;
-                    font-weight: var(--500);
-                    line-height: 2rem;
-                }
-            }
-
-            .hidden {
-                display: none !important;
-                visibility: hidden;
-            }
-
-            .amenities-contents {
+            button {
                 display: flex;
-                justify-content: space-between;
-                align-items: flex-start;
-                align-self: stretch;
+                width: 15.4375rem;
+                height: 3.4375rem;
+                max-width: 15.4375rem;
+                padding: 1rem 1.5rem 1rem 2.5rem;
+                justify-content: center;
+                align-items: center;
+                gap: 0.625rem;
+                color: var(--color4);
+                background-color: var(--color1);
 
-                .amenities-content {
-                    width: 38.75rem;
-
-                    .amenities-details-divider {
-                        margin-bottom: 0.5rem;
-                        margin-top: 0.5rem;
-                    }
-
-                    .amenities-description {
-                        color: var(--color11);
-                        font-size: 1rem;
-                        font-weight: var(--400);
-                        line-height: 2rem;
-                    }
-
-                    .amentities-oh-location {
-                        display: inline-flex;
-                        flex-direction: column;
-                        justify-content: flex-end;
-                        align-items: flex-start;
-                        gap: 0.75rem;
-
-                        p {
-                            color: var(--color11);
-                            font-size: 1rem;
-                            font-weight: var(--400);
-                            line-height: 2rem;
-                        }
-
-                        img {
-                            width: 1.5rem;
-                            height: 1.5rem;
-                        }
-                    }
-
-                    .amenities-button {
-                        display: flex;
-                        width: 15.0625rem;
-                        max-width: 15.4375rem;
-                        padding: 1rem 1.5rem 1rem 2.5rem;
-                        justify-content: center;
-                        align-items: center;
-                        gap: 0.625rem;
-                        color: var(--color4);
-                        font-size: 1rem;
-                        font-weight: var(--500);
-                        letter-spacing: 0.05rem;
-                    }
+                span {
+                    color: var(--color4);
+                    font-size: 1rem;
+                    font-weight: var(--500);
+                    letter-spacing: 0.05rem;
                 }
             }
         }
 
-        .amenities-details-divider {
-            margin-bottom: 0rem;
-            width: 100%;
-        }
-    }
-
-    @include media-breakpoint-down(md) {
-        .toggle-all-button {
-            align-items: center;
-            width: 21.375rem;
-            height: 3.25rem;
-        }
         .amenities-details-divider {
             height: 0.0625rem;
             background: var(--color15);
@@ -149,54 +40,170 @@
         }
 
         .amenities-items {
-            .amenities-item {
-                gap: 2rem;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            gap: 2.5rem;
+            align-self: stretch;
 
-                .accordion-toggle {
-                    display: flex;
-                    padding: 0rem 1.5rem;
-                    justify-content: space-between;
-                    align-items: center;
-                    align-self: stretch;
-                }
+            .amenities-item {
+                display: flex;
+                flex-direction: column;
+                align-items: center;
+                gap: 2.5rem;
+                align-self: stretch;
 
                 .amenities-detail-item-title {
                     .details-slash {
+                        display: block;
                         width: 0.125rem;
-                        height: 1.25rem;
+                        height: 1.75rem;
                         transform: rotate(45deg);
-                        flex-shrink: 0;
+                        background: var(--color6);
                     }
                     .details-title {
-                        font-size: 1.375rem;
-                        line-height: 2.25rem;
-                        letter-spacing: 0.06875rem;
+                        color: var(--color3);
+                        font-size: 1.75rem;
+                        font-weight: var(--500);
+                        line-height: 2rem;
                     }
+                }
+
+                .hidden {
+                    display: none !important;
+                    visibility: hidden;
                 }
 
                 .amenities-contents {
                     display: flex;
-                    flex-direction: column;
-                    justify-content: center;
+                    justify-content: space-between;
                     align-items: flex-start;
-                    gap: 0.75rem;
-                    align-self: unset;
+                    align-self: flex-start;
+                    gap: 1.5rem;
 
                     .amenities-content {
-                        width: 100%;
 
-                        img {
-                            height: 16.25rem;
+                        .amenities-details-divider {
+                            margin-bottom: 0.5rem;
+                            margin-top: 0.5rem;
                         }
 
-                        .amenities-content-button {
-                            margin: 0 auto;
+                        .amenities-description {
+                            color: var(--color11);
+                            font-size: 1rem;
+                            font-weight: var(--400);
+                            line-height: 2rem;
+                        }
 
-                            .amenities-button {
-                                margin-top: 1.5rem;
-                                margin-bottom: 2.5rem;
-                                width: 19.375rem;
-                                height: 3.25rem;
+                        .amentities-oh-location {
+                            display: inline-flex;
+                            flex-direction: column;
+                            justify-content: flex-end;
+                            align-items: flex-start;
+                            gap: 0.75rem;
+
+                            p {
+                                color: var(--color11);
+                                font-size: 1rem;
+                                font-weight: var(--400);
+                                line-height: 2rem;
+                            }
+
+                            img {
+                                width: 1.5rem;
+                                height: 1.5rem;
+                            }
+                        }
+
+                        .amenities-button {
+                            display: flex;
+                            width: 15.0625rem;
+                            max-width: 15.4375rem;
+                            padding: 1rem 1.5rem 1rem 2.5rem;
+                            justify-content: center;
+                            align-items: center;
+                            gap: 0.625rem;
+                            color: var(--color4);
+                            font-size: 1rem;
+                            font-weight: var(--500);
+                            letter-spacing: 0.05rem;
+                        }
+                    }
+                }
+            }
+
+            .amenities-details-divider {
+                margin-bottom: 0rem;
+                width: 100%;
+            }
+        }
+    }
+
+    @include media-breakpoint-down(md) {
+        .amenities-details-container {
+            padding: 0;
+            .toggle-all-button {
+                align-items: center;
+                width: 21.375rem;
+                height: 3.25rem;
+            }
+            .amenities-details-divider {
+                height: 0.0625rem;
+                background: var(--color15);
+                margin-bottom: 2.5rem;
+            }
+
+            .amenities-items {
+                .amenities-item {
+                    gap: 2rem;
+
+                    .accordion-toggle {
+                        display: flex;
+                        padding: 0rem 1.5rem;
+                        justify-content: space-between;
+                        align-items: center;
+                        align-self: stretch;
+                    }
+
+                    .amenities-detail-item-title {
+                        .details-slash {
+                            width: 0.125rem;
+                            height: 1.25rem;
+                            transform: rotate(45deg);
+                            flex-shrink: 0;
+                        }
+                        .details-title {
+                            font-size: 1.375rem;
+                            line-height: 2.25rem;
+                            letter-spacing: 0.06875rem;
+                        }
+                    }
+
+                    .amenities-contents {
+                        display: flex;
+                        flex-direction: column;
+                        justify-content: center;
+                        align-items: flex-start;
+                        gap: 0.75rem;
+                        align-self: unset;
+
+                        .amenities-content {
+                            width: 100%;
+                            padding: 0 1.5rem;
+
+                            img {
+                                height: 16.25rem;
+                            }
+
+                            .amenities-content-button {
+                                margin: 0 auto;
+
+                                .amenities-button {
+                                    margin-top: 1.5rem;
+                                    margin-bottom: 2.5rem;
+                                    width: 19.375rem;
+                                    height: 3.25rem;
+                                }
                             }
                         }
                     }
