@@ -4,6 +4,7 @@ import ImageBanner from '../components/ImageBanner/ImageBannerHome.astro';
 import AmenitiesImageGrid from '@/components/FacilitiesPage/AmenitiesImageGrid.astro';
 import AmenitiesDetail from '@/components/FacilitiesPage/AmenitiesDetail.astro';
 import AmenitiesFeatureOverview from '@/components/FacilitiesPage/AmenitiesFeatureOverview.astro';
+import HotelAmenitiesList from '@/components/FacilitiesPage/HotelAmenitiesList.astro';
 ---
 
 <style is:inline>
@@ -106,5 +107,10 @@ import AmenitiesFeatureOverview from '@/components/FacilitiesPage/AmenitiesFeatu
         className="amenities-feature-overview"
         bgColor="bg-white"
         title="サービス案内"
+    />
+    <HotelAmenitiesList
+        className="hotel-amenities-list"
+        bgColor="bg-white"
+        title="室内設備・アメニティ"
     />
 </Layout>

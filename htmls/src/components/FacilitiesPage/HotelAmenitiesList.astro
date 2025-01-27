@@ -1,0 +1,111 @@
+---
+import SectionHeading from '../SectionHeading/index.astro';
+const { className, bgColor, title } = Astro.props;
+---
+<section class={`${className} ${bgColor}`}>
+<div class={`${className}-container`}>
+   <SectionHeading title={title} />
+   <div class="amenities-groups">
+      <div class="amenities-group-row">
+         <div class="amenities-group">
+            <h3 class="amenities-title"><span class="amenities-title-slash"></span> 最も人気のある施設</h3>
+            <ul class="amenities-list">
+               <li>24時間対応のフロントデスク</li>
+               <li>朝食</li>
+               <li>無料WiFi</li>
+               <li>毎日のハウスキーピング</li>
+               <li>お荷物のお預かりサービス</li>
+               <li>禁煙室</li>
+               <li>駐車場</li>
+               <li>レストラン</li>
+            </ul>
+         </div>
+         <div class="block lg:hidden amenities-divider">
+            <!-- Divider -->
+         </div>
+         <div class="amenities-group">
+            <h3 class="amenities-title"><span class="amenities-title-slash"></span> 項目名はここに入ります</h3>
+            <ul class="amenities-list">
+               <li>24時間対応のフロントデスク</li>
+               <li>両替</li>
+               <li>項目はここに入ります</li>
+            </ul>
+         </div>
+         <div class="block lg:hidden amenities-divider">
+            <!-- Divider -->
+         </div>
+         <div class="amenities-group">
+            <h3 class="amenities-title"><span class="amenities-title-slash"></span> 項目名はここに入ります</h3>
+            <ul class="amenities-list">
+               <li>項目はここに入ります</li>
+               <li>項目はここに入ります</li>
+               <li>項目はここに入ります</li>
+               <li>項目はここに入ります</li>
+               <li>項目はここに入ります</li>
+               <li>項目はここに入ります</li>
+               <li>項目はここに入ります</li>
+               <li>項目はここに入ります</li>
+            </ul>
+         </div>
+         <div class="block lg:hidden amenities-divider">
+            <!-- Divider -->
+         </div>
+      </div>
+      <div class="hidden lg:block amenities-divider">
+         <!-- Divider -->
+      </div>
+      <div class="amenities-group-row hidden-row">
+         <div class="amenities-group">
+            <h3 class="amenities-title"><span class="amenities-title-slash"></span> 項目名はここに入ります</h3>
+            <ul class="amenities-list">
+               <li>24時間対応のフロントデスク</li>
+               <li>朝食</li>
+               <li>無料WiFi</li>
+               <li>毎日のハウスキーピング</li>
+               <li>お荷物のお預かりサービス</li>
+               <li>禁煙室</li>
+               <li>駐車場</li>
+               <li>レストラン</li>
+            </ul>
+         </div>
+         <div class="block lg:hidden amenities-divider">
+            <!-- Divider -->
+         </div>
+         <div class="amenities-group">
+            <h3 class="amenities-title"><span class="amenities-title-slash"></span> 項目名はここに入ります</h3>
+            <ul class="amenities-list">
+               <li>24時間対応のフロントデスク</li>
+               <li>両替</li>
+               <li>項目はここに入ります</li>
+            </ul>
+         </div>
+         <div class="block lg:hidden amenities-divider">
+            <!-- Divider -->
+         </div>
+         <div class="amenities-group">
+            <h3 class="amenities-title"><span class="amenities-title-slash"></span> 項目名はここに入ります</h3>
+            <ul class="amenities-list">
+               <li>項目はここに入ります</li>
+               <li>項目はここに入ります</li>
+               <li>項目はここに入ります</li>
+               <li>項目はここに入ります</li>
+               <li>項目はここに入ります</li>
+               <li>項目はここに入ります</li>
+               <li>項目はここに入ります</li>
+               <li>項目はここに入ります</li>
+            </ul>
+         </div>
+      </div>
+      <!-- Show More Button -->
+      <div class="show-more-container">
+         <button class="show-more-button">
+            <span class="show-text">もっと見る</span>
+            <span class="less-text hidden">表示を減らす</span>
+            <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 16 16" fill="none" class="arrow-icon">
+                <path d="M7.99798 9.8465L12.343 5.50152C12.4576 5.38692 12.594 5.33112 12.7522 5.3341C12.9105 5.33708 13.0469 5.39586 13.1616 5.51046C13.2762 5.62505 13.3335 5.76147 13.3335 5.91971C13.3335 6.07795 13.2762 6.21441 13.1616 6.3291L8.73674 10.745C8.63243 10.8492 8.51558 10.9265 8.38618 10.9768C8.25678 11.0271 8.12738 11.0523 7.99798 11.0523C7.86859 11.0523 7.73919 11.0271 7.60979 10.9768C7.48039 10.9265 7.36354 10.8492 7.25923 10.745L2.83436 6.32016C2.71977 6.20556 2.66396 6.07064 2.66694 5.91538C2.66992 5.76003 2.72871 5.62505 2.8433 5.51046C2.9579 5.39586 3.09431 5.33857 3.25255 5.33857C3.41079 5.33857 3.54725 5.39586 3.66194 5.51046L7.99798 9.8465Z" fill="#9D7C36"/>
+            </svg>
+        </button>
+      </div>
+   </div>
+</div>
+</section>

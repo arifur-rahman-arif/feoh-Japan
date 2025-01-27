@@ -73,3 +73,26 @@ document.addEventListener('DOMContentLoaded', () => {
 });
 
 /* ===== END: Accordion Toggle Script ===== */
+
+/* ===== START: Show More Script ===== */
+
+document.addEventListener('DOMContentLoaded', () => {
+    const hiddenRows = document.querySelector('.hidden-row');
+    const button = document.querySelector('.show-more-button');
+    const showText = button.querySelector('.show-text');
+    const lessText = button.querySelector('.less-text');
+    const arrowIcon = button.querySelector('.arrow-icon');
+
+    button.addEventListener('click', () => {
+        const isExpanded = hiddenRows.style.display === 'flex';
+
+        hiddenRows.style.display = isExpanded ? 'none' : 'flex';
+        showText.classList.toggle('hidden', !isExpanded);
+        lessText.classList.toggle('hidden', isExpanded);
+
+        // Rotate the arrow icon
+        arrowIcon.style.transform = isExpanded ? 'rotate(0deg)' : 'rotate(180deg)';
+    });
+});
+
+/* ===== END: Show More Script ===== */
