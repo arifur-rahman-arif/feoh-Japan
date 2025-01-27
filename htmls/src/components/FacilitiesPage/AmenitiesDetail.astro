@@ -1,0 +1,66 @@
+---
+const { className, bgColor, isExpanded, data } = Astro.props;
+---
+<section class={`${className} ${bgColor}`}>
+<div class="container">
+   <div class="toggle-all-button">
+      <button id="toggle-all" data-text-collapse="全て閉じる" data-text-expand="すべて展開">
+         <span>全て閉じる</span>
+         <svg xmlns="http://www.w3.org/2000/svg" width="17" height="17" viewBox="0 0 17 17" fill="none" class="up-arrow-icon">
+            <path d="M8.4975 7.51568L12.8425 11.8607C12.9571 11.9753 13.0935 12.0311 13.2517 12.0281C13.41 12.0251 13.5464 11.9663 13.6611 11.8517C13.7757 11.7371 13.833 11.6007 13.833 11.4425C13.833 11.2842 13.7757 11.1478 13.6611 11.0331L9.23625 6.61716C9.13194 6.51294 9.01509 6.4357 8.88569 6.38542C8.75629 6.33505 8.62689 6.30986 8.4975 6.30986C8.3681 6.30986 8.2387 6.33505 8.1093 6.38542C7.9799 6.4357 7.86305 6.51294 7.75874 6.61716L3.33387 11.042C3.21928 11.1566 3.16348 11.2915 3.16646 11.4468C3.16944 11.6022 3.22822 11.7371 3.34282 11.8517C3.45741 11.9663 3.59383 12.0236 3.75206 12.0236C3.9103 12.0236 4.04677 11.9663 4.16146 11.8517L8.4975 7.51568Z" fill="white"/>
+         </svg>
+      </button>
+   </div>
+   <div class="amenities-details-divider"></div>
+   <div class="amenities-items">
+      {data.map((item, index) => (
+      <div id={item.id} key={index} class="amenities-item">
+         <button class="accordion-toggle w-full flex justify-between items-center focus:outline-none" data-id={`item-${index}`}>
+            <div class="amenities-detail-item-title">
+               <span class="details-slash"></span>
+               <span class="details-title">{item.name}</span>
+            </div>
+            <span class="text-2xl">&#8722;</span>
+         </button>
+         <div id={`item-${index}`} class={`accordion-content ${isExpanded ? '' : 'hidden' } amenities-contents transition duration-300`}>
+         <img src={item.thumbnail} alt={item.name} />
+         <div class="amenities-content flex flex-col justify-between items-start self-stretch">
+            <div class="amenities-content-items">
+               <p class="amenities-description">{item.description}</p>
+               <div class="amenities-details-divider"></div>
+               <div class="amentities-oh-location">
+                  {item.location && 
+                  <p class="flex items-center gap-3">
+                     <img src="/icons/icon_map.svg" alt="icon_map">
+                     {item.location}
+                  </p>
+                  }
+                  {item.operatingHours && 
+                  <p class="flex items-center gap-3">
+                     <img src="/icons/icon_time.svg" alt="icon_time">
+                     {item.operatingHours}
+                  </p>
+                  }
+               </div>
+            </div>
+            <div class="amenities-content-button">
+               {item.ctaText &&
+               <a
+                  href={item.ctaLink}
+                  class="amenities-button block text-center bg-gold px-4 py-2"
+                  >
+                  {item.ctaText}
+                  <svg xmlns="http://www.w3.org/2000/svg" width="17" height="17" viewBox="0 0 17 17" fill="none" class="up-arrow">
+                     <path d="M10.7963 8.49957L6.45129 4.15459C6.33669 4.04 6.28089 3.90358 6.28387 3.74534C6.28685 3.58711 6.34563 3.45064 6.46023 3.33595C6.57482 3.22136 6.71124 3.16406 6.86947 3.16406C7.02771 3.16406 7.16418 3.22136 7.27887 3.33595L11.6948 7.76082C11.799 7.86513 11.8763 7.98198 11.9265 8.11138C11.9769 8.24078 12.0021 8.37018 12.0021 8.49957C12.0021 8.62897 11.9769 8.75837 11.9265 8.88777C11.8763 9.01717 11.799 9.13402 11.6948 9.23833L7.26993 13.6632C7.15533 13.7778 7.02041 13.8336 6.86515 13.8306C6.70979 13.8276 6.57482 13.7688 6.46023 13.6543C6.34563 13.5397 6.28834 13.4032 6.28834 13.245C6.28834 13.0868 6.34563 12.9503 6.46023 12.8356L10.7963 8.49957Z" fill="white"/>
+                  </svg>
+               </a>
+               }
+            </div>
+         </div>
+      </div>
+      <div class="amenities-details-divider"></div>
+   </div>
+   ))}
+</div>
+</div>
+</section>

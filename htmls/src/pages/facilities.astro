@@ -1,7 +1,8 @@
 ---
 import Layout from '../layouts/Layout.astro';
 import ImageBanner from '../components/ImageBanner/ImageBannerHome.astro';
-import AminitiesImageGrid from '@/components/FacilitiesPage/AminitiesImageGrid.astro';
+import AmenitiesImageGrid from '@/components/FacilitiesPage/AmenitiesImageGrid.astro';
+import AmenitiesDetail from '@/components/FacilitiesPage/AmenitiesDetail.astro';
 ---
 
 <style is:inline>
@@ -32,17 +33,72 @@ import AminitiesImageGrid from '@/components/FacilitiesPage/AminitiesImageGrid.a
         description="FACILITIES"
         image="../assets/images/banner_image_3.png"
     />
-    <AminitiesImageGrid 
-        className="aminities-img-grid-section" 
+    <AmenitiesImageGrid 
+        className="amenities-img-grid-section" 
         title="施設のご案内"
         content="お客様にとっての快適性と利便性を考えてご用意した各種の設備が、 ご自宅にいるような温もりをお届けします。"
         data={[
-            { id: 'lounge', image: '../assets/images/aminities_img_grid/aminities_img_1.png', alt: 'Lounge', title: 'ラウンジ' },
-            { id: 'parking', image: '../assets/images/aminities_img_grid/aminities_img_2.png', alt: 'Parking Lot', title: '専用駐車場' },
-            { id: 'laundry', image: '../assets/images/aminities_img_grid/aminities_img_3.png', alt: 'Coin Laundry', title: 'コインランドリー' },
-            { id: 'currency', image: '../assets/images/aminities_img_grid/aminities_img_4.png', alt: 'Currency Exchange', title: '自動外貨両替機' },
-            { id: 'shuttle', image: '../assets/images/aminities_img_grid/aminities_img_5.png', alt: 'Shuttle Bus', title: '無料シャトルバス' },
-            { id: 'restaurant', image: '../assets/images/aminities_img_grid/aminities_img_6.png', alt: 'Restaurant', title: 'レストラン' }
+            { id: 'lounge', image: '../assets/images/amenities_img_grid/amenities_img_1.png', alt: 'Lounge', title: 'ラウンジ' },
+            { id: 'parking', image: '../assets/images/amenities_img_grid/amenities_img_2.png', alt: 'Parking Lot', title: '専用駐車場' },
+            { id: 'laundry', image: '../assets/images/amenities_img_grid/amenities_img_3.png', alt: 'Coin Laundry', title: 'コインランドリー' },
+            { id: 'currency', image: '../assets/images/amenities_img_grid/amenities_img_4.png', alt: 'Currency Exchange', title: '自動外貨両替機' },
+            { id: 'shuttle', image: '../assets/images/amenities_img_grid/amenities_img_5.png', alt: 'Shuttle Bus', title: '無料シャトルバス' },
+            { id: 'restaurant', image: '../assets/images/amenities_img_grid/amenities_img_6.png', alt: 'Restaurant', title: 'レストラン' }
+        ]}
+    />
+    <AmenitiesDetail 
+        className="amenities-details-section"
+        isExpanded={true}
+        data={[
+            {
+            id: "lounge",
+            name: "ラウンジ",
+            thumbnail: "../assets/images/amenities_details_img/amenities_detail_img_1.png", 
+            description: "お仕事やご歓談に最適な、くつろぎに満ちた明るいラウンジです。無料Wi-Fiと充電コンセントをご用意しています。会議、パーティー、イベント向けの多目的スペースとして、ラウンジのレンタルも承ります。詳細はホテルまでお問い合わせ下さい。",
+            location: "1階",
+            },
+            {
+            id: "parking",
+            name: "専用駐車場",
+            thumbnail: "../assets/images/amenities_details_img/amenities_detail_img_2.png",
+            description: "当ホテルをご利用のお客様は、15:00 ～ 11:00までの間、1泊1,500円で駐車場を割引料金でご利用いただけますが。チェックイン日の15:00より早く、またはチェックアウト日の11:00より遅く駐車する場合は、追加料金（上記の時間料金）がかかります。 *価格は税込み表示となります。",
+            operatingHours: "24時間ご利用できます",
+            location: "1階",
+            },
+            {
+            id: "laundry",
+            name: "コインランドリー",
+            thumbnail: "../assets/images/amenities_details_img/amenities_detail_img_3.png",
+            description: "ゲストの皆様は、コインランドリー（洗濯機、乾燥機、洗剤自動投入機完備）をいつでもお好きな時にご利用頂けます。6階と11階にご用意しています。",
+            operatingHours: "24時間ご利用できます",
+            location: "1階",
+            },
+            {
+            id: "currency",
+            name: "自動外貨両替機",
+            thumbnail: "../assets/images/amenities_details_img/amenities_detail_img_4.png",
+            description: "14種類の海外通貨の両替サービスをご提供しています。",
+            operatingHours: "24時間ご利用できます",
+            location: "1階",
+            },
+            {
+            id: "shuttle",
+            name: "無料シャトルバス",
+            thumbnail: "../assets/images/amenities_details_img/amenities_detail_img_5.png",
+            description: "ホテルのお客様向けの無料シャトルサービスを、ホテル - 東京ビッグサイト - りんかい線国際展示場駅のルートで、午前中と夕方に運行しています。最新の運行スケジュールについては、ホテルへ直接お問い合わせ下さい。",
+            operatingHours: "ホテルへお問い合わせ下さい",
+            location: "1階",
+            },
+            {
+            id: "restaurant",
+            name: "レストラン",
+            thumbnail: "../assets/images/amenities_details_img/amenities_detail_img_6.png",
+            description: "朝食時には、焼きたてのパンをお楽しみになり、新鮮なサラダや特製のお粥で体にエネルギーを満たしましょう。シンガポールの地元料理であるラクサ（お好きなトッピングを乗せたクリーミーなスープ麺）をお試しになるのもお忘れなく。",
+            operatingHours: "月曜日～日曜日：7:00 〜 10:00（最終入場：9:30）",
+            location: "1階",
+            ctaLink: "/contact",
+            ctaText: "お問い合わせ",
+            },
         ]}
     />
 </Layout>
