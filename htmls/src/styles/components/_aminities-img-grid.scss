@@ -1,0 +1,38 @@
+@use '../utils/variables' as *;
+@use '../utils/breakpoints' as *;
+
+.aminities-img-grid-section {
+    .culture-section {
+        .section-content {
+            text-align: center;
+            padding: 0 165px;
+        }
+    }
+    .aminities-img-grid {
+        p {
+            color: var(--color9);
+            text-align: center;
+            font-size: 1rem;
+            font-weight: 500;
+            letter-spacing: 0.05rem;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+        }
+    }
+
+    @include media-breakpoint-down(md) {
+        .culture-section {
+            .section-content {
+                text-align: left;
+                padding: 10px 0px 0px 0px;
+            }
+        }
+        .aminities-img-grid {
+            p {
+                font-size: 0.9375rem;
+                line-height: 1.875rem;
+            }
+        }
+    }
+}

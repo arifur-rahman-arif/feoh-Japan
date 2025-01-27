@@ -1,0 +1,48 @@
+---
+import Layout from '../layouts/Layout.astro';
+import ImageBanner from '../components/ImageBanner/ImageBannerHome.astro';
+import AminitiesImageGrid from '@/components/FacilitiesPage/AminitiesImageGrid.astro';
+---
+
+<style is:inline>
+    /* .section-heading-container {
+        padding-top: 0rem !important;
+    } */
+</style>
+<script is:inline>
+    document.addEventListener('DOMContentLoaded', function () {
+        const navbar = document.getElementById('navbar');
+
+        // Ensure 'white-nav' is always applied
+        navbar.classList.add('white-nav');
+        navbar.classList.remove('transparent-nav');
+
+        // Disable the toggle logic if the Navbar.init() is used elsewhere
+        if (typeof Navbar !== 'undefined') {
+            Navbar.toggleNavBarOnScroll = function () {
+                // Override and do nothing to ensure no toggling happens
+            };
+        }
+    });
+</script>
+
+<Layout>
+    <ImageBanner
+        heading="施設・サービス"
+        description="FACILITIES"
+        image="../assets/images/banner_image_3.png"
+    />
+    <AminitiesImageGrid 
+        className="aminities-img-grid-section" 
+        title="施設のご案内"
+        content="お客様にとっての快適性と利便性を考えてご用意した各種の設備が、 ご自宅にいるような温もりをお届けします。"
+        data={[
+            { id: 'lounge', image: '../assets/images/aminities_img_grid/aminities_img_1.png', alt: 'Lounge', title: 'ラウンジ' },
+            { id: 'parking', image: '../assets/images/aminities_img_grid/aminities_img_2.png', alt: 'Parking Lot', title: '専用駐車場' },
+            { id: 'laundry', image: '../assets/images/aminities_img_grid/aminities_img_3.png', alt: 'Coin Laundry', title: 'コインランドリー' },
+            { id: 'currency', image: '../assets/images/aminities_img_grid/aminities_img_4.png', alt: 'Currency Exchange', title: '自動外貨両替機' },
+            { id: 'shuttle', image: '../assets/images/aminities_img_grid/aminities_img_5.png', alt: 'Shuttle Bus', title: '無料シャトルバス' },
+            { id: 'restaurant', image: '../assets/images/aminities_img_grid/aminities_img_6.png', alt: 'Restaurant', title: 'レストラン' }
+        ]}
+    />
+</Layout>
