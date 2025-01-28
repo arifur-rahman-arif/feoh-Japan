@@ -1,0 +1,64 @@
+---
+const { className, bgColor } = Astro.props;
+---
+<section class={`${className} ${bgColor}`}>
+<div class={`${className}-container`}>
+   <h2 class="policy-title">日本のホテルを対象とする特定商取引法に基づく表記</h2>
+   <div class="policy-contents">
+      <div class="policy-content">
+         <p class="policy-description">
+            日本のホテルを対象とする特定商取引法に基づく表記および条件は以下のホテルに適用されます
+         </p>
+         <ul class="policy-list">
+            <li><a href="#">ファーイーストビレッジホテル東京浅草</a></li>
+            <li><a href="#">ファーイーストビレッジホテル東京有明</a></li>
+            <p>ファー・イースト・ホスピタリティ・マネジメント・ジャパン株式会社（東京都中央区銀座1-6-11 東芝ビル3階、電話：0335385846、代表者：Arthur Kiong）が請求事業体として、当ウェブサイトにて宿泊予約を運営しております。</p>
+            <li><a href="#">ファーイーストビレッジホテル横浜</a></li>
+            <p>桜木町ホスピタリティ株式会社（神奈川県横浜市中区尾上町 6-90-1、電話：0452324476、代表者：Jonathan James Yong Ze Ng）が請求事業体として、当ウェブサイトにて宿泊予約を運営しております。</p>
+        </ul>
+      </div>
+      <div class="policy-divider">
+         <!-- Divider -->
+      </div>
+      <div class="policy-content">
+        <p class="policy-description">予約成立時期：当サイトを利用して宿泊予約をされる場合は、予約完了のご案内が画面に表示された時点で予約が成立します</p>
+        <ul class="policy-list policy-list-mb">
+            <li>クレジットカードにて事前精算の場合は、クレジットカードによる決済が完了した時点で予約が成立します。</li>
+            <li>役務の対価：各宿泊プランによります。詳細は宿泊プラン詳細ページをご参照ください。</li>
+            <li>代金精算方：各宿泊プランによります。詳細は宿泊プラン詳細ページをご参照ください。</li>
+            <li>クレジットカードにて事前精算の場合：オンライン予約完了時にクレジットカードにてお支払い</li>
+        </ul>
+    
+        <p class="policy-description">代金前払いの場合の通知：予約成立後、電子メールにて下記内容を通知します</p>
+        <ul class="policy-list policy-list-mb">
+            <li>顧客からの申し込みを承諾する旨または承諾しない旨：予約完了の時点で承諾されたものとします。</li>
+            <li>役務提供業者の氏名または名称、住所および電話番号：メール末尾に記載しております。</li>
+            <li>決済手続の金額および受領済金額を記してメールに記載します。</li>
+            <li>当該記載を受信した年月日：決済完了日としてメールに記載します。</li>
+            <li>申し込みを受けた役務の種類：宿泊プラン名をメールに記載します。</li>
+            <li>役務の提供時期：宿泊予定日をメールに記載します。</li>
+        </ul>
+    
+        <p class="policy-description">キャンセル料：宿泊プランにより条件が変わります</p>
+        <ul class="policy-list policy-list-mb policy-list-unstyled">
+            <li>詳細は該当宿泊プランの詳細ページをご参照ください。</li>
+            <li>お問合せ・宿泊に関するお問い合わせは、メールもしくは<a href="/policy" class="contact-link">お問い合わせページ</a>から直接お願いいたします。</li>
+        </ul>
+        </div>
+      <div class="policy-divider">
+         <!-- Divider -->
+      </div>
+      <div class="policy-contact">
+        <div class="policy-contact-info">
+            <p>連絡先:</p>
+            <p>株式会社ファーイースト・ホスピタリティ</p>
+            <p>メール: <a href="mailto:privacy@example.com">privacy@example.com</a></p>
+            <p>電話番号: <a href="tel:18002707000"></a> 012-345-6789</p>
+        </div>
+        <div class="contact-logo">
+            <img src="/logos/fareast_vill_home.png" alt="Far East Village Hotel Logo">
+        </div>
+      </div>
+   </div>
+</div>
+</section>

@@ -1,0 +1,17 @@
+---
+import Layout from '../layouts/Layout.astro';
+import ImageBanner from '../components/ImageBanner/ImageBannerHome.astro';
+import Policy from '../components/Policy/index.astro';
+---
+
+<Layout whiteNav={true}>
+    <ImageBanner
+        heading="特定商取引法に基づく表記"
+        description="Commercial Transaction policy"
+        image="../assets/images/banner_image_4.png"
+    />
+    <Policy
+        className="fem-policy"
+        bgColor="bg-white"
+    />
+</Layout>
