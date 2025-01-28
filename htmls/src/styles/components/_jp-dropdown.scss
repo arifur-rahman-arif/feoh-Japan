@@ -1,2 +1,22 @@
 .jp-dropdown {
+    --ss-border-color: var(--color15);
+    --ss-spacing-s: 1rem 0.75rem;
+    --ss-border-radius: 0;
+
+    box-shadow: none !important;
+
+    .ss-option {
+        padding: var(--ss-spacing-s) !important;
+        border-bottom: 1px solid var(--color15);
+        color: var(--color9) !important;
+
+        &:hover {
+            background: linear-gradient(0deg, rgba(157, 124, 54, 0.08) 0%, rgba(157, 124, 54, 0.08) 100%), #fff !important;
+        }
+    }
+
+    .ss-selected,
+    .ss-highlighted {
+        background: linear-gradient(0deg, rgba(157, 124, 54, 0.08) 0%, rgba(157, 124, 54, 0.08) 100%), #fff !important;
+    }
 }
