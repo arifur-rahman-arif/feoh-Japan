@@ -12,6 +12,8 @@
     "@astrojs/tailwind": "^5.1.4",
     "@tailwindcss/typography": "^0.5.16",
     "astro": "^5.1.7",
+    "sass": "^1.83.4",
+    "slim-select": "^2.10.0",
     "swiper": "^11.2.1",
     "tailwind-merge": "^2.6.0",
     "tailwindcss": "^3.4.17"
