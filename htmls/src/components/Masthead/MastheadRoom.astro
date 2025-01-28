@@ -20,6 +20,8 @@ const { heading, subheading, image } = Astro.props;
         class="absolute left-1/2 top-1/2 z-[3] grid -translate-x-1/2 -translate-y-1/2 place-items-center content-center justify-items-center gap-2"
     >
         <h1 class="text-center">{heading || '客室'}</h1>
-        <h2 class="text-center font-400 text-color4 max-md:text-base max-md:leading-6">{subheading || 'ROOMS'}</h2>
+        <h2 class="text-center font-400 text-color4 max-md:text-base max-md:leading-6 md:text-2xl">
+            {subheading || 'ROOMS'}
+        </h2>
     </div>
 </main>

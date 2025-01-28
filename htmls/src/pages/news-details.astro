@@ -1,0 +1,100 @@
+---
+import Layout from '../layouts/Layout.astro';
+import MastheadRoom from '../components/Masthead/MastheadRoom.astro';
+import NewsComponent from '../components/PropertyPage/NewsComponent/index.astro';
+
+// Welcome to Astro! Wondering what to do next? Check out the Astro documentation at https://docs.astro.build
+// Don't want to use any of this? Delete everything in this file, the `assets`, `components`, and `layouts` directories, and start fresh.
+---
+
+<style is:inline>
+    #navbar {
+        position: sticky !important;
+        background-color: var(--color4) !important;
+        box-shadow: var(--shadow2) !important;
+    }
+
+    .parent-menu:nth-of-type(2) > li:last-child > a {
+        color: var(--color1) !important;
+    }
+</style>
+
+<Layout
+    currentPageTitle="ファーイースト・ホスピタリティが有するGSTC認証ホテルがシンガポール最多に – 16のホテル全てが国際認証を…"
+    whiteNav={true}
+>
+    <main class="section">
+        <article class="mx-auto grid max-w-[60rem] max-xl:px-6">
+            <header>
+                <h1 class="text-color9 md:text-[2rem]">
+                    ファーイースト・ホスピタリティが有するGSTC認証ホテルがシンガポール最多に –
+                    16のホテル全てが国際認証を取得
+                </h1>
+            </header>
+
+            <!-- Divider -->
+            <div class="mt-6 h-[1px] w-full bg-color15 md:mt-10"></div>
+
+            <section class="mt-6 grid gap-6 md:gap-10">
+                <!-- Date -->
+                <span class="font-500 text-[#A6A6A6]">2024.12.22</span>
+
+                <!-- Featured image -->
+                <img
+                    src="/public/assets/section-images/article-feature-image.png"
+                    class="w-full"
+                    width="960"
+                    height="450"
+                />
+
+                <!-- Article content -->
+                <div
+                    class="article-content prose prose-xl -mt-4 w-full !max-w-full prose-h2:text-2xl prose-h3:text-lg prose-p:mb-6 md:-mt-6 md:prose-p:mb-10"
+                >
+                    <p>
+                        （左から右へ）Arthur Kiong氏（ファーイースト・ホスピタリティCEO）がHooi Kim
+                        Yeap氏（コントロール・ユニオン・シンガポールの認証マネージャー）からGSTC認証を受領
+                    </p>
+
+                    <h3>シンガポール、2024年8月13日</h3>
+
+                    <p>
+                        シンガポール生まれのホスピタリティ・マネジメント企業であり、国際展開でも存在感を示すファーイースト・ホスピタリティは、同社がシンガポールで運営する16のホテル全てがグローバル・サステナブル・ツーリズム協議会（GSTC）のホテル認証の業界基準を達成したと発表しました。この認証評価により、ファーイースト・ホスピタリティは現在、シンガポールにおいて最多のGSTC認証ホテルを有するホスピタリティ・グループとなりました。
+                    </p>
+                    <p>
+                        同認証は国際的なサステナビリティ基準とみなされており、ファーイースト・ホスピタリティの環境管理への専心を明確に示すものであり、最も地球環境に優しいホスピタリティを維持するという同社の使命に一致するものです。
+                        ファーイースト・ホスピタリティCEOのArthur
+                        Kiongは、次のように述べています。「GSTC認証の達成は当社にとって重要な節目となるものです。これは当社のサステナビリティへの専心を明確に示すものであり、私共が最高水準の環境管理を維持し、好ましい社会的影響を与えることに尽力していることを当社のお客様やクライアント様に示すものです。この認証は当社の現在の取り組みを証明するものであり、私共がより持続可能な未来へと向かう旅を続けることをお約束するものでもあります」
+                    </p>
+                    <p>
+                        ファーイースト・ホスピタリティは誠実にサステナビリティへの取り組みを追求し、シンガポール・ホテル協会（SHA）およびシンガポール政府観光局（STB）が策定した2025年という目標の前にこの認証を取得しました。
+                        この取り組みには、エネルギー、水、廃棄物、二酸化炭素排出などのデータを毎年追跡・監視することが含まれ、これを元にファーイースト・ホスピタリティ・トラストおよびファーイースト・オーチャードの持続可能性に関する年次報告書が作成されています。
+                    </p>
+                    <p>
+                        また、ファーイースト・ホスピタリティは「ファーモア・サステナブル（はるかにサステナブル）」という枠組みを作り、同社が運営するホテルなどにおいて持続可能性に関する認知度向上のための取り組みを行っています。これらの取り組みには、タオルやリネン類の再利用のお客様への呼びかけ、ホテル滞在によるCO2排出量を相殺（カーボン・オフセット）できる方法の提供、使い捨てプラスチックボトル入り飲料水の使用中止、大型ディスペンサーでのアメニティ提供への切り替えなどが含まれます。
+                        これらの取り組みにおいて、子供・若者や地域企業の支援などを通じて仕入れ先や地域社会と戦略的に関わることで、ファーイースト・ホスピタリティは持続可能な慣行およびより充実したゲスト体験の創出への専心を深めることができます。
+                    </p>
+                </div>
+            </section>
+
+            <!-- Divider -->
+            <div class="h-[1px] w-full bg-color15"></div>
+
+            <!-- Meta data -->
+            <div class="mt-10 grid justify-items-end gap-4">
+                <span class="font-500 text-color9">2024年12月12日(火)</span>
+                <span class="font-500 text-color9">会社名</span>
+            </div>
+
+            <a class="button mt-20 w-full max-w-[12rem] justify-self-center md:max-w-[18.75rem]">
+                お知らせ一覧
+
+                <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 16 16" fill="none">
+                    <path
+                        d="M10.2957 7.99957L5.95074 3.65459C5.83614 3.54 5.78034 3.40358 5.78332 3.24534C5.7863 3.08711 5.84508 2.95064 5.95968 2.83595C6.07427 2.72136 6.21069 2.66406 6.36893 2.66406C6.52716 2.66406 6.66363 2.72136 6.77832 2.83595L11.1942 7.26082C11.2985 7.36513 11.3757 7.48198 11.426 7.61138C11.4764 7.74078 11.5015 7.87018 11.5015 7.99957C11.5015 8.12897 11.4764 8.25837 11.426 8.38777C11.3757 8.51717 11.2985 8.63402 11.1942 8.73833L6.76938 13.1632C6.65478 13.2778 6.51986 13.3336 6.3646 13.3306C6.20924 13.3276 6.07427 13.2688 5.95968 13.1543C5.84508 13.0397 5.78779 12.9032 5.78779 12.745C5.78779 12.5868 5.84508 12.4503 5.95968 12.3356L10.2957 7.99957Z"
+                        fill="white"></path>
+                </svg>
+            </a>
+        </article>
+    </main>
+</Layout>

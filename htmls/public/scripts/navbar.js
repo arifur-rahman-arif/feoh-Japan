@@ -145,19 +145,25 @@ const Navbar = {
      */
     toggleNavBarOnScroll: function () {
         const updateNavBar = () => {
-            if (window.scrollY > 0) {
-                this.navbar.classList.add('white-nav', 'shadow-sm');
-                this.navbar.classList.remove('transparent-nav');
+            // If the navigation bar is not white, add an event listener to check on scroll
+            if (this.navbar.classList.contains('white-nav')) {
+                if (window.scrollY > 0) {
+                    this.navbar.classList.add('shadow-shadow2');
+                } else {
+                    this.navbar.classList.remove('shadow-shadow2');
+                }
             } else {
-                this.navbar.classList.add('transparent-nav');
-                this.navbar.classList.remove('white-nav', 'shadow-sm');
+                if (window.scrollY > 0) {
+                    this.navbar.classList.add('white-nav', 'shadow-shadow2');
+                    this.navbar.classList.remove('transparent-nav');
+                } else {
+                    this.navbar.classList.add('transparent-nav');
+                    this.navbar.classList.remove('white-nav', 'shadow-shadow2');
+                }
             }
         };
 
-        // If the navigation bar is not white, add an event listener to check on scroll
-        if (!this.navbar.classList.contains('white-nav')) {
-            window.addEventListener('scroll', updateNavBar);
-        }
+        window.addEventListener('scroll', updateNavBar);
         // // Add an event listener to check on scroll
     }
 };

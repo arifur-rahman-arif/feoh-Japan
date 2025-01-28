@@ -1,6 +1,6 @@
 /** @type {import('tailwindcss').Config} */
 export default {
-	content: ['./src/**/*.{astro,html,js,jsx,md,mdx,svelte,ts,tsx,vue}'],
+	content: ['./src/**/*.{astro,html,js,jsx,md,mdx,svelte,ts,tsx,vue}', './public/scripts/**/*.js'],
 	theme: {
 		extend: {
 			colors: {
@@ -34,6 +34,10 @@ export default {
                 700: 'var(--700)',     // Use custom variable for 700 weight
                 800: 'var(--800)',     // Use custom variable for 800 weight
                 900: 'var(--900)',     // Use custom variable for 900 weight
+            },
+            boxShadow: {
+                'shadow1': 'var(--shadow1)',
+                'shadow2': 'var(--shadow2)'
             },
             screens: {
                 xs: '400px'
