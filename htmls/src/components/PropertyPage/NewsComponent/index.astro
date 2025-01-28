@@ -1,24 +1,56 @@
 ---
 import SectionHeading from '../../SectionHeading/index.astro';
 import List from './List.astro';
-const { className } = Astro.props;
+const { className, heading, list, listClassName, button, pagination } = Astro.props;
 ---
 
+<style is:inline>
+    .news-component--grey-theme {
+        background-color: var(--color13);
+    }
+</style>
 <!-- This component is used in property page  -->
-<section id="news" class={`py-5 md:py-10 ${className}`}>
+<section id="news" class={`py-5 md:py-10 ${className} news-component`}>
     <div class="container grid gap-6">
-        <SectionHeading title="お知らせ" />
+        {heading && <SectionHeading title={heading} />}
 
-        <List />
+        <List list={list} listClassName={listClassName} />
 
-        <a href="#" class="button justify-self-center !px-10">
-            お知らせ一覧
+        {
+            button && (
+                <a href={button.link} class="button justify-self-center !px-10">
+                    {button.text}
 
-            <svg xmlns="http://www.w3.org/2000/svg" width="16" height="17" viewBox="0 0 16 17" fill="none">
-                <path
-                    d="M10.2967 8.4997L5.95171 4.15472C5.83712 4.04012 5.78131 3.90371 5.78429 3.74547C5.78727 3.58723 5.84606 3.45076 5.96065 3.33607C6.07525 3.22148 6.21166 3.16418 6.3699 3.16418C6.52814 3.16418 6.6646 3.22148 6.77929 3.33607L11.1952 7.76094C11.2994 7.86525 11.3767 7.9821 11.427 8.1115C11.4773 8.2409 11.5025 8.3703 11.5025 8.4997C11.5025 8.62909 11.4773 8.75849 11.427 8.88789C11.3767 9.01729 11.2994 9.13414 11.1952 9.23845L6.77035 13.6633C6.65576 13.7779 6.52083 13.8337 6.36558 13.8307C6.21022 13.8278 6.07525 13.769 5.96065 13.6544C5.84606 13.5398 5.78876 13.4034 5.78876 13.2451C5.78876 13.0869 5.84606 12.9504 5.96065 12.8357L10.2967 8.4997Z"
-                    fill="white"></path>
-            </svg>
-        </a>
+                    <svg xmlns="http://www.w3.org/2000/svg" width="16" height="17" viewBox="0 0 16 17" fill="none">
+                        <path
+                            d="M10.2967 8.4997L5.95171 4.15472C5.83712 4.04012 5.78131 3.90371 5.78429 3.74547C5.78727 3.58723 5.84606 3.45076 5.96065 3.33607C6.07525 3.22148 6.21166 3.16418 6.3699 3.16418C6.52814 3.16418 6.6646 3.22148 6.77929 3.33607L11.1952 7.76094C11.2994 7.86525 11.3767 7.9821 11.427 8.1115C11.4773 8.2409 11.5025 8.3703 11.5025 8.4997C11.5025 8.62909 11.4773 8.75849 11.427 8.88789C11.3767 9.01729 11.2994 9.13414 11.1952 9.23845L6.77035 13.6633C6.65576 13.7779 6.52083 13.8337 6.36558 13.8307C6.21022 13.8278 6.07525 13.769 5.96065 13.6544C5.84606 13.5398 5.78876 13.4034 5.78876 13.2451C5.78876 13.0869 5.84606 12.9504 5.96065 12.8357L10.2967 8.4997Z"
+                            fill="white"
+                        />
+                    </svg>
+                </a>
+            )
+        }
+
+        {
+            pagination && (
+                <div class="pagination mt-10 flex flex-wrap items-center justify-center gap-2">
+                    <a href="#" class="pagination__links pagination__links--arrow pagination__links--left !hidden">
+                        <img src="/icons/icon_arrow-gold.svg" width="24" height="24" alt="" class="rotate-180" />
+                    </a>
+                    <a href="#" class="pagination__links pagination__links--active">
+                        1
+                    </a>
+                    <a href="#" class="pagination__links">
+                        2
+                    </a>
+                    <a href="#" class="pagination__links">
+                        3
+                    </a>
+                    <a href="#" class="pagination__links pagination__links--arrow">
+                        <img src="/icons/icon_arrow-gold.svg" width="24" height="24" alt="" />
+                    </a>
+                </div>
+            )
+        }
     </div>
 </section>

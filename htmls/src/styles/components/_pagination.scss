@@ -1,0 +1,36 @@
+.pagination {
+    &__links {
+        height: 3rem;
+        width: 3rem;
+        border-radius: 50%;
+        border: 2px solid var(--color4);
+        background-color: var(--color4);
+        transition: all 0.5s;
+        text-align: center;
+        display: grid;
+        place-content: center;
+        color: var(--color11);
+        transition: all 0.5s ease-in-out;
+        font-weight: var(--500);
+
+        &:hover {
+            background-color: var(--color4);
+            color: var(--color1);
+            border-color: var(--color1);
+        }
+
+        &--arrow {
+            background-color: transparent;
+            border: none;
+
+            &:hover {
+                scale: 1.1;
+            }
+        }
+
+        &--active {
+            background-color: var(--color1);
+            color: var(--color4);
+        }
+    }
+}
