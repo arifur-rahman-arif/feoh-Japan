@@ -5,6 +5,7 @@ import AmenitiesImageGrid from '@/components/FacilitiesPage/AmenitiesImageGrid.a
 import AmenitiesDetail from '@/components/FacilitiesPage/AmenitiesDetail.astro';
 import AmenitiesFeatureOverview from '@/components/FacilitiesPage/AmenitiesFeatureOverview.astro';
 import HotelAmenitiesList from '@/components/FacilitiesPage/HotelAmenitiesList.astro';
+import HotelAmenitiesFloorMap from '@/components/FacilitiesPage/HotelAmenitiesFloorMap.astro';
 ---
 
 <style is:inline>
@@ -112,5 +113,10 @@ import HotelAmenitiesList from '@/components/FacilitiesPage/HotelAmenitiesList.a
         className="hotel-amenities-list"
         bgColor="bg-white"
         title="室内設備・アメニティ"
+    />
+    <HotelAmenitiesFloorMap
+        className="hotel-amenities-floor-map"
+        bgColor="bg-white"
+        title="フロアマップ"
     />
 </Layout>

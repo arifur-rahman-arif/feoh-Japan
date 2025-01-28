@@ -1,0 +1,181 @@
+@use '../utils/variables' as *;
+@use '../utils/breakpoints' as *;
+
+.hotel-amenities-floor-map {
+    margin-top: 5rem;
+    margin-bottom: 3rem;
+
+    .hotel-amenities-floor-map-container {
+        padding: 0 7.5rem;
+
+        .hotel-logo {
+            display: flex;
+            height: 7rem;
+            padding-left: 4.1875rem;
+            flex-direction: column;
+            align-items: flex-start;
+            gap: 0.625rem;
+            align-self: stretch;
+        }
+
+        .floor-map {
+            display: flex;
+            align-items: flex-start;
+            gap: 5rem;
+
+            .floor-column.floor-left {
+                display: flex;
+                flex-direction: column;
+                align-items: flex-start;
+                gap: 0.08rem;
+
+                .floor {
+                    display: flex;
+
+                    .floor-number {
+                        color: var(--color9);
+                        text-align: right;
+                        font-size: 1.25rem;
+                        font-weight: var(--400);
+                        line-height: 2.625rem;
+                        letter-spacing: 0.075rem;
+                        display: flex;
+                        justify-content: center;
+                        align-items: center;
+                        padding: 0 1rem 0 0;
+                    }
+
+                    .floor-icons {
+                        display: flex;
+                        width: 23.75rem;
+                        padding: 0.6rem 2.5rem;
+                        flex-direction: column;
+                        justify-content: space-between;
+                        align-items: flex-end;
+                        background: rgba(217, 192, 169, 0.25);
+
+                        .icon-list {
+                            display: flex;
+                            justify-content: center;
+                            align-items: center;
+                            gap: 0.72919rem;
+
+                            .icon-wrapper {
+                                display: flex;
+                                width: 3.5rem;
+                                height: 3.5rem;
+                                padding: 0.36456rem;
+                                justify-content: center;
+                                align-items: center;
+                                gap: 0.72919rem;
+                                border-radius: 1.75rem;
+                                background: var(--color4);
+                            }
+                        }
+                    }
+                }
+
+                .amenities-divider {
+                    height: 0.0625rem;
+                    align-self: stretch;
+                    background: var(--color15);
+                }
+            }
+
+            .floor-column.floor-right {
+                display: flex;
+                flex-direction: column;
+                gap: 1.3rem;
+                align-self: stretch;
+                width: 100%;
+
+                .floor {
+                    display: flex;
+                    flex-wrap: wrap;
+                    gap: 2.5rem;
+
+                    .floor-number {
+                        color: var(--color9);
+                        font-size: 1.25rem;
+                        font-weight: var(--500);
+                    }
+
+                    .floor-label {
+                        color: var(--color2);
+                        font-size: 1rem;
+                        font-weight: var(--400);
+                        line-height: 2rem;
+                        display: flex;
+                        align-items: left;
+                        gap: 0.125rem;
+                        flex-direction: column;
+                        gap: 0.5rem;
+
+                        .line {
+                            display: flex;
+                            flex-wrap: wrap;
+                            white-space: normal;
+                        }
+
+                        a.restaurant-link {
+                            color: var(--color1);
+                            text-decoration: none;
+                        }
+
+                        a.restaurant-link:hover {
+                            text-decoration: underline;
+                        }
+                    }
+                }
+
+                .amenities-divider {
+                    height: 0.0625rem;
+                    align-self: stretch;
+                    background: var(--color15);
+                }
+            }
+        }
+    }
+
+    @include media-breakpoint-down(md) {
+        .hotel-amenities-floor-map-container {
+            padding: 0 1.5rem;
+
+            .hotel-logo {
+                align-items: center;
+                padding-left: 0;
+            }
+
+            .floor-map {
+                flex-direction: column;
+                gap: 3rem;
+
+                .floor-column.floor-left {
+                    .floor {
+                        .floor-icons {
+                            width: 17.875rem;
+                        }
+                    }
+                }
+
+                .floor-column.floor-right {
+                    .floor {
+                        gap: 1.25rem;
+
+                        .floor-number {
+                            font-size: 1rem;
+                        }
+
+                        .floor-label {
+                            font-size: 0.9rem;
+
+                            .line {
+                                font-size: 0.9rem;
+                            }
+                        }
+                    }
+                }
+            }
+        }
+    }
+}
