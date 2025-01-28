@@ -1,0 +1,55 @@
+---
+import Layout from '../layouts/Layout.astro';
+import MastheadRoom from '../components/Masthead/MastheadRoom.astro';
+import NewsComponent from '../components/PropertyPage/NewsComponent/index.astro';
+
+// Welcome to Astro! Wondering what to do next? Check out the Astro documentation at https://docs.astro.build
+// Don't want to use any of this? Delete everything in this file, the `assets`, `components`, and `layouts` directories, and start fresh.
+---
+
+<style is:inline>
+    #navbar {
+        position: sticky !important;
+        background-color: var(--color4) !important;
+    }
+
+    .parent-menu:nth-of-type(2) > li:last-child > a {
+        color: var(--color1) !important;
+    }
+</style>
+
+<Layout currentPageTitle="お知らせ" whiteNav={true}>
+    <MastheadRoom heading="お知らせ" subheading="NEWS" image="/assets/masthead/masthead-news-list.png" />
+
+    <NewsComponent
+        className="section"
+        listClassName="md:gap-y-12"
+        pagination
+        list={[
+            {
+                date: '2024.12.22',
+                type: '最新情報',
+                title: 'ホームページリニューアルに関するお知らせホームページリニューアルに関するお知らせ',
+                link: '#'
+            },
+            {
+                date: '2024.12.22',
+                type: '受賞歴',
+                title: 'ファーイースト・ホスピタリティが有するGSTC認証ホテルがシンガポール最多に – 16のホテル全てが国際認証を取得ファーイースト・ホスピタリティが有するGSTC認証ホテルがシンガファーイースト…',
+                link: '#'
+            },
+            {
+                date: '2024.12.22',
+                type: '最新情報',
+                title: 'ホームページリニューアルに関するお知らせホームページリニューアルに関するお知らせ',
+                link: '#'
+            },
+            {
+                date: '2024.12.22',
+                type: '最新情報',
+                title: 'ホームページリニューアルに関するお知らせホームページリニューアルに関するお知らせ',
+                link: '#'
+            }
+        ]}
+    />
+</Layout>

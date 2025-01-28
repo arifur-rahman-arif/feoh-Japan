@@ -1,7 +1,11 @@
+---
+const { heading, subheading, image } = Astro.props;
+---
+
 <main class="relative" role="banner">
     <img
         class="h-full max-h-[21.43rem] min-h-[9.75rem] w-full object-cover"
-        src="/public/assets/masthead/masthead-room-list.png"
+        src={image || '/assets/masthead/masthead-room-list.png'}
         alt="banner-image"
         width="1440"
         height="576"
@@ -15,9 +19,7 @@
     <div
         class="absolute left-1/2 top-1/2 z-[3] grid -translate-x-1/2 -translate-y-1/2 place-items-center content-center justify-items-center gap-2"
     >
-        <h1 class="text-center">客室</h1>
-        <h2 class="text-center font-400 text-color4 max-md:text-base max-md:leading-6">ROOMS</h2>
+        <h1 class="text-center">{heading || '客室'}</h1>
+        <h2 class="text-center font-400 text-color4 max-md:text-base max-md:leading-6">{subheading || 'ROOMS'}</h2>
     </div>
-    <!-- <h1 class="banner-heading">{heading}</h1>
-    <h2 class="banner-subheading">{description}</h2> -->
 </main>

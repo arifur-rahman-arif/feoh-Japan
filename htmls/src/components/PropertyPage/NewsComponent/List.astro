@@ -1,7 +1,9 @@
 ---
+import { twMerge } from 'tailwind-merge';
 import Pill from '@/components/Pill/index.astro';
+const { list, listClassName } = Astro.props;
 
-const list = [
+const defaultList = list || [
     {
         date: '2024.12.22',
         type: '最新情報',
@@ -23,11 +25,11 @@ const list = [
 ];
 ---
 
-<div class="grid max-w-[65rem] content-start gap-8 justify-self-center md:gap-y-6">
+<div class={twMerge('grid max-w-[65rem] content-start gap-8 justify-self-center md:gap-y-6', listClassName)}>
     <!-- News item loop -->
     {
-        list.map(item => (
-            <div class="border-color15 grid grid-cols-[auto_1fr] items-center gap-3 border-x-0 border-y-0 border-b border-solid pb-4 md:grid-cols-[auto_auto_1fr] md:gap-8 md:border-none">
+        defaultList.map(item => (
+            <div class="grid grid-cols-[auto_1fr] items-center gap-3 border-x-0 border-y-0 border-b border-solid border-color15 pb-4 md:grid-cols-[auto_auto_1fr] md:gap-8 md:border-none">
                 <div class="news-item__date text-base font-400 text-black">{item.date}</div>
                 <Pill text={item.type} className="news-item__type justify-self-start md:min-w-[6.25rem]" />
                 <a
