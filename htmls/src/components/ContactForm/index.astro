@@ -1,0 +1,24 @@
+<form id="contact-form" class="grid w-full max-w-[38.75rem] gap-5 justify-self-center">
+    <div class="input-group">
+        <label for="name" for="surname" class="input-group__label">お名前 <span class="helper-text">必須</span></label>
+
+        <input type="text" id="surname" name="surname" class="input-group__input" required placeholder="TANAKA" />
+
+        <span class="input-group__error">必須項目を入力してください</span>
+    </div>
+
+    <!-- Form action buttons -->
+    <div class="flex flex-wrap items-center justify-center gap-4">
+        <button type="button" class="button w-full max-w-[18.87rem] !border-color2 !bg-transparent !text-color2"
+            >戻る</button
+        >
+        <button class="button w-full max-w-[18.87rem]" type="submit">
+            内容を送信する
+            <svg xmlns="http://www.w3.org/2000/svg" width="17" height="16" viewBox="0 0 17 16" fill="none">
+                <path
+                    d="M10.7957 7.99957L6.45074 3.65459C6.33614 3.54 6.28034 3.40358 6.28332 3.24534C6.2863 3.08711 6.34508 2.95064 6.45968 2.83595C6.57427 2.72136 6.71069 2.66406 6.86893 2.66406C7.02716 2.66406 7.16363 2.72136 7.27832 2.83595L11.6942 7.26082C11.7985 7.36513 11.8757 7.48198 11.926 7.61138C11.9764 7.74078 12.0015 7.87018 12.0015 7.99957C12.0015 8.12897 11.9764 8.25837 11.926 8.38777C11.8757 8.51717 11.7985 8.63402 11.6942 8.73833L7.26938 13.1632C7.15478 13.2778 7.01986 13.3336 6.8646 13.3306C6.70924 13.3276 6.57427 13.2688 6.45968 13.1543C6.34508 13.0397 6.28779 12.9032 6.28779 12.745C6.28779 12.5868 6.34508 12.4503 6.45968 12.3356L10.7957 7.99957Z"
+                    fill="white"></path>
+            </svg>
+        </button>
+    </div>
+</form>
