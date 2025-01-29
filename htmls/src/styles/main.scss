@@ -27,6 +27,8 @@
 @use 'components/hotel-amenities-floor-map';
 @use 'components/policy';
 @use 'components/terms';
+@use 'components/jp-dropdown';
+@use 'components/popup';
 
 * {
     border: none;

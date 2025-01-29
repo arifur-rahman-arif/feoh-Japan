@@ -1,0 +1,54 @@
+@use '../utils/variables' as *;
+@use '../utils/breakpoints' as *;
+
+.jp-popup {
+    $self: &;
+
+    position: fixed;
+    top: 0;
+    right: 0;
+    bottom: 0;
+    left: 0;
+    z-index: 50;
+    display: grid;
+    height: 100%;
+    width: 100%;
+    place-items: center;
+    background-color: rgba(0, 0, 0, 0.6);
+    padding-top: 4rem;
+    padding-bottom: 4rem;
+    pointer-events: none;
+    transition: all 0.5s ease-in-out;
+    opacity: 0;
+
+    @include media-breakpoint-up(md) {
+        padding-top: 6rem;
+        padding-bottom: 6rem;
+    }
+
+    &__container {
+        position: relative;
+        width: 100%;
+        height: 100%;
+        max-height: 56.7rem;
+        max-width: 82rem;
+        overflow: hidden;
+        overflow-y: auto;
+        background-color: var(--color4);
+        padding-left: 1.5rem /* 24px */;
+        padding-right: 1.5rem /* 24px */;
+        padding-top: 2.5rem /* 40px */;
+        padding-bottom: 2.5rem /* 40px */;
+        transform: translateY(100%);
+        transition: all 0.5s ease-in-out;
+    }
+
+    &--active {
+        pointer-events: all;
+        opacity: 1;
+
+        #{ $self }__container {
+            transform: translateY(0%);
+        }
+    }
+}
