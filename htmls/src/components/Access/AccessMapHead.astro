@@ -1,0 +1,35 @@
+---
+const { title, googleMapLink, listItems } = Astro.props;
+---
+
+<div class="access-map-head flex flex-col">
+    {title &&
+        <!-- Slash -->
+        <div class="access-map-slash mb-1"></div>
+
+        <!-- Title and Link -->
+        <div class="access-map-title flex flex-col sm:flex-row items-start sm:items-center gap-2">
+            {title}
+            <a 
+                href={googleMapLink} 
+                target="_blank" 
+                rel="noopener noreferrer" 
+                class="access-map-link flex items-center hover:underline"
+            >
+                Google Map
+                <span class="ml-1">
+                    <img src="/icons/icon_external_link.svg" alt="icon_external_link">
+                </span>
+            </a>
+        </div>
+    }
+
+    <!-- Bullet Points -->
+    {listItems &&
+        <ul class="access-map-list mt-1 list-disc pl-4">
+            {listItems.map((item) => (
+                <li><span>{item}</span></li>
+            ))}
+        </ul>
+    }
+</div>

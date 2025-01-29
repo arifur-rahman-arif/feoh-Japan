@@ -1,0 +1,150 @@
+---
+const { className, bgColor } = Astro.props;
+import SectionHeading from '../SectionHeading/index.astro';
+import AccessMapHead from './AccessMapHead.astro';
+---
+<section class={`${className} ${bgColor}`}>
+    <div class={`${className}-container`}>
+        <div id="location-map">
+            <SectionHeading title="所在地・地図" />
+            <iframe
+                src="https://www.google.com/maps/embed?pb=!1m14!1m8!1m3!1d3988.6678995098073!2d103.8770111!3d1.3759412!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x31da165b2d1099d1%3A0xf036d6c1d05978fd!2sVillage+Residence+Hougang!5e0!3m2!1sen!2sin!4v1535445473886"
+                width="100%"
+                height="440"
+                frameborder="0"
+                style="border:0"
+                allowfullscreen="">
+            </iframe>
+            <div class="max-w-4xl mx-auto access-contact">
+                <div class="access-contact-container">
+                    <div class="access-contact-item">
+                        <p class="w-40">施設名</p>
+                        <p>ファーストビレッジホテル東京有明</p>
+                    </div>
+                </div>
+                <div class="access-contact-container bg-grey">
+                    <div class="access-contact-item">
+                        <p class="w-40">所在地</p>
+                        <p>〒135-0063 東京都江東区有明1-2-43</p>
+                    </div>
+                </div>
+                <div class="access-contact-container">
+                    <div class="access-contact-item">
+                        <p class="w-40">TEL</p>
+                        <p>03-6271-0337</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="container" id="train">
+            <SectionHeading title="電車をご利用の場合" />
+            <div class="access-divider">
+                <!-- Divider -->
+            </div>
+            <AccessMapHead 
+                title="ゆりかもめ・有明テニスの森駅から"
+                googleMapLink="https://www.google.com/maps"
+                listItems={[
+                    "A2出口から徒歩3分"
+                ]}
+            />
+            <div class="flex justify-center mb-8">
+                <iframe
+                    src="https://www.google.com/maps/embed?pb=!1m14!1m8!1m3!1d3988.6678995098073!2d103.8770111!3d1.3759412!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x31da165b2d1099d1%3A0xf036d6c1d05978fd!2sVillage+Residence+Hougang!5e0!3m2!1sen!2sin!4v1535445473886"
+                    width="720"
+                    height="405"
+                    frameborder="0"
+                    style="border:0"
+                    allowfullscreen="">
+                </iframe>
+            </div>
+            <div class="access-divider">
+                <!-- Divider -->
+            </div>
+            <AccessMapHead 
+                title="りんかい線・国際展示場駅から"
+                googleMapLink="https://www.google.com/maps"
+                listItems={[
+                    "C10出口から徒歩15分"
+                ]}
+            />
+            <div class="flex justify-center">
+                <iframe
+                    src="https://www.google.com/maps/embed?pb=!1m14!1m8!1m3!1d3988.6678995098073!2d103.8770111!3d1.3759412!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x31da165b2d1099d1%3A0xf036d6c1d05978fd!2sVillage+Residence+Hougang!5e0!3m2!1sen!2sin!4v1535445473886"
+                    width="720"
+                    height="405"
+                    frameborder="0"
+                    style="border:0"
+                    allowfullscreen="">
+                </iframe>
+            </div>
+        </div>
+        <div class="container" id="airport">
+            <SectionHeading title="空港からお越しの場合" />
+            <div class="access-divider">
+                <!-- Divider -->
+            </div>
+            <AccessMapHead 
+                title="羽田空港から"
+                googleMapLink="https://www.google.com/maps"
+                listItems={[
+                    "約40分（浜松町駅経由、JR 新橋駅または有楽町駅下車）",
+                    "JR 新橋駅A5、または有楽町駅A2出口から徒歩3分"
+                ]}
+            />
+            <div class="flex justify-center mb-8">
+                <iframe
+                    src="https://www.google.com/maps/embed?pb=!1m14!1m8!1m3!1d3988.6678995098073!2d103.8770111!3d1.3759412!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x31da165b2d1099d1%3A0xf036d6c1d05978fd!2sVillage+Residence+Hougang!5e0!3m2!1sen!2sin!4v1535445473886"
+                    width="720"
+                    height="405"
+                    frameborder="0"
+                    style="border:0"
+                    allowfullscreen="">
+                </iframe>
+            </div>
+            <div class="access-divider">
+                <!-- Divider -->
+            </div>
+            <AccessMapHead 
+                title="成田空港から"
+                googleMapLink="https://www.google.com/maps"
+                listItems={[
+                    "約70分（東京駅経由、JR有楽町駅下車）",
+                    "有楽町駅A2出口から徒歩3分"
+                ]}
+            />
+            <div class="flex justify-center">
+                <iframe
+                    src="https://www.google.com/maps/embed?pb=!1m14!1m8!1m3!1d3988.6678995098073!2d103.8770111!3d1.3759412!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x31da165b2d1099d1%3A0xf036d6c1d05978fd!2sVillage+Residence+Hougang!5e0!3m2!1sen!2sin!4v1535445473886"
+                    width="720"
+                    height="405"
+                    frameborder="0"
+                    style="border:0"
+                    allowfullscreen="">
+                </iframe>
+            </div>
+        </div>
+        <div class="container" id="car">
+            <SectionHeading title="お車でお越しの場合" />
+            <div class="access-divider">
+                <!-- Divider -->
+            </div>
+            <AccessMapHead 
+                listItems={[
+                    "◯◯方面よりお越しのお車は、◯◯◯◯交差点通過直後に◯◯を通らず、◯◯◯◯方面地上路車線を直進ください。",
+                    "※ホテル駐車場車体制限：高さ 2.1m、幅 1.95m、長さ 6m まで。"
+                ]}
+            />
+            <div class="flex justify-center">
+                <iframe
+                    src="https://www.google.com/maps/embed?pb=!1m14!1m8!1m3!1d3988.6678995098073!2d103.8770111!3d1.3759412!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x31da165b2d1099d1%3A0xf036d6c1d05978fd!2sVillage+Residence+Hougang!5e0!3m2!1sen!2sin!4v1535445473886"
+                    width="720"
+                    height="405"
+                    frameborder="0"
+                    style="border:0"
+                    allowfullscreen="">
+                </iframe>
+            </div>
+        </div>
+    </div>
+</section>
