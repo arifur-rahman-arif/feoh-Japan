@@ -1,0 +1,25 @@
+---
+import Layout from '../layouts/Layout.astro';
+import ImageBanner from '../components/ImageBanner/ImageBannerHome.astro';
+import SecondaryNav from '../components/SecondaryNav/index.astro';
+import Access from '../components/Access/index.astro';
+---
+
+<Layout whiteNav={true}>
+    <ImageBanner
+        heading="アクセス"
+        description="ACCESS"
+        image="../assets/images/banner_image_4.png"
+    />
+    <SecondaryNav bgColor="bg-white" navItems={[
+        { id: "location-map", label: "所在地・地図" },
+        { id: "train", label: "電車をご利用の場合" },
+        { id: "airport", label: "空港からお越しの場合" },
+        { id: "car", label: "お車でお越しの場合" },
+    ]}
+    />
+    <Access
+        className="access-section"
+        bgColor="bg-white"
+    />
+</Layout>
