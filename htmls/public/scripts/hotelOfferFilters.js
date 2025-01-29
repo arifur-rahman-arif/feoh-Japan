@@ -118,9 +118,6 @@ const HotelOfferFilter = {
         });
 
         document.addEventListener('click', event => {
-            event.preventDefault();
-            event.stopPropagation();
-
             if (event.target.classList.contains('jp-popup')) {
                 const activePopup = document.querySelector('.jp-popup--active');
                 if (activePopup) {

@@ -8,6 +8,6 @@ export default defineConfig({
   integrations: [tailwind()],
   compressHTML: false,
   build: {
-    format: 'file'
+    // format: 'file'
   }
 });
