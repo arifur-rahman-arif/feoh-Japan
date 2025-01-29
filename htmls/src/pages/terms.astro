@@ -1,0 +1,17 @@
+---
+import Layout from '../layouts/Layout.astro';
+import ImageBanner from '../components/ImageBanner/ImageBannerHome.astro';
+import Terms from '../components/Terms/index.astro';
+---
+
+<Layout whiteNav={true}>
+    <ImageBanner
+        heading="ホテル利用規約"
+        description="Hotel Terms OF Use"
+        image="../assets/images/banner_image_4.png"
+    />
+    <Terms
+        className="fem-terms"
+        bgColor="bg-white"
+    />
+</Layout>
