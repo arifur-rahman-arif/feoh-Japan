@@ -13,7 +13,6 @@
 @use 'components/btnScrollTop';
 @use 'components/deals-listing';
 @use 'components/swiper';
-@use 'components/banner';
 @use 'components/imgTextAlt';
 @use 'components/bg_colors';
 @use 'components/secondaryNav';
@@ -30,6 +29,8 @@
 @use 'components/jp-dropdown';
 @use 'components/popup';
 @use 'components/access';
+@use 'components/feature-points';
+@use 'components/feature-list';
 
 * {
     border: none;

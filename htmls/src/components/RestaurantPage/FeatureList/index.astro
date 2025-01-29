@@ -1,0 +1,45 @@
+---
+const { bgColor, data } = Astro.props;
+---
+
+<div class={`feature-list ${bgColor}`}>
+    {data.map((item, index) => (
+        <div key={`${index}`} class="amenities-contents transition duration-300">
+            <img src={item.thumbnail} alt={item.name} />
+            <div class="amenities-content flex flex-col justify-between items-start self-stretch">
+            <div class="amenities-content-items">
+                {item.title && <h2 class="amenities-content-item-title">{item.title}</h2> }
+                <p class="amenities-description">{item.description}</p>
+                <div class="amenities-details-divider"></div>
+                <div class="amentities-oh-location">
+                    {item.location && 
+                    <p class="flex items-center gap-3">
+                        <img src="/icons/icon_map.svg" alt="icon_map">
+                        {item.location}
+                    </p>
+                    }
+                    {item.operatingHours && 
+                    <p class="flex items-center gap-3">
+                        <img src="/icons/icon_time.svg" alt="icon_time">
+                        {item.operatingHours}
+                    </p>
+                    }
+                </div>
+            </div>
+            <div class="amenities-content-button">
+                {item.ctaText &&
+                <a
+                    href={item.ctaLink}
+                    class="amenities-button block text-center bg-gold px-4 py-2"
+                    >
+                    {item.ctaText}
+                    <svg xmlns="http://www.w3.org/2000/svg" width="17" height="17" viewBox="0 0 17 17" fill="none" class="up-arrow">
+                        <path d="M10.7963 8.49957L6.45129 4.15459C6.33669 4.04 6.28089 3.90358 6.28387 3.74534C6.28685 3.58711 6.34563 3.45064 6.46023 3.33595C6.57482 3.22136 6.71124 3.16406 6.86947 3.16406C7.02771 3.16406 7.16418 3.22136 7.27887 3.33595L11.6948 7.76082C11.799 7.86513 11.8763 7.98198 11.9265 8.11138C11.9769 8.24078 12.0021 8.37018 12.0021 8.49957C12.0021 8.62897 11.9769 8.75837 11.9265 8.88777C11.8763 9.01717 11.799 9.13402 11.6948 9.23833L7.26993 13.6632C7.15533 13.7778 7.02041 13.8336 6.86515 13.8306C6.70979 13.8276 6.57482 13.7688 6.46023 13.6543C6.34563 13.5397 6.28834 13.4032 6.28834 13.245C6.28834 13.0868 6.34563 12.9503 6.46023 12.8356L10.7963 8.49957Z" fill="white"/>
+                    </svg>
+                </a>
+                }
+            </div>
+            </div>
+        </div>
+     ))}
+</div>

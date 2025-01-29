@@ -1,43 +1,20 @@
 ---
 import Layout from '../../layouts/Layout.astro';
-import ImageBanner from '../../components/ImageBanner/ImageBannerHome.astro';
+import MastheadRoom from '../../components/Masthead/MastheadRoom.astro';
 import StaticContent from '../../components/StaticContent/index.astro';
 import ImgTextAlt from '../../components/AbouUSPage/ImgTextAlt/index.astro';
 import SecondaryNav from '../../components/SecondaryNav/index.astro';
 import ImageGrid from '../../components/AbouUSPage/ImageGrid/index.astro';
 ---
-
 <style is:inline>
-    .navgrid ul:nth-of-type(2) {
-        display: none;
-    }
-    .section-heading-container {
-        padding-top: 0rem !important;
+    #navbar {
+        position: sticky !important;
+        background-color: var(--color4) !important;
     }
 </style>
-<script is:inline>
-    document.addEventListener('DOMContentLoaded', function () {
-        const navbar = document.getElementById('navbar');
 
-        // Ensure 'white-nav' is always applied
-        navbar.classList.add('white-nav');
-        navbar.classList.remove('transparent-nav');
-
-        // Disable the toggle logic if the Navbar.init() is used elsewhere
-        if (typeof Navbar !== 'undefined') {
-            Navbar.toggleNavBarOnScroll = function () {
-                // Override and do nothing to ensure no toggling happens
-            };
-        }
-    });
-</script>
-
-<Layout>
-    <ImageBanner
-        heading="私たちについて"
-        description="ABOUT US"
-        image="../assets/images/banner_image_1.png"
-    />
+<Layout currentPageTitle="私たちについて" whiteNav={true}>
+    <MastheadRoom heading="私たちについて" subheading="ABOUT US" image="/assets/images/banner_image_1.png" />
     <StaticContent
         title="ローカルのように過ごす"
         subtitle="Live Like a Local"
@@ -61,10 +38,7 @@ import ImageGrid from '../../components/AbouUSPage/ImageGrid/index.astro';
         本場の地元料理を出す多数の飲食施設が、ビレッジから徒歩ですぐの場所にあります。`}
         contentPosition="section-left"
         images={[
-            "../assets/images/img_alt_1.png",
-            "../assets/images/img_alt_2.png",
-            "../assets/images/img_alt_3.png",
-            "../assets/images/img_alt_4.png",
+            "/assets/images/img_alt_1.png"
         ]}
         carouselPosition="left"
     />
@@ -78,7 +52,7 @@ import ImageGrid from '../../components/AbouUSPage/ImageGrid/index.astro';
         本場の地元料理を出す多数の飲食施設が、ビレッジから徒歩ですぐの場所にあります。`}
         contentPosition="section-left"
         images={[
-            "../assets/images/img_alt_2.png"
+            "/assets/images/img_alt_2.png"
         ]}
         carouselPosition="right"
     />
@@ -92,7 +66,7 @@ import ImageGrid from '../../components/AbouUSPage/ImageGrid/index.astro';
         本場の地元料理を出す多数の飲食施設が、ビレッジから徒歩ですぐの場所にあります。`}
         contentPosition="section-left"
         images={[
-            "../assets/images/img_alt_3.png"
+            "/assets/images/img_alt_3.png"
             ]}
         carouselPosition="left"
     />
@@ -105,7 +79,7 @@ import ImageGrid from '../../components/AbouUSPage/ImageGrid/index.astro';
               id: 1,
               title: "オアシアリゾート",
               description: "ご家族連れや都会の探検を愛する方のためにデザインされたフラッグシップ・ビレッジホテル",
-              imageUrl: "../assets/images/img_grid_1.png",
+              imageUrl: "/assets/images/img_grid_1.png",
               imageLink: "/img_grid",
               ctaLink: "/img_grid",
               ctaText: "もっと見る",
@@ -114,7 +88,7 @@ import ImageGrid from '../../components/AbouUSPage/ImageGrid/index.astro';
               id: 2,
               title: "クインシーホテル",
               description: "ご家族連れや都会の探検を愛する方のためにデザインされたフラッグシップ・ビレッジホテル",
-              imageUrl: "../assets/images/img_grid_2.png",
+              imageUrl: "/assets/images/img_grid_2.png",
               imageLink: "/img_grid",
               ctaLink: "/img_grid",
               ctaText: "もっと見る",
@@ -123,7 +97,7 @@ import ImageGrid from '../../components/AbouUSPage/ImageGrid/index.astro';
               id: 3,
               title: "ザ・バラックス・ホテル",
               description: "ご家族連れや都会の探検を愛する方のためにデザインされたフラッグシップ・ビレッジホテル",
-              imageUrl: "../assets/images/img_grid_3.png",
+              imageUrl: "/assets/images/img_grid_3.png",
               imageLink: "/img_grid",
               ctaLink: "/img_grid",
               ctaText: "もっと見る",
@@ -132,7 +106,7 @@ import ImageGrid from '../../components/AbouUSPage/ImageGrid/index.astro';
               id: 4,
               title: "ランデブーホテル",
               description: "ご家族連れや都会の探検を愛する方のためにデザインされたフラッグシップ・ビレッジホテル",
-              imageUrl: "../assets/images/img_grid_4.png",
+              imageUrl: "/assets/images/img_grid_4.png",
               imageLink: "/img_grid",
               ctaLink: "/img_grid",
               ctaText: "もっと見る",

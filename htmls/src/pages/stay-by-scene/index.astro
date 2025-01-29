@@ -1,42 +1,19 @@
 ---
 import Layout from '../../layouts/Layout.astro';
-import ImageBanner from '../../components/ImageBanner/ImageBannerHome.astro';
+import MastheadRoom from '../../components/Masthead/MastheadRoom.astro';
 import StaticContent from '../../components/StaticContent/index.astro';
 import ImgTextAlt from '../../components/AbouUSPage/ImgTextAlt/index.astro';
 import SecondaryNav from '../../components/SecondaryNav/index.astro';
 ---
-
 <style is:inline>
-    .navgrid ul:nth-of-type(2) {
-        display: none;
-    }
-    .section-heading-container {
-        padding-top: 0rem !important;
+    #navbar {
+        position: sticky !important;
+        background-color: var(--color4) !important;
     }
 </style>
-<script is:inline>
-    document.addEventListener('DOMContentLoaded', function () {
-        const navbar = document.getElementById('navbar');
 
-        // Ensure 'white-nav' is always applied
-        navbar.classList.add('white-nav');
-        navbar.classList.remove('transparent-nav');
-
-        // Disable the toggle logic if the Navbar.init() is used elsewhere
-        if (typeof Navbar !== 'undefined') {
-            Navbar.toggleNavBarOnScroll = function () {
-                // Override and do nothing to ensure no toggling happens
-            };
-        }
-    });
-</script>
-
-<Layout>
-    <ImageBanner
-        heading="ホテル利用シーン"
-        description="STAY BY SCENE"
-        image="../assets/images/banner_image_2.png"
-    />
+<Layout currentPageTitle="私たちについて" whiteNav={true}>
+    <MastheadRoom heading="ホテル利用シーン" subheading="STAY BY SCENE" image="/assets/images/banner_image_2.png" />
     <StaticContent
         title="ホテルの魅力"
         subtitle="Who is this Hotel For"
@@ -59,7 +36,7 @@ import SecondaryNav from '../../components/SecondaryNav/index.astro';
         各旅先の名所観光の拠点として最適です。`}
         contentPosition="section-left"
         images={[
-            "../assets/images/img_alt_4.png"
+            "/assets/images/img_alt_4.png"
         ]}
         carouselPosition="left"
     />
@@ -73,7 +50,7 @@ import SecondaryNav from '../../components/SecondaryNav/index.astro';
         本場の地元料理を出す多数の飲食施設が、ビレッジから徒歩ですぐの場所にあります。`}
         contentPosition="section-center"
         images={[
-            "../assets/images/img_alt_5.png"
+            "/assets/images/img_alt_5.png"
         ]}
         carouselPosition="right"
     />
@@ -87,7 +64,7 @@ import SecondaryNav from '../../components/SecondaryNav/index.astro';
         本場の地元料理を出す多数の飲食施設が、ビレッジから徒歩ですぐの場所にあります。`}
         contentPosition="section-left"
         images={[
-            "../assets/images/img_alt_6.png"
+            "/assets/images/img_alt_6.png"
             ]}
         carouselPosition="left"
     />

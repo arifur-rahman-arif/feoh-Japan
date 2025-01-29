@@ -1,44 +1,25 @@
 ---
 import SectionHeading from '../SectionHeading/index.astro';
-const { className, bgColor, title, content, contentPosition, data } = Astro.props;
+const { sectionId, className, bgColor, title, amenities } = Astro.props;
 ---
-<section class={`${className} ${bgColor}`}>
+<section class={`${className} ${bgColor}`} id={`${sectionId}`}>
     <div class="amenities-feature-overview-container">
         <SectionHeading title={title} />
         <div class="amenity-items">
-            <div class="amenity-item flex items-start border-b py-4">
-            <div class="icon-wrapper flex-shrink-0 flex items-center justify-center h-16 w-16">
-                <img src="/icons/icon_time.svg" alt="Clock Icon" class="icon">
-            </div>
-            <div class="content flex-1">
-                <h3 class="amenity-title text-lg font-semibold">チェックイン・チェックアウト</h3>
-                <p class="amenity-description text-sm">チェックイン … 15：00　チェックアウト … 11：00</p>
-            </div>
-            </div>
-            <div class="amenity-item-gap"></div>
-            <div class="amenity-item flex items-start border-b py-4">
-            <div class="icon-wrapper flex-shrink-0 flex items-center justify-center h-16 w-16">
-                <img src="/icons/icon_wifi.svg" alt="Wi-Fi Icon" class="icon">
-            </div>
-            <div class="content flex-1">
-                <h3 class="amenity-title text-lg font-semibold">Wi-Fi サービス</h3>
-                <p class="amenity-description text-sm">
-                客室やロビーに無線LAN（Wi-Fi）によるインターネット接続を完備しております。。<br>
-                客室では有線LANによるインターネット接続も可能です。
-                </p>
-            </div>
-            </div>
-            <div class="amenity-item-gap"></div>
-            <div class="amenity-item flex items-start py-4">
-            <div class="icon-wrapper flex-shrink-0 flex items-center justify-center h-16 w-16">
-                <img src="/icons/icon_payment.svg" alt="Paid Services Icon" class="icon">
-            </div>
-            <div class="content flex-1">
-                <h3 class="amenity-title text-lg font-semibold">有料サービス</h3>
-                <p class="amenity-description text-sm">ランドリー ／ 宅配便 ／ マッサージ ／ 駐車場</p>
-            </div>
-            </div>
+            {amenities.map((amenity, index) => (
+                <>
+                    <div key={index} class="amenity-item flex items-start border-b py-4">
+                        <div class="icon-wrapper flex-shrink-0 flex items-center justify-center h-16 w-16">
+                            <img src={amenity.icon} alt={amenity.title} class="icon" />
+                        </div>
+                        <div class="content flex-1">
+                            <h3 class="amenity-title text-lg font-semibold">{amenity.title}</h3>
+                            <p class="amenity-description text-sm">{amenity.description}</p>
+                        </div>
+                    </div>
+                    {index !== amenities.length - 1 && <div class="amenity-item-gap"></div>}
+                </>
+            ))}
         </div>
     </div>
 </section>
-  

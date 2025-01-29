@@ -16,10 +16,17 @@
         padding: 2.5rem 11.4375rem 3.75rem 11.4375rem;
     }
 
+    .swiper-pagination-bullets {
+        transform: translate3d(0px, 0%, 0);
+    }
+
     .slider-right,
     .slider-left {
         .slider-pagination {
             padding-left: 55px;
+            display: flex;
+            flex-direction: column;
+            align-self: flex-end;
 
             .swiper-pagination-bullet {
                 background-color: var(--color12) !important;
@@ -38,7 +45,7 @@
     }
 
     @include media-breakpoint-down(md) {
-        padding-bottom: 2rem;
+        padding-bottom: 2.5rem;
 
         .culture-section {
             padding: 0rem 0rem 3.75rem 0rem;
@@ -47,6 +54,10 @@
         .slider-pagination {
             padding-left: 0px !important;
             text-align: center;
+
+            .swiper-pagination-bullet {
+                display: none;
+            }
         }
     }
 }

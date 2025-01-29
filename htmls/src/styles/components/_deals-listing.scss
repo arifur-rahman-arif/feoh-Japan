@@ -1,6 +1,6 @@
 .deals-listing {
-    &.white,
-    &.grey {
+    &.bg-white,
+    &.bg-grey {
         background-color: var(--color13);
         color: var(--color9);
 
@@ -9,11 +9,11 @@
         }
     }
 
-    &.white {
+    &.bg-white {
         background-color: var(--color4);
     }
 
-    &.gold {
+    &.bg-gold {
         background-color: var(--color1);
         color: var(--color4);
 

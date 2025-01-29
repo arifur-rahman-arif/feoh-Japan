@@ -1,0 +1,115 @@
+@use '../utils/variables' as *;
+@use '../utils/breakpoints' as *;
+
+.feature-list {
+    padding: 5rem 7.5rem 0rem 7.5rem;
+    display: flex;
+    flex-direction: column;
+    gap: 3rem;
+
+    .amenities-contents {
+        display: flex;
+        justify-content: space-between;
+        align-items: flex-start;
+        align-self: flex-start;
+        gap: 1.5rem;
+
+        .amenities-content {
+            .amenities-content-item-title {
+                color: var(--color3);
+                font-size: 1.5rem;
+                font-weight: 700;
+                line-height: 2.625rem; /* 175% */
+                margin-bottom: 0.75rem;
+            }
+            .amenities-details-divider {
+                margin-bottom: 0.5rem;
+                margin-top: 0.5rem;
+                height: 0.0625rem;
+                align-self: stretch;
+                background: var(--color15);
+            }
+
+            .amenities-description {
+                color: var(--color11);
+                font-size: 1rem;
+                font-weight: var(--400);
+                line-height: 2rem;
+            }
+
+            .amentities-oh-location {
+                display: inline-flex;
+                flex-direction: column;
+                justify-content: flex-end;
+                align-items: flex-start;
+                gap: 0.75rem;
+
+                p {
+                    color: var(--color11);
+                    font-size: 1rem;
+                    font-weight: var(--400);
+                    line-height: 2rem;
+                }
+
+                img {
+                    width: 1.5rem;
+                    height: 1.5rem;
+                }
+            }
+
+            .amenities-button {
+                display: flex;
+                width: 15.0625rem;
+                max-width: 15.4375rem;
+                padding: 1rem 1.5rem 1rem 2.5rem;
+                justify-content: center;
+                align-items: center;
+                gap: 0.625rem;
+                color: var(--color4);
+                font-size: 1rem;
+                font-weight: var(--500);
+                letter-spacing: 0.05rem;
+            }
+        }
+    }
+
+    @include media-breakpoint-down(md) {
+        padding: 2rem 0rem 0rem 0rem;
+
+        .amenities-contents {
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: flex-start;
+            gap: 0.75rem;
+            align-self: unset;
+
+            .amenities-content {
+                width: 100%;
+                padding: 0 1.5rem;
+
+                .amenities-content-item-title {
+                    color: var(--color3);
+                    font-size: 1.125rem;
+                    font-weight: 500;
+                    letter-spacing: 0.05625rem;
+                }
+
+                img {
+                    height: 16.25rem;
+                }
+
+                .amenities-content-button {
+                    margin: 0 auto;
+
+                    .amenities-button {
+                        margin-top: 1.5rem;
+                        margin-bottom: 2.5rem;
+                        width: 19.375rem;
+                        height: 3.25rem;
+                    }
+                }
+            }
+        }
+    }
+}

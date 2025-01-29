@@ -1,16 +1,19 @@
 ---
 import Layout from '../layouts/Layout.astro';
-import ImageBanner from '../components/ImageBanner/ImageBannerHome.astro';
+import MastheadRoom from '../components/Masthead/MastheadRoom.astro';
 import SecondaryNav from '../components/SecondaryNav/index.astro';
 import Access from '../components/Access/index.astro';
 ---
 
-<Layout whiteNav={true}>
-    <ImageBanner
-        heading="アクセス"
-        description="ACCESS"
-        image="../assets/images/banner_image_4.png"
-    />
+<style is:inline>
+    #navbar {
+        position: sticky !important;
+        background-color: var(--color4) !important;
+    }
+</style>
+
+<Layout currentPageTitle="アクセス" whiteNav={true}>
+    <MastheadRoom heading="アクセス" subheading="ACCESS" image="/assets/images/banner_image_4.png" />
     <SecondaryNav bgColor="bg-white" navItems={[
         { id: "location-map", label: "所在地・地図" },
         { id: "train", label: "電車をご利用の場合" },

@@ -1,5 +1,5 @@
 .highlight-container {
-    &.white {
+    &.bg-white {
         background-color: var(--color4);
         color: var(--color9);
 
@@ -13,7 +13,7 @@
         }
     }
 
-    &.grey {
+    &.bg-grey {
         background-color: var(--color13);
         color: var(--color9);
 
@@ -27,7 +27,7 @@
         }
     }
 
-    &.gold {
+    &.bg-gold {
         background-color: var(--color1);
         color: var(--color4);
 

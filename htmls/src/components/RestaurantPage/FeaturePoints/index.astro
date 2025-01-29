@@ -1,0 +1,20 @@
+---
+const { className, bgColor, points } = Astro.props;
+---
+
+<div class={`${className} ${bgColor}`}>
+  <div class={`container ${className}-container`}>
+    {points.map((point, index) => (
+      <div key={index} class="feature-point">
+        <div class="feature-point-heading">
+          <p class="feature-point-label">Point</p>
+          <h2 class="feature-point-number">{point.number}</h2>
+        </div>
+        <div class="feature-point-content">
+          <h3 class="feature-point-title">{point.title}</h3>
+          <p class="feature-point-description">{point.description}</p>
+        </div>
+      </div>
+    ))}
+  </div>
+</div>

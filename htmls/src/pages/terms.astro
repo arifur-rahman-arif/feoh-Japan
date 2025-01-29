@@ -1,15 +1,17 @@
 ---
 import Layout from '../layouts/Layout.astro';
-import ImageBanner from '../components/ImageBanner/ImageBannerHome.astro';
+import MastheadRoom from '../components/Masthead/MastheadRoom.astro';
 import Terms from '../components/Terms/index.astro';
 ---
+<style is:inline>
+    #navbar {
+        position: sticky !important;
+        background-color: var(--color4) !important;
+    }
+</style>
 
-<Layout whiteNav={true}>
-    <ImageBanner
-        heading="ホテル利用規約"
-        description="Hotel Terms OF Use"
-        image="../assets/images/banner_image_4.png"
-    />
+<Layout currentPageTitle="ホテル利用規約" whiteNav={true}>
+    <MastheadRoom heading="ホテル利用規約" subheading="Hotel Terms OF Use" image="/assets/images/banner_image_4.png" />
     <Terms
         className="fem-terms"
         bgColor="bg-white"
