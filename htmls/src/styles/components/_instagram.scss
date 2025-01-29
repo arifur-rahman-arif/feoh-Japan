@@ -1,0 +1,87 @@
+@use '../utils/variables' as *;
+@use '../utils/breakpoints' as *;
+
+.instagram-section {
+    &.bg-white {
+        background-color: var(--color4);
+        color: var(--color9);
+
+        .header-divider {
+            background: var(--color1);
+        }
+
+        .hotel-info-button {
+            background: var(--color1);
+            color: var(--color4);
+        }
+    }
+
+    &.bg-grey {
+        background-color: var(--color13);
+        color: var(--color9);
+
+        .header-divider {
+            background: var(--color1);
+        }
+
+        .hotel-info-button {
+            background: var(--color1);
+            color: var(--color4);
+        }
+    }
+
+    &.bg-gold {
+        background-color: var(--color1);
+        color: var(--color4);
+
+        div,
+        h1,
+        h2,
+        p,
+        a,
+        button {
+            color: var(--color4);
+        }
+
+        .show-all-button {
+            border: 1.5px solid var(--color4);
+            padding: 16px 0px;
+            display: flex;
+            width: 223px;
+            max-width: 247px;
+            padding: 16px 0px;
+            justify-content: center;
+            align-items: center;
+            gap: 10px;
+        }
+
+        .show-all-button svg path {
+            fill: var(--color4);
+        }
+
+        .header-divider,
+        .hotel-info-divider {
+            background: var(--color4);
+        }
+
+        .hotel-en-title {
+            color: var(--color4);
+        }
+
+        .hotel-info-button {
+            background: transparent;
+            border: 1px solid var(--color4);
+            color: var(--color4);
+        }
+    }
+
+    .top-logo {
+        img {
+            width: 4rem;
+            height: 4rem;
+        }
+    }
+
+    @include media-breakpoint-down(md) {
+    }
+}
