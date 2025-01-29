@@ -2,6 +2,7 @@
 import Layout from '../layouts/Layout.astro';
 import MastheadRoom from '../components/Masthead/MastheadRoom.astro';
 import HotelFilters from '@/components/HotelFilters/index.astro';
+import HotelListing from '@/components/HotelFilters/HotelListing.astro';
 
 // Welcome to Astro! Wondering what to do next? Check out the Astro documentation at https://docs.astro.build
 // Don't want to use any of this? Delete everything in this file, the `assets`, `components`, and `layouts` directories, and start fresh.
@@ -18,11 +19,12 @@ import HotelFilters from '@/components/HotelFilters/index.astro';
     }
 </style>
 
-<Layout currentPageTitle="お知らせ" whiteNav={true}>
+<Layout currentPageTitle="キャンペーン" whiteNav={true}>
     <MastheadRoom heading="キャンペーン" subheading="HOTEL OFFERS" image="/assets/masthead/masthead-hotel-offers.png" />
     <HotelFilters />
+    <HotelListing />
 
     <script src="https://unpkg.com/slim-select@latest/dist/slimselect.min.js"></script>
     <link href="https://unpkg.com/slim-select@latest/dist/slimselect.css" rel="stylesheet" />
-    <script is:inline src="/scripts/hotel-offer-filters.js"></script>
+    <script is:inline src="/scripts/hotelOfferFilters.js"></script>
 </Layout>

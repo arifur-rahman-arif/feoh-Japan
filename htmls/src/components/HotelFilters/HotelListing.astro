@@ -1,0 +1,188 @@
+---
+import OfferPopup from './OfferPopup.astro';
+
+const hotelList = [
+    {
+        name: '新年の休暇',
+        timeLeft: '残り2時間',
+        features: ['ウェブサイト限定', '客室料金と朝食が最大30%割引'],
+        bookingPeriod: '予約期間：2024年5月17日 - 2025年12月31日',
+        stayPeriod: '滞在期間：2024年5月17日 - 2025年12月31日',
+        description:
+            '賢く予約して、最もお得な朝食付きオファーをお楽しみ下さい！他のオンライン・プラットフォームではなく、弊社のブランドウェブサイト限定で予約できる、朝食付き客室プランをご存じでしたか？さらに、ファーイースト・インサイダー会員プログラムにご入会頂くと、客室料金と毎日の朝食の両方に対して最大30%割引をお楽しみになれます。',
+        image: '/assets/section-images/hotel-offer-image.png'
+    },
+    {
+        name: 'ベッド＆ブレックファスト',
+        timeLeft: '残り2時間',
+        features: ['ウェブサイト限定', '客室料金と朝食が最大30%割引'],
+        bookingPeriod: '予約期間：2024年5月17日 - 2025年12月31日　',
+        stayPeriod: '滞在期間：2024年5月17日 - 2025年12月31日',
+        description:
+            '賢く予約して、最もお得な朝食付きオファーをお楽しみ下さい！他のオンライン・プラットフォームではなく、弊社のブランドウェブサイト限定で予約できる、朝食付き客室プランをご存じでしたか？さらに、ファーイースト・インサイダー会員プログラムにご入会頂くと、客室料金と毎日の朝食の両方に対して最大30%割引をお楽しみになれます。',
+        image: '/assets/section-images/hotel-offer-image.png'
+    },
+    {
+        name: 'クリスフライヤー（KrisFlyer）会員様向けキャンペーン',
+        timeLeft: '残り2時間',
+        features: ['ウェブサイト限定', '客室料金と朝食が最大30%割引'],
+        bookingPeriod: '予約期間：2024年5月17日 - 2025年12月31日　',
+        stayPeriod: '滞在期間：2024年5月17日 - 2025年12月31日',
+        description:
+            '賢く予約して、最もお得な朝食付きオファーをお楽しみ下さい！他のオンライン・プラットフォームではなく、弊社のブランドウェブサイト限定で予約できる、朝食付き客室プランをご存じでしたか？さらに、ファーイースト・インサイダー会員プログラムにご入会頂くと、客室料金と毎日の朝食の両方に対して最大30%割引をお楽しみになれます。',
+        image: '/assets/section-images/hotel-offer-image.png'
+    },
+    {
+        name: 'ディスカバリー・パッケージ',
+        timeLeft: '残り2時間',
+        features: ['ウェブサイト限定', '客室料金と朝食が最大30%割引'],
+        bookingPeriod: '予約期間：2024年5月17日 - 2025年12月31日　',
+        stayPeriod: '滞在期間：2024年5月17日 - 2025年12月31日',
+        description:
+            '賢く予約して、最もお得な朝食付きオファーをお楽しみ下さい！他のオンライン・プラットフォームではなく、弊社のブランドウェブサイト限定で予約できる、朝食付き客室プランをご存じでしたか？さらに、ファーイースト・インサイダー会員プログラムにご入会頂くと、客室料金と毎日の朝食の両方に対して最大30%割引をお楽しみになれます。',
+        image: '/assets/section-images/hotel-offer-image.png'
+    },
+    {
+        name: 'ビレッジ・プレイケーション',
+        timeLeft: '残り2時間',
+        features: ['ウェブサイト限定', '客室料金と朝食が最大30%割引'],
+        bookingPeriod: '予約期間：2024年5月17日 - 2025年12月31日　',
+        stayPeriod: '滞在期間：2024年5月17日 - 2025年12月31日',
+        description:
+            '賢く予約して、最もお得な朝食付きオファーをお楽しみ下さい！他のオンライン・プラットフォームではなく、弊社のブランドウェブサイト限定で予約できる、朝食付き客室プランをご存じでしたか？さらに、ファーイースト・インサイダー会員プログラムにご入会頂くと、客室料金と毎日の朝食の両方に対して最大30%割引をお楽しみになれます。',
+        image: '/assets/section-images/hotel-offer-image.png'
+    }
+];
+---
+
+<style>
+    .collapsible__content {
+        max-height: 0;
+    }
+
+    .collapsible--active .collapsible__content {
+        max-height: 1000px;
+    }
+
+    .collapsible--active .collapsible__button img {
+        transform: rotate(-90deg);
+    }
+</style>
+
+<section id="hotel-offers" class="pt-8 md:pt-16 xl:pt-28">
+    <div class="container grid gap-16 md:gap-24">
+        <!-- Hotel offer list -->
+        <div class="offer-list grid gap-12 md:gap-16 xl:gap-24">
+            {
+                hotelList.map(hotel => (
+                    <div class="offer-list__offer grid content-start gap-4 md:grid-cols-2 lg:gap-8 xl:grid-cols-[auto_1fr]">
+                        {/* Divider line */}
+                        <div class="h-[1px] w-full bg-color15 md:hidden" />
+
+                        {/* Offer heading */}
+                        <div class="flex items-center justify-between gap-4 md:col-span-full md:justify-start md:gap-6">
+                            <h3 class="text-lg font-500 tracking-wider text-color3 md:text-[1.75rem] md:leading-normal">
+                                {hotel.name}
+                            </h3>
+                            <span class="flex items-center justify-center gap-1 rounded-[6.25rem] bg-[#E56565] px-2.5 py-2 text-xs font-500 text-color4">
+                                <img src="/icons/icon_time-white.svg" alt="" width="24" height="24" />
+                                {hotel.timeLeft}
+                            </span>
+                        </div>
+
+                        {/* Offer image */}
+                        {/* Desktop first column */}
+                        <img src={hotel.image} alt="" width="540" height="360" class="w-full" />
+
+                        {/* Desktop second column */}
+                        <div class="grid content-start gap-4">
+                            {/* Feature list */}
+                            <div class="grid gap-1">
+                                <span class="flex items-center gap-2 font-500 leading-10 text-color9">
+                                    <img src="/icons/icon_coupon.svg" width="24" height="24" alt="" />
+                                    オファーの特徴
+                                </span>
+                                <ul class="grid list-disc pl-7 marker:text-color1 md:pl-5 md:marker:text-[#F2D383]">
+                                    {hotel.features.map(feature => (
+                                        <li class="text-sm font-400 leading-8 text-color11 md:text-base">{feature}</li>
+                                    ))}
+                                </ul>
+                            </div>
+
+                            {/* Booking details */}
+                            <div class="grid">
+                                <p class="text-sm font-500 leading-8 text-color9 md:text-base md:leading-8">
+                                    {hotel.bookingPeriod}
+                                </p>
+                                <p class="text-sm font-500 leading-8 text-color9 md:text-base md:leading-8">
+                                    {hotel.stayPeriod}
+                                </p>
+                            </div>
+
+                            {/* Collapsible description */}
+                            <div
+                                class="collapsible grid px-6 py-4 md:px-8"
+                                style="background: rgba(157, 124, 54, 0.08);"
+                            >
+                                <button class="collapsible__button flex cursor-pointer items-center justify-between gap-4 font-500 text-color1">
+                                    キャンペーン詳細を見る
+                                    <img
+                                        src="/icons/icon_arrow-gold.svg"
+                                        width="16"
+                                        height="16"
+                                        alt=""
+                                        class="rotate-90 transition-all duration-500"
+                                    />
+                                </button>
+
+                                <div class="collapsible__content grid overflow-hidden transition-all duration-700">
+                                    <div class="mt-4 grid gap-3">
+                                        <p>{hotel.description}</p>
+
+                                        {/* Terms popup anchor text */}
+                                        <button
+                                            type="button"
+                                            title="Click to view terms"
+                                            class="popup-anchor flex items-center justify-start gap-1 text-sm font-500 text-color9 underline decoration-color9 underline-offset-2"
+                                        >
+                                            利用規約
+                                            <img src="/icons/icon_info.svg" width="16" height="16" alt="" />
+                                        </button>
+                                    </div>
+                                </div>
+                            </div>
+
+                            <a href="" class="button w-full max-w-[38.75rem]">
+                                クーポン適用で予約
+                                <svg
+                                    xmlns="http://www.w3.org/2000/svg"
+                                    width="17"
+                                    height="17"
+                                    viewBox="0 0 17 17"
+                                    fill="none"
+                                >
+                                    <path
+                                        d="M10.7967 8.49957L6.45171 4.15459C6.33712 4.04 6.28131 3.90358 6.28429 3.74534C6.28727 3.58711 6.34606 3.45064 6.46065 3.33595C6.57525 3.22136 6.71166 3.16406 6.8699 3.16406C7.02814 3.16406 7.1646 3.22136 7.27929 3.33595L11.6952 7.76082C11.7994 7.86513 11.8767 7.98198 11.927 8.11138C11.9773 8.24078 12.0025 8.37018 12.0025 8.49957C12.0025 8.62897 11.9773 8.75837 11.927 8.88777C11.8767 9.01717 11.7994 9.13402 11.6952 9.23833L7.27035 13.6632C7.15576 13.7778 7.02083 13.8336 6.86558 13.8306C6.71022 13.8276 6.57525 13.7688 6.46065 13.6543C6.34606 13.5397 6.28876 13.4032 6.28876 13.245C6.28876 13.0868 6.34606 12.9503 6.46065 12.8356L10.7967 8.49957Z"
+                                        fill="white"
+                                    />
+                                </svg>
+                            </a>
+                        </div>
+
+                        {/* Hotel offer popup  */}
+                        <OfferPopup />
+                    </div>
+                ))
+            }
+        </div>
+
+        <button
+            role="button"
+            id="load-more-offer"
+            class="grid justify-items-center gap-4 font-500 text-color9 transition-all duration-500 hover:text-color1"
+        >
+            もっと見る
+            <img src="/icons/icon_arrow-gold.svg" width="24" height="24" alt="" class="rotate-90" />
+        </button>
+    </div>
+</section>

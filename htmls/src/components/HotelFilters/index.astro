@@ -1,6 +1,37 @@
 ---
+import Pill from '@/components/Pill/index.astro';
 
+const filterButtons = [
+    {
+        label: '全て',
+        value: 'all'
+    },
+    {
+        label: '東京有明',
+        value: '東京有明'
+    },
+    {
+        label: '東京有明',
+        value: 'セール'
+    },
+    {
+        label: '日本国内ホテル限定',
+        value: '日本国内ホテル限定'
+    },
+    {
+        label: 'シンガポール限定',
+        value: 'シンガポール限定'
+    }
+];
 ---
+
+<style>
+    .category__item--active {
+        background-color: var(--color1);
+        color: var(--color4);
+        border-color: var(--color1);
+    }
+</style>
 
 <!-- Hotel filters section to  -->
 <section id="hotel-filter" class="section">
@@ -11,34 +42,55 @@
         </p>
 
         <!-- Filters -->
-        <div class="hotel-filters flex items-center justify-center gap-4 md:gap-6">
-            <!-- Country options -->
-            <select id="country" class="jp-dropdown">
-                <option value="東京" selected>東京</option>
-                <option value="東京">東京</option>
-                <option value="横浜">横浜</option>
-                <option value="福岡">福岡</option>
-                <option value="大阪">大阪</option>
-                <option value="仙台">仙台</option>
-                <option value="京都">京都- a</option>
-            </select>
+        <form id="hotel-filters-form" class="grid gap-6 md:gap-10">
+            <!-- Dropdown options -->
+            <div class="hotel-filters flex flex-wrap items-center justify-center gap-4 md:gap-6">
+                <!-- City options -->
+                <select id="city" class="jp-dropdown w-full sm:max-w-[13.75rem]">
+                    <option value="東京" selected>東京</option>
+                    <option value="東京">東京</option>
+                    <option value="横浜">横浜</option>
+                    <option value="福岡">福岡</option>
+                </select>
 
-            <!-- Hotels options -->
-            <select id="hotel-options" class="jp-dropdown">
-                <option value="すべてのホテル" selected>すべてのホテル</option>
-                <option value="ファーイーストビレッジホテル東京有明">ファーイーストビレッジホテル東京有明</option>
-                <option value="ファーイーストビレッジホテル東京浅草">ファーイーストビレッジホテル東京浅草</option>
-                <option value="ファーイーストビレッジホテル横浜">ファーイーストビレッジホテル横浜</option>
-            </select>
+                <!-- Hotels options -->
+                <select id="hotel-options" class="jp-dropdown w-full sm:max-w-[22.5rem]">
+                    <option value="すべてのホテル" selected>すべてのホテル</option>
+                    <option value="ファーイーストビレッジホテル東京有明">ファーイーストビレッジホテル東京有明</option>
+                    <option value="ファーイーストビレッジホテル東京浅草">ファーイーストビレッジホテル東京浅草</option>
+                    <option value="ファーイーストビレッジホテル横浜">ファーイーストビレッジホテル横浜</option>
+                </select>
 
-            <!-- Hotels types -->
-            <select id="hotel-types" class="jp-dropdown">
-                <option value="全ての滞在タイプ" selected>全ての滞在タイプ</option>
-                <option value="ビジネスホテル">ビジネスホテル</option>
-                <option value="リゾートホテル">リゾートホテル</option>
-                <option value="ブティックホテル">ブティックホテル</option>
-                <option value="カプセルホテル">カプセルホテル</option>
-            </select>
-        </div>
+                <!-- Hotels types -->
+                <select id="hotel-types" class="jp-dropdown w-full sm:max-w-[13.75rem]">
+                    <option value="全ての滞在タイプ" selected>全ての滞在タイプ</option>
+                    <option value="ビジネスホテル">ビジネスホテル</option>
+                    <option value="リゾートホテル">リゾートホテル</option>
+                </select>
+            </div>
+
+            <!-- Category options selection | Multiple selection -->
+            <div class="category-options flex w-full flex-wrap items-center justify-center gap-4 md:gap-6">
+                {
+                    filterButtons.map((item, key) => (
+                        <div class="relative">
+                            <input
+                                type="radio"
+                                class="hidden"
+                                value={item.value}
+                                name="category-options"
+                                id={item.value}
+                            />
+                            <label
+                                for={item.value}
+                                class={`${key === 0 && 'category__item--active'} category__item cursor-pointer rounded-[3.125rem] border border-solid border-color9 px-4 py-1 text-center text-xs font-500 leading-7 text-color11 transition-all duration-500 hover:border-color1 hover:text-color1 md:px-5 md:py-2 md:text-sm`}
+                            >
+                                {item.label}
+                            </label>
+                        </div>
+                    ))
+                }
+            </div>
+        </form>
     </div>
 </section>

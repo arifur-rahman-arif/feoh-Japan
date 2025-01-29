@@ -1,0 +1,61 @@
+---
+import SectionHeading from '@/components/SectionHeading/index.astro';
+const { heading } = Astro.props;
+---
+
+<div class="jp-popup">
+    <div class="jp-popup__container">
+        <div class="grid">
+            <button
+                class="jp-close-button absolute right-4 top-4 translate-x-0 duration-500 hover:scale-125"
+                aria-label="Close offer popup"
+            >
+                <img src="/icons/icon-close.svg" alt="" width="48" height="48" />
+            </button>
+
+            <!-- Popup Heading -->
+            <SectionHeading title="新年の休暇" className="-mt-12 justify-self-center" />
+
+            <!-- Popup Content  -->
+            <div class="prose prose-xl w-full !max-w-[57.5rem] justify-self-center prose-li:marker:text-color2">
+                <h4>支払&キャンセルに関するポリシー</h4>
+                <ul>
+                    <li>記載の全ての料金には10%の義務的なサービス料と現行政府税が含まれています。</li>
+                    <li>キャンセル規定およびブラックアウト（特典除外日）が適用されます。</li>
+                    <li>
+                        ファーイースト・ホスピタリティは、当割引特典の現金やその他の特典等への交換には応じかねます。また、当割引特典を別のゲストに譲渡することもできません。
+                    </li>
+                </ul>
+
+                <h4>キャンペーンに関するポリシー</h4>
+                <ul>
+                    <li>
+                        全てのキャンペーン参加ホテルおよびサービス付きアパートメントは、キャンペーン内容を予告なく変更する権利を有します。
+                    </li>
+                    <li>空室状況によっては、客室およびアパートメントをご予約頂けない場合もございます。</li>
+                    <li>
+                        当キャンペーンは、弊社の公式ウェブサイトにてのみご利用頂けます。電話やメール、企業向け予約会社等を介してご利用になることはできません。
+                    </li>
+                    <li>
+                        当キャンペーンは既存の客室予約にはご利用頂けません。また、他のプロモーションと併用することはできません。
+                    </li>
+                    <li>当キャンペーンの特典、優待、内容は空室／利用状況によりご利用頂けない場合もございます。</li>
+                </ul>
+
+                <h4>その他の規約</h4>
+                <ul>
+                    <li>
+                        マレーシアの全てのホテルでは、マレーシア連邦政府の規定により、2018年9月1日以降の宿泊に対して6%の消費税（SST）が課せられ、お客様の毎日のご請求書に加算されます。
+                    </li>
+                    <li>
+                        マレーシアの全てのホテルでは、マレーシア連邦政府が課す1室1泊当たり10.00マレーシアリンギット（正味税額）の観光税（TTx）がマレーシア人以外の全ての観光客に適用され、チェックイン時に徴収されます。
+                    </li>
+                    <li>
+                        当キャンペーンは、弊社の公式ウェブサイトにてのみご利用頂けます。電話やメール、企業向け予約会社等を介してご利用になることはできません。
+                    </li>
+                    <li>英語版と他言語版の間に不一致がある場合は、英語版が優先します。</li>
+                </ul>
+            </div>
+        </div>
+    </div>
+</div>
