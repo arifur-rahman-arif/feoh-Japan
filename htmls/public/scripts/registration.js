@@ -183,7 +183,7 @@ const Registration = {
                 return;
             }
 
-            this.submitForm({ surname, name, email, phone, nationality, password });
+            this.submitForm({ surname, name, email, dob, nationality, password });
         });
     },
 
