@@ -1,17 +1,121 @@
 <form id="contact-form" class="grid w-full max-w-[38.75rem] gap-5 justify-self-center">
+    <!-- Surname -->
     <div class="input-group">
-        <label for="name" for="surname" class="input-group__label">お名前 <span class="helper-text">必須</span></label>
+        <label for="surname" class="input-group__label">
+            お名前 <span class="helper-text">必須</span>
+        </label>
 
-        <input type="text" id="surname" name="surname" class="input-group__input" required placeholder="TANAKA" />
+        <input type="text" id="surname" name="surname" class="input-group__input" placeholder="TANAKA" />
 
         <span class="input-group__error">必須項目を入力してください</span>
     </div>
 
-    <!-- Form action buttons -->
-    <div class="flex flex-wrap items-center justify-center gap-4">
-        <button type="button" class="button w-full max-w-[18.87rem] !border-color2 !bg-transparent !text-color2"
-            >戻る</button
+    <!-- Name -->
+    <div class="input-group">
+        <label for="name" class="input-group__label">名（ローマ字 <span class="helper-text">必須</span></label>
+
+        <input type="text" id="name" name="name" class="input-group__input" placeholder="TARO" />
+
+        <span class="input-group__error">必須項目を入力してください</span>
+    </div>
+
+    <!-- Email -->
+    <div class="input-group">
+        <label for="email" class="input-group__label">メールアドレス <span class="helper-text">必須</span></label>
+
+        <input type="email" id="email" name="email" class="input-group__input" placeholder="email@example.com" />
+
+        <span class="input-group__error">必須項目を入力してください</span>
+    </div>
+
+    <!-- Telephone -->
+    <div class="input-group">
+        <label for="telephone" class="input-group__label">電話番号</label>
+
+        <input type="tel" id="telephone" name="telephone" class="input-group__input" />
+
+        <span class="input-group__error">必須項目を入力してください</span>
+    </div>
+
+    <!-- Inquiry -->
+    <div class="input-group">
+        <label for="inquiry" class="input-group__label">
+            お問い合わせ種目 <span class="helper-text">必須</span>
+        </label>
+
+        <!-- Inquiry options -->
+        <select id="inquiry" class="jp-dropdown">
+            <option value="選択してください" selected>選択してください</option>
+            <option value="東京">東京</option>
+            <option value="横浜">横浜</option>
+            <option value="福岡">福岡</option>
+        </select>
+
+        <span class="input-group__error">必須項目を入力してください</span>
+    </div>
+
+    <!-- Accommodation -->
+    <div class="input-group">
+        <label for="accommodation" class="input-group__label">
+            宿泊施設 <span class="helper-text">必須</span>
+        </label>
+
+        <!-- Accommodation options -->
+        <select id="accommodation" class="jp-dropdown">
+            <option value="該当するものすべてを選択" selected>該当するものすべてを選択</option>
+            <option value="東京">東京</option>
+            <option value="横浜">横浜</option>
+            <option value="福岡">福岡</option>
+        </select>
+
+        <span class="input-group__error">必須項目を入力してください</span>
+    </div>
+
+    <!-- Inquiry content -->
+    <div class="input-group">
+        <label for="inquiry-content" class="input-group__label">
+            お問い合わせ内容 <span class="helper-text">必須</span>
+        </label>
+
+        <!-- Textarea -->
+        <textarea
+            id="inquiry-content"
+            name="inquiry-content"
+            class="input-group__input"
+            rows="9"
+            placeholder="お問い合わせ内容をご入力ください"></textarea>
+
+        <span class="input-group__error">必須項目を入力してください</span>
+    </div>
+
+    <!-- Consent text -->
+    <p class="mt-4 leading-8 tracking-wide">
+        私は本フォームの提出を以って、ファーイースト・オーキッド・グループ（ファーイースト・ホスピタリティを含む）の全ての部門と組織、ならびにそのサービス会社と代理店が、本フォームにより提出された問い合わせに対応・処理するために、本フォームに含まれる全ての個人情報ならびにその他の方法で私から収集された個人情報を収集、使用、開示することを承認します。私はまた、上述の収集、使用、開示の過程で、関連する個人情報がシンガポール以外の国に転送されることがあることも承認します。
+        <br /><br />
+        弊社の個人情報の取り扱い方法についての詳細は、弊社の <a
+            class="text-color1 underline decoration-1 underline-offset-4"
+            href="/privacy-policy"
         >
+            プライバシーポリシー
+        </a>をご覧下さい。
+    </p>
+
+    <!-- Captcha -->
+    <div id="form-captcha" class="input-group mt-2 grid justify-items-center justify-self-center md:mt-3">
+        <div class="g-recaptcha" data-sitekey="6LewjccqAAAAAMqisrW19KxQGie4MAI-ZcAqdHfn"></div>
+
+        <span class="input-group__error">Captchaを完成させてください</span>
+    </div>
+
+    <!-- Form action buttons -->
+    <div class="mt-3 flex flex-wrap items-center justify-center gap-4 md:mt-5">
+        <a
+            href="/contact"
+            id="reset"
+            type="button"
+            class="button w-full max-w-[18.87rem] !border-color2 !bg-transparent !text-color2"
+            >戻る
+        </a>
         <button class="button w-full max-w-[18.87rem]" type="submit">
             内容を送信する
             <svg xmlns="http://www.w3.org/2000/svg" width="17" height="16" viewBox="0 0 17 16" fill="none">
