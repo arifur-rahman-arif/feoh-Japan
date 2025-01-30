@@ -72,6 +72,12 @@ const Navbar = {
 
             // Close all dropdowns if the click is outside the button and the dropdown content
             if (!isClickInsideButton && !isClickInsideDropdown) {
+                const arrow = document.querySelectorAll('.language-dropdown-btn .dropdown-arrow');
+
+                arrow.forEach(arw => {
+                    arw.classList.remove('-rotate-180');
+                });
+
                 document.querySelectorAll('.dropdown-content').forEach(dropdown => {
                     dropdown.classList.remove('show');
                 });

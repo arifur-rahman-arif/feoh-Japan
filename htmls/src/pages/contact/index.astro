@@ -1,0 +1,64 @@
+---
+import Layout from '../../layouts/Layout.astro';
+import MastheadRoom from '@/components/Masthead/MastheadRoom.astro';
+import ContactForm from '@/components/ContactForm/index.astro';
+
+// Welcome to Astro! Wondering what to do next? Check out the Astro documentation at https://docs.astro.build
+// Don't want to use any of this? Delete everything in this file, the `assets`, `components`, and `layouts` directories, and start fresh.
+---
+
+<style is:inline>
+    #navbar {
+        position: sticky !important;
+        background-color: var(--color4) !important;
+    }
+
+    .parent-menu:nth-of-type(1) > li:nth-child(2) > a {
+        color: var(--color1) !important;
+    }
+</style>
+
+<Layout currentPageTitle="お問い合わせ" whiteNav={true}>
+    <MastheadRoom heading="お問い合わせ" subheading="CONTACT" image="/assets/masthead/masthead-contact.png" />
+
+    <div class="container grid py-10 md:py-14">
+        <!-- Description -->
+        <p class="text-center font-400">
+            ご意見・ご要望など、お気軽にお問い合わせ下さい。<br />より良いサービスのための参考にさせて頂きます。
+        </p>
+    </div>
+
+    <div class="grid gap-3 bg-[#F8F5EF] px-6 py-6 md:py-10">
+        <!-- Description -->
+        <p class="text-center text-lg font-500 text-color11">メールからお問わ合せの方はこちら</p>
+        <a href="mailto:reseasy@fareast.com.sg" class="text-center font-700 text-color1">reseasy@fareast.com.sg</a>
+    </div>
+
+    <section class="section" id="contact-section">
+        <div class="container grid">
+            <ContactForm />
+        </div>
+    </section>
+
+    <section class="section bg-color13" id="faq-section">
+        <div class="container grid justify-items-center gap-5 py-6 md:gap-10 md:py-14">
+            <h2 class="max-w-[44rem] text-center text-xl font-500 leading-10 text-black">
+                該当する項目が見つからない場合は、恐れ入りますがフォーム、電話、 またはメールでお問い合わせください。
+            </h2>
+
+            <a class="button !bg-color4 !text-color1" href="">
+                よくあるご質問
+                <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 16 16" fill="none">
+                    <path
+                        d="M10.2967 7.99957L5.95171 3.65459C5.83712 3.54 5.78131 3.40358 5.78429 3.24534C5.78727 3.08711 5.84606 2.95064 5.96065 2.83595C6.07525 2.72136 6.21166 2.66406 6.3699 2.66406C6.52814 2.66406 6.6646 2.72136 6.77929 2.83595L11.1952 7.26082C11.2994 7.36513 11.3767 7.48198 11.427 7.61138C11.4773 7.74078 11.5025 7.87018 11.5025 7.99957C11.5025 8.12897 11.4773 8.25837 11.427 8.38777C11.3767 8.51717 11.2994 8.63402 11.1952 8.73833L6.77035 13.1632C6.65576 13.2778 6.52083 13.3336 6.36558 13.3306C6.21022 13.3276 6.07525 13.2688 5.96065 13.1543C5.84606 13.0397 5.78876 12.9032 5.78876 12.745C5.78876 12.5868 5.84606 12.4503 5.96065 12.3356L10.2967 7.99957Z"
+                        fill="#9D7C36"></path>
+                </svg>
+            </a>
+        </div>
+    </section>
+
+    <script src="https://www.google.com/recaptcha/api.js" async defer></script>
+    <script src="https://unpkg.com/slim-select@latest/dist/slimselect.min.js"></script>
+    <link href="https://unpkg.com/slim-select@latest/dist/slimselect.css" rel="stylesheet" />
+    <script is:inline src="/scripts/contact.js"></script>
+</Layout>
