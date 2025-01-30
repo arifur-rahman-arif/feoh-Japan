@@ -3,6 +3,7 @@ const { whiteNav } = Astro.props;
 import LanguageDropdown from './LanguageDropdown.astro';
 import MobileMenu from './MobileMenu.astro';
 import DesktopMenu from './DesktopMenu.astro';
+import LoginPopup from '../LoginPopup/LoginPopup.astro';
 
 const navItems = [
     {
@@ -41,6 +42,7 @@ const navItems = [
         submenu: [
             {
                 name: '会員様ログイン',
+                className: 'login-popup-anchor',
                 link: '/login'
             },
             {
@@ -126,4 +128,5 @@ const navItems = [
     </button>
 
     <MobileMenu navItems={navItems} />
+    <LoginPopup
 </nav>

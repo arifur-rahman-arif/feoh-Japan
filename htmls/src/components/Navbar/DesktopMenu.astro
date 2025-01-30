@@ -56,12 +56,20 @@ const secondLineItems = navItems.filter(navItem => !navItem.firstLine);
                         >
                             {item.submenu.map((subItem: any) => (
                                 <li>
-                                    <a
-                                        href={subItem.link}
-                                        class="block px-5 py-2.5 text-base font-400 leading-[1.875rem] transition-all duration-500 hover:text-color1"
-                                    >
-                                        {subItem.name}
-                                    </a>
+                                    {subItem.className ? (
+                                        <button
+                                            class={`block px-5 py-2.5 text-base font-400 leading-[1.875rem] transition-all duration-500 hover:text-color1 ${subItem.className}`}
+                                        >
+                                            {subItem.name}
+                                        </button>
+                                    ) : (
+                                        <a
+                                            href={subItem.link}
+                                            class="block px-5 py-2.5 text-base font-400 leading-[1.875rem] transition-all duration-500 hover:text-color1"
+                                        >
+                                            {subItem.name}
+                                        </a>
+                                    )}
                                 </li>
                             ))}
                         </ul>

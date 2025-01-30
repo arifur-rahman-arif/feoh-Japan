@@ -66,12 +66,20 @@ const { navItems } = Astro.props;
                                     <ul class="grid gap-4">
                                         {item.submenu.map((subItem: any) => (
                                             <li>
-                                                <a
-                                                    href={subItem.link}
-                                                    class="text-base font-400 leading-[1.875rem] text-color11"
-                                                >
-                                                    {subItem.name}
-                                                </a>
+                                                {subItem.className ? (
+                                                    <button
+                                                        class={`text-base font-400 leading-[1.875rem] text-color11 ${subItem.className}`}
+                                                    >
+                                                        {subItem.name}
+                                                    </button>
+                                                ) : (
+                                                    <a
+                                                        href={subItem.link}
+                                                        class="text-base font-400 leading-[1.875rem] text-color11"
+                                                    >
+                                                        {subItem.name}
+                                                    </a>
+                                                )}
                                             </li>
                                         ))}
                                     </ul>
