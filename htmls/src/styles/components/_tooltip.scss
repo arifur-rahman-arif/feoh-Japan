@@ -1,0 +1,31 @@
+// tippy arrow scss
+
+.tippy-box.tippy-box {
+    background-color: var(--color1) !important;
+    border-radius: 0.5rem;
+
+    .tippy-content {
+        color: var(--color4) !important;
+        font-weight: var(--500);
+        font-size: 0.75rem !important;
+
+        &::first-letter {
+            text-transform: uppercase;
+        }
+
+        &,
+        * {
+            font-size: 0.75rem;
+            text-transform: lowercase;
+        }
+    }
+
+    .tippy-arrow {
+        border-color: var(--color1) !important;
+
+        &:before {
+            // border-color: transparent !important;
+            border-top-color: var(--color1);
+        }
+    }
+}

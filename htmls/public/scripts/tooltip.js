@@ -6,12 +6,10 @@ const Tooltip = {
     initializeTooltip: function () {
         tippy('[data-tippy-content]', {
             placement: 'top',
-            animation: 'shift-away',
-            maxWidth: '400px',
+            maxWidth: '240px',
             arrow: true,
             inertia: true,
-            duration: 700,
-            theme: 'material'
+            duration: 700
             // showOnCreate: true,
             // interactive: true,
             // trigger: 'click'
