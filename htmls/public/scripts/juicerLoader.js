@@ -1,6 +1,6 @@
 if (typeof window !== 'undefined') {
     const script = document.createElement('script');
-    script.src = 'https://www.juicer.io/embed/shopfareast/embed-code.js';
+    script.src = 'https://www.juicer.io/embed/' + document.getElementById('juicer-feed')?.getAttribute('data-feed-id') + '/embed-code.js';
     script.async = true;
     script.defer = true;
     script.onload = function () {
