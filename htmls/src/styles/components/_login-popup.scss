@@ -21,6 +21,22 @@
     transition: all 0.5s ease-in-out;
     opacity: 0;
 
+    #login-form-submit svg path {
+        fill: var(--color4) !important;
+    }
+
+    #reset {
+        color: var(--color1);
+
+        svg {
+            fill: var(--color1);
+        }
+    }
+
+    a#reset svg path {
+        fill: var(--color1) !important;
+    }
+
     @include media-breakpoint-up(md) {
         padding-top: 6rem;
         padding-bottom: 6rem;

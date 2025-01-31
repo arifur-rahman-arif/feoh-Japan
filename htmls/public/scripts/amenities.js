@@ -36,10 +36,10 @@ document.addEventListener('DOMContentLoaded', () => {
             const content = document.getElementById(contentId);
 
             if (content.classList.contains('hidden')) {
-                document.querySelectorAll('.accordion-content').forEach(el => {
-                    el.classList.add('hidden');
-                    el.previousElementSibling.querySelector('span.text-2xl').innerHTML = '&#43;';
-                });
+                // document.querySelectorAll('.accordion-content').forEach(el => {
+                //     el.classList.add('hidden');
+                //     el.previousElementSibling.querySelector('span.text-2xl').innerHTML = '&#43;';
+                // });
 
                 content.classList.remove('hidden');
                 button.querySelector('span.text-2xl').innerHTML = '&#8722;';
