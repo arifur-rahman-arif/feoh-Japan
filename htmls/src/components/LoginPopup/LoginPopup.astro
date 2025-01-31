@@ -22,7 +22,13 @@ import SectionHeading from '@/components/SectionHeading/index.astro';
                 <div class="input-group">
                     <label for="email" class="input-group__label">
                         メールアドレス <span class="helper-text">必須</span>
-                        <img src="/icons/icon_info_grey.svg" width="16" height="16" alt="" />
+                        <img 
+                            data-tippy-content="これはツールチップのテキストです" 
+                            src="/icons/icon_info_grey.svg" 
+                            width="16" 
+                            height="16" 
+                            alt="" 
+                        />
                     </label>
             
                     <input type="email" id="email" name="email" class="input-group__input" placeholder="email@example.com" />
@@ -34,7 +40,13 @@ import SectionHeading from '@/components/SectionHeading/index.astro';
                 <div class="input-group">
                     <label for="password" class="input-group__label">
                         パスワード <span class="helper-text">必須</span>
-                        <img src="/icons/icon_info_grey.svg" width="16" height="16" alt="" />
+                        <img 
+                        data-tippy-content="これはツールチップのテキストです" 
+                        src="/icons/icon_info_grey.svg" 
+                        width="16" 
+                        height="16" 
+                        alt="" 
+                        />
                     </label>
             
                     <div class="relative w-full">
@@ -101,9 +113,9 @@ import SectionHeading from '@/components/SectionHeading/index.astro';
                 </div>
             </form>
             
-            <div class="mx-auto max-w-[71.62rem] bg-[#F0EBDC] p-3 md:p-4 mt-5 lg:mt-10">
+            <div class="w-full max-w-[71.62rem] bg-[#F0EBDC] p-3 md:p-4 mt-5 lg:mt-10 md:mx-auto">
                 <div
-                    class="grid items-center justify-items-center gap-2 border border-solid border-color1 p-3 md:grid-cols-2 lg:grid-cols-[auto_1fr] lg:gap-8 lg:p-8"
+                    class="grid items-center justify-items-center gap-3 border border-solid border-color1 p-3 md:grid-cols-2 lg:grid-cols-[auto_1fr] lg:gap-8 lg:p-8"
                 >
                     <!-- Text Content -->
                     <div class="text-center">
@@ -121,9 +133,9 @@ import SectionHeading from '@/components/SectionHeading/index.astro';
 
                     <!-- Feature Points -->
                     <div class="flex items-center justify-center gap-2 md:gap-4 mt-4 md:mt-0">
-                        <img src="/assets/section-images/registration-banner-point-1.png" class="w-[92px] h-[92px] md:w-[170px] md:h-[170px]" alt="" />
-                        <img src="/assets/section-images/registration-banner-point-2.png" class="w-[92px] h-[92px] md:w-[170px] md:h-[170px]" alt="" />
-                        <img src="/assets/section-images/registration-banner-point-3.png" class="w-[92px] h-[92px] md:w-[170px] md:h-[170px]" alt="" />
+                        <img src="/assets/section-images/registration-banner-point-1.png" class="w-[104px] h-[104px] md:w-[170px] md:h-[170px]" alt="" />
+                        <img src="/assets/section-images/registration-banner-point-2.png" class="w-[104px] h-[104px] md:w-[170px] md:h-[170px]" alt="" />
+                        <img src="/assets/section-images/registration-banner-point-3.png" class="w-[104px] h-[104px] md:w-[170px] md:h-[170px]" alt="" />
                     </div>
                 </div>
             </div>

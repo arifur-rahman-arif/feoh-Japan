@@ -35,12 +35,15 @@
         overflow: hidden;
         overflow-y: auto;
         background-color: var(--color4);
-        padding-left: 1.5rem /* 24px */;
-        padding-right: 1.5rem /* 24px */;
-        padding-top: 2.5rem /* 40px */;
-        padding-bottom: 2.5rem /* 40px */;
+        padding: 2.5rem 1.5rem; // Default padding
+
         transform: translateY(100%);
         transition: all 0.5s ease-in-out;
+
+        @include media-breakpoint-down(md) {
+            padding-left: 0;
+            padding-right: 0;
+        }
     }
 
     &--active {
@@ -50,5 +53,12 @@
         #{ $self }__container {
             transform: translateY(0%);
         }
+    }
+}
+
+#login-form {
+    @include media-breakpoint-down(md) {
+        padding-left: 1.5rem;
+        padding-right: 1.5rem;
     }
 }
