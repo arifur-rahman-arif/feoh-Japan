@@ -1,7 +1,8 @@
+let isTransparent = false;
+
 const Navbar = {
     init: function () {
         this.navbar = document.getElementById('navbar');
-        this.isTransparent = false;
 
         // Mobile menu related selectors
         this.mobileMenu = document.getElementById('mobile-menu');
@@ -153,19 +154,25 @@ const Navbar = {
      * @param {HTMLElement} navBar - The navigation bar element to update.
      */
     toggleNavBarOnScroll: function () {
+        if (window.scrollY > 0 && !this.navbar.classList.contains('white-nav')) {
+            this.navbar.classList.add('white-nav', 'shadow-shadow2');
+            this.navbar.classList.remove('transparent-nav');
+            isTransparent = true;
+        }
+
         window.addEventListener('scroll', this.updateNavBarOnScroll);
     },
 
     updateNavBarOnScroll: function () {
-        if (this.navbar.classList.contains('white-nav') && !this.isTransparent) {
-            this.isTransparent = false;
+        if (this.navbar.classList.contains('white-nav') && !isTransparent) {
+            isTransparent = false;
             if (window.scrollY > 0) {
                 this.navbar.classList.add('shadow-shadow2');
             } else {
                 this.navbar.classList.remove('shadow-shadow2');
             }
         } else {
-            this.isTransparent = true;
+            isTransparent = true;
 
             if (window.scrollY > 0) {
                 this.navbar.classList.add('white-nav', 'shadow-shadow2');
@@ -194,8 +201,6 @@ const Navbar = {
 
             const hrefURL = new URL(href, window.location.origin);
             let hrefPath = hrefURL.pathname.replace(/\/$/, ''); // Normalize path
-
-            console.log(hrefPath, currentPath);
 
             if (hrefPath === currentPath) {
                 anchor.classList.add('!text-color1');
