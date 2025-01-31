@@ -1,0 +1,19 @@
+.hotel-booking-form {
+    .input-group {
+        position: relative;
+    }
+
+    input[type='date'] {
+        background: url('/icons/icon_calendar-gold.svg') no-repeat right 0.75rem center;
+        background-size: 1.2rem;
+        appearance: none; /* Hide default icon */
+        -webkit-appearance: none; /* For Safari */
+        -moz-appearance: none; /* For Firefox */
+    }
+
+    input[type='date']::-webkit-calendar-picker-indicator {
+        opacity: 0; /* Hide default icon */
+        position: absolute;
+        width: 100%;
+    }
+}

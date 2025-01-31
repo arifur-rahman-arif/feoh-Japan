@@ -36,6 +36,7 @@
 @use 'components/date-picker';
 @use 'components/login-popup';
 @use 'components/tooltip';
+@use 'components/booking-form';
 
 * {
     border: none;
@@ -73,9 +74,9 @@
     }
 }
 
-// html {
-//     scroll-behavior: smooth;
-// }
+html {
+    scroll-behavior: smooth;
+}
 
 * {
     scroll-margin: 5rem;

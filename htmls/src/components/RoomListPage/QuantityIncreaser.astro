@@ -1,0 +1,32 @@
+---
+const { text, name, className } = Astro.props;
+import { twMerge } from 'tailwind-merge';
+---
+
+<div
+    class={twMerge('number-increaser flex w-full items-center justify-between gap-4 border-b py-3', className)}
+    style="border-bottom: 1px solid var(--color15);"
+>
+    {text}
+
+    <div class="flex items-center justify-center">
+        <!-- Decrease -->
+        <span role="button" class="decrement-btn grid h-8 w-8 cursor-pointer place-items-center bg-color15">
+            <svg xmlns="http://www.w3.org/2000/svg" width="18" height="2" viewBox="0 0 18 2" fill="none">
+                <path
+                    d="M1.33203 1.99994C1.0487 1.99994 0.811254 1.90405 0.619698 1.71227C0.42792 1.5205 0.332031 1.28294 0.332031 0.999606C0.332031 0.71605 0.42792 0.478606 0.619698 0.287272C0.811254 0.0957166 1.0487 -6.10352e-05 1.33203 -6.10352e-05H16.6654C16.9487 -6.10352e-05 17.1861 0.0958281 17.3777 0.287606C17.5695 0.479384 17.6654 0.71694 17.6654 1.00027C17.6654 1.28383 17.5695 1.52127 17.3777 1.71261C17.1861 1.90416 16.9487 1.99994 16.6654 1.99994H1.33203Z"
+                    fill="white"></path>
+            </svg>
+        </span>
+        <input type="hidden" class="quantity-value" value="" name={name} id={name} />
+        <span class="quantity-text grid h-8 w-8 place-items-center text-color11">0</span>
+        <!-- Increase -->
+        <span role="button" class="increment-btn grid h-8 w-8 cursor-pointer place-items-center bg-color1">
+            <svg xmlns="http://www.w3.org/2000/svg" width="18" height="18" viewBox="0 0 18 18" fill="none">
+                <path
+                    d="M7.9987 10.0001H1.33203C1.0487 10.0001 0.811254 9.90418 0.619698 9.71241C0.42792 9.52063 0.332031 9.28307 0.332031 8.99974C0.332031 8.71618 0.42792 8.47874 0.619698 8.2874C0.811254 8.09585 1.0487 8.00007 1.33203 8.00007H7.9987V1.3334C7.9987 1.05007 8.09459 0.812627 8.28637 0.621071C8.47814 0.429294 8.7157 0.333405 8.99903 0.333405C9.28259 0.333405 9.52003 0.429294 9.71136 0.621071C9.90292 0.812627 9.9987 1.05007 9.9987 1.3334V8.00007H16.6654C16.9487 8.00007 17.1861 8.09596 17.3777 8.28774C17.5695 8.47952 17.6654 8.71707 17.6654 9.00041C17.6654 9.28396 17.5695 9.52141 17.3777 9.71274C17.1861 9.90429 16.9487 10.0001 16.6654 10.0001H9.9987V16.6667C9.9987 16.9501 9.90281 17.1875 9.71103 17.3791C9.51925 17.5708 9.2817 17.6667 8.99836 17.6667C8.71481 17.6667 8.47736 17.5708 8.28603 17.3791C8.09448 17.1875 7.9987 16.9501 7.9987 16.6667V10.0001Z"
+                    fill="white"></path>
+            </svg>
+        </span>
+    </div>
+</div>
