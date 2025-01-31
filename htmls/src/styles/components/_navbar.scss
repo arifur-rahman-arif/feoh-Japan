@@ -29,6 +29,18 @@ nav {
     .logo {
         transition: all 0.3s ease-in-out;
     }
+
+    li {
+        &:after {
+            pointer-events: none;
+        }
+
+        &:hover {
+            &:after {
+                pointer-events: auto;
+            }
+        }
+    }
 }
 
 .submenu-anchor {
