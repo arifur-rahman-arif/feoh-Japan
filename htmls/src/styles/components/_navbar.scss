@@ -31,6 +31,13 @@ nav {
     }
 }
 
+.submenu-anchor {
+    svg,
+    path {
+        transition: all 0.5s ease-in-out;
+    }
+}
+
 // Navbar styles
 
 // Transparent navbar and all related children will have it's own color scheme
@@ -94,5 +101,10 @@ nav {
 
     .logo--white {
         display: none;
+    }
+
+    svg,
+    path {
+        fill: var(--color11);
     }
 }

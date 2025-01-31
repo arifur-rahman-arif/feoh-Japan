@@ -1,6 +1,7 @@
 const Navbar = {
     init: function () {
         this.navbar = document.getElementById('navbar');
+        this.isTransparent = false;
 
         // Mobile menu related selectors
         this.mobileMenu = document.getElementById('mobile-menu');
@@ -63,6 +64,8 @@ const Navbar = {
 
         // Add an event listener to track scroll events
         this.toggleNavBarOnScroll();
+
+        this.highlightActiveMenuItem();
     },
 
     closeDropdownUponOutsideClick: function () {
@@ -150,27 +153,56 @@ const Navbar = {
      * @param {HTMLElement} navBar - The navigation bar element to update.
      */
     toggleNavBarOnScroll: function () {
-        const updateNavBar = () => {
-            // If the navigation bar is not white, add an event listener to check on scroll
-            if (this.navbar.classList.contains('white-nav')) {
-                if (window.scrollY > 0) {
-                    this.navbar.classList.add('shadow-shadow2');
-                } else {
-                    this.navbar.classList.remove('shadow-shadow2');
-                }
-            } else {
-                if (window.scrollY > 0) {
-                    this.navbar.classList.add('white-nav', 'shadow-shadow2');
-                    this.navbar.classList.remove('transparent-nav');
-                } else {
-                    this.navbar.classList.add('transparent-nav');
-                    this.navbar.classList.remove('white-nav', 'shadow-shadow2');
-                }
-            }
-        };
+        window.addEventListener('scroll', this.updateNavBarOnScroll);
+    },
 
-        window.addEventListener('scroll', updateNavBar);
-        // // Add an event listener to check on scroll
+    updateNavBarOnScroll: function () {
+        if (this.navbar.classList.contains('white-nav') && !this.isTransparent) {
+            this.isTransparent = false;
+            if (window.scrollY > 0) {
+                this.navbar.classList.add('shadow-shadow2');
+            } else {
+                this.navbar.classList.remove('shadow-shadow2');
+            }
+        } else {
+            this.isTransparent = true;
+
+            if (window.scrollY > 0) {
+                this.navbar.classList.add('white-nav', 'shadow-shadow2');
+                this.navbar.classList.remove('transparent-nav');
+            } else {
+                this.navbar.classList.remove('white-nav');
+                this.navbar.classList.add('transparent-nav');
+            }
+        }
+    },
+
+    /**
+     * Highlights the active menu item based on the current URL slug.
+     *
+     * @method
+     */
+    highlightActiveMenuItem: function () {
+        const currentURL = new URL(window.location.href);
+        let currentPath = currentURL.pathname.replace(/\/$/, ''); // Remove trailing slash
+
+        this.navbar.querySelectorAll('a').forEach(anchor => {
+            const href = anchor.getAttribute('href');
+
+            // Ignore empty href or non-navigation links
+            if (!href || href.startsWith('#') || href.startsWith('javascript:')) return;
+
+            const hrefURL = new URL(href, window.location.origin);
+            let hrefPath = hrefURL.pathname.replace(/\/$/, ''); // Normalize path
+
+            console.log(hrefPath, currentPath);
+
+            if (hrefPath === currentPath) {
+                anchor.classList.add('!text-color1');
+            } else {
+                anchor.classList.remove('!text-color1');
+            }
+        });
     }
 };
 

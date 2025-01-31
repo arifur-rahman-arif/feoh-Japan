@@ -22,8 +22,8 @@ const Registration = {
         this.confirmPasswordElement = document.getElementById('confirm-password');
 
         // Password visibility toggle buttons
-        this.showIcons = document.querySelectorAll('.password-show');
-        this.hideIcons = document.querySelectorAll('.password-close');
+        this.showIcons = this.form.querySelectorAll('.password-show');
+        this.hideIcons = this.form.querySelectorAll('.password-close');
 
         this.removeShowErrorOnChange();
         this.handleSubmit();
@@ -58,27 +58,31 @@ const Registration = {
     togglePasswordVisibility: function () {
         this.showIcons.forEach(showIcon => {
             showIcon.addEventListener('click', event => {
+                event.preventDefault();
+                event.stopImmediatePropagation();
+
                 const currentTarget = event.target;
 
-                console.log(currentTarget);
-
                 if (currentTarget !== showIcon) return;
+
+                console.log(currentTarget);
 
                 const inputField = currentTarget.closest('.input-group').querySelector('input');
                 const hideIcon = currentTarget.closest('.input-group').querySelector('.password-close');
 
                 inputField.type = 'text'; // Show password
 
-                currentTarget.classList.toggle('hidden');
-                hideIcon.classList.toggle('hidden');
+                currentTarget.classList.add('hidden', 'pointer-events-none');
+                hideIcon.classList.remove('hidden', 'pointer-events-none');
             });
         });
 
         this.hideIcons.forEach(hideIcon => {
             hideIcon.addEventListener('click', event => {
-                const currentTarget = event.target;
+                event.preventDefault();
+                event.stopImmediatePropagation();
 
-                console.log(currentTarget);
+                const currentTarget = event.target;
 
                 if (currentTarget !== hideIcon) return;
 
@@ -87,8 +91,8 @@ const Registration = {
 
                 inputField.type = 'password'; // Hide password
 
-                currentTarget.classList.toggle('hidden');
-                showIcon.classList.toggle('hidden');
+                currentTarget.classList.add('hidden', 'pointer-events-none');
+                showIcon.classList.remove('hidden', 'pointer-events-none');
             });
         });
     },
