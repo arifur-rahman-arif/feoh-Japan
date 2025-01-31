@@ -20,6 +20,15 @@ const LoginPopupHandler = {
                 });
             });
         });
+
+        document.addEventListener('click', event => {
+            if (event.target.classList.contains('login-popup')) {
+                const activePopup = document.querySelector('.login-popup--active');
+                if (activePopup) {
+                    activePopup.classList.remove('login-popup--active');
+                }
+            }
+        });
     }
 };
 
