@@ -1,10 +1,11 @@
 ---
-const { heading, subheading, image } = Astro.props;
+import { twMerge } from 'tailwind-merge';
+const { heading, subheading, image, className } = Astro.props;
 ---
 
 <main class="relative" role="banner">
     <img
-        class="h-full max-h-[21.43rem] min-h-[9.75rem] w-full object-cover"
+        class={twMerge('h-full min-h-[9.75rem] w-full object-cover md:max-h-[21.43rem]', className)}
         src={image || '/assets/masthead/masthead-room-list.png'}
         alt="banner-image"
         width="1440"
@@ -17,7 +18,7 @@ const { heading, subheading, image } = Astro.props;
     >
     </div>
     <div
-        class="absolute left-1/2 top-1/2 z-[3] grid -translate-x-1/2 -translate-y-1/2 place-items-center content-center justify-items-center gap-2"
+        class="absolute left-1/2 top-1/2 z-[3] grid w-full -translate-x-1/2 -translate-y-1/2 place-items-center content-center justify-items-center gap-2 px-6 md:max-w-[95%]"
     >
         <h1 class="text-center">{heading || '客室'}</h1>
         <h2 class="text-center font-400 text-color4 max-md:text-base max-md:leading-6 md:text-2xl">

@@ -39,30 +39,21 @@ const Faq = {
      * @param {HTMLElement} faqItem - The clicked FAQ item to toggle
      */
     toggleFaq: function (faqItem) {
+        // Toggle the clicked FAQ item
+        faqItem.classList.toggle('faq-item--active');
+
         // Get the content element of the clicked FAQ item
         const contentElement = faqItem.querySelector('.faq-item__content');
-        // Check if the current item is already open
-        const isOpen = faqItem.classList.contains('faq-item--active');
 
-        // Close all FAQ items
-        this.faqItems.forEach(item => {
-            const content = item.querySelector('.faq-item__content');
-            const iconMinus = item.querySelector('.icon-minus');
-            const iconPlus = item.querySelector('.icon-plus');
-
-            // Remove the active class and reset styles for all items
-            item.classList.remove('faq-item--active');
-            content.style.maxHeight = null; // Collapse the content
-            iconMinus.style.opacity = '0'; // Hide the minus icon
-            iconPlus.style.opacity = '1'; // Show the plus icon
-        });
-
-        // Open the clicked FAQ item if it was not already open
-        if (!isOpen) {
-            faqItem.classList.add('faq-item--active'); // Add active class
-            contentElement.style.maxHeight = contentElement.scrollHeight + 'px'; // Expand the content
-            faqItem.querySelector('.icon-minus').style.opacity = '1'; // Show the minus icon
-            faqItem.querySelector('.icon-plus').style.opacity = '0'; // Hide the plus icon
+        // Set the max height of the content element based on its scroll height
+        if (faqItem.classList.contains('faq-item--active')) {
+            contentElement.style.maxHeight = contentElement.scrollHeight + 'px';
+            faqItem.querySelector('.icon-minus').style.opacity = '1';
+            faqItem.querySelector('.icon-plus').style.opacity = '0';
+        } else {
+            contentElement.style.maxHeight = null;
+            faqItem.querySelector('.icon-minus').style.opacity = '0';
+            faqItem.querySelector('.icon-plus').style.opacity = '1';
         }
     }
 };
