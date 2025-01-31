@@ -8,7 +8,9 @@ const { title, description, badges, image, ctaText, ctaLink, label, labelIcon, l
       <img src={labelIcon} alt={title} class="deals-image" />
       {label}
     </div>
-    <img src={image} alt={title} class="deals-image" />
+    <a href={ctaLink}>
+      <img src={image} alt={title} class="deals-image" />
+    </a>
   </div>
   <div class="deals-content">
     <div class="deals-wrapper">
