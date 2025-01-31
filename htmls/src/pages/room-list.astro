@@ -1,6 +1,7 @@
 ---
 import Layout from '../layouts/Layout.astro';
 import MastheadRoom from '../components/Masthead/MastheadRoom.astro';
+import RoomFinder from '../components/RoomListPage/RoomFinder.astro';
 import Room from '../components/RoomListPage/Room.astro';
 import SecondaryNav from '../components/SecondaryNav/index.astro';
 
@@ -17,6 +18,8 @@ import SecondaryNav from '../components/SecondaryNav/index.astro';
 
 <Layout currentPageTitle="客室" whiteNav={true}>
     <MastheadRoom />
+
+    <RoomFinder />
 
     <SecondaryNav
         bgColor="bg-white"

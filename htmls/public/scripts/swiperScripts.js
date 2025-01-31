@@ -1,7 +1,7 @@
 // While working enable this import to have type checking
 // import Swiper from 'swiper';
 
-new Swiper('.property-gallery-swiper, .service-gallery-swiper', {
+new Swiper('.service-gallery-swiper', {
     // autoplay: {
     //     delay: 2500,
     //     disableOnInteraction: false
@@ -9,6 +9,19 @@ new Swiper('.property-gallery-swiper, .service-gallery-swiper', {
     speed: 2000,
     slidesPerView: 'auto',
     freeMode: true,
+    spaceBetween: 20,
+    centerInsufficientSlides: true,
+    grabCursor: true,
+    loop: true,
+    pagination: {
+        el: '.swiper-pagination'
+    }
+});
+
+new Swiper('.property-gallery-swiper', {
+    speed: 2000,
+    slidesPerView: 'auto',
+    centeredSlides: true,
     spaceBetween: 20,
     centerInsufficientSlides: true,
     grabCursor: true,

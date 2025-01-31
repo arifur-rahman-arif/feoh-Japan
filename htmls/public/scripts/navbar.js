@@ -43,7 +43,7 @@ const Navbar = {
 
         this.submenuActionButton.forEach(button => {
             button.addEventListener('click', event => {
-                this.closeSubmenu(event);
+                this.closeSubmenu(event, button);
             });
         });
 
@@ -103,9 +103,14 @@ const Navbar = {
         submenu.classList.remove('translate-x-full');
     },
 
-    closeSubmenu: function (event) {
+    closeSubmenu: function (event, button) {
         event.preventDefault();
         event.stopPropagation();
+
+        const currentTarget = event.target;
+
+        if (currentTarget !== button) return;
+
         const submenu = event.target.parentElement;
 
         if (!submenu) return;
