@@ -32,8 +32,8 @@ const Login = {
         this.passwordElement = document.getElementById('password');
 
         // Password visibility toggle buttons
-        this.showIcons = document.querySelectorAll('.password-show');
-        this.hideIcons = document.querySelectorAll('.password-close');
+        this.showIcons = this.form.querySelectorAll('.password-show');
+        this.hideIcons = this.form.querySelectorAll('.password-close');
 
         this.removeShowErrorOnChange();
         this.handleSubmit();
@@ -52,8 +52,6 @@ const Login = {
             showIcon.addEventListener('click', event => {
                 const currentTarget = event.target;
 
-                console.log(currentTarget);
-
                 if (currentTarget !== showIcon) return;
 
                 const inputField = currentTarget.closest('.input-group').querySelector('input');
@@ -69,8 +67,6 @@ const Login = {
         this.hideIcons.forEach(hideIcon => {
             hideIcon.addEventListener('click', event => {
                 const currentTarget = event.target;
-
-                console.log(currentTarget);
 
                 if (currentTarget !== hideIcon) return;
 
