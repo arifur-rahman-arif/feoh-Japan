@@ -41,11 +41,17 @@ const { currentPageTitle, whiteNav, excludeSecondNav } = Astro.props;
         <script is:inline type="module" src="/scripts/loginPopup.js"></script>
         <script src="https://www.google.com/recaptcha/api.js" async defer></script>
 
+        <!-- Selector -->
+        <script src="https://unpkg.com/slim-select@latest/dist/slimselect.min.js"></script>
+        <link href="https://unpkg.com/slim-select@latest/dist/slimselect.css" rel="stylesheet" />
+
         <!-- Tooltip js -->
         <script is:inline src="https://unpkg.com/@popperjs/core@2"></script>
         <script is:inline src="https://unpkg.com/tippy.js@6"></script>
-
         <script is:inline src="/scripts/tooltip.js"></script>
+
+        <!-- Modal -->
+        <script is:inline src="/scripts/modal.js"></script>
     </body>
 </html>
 <!-- 

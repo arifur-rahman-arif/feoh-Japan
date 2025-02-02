@@ -1,0 +1,17 @@
+---
+import BookingForm from '@/components/RoomListPage/Form.astro';
+import SectionHeading from '@/components/SectionHeading/index.astro';
+---
+
+<div class="grid">
+    <div class="container">
+        <SectionHeading title="ご宿泊予約" />
+        <BookingForm hotelSelection className="py-0 md:py-0 xl:py-0" />
+    </div>
+
+    <div class="mt-12 grid bg-[#3EBDAD] pb-12 md:mt-24 md:pb-14">
+        <div class="container">
+            <SectionHeading title="キャンペーン" className="[&_.header-divider]:!bg-color4 [&_h2]:!text-color4" />
+        </div>
+    </div>
+</div>
