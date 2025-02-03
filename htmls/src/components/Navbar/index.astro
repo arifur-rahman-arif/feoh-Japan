@@ -5,6 +5,16 @@ import MobileMenu from './MobileMenu.astro';
 import DesktopMenu from './DesktopMenu.astro';
 import LoginPopup from '../LoginPopup/LoginPopup.astro';
 
+import { experimental_AstroContainer } from 'astro/container';
+const container = await experimental_AstroContainer.create();
+
+import BookingPopup from './BookingPopup.astro';
+const BookingFormHTML = await container.renderToString(BookingPopup, {
+    props: {
+        hotelSelection: true
+    }
+});
+
 const navItems = [
     {
         name: 'ホテル一覧',
@@ -89,6 +99,14 @@ const navItems = [
 ];
 ---
 
+<style is:inline>
+    .booking-popup {
+        padding-left: 0 !important;
+        padding-right: 0 !important;
+        padding-bottom: 0 !important;
+    }
+</style>
+
 <nav
     id="navbar"
     class={`${whiteNav ? 'white-nav' : 'transparent-nav'} fixed top-0 z-20 grid w-full grid-cols-[1fr_auto_auto_auto] items-center transition-all duration-500 xl:grid-cols-[auto_1fr_auto_auto]`}
@@ -110,7 +128,14 @@ const navItems = [
     <LanguageDropdown className="xl:hidden" />
 
     <!-- Book button -->
-    <button role="button" type="button" class="flex h-full items-center justify-center gap-1 bg-color1 px-4 xl:gap-3">
+    <button
+        modal-content={BookingFormHTML}
+        event-type="booking-popup"
+        modal-container-root-class="booking-popup"
+        role="button"
+        type="button"
+        class="flex h-full items-center justify-center gap-1 bg-color1 px-4 xl:gap-3"
+    >
         <img src="/icons/icon_calendar.svg" alt="" class="xl:h-6 xl:w-6" width="16" height="16" />
         <span class="text-sm font-500 text-color4 xl:text-xl">ご宿泊予約</span>
         <img src="/icons/icon-arrow-down.svg" width="14" height="14" class="xl:h-6 xl:w-6" />

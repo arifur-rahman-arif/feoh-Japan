@@ -1,16 +1,107 @@
 const HotelBooking = {
+    /**
+     * Initializes all hotel booking form elements by setting up date pickers, dropdowns, and quantity
+     * controls. Also binds form submission events to each form.
+     */
     init: function () {
         this.forms = document.querySelectorAll('.hotel-booking-form');
+        this.currentForm = null;
 
+        this.initializeForms();
+
+        document.addEventListener('modalOpened', event => {
+            if (event.detail.eventType === 'booking-popup') {
+                this.forms = document.querySelectorAll('.booking-popup .hotel-booking-form');
+                this.initializeForms();
+            }
+        });
+    },
+
+    initializeForms: function () {
         if (!this.forms || !this.forms.length) return;
 
         this.forms.forEach(form => {
             this.currentForm = form;
+            this.removeShowErrorOnChange(form);
             this.initializeDatepicker(form);
             this.initializeDropdown(form);
+            this.initializeSelector();
             this.quantityIncreaser(form);
+            this.submitForm(form);
         });
     },
+
+    initializeSelector: function () {
+        const hotelSelector = this.currentForm.querySelector('#select-hotel');
+
+        if (!hotelSelector) return;
+
+        new SlimSelect({
+            select: hotelSelector,
+            settings: {
+                showSearch: false
+            }
+        });
+    },
+    /**
+     * Removes the error class from input groups containing the following inputs when changed:
+     * - Check-in date
+     * - Check-out date
+     * - Adult quantity
+     * - Child quantity
+     * - Room quantity
+     * - Promo code
+     *
+     * @param {HTMLElement} form - The form element containing the above inputs.
+     */
+    removeShowErrorOnChange: function () {
+        const inputs = [
+            this.currentForm.querySelector('#check-in'),
+            this.currentForm.querySelector('#check-out'),
+            this.currentForm.querySelector('#promo-code'),
+            this.currentForm.querySelector('#select-hotel')
+        ];
+
+        inputs.forEach(input => {
+            if (input) {
+                input.addEventListener('input', event => {
+                    event.target.closest('.input-group').classList.remove('input-group--invalid');
+                });
+            }
+        });
+
+        const hiddenInputs = [
+            this.currentForm.querySelector('#adult'),
+            this.currentForm.querySelector('#child'),
+            this.currentForm.querySelector('#rooms')
+        ];
+
+        const observer = new MutationObserver(mutationsList => {
+            for (let mutation of mutationsList) {
+                if (mutation.type === 'attributes' && mutation.attributeName === 'value') {
+                    const target = mutation.target;
+                    if (target.value !== '') {
+                        target.closest('.input-group').classList.remove('input-group--invalid');
+                    }
+                }
+            }
+        });
+
+        hiddenInputs.forEach(input => {
+            observer.observe(input, { attributes: true, attributeFilter: ['value'] });
+        });
+    },
+
+    /**
+     * Initializes the dropdown functionality for room options within the specified form.
+     *
+     * @param {HTMLElement} form - The form element containing the dropdown controls.
+     *
+     * This function sets up click event listeners on the dropdown button to toggle
+     * the visibility of the associated dropdown panel and rotate the arrow icon. It
+     * also adds a document-wide click event listener to close the dropdown if a click
+     * is detected outside the dropdown area.
+     */
 
     initializeDropdown: function (form) {
         const dropdownBtn = form.querySelector('.room-options__btn');
@@ -39,6 +130,19 @@ const HotelBooking = {
             }
         });
     },
+
+    /**
+     * Updates and manages the quantity of adults, children, and rooms in a booking form.
+     *
+     * @param {HTMLElement} form - The form element containing the quantity controls.
+     *
+     * This function sets up event listeners on increment and decrement buttons to increase
+     * or decrease the corresponding quantities displayed in the form. It updates the
+     * quantity values in hidden inputs and refreshes the summary of selected quantities
+     * (adults, children, rooms) displayed on the form. The decrement button is visually
+     * disabled if the quantity reaches zero, and the summary is initialized on function
+     * execution.
+     */
 
     quantityIncreaser: function (form) {
         const decrementBtns = form.querySelectorAll('.decrement-btn');
@@ -105,6 +209,18 @@ const HotelBooking = {
         updateSummary(); // Initialize the summary when the function runs
     },
 
+    /**
+     * Initializes date pickers for check-in and check-out inputs within the given form.
+     *
+     * @param {HTMLElement} form - The form element containing the check-in and check-out input fields.
+     *
+     * This function sets up Flatpickr date pickers on check-in and check-out inputs, enforcing
+     * locale settings for weekdays and months. The check-out date is constrained to be at least
+     * one day after the selected check-in date. If a user selects a check-out date earlier than
+     * the check-in date, the check-out date is reset. The date format is set to 'd / m / Y', and
+     * mobile date pickers are disabled to ensure consistent behavior across devices.
+     */
+
     initializeDatepicker: function (form) {
         if (!form) return;
 
@@ -158,6 +274,72 @@ const HotelBooking = {
                 }
             }
         });
+    },
+
+    submitForm: function (form) {
+        form.addEventListener('submit', e => {
+            e.preventDefault();
+
+            const checkInDate = form.querySelector('#check-in').value.trim();
+            const checkOutDate = form.querySelector('#check-out').value.trim();
+            const adultCount = form.querySelector('#adult').value.trim();
+            const childCount = form.querySelector('#child').value.trim();
+            const roomCount = form.querySelector('#rooms').value.trim();
+            const promoCode = form.querySelector('#promo-code').value.trim();
+
+            const hotelSelection = form.querySelector('#select-hotel');
+            let selectedHotel;
+
+            if (hotelSelection) {
+                selectedHotel = form.querySelector('#select-hotel').value.trim();
+
+                if (!selectedHotel) {
+                    this.showError(hotelSelection);
+                    showError = true;
+                }
+            }
+
+            let showError = false;
+
+            // Validation
+            if (!checkInDate) {
+                this.showError(form.querySelector('#check-in'));
+                showError = true;
+            }
+            if (!checkOutDate) {
+                this.showError(form.querySelector('#check-out'));
+                showError = true;
+            }
+            if (!adultCount || isNaN(adultCount) || adultCount <= 0) {
+                this.showError(form.querySelector('#adult'));
+                showError = true;
+            }
+            if (isNaN(childCount) || childCount < 0) {
+                this.showError(form.querySelector('#child'));
+                showError = true;
+            }
+            if (!roomCount || isNaN(roomCount) || roomCount <= 0) {
+                this.showError(form.querySelector('#rooms'));
+                showError = true;
+            }
+            if (!promoCode) {
+                this.showError(form.querySelector('#promo-code'));
+                showError = true;
+            }
+
+            if (showError) {
+                return;
+            }
+        });
+    },
+
+    /**
+     * Adds the 'input-group--invalid' CSS class to the element's closest '.input-group' parent element,
+     * effectively displaying an error message for the element.
+     * @param {HTMLElement} element - The element to target for displaying the error message.
+     */
+    showError: function (element) {
+        element.closest('.input-group').classList.add('input-group--invalid');
     }
 };
 

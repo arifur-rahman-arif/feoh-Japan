@@ -1,9 +1,13 @@
 ---
+import { twMerge } from 'tailwind-merge';
 const { text, className } = Astro.props;
 ---
 
 <span
-    class={`${className} py-1 md:py-2 text-center px-4 md:text-sm md:px-5 text-xs text-color1 font-500 leading-7 border-2 border-solid border-color1 rounded-[3.125rem]`}
+    class={twMerge(
+        'py-1 md:py-2 text-center px-4 md:text-sm md:px-5 text-xs text-color1 font-500 leading-7 border-2 border-solid border-color1 rounded-[3.125rem]',
+        className
+    )}
 >
     {text}
 </span>

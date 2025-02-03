@@ -5,7 +5,5 @@ const { deals } = Astro.props;
 ---
 
 <div class="deals-list">
-  {deals.map((deal) => (
-    <DealsCard {...deal} key={deal.id} />
-  ))}
+    {deals.map(deal => <DealsCard {...deal} />)}
 </div>

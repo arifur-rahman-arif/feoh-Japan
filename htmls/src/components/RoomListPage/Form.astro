@@ -1,0 +1,140 @@
+---
+import QuantityIncreaser from './QuantityIncreaser.astro';
+import { twMerge } from 'tailwind-merge';
+const { className, hotelSelection } = Astro.props;
+---
+
+<form class={twMerge('hotel-booking-form grid gap-6 py-6 md:py-12 xl:py-14', className)}>
+    <!-- Filter inputs -->
+    <div
+        class="grid w-full items-end justify-items-center gap-4 justify-self-center xs:grid-cols-2 md:grid-cols-3 md:gap-3 xl:flex xl:justify-center"
+    >
+        <!-- Hotel Selection -->
+        {
+            hotelSelection && (
+                <div class="input-group hotel-selection w-full xl:max-w-[22rem]">
+                    <label for="check-in" class="input-group__label ml-3">
+                        チェックイン
+                    </label>
+
+                    <select id="select-hotel" class="jp-dropdown !border !border-solid !border-[#D9D9D9] !bg-color4">
+                        <option value="すべてのホテル" selected>
+                            すべてのホテル
+                        </option>
+                        <option value="ファーイーストビレッジホテル東京有明">
+                            ファーイーストビレッジホテル東京有明
+                        </option>
+                        <option value="ファーイーストビレッジホテル東京浅草">
+                            ファーイーストビレッジホテル東京浅草
+                        </option>
+                        <option value="ファーイーストビレッジホテル横浜">ファーイーストビレッジホテル横浜</option>
+                    </select>
+
+                    <span class="input-group__error">必須項目を入力してください</span>
+                </div>
+            )
+        }
+
+        <!-- Check in date -->
+        <div class="input-group w-full xl:max-w-[12.87rem]">
+            <label for="check-in" class="input-group__label ml-3">チェックイン</label>
+
+            <input
+                type="date"
+                id="check-in"
+                name="check-in"
+                class="input-group__input date-picker w-full !border !border-solid !border-[#D9D9D9] !bg-color4"
+                placeholder="日 / 月 / 年"
+            />
+
+            <span class="input-group__error">必須項目を入力してください</span>
+        </div>
+
+        <!-- Check out date -->
+        <div class="input-group w-full xl:max-w-[12.87rem]">
+            <label for="check-out" class="input-group__label ml-3">チェックアウト</label>
+
+            <input
+                type="date"
+                id="check-out"
+                name="check-out"
+                class="input-group__input date-picker w-full !border !border-solid !border-[#D9D9D9] !bg-color4"
+                placeholder="日 / 月 / 年"
+            />
+
+            <span class="input-group__error">必須項目を入力してください</span>
+        </div>
+
+        <!-- Custom dropdown -->
+        <div class="input-group w-full flex-grow max-md:col-span-full xl:max-w-[19.5rem]">
+            <label for="room-and-people" class="input-group__label ml-3"> 国籍 </label>
+
+            <div class="room-options relative w-full border border-solid border-color15 bg-color4">
+                <button
+                    type="button"
+                    class="room-options__btn flex w-full cursor-pointer items-center justify-between gap-4 px-[0.9rem] py-[0.7rem]"
+                >
+                    <span class="pointer-events-none text-color11"
+                        >大人<span class="adult-count">0</span>名, 子ども<span class="child-count">0</span>名 | <span
+                            class="room-count">0</span
+                        >室</span
+                    >
+                    <img
+                        class="room-options__arrow-icon pointer-events-none rotate-90"
+                        src="/icons/icon_arrow.svg"
+                        width="16"
+                        height="16"
+                        alt=""
+                    />
+                </button>
+
+                <!-- Dropdown options -->
+                <div
+                    class="room-options__dropdown pointer-events-none absolute -left-[1px] top-full z-10 hidden w-[calc(100%_+_2px)] translate-y-[1px] border border-t-0 border-solid border-color15 bg-color4 px-6 py-4"
+                >
+                    <!-- Adult -->
+                    <QuantityIncreaser text="大人" name="adult" />
+
+                    <QuantityIncreaser text="子ども" name="child" />
+
+                    <QuantityIncreaser text="部屋数" name="rooms" className="!border-b-0" />
+                </div>
+            </div>
+
+            <span class="input-group__error">必須項目を入力してください</span>
+        </div>
+
+        {
+            !hotelSelection && (
+                <button
+                    type="submit"
+                    class="button w-full justify-self-center !py-[0.65rem] max-xl:col-span-full sm:max-w-[15.43rem] md:mt-4 xl:ml-3 xl:mt-0"
+                >
+                    この条件で検索する
+                </button>
+            )
+        }
+    </div>
+
+    <!-- Text -->
+    <div class="grid justify-items-center gap-4">
+        <a
+            href="#"
+            class="text-sm font-500 tracking-wide text-color11 underline decoration-color11 underline-offset-2 transition-all duration-500 hover:text-color1 hover:decoration-color1"
+            >ご予約の確認・変更・キャンセル
+        </a>
+
+        <!-- Promo code -->
+        <div class="input-group w-full max-w-[14rem]">
+            <input
+                type="text"
+                id="promo-code"
+                name="promo-code"
+                class="input-group__input w-full placeholder:text-sm placeholder:!text-color11"
+                placeholder="プロモーションコードの入力"
+            />
+
+            <span class="input-group__error">必須項目を入力してください</span>
+        </div>
+    </div>
+</form>
