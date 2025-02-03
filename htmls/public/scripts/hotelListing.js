@@ -1,7 +1,7 @@
 // Initialize Swiper
 new Swiper('.swiper-container', {
-    autoplay: true,
     loop: true,
+    speed: 800,
     navigation: {
         nextEl: '.swiper-button-next',
         prevEl: '.swiper-button-prev'
@@ -9,6 +9,12 @@ new Swiper('.swiper-container', {
     pagination: {
         el: '.swiper-pagination',
         clickable: true
+    },
+    effect: 'slide',
+    breakpoints: {
+        768: {
+            speed: 1000
+        }
     }
 });
 
