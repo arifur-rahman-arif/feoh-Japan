@@ -5,7 +5,19 @@ const HotelBooking = {
      */
     init: function () {
         this.forms = document.querySelectorAll('.hotel-booking-form');
+        this.currentForm = null;
 
+        this.initializeForms();
+
+        document.addEventListener('modalOpened', event => {
+            if (event.detail.eventType === 'booking-popup') {
+                this.forms = document.querySelectorAll('.booking-popup .hotel-booking-form');
+                this.initializeForms();
+            }
+        });
+    },
+
+    initializeForms: function () {
         if (!this.forms || !this.forms.length) return;
 
         this.forms.forEach(form => {
@@ -21,8 +33,6 @@ const HotelBooking = {
 
     initializeSelector: function () {
         const hotelSelector = this.currentForm.querySelector('#select-hotel');
-
-        console.log(hotelSelector);
 
         if (!hotelSelector) return;
 

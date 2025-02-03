@@ -21,14 +21,14 @@ window.closeModal = function () {
 document.querySelectorAll('[modal-content]').forEach(element => {
     element.addEventListener('click', function () {
         const html = this.getAttribute('modal-content');
-        const loadHotelBookingScript = this.getAttribute('load-hotel-booking-script');
+        const eventType = this.getAttribute('event-type');
         const containerRootClass = this.getAttribute('modal-container-root-class');
 
         const modal = document.createElement('div');
         modal.id = 'custom-modal';
         modal.className = 'fixed top-0 left-0 w-full h-full z-50 flex justify-center items-center';
         modal.innerHTML = `
-            <div class="relative w-full max-w-[82rem] bg-color4 px-6 py-10 grid content-center modal-container overflow-y-auto ${containerRootClass}">
+            <div class="relative w-full max-w-[82rem] bg-color4 px-6 py-12 pt-16 grid content-center modal-container overflow-y-auto ${containerRootClass}">
                 <button id="close-modal" title="Close modal"
                     class="absolute top-0 right-0 -translate-x-3 translate-y-3 transition-all duration-500 hover:scale-110 z-[2]">
                     <img src="/icons/icon-close.svg" alt="" width="48" height="48" class="pointer-events-none" />
@@ -41,9 +41,12 @@ document.querySelectorAll('[modal-content]').forEach(element => {
 
         document.body.appendChild(modal);
 
-        if (loadHotelBookingScript) {
-            HotelBooking.init();
-        }
+        // Dispatch custom event when modal is opened
+        const modalEvent = new CustomEvent('modalOpened', {
+            detail: { eventType: eventType || false }
+        });
+
+        document.dispatchEvent(modalEvent);
 
         setTimeout(function () {
             modal.classList.add('show');

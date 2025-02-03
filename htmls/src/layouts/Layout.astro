@@ -45,6 +45,12 @@ const { currentPageTitle, whiteNav, excludeSecondNav } = Astro.props;
         <script src="https://unpkg.com/slim-select@latest/dist/slimselect.min.js"></script>
         <link href="https://unpkg.com/slim-select@latest/dist/slimselect.css" rel="stylesheet" />
 
+        <!-- Flatpickr -->
+        <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/flatpickr/dist/flatpickr.min.css" />
+        <script src="https://cdn.jsdelivr.net/npm/flatpickr"></script>
+        <!-- Flatpickr Japanese Locale -->
+        <script src="https://cdn.jsdelivr.net/npm/flatpickr/dist/l10n/ja.js"></script>
+
         <!-- Tooltip js -->
         <script is:inline src="https://unpkg.com/@popperjs/core@2"></script>
         <script is:inline src="https://unpkg.com/tippy.js@6"></script>
@@ -52,6 +58,7 @@ const { currentPageTitle, whiteNav, excludeSecondNav } = Astro.props;
 
         <!-- Modal -->
         <script is:inline src="/scripts/modal.js"></script>
+        <script is:inline src="/scripts/hotelBooking.js"></script>
     </body>
 </html>
 <!-- 
