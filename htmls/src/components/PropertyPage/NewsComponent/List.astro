@@ -8,19 +8,19 @@ const defaultList = list || [
         date: '2024.12.22',
         type: '最新情報',
         title: 'ホームページリニューアルに関するお知らせホームページリニューアルに関するお知らせ',
-        link: '#'
+        link: ''
     },
     {
         date: '2024.12.22',
         type: '受賞歴',
         title: 'ファーイースト・ホスピタリティが有するGSTC認証ホテルがシンガポール最多に – 16のホテル全てが国際認証を取得ファーイースト・ホスピタリティが有するGSTC認証ホテルがシンガファーイースト…',
-        link: '#'
+        link: ''
     },
     {
         date: '2024.12.22',
         type: '最新情報',
         title: 'ホームページリニューアルに関するお知らせホームページリニューアルに関するお知らせ',
-        link: '#'
+        link: ''
     }
 ];
 ---
@@ -33,7 +33,7 @@ const defaultList = list || [
                 <div class="news-item__date text-base font-400 text-black">{item.date}</div>
                 <Pill text={item.type} className="news-item__type justify-self-start md:min-w-[6.25rem]" />
                 <a
-                    href={item.link}
+                    href=""
                     class="news-item__title group/link grid grid-cols-[1fr_auto] items-center gap-4 max-md:col-span-full"
                 >
                     <span class="line-clamp-2 text-left transition-all duration-500 group-hover/link:text-color1">

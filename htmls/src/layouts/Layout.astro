@@ -3,6 +3,7 @@ import '../styles/main.scss';
 import Navbar from '@/components/Navbar/index.astro';
 import Footer from '../components/Footer/index.astro';
 import ButtonScrollTop from '../components/ButtonScrollTop/index.astro';
+import CookieConsent from '@/components/CookieConsent/index.astro';
 
 const { currentPageTitle, whiteNav, excludeSecondNav } = Astro.props;
 ---
@@ -31,7 +32,7 @@ const { currentPageTitle, whiteNav, excludeSecondNav } = Astro.props;
         <slot />
         <Footer currentPageTitle={currentPageTitle} />
         <ButtonScrollTop />
-
+        <CookieConsent />
         <!-- Scripts goes here -->
         <script is:inline src="/scripts/navbar.js"></script>
         <script is:inline src="/scripts/masthead.js"></script>
@@ -59,6 +60,9 @@ const { currentPageTitle, whiteNav, excludeSecondNav } = Astro.props;
         <!-- Modal -->
         <script is:inline src="/scripts/modal.js"></script>
         <script is:inline src="/scripts/hotelBooking.js"></script>
+
+        <!-- Cookie consent -->
+        <script is:inline src="/scripts/cookieConsent.js"></script>
     </body>
 </html>
 <!-- 

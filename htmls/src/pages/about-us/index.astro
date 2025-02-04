@@ -6,6 +6,7 @@ import ImgTextAlt from '../../components/AbouUSPage/ImgTextAlt/index.astro';
 import SecondaryNav from '../../components/SecondaryNav/index.astro';
 import ImageGrid from '../../components/AbouUSPage/ImageGrid/index.astro';
 ---
+
 <style is:inline>
     #navbar {
         position: sticky !important;
@@ -13,7 +14,7 @@ import ImageGrid from '../../components/AbouUSPage/ImageGrid/index.astro';
     }
 </style>
 
-<Layout currentPageTitle="私たちについて" whiteNav={true}>
+<Layout currentPageTitle="私たちについて" whiteNav={true} excludeSecondNav>
     <MastheadRoom heading="私たちについて" subheading="ABOUT US" image="/assets/images/banner_image_1.png" />
     <StaticContent
         title="ローカルのように過ごす"
@@ -21,12 +22,14 @@ import ImageGrid from '../../components/AbouUSPage/ImageGrid/index.astro';
         content={`ファーイーストのホテルは東京浅草、東京有明、横浜に展開されています。世界中にある私共の受賞歴を誇るホテルやサービス付きレジデンスは、各旅先の名所観光の拠点として最適です。`}
         contentPosition="section-left"
     />
-    <SecondaryNav bgColor="bg-white" navItems={[
-        { id: "eat", label: "食べる" },
-        { id: "play", label: "遊ぶ" },
-        { id: "explore", label: "探索する" },
-        { id: "hotel-brand", label: "ホテルブランドのご紹介" },
-    ]}
+    <SecondaryNav
+        bgColor="bg-white"
+        navItems={[
+            { id: 'eat', label: '食べる' },
+            { id: 'play', label: '遊ぶ' },
+            { id: 'explore', label: '探索する' },
+            { id: 'hotel-brand', label: 'ホテルブランドのご紹介' }
+        ]}
     />
     <ImgTextAlt
         sectionId="eat"
@@ -37,11 +40,7 @@ import ImageGrid from '../../components/AbouUSPage/ImageGrid/index.astro';
         さらに多くの料理をお試しになりたいですか？屋台の食べ物からレストランまで、
         本場の地元料理を出す多数の飲食施設が、ビレッジから徒歩ですぐの場所にあります。`}
         contentPosition="section-left"
-        images={[
-            "/assets/images/img_alt_1.png",
-            "/assets/images/img_alt_2.png",
-            "/assets/images/img_alt_3.png"
-        ]}
+        images={['/assets/images/img_alt_1.png', '/assets/images/img_alt_2.png', '/assets/images/img_alt_3.png']}
         carouselPosition="left"
     />
     <ImgTextAlt
@@ -53,9 +52,7 @@ import ImageGrid from '../../components/AbouUSPage/ImageGrid/index.astro';
         さらに多くの料理をお試しになりたいですか？屋台の食べ物からレストランまで、
         本場の地元料理を出す多数の飲食施設が、ビレッジから徒歩ですぐの場所にあります。`}
         contentPosition="section-left"
-        images={[
-            "/assets/images/img_alt_2.png"
-        ]}
+        images={['/assets/images/img_alt_2.png']}
         carouselPosition="right"
     />
     <ImgTextAlt
@@ -67,52 +64,50 @@ import ImageGrid from '../../components/AbouUSPage/ImageGrid/index.astro';
         さらに多くの料理をお試しになりたいですか？屋台の食べ物からレストランまで、
         本場の地元料理を出す多数の飲食施設が、ビレッジから徒歩ですぐの場所にあります。`}
         contentPosition="section-left"
-        images={[
-            "/assets/images/img_alt_3.png"
-            ]}
+        images={['/assets/images/img_alt_3.png']}
         carouselPosition="left"
     />
-    <ImageGrid 
-        sectionId="hotel-brand" 
+    <ImageGrid
+        sectionId="hotel-brand"
         bgColor="bg-grey"
         title="ホテルブランド"
         data={[
             {
-              id: 1,
-              title: "オアシアリゾート",
-              description: "ご家族連れや都会の探検を愛する方のためにデザインされたフラッグシップ・ビレッジホテル",
-              imageUrl: "/assets/images/img_grid_1.png",
-              imageLink: "/img_grid",
-              ctaLink: "/img_grid",
-              ctaText: "もっと見る",
+                id: 1,
+                title: 'オアシアリゾート',
+                description: 'ご家族連れや都会の探検を愛する方のためにデザインされたフラッグシップ・ビレッジホテル',
+                imageUrl: '/assets/images/img_grid_1.png',
+                imageLink: '/img_grid',
+                ctaLink: '/img_grid',
+                ctaText: 'もっと見る'
             },
             {
-              id: 2,
-              title: "クインシーホテル",
-              description: "ご家族連れや都会の探検を愛する方のためにデザインされたフラッグシップ・ビレッジホテル",
-              imageUrl: "/assets/images/img_grid_2.png",
-              imageLink: "/img_grid",
-              ctaLink: "/img_grid",
-              ctaText: "もっと見る",
+                id: 2,
+                title: 'クインシーホテル',
+                description: 'ご家族連れや都会の探検を愛する方のためにデザインされたフラッグシップ・ビレッジホテル',
+                imageUrl: '/assets/images/img_grid_2.png',
+                imageLink: '/img_grid',
+                ctaLink: '/img_grid',
+                ctaText: 'もっと見る'
             },
             {
-              id: 3,
-              title: "ザ・バラックス・ホテル",
-              description: "ご家族連れや都会の探検を愛する方のためにデザインされたフラッグシップ・ビレッジホテル",
-              imageUrl: "/assets/images/img_grid_3.png",
-              imageLink: "/img_grid",
-              ctaLink: "/img_grid",
-              ctaText: "もっと見る",
+                id: 3,
+                title: 'ザ・バラックス・ホテル',
+                description: 'ご家族連れや都会の探検を愛する方のためにデザインされたフラッグシップ・ビレッジホテル',
+                imageUrl: '/assets/images/img_grid_3.png',
+                imageLink: '/img_grid',
+                ctaLink: '/img_grid',
+                ctaText: 'もっと見る'
             },
             {
-              id: 4,
-              title: "ランデブーホテル",
-              description: "ご家族連れや都会の探検を愛する方のためにデザインされたフラッグシップ・ビレッジホテル",
-              imageUrl: "/assets/images/img_grid_4.png",
-              imageLink: "/img_grid",
-              ctaLink: "/img_grid",
-              ctaText: "もっと見る",
-            },
+                id: 4,
+                title: 'ランデブーホテル',
+                description: 'ご家族連れや都会の探検を愛する方のためにデザインされたフラッグシップ・ビレッジホテル',
+                imageUrl: '/assets/images/img_grid_4.png',
+                imageLink: '/img_grid',
+                ctaLink: '/img_grid',
+                ctaText: 'もっと見る'
+            }
         ]}
     />
     <script is:inline type="module" src="/scripts/imgTextAlt.js"></script>
