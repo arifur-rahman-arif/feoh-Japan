@@ -12,14 +12,14 @@ const Registration = {
 
         // Form elements
         this.form = document.getElementById('registration-form');
-        this.submitButton = document.getElementById('registration-form-submit');
-        this.surnameElement = document.getElementById('surname');
-        this.nameElement = document.getElementById('name');
-        this.emailElement = document.getElementById('email');
-        this.dateOfBirthElement = document.getElementById('dob');
-        this.nationalityElement = document.getElementById('nationality');
-        this.passwordElement = document.getElementById('password');
-        this.confirmPasswordElement = document.getElementById('confirm-password');
+        this.submitButton = this.form.querySelector('#registration-form-submit');
+        this.surnameElement = this.form.querySelector('#surname');
+        this.nameElement = this.form.querySelector('#name');
+        this.emailElement = this.form.querySelector('#email');
+        this.dateOfBirthElement = this.form.querySelector('#dob');
+        this.nationalityElement = this.form.querySelector('#nationality');
+        this.passwordElement = this.form.querySelector('#password');
+        this.confirmPasswordElement = this.form.querySelector('#confirm-password');
 
         // Password visibility toggle buttons
         this.showIcons = this.form.querySelectorAll('.password-show');
