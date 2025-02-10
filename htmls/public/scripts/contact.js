@@ -6,21 +6,23 @@
 
 const Contact = {
     init: function () {
+        this.form = document.getElementById('contact-form');
+
         // Contact form dropdown javascript
+        this.selectObjects = {};
         this.dropdowns = ['#inquiry', '#accommodation'];
         this.initializeDropdowns();
 
         // Form submission javascript
-        this.form = document.getElementById('contact-form');
         this.submitButton = document.getElementById('contact-form-submit');
 
-        this.surnameElement = document.getElementById('surname');
-        this.nameElement = document.getElementById('name');
-        this.emailElement = document.getElementById('email');
-        this.phoneElement = document.getElementById('telephone');
-        this.inquiryElement = document.getElementById('inquiry');
-        this.accommodationElement = document.getElementById('accommodation');
-        this.messageElement = document.getElementById('inquiry-content');
+        this.surnameElement = this.form.querySelector('#surname');
+        this.nameElement = this.form.querySelector('#name');
+        this.emailElement = this.form.querySelector('#email');
+        this.phoneElement = this.form.querySelector('#telephone');
+        this.inquiryElement = this.form.querySelector('#inquiry');
+        this.accommodationElement = this.form.querySelector('#accommodation');
+        this.messageElement = this.form.querySelector('#inquiry-content');
 
         this.removeShowErrorOnChange();
         this.handleSubmit();
@@ -36,12 +38,20 @@ const Contact = {
         if (!this.dropdowns || !this.dropdowns.length) return;
 
         for (const dropdown of this.dropdowns) {
+            const selectElement = this.form.querySelector(dropdown);
+            // Ensure the first option is a placeholder and not selectable
+            const placeholder = selectElement.querySelector('option[data-placeholder]');
+            const placeholderTextContent = placeholder?.dataset.placeholdertext || '';
+
             const select = new SlimSelect({
-                select: dropdown,
+                select: selectElement,
                 settings: {
-                    showSearch: false
+                    showSearch: false,
+                    placeholderText: placeholderTextContent || ''
                 }
             });
+
+            this.selectObjects[dropdown] = select;
         }
     },
 
@@ -51,13 +61,20 @@ const Contact = {
             this.nameElement,
             this.emailElement,
             this.phoneElement,
-            this.inquiryElement,
-            this.accommodationElement,
             this.messageElement
         ];
 
+        const changeEventTypeElements = [this.inquiryElement, this.accommodationElement];
+
         inputs.forEach(input => {
             input.addEventListener('input', event => {
+                const currentTarget = event.target;
+                currentTarget.closest('.input-group').classList.remove('input-group--invalid');
+            });
+        });
+
+        changeEventTypeElements.forEach(input => {
+            input.addEventListener('change', event => {
                 const currentTarget = event.target;
                 currentTarget.closest('.input-group').classList.remove('input-group--invalid');
             });
@@ -73,8 +90,8 @@ const Contact = {
             const name = this.nameElement.value.trim();
             const email = this.emailElement.value.trim();
             const phone = this.phoneElement.value.trim();
-            const inquiry = this.inquiryElement.value;
-            const accommodation = this.accommodationElement.value;
+            const inquiry = this.selectObjects['#inquiry'].getSelected()[0] || '';
+            const accommodation = this.selectObjects['#accommodation'].getSelected()[0] || '';
             const message = this.messageElement.value.trim();
 
             if (!surname) {

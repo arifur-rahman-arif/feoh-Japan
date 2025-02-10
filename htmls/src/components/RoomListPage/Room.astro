@@ -1,6 +1,11 @@
 ---
 const { heading, images, description, overviewImage, area, bed, capacity, haveWifi } = Astro.props;
 import SectionHeading from '../SectionHeading/index.astro';
+import { experimental_AstroContainer } from 'astro/container';
+const container = await experimental_AstroContainer.create();
+
+import Popup from './RoomListPopup.astro';
+const RoomListPopup = await container.renderToString(Popup);
 ---
 
 <section class="section" id={heading}>
@@ -64,9 +69,16 @@ import SectionHeading from '../SectionHeading/index.astro';
                 <img src={overviewImage} alt="" width="1024" height="683" class="w-full md:hidden" />
 
                 <!-- Action button -->
-                <div class="flex w-full flex-wrap items-center justify-center gap-4 md:mt-2 md:justify-start">
+                <div
+                    class="flex w-full flex-wrap items-center justify-center gap-4 md:mt-2 md:justify-start lg:grid lg:grid-cols-[auto_1fr]"
+                >
                     <!-- Modal popup button -->
-                    <button class="button button--outline w-full max-w-[21.3rem] md:max-w-max" title="Open modal">
+                    <button
+                        class="button button--outline w-full max-w-[21.3rem] md:max-w-max"
+                        type="button"
+                        title="Open modal"
+                        modal-content={RoomListPopup}
+                    >
                         室内設備・アメニティ
                         <svg
                             class="h-6 w-6"

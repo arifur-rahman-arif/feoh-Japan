@@ -28,12 +28,12 @@ document.querySelectorAll('[modal-content]').forEach(element => {
         modal.id = 'custom-modal';
         modal.className = 'fixed top-0 left-0 w-full h-full z-50 flex justify-center items-center';
         modal.innerHTML = `
-            <div class="relative w-full max-w-[82rem] bg-color4 px-6 py-12 pt-16 grid content-center modal-container overflow-y-auto ${containerRootClass}">
+            <div class="relative max-h-[calc(100vh_-_5rem)] w-full max-w-[82rem] bg-color4 px-6 py-12 pt-16 grid content-start modal-container overflow-y-auto ${containerRootClass}">
                 <button id="close-modal" title="Close modal"
                     class="absolute top-0 right-0 -translate-x-3 translate-y-3 transition-all duration-500 hover:scale-110 z-[2]">
                     <img src="/icons/icon-close.svg" alt="" width="48" height="48" class="pointer-events-none" />
                 </button>
-                <div class="relative w-full overflow-hidden [&_.plyr]:!max-h-full custom-modal__modal-content max-h-[calc(100vh_-_5rem)] overflow-y-auto">
+                <div class="relative w-full overflow-hidden [&_.plyr]:!max-h-full custom-modal__modal-content overflow-y-auto">
                     ${html}
                 </div>
             </div>
