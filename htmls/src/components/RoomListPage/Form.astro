@@ -30,7 +30,7 @@ const { className, hotelSelection } = Astro.props;
                         <option value="ファーイーストビレッジホテル横浜">ファーイーストビレッジホテル横浜</option>
                     </select>
 
-                    <span class="input-group__error">必須項目を入力してください</span>
+                    <span class="input-group__error input-group__error--absolute">必須項目を入力してください</span>
                 </div>
             )
         }
@@ -47,7 +47,7 @@ const { className, hotelSelection } = Astro.props;
                 placeholder="日 / 月 / 年"
             />
 
-            <span class="input-group__error">必須項目を入力してください</span>
+            <span class="input-group__error input-group__error--absolute">必須項目を入力してください</span>
         </div>
 
         <!-- Check out date -->
@@ -62,7 +62,7 @@ const { className, hotelSelection } = Astro.props;
                 placeholder="日 / 月 / 年"
             />
 
-            <span class="input-group__error">必須項目を入力してください</span>
+            <span class="input-group__error input-group__error--absolute">必須項目を入力してください</span>
         </div>
 
         <!-- Custom dropdown -->
@@ -101,7 +101,7 @@ const { className, hotelSelection } = Astro.props;
                 </div>
             </div>
 
-            <span class="input-group__error">必須項目を入力してください</span>
+            <span class="input-group__error input-group__error--absolute">必須項目を入力してください</span>
         </div>
 
         {
@@ -117,7 +117,7 @@ const { className, hotelSelection } = Astro.props;
     </div>
 
     <!-- Text -->
-    <div class="grid justify-items-center gap-4">
+    <div class="mt-4 grid justify-items-center gap-4">
         <a
             href="#"
             class="text-sm font-500 tracking-wide text-color11 underline decoration-color11 underline-offset-2 transition-all duration-500 hover:text-color1 hover:decoration-color1"
@@ -134,7 +134,7 @@ const { className, hotelSelection } = Astro.props;
                 placeholder="プロモーションコードの入力"
             />
 
-            <span class="input-group__error">必須項目を入力してください</span>
+            <span class="input-group__error input-group__error--absolute">必須項目を入力してください</span>
         </div>
     </div>
 </form>

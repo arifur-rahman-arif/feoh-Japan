@@ -6,12 +6,15 @@
 
 const Registration = {
     init: function () {
+        this.form = document.getElementById('registration-form');
+
         // Registration form dropdowns
         this.dropdowns = ['#nationality'];
+
+        this.selectObjects = {};
         this.initializeDropdowns();
 
         // Form elements
-        this.form = document.getElementById('registration-form');
         this.submitButton = this.form.querySelector('#registration-form-submit');
         this.surnameElement = this.form.querySelector('#surname');
         this.nameElement = this.form.querySelector('#name');
@@ -65,8 +68,6 @@ const Registration = {
 
                 if (currentTarget !== showIcon) return;
 
-                console.log(currentTarget);
-
                 const inputField = currentTarget.closest('.input-group').querySelector('input');
                 const hideIcon = currentTarget.closest('.input-group').querySelector('.password-close');
 
@@ -104,10 +105,17 @@ const Registration = {
         if (!this.dropdowns || !this.dropdowns.length) return;
 
         this.dropdowns.forEach(dropdown => {
-            new SlimSelect({
+            const selectElement = this.form.querySelector(dropdown);
+            // Ensure the first option is a placeholder and not selectable
+            const placeholder = selectElement.querySelector('option[data-placeholder]');
+            const placeholderTextContent = placeholder?.dataset.placeholdertext || '';
+
+            const select = new SlimSelect({
                 select: dropdown,
-                settings: { showSearch: false }
+                settings: { showSearch: false, placeholderText: placeholderTextContent || '' }
             });
+
+            this.selectObjects[dropdown] = select;
         });
     },
 
@@ -118,13 +126,21 @@ const Registration = {
             this.confirmPasswordElement,
             this.surnameElement,
             this.nameElement,
-            this.nationalityElement,
             this.dateOfBirthElement
         ];
+
+        const changeEventTypeElements = [this.nationalityElement];
 
         inputs.forEach(input => {
             input.addEventListener('input', event => {
                 event.target.closest('.input-group').classList.remove('input-group--invalid');
+            });
+        });
+
+        changeEventTypeElements.forEach(input => {
+            input.addEventListener('change', event => {
+                const currentTarget = event.target;
+                currentTarget.closest('.input-group').classList.remove('input-group--invalid');
             });
         });
     },
@@ -138,32 +154,15 @@ const Registration = {
             const name = this.nameElement.value.trim();
             const email = this.emailElement.value.trim();
             const dob = this.dateOfBirthElement.value.trim();
-            const nationality = this.nationalityElement.value;
+            const nationality = this.selectObjects['#nationality'].getSelected()[0] || '';
             const password = this.passwordElement.value;
             const confirmPassword = this.confirmPasswordElement.value;
 
             // Validation
-            if (!surname) {
-                this.showError(this.surnameElement);
-                showError = true;
-            }
-            if (!name) {
-                this.showError(this.nameElement);
-                showError = true;
-            }
             if (!email || !this.validateEmail(email)) {
                 this.showError(this.emailElement);
                 showError = true;
             }
-            if (!dob) {
-                this.showError(this.dateOfBirthElement);
-                showError = true;
-            }
-            if (!nationality) {
-                this.showError(this.nationalityElement);
-                showError = true;
-            }
-
             const passwordRegex = new RegExp('^(?=.*[a-z])(?=.*[A-Z])(?=.*[0-9])(?=.*[!@#\$%\^&\*])(?=.{8,})');
             if (!password || !passwordRegex.test(password)) {
                 this.showError(this.passwordElement);
@@ -171,6 +170,22 @@ const Registration = {
             }
             if (password !== confirmPassword) {
                 this.showError(this.confirmPasswordElement);
+                showError = true;
+            }
+            if (!name) {
+                this.showError(this.nameElement);
+                showError = true;
+            }
+            if (!surname) {
+                this.showError(this.surnameElement);
+                showError = true;
+            }
+            if (!nationality) {
+                this.showError(this.nationalityElement);
+                showError = true;
+            }
+            if (!dob) {
+                this.showError(this.dateOfBirthElement);
                 showError = true;
             }
 
