@@ -1,0 +1,99 @@
+---
+import SectionHeading from '@/components/SectionHeading/index.astro';
+
+const list = [
+    {
+        title: '室内設備',
+        items: [
+            '無料Wifi',
+            '室内金庫',
+            'ミニ冷蔵庫',
+            '電気ケトル',
+            '最高級シモンズベッド',
+            'デスク',
+            '暖房/冷房設備',
+            'アイロン/アイロン台<br/>（リクエストにて提供）',
+            '液晶テレビ <br/>（ケーブルテレビ/チャンネル有）'
+        ]
+    },
+    {
+        title: 'アメニティ',
+        items: [
+            'ヘアドライヤー',
+            'バスタブ',
+            'シャワーヘッド',
+            'バスアメニティ',
+            '歯ブラシ',
+            'スリッパ',
+            'バスローブ',
+            '浴用タオル',
+            'ウォシュレット'
+        ]
+    },
+    {
+        title: 'アメニティ',
+        items: [
+            'ヘアドライヤー',
+            'バスタブ',
+            'シャワーヘッド',
+            'バスアメニティ',
+            '歯ブラシ',
+            'スリッパ',
+            'バスローブ',
+            '浴用タオル',
+            'ウォシュレット'
+        ]
+    },
+    {
+        title: 'アメニティ',
+        items: [
+            '無料Wifi',
+            '室内金庫',
+            'ミニ冷蔵庫',
+            '電気ケトル',
+            '最高級シモンズベッド',
+            'デスク',
+            '電話/内線電話',
+            'アイロン/アイロン台<br/>（リクエストにて提供）',
+            '液晶テレビ<br/>（ケーブルテレビ/チャンネル有）'
+        ]
+    },
+    {
+        title: 'アメニティ',
+        items: [
+            'ヘアドライヤー',
+            'バスタブ',
+            'シャワーヘッド',
+            'バスアメニティ',
+            '歯ブラシ',
+            'スリッパ',
+            'バスローブ',
+            '浴用タオル',
+            'ウォシュレット'
+        ]
+    }
+];
+---
+
+<div class="container grid">
+    <SectionHeading title="室内設備・アメニティ" />
+
+    <div class="grid content-start gap-4 md:grid-cols-2 md:gap-6 md:gap-y-14 xl:grid-cols-3 xl:px-[10rem]">
+        {
+            list.map(item => (
+                <div class="grid content-start gap-6 md:max-w-[18.75rem]">
+                    <div class="flex items-center justify-start gap-2">
+                        <img src="/icons/icon-decorate_line.png" alt="" width="20" height="28" />
+                        <h3 class="text-xl font-500 text-color9">{item.title}</h3>
+                    </div>
+
+                    <ul class="grid list-disc pl-4 marker:text-[12px] marker:text-color5">
+                        {item.items.map(value => (
+                            <li class="leading-8 text-color11" set:html={value} />
+                        ))}
+                    </ul>
+                </div>
+            ))
+        }
+    </div>
+</div>
