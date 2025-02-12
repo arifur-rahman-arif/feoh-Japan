@@ -1,21 +1,22 @@
-/* Scroll To Top Function Starts*/
-
 document.addEventListener('DOMContentLoaded', function () {
+    let lastScrollTop = 0;
+    const btnScrollTop = document.querySelector('.btnScrollTop');
+
     window.addEventListener('scroll', function () {
-        if (window.scrollY > 200) {
-            document.querySelector('.btnScrollTop').classList.add('activated');
+        let currentScroll = window.scrollY;
+
+        if (currentScroll < lastScrollTop && currentScroll > 200) {
+            // User is scrolling up and past 200px
+            btnScrollTop.classList.add('activated');
         } else {
-            document.querySelector('.btnScrollTop').classList.remove('activated');
+            // User is scrolling down or at the top
+            btnScrollTop.classList.remove('activated');
         }
+
+        lastScrollTop = currentScroll;
+    });
+
+    btnScrollTop.addEventListener('click', function () {
+        window.scrollTo({ top: 0, behavior: 'smooth' });
     });
 });
-
-document.querySelector('.btnScrollTop').addEventListener('click', function () {
-    if (window.scrollY != 0) {
-        setTimeout(function () {
-            window.scrollTo(0, 0);
-        }, 5);
-    }
-});
-
-/* Scroll To Top Function Ends*/

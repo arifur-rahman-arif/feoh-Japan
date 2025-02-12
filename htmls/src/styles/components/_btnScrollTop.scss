@@ -4,16 +4,19 @@
     border-radius: 50%;
     bottom: 30px;
     cursor: pointer;
-    display: none;
+    pointer-events: none;
     height: 60px;
     overflow: hidden;
     position: fixed;
     right: 40px;
     width: 60px;
-    z-index: 1;
+    z-index: 20;
+    transition: all 0.5s ease-in-out;
+    transform: translate(calc(100% + 40px), calc(100% + 40px));
 }
 .btnScrollTop.activated {
-    display: block;
+    pointer-events: auto;
+    transform: translate(0, 0);
 }
 .btnScrollTop:before,
 .btnScrollTop:after {

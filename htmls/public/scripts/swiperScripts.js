@@ -6,7 +6,7 @@ new Swiper('.service-gallery-swiper', {
     //     delay: 2500,
     //     disableOnInteraction: false
     // },
-    speed: 2000,
+    speed: 1500,
     slidesPerView: 'auto',
     freeMode: true,
     spaceBetween: 20,
@@ -19,7 +19,7 @@ new Swiper('.service-gallery-swiper', {
 });
 
 new Swiper('.property-gallery-swiper', {
-    speed: 2000,
+    speed: 1500,
     slidesPerView: 'auto',
     centeredSlides: true,
     spaceBetween: 20,
@@ -32,6 +32,7 @@ new Swiper('.property-gallery-swiper', {
 });
 
 new Swiper('.room-list-swiper', {
+    speed: 1500,
     // autoplay: {
     //     delay: 2500,
     //     disableOnInteraction: false

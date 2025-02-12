@@ -1,7 +1,6 @@
 // Initialize Swiper
 new Swiper('.swiper-container', {
-    loop: true,
-    speed: 800,
+    speed: 2000,
     navigation: {
         nextEl: '.swiper-button-next',
         prevEl: '.swiper-button-prev'
