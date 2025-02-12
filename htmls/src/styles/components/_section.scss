@@ -13,3 +13,11 @@
         margin-top: 6.25rem;
     }
 }
+
+.breadcumb-section {
+    margin-top: 3rem;
+
+    @include media-breakpoint-up('md') {
+        margin-top: 2rem;
+    }
+}

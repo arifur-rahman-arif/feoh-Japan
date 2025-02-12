@@ -7,14 +7,9 @@ import AccessMapHead from './AccessMapHead.astro';
     <div class={`${className}-container`}>
         <div id="location-map">
             <SectionHeading title="所在地・地図" />
-            <iframe
-                src="https://www.google.com/maps/embed?pb=!1m14!1m8!1m3!1d3988.6678995098073!2d103.8770111!3d1.3759412!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x31da165b2d1099d1%3A0xf036d6c1d05978fd!2sVillage+Residence+Hougang!5e0!3m2!1sen!2sin!4v1535445473886"
-                width="100%"
-                height="440"
-                frameborder="0"
-                style="border:0"
-                allowfullscreen="">
-            </iframe>
+            <AccessMapHead 
+                imageSrc="/assets/images/access_maps/location-map.png"
+            />
             <div class="max-w-4xl mx-auto access-contact">
                 <div class="access-contact-container">
                     <div class="access-contact-item">
@@ -47,17 +42,8 @@ import AccessMapHead from './AccessMapHead.astro';
                 listItems={[
                     "A2出口から徒歩3分"
                 ]}
+                youtubeVideoId="TVPkcUMYKbM?si=fX6QAFkurlgUJ8Bv"
             />
-            <div class="flex justify-center mb-8">
-                <iframe
-                    src="https://www.google.com/maps/embed?pb=!1m14!1m8!1m3!1d3988.6678995098073!2d103.8770111!3d1.3759412!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x31da165b2d1099d1%3A0xf036d6c1d05978fd!2sVillage+Residence+Hougang!5e0!3m2!1sen!2sin!4v1535445473886"
-                    width="720"
-                    height="405"
-                    frameborder="0"
-                    style="border:0"
-                    allowfullscreen="">
-                </iframe>
-            </div>
             <div class="access-divider">
                 <!-- Divider -->
             </div>
@@ -67,17 +53,8 @@ import AccessMapHead from './AccessMapHead.astro';
                 listItems={[
                     "C10出口から徒歩15分"
                 ]}
+                imageSrc="/assets/images/access_maps/train-map-2.png"
             />
-            <div class="flex justify-center">
-                <iframe
-                    src="https://www.google.com/maps/embed?pb=!1m14!1m8!1m3!1d3988.6678995098073!2d103.8770111!3d1.3759412!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x31da165b2d1099d1%3A0xf036d6c1d05978fd!2sVillage+Residence+Hougang!5e0!3m2!1sen!2sin!4v1535445473886"
-                    width="720"
-                    height="405"
-                    frameborder="0"
-                    style="border:0"
-                    allowfullscreen="">
-                </iframe>
-            </div>
         </div>
         <div class="container" id="airport">
             <SectionHeading title="空港からお越しの場合" />
@@ -91,17 +68,8 @@ import AccessMapHead from './AccessMapHead.astro';
                     "約40分（浜松町駅経由、JR 新橋駅または有楽町駅下車）",
                     "JR 新橋駅A5、または有楽町駅A2出口から徒歩3分"
                 ]}
+                imageSrc="/assets/images/access_maps/airport-map-1.png"
             />
-            <div class="flex justify-center mb-8">
-                <iframe
-                    src="https://www.google.com/maps/embed?pb=!1m14!1m8!1m3!1d3988.6678995098073!2d103.8770111!3d1.3759412!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x31da165b2d1099d1%3A0xf036d6c1d05978fd!2sVillage+Residence+Hougang!5e0!3m2!1sen!2sin!4v1535445473886"
-                    width="720"
-                    height="405"
-                    frameborder="0"
-                    style="border:0"
-                    allowfullscreen="">
-                </iframe>
-            </div>
             <div class="access-divider">
                 <!-- Divider -->
             </div>
@@ -112,17 +80,8 @@ import AccessMapHead from './AccessMapHead.astro';
                     "約70分（東京駅経由、JR有楽町駅下車）",
                     "有楽町駅A2出口から徒歩3分"
                 ]}
+                imageSrc="/assets/images/access_maps/airport-map-2.png"
             />
-            <div class="flex justify-center">
-                <iframe
-                    src="https://www.google.com/maps/embed?pb=!1m14!1m8!1m3!1d3988.6678995098073!2d103.8770111!3d1.3759412!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x31da165b2d1099d1%3A0xf036d6c1d05978fd!2sVillage+Residence+Hougang!5e0!3m2!1sen!2sin!4v1535445473886"
-                    width="720"
-                    height="405"
-                    frameborder="0"
-                    style="border:0"
-                    allowfullscreen="">
-                </iframe>
-            </div>
         </div>
         <div class="container" id="car">
             <SectionHeading title="お車でお越しの場合" />
@@ -134,17 +93,8 @@ import AccessMapHead from './AccessMapHead.astro';
                     "◯◯方面よりお越しのお車は、◯◯◯◯交差点通過直後に◯◯を通らず、◯◯◯◯方面地上路車線を直進ください。",
                     "※ホテル駐車場車体制限：高さ 2.1m、幅 1.95m、長さ 6m まで。"
                 ]}
+                imageSrc="/assets/images/access_maps/bus-map-1.png"
             />
-            <div class="flex justify-center">
-                <iframe
-                    src="https://www.google.com/maps/embed?pb=!1m14!1m8!1m3!1d3988.6678995098073!2d103.8770111!3d1.3759412!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x31da165b2d1099d1%3A0xf036d6c1d05978fd!2sVillage+Residence+Hougang!5e0!3m2!1sen!2sin!4v1535445473886"
-                    width="720"
-                    height="405"
-                    frameborder="0"
-                    style="border:0"
-                    allowfullscreen="">
-                </iframe>
-            </div>
         </div>
     </div>
 </section>
