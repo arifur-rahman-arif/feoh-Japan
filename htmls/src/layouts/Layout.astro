@@ -23,6 +23,7 @@ const { currentPageTitle, whiteNav, excludeSecondNav } = Astro.props;
         />
         <link href="https://fonts.googleapis.com/css2?family=Mulish:wght@100...900&display=swap" rel="stylesheet" />
         <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/swiper@11/swiper-bundle.min.css" />
+        <link href="https://assets.juicer.io/embed.css" media="all" rel="stylesheet" type="text/css" />
         <script is:inline src="https://cdn.jsdelivr.net/npm/swiper@11/swiper-bundle.min.js"></script>
 
         <title>FEH JP</title>
@@ -63,6 +64,9 @@ const { currentPageTitle, whiteNav, excludeSecondNav } = Astro.props;
 
         <!-- Cookie consent -->
         <script is:inline src="/scripts/cookieConsent.js"></script>
+
+        <!-- Juicer Script -->
+        <script src="https://assets.juicer.io/embed.js" async></script>
     </body>
 </html>
 <!-- 
