@@ -1,5 +1,5 @@
 ---
-const { title, googleMapLink, listItems } = Astro.props;
+const { title, googleMapLink, listItems, imageSrc, youtubeVideoId } = Astro.props;
 ---
 
 <div class="access-map-head flex flex-col">
@@ -32,4 +32,25 @@ const { title, googleMapLink, listItems } = Astro.props;
             ))}
         </ul>
     }
+
+    <!-- Multi-Media Section: Supports Image and/or YouTube Video -->
+        <div class="multimedia-section flex flex-col justify-center items-center gap-4 mt-10">
+            {youtubeVideoId &&
+                <div class="youtube-container">
+                    <iframe
+                        width="720"
+                        height="405"
+                        src={`https://www.youtube.com/embed/${youtubeVideoId}`} 
+                        title="YouTube Video"
+                        frameborder="0"
+                        allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" 
+                        allowfullscreen>
+                    </iframe>
+                </div>
+            }
+
+            {imageSrc &&
+                <img src={imageSrc} alt="Access Map" class="max-w-full h-auto shadow-md" />
+            }
+        </div>
 </div>

@@ -85,6 +85,17 @@
                 }
             }
         }
+
+        #location-map {
+            .access-map-head {
+                margin-top: 0 !important;
+
+                .multimedia-section {
+                    margin-top: 0 !important;
+                    align-items: unset !important;
+                }
+            }
+        }
     }
 
     @include media-breakpoint-down(md) {
@@ -101,6 +112,11 @@
                     .access-map-slash {
                         height: 1.25rem;
                     }
+                }
+
+                .youtube-container iframe {
+                    width: 360px;
+                    height: 270px;
                 }
             }
         }
