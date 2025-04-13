@@ -1,0 +1,81 @@
+@use '../utils/breakpoints' as *;
+
+.instagram-section {
+	.j-image.j-image.j-image img {
+		object-fit: cover !important;
+	}
+
+	@include media-breakpoint-up(xl) {
+		.instagram-feeds {
+			max-width: var(--container-width);
+			width: 100%;
+		}
+		
+		.j-stacker.j-stacker.j-stacker.j-stacker {
+			width: 100% !important;
+		}
+		
+		.j-stacker {
+			padding: 0 !important;
+			display: grid !important;
+			gap: 20px;
+			grid-template-columns: repeat(auto-fit, minmax(224px, 1fr));
+		}
+	
+		.j-stack.galcolumn {
+			width: 100% !important;
+			padding: 0 !important;
+		}
+	
+		.j-image.j-image.j-image img {
+			margin: 0 !important;
+			width: 100% !important;
+			object-fit: cover !important;
+			height: 224px !important;
+		}
+	
+		.feed-item.j-instagram {
+			margin: 0 !important;
+		}
+	}
+
+	@include media-breakpoint-down(md) {
+		.instagram-feeds {
+			width: 100% !important;
+			padding: 0 1rem !important;
+		}
+		.j-stacker.j-stacker.j-stacker {
+			margin: 0 !important;
+			width: 100% !important;
+			overflow-x: auto;
+
+		}
+		.j-stack.j-stack.galcolumn {
+			width: 100vw !important;
+			padding: 0 !important;
+			display: flex !important;
+			gap: 20px;
+			overflow-x: auto;
+		}
+
+		.feed-item.feed-item {
+			margin: 0 !important;
+
+			.j-image {
+				width: 160px !important;
+				height: 160px !important;
+				display: block !important;
+
+				img {
+					margin: 0 !important;
+					object-fit: cover !important;
+					width: 100% !important;
+					height: 100% !important;
+				}
+			}
+			
+			
+		}
+	}
+
+}

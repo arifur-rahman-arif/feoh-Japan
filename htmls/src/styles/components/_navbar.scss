@@ -115,8 +115,11 @@ nav {
         display: none;
     }
 
-    svg,
-    path {
-        fill: var(--color11);
+
+    @include media-breakpoint-up(xl) {
+        svg,
+        path {
+            fill: var(--color11);
+        }
     }
 }

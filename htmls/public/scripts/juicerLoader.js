@@ -6,7 +6,7 @@ if (typeof window !== 'undefined') {
     script.onload = function () {
         // Ensure Juicer initializes after script loads
         if (window.juicer) {
-            window.juicer.initialize('juicer-feed');
+            window.juicer.initialize('juicer-feed'); 
         }
     };
     document.body.appendChild(script);

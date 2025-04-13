@@ -13,8 +13,29 @@ const HotelBooking = {
             if (event.detail.eventType === 'booking-popup') {
                 this.forms = document.querySelectorAll('.booking-popup .hotel-booking-form');
                 this.initializeForms();
+                this.toggleBookingPromo();
             }
         });
+
+        this.toggleBookingPromo();
+    },
+
+    toggleBookingPromo: function () {
+        const bookingPromo = document.querySelector('.booking-promo');
+        const bookingPromoBtn = bookingPromo.querySelector('.booking-promo__btn');
+        const bookingPromoInput = bookingPromo.querySelector('.booking-promo__input');
+        const arrowIcon = bookingPromo.querySelector('.arrow-icon');
+        
+        if (bookingPromoBtn) {
+            bookingPromoBtn.addEventListener('click', () => {
+                // Toggle the collapsed state on the input
+                bookingPromoInput.classList.toggle('collapsed');
+                
+                // Rotate the arrow icon
+                arrowIcon.classList.toggle('rotate');
+            });
+        }
+        
     },
 
     initializeForms: function () {
@@ -254,8 +275,8 @@ const HotelBooking = {
                     const minCheckOutDate = new Date(selectedDates[0]);
                     minCheckOutDate.setDate(minCheckOutDate.getDate() + 1); // Checkout must be at least 1 day later
 
-                    checkOutPicker.set('minDate', minCheckOutDate);
-                    checkOutPicker.setDate(minCheckOutDate, true); // Automatically set checkout to next day if it's before
+                    // checkOutPicker.set('minDate', minCheckOutDate);
+                    // checkOutPicker.setDate(minCheckOutDate, true); // Automatically set checkout to next day if it's before
                 }
             }
         });
@@ -268,9 +289,9 @@ const HotelBooking = {
                     const selectedCheckOutDate = selectedDates[0];
                     const currentCheckInDate = checkInPicker.selectedDates[0];
 
-                    if (currentCheckInDate && selectedCheckOutDate <= currentCheckInDate) {
-                        checkOutPicker.setDate(null); // Reset the checkout date if invalid
-                    }
+                    // if (currentCheckInDate && selectedCheckOutDate <= currentCheckInDate) {
+                    //     checkOutPicker.setDate(null); // Reset the checkout date if invalid
+                    // }
                 }
             }
         });
