@@ -82,3 +82,18 @@
         }
     }
 }
+
+.form_error {
+    display: none;
+    width: 100%;
+    padding: 1rem 1.5rem;
+    text-align: center;
+    background: var(--color14);
+    color: var(--color4);
+    font-weight: var(--500);
+    margin-bottom: 1rem;
+
+    &.active {
+        display: block;
+    }
+}

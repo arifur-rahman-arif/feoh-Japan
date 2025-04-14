@@ -1,11 +1,9 @@
 // While working enable this import to have type checking
 // import Swiper from 'swiper';
 
-new Swiper('.service-gallery-swiper', {
-    // autoplay: {
-    //     delay: 2500,
-    //     disableOnInteraction: false
-    // },
+
+const serviceGallerySwiperAutoplay = document.querySelector('.service-gallery-swiper').classList.contains('autoplay');
+const serviceGallerySwiperObject = {
     speed: 1500,
     slidesPerView: 'auto',
     freeMode: true,
@@ -16,9 +14,19 @@ new Swiper('.service-gallery-swiper', {
     pagination: {
         el: '.swiper-pagination'
     }
-});
+}
+if (serviceGallerySwiperAutoplay) {
+    serviceGallerySwiperObject.autoplay = {
+        delay: 2500,
+        disableOnInteraction: false
+    }
+}
+new Swiper('.service-gallery-swiper', serviceGallerySwiperObject);
 
-new Swiper('.property-gallery-swiper', {
+
+
+const propertyGallerySwiperAutoplay = document.querySelector('.property-gallery-swiper').classList.contains('autoplay');
+const propertyGallerySwiperObject = {
     speed: 1500,
     slidesPerView: 'auto',
     centeredSlides: true,
@@ -27,16 +35,23 @@ new Swiper('.property-gallery-swiper', {
     grabCursor: true,
     loop: true,
     pagination: {
-        el: '.swiper-pagination'
+        el: '.swiper-pagination',
+        clickable: true
+    },
+}
+if (propertyGallerySwiperAutoplay) {
+    propertyGallerySwiperObject.autoplay = {
+        delay: 2500,
+        disableOnInteraction: false
     }
-});
+}
+new Swiper('.property-gallery-swiper', propertyGallerySwiperObject);
 
-new Swiper('.room-list-swiper', {
+
+
+const roomListSwiperAutoplay = document.querySelector('.property-gallery-swiper').classList.contains('autoplay');
+const roomListSwiperObject = {
     speed: 1500,
-    // autoplay: {
-    //     delay: 2500,
-    //     disableOnInteraction: false
-    // },
     pagination: {
         el: '.swiper-pagination'
     },
@@ -44,4 +59,11 @@ new Swiper('.room-list-swiper', {
         nextEl: '.swiper-button-next',
         prevEl: '.swiper-button-prev'
     }
-});
+}
+if (roomListSwiperAutoplay) {
+    roomListSwiperObject.autoplay = {
+        delay: 2500,
+        disableOnInteraction: false
+    }
+}
+new Swiper('.room-list-swiper', roomListSwiperObject);

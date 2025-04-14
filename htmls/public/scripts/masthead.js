@@ -1,11 +1,9 @@
 // While working enable this import to have type checking
 // import Swiper from 'swiper';
 
-new Swiper('.masthead-swiper', {
-    // autoplay: {
-    //     delay: 2500,
-    //     disableOnInteraction: false
-    // },
+const isAutoPlay = document.querySelector('.masthead-swiper').classList.contains('autoplay');
+
+const swiperObject = {
     speed: 2000,
     slidesPerView: 1,
     navigation: {
@@ -16,4 +14,13 @@ new Swiper('.masthead-swiper', {
         el: '.swiper-pagination',
         clickable: true
     }
-});
+}
+
+if(isAutoPlay) {
+    swiperObject.autoplay = {
+        delay: 2500,
+        disableOnInteraction: false
+    }
+}
+
+new Swiper('.masthead-swiper', swiperObject);

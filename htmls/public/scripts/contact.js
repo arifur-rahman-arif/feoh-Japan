@@ -125,7 +125,10 @@ const Contact = {
             }
 
             if (showError) {
-                // this.alertElement.text('必須項目を入力してください').fadeIn(2000);
+                // Show the form error
+                const formErrorElement = this.form.querySelector('.form_error');
+                formErrorElement.classList.add('active');
+
                 // Scroll top to the form element
                 window.scrollTo({
                     top: this.form.getBoundingClientRect().top + window.scrollY - 200,

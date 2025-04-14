@@ -121,6 +121,10 @@ const Login = {
             }
 
             if (showError) {
+                // Show the form error
+                const formErrorElement = this.form.querySelector('.form_error');
+                formErrorElement.classList.add('active');
+
                 window.scrollTo({
                     top: this.form.getBoundingClientRect().top + window.scrollY - 200,
                     behavior: 'smooth'

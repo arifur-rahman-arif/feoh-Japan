@@ -25,19 +25,50 @@ import SectionHeading from '@/components/SectionHeading/index.astro';
 
     <div class="mx-auto max-w-[71.62rem] bg-[#F0EBDC] p-3 md:p-4 lg:mt-10">
         <div
-            class="grid items-center justify-items-center gap-2 border border-solid border-color1 p-3 md:grid-cols-2 lg:grid-cols-[auto_1fr] lg:gap-8 lg:p-8"
+            class="grid items-center justify-items-center gap-2 border border-solid border-color1 p-3 xl:grid-cols-[auto_1fr] lg:gap-8 lg:p-8"
         >
             <h2 class="text-center text-xl font-700 text-color11 md:text-[2rem] md:leading-[150%]">
                 ファーイースト・インサイダー<br /><span
                     class="text-xl font-700 text-color1 md:text-[2rem] md:leading-[150%]">会員限定</span
                 >特典
             </h2>
-            <!-- Banner -->
-            <div class="grid grid-cols-3 gap-4">
-                <img src="/assets/section-images/registration-banner-point-1.png" width="170" height="170" alt="" />
-                <img src="/assets/section-images/registration-banner-point-2.png" width="170" height="170" alt="" />
-                <img src="/assets/section-images/registration-banner-point-3.png" width="170" height="170" alt="" />
+
+           <!-- Feature Points -->
+           <div class="flex items-center justify-center gap-4 mt-4 md:mt-0 flex-wrap">
+            <!-- Box 1 -->
+            <div class="grid justify-items-center h-[10.625rem] w-[10.625rem] rounded-full bg-[#6D3B12] content-center p-4">
+                <span class="text-white text-[0.625rem] leading-[150%] font-400 uppercase">point 1</span>
+                <span class="text-white tracking-wider font-700 text-center">
+                    <span class="text-white text-sm font-700">料金最大</span>
+                    <span class="text-lg text-white tracking-wider font-700">12％</span>
+                    <br/>追加割引
+                </span>
+                <img src="/icons/icon-coupon.svg" alt="" width="36" height="31" class="mt-3" />
             </div>
+
+            <!-- Box 2 -->
+            <div class="grid justify-items-center h-[10.625rem] w-[10.625rem] rounded-full bg-[#6D3B12] content-center p-4">
+                <span class="text-white text-[0.625rem] leading-[150%] font-400 uppercase">point 1</span>
+                <span class="text-white tracking-wider font-700 text-center text-[0.907rem]">
+                    数量限定セールへの<br/>
+                    <span class="text-[1.16619rem] leading-[150%] font-700 text-white">優先アクセス</span>
+                </span>
+                <img src="/icons/icon-gift.svg" alt="" width="28" height="33" class="mt-3" />
+            </div>
+
+            <!-- Box 3 -->
+            <div class="grid justify-items-center h-[10.625rem] w-[10.625rem] rounded-full bg-[#6D3B12] content-center p-4">
+                <span class="text-white text-[0.625rem] leading-[150%] font-400 uppercase">point 1</span>
+                <span class="text-center">
+                    <span class="text-white tracking-wider font-700 text-center text-[1.035rem] leading-[125%]">
+                        入会費・年会費
+                    </span>
+                    <br/>
+                    <span class="text-[1.4rem] leading-[125%] text-white font-700 text-center w-full">無料</span>
+                </span>
+                <img src="/icons/icon-hand-pointer.svg" alt="" width="23" height="33" class="mt-3" />
+            </div>
+        </div>
         </div>
     </div>
 
