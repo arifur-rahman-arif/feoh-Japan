@@ -3,7 +3,7 @@ import SectionHeading from '../SectionHeading/index.astro';
 const { sectionId, className, bgColor, title, amenities } = Astro.props;
 ---
 <section class={`${className} ${bgColor}`} id={`${sectionId}`}>
-    <div class="amenities-feature-overview-container">
+    <div class="amenities-feature-overview-container container">
         <SectionHeading title={title} />
         <div class="amenity-items">
             {amenities.map((amenity, index) => (
