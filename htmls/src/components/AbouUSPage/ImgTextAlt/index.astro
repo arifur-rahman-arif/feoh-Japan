@@ -1,6 +1,6 @@
 ---
 import SectionHeading from '../../SectionHeading/index.astro';
-const { sectionId, bgColor, title, subtitle, content, contentPosition, images, carouselPosition } = Astro.props;
+const { sectionId, bgColor, title, subtitle, content, contentPosition, images, carouselPosition, para } = Astro.props;
 ---
 
 <section class={`imgTextAlt-section ${bgColor}`} id={`${sectionId}`}>
@@ -8,8 +8,8 @@ const { sectionId, bgColor, title, subtitle, content, contentPosition, images, c
         <div class="container">
             <!-- Heading Section -->
             <SectionHeading title={title} subtitle={subtitle} />
-            <div class="grid w-full max-w-[38.75rem] gap-5 justify-self-center">
-                <p>{content}</p>
+            <div class="grid w-full max-w-[40rem] gap-5 justify-self-center ">
+                <p class="text-center">{content}</p>
             </div>
         </div>
     </div>
