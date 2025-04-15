@@ -5,7 +5,7 @@ const { heading, subheading, image, className } = Astro.props;
 
 <main class="relative" role="banner">
     <img
-        class={twMerge('h-full min-h-[9.75rem] w-full object-cover md:max-h-[21.43rem]', className)}
+        class={twMerge('h-full min-h-[9.75rem] w-full object-cover', className)}
         src={image || '/assets/masthead/masthead-room-list.png'}
         alt="banner-image"
         width="1440"
