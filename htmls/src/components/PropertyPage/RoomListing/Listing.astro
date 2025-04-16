@@ -68,9 +68,9 @@ const rooms = [
                     <div class="h-[1px] w-full bg-color15 max-md:hidden" />
 
                     {/* Meta data */}
-                    <div class="flex items-center gap-6 md:grid md:gap-1">
+                    <div class="flex items-center gap-6 md:grid md:gap-1 flex-wrap">
                         {/* Size */}
-                        <div class="justify- flex items-center gap-3">
+                        <div class="justify-start flex items-center gap-3">
                             <img
                                 src="/icons/icon_expand.svg"
                                 width="34"
@@ -82,6 +82,41 @@ const rooms = [
                         </div>
 
                         {/* Capacity */}
+                        <div class="flex items-center justify-start gap-3">
+                            <img
+                                src="/icons/icon_user.svg"
+                                width="34"
+                                height="34"
+                                alt=""
+                                class="max-md:h-6 max-md:w-6"
+                            />
+                            <span class="font-400 text-black">定員：{room.capacity}</span>
+                        </div>
+
+                        <div class="flex items-center justify-start gap-3">
+                            <img
+                                src="/icons/icon_user.svg"
+                                width="34"
+                                height="34"
+                                alt=""
+                                class="max-md:h-6 max-md:w-6"
+                            />
+                            <span class="font-400 text-black">定員：{room.capacity}</span>
+                        </div>
+
+
+                        <div class="flex items-center justify-start gap-3">
+                            <img
+                                src="/icons/icon_user.svg"
+                                width="34"
+                                height="34"
+                                alt=""
+                                class="max-md:h-6 max-md:w-6"
+                            />
+                            <span class="font-400 text-black">定員：{room.capacity}</span>
+                        </div>
+
+
                         <div class="flex items-center justify-start gap-3">
                             <img
                                 src="/icons/icon_user.svg"

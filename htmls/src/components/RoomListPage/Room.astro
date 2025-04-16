@@ -29,12 +29,12 @@ const RoomListPopup = await container.renderToString(Popup);
         </div>
 
         <!-- Content -->
-        <div class="mt-6 grid md:mt-10 md:grid-cols-2 md:gap-10 lg:pr-10 xl:grid-cols-2">
+        <div class={`mt-6 grid md:mt-10  md:gap-10  ${overviewImage ? 'md:grid-cols-2 lg:pr-10' : 'md:grid-cols-1'}`}>
             <!-- Desktop version image -->
-            <img src={overviewImage} alt="" width="1024" height="683" class="w-full max-md:hidden" />
-
+             {overviewImage && <img src={overviewImage} alt="" width="1024" height="683" class="w-full max-md:hidden" />}
+            
             <div
-                class="grid w-full gap-5 max-md:content-center md:max-w-[30rem] lg:content-start xl:grid-rows-[auto_auto_1fr_auto] xl:gap-6"
+                class={`grid w-full gap-5 max-md:content-center ${overviewImage ? 'md:max-w-[30rem]' : ''} lg:content-start xl:grid-rows-[auto_auto_1fr_auto] xl:gap-6`}
             >
                 <p>{description}</p>
 
