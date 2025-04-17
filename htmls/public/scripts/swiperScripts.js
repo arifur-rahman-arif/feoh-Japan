@@ -12,7 +12,17 @@ const serviceGallerySwiperObject = {
     grabCursor: true,
     loop: true,
     pagination: {
-        el: '.swiper-pagination'
+        el: '.swiper-pagination',
+        clickable: true
+    },
+    
+    breakpoints: {
+        320: {
+            centeredSlides: true,
+        },
+        768: {
+            centeredSlides: false,
+        }
     }
 }
 if (serviceGallerySwiperAutoplay) {
