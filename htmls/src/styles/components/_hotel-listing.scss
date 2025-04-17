@@ -244,6 +244,10 @@
         width: 100%;
     }
 
+    .hotel-info-container .hotel-info-title-container.hidden {
+        display: none;
+    }
+
     .hotel-info-title-container {
         display: flex;
         flex-direction: column;

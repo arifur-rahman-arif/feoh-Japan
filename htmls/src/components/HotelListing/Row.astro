@@ -12,6 +12,12 @@ const { hotel, layout, rowclass } = Astro.props;
 >
   <!-- Swiper Image Component -->
   <div class="w-full md:w-[52%]">
+    <div class="flex flex-col justify-center p-5 space-y-4">
+      <div class="hotel-info-title-container block lg:hidden">
+        <h2 class="hotel-title line-clamp-2">{hotel.title}</h2>
+        <p class="hotel-en-title line-clamp-2">{hotel.enTitle}</p>
+      </div>
+    </div>
     <SwiperImage images={hotel.images} />
   </div>
 
