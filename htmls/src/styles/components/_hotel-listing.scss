@@ -146,8 +146,8 @@
 
 .hotel-info-button {
     display: flex;
-    width: 241px;
-    max-width: 247px;
+    width: fit-content;
+    max-width: fit-content;
     padding: 16px 24px 16px 40px;
     justify-content: center;
     align-items: center;
