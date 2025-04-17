@@ -6,7 +6,6 @@ const serviceGallerySwiperAutoplay = document.querySelector('.service-gallery-sw
 const serviceGallerySwiperObject = {
     speed: 1500,
     slidesPerView: 'auto',
-    freeMode: true,
     spaceBetween: 20,
     centerInsufficientSlides: true,
     grabCursor: true,
@@ -22,18 +21,26 @@ const serviceGallerySwiperObject = {
         },
         768: {
             centeredSlides: false,
+            // slidesOffsetBefore: 150,
+            // slidesOffsetAfter: -150,
         }
     }
 }
+
 if (serviceGallerySwiperAutoplay) {
     serviceGallerySwiperObject.autoplay = {
         delay: 2500,
         disableOnInteraction: false
     }
 }
-new Swiper('.service-gallery-swiper', serviceGallerySwiperObject);
+const serviceGallerySwiper = new Swiper('.service-gallery-swiper', serviceGallerySwiperObject);
 
 
+// serviceGallerySwiper.on('reachEnd', () => {
+//     setTimeout(() => {
+//     serviceGallerySwiper.slideTo(0, 1000); // Go back to first slide with animation
+//     }, 500); // Optional delay
+// });
 
 const propertyGallerySwiperAutoplay = document.querySelector('.property-gallery-swiper').classList.contains('autoplay');
 const propertyGallerySwiperObject = {

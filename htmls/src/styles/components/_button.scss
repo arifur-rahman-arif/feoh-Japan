@@ -43,4 +43,19 @@
             }
         }
     }
+
+    &--white {
+        background-color: transparent;
+        border: 2px solid var(--color13);
+        color: var(--color13);
+
+        &:hover {
+            color: var(--color13);
+
+            svg,
+            svg path {
+                fill: var(--color13);
+            }
+        }
+    }
 }

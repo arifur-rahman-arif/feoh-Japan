@@ -40,7 +40,8 @@ export default {
                 'shadow2': 'var(--shadow2)'
             },
             screens: {
-                xs: '400px'
+                xs: '400px',
+                xxs: '360px',
             }
 		},
 	},

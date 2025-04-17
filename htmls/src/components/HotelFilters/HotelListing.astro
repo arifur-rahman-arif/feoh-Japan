@@ -10,7 +10,7 @@ const hotelList = [
         stayPeriod: '滞在期間：2024年5月17日 - 2025年12月31日',
         description:
             '賢く予約して、最もお得な朝食付きオファーをお楽しみ下さい！他のオンライン・プラットフォームではなく、弊社のブランドウェブサイト限定で予約できる、朝食付き客室プランをご存じでしたか？さらに、ファーイースト・インサイダー会員プログラムにご入会頂くと、客室料金と毎日の朝食の両方に対して最大30%割引をお楽しみになれます。',
-        image: '/assets/section-images/hotel-offer-image.png'
+        image: 'https://villagehotelsjpuatepi.feodigitallab.com.sg/globalassets/village-japan/images/deal_12.png'
     },
     {
         name: 'ベッド＆ブレックファスト',
@@ -75,7 +75,7 @@ const hotelList = [
         <div class="offer-list grid gap-12 md:gap-16 xl:gap-24">
             {
                 hotelList.map(hotel => (
-                    <div class="offer-list__offer grid content-start gap-4 md:grid-cols-2 lg:gap-8 xl:grid-cols-[auto_1fr]">
+                    <div class="offer-list__offer grid content-start gap-4 md:grid-cols-2 lg:gap-8 xl:grid-cols-[33.75rem_1fr]">
                         {/* Divider line */}
                         <div class="h-[1px] w-full bg-color15 md:hidden" />
 
@@ -92,7 +92,7 @@ const hotelList = [
 
                         {/* Offer image */}
                         {/* Desktop first column */}
-                        <img src={hotel.image} alt="" width="540" height="360" class="w-full" />
+                        <img src={hotel.image} alt="" width="540" height="360" class="w-full aspect-[540/360]" />
 
                         {/* Desktop second column */}
                         <div class="grid content-start gap-4">
@@ -152,7 +152,7 @@ const hotelList = [
                                 </div>
                             </div>
 
-                            <a href="" class="button w-full max-w-[38.75rem]">
+                            <a href="" class="button w-full">
                                 クーポン適用で予約
                                 <svg
                                     xmlns="http://www.w3.org/2000/svg"
