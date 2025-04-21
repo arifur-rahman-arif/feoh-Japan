@@ -1,8 +1,8 @@
 ---
-const { title, googleMapLink, listItems, imageSrc, youtubeVideoId } = Astro.props;
+const { className, title, googleMapLink, listItems, imageSrc, youtubeVideoId } = Astro.props;
 ---
 
-<div class="access-map-head flex flex-col">
+<div class={`access-map-head flex flex-col ${className}`}>
     {title &&
         <!-- Slash -->
         <div class="access-map-slash mb-1"></div>
@@ -26,7 +26,7 @@ const { title, googleMapLink, listItems, imageSrc, youtubeVideoId } = Astro.prop
 
     <!-- Bullet Points -->
     {listItems &&
-        <ul class="access-map-list mt-1 list-disc pl-4">
+        <ul class="access-map-list !mt-3 md:mt-1 list-disc pl-4">
             {listItems.map((item) => (
                 <li><span>{item}</span></li>
             ))}

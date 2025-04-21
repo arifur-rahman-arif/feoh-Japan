@@ -105,7 +105,6 @@
                 padding-bottom: 0rem;
 
                 .access-contact-container {
-
                     .access-contact-item {
                         align-items: start;
                         gap: 0rem;
@@ -114,6 +113,19 @@
             }
             .container {
                 padding: 0;
+
+                .access-map-head.access-map-item {
+                    padding: 0rem;
+                }
+
+                .access-map-head.access-map-item .access-map-slash,
+                .access-map-head.access-map-item .access-map-list {
+                    margin: 0 1.5rem;
+                }
+
+                .access-map-head.access-map-item .access-map-title {
+                    padding: 0 1.5rem;
+                }
 
                 .access-map-head {
                     padding: 1.5rem;
@@ -127,11 +139,10 @@
                     width: 360px;
                     height: 270px;
                 }
-
-                .multimedia-section img {
-                    height: 260px;
-                    object-fit: cover;
-                }
+            }
+            .multimedia-section img {
+                height: 260px;
+                object-fit: cover;
             }
         }
     }
