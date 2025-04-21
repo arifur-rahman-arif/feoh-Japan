@@ -29,52 +29,62 @@ const RoomListPopup = await container.renderToString(Popup);
         </div>
 
         <!-- Content -->
-        <div class={`mt-6 grid md:mt-10  md:gap-10  ${overviewImage ? 'md:grid-cols-2 lg:pr-10' : 'md:grid-cols-1'}`}>
-            <!-- Desktop version image -->
-             {overviewImage && <img src={overviewImage} alt="" width="1024" height="683" class="w-full max-md:hidden" />}
+        <div class={`mt-6 grid md:mt-10  md:gap-10  ${overviewImage ? 'lg:pr-10 md:grid-cols-2' : 'xl:gap-24 md:grid-cols-[1fr_auto_1fr]'}`}>
+            <!-- Desktop version image or description -->
+             {overviewImage ? <img src={overviewImage} alt="" width="1024" height="683" class="w-full max-md:hidden xl:h-full xl:object-cover aspect-[1024/683]" /> :
+                <p class="mb-5">{description}</p>
+            }
+
+            <!-- When there is no image add a divider line for desktop versions-->
+            {!overviewImage && <div class="h-full bg-color15 w-[1px]"></div>}
             
             <div
-                class={`grid w-full gap-5 max-md:content-center ${overviewImage ? 'md:max-w-[30rem]' : ''} lg:content-start xl:grid-rows-[auto_auto_1fr_auto] xl:gap-6`}
+                class={`flex flex-col w-full gap-5 ${overviewImage ? '' : ''} lg:content-start  xl:gap-6`}
             >
-                <p>{description}</p>
-
+               {overviewImage && <p>{description}</p>}
+                
                 <!-- Divider -->
-                <div class="h-[1px] w-full bg-color15"></div>
+                {overviewImage && <div class="h-[1px] w-full bg-color15"></div>}
 
                 <!-- Meta data -->
-                <div class="grid grid-cols-2 gap-x-4 gap-y-2 xl:self-end">
-                    <div class="flex items-center justify-start gap-3">
-                        <img src="/icons/icon_expand.svg" alt="" width="24" height="24" />
-                        <span class="text-sm font-400 text-black">広さ：{area}</span>
-                    </div>
-                    <div class="flex items-center justify-start gap-3">
-                        <img src="/icons/icon_bed.svg" alt="" width="24" height="24" />
-                        <span class="text-sm font-400 text-black">ベッド：{bed}</span>
-                    </div>
-                    <div class="flex items-center justify-start gap-3">
-                        <img src="/icons/icon_user.svg" alt="" width="24" height="24" />
-                        <span class="text-sm font-400 text-black">定員：{capacity}</span>
-                    </div>
-                    {
-                        haveWifi && (
-                            <div class="flex items-center justify-start gap-3">
-                                <img src="/icons/icon_wifi.svg" alt="" width="24" height="24" />
-                                <span class="text-sm font-400 text-black">無料 Wi-Fi</span>
-                            </div>
-                        )
-                    }
+                <div class="grid grid-cols-[auto_auto] gap-x-4 gap-y-2 mt-auto">
+                   <div class="grid gap-2">
+                        <div class="flex items-center justify-start gap-3">
+                            <img src="/icons/icon_expand.svg" alt="" width="24" height="24" />
+                            <span class="text-sm font-400 text-black">広さ：{area}</span>
+                        </div>
+                        <div class="flex items-center justify-start gap-3">
+                            <img src="/icons/icon_user.svg" alt="" width="24" height="24" />
+                            <span class="text-sm font-400 text-black">定員：{capacity}</span>
+                        </div>
+                   </div>
+
+                   <div class="grid gap-2 justify-self-end">
+                        <div class="flex items-center justify-start gap-3">
+                            <img src="/icons/icon_bed.svg" alt="" width="24" height="24" />
+                            <span class="text-sm font-400 text-black">ベッド：{bed}</span>
+                        </div>
+                        {
+                            haveWifi && (
+                                <div class="flex items-center justify-start gap-3">
+                                    <img src="/icons/icon_wifi.svg" alt="" width="24" height="24" />
+                                    <span class="text-sm font-400 text-black">無料 Wi-Fi</span>
+                                </div>
+                            )
+                        }
+                   </div>
                 </div>
 
                 <!-- Mobile version image -->
-                <img src={overviewImage} alt="" width="1024" height="683" class="w-full md:hidden" />
+               {overviewImage && <img src={overviewImage} alt="" width="1024" height="683" class="w-full md:hidden" />} 
 
                 <!-- Action button -->
                 <div
-                    class="flex w-full flex-wrap items-center justify-center gap-4 md:mt-2 md:justify-start lg:grid lg:grid-cols-[auto_1fr]"
+                    class={`flex flex-wrap gap-4 xl:grid xl:grid-cols-[auto_auto]`}
                 >
                     <!-- Modal popup button -->
                     <button
-                        class="button button--outline w-full max-w-[21.3rem] md:max-w-max"
+                        class="button button--outline w-full xl:w-auto"
                         type="button"
                         title="Open modal"
                         modal-content={RoomListPopup}
@@ -94,7 +104,7 @@ const RoomListPopup = await container.renderToString(Popup);
                         </svg>
                     </button>
 
-                    <button class="button w-full max-w-[21.3rem] md:max-w-[13.87rem]"> 空室検索する </button>
+                    <button class="button w-full xl:w-auto xl:min-w-[13.75rem]">空室検索する</button>
                 </div>
             </div>
         </div>

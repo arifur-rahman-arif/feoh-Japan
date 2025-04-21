@@ -3,7 +3,7 @@ import SectionHeading from '../SectionHeading/index.astro';
 const { className, bgColor, title } = Astro.props;
 ---
 <section class={`${className} ${bgColor}`}>
-<div class={`${className}-container`}>
+<div class={`${className}-container container`}>
    <SectionHeading title={title} />
    <div class="amenities-groups">
       <div class="amenities-group-row">

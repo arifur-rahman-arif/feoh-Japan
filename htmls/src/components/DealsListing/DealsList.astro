@@ -4,6 +4,6 @@ import DealsCard from './DealsCard.astro';
 const { deals } = Astro.props;
 ---
 
-<div class="deals-list">
+<div class="deals-list h-full">
     {deals.map(deal => <DealsCard {...deal} />)}
 </div>

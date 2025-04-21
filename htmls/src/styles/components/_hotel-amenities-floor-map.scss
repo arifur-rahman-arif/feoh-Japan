@@ -6,7 +6,6 @@
     margin-bottom: 3rem;
 
     .hotel-amenities-floor-map-container {
-        padding: 0 7.5rem;
 
         .hotel-logo {
             display: flex;
@@ -139,7 +138,6 @@
 
     @include media-breakpoint-down(md) {
         .hotel-amenities-floor-map-container {
-            padding: 0 1.5rem;
 
             .hotel-logo {
                 align-items: center;

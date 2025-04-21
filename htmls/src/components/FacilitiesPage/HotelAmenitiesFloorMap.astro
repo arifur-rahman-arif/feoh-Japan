@@ -3,125 +3,126 @@ import SectionHeading from '../SectionHeading/index.astro';
 const { className, bgColor, title } = Astro.props;
 ---
 <section class={`${className} ${bgColor}`}>
-<div class={`${className}-container`}>
-<SectionHeading title={title} />
-<div class="hotel-logo">
-   <img src="/logos/Village-FEH-Logo.png" alt="Village Hotel Logo" class="hotel-logo-image" />
-</div>
-<div class="floor-map">
-   <div class="floor-column floor-left">
-      <div class="floor" data-floor="5">
-         <span class="floor-number">5F</span>
-         <div class="floor-icons">
-            <div class="icon-list">
-                <div class="icon-wrapper">
-                    <img src="/icons/icon_bed.svg" />
-                </div>
-            </div>
-         </div>
-      </div>
-      <div class="amenities-divider">
-         <!-- Divider -->
-      </div>
-      <div class="floor" data-floor="4">
-         <span class="floor-number">4F</span>
-         <div class="floor-icons">
-            <div class="icon-list">
-                <div class="icon-wrapper">
-                    <img src="/icons/icon_bed.svg" />
-                </div>
-            </div>
-         </div>
-      </div>
-      <div class="amenities-divider">
-         <!-- Divider -->
-      </div>
-      <div class="floor" data-floor="3">
-         <span class="floor-number">3F</span>
-         <div class="floor-icons">
-            <div class="icon-list">
-                <div class="icon-wrapper">
-                    <img src="/icons/icon_bed.svg" />
-                </div>
-            </div>
-         </div>
-      </div>
-      <div class="amenities-divider">
-         <!-- Divider -->
-      </div>
-      <div class="floor" data-floor="2">
-         <span class="floor-number">2F</span>
-         <div class="floor-icons">
-            <div class="icon-list">
-                <div class="icon-wrapper">
-                    <img src="/icons/icon_bed.svg" />
-                </div>
-            </div>
-         </div>
-      </div>
-      <div class="amenities-divider">
-         <!-- Divider -->
-      </div>
-      <div class="floor" data-floor="1">
-         <span class="floor-number">1F</span>
-         <div class="floor-icons">
-            <div class="icon-list">
-                <div class="icon-wrapper">
-                    <img src="/icons/icon_user.svg" />
-                </div>
-                <div class="icon-wrapper">
-                    <img src="/icons/icon_food.svg" />
-                </div>
-                <div class="icon-wrapper">
-                    <img src="/icons/icon_laundry.svg" />
-                </div>
-            </div>
-         </div>
-      </div>
-      <div class="amenities-divider">
-         <!-- Divider -->
-      </div>
+<div class={`${className}-container container`}>
+   <SectionHeading title={title} />
+   <div class="hotel-logo">
+      <img src="/logos/Village-FEH-Logo.png" alt="Village Hotel Logo" class="hotel-logo-image" />
    </div>
-   <div class="floor-column floor-right">
-      <div class="floor" data-floor="5">
-         <span class="floor-number">5階</span>
-         <span class="floor-label">客室</span>
-      </div>
-      <div class="amenities-divider">
-         <!-- Divider -->
-      </div>
-      <div class="floor" data-floor="4">
-         <span class="floor-number">4階</span>
-         <span class="floor-label">客室</span>
-      </div>
-      <div class="amenities-divider">
-         <!-- Divider -->
-      </div>
-      <div class="floor" data-floor="3">
-         <span class="floor-number">3階</span>
-         <span class="floor-label">客室</span>
-      </div>
-      <div class="amenities-divider">
-         <!-- Divider -->
-      </div>
-      <div class="floor" data-floor="2">
-         <span class="floor-number">2階</span>
-         <span class="floor-label">客室</span>
-      </div>
-      <div class="amenities-divider">
-         <!-- Divider -->
-      </div>
-      <div class="floor" data-floor="1">
-         <span class="floor-number">1階</span>
-         <span class="floor-label">
-            <div class="line">
-               フロント・ロビー／ラウンジ／<a href="path/to/restaurant" class="restaurant-link">レストラン</a>
+   <div class="floor-map">
+      <div class="floor-column floor-left">
+         <div class="floor" data-floor="5">
+            <span class="floor-number">5F</span>
+            <div class="floor-icons">
+               <div class="icon-list">
+                  <div class="icon-wrapper">
+                     <img src="/icons/icon_bed.svg" />
+                  </div>
+               </div>
             </div>
-            <div class="line">コインランドリー</div>
-         </span>
+         </div>
+         <div class="amenities-divider">
+            <!-- Divider -->
+         </div>
+         <div class="floor" data-floor="4">
+            <span class="floor-number">4F</span>
+            <div class="floor-icons">
+               <div class="icon-list">
+                  <div class="icon-wrapper">
+                     <img src="/icons/icon_bed.svg" />
+                  </div>
+               </div>
+            </div>
+         </div>
+         <div class="amenities-divider">
+            <!-- Divider -->
+         </div>
+         <div class="floor" data-floor="3">
+            <span class="floor-number">3F</span>
+            <div class="floor-icons">
+               <div class="icon-list">
+                  <div class="icon-wrapper">
+                     <img src="/icons/icon_bed.svg" />
+                  </div>
+               </div>
+            </div>
+         </div>
+         <div class="amenities-divider">
+            <!-- Divider -->
+         </div>
+         <div class="floor" data-floor="2">
+            <span class="floor-number">2F</span>
+            <div class="floor-icons">
+               <div class="icon-list">
+                  <div class="icon-wrapper">
+                     <img src="/icons/icon_bed.svg" />
+                  </div>
+               </div>
+            </div>
+         </div>
+         <div class="amenities-divider">
+            <!-- Divider -->
+         </div>
+         <div class="floor" data-floor="1">
+            <span class="floor-number">1F</span>
+            <div class="floor-icons">
+               <div class="icon-list">
+                  <div class="icon-wrapper">
+                     <img src="/icons/icon_user.svg" />
+                  </div>
+                  <div class="icon-wrapper">
+                     <img src="/icons/icon_food.svg" />
+                  </div>
+                  <div class="icon-wrapper">
+                     <img src="/icons/icon_laundry.svg" />
+                  </div>
+               </div>
+            </div>
+         </div>
+         <div class="amenities-divider">
+            <!-- Divider -->
+         </div>
       </div>
-      <div class="amenities-divider">
-         <!-- Divider -->
+      <div class="floor-column floor-right">
+         <div class="floor" data-floor="5">
+            <span class="floor-number">5階</span>
+            <span class="floor-label">客室</span>
+         </div>
+         <div class="amenities-divider">
+            <!-- Divider -->
+         </div>
+         <div class="floor" data-floor="4">
+            <span class="floor-number">4階</span>
+            <span class="floor-label">客室</span>
+         </div>
+         <div class="amenities-divider">
+            <!-- Divider -->
+         </div>
+         <div class="floor" data-floor="3">
+            <span class="floor-number">3階</span>
+            <span class="floor-label">客室</span>
+         </div>
+         <div class="amenities-divider">
+            <!-- Divider -->
+         </div>
+         <div class="floor" data-floor="2">
+            <span class="floor-number">2階</span>
+            <span class="floor-label">客室</span>
+         </div>
+         <div class="amenities-divider">
+            <!-- Divider -->
+         </div>
+         <div class="floor" data-floor="1">
+            <span class="floor-number">1階</span>
+            <span class="floor-label">
+               <div class="line">
+                  フロント・ロビー／ラウンジ／<a href="path/to/restaurant" class="restaurant-link">レストラン</a>
+               </div>
+               <div class="line">コインランドリー</div>
+            </span>
+         </div>
+         <div class="amenities-divider">
+            <!-- Divider -->
+         </div>
       </div>
    </div>
 </div>

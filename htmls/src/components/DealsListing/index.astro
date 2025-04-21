@@ -49,7 +49,7 @@ const deals = [
         <div class={`swiper-wrapper ${deals.length === 1 ? 'single-deal' : ''}`}>
             {
                 deals.map(deal => (
-                    <div class="swiper-slide">
+                    <div class="swiper-slide max-w-[19.35rem] sm:max-w-[24rem] !h-auto">
                         <DealsList deals={[deal]} />
                     </div>
                 ))

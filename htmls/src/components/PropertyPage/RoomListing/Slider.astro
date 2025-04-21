@@ -6,7 +6,7 @@ const { images } = Astro.props;
     <div class="swiper-wrapper">
         {
             images.map(img => (
-                <a href="#" class="swiper-slide relative h-full max-h-[13.3rem] w-full md:max-h-[27.2rem]">
+                <a href="#" class="swiper-slide relative h-full w-full md:max-h-max">
                     <img src={img} alt="" width="697" height="435" class="h-full w-full object-cover" />
                 </a>
             ))

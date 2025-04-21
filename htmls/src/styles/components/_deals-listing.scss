@@ -27,7 +27,7 @@
     }
 
     .deals-swiper {
-        padding-bottom: 48px;
+        padding-bottom: 5rem;
 
         .single-deal {
             justify-content: center;
@@ -39,7 +39,7 @@
     }
 
     .deals-swiper .swiper-pagination-bullets {
-        bottom: -35px;
+        transform: translateY(-1.5rem);
     }
 
     .deals-card {
@@ -52,6 +52,7 @@
 
         .deals-img-wrapper {
             position: relative;
+            width: 100%;
 
             .deals-label {
                 display: flex;
@@ -84,8 +85,7 @@
             }
 
             img {
-                width: 384px;
-                height: 231px;
+              width: 100%;
             }
         }
 
@@ -197,9 +197,9 @@
 
 @media (max-width: 768px) {
     .deals-listing {
-        .deals-swiper .swiper-wrapper {
-            justify-content: center;
-        }
+        // .deals-swiper .swiper-wrapper {
+        //     justify-content: center;
+        // }
 
         .deals-card {
             .deals-content {

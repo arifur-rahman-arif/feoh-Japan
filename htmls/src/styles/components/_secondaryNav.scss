@@ -11,7 +11,7 @@
 
         .secnav-item-wrapper {
             display: flex;
-            width: 15rem;
+            min-width: 15rem;
             height: 4rem;
             flex-direction: column;
             justify-content: center;
@@ -30,6 +30,14 @@
                 flex-direction: column;
                 justify-content: center;
                 align-items: center;
+                padding: 0 1rem;
+
+
+                .secnav-label {
+                    @include media-breakpoint-up(md) {
+                        text-align: center;
+                    }
+                }
             }
         }
     }
@@ -37,7 +45,7 @@
     @include media-breakpoint-down(md) {
         .secnav-container {
             flex-direction: column;
-            padding: 1.5rem 2.5rem;
+            padding: 1.5rem 1rem;
             row-gap: 0rem;
 
             .secnav-item-wrapper {

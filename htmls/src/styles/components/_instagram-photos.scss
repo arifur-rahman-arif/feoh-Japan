@@ -56,10 +56,20 @@
 			display: flex !important;
 			gap: 20px;
 			overflow-x: auto;
+
+			&::-webkit-scrollbar {
+				width: 5px;
+				height: 1px;
+			}
 		}
+
 
 		.feed-item.feed-item {
 			margin: 0 !important;
+
+			&:last-child {
+				padding-right: 2rem;
+			}
 
 			.j-image {
 				width: 160px !important;
