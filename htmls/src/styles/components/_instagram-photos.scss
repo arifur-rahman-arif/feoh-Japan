@@ -58,8 +58,8 @@
 			overflow-x: auto;
 
 			&::-webkit-scrollbar {
-				width: 5px;
-				height: 1px;
+				width: 0 !important;
+				height: 0 !important;
 			}
 		}
 
