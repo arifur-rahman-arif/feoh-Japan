@@ -46,9 +46,18 @@ const Registration = {
                 }
             },
             dateFormat: 'd / m / Y',
-            minDate: 'today',
+            maxDate: new Date(new Date().setDate(new Date().getDate() - 1)),
             disableMobile: true // Ensures proper behavior on mobile=
         });
+
+        this.validateRequiredFieldsOnBlur();
+        this.validatePasswordOnInput();
+
+        // to fix calender today date border.
+        const todayElement = document.querySelector('.dayContainer .flatpickr-day.today');
+        if (todayElement) {
+            todayElement.classList.remove('today');
+        }
     },
 
     /**
@@ -105,17 +114,10 @@ const Registration = {
         if (!this.dropdowns || !this.dropdowns.length) return;
 
         this.dropdowns.forEach(dropdown => {
-            const selectElement = this.form.querySelector(dropdown);
-            // Ensure the first option is a placeholder and not selectable
-            const placeholder = selectElement.querySelector('option[data-placeholder]');
-            const placeholderTextContent = placeholder?.dataset.placeholdertext || '';
-
-            const select = new SlimSelect({
+            new SlimSelect({
                 select: dropdown,
-                settings: { showSearch: false, placeholderText: placeholderTextContent || '' }
+                settings: { showSearch: false }
             });
-
-            this.selectObjects[dropdown] = select;
         });
     },
 
@@ -154,46 +156,43 @@ const Registration = {
             const name = this.nameElement.value.trim();
             const email = this.emailElement.value.trim();
             const dob = this.dateOfBirthElement.value.trim();
-            const nationality = this.selectObjects['#nationality'].getSelected()[0] || '';
+            const nationality = this.nationalityElement.value;
             const password = this.passwordElement.value;
             const confirmPassword = this.confirmPasswordElement.value;
 
             // Validation
-            if (!email || !this.validateEmail(email)) {
-                this.showError(this.emailElement);
-                showError = true;
-            }
-            const passwordRegex = new RegExp('^(?=.*[a-z])(?=.*[A-Z])(?=.*[0-9])(?=.*[!@#\$%\^&\*])(?=.{8,})');
-            if (!password || !passwordRegex.test(password)) {
-                this.showError(this.passwordElement);
-                showError = true;
-            }
-            if (password !== confirmPassword) {
-                this.showError(this.confirmPasswordElement);
+            if (!surname) {
+                this.showError(this.surnameElement);
                 showError = true;
             }
             if (!name) {
                 this.showError(this.nameElement);
                 showError = true;
             }
-            if (!surname) {
-                this.showError(this.surnameElement);
-                showError = true;
-            }
-            if (!nationality) {
-                this.showError(this.nationalityElement);
+            if (!email || !this.validateEmail(email)) {
+                this.showError(this.emailElement);
                 showError = true;
             }
             if (!dob) {
                 this.showError(this.dateOfBirthElement);
                 showError = true;
             }
+            if (!nationality) {
+                this.showError(this.nationalityElement);
+                showError = true;
+            }
+
+            const passwordRegex = new RegExp('^(?=.*[a-z])(?=.*[A-Z])(?=.*[0-9])(?=.*[!@#\$%\^&\*])(?=.{8,})');
+            if (!password || !passwordRegex.test(password)) {
+                this.showError(this.passwordElement);
+                showError = true;
+            }
+            if (!password && !confirmPassword && password !== confirmPassword) {
+                this.showError(this.confirmPasswordElement);
+                showError = true;
+            }
 
             if (showError) {
-                // Show the form error
-                const formErrorElement = this.form.querySelector('.form_error');
-                formErrorElement.classList.add('active');
-
                 window.scrollTo({
                     top: this.form.getBoundingClientRect().top + window.scrollY - 200,
                     behavior: 'smooth'
@@ -219,30 +218,104 @@ const Registration = {
     },
 
     submitForm: function (data) {
-        console.log(data);
-        window.location.href = '/register/thank-you';
+        var formData = new FormData();
+        formData.append("Email", data.email);
+        formData.append("Password", $("#password").val());
+        formData.append("ConfirmPassword", $("#confirm-password").val());
+        formData.append("g-recaptcha-response", $("#registration-form").find('.g-recaptcha').find('.g-recaptcha-response').val());
+        formData.append("FirstName", $("#name").val());
+        formData.append("LastName", $("#surname").val());
+        formData.append("Country", $("#nationality").val());
+        formData.append("Birthday", $("#dob").val().replace(/\s+/g, ''));
 
-        // Uncomment this AJAX call when integrating with backend
-        // $.ajax({
-        //     url: `${globalVariables.themeRestUrl}/registration`,
-        //     type: 'POST',
-        //     headers: { 'X-WP-NONCE': globalVariables.nonce },
-        //     data: JSON.stringify(data),
-        //     complete: () => this.submitButton.classList.remove('button--loading'),
-        //     success: () => {
-        //         this.form.classList.add('hidden');
-        //         this.thankYouContainer.fadeIn(2000);
-        //         $('html, body').animate({ scrollTop: this.thankYouContainer.offset().top - 400 }, 500);
-        //     },
-        //     error: (error) => {
-        //         this.alertElement.text(error.responseJSON?.data?.message || 'Registration error').fadeIn(2000);
-        //     }
-        // });
+        document.querySelectorAll('.r-submit-text').forEach(el => {
+            el.style.display = 'none';
+        });
+        document.querySelector('.r-loading-text').style.display = '';
+
+        $.ajax({
+            url: "/api/villagejapanaccount/register",
+            type: 'POST',
+            cache: false,
+            contentType: false,
+            processData: false,
+            data: formData,
+            success: function (response) {
+
+                document.querySelectorAll('.r-submit-text').forEach(el => {
+                    el.style.display = '';
+                });
+                document.querySelector('.r-loading-text').style.display = 'none';
+
+                if (response != "fail") {
+                    window.location.href = regisThankyouPage;
+                }
+                else {
+                    const currentForm = document.querySelector('#registration-form');
+                    const formErrorElement = currentForm.querySelector('.form_error');
+                    formErrorElement.classList.add('active');
+
+                    window.scrollTo({
+                        top: currentForm.getBoundingClientRect().top + window.scrollY - 200,
+                        behavior: 'smooth'
+                    });
+                }
+            }
+        });
     },
 
     getCaptchaResponse: function () {
-        return grecaptcha.getResponse() !== '';
-    }
+        return $("#registration-form").find('.g-recaptcha').find('.g-recaptcha-response').val() !== '';
+    },
+
+    validateRequiredFieldsOnBlur: function () {
+        const requiredFields = [
+            this.surnameElement,
+            this.nameElement,
+            this.emailElement,
+            this.dateOfBirthElement,
+            this.passwordElement,
+            this.confirmPasswordElement
+        ];
+        const currentForm = document.querySelector('#registration-form');
+        const formErrorElement = currentForm.querySelector('.form_error');
+
+        requiredFields.forEach(input => {
+            input.addEventListener('blur', () => {
+                formErrorElement.classList.remove('active');
+                if (input.value.trim() === '') {
+                    input.closest('.input-group').classList.add('input-group--invalid');
+                }
+            });
+        });
+    },
+
+    validatePasswordOnInput: function () {
+        const passwordInput = this.passwordElement;
+        const confirmPasswordInput = this.confirmPasswordElement;
+
+        const passwordRegex = new RegExp('^(?=.*[a-z])(?=.*[A-Z])(?=.*[0-9])(?=.*[!@#\\$%\\^&\\*])(?=.{8,})');
+
+        passwordInput.addEventListener('input', () => {
+            const isValid = passwordRegex.test(passwordInput.value);
+            const inputGroup = passwordInput.closest('.input-group');
+            if (isValid) {
+                inputGroup.classList.remove('input-group--invalid');
+            } else {
+                inputGroup.classList.add('input-group--invalid');
+            }
+        });
+
+        confirmPasswordInput.addEventListener('input', () => {
+            const matches = confirmPasswordInput.value === passwordInput.value;
+            const inputGroup = confirmPasswordInput.closest('.input-group');
+            if (matches) {
+                inputGroup.classList.remove('input-group--invalid');
+            } else {
+                inputGroup.classList.add('input-group--invalid');
+            }
+        });
+    },
 };
 
 document.addEventListener('DOMContentLoaded', function () {
