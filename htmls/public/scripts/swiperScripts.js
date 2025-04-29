@@ -70,7 +70,8 @@ const roomListSwiperAutoplay = document.querySelector('.property-gallery-swiper'
 const roomListSwiperObject = {
     speed: 1500,
     pagination: {
-        el: '.swiper-pagination'
+        el: '.swiper-pagination',
+        clickable: true
     },
     navigation: {
         nextEl: '.swiper-button-next',
