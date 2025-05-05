@@ -12,6 +12,8 @@
     &,
     * {
         transition: all 0.5s ease-in-out;
+        color: var(--color4);
+        font-weight: var(--500);
     }
 
     &:hover {
@@ -22,11 +24,20 @@
         svg path {
             fill: var(--color1);
         }
+
+        &,
+        * {
+            color: var(--color1);
+        }
     }
 
     &--outline {
         background-color: var(--color4);
-        color: var(--color1);
+
+        &,
+        * {
+            color: var(--color1);
+        }
     }
 
     &--dark {
@@ -48,6 +59,11 @@
         background-color: transparent;
         border: 2px solid var(--color13);
         color: var(--color13);
+
+        &,
+        * {
+            color: var(--color13);
+        }
 
         &:hover {
             color: var(--color13);

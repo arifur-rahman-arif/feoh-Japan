@@ -123,3 +123,19 @@ nav {
         }
     }
 }
+
+
+#mobile-menu {
+    li {
+        button, a {
+            width: 100%;
+            transition: all 0.3s ease-in-out;
+        }
+
+        &:hover, &:active, &:focus {
+            button, a {
+                color: var(--color1);
+            }
+        }
+    }
+}

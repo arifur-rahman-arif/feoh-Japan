@@ -90,13 +90,14 @@
 
                 .floor {
                     display: flex;
-                    flex-wrap: wrap;
+                    align-items: center;
                     gap: 2.5rem;
 
                     .floor-number {
                         color: var(--color9);
                         font-size: 1.25rem;
                         font-weight: var(--500);
+                        white-space: nowrap;
                     }
 
                     .floor-label {
@@ -149,9 +150,12 @@
                 gap: 3rem;
 
                 .floor-column.floor-left {
+                    width: 100%;
                     .floor {
+                        width: 100%;
+
                         .floor-icons {
-                            width: 17.875rem;
+                            width: 100%;
                         }
                     }
                 }
