@@ -1,0 +1,30 @@
+@use '../utils/breakpoints' as *;
+
+footer {
+	.terms-links {
+		@include media-breakpoint-down(md) {
+			a:not(:last-child) {
+				position: relative;
+
+				&::before {
+					content: '';
+					display: block;
+					width: 1px;
+					height: calc(100% - 2px);
+					background-color: var(--color4);
+					position: absolute;
+					top: 50%;
+					right: -0.5rem;
+					transition: all 0.3s ease-in-out;
+					transform: translateY(-47%);
+				}
+
+				&:hover {
+					&::before {
+						background-color: var(--color1);
+					}
+				}
+			}
+		}
+	}
+}

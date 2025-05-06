@@ -1,8 +1,7 @@
 // While working enable this import to have type checking
 // import Swiper from 'swiper';
 
-
-const serviceGallerySwiperAutoplay = document.querySelector('.service-gallery-swiper').classList.contains('autoplay');
+const serviceGallerySwiperAutoplay = document.querySelector('.service-gallery-swiper')?.classList.contains('autoplay');
 const serviceGallerySwiperObject = {
     speed: 1500,
     slidesPerView: 'auto',
@@ -14,27 +13,26 @@ const serviceGallerySwiperObject = {
         el: '.swiper-pagination',
         clickable: true
     },
-    
+
     breakpoints: {
         320: {
-            centeredSlides: true,
+            centeredSlides: true
         },
         768: {
-            centeredSlides: false,
+            centeredSlides: false
             // slidesOffsetBefore: 150,
             // slidesOffsetAfter: -150,
         }
     }
-}
+};
 
 if (serviceGallerySwiperAutoplay) {
     serviceGallerySwiperObject.autoplay = {
         delay: 2500,
         disableOnInteraction: false
-    }
+    };
 }
 const serviceGallerySwiper = new Swiper('.service-gallery-swiper', serviceGallerySwiperObject);
-
 
 // serviceGallerySwiper.on('reachEnd', () => {
 //     setTimeout(() => {
@@ -42,7 +40,9 @@ const serviceGallerySwiper = new Swiper('.service-gallery-swiper', serviceGaller
 //     }, 500); // Optional delay
 // });
 
-const propertyGallerySwiperAutoplay = document.querySelector('.property-gallery-swiper').classList.contains('autoplay');
+const propertyGallerySwiperAutoplay = document
+    .querySelector('.property-gallery-swiper')
+    ?.classList.contains('autoplay');
 const propertyGallerySwiperObject = {
     speed: 1500,
     slidesPerView: 'auto',
@@ -54,19 +54,17 @@ const propertyGallerySwiperObject = {
     pagination: {
         el: '.swiper-pagination',
         clickable: true
-    },
-}
+    }
+};
 if (propertyGallerySwiperAutoplay) {
     propertyGallerySwiperObject.autoplay = {
         delay: 2500,
         disableOnInteraction: false
-    }
+    };
 }
 new Swiper('.property-gallery-swiper', propertyGallerySwiperObject);
 
-
-
-const roomListSwiperAutoplay = document.querySelector('.property-gallery-swiper').classList.contains('autoplay');
+const roomListSwiperAutoplay = document.querySelector('.property-gallery-swiper')?.classList.contains('autoplay');
 const roomListSwiperObject = {
     speed: 1500,
     pagination: {
@@ -77,11 +75,11 @@ const roomListSwiperObject = {
         nextEl: '.swiper-button-next',
         prevEl: '.swiper-button-prev'
     }
-}
+};
 if (roomListSwiperAutoplay) {
     roomListSwiperObject.autoplay = {
         delay: 2500,
         disableOnInteraction: false
-    }
+    };
 }
 new Swiper('.room-list-swiper', roomListSwiperObject);

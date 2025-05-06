@@ -14,6 +14,7 @@ const HotelBooking = {
                 this.forms = document.querySelectorAll('.booking-popup .hotel-booking-form');
                 this.initializeForms();
                 this.toggleBookingPromo();
+                this.initializeSlider();
             }
         });
 
@@ -21,21 +22,22 @@ const HotelBooking = {
     },
 
     toggleBookingPromo: function () {
-        const bookingPromo = document.querySelector('.booking-promo');
-        const bookingPromoBtn = bookingPromo.querySelector('.booking-promo__btn');
-        const bookingPromoInput = bookingPromo.querySelector('.booking-promo__input');
-        const arrowIcon = bookingPromo.querySelector('.arrow-icon');
-        
-        if (bookingPromoBtn) {
-            bookingPromoBtn.addEventListener('click', () => {
-                // Toggle the collapsed state on the input
-                bookingPromoInput.classList.toggle('collapsed');
-                
-                // Rotate the arrow icon
-                arrowIcon.classList.toggle('rotate');
-            });
-        }
-        
+        this.forms?.forEach(form => {
+            const bookingPromo = form.querySelector('.booking-promo');
+            const bookingPromoBtn = bookingPromo?.querySelector('.booking-promo__btn');
+            const bookingPromoInput = bookingPromo?.querySelector('.booking-promo__input');
+            const arrowIcon = bookingPromo?.querySelector('.arrow-icon');
+
+            if (bookingPromoBtn) {
+                bookingPromoBtn.addEventListener('click', () => {
+                    // Toggle the collapsed state on the input
+                    bookingPromoInput.classList.toggle('collapsed');
+
+                    // Rotate the arrow icon
+                    arrowIcon.classList.toggle('rotate');
+                });
+            }
+        });
     },
 
     initializeForms: function () {
@@ -293,6 +295,25 @@ const HotelBooking = {
                     //     checkOutPicker.setDate(null); // Reset the checkout date if invalid
                     // }
                 }
+            }
+        });
+    },
+
+    initializeSlider: function () {
+        const slideCount = document.querySelectorAll('.swiper--deal-swiper .swiper-slide').length;
+        // Booking popup swiper
+        new Swiper('.swiper--deal-swiper', {
+            slidesPerView: 'auto',
+            speed: 1500,
+            centerInsufficientSlides: true,
+            spaceBetween: 20,
+            autoHeight: false,
+            loop: slideCount <= 3 ? false : true,
+            initialSlide: Math.round(slideCount / 2) - 1,
+            centeredSlides: slideCount > 1 ? true : false,
+            pagination: {
+                el: '.swiper-pagination',
+                clickable: true
             }
         });
     },

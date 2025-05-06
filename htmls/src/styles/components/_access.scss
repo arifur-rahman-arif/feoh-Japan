@@ -96,7 +96,7 @@
         }
     }
 
-    @include media-breakpoint-down(md) {
+    @include media-breakpoint-down(xl) {
         .access-section-container {
             .access-contact {
                 margin-left: 1.25rem;
@@ -104,6 +104,8 @@
                 padding-bottom: 0rem;
 
                 .access-contact-container {
+                    padding-top: 0.4rem;
+                    padding-bottom: 0.4rem;
                     .access-contact-item {
                         align-items: start;
                     }

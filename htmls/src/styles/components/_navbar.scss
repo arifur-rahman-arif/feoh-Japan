@@ -115,7 +115,6 @@ nav {
         display: none;
     }
 
-
     @include media-breakpoint-up(xl) {
         svg,
         path {
@@ -124,16 +123,20 @@ nav {
     }
 }
 
-
 #mobile-menu {
     li {
-        button, a {
+        button,
+        a {
             width: 100%;
             transition: all 0.3s ease-in-out;
+            text-align: left;
         }
 
-        &:hover, &:active, &:focus {
-            button, a {
+        &:hover,
+        &:active,
+        &:focus {
+            & > button,
+            & > a {
                 color: var(--color1);
             }
         }

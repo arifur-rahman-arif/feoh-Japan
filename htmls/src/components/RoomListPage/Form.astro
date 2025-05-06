@@ -7,12 +7,12 @@ const { className, hotelSelection } = Astro.props;
 <form class={twMerge('hotel-booking-form grid gap-6 py-6 md:py-12 xl:py-14', className)}>
     <!-- Filter inputs -->
     <div
-        class="grid w-full items-end justify-items-center gap-4 justify-self-center sm:grid-cols-2 md:grid-cols-3 md:gap-3 xl:flex xl:justify-center"
+        class="grid w-full items-end justify-items-center gap-4 justify-self-center xs:grid-cols-2 md:grid-cols-3 md:gap-3 xl:flex xl:justify-center"
     >
         <!-- Hotel Selection -->
         {
             hotelSelection && (
-                <div class="input-group hotel-selection w-full xl:max-w-[22rem]">
+                <div class="input-group hotel-selection w-full xs:col-span-full md:col-span-1 xl:max-w-[22rem]">
                     <label for="check-in" class="input-group__label ml-3">
                         チェックイン
                     </label>
@@ -48,9 +48,14 @@ const { className, hotelSelection } = Astro.props;
                     placeholder="日 / 月 / 年"
                 />
 
-                <img class="absolute right-3 top-1/2 -translate-y-1/2 pointer-events-none" src="/icons/icon_calendar-gold.svg" width="20" height="20" alt="" />
+                <img
+                    class="pointer-events-none absolute right-3 top-1/2 -translate-y-1/2"
+                    src="/icons/icon_calendar-gold.svg"
+                    width="20"
+                    height="20"
+                    alt=""
+                />
             </div>
-
 
             <span class="input-group__error input-group__error--absolute">必須項目を入力してください</span>
         </div>
@@ -66,11 +71,16 @@ const { className, hotelSelection } = Astro.props;
                     name="check-out"
                     class="input-group__input date-picker w-full !border !border-solid !border-[#D9D9D9] !bg-color4"
                     placeholder="日 / 月 / 年"
-                 />
+                />
 
-                <img class="absolute right-3 top-1/2 -translate-y-1/2 pointer-events-none" src="/icons/icon_calendar-gold.svg" width="20" height="20" alt="" />
+                <img
+                    class="pointer-events-none absolute right-3 top-1/2 -translate-y-1/2"
+                    src="/icons/icon_calendar-gold.svg"
+                    width="20"
+                    height="20"
+                    alt=""
+                />
             </div>
-           
 
             <span class="input-group__error input-group__error--absolute">必須項目を入力してください</span>
         </div>
@@ -126,36 +136,45 @@ const { className, hotelSelection } = Astro.props;
         }
     </div>
 
-    <button class="button justify-self-center w-full max-w-[247px] mt-4">空室検索をする</button>
+    {hotelSelection && <button class="button mt-4 w-full max-w-[247px] justify-self-center">空室検索をする</button>}
 
     <!-- Text -->
     <div class="mt-8 grid justify-items-center gap-5">
         <a
             href="#"
             class="text-sm font-500 tracking-wide text-color11 underline decoration-color11 underline-offset-2 transition-all duration-500 hover:text-color1 hover:decoration-color1"
-            >
+        >
             ご予約の確認・変更・キャンセルはこちらから
         </a>
 
         <!-- Promo code -->
-        <div class="grid w-full justify-items-center booking-promo">
-            <button class="flex items-center gap-2 justify-center text-sm font-500 tracking-widest booking-promo__btn" type="button">
+        <div class="booking-promo grid w-full justify-items-center">
+            <button
+                class="booking-promo__btn flex items-center justify-center gap-2 text-sm font-500 tracking-widest"
+                type="button"
+            >
                 プロモーションコードの入力
-                <img src="/icons/icon_arrow-down.svg" class="transition-all duration-500 arrow-icon" width="15" height="15" alt="Arrow" />
+                <img
+                    src="/icons/icon_arrow-down.svg"
+                    class="arrow-icon transition-all duration-500"
+                    width="15"
+                    height="15"
+                    alt="Arrow"
+                />
             </button>
-        
-            <div class="input-group w-full mt-5 max-w-[250px] booking-promo__input overflow-hidden max-h-[500px] transition-all duration-500">
+
+            <div
+                class="input-group booking-promo__input mt-5 max-h-[500px] w-full max-w-[250px] overflow-hidden transition-all duration-500"
+            >
                 <input
                     type="text"
                     id="promo-code"
                     name="promo-code"
-                    class="input-group__input w-full placeholder:text-sm placeholder:!text-color11 !bg-white !border-[#D9D9D9]"
+                    class="input-group__input w-full !border-[#D9D9D9] !bg-white placeholder:text-sm placeholder:!text-color11"
                     placeholder="コード番号"
                 />
                 <span class="input-group__error input-group__error--absolute">必須項目を入力してください</span>
             </div>
         </div>
-        
-      
     </div>
 </form>

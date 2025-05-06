@@ -1,3 +1,5 @@
+const dealSlideCount = document.querySelectorAll('.deals-swiper .swiper-slide').length;
+
 // Initialize Swiper
 new Swiper('.deals-swiper', {
     slidesPerView: 'auto',
@@ -7,15 +9,11 @@ new Swiper('.deals-swiper', {
     autoHeight: false,
     initialSlide: 2,
     loop: true,
-    centeredSlides: true,
+    loop: dealSlideCount <= 3 ? false : true,
+    initialSlide: Math.round(dealSlideCount / 2) - 1,
+    centeredSlides: dealSlideCount > 1 ? true : false,
     pagination: {
         el: '.swiper-pagination',
         clickable: true
-    },
-    breakpoints: {
-        900: {
-            centeredSlides: false,
-        }
     }
 });
-

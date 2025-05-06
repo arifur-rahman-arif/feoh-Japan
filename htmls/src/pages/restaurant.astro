@@ -8,112 +8,109 @@ import AmenitiesFeatureOverview from '../components/FacilitiesPage/AmenitiesFeat
 import FeaturePoints from '../components/RestaurantPage/FeaturePoints/index.astro';
 import FeatureList from '../components/RestaurantPage/FeatureList/index.astro';
 ---
+
 <style is:inline>
-   #navbar {
-   position: sticky !important;
-   background-color: var(--color4) !important;
-   }
+    #navbar {
+        position: sticky !important;
+        background-color: var(--color4) !important;
+    }
 </style>
 <Layout currentPageTitle="レストラン" whiteNav={true}>
-   <MastheadRoom heading="レストラン" subheading="RESTAURANT" image="/assets/images/banner_image_5.png" />
-   <StaticContent
-      title="健康とおいしさにこだわった有明のレストラン"
-      content={`サンプルテキストが入りますサンプルテキストが入りますサンプルテキストが入ります。`}
-      contentPosition="section-center"
+    <MastheadRoom heading="レストラン" subheading="RESTAURANT" image="/assets/images/banner_image_5.png" />
+    <StaticContent
+        title="健康とおいしさにこだわった有明のレストラン"
+        content={`サンプルテキストが入りますサンプルテキストが入りますサンプルテキストが入ります。`}
+        contentPosition="section-center"
     />
-   <SecondaryNav 
-    bgColor="bg-white" 
-    navItems={[
-    { id: "breakfast", label: "朝食" },
-    { id: "service-info", label: "サービス案内" },
-    { id: "staff-recommendation", label: "スタッフのおすすめ" }
-    ]}
-   />
-   <ImgTextAlt
-    sectionId="breakfast"
-    bgColor="bg-grey"
-    title="朝食"
-    content={`ビレッジの朝食ビュッフェでお楽しみ頂ける各種の地元料理で、食欲を満たしましょう。
+    <SecondaryNav
+        bgColor="bg-white"
+        navItems={[
+            { id: 'breakfast', label: '朝食' },
+            { id: 'service-info', label: 'サービス案内' },
+            { id: 'staff-recommendation', label: 'スタッフのおすすめ' }
+        ]}
+    />
+    <ImgTextAlt
+        sectionId="breakfast"
+        bgColor="bg-grey"
+        title="朝食"
+        content={`ビレッジの朝食ビュッフェでお楽しみ頂ける各種の地元料理で、食欲を満たしましょう。
     さらに多くの料理をお試しになりたいですか？屋台の食べ物からレストランまで、
     本場の地元料理を出す多数の飲食施設が、ビレッジから徒歩ですぐの場所にあります。`}
-    contentPosition="section-center"
-    images={[
-    "/assets/images/restaurant_img_1.png",
-    "/assets/images/img_alt_2.png",
-    "/assets/images/img_alt_3.png"
-    ]}
-    carouselPosition="left"
-   />
-   <FeatureList
-    bgColor="bg-white"
-    data={[
-        {
-        id: "shuttle",
-        name: "無料シャトルバス",
-        thumbnail: "/assets/images/amenities_details_img/amenities_detail_img_1.png",
-        description: "お仕事やご歓談に最適な、くつろぎに満ちた明るいラウンジです。無料Wi-Fiと充電コンセントをご用意しています。会議、パーティー、イベント向けの多目的スペースとして、ラウンジのレンタルも承ります。詳細はホテルまでお問い合わせ下さい。",
-        location: "1階",
-        ctaLink: "/contact",
-        ctaText: "メニューはこちら",
-        },
-        {
-        id: "restaurant",
-        name: "レストラン",
-        thumbnail: "/assets/images/amenities_details_img/amenities_detail_img_1.png",
-        title: "レストランA",
-        description: "お仕事やご歓談に最適な、くつろぎに満ちた明るいラウンジです。無料Wi-Fiと充電コンセントをご用意しています。会議、パーティー、イベント向けの多目的スペースとして、ラウンジのレンタルも承ります。詳細はホテルまでお問い合わせ下さい。",
-        location: "〒135-0063 東京都江東区有明1-2-43",
-        },
-    ]}
+        contentPosition="section-center"
+        images={['/assets/images/restaurant_img_1.png', '/assets/images/img_alt_2.png', '/assets/images/img_alt_3.png']}
+        carouselPosition="left"
     />
-   <AmenitiesFeatureOverview
-    sectionId="service-info"
-    className="amenities-feature-overview"
-    bgColor="bg-white"
-    title="サービス案内"
-    amenities={[
-    { icon: "/icons/icon_time.svg", title: "営業時間", description: "6：30～10：00（ラストオーダー 9：30）" },
-    { icon: "/icons/icon_payment.svg", title: "朝食料金(ご宿泊のお客様)", description: "大人：3,300円（税込）、お子さま：2,200円（税込）" }
-    ]}
-   />
-   <ImgTextAlt
-    sectionId="staff-recommendation"
-    bgColor="bg-grey"
-    title="スタッフのおすすめ"
-    content={`サンプルテキストはここに入りますサンプルテキストはここに入ります`}
-    contentPosition="section-center"
-    images={[
-    "/assets/images/restaurant_img_2.png",
-    "/assets/images/img_alt_2.png",
-    "/assets/images/img_alt_3.png"
-    ]}
-    carouselPosition="right"
-   />
-   <FeaturePoints
-    className="feature-points"
-    bgColor="bg-grey"
-    points={
-    [
-    {
-    number: "01",
-    title: "本格的なシンガポール料理",
-    description:
-    "ビレッジホテル・カトンから徒歩でわずか3分のお店では様々な味わいのラクサを楽しめます。\n\n燃えさかる土鍋、海老、ザルガイ入りのクリーミーなカレーの風味をお楽しみください。",
-    },
-    {
-    number: "02",
-    title: "本格的なシンガポール料理",
-    description:
-    "ビレッジホテル・カトンから徒歩でわずか3分のお店では様々な味わいのラクサを楽しめます。\n\n燃えさかる土鍋、海老、ザルガイ入りのクリーミーなカレーの風味をお楽しみください。",
-    },
-    {
-    number: "03",
-    title: "本格的なシンガポール料理",
-    description:
-    "ビレッジホテル・カトンから徒歩でわずか3分のお店では様々な味わいのラクサを楽しめます。\n\n燃えさかる土鍋、海老、ザルガイ入りのクリーミーなカレーの風味をお楽しみください。",
-    },
-    ]
-    }
-   />
-   <script is:inline type="module" src="/scripts/imgTextAlt.js"></script>
+    <FeatureList
+        bgColor="bg-white"
+        data={[
+            {
+                id: 'shuttle',
+                name: '無料シャトルバス',
+                thumbnail: '/assets/images/amenities_details_img/amenities_detail_img_1.png',
+                description:
+                    'お仕事やご歓談に最適な、くつろぎに満ちた明るいラウンジです。無料Wi-Fiと充電コンセントをご用意しています。会議、パーティー、イベント向けの多目的スペースとして、ラウンジのレンタルも承ります。詳細はホテルまでお問い合わせ下さい。',
+                location: '1階',
+                ctaLink: '/contact',
+                ctaText: 'メニューはこちら'
+            },
+            {
+                id: 'restaurant',
+                name: 'レストラン',
+                thumbnail: '/assets/images/amenities_details_img/amenities_detail_img_1.png',
+                title: 'レストランA',
+                description:
+                    'お仕事やご歓談に最適な、くつろぎに満ちた明るいラウンジです。無料Wi-Fiと充電コンセントをご用意しています。会議、パーティー、イベント向けの多目的スペースとして、ラウンジのレンタルも承ります。詳細はホテルまでお問い合わせ下さい。',
+                location: '〒135-0063 東京都江東区有明1-2-43'
+            }
+        ]}
+    />
+    <AmenitiesFeatureOverview
+        sectionId="service-info"
+        className="amenities-feature-overview"
+        bgColor="bg-white"
+        title="サービス案内"
+        amenities={[
+            { icon: '/icons/icon_time.svg', title: '営業時間', description: '6：30～10：00（ラストオーダー 9：30）' },
+            {
+                icon: '/icons/icon_payment.svg',
+                title: '朝食料金(ご宿泊のお客様)',
+                description: '大人：3,300円（税込）、お子さま：2,200円（税込）'
+            }
+        ]}
+    />
+    <ImgTextAlt
+        sectionId="staff-recommendation"
+        bgColor="bg-grey"
+        title="スタッフのおすすめ"
+        content={`サンプルテキストはここに入りますサンプルテキストはここに入ります`}
+        contentPosition="section-center"
+        images={['/assets/images/restaurant_img_2.png', '/assets/images/img_alt_2.png', '/assets/images/img_alt_3.png']}
+        carouselPosition="right"
+    />
+    <FeaturePoints
+        className="feature-points"
+        bgColor="bg-grey"
+        points={[
+            {
+                number: '01',
+                title: '本格的なシンガポール料理',
+                description:
+                    'ビレッジホテル・カトンから徒歩でわずか3分のお店では様々な味わいのラクサを楽しめます。\n\n燃えさかる土鍋、海老、ザルガイ入りのクリーミーなカレーの風味をお楽しみください。'
+            },
+            {
+                number: '02',
+                title: '本格的なシンガポール料理',
+                description:
+                    'ビレッジホテル・カトンから徒歩でわずか3分のお店では様々な味わいのラクサを楽しめます。\n\n燃えさかる土鍋、海老、ザルガイ入りのクリーミーなカレーの風味をお楽しみください。'
+            },
+            {
+                number: '03',
+                title: '本格的なシンガポール料理',
+                description:
+                    'ビレッジホテル・カトンから徒歩でわずか3分のお店では様々な味わいのラクサを楽しめます。\n\n燃えさかる土鍋、海老、ザルガイ入りのクリーミーなカレーの風味をお楽しみください。'
+            }
+        ]}
+    />
+    <script is:inline type="module" src="/scripts/imgTextAlt.js"></script>
 </Layout>
