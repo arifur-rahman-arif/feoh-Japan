@@ -46,7 +46,7 @@ const filterButtons = [
             <!-- Dropdown options -->
             <div class="hotel-filters flex flex-wrap items-center justify-center gap-4 md:gap-6">
                 <!-- City options -->
-                <select id="city" class="jp-dropdown w-full sm:max-w-[13.75rem]">
+                <select id="city" class="jp-dropdown w-full sm:max-w-[13.75rem]" multiple>
                     <option value="東京" selected>東京</option>
                     <option value="東京">東京</option>
                     <option value="横浜">横浜</option>
@@ -54,7 +54,7 @@ const filterButtons = [
                 </select>
 
                 <!-- Hotels options -->
-                <select id="hotel-options" class="jp-dropdown w-full sm:max-w-[22.5rem]">
+                <select id="hotel-options" class="jp-dropdown w-full sm:max-w-[22.5rem]" multiple>
                     <option value="すべてのホテル" selected>すべてのホテル</option>
                     <option value="ファーイーストビレッジホテル東京有明">ファーイーストビレッジホテル東京有明</option>
                     <option value="ファーイーストビレッジホテル東京浅草">ファーイーストビレッジホテル東京浅草</option>
@@ -62,7 +62,7 @@ const filterButtons = [
                 </select>
 
                 <!-- Hotels types -->
-                <select id="hotel-types" class="jp-dropdown w-full sm:max-w-[13.75rem]">
+                <select id="hotel-types" class="jp-dropdown w-full sm:max-w-[13.75rem]" multiple>
                     <option value="全ての滞在タイプ" selected>全ての滞在タイプ</option>
                     <option value="ビジネスホテル">ビジネスホテル</option>
                     <option value="リゾートホテル">リゾートホテル</option>
