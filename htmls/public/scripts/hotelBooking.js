@@ -300,6 +300,8 @@ const HotelBooking = {
     },
 
     initializeSlider: function () {
+
+        const slides = document.querySelectorAll('.swiper--deal-swiper .swiper-slide');
         // Initialize Swiper
         const dealSwiper = new Swiper('.swiper--deal-swiper', {
             slidesPerView: 'auto',
@@ -307,26 +309,29 @@ const HotelBooking = {
             centerInsufficientSlides: true,
             spaceBetween: 20,
             autoHeight: false,
-            loop: true,
-            centeredSlides: true,
+            loop: slides.length > 2,
+            centeredSlides: slides.length > 1,
             pagination: {
                 el: '.swiper-pagination',
                 clickable: true
             },
             breakpoints: {
-                320: {
-                    centeredSlides: true
-                },
                 768: {
-                    centeredSlides: false
+                    centeredSlides: false,
+                    // slidesOffsetBefore: 20
                 }
             }
         });
 
-        dealSwiper.slideNext();
-        setTimeout(() => {
-            slider.slidePrev();
-        }, 300);
+        if(slides.length > 2) {
+            if(window.innerWidth < 768) {
+                dealSwiper.slideNext();
+        
+                setTimeout(() => {
+                    dealSwiper.slidePrev();
+                }, 300);
+            }
+        }
     },
 
     submitForm: function (form) {

@@ -1,28 +1,31 @@
 // Initialize Swiper
+const slides = document.querySelectorAll('.deals-swiper .swiper-slide');
+
 const dealSwiper = new Swiper('.deals-swiper', {
     slidesPerView: 'auto',
     speed: 1500,
-    centerInsufficientSlides: true,
+    centerInsufficientSlides: slides.length > 1,
     spaceBetween: 20,
     autoHeight: false,
-    loop: true,
-    centeredSlides: true,
+    loop: slides.length > 2,
+    centeredSlides: slides.length > 2,
     pagination: {
         el: '.swiper-pagination',
         clickable: true
     },
     breakpoints: {
-        320: {
-            centeredSlides: true
-        },
         768: {
             centeredSlides: false
         }
     }
 });
 
-dealSwiper.slideNext();
+if(slides.length > 2) {
+    if(window.innerWidth < 768) {
+        dealSwiper.slideNext();
 
-setTimeout(() => {
-    dealSwiper.slidePrev();
-}, 300);
+        setTimeout(() => {
+            dealSwiper.slidePrev();
+        }, 300);
+    }
+}
