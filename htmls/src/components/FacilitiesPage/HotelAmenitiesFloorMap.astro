@@ -3,7 +3,7 @@ import SectionHeading from '../SectionHeading/index.astro';
 const { className, bgColor, title } = Astro.props;
 ---
 <section class={`${className} ${bgColor}`}>
-<div class={`${className}-container container`}>
+<div class={`${className}-container container floor-map-plan`}>
    <SectionHeading title={title} />
    <div class="hotel-logo">
       <img src="/logos/Village-FEH-Logo.png" alt="Village Hotel Logo" class="hotel-logo-image" />
@@ -11,7 +11,7 @@ const { className, bgColor, title } = Astro.props;
    <div class="floor-map">
       <div class="floor-column floor-left">
          <div class="floor" data-floor="5">
-            <span class="floor-number">5F</span>
+            <span class="floor-number">54F</span>
             <div class="floor-icons">
                <div class="icon-list">
                   <div class="icon-wrapper">
@@ -27,6 +27,21 @@ const { className, bgColor, title } = Astro.props;
             <span class="floor-number">4F</span>
             <div class="floor-icons">
                <div class="icon-list">
+                  <div class="icon-wrapper">
+                     <img src="/icons/icon_bed.svg" />
+                  </div>
+                  <div class="icon-wrapper">
+                     <img src="/icons/icon_bed.svg" />
+                  </div>
+                  <div class="icon-wrapper">
+                     <img src="/icons/icon_bed.svg" />
+                  </div>
+                  <div class="icon-wrapper">
+                     <img src="/icons/icon_bed.svg" />
+                  </div>
+                  <div class="icon-wrapper">
+                     <img src="/icons/icon_bed.svg" />
+                  </div>
                   <div class="icon-wrapper">
                      <img src="/icons/icon_bed.svg" />
                   </div>

@@ -16,8 +16,8 @@ import HotelAmenitiesFloorMap from '@/components/FacilitiesPage/HotelAmenitiesFl
 </style>
 
 <Layout currentPageTitle="施設・サービス" whiteNav={true}>
-    <MastheadRoom heading="施設・サービス" subheading="FACILITIES" image="/assets/images/banner_image_3.png" />
-    <AmenitiesImageGrid 
+    <!-- <MastheadRoom heading="施設・サービス" subheading="FACILITIES" image="/assets/images/banner_image_3.png" /> -->
+    <!-- <AmenitiesImageGrid 
         className="amenities-img-grid-section" 
         title="施設のご案内"
         content="お客様にとっての快適性と利便性を考えてご用意した各種の設備が、 ご自宅にいるような温もりをお届けします。"
@@ -29,8 +29,8 @@ import HotelAmenitiesFloorMap from '@/components/FacilitiesPage/HotelAmenitiesFl
             { id: 'shuttle', image: '../assets/images/amenities_img_grid/amenities_img_5.png', alt: 'Shuttle Bus', title: '無料シャトルバス' },
             { id: 'restaurant', image: '../assets/images/amenities_img_grid/amenities_img_6.png', alt: 'Restaurant', title: 'レストラン' }
         ]}
-    />
-    <AmenitiesDetail 
+    /> -->
+    <!-- <AmenitiesDetail 
         className="amenities-details-section"
         isExpanded={true}
         data={[
@@ -84,8 +84,8 @@ import HotelAmenitiesFloorMap from '@/components/FacilitiesPage/HotelAmenitiesFl
             ctaText: "お問い合わせ",
             },
         ]}
-    />
-    <AmenitiesFeatureOverview
+    /> -->
+    <!-- <AmenitiesFeatureOverview
         className="amenities-feature-overview"
         bgColor="bg-white"
         title="サービス案内"
@@ -94,16 +94,17 @@ import HotelAmenitiesFloorMap from '@/components/FacilitiesPage/HotelAmenitiesFl
             { icon: "/icons/icon_wifi.svg", title: "Wi-Fi サービス", description: "客室やロビーに無線LAN（Wi-Fi）によるインターネット接続を完備。" },
             { icon: "/icons/icon_payment.svg", title: "有料サービス", description: "ランドリー ／ 宅配便 ／ マッサージ ／ 駐車場" }
         ]}
-    />
-    <HotelAmenitiesList
+    /> -->
+    <!-- <HotelAmenitiesList
         className="hotel-amenities-list"
         bgColor="bg-white"
         title="室内設備・アメニティ"
-    />
+    /> -->
     <HotelAmenitiesFloorMap
         className="hotel-amenities-floor-map"
         bgColor="bg-white"
         title="フロアマップ"
     />
     <script is:inline type="module" src="/scripts/amenities.js"></script>
+    <script is:inline type="module" src="/scripts/floorPlan.js"></script>
 </Layout>
