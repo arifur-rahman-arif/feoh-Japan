@@ -8,25 +8,28 @@ const { sectionId, bgColor, title, subtitle, content, contentPosition, images, c
         <div class="container">
             <!-- Heading Section -->
             <SectionHeading title={title} subtitle={subtitle} />
-            <div class="grid w-full max-w-[40rem] gap-5 justify-self-center ">
+            <div class="grid w-full max-w-[40rem] gap-5 justify-self-center">
                 <p class="text-center">{content}</p>
             </div>
         </div>
     </div>
-    <div class={`flex flex-col md:flex-row ${carouselPosition === "right" ? "md:flex-row-reverse slider-right" : "slider-left"} items-center`}>
+    <div
+        class={`flex flex-col md:flex-row ${carouselPosition === 'right' ? 'md:flex-row-reverse slider-right' : 'slider-left'} items-center`}
+    >
         <!-- Swiper Image Component -->
-        <div class="w-full md:w-[95%]">
-            <div class="swiper imgTextAlt-swiper w-full h-[11.5625rem] md:h-[31.25rem] overflow-hidden shadow-lg">
+        <div class="relative w-full md:w-[95%]">
+            <div class="swiper imgTextAlt-swiper">
                 <div class="swiper-wrapper">
-                    {images.map((image) => (
-                    <div class="swiper-slide">
-                        <img src={image} alt="swiper-image" class="w-full h-full object-cover" />
-                    </div>
-                    ))}
+                    {
+                        images.map((image: string) => (
+                            <div class="swiper-slide !h-auto">
+                                <img src={image} alt="swiper-image" class="w-full object-cover" />
+                            </div>
+                        ))
+                    }
                 </div>
+                <div class="swiper-pagination"></div>
             </div>
         </div>
-        <!-- Slider Pagination Component -->
-        <div class="w-full md:w-[5%] slider-pagination"></div>
     </div>
 </section>

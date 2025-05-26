@@ -67,3 +67,26 @@
         }
     }
 }
+
+.imgTextAlt-swiper {
+    @include media-breakpoint-up(md) {
+        padding-right: 2.5rem;
+    }
+
+    .swiper-pagination {
+        top: auto !important;
+        bottom: -1rem;
+        right: 0;
+
+        &-bullet {
+            background-color: var(--color12) !important;
+            width: 0.75rem;
+            height: 0.75rem;
+            margin: 1rem 0 !important;
+
+            &-active {
+                background-color: var(--color1) !important;
+            }
+        }
+    }
+}

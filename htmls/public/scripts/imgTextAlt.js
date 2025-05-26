@@ -1,45 +1,56 @@
 // ImgTextAlt Swiper Script Started
-document.addEventListener('DOMContentLoaded', () => {
-    const swiperContainers = document.querySelectorAll('.imgTextAlt-swiper');
+document.querySelectorAll('.imgTextAlt-swiper').forEach((swiperElement, _) => {
+    const slides = swiperElement.querySelectorAll('.swiper-slide');
 
-    swiperContainers.forEach((swiperContainer, index) => {
-        const sliderPagination = swiperContainer.closest('.flex').querySelector('.slider-pagination');
+    // Calculate max height from slides
+    let maxHeight = 0;
+    slides.forEach(slide => {
+        const slideHeight = slide.offsetHeight;
+        maxHeight = Math.max(maxHeight, slideHeight);
+    });
 
-        if (sliderPagination) {
-            // Clear any existing content in the pagination div
-            sliderPagination.innerHTML = '';
+    // Set container height
+    if (maxHeight > 0) {
+        swiperElement.style.maxHeight = `${maxHeight}px`;
+    }
 
-            // Count slides only in this specific Swiper instance
-            const totalSlides = swiperContainer.querySelectorAll('.swiper-slide').length;
-
-            // Create bullets based on the number of slides in this instance
-            for (let i = 0; i < totalSlides; i++) {
-                const bullet = document.createElement('span');
-                bullet.classList.add('swiper-pagination-bullet');
-                sliderPagination.appendChild(bullet);
-            }
-
-            // Initialize Swiper for this specific container
-            new Swiper(swiperContainer, {
+    new Swiper(swiperElement, {
+        speed: 1500,
+        slidesPerView: 1,
+        spaceBetween: 20,
+        loop: slides.length > 1,
+        // autoplay: true,
+        grabCursor: slides.length > 1,
+        keyboard: {
+            enabled: true
+        },
+        pagination: {
+            el: swiperElement.querySelector('.swiper-pagination'),
+            clickable: true
+        },
+        breakpoints: {
+            0: {
+                direction: 'horizontal',
+                slidesPerView: 1,
+                pagination: false
+            },
+            768: {
                 direction: 'vertical',
-                autoplay: true,
-                loop: true,
-                spaceBetween: 0,
-                pagination: {
-                    el: sliderPagination,
-                    clickable: true
-                },
-                breakpoints: {
-                    0: {
-                        direction: 'horizontal'
-                    },
-                    992: {
-                        direction: 'vertical'
-                    }
+                slidesPerView: 1
+            }
+        },
+        on: {
+            resize: function () {
+                // Recalculate max height on resize
+                let newMaxHeight = 0;
+                slides.forEach(slide => {
+                    const slideHeight = slide.offsetHeight;
+                    newMaxHeight = Math.max(newMaxHeight, slideHeight);
+                });
+                if (newMaxHeight > 0) {
+                    swiperElement.style.maxHeight = `${newMaxHeight}px`;
                 }
-            });
-        } else {
-            console.error(`Slider-pagination div not found for swiper instance ${index}`);
+            }
         }
     });
 });
